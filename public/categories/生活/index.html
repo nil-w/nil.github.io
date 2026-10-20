@@ -103,7 +103,7 @@
                 01-25 上午
               </div>
               <div class="archive-article-title">
-                <a href="/*/2afb063d.html" target="_self">
+                <a href="/%E7%94%9F%E6%B4%BB/2afb063d.html" target="_self">
                   奇怪的梦&nbsp;&nbsp;🔐
                 </a>
               </div>
@@ -120,7 +120,7 @@
                 04-08 下午
               </div>
               <div class="archive-article-title">
-                <a href="/*/2375039249.html" target="_self">
+                <a href="/%E7%94%9F%E6%B4%BB/2375039249.html" target="_self">
                   鲁迅先生写道: 父母存在的意义&nbsp;&nbsp;
                 </a>
               </div>
@@ -137,7 +137,7 @@
                 11-12 凌晨
               </div>
               <div class="archive-article-title">
-                <a href="/*/3298b773.html" target="_self">
+                <a href="/%E7%94%9F%E6%B4%BB/3298b773.html" target="_self">
                   一年要赚多少钱才能支撑一个三口之家？&nbsp;&nbsp;
                 </a>
               </div>
@@ -149,7 +149,7 @@
                 11-12 凌晨
               </div>
               <div class="archive-article-title">
-                <a href="/*/848869235.html" target="_self">
+                <a href="/%E7%94%9F%E6%B4%BB/848869235.html" target="_self">
                   一年要赚多少钱才能支撑一个三口之家？&nbsp;&nbsp;
                 </a>
               </div>
@@ -161,7 +161,7 @@
                 04-08 上午
               </div>
               <div class="archive-article-title">
-                <a href="/*/1873749776.html" target="_self">
+                <a href="/%E7%94%9F%E6%B4%BB/1873749776.html" target="_self">
                   29岁,再见！&nbsp;&nbsp;
                 </a>
               </div>
@@ -173,7 +173,7 @@
                 03-27 下午
               </div>
               <div class="archive-article-title">
-                <a href="/*/340466787.html" target="_self">
+                <a href="/%E7%94%9F%E6%B4%BB/340466787.html" target="_self">
                   我们不像诗歌&nbsp;&nbsp;
                 </a>
               </div>
@@ -185,7 +185,7 @@
                 03-21 晚上
               </div>
               <div class="archive-article-title">
-                <a href="/*/3042827788.html" target="_self">
+                <a href="/%E7%94%9F%E6%B4%BB/3042827788.html" target="_self">
                   路&nbsp;&nbsp;
                 </a>
               </div>
@@ -202,7 +202,7 @@
                 07-28 凌晨
               </div>
               <div class="archive-article-title">
-                <a href="/*/a5f172c4.html" target="_self">
+                <a href="/%E7%94%9F%E6%B4%BB/a5f172c4.html" target="_self">
                   生活计划&nbsp;&nbsp;
                 </a>
               </div>
@@ -214,7 +214,7 @@
                 07-28 凌晨
               </div>
               <div class="archive-article-title">
-                <a href="/*/2784064196.html" target="_self">
+                <a href="/%E7%94%9F%E6%B4%BB/2784064196.html" target="_self">
                   生活计划&nbsp;&nbsp;
                 </a>
               </div>
@@ -226,7 +226,7 @@
                 06-01 凌晨
               </div>
               <div class="archive-article-title">
-                <a href="/*/1bc5f237.html" target="_self">
+                <a href="/%E7%94%9F%E6%B4%BB/1bc5f237.html" target="_self">
                   过六一的&#34;儿童&#34;们&nbsp;&nbsp;
                 </a>
               </div>
@@ -291,7 +291,7 @@
 </div>
 
 
-<span class="post-count">50.1k</span>
+<span class="post-count">49.2k</span>
 
 <script type="text/javascript">
 
@@ -300,8 +300,9 @@
     r = d.documentElement.style,
     f = r.setProperty.bind(r),
     l = localStorage,
-    s = l.getItem('s') ||(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches),
-    n = l.getItem('n'),
+    rawS = l.getItem('s'),
+    s = (rawS === '1' || rawS === '2') ? Number(rawS) : 0,
+    sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches,
     m = d.getElementById("dark-mode"),
     b = () => {
       f('--bg-color', '#fafafa');
@@ -328,22 +329,19 @@
     o = d.getElementById("sans-font"),
     e = () => {
       f('--body-stack', '"Lora", "Georgia", "Times New Roman", serif');
-      // o.innerHTML = "无衬"
     },
     g = () => {
       f('--body-stack', '"Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');
-      // o.innerHTML = "衬线"
+    },
+    applyTheme = () => {
+      if (s === 1) b();
+      else if (s === 2) c();
+      else (sysDark ? c() : b());
     };
   m.onclick = function(){
-    if (s == 2) {
-      s = 1;
-      l.setItem('s', s);
-      c()
-    } else {
-      s = 2;
-      l.setItem('s', s);
-      b()
-    }
+    s = s === 2 ? 0 : s + 1;
+    l.setItem('s', s);
+    applyTheme();
   };
   o.onclick =function(){
     if (n == 2) {
@@ -356,17 +354,7 @@
       e()
     }
   };
-  if (s || s == '1') {
-      s = 1;
-      l.setItem('s', s);
-    c()
-  }
-
-  if (!s || s == '2') {
-      s = 2;
-      l.setItem('s', s);
-    b()
-  };
+  applyTheme();
   if (!n) {
     n = 2;
     l.setItem('n', 2)

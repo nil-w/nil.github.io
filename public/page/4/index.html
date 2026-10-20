@@ -112,29 +112,7 @@
       
   
     <h3 class="archive-article-title" itemprop="name">
-      <a href="/*/3423146f.html"><span>前端定时器 &nbsp;&nbsp;</span></a>
-      
-    </h3>
-  
-
-
-      <time class="archive-article-date" datetime="2024-01-11T07:09:31.000Z" itemprop="datePublished">01-11 下午</time>
-
-    </div>
-  </div>
-</article>
-
-  
-    
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <div class="archive-article-header  list-group-item">
-      
-  
-    <h3 class="archive-article-title" itemprop="name">
-      <a href="/*/b2113df8.html"><span>炝锅面 &nbsp;&nbsp;</span></a>
+      <a href="/%E8%8F%9C%E8%B0%B1/b2113df8.html"><span>炝锅面 &nbsp;&nbsp;</span></a>
       
     </h3>
   
@@ -156,7 +134,7 @@
       
   
     <h3 class="archive-article-title" itemprop="name">
-      <a href="/*/1d180e51.html"><span>芝麻叶糊涂面 &nbsp;&nbsp;</span></a>
+      <a href="/%E8%8F%9C%E8%B0%B1/1d180e51.html"><span>芝麻叶糊涂面 &nbsp;&nbsp;</span></a>
       
     </h3>
   
@@ -178,7 +156,7 @@
       
   
     <h3 class="archive-article-title" itemprop="name">
-      <a href="/*/9f600c63.html"><span>mysql count函数正确使用姿势 &nbsp;&nbsp;</span></a>
+      <a href="/%E5%B7%A5%E4%BD%9C/9f600c63.html"><span>mysql count函数正确使用姿势 &nbsp;&nbsp;</span></a>
       
     </h3>
   
@@ -209,7 +187,7 @@
       
   
     <h3 class="archive-article-title" itemprop="name">
-      <a href="/*/7178be5f.html"><span>通用excel导入设计 &nbsp;&nbsp;</span></a>
+      <a href="/%E5%B7%A5%E4%BD%9C/7178be5f.html"><span>通用excel导入设计 &nbsp;&nbsp;</span></a>
       
     </h3>
   
@@ -231,7 +209,7 @@
       
   
     <h3 class="archive-article-title" itemprop="name">
-      <a href="/*/c2cb16de.html"><span>4月份wbs &nbsp;&nbsp;🔐</span></a>
+      <a href="/%E5%B7%A5%E4%BD%9C/c2cb16de.html"><span>4月份wbs &nbsp;&nbsp;🔐</span></a>
       
     </h3>
   
@@ -253,7 +231,7 @@
       
   
     <h3 class="archive-article-title" itemprop="name">
-      <a href="/*/2050102104.html"><span>gitlab &amp; OKR 进行项目管理  &nbsp;&nbsp;</span></a>
+      <a href="/%E5%B7%A5%E4%BD%9C/2050102104.html"><span>gitlab &amp; OKR 进行项目管理  &nbsp;&nbsp;</span></a>
       
     </h3>
   
@@ -284,7 +262,7 @@
       
   
     <h3 class="archive-article-title" itemprop="name">
-      <a href="/*/2967963195.html"><span>1. 低代码 &nbsp;&nbsp;</span></a>
+      <a href="/%E5%B7%A5%E4%BD%9C/2967963195.html"><span>1. 低代码 &nbsp;&nbsp;</span></a>
       
     </h3>
   
@@ -306,7 +284,7 @@
       
   
     <h3 class="archive-article-title" itemprop="name">
-      <a href="/*/725797460.html"><span>0. 低代码 &nbsp;&nbsp;</span></a>
+      <a href="/%E5%B7%A5%E4%BD%9C/725797460.html"><span>0. 低代码 &nbsp;&nbsp;</span></a>
       
     </h3>
   
@@ -328,13 +306,35 @@
       
   
     <h3 class="archive-article-title" itemprop="name">
-      <a href="/*/202678719.html"><span>mysql &#39;No DataSource Set&#39;解决办法 &nbsp;&nbsp;</span></a>
+      <a href="/%E5%B7%A5%E4%BD%9C/202678719.html"><span>mysql &#39;No DataSource Set&#39;解决办法 &nbsp;&nbsp;</span></a>
       
     </h3>
   
 
 
       <time class="archive-article-date" datetime="2022-10-10T06:38:01.000Z" itemprop="datePublished">10-10 下午</time>
+
+    </div>
+  </div>
+</article>
+
+  
+    
+    
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <div class="archive-article-header  list-group-item">
+      
+  
+    <h3 class="archive-article-title" itemprop="name">
+      <a href="/%E5%B7%A5%E4%BD%9C/1406322052.html"><span>搭建maven私库 &nbsp;&nbsp;</span></a>
+      
+    </h3>
+  
+
+
+      <time class="archive-article-date" datetime="2022-08-31T06:46:04.000Z" itemprop="datePublished">08-31 下午</time>
 
     </div>
   </div>
@@ -390,7 +390,7 @@
 </div>
 
 
-<span class="post-count">50.1k</span>
+<span class="post-count">49.2k</span>
 
 <script type="text/javascript">
 
@@ -399,8 +399,9 @@
     r = d.documentElement.style,
     f = r.setProperty.bind(r),
     l = localStorage,
-    s = l.getItem('s') ||(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches),
-    n = l.getItem('n'),
+    rawS = l.getItem('s'),
+    s = (rawS === '1' || rawS === '2') ? Number(rawS) : 0,
+    sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches,
     m = d.getElementById("dark-mode"),
     b = () => {
       f('--bg-color', '#fafafa');
@@ -427,22 +428,19 @@
     o = d.getElementById("sans-font"),
     e = () => {
       f('--body-stack', '"Lora", "Georgia", "Times New Roman", serif');
-      // o.innerHTML = "无衬"
     },
     g = () => {
       f('--body-stack', '"Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');
-      // o.innerHTML = "衬线"
+    },
+    applyTheme = () => {
+      if (s === 1) b();
+      else if (s === 2) c();
+      else (sysDark ? c() : b());
     };
   m.onclick = function(){
-    if (s == 2) {
-      s = 1;
-      l.setItem('s', s);
-      c()
-    } else {
-      s = 2;
-      l.setItem('s', s);
-      b()
-    }
+    s = s === 2 ? 0 : s + 1;
+    l.setItem('s', s);
+    applyTheme();
   };
   o.onclick =function(){
     if (n == 2) {
@@ -455,17 +453,7 @@
       e()
     }
   };
-  if (s || s == '1') {
-      s = 1;
-      l.setItem('s', s);
-    c()
-  }
-
-  if (!s || s == '2') {
-      s = 2;
-      l.setItem('s', s);
-    b()
-  };
+  applyTheme();
   if (!n) {
     n = 2;
     l.setItem('n', 2)

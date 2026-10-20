@@ -110,7 +110,7 @@
       
   
     <h3 class="archive-article-title" itemprop="name">
-      <a href="/*/e4b8a22b.html"><span>Transformer模型 &nbsp;&nbsp;</span></a>
+      <a href="/%E5%AD%A6%E4%B9%A0/e4b8a22b.html"><span>Transformer模型 &nbsp;&nbsp;</span></a>
       
     </h3>
   
@@ -132,7 +132,7 @@
       
   
     <h3 class="archive-article-title" itemprop="name">
-      <a href="/*/c88b93d0.html"><span>笔记4-《程序员数学-1》 &nbsp;&nbsp;</span></a>
+      <a href="/%E5%AD%A6%E4%B9%A0/c88b93d0.html"><span>笔记4-《程序员数学-1》 &nbsp;&nbsp;</span></a>
       
     </h3>
   
@@ -154,7 +154,7 @@
       
   
     <h3 class="archive-article-title" itemprop="name">
-      <a href="/*/73b21f0a.html"><span>开年大吉，工作顺利！ &nbsp;&nbsp;</span></a>
+      <a href="/%E5%B7%A5%E4%BD%9C/73b21f0a.html"><span>开年大吉，工作顺利！ &nbsp;&nbsp;</span></a>
       
     </h3>
   
@@ -176,7 +176,7 @@
       
   
     <h3 class="archive-article-title" itemprop="name">
-      <a href="/*/72bee84d.html"><span>研发年终总结 &nbsp;&nbsp;🔐</span></a>
+      <a href="/%E5%B7%A5%E4%BD%9C/72bee84d.html"><span>研发年终总结 &nbsp;&nbsp;🔐</span></a>
       
     </h3>
   
@@ -247,7 +247,7 @@
 </div>
 
 
-<span class="post-count">50.1k</span>
+<span class="post-count">49.2k</span>
 
 <script type="text/javascript">
 
@@ -256,8 +256,9 @@
     r = d.documentElement.style,
     f = r.setProperty.bind(r),
     l = localStorage,
-    s = l.getItem('s') ||(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches),
-    n = l.getItem('n'),
+    rawS = l.getItem('s'),
+    s = (rawS === '1' || rawS === '2') ? Number(rawS) : 0,
+    sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches,
     m = d.getElementById("dark-mode"),
     b = () => {
       f('--bg-color', '#fafafa');
@@ -284,22 +285,19 @@
     o = d.getElementById("sans-font"),
     e = () => {
       f('--body-stack', '"Lora", "Georgia", "Times New Roman", serif');
-      // o.innerHTML = "无衬"
     },
     g = () => {
       f('--body-stack', '"Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');
-      // o.innerHTML = "衬线"
+    },
+    applyTheme = () => {
+      if (s === 1) b();
+      else if (s === 2) c();
+      else (sysDark ? c() : b());
     };
   m.onclick = function(){
-    if (s == 2) {
-      s = 1;
-      l.setItem('s', s);
-      c()
-    } else {
-      s = 2;
-      l.setItem('s', s);
-      b()
-    }
+    s = s === 2 ? 0 : s + 1;
+    l.setItem('s', s);
+    applyTheme();
   };
   o.onclick =function(){
     if (n == 2) {
@@ -312,17 +310,7 @@
       e()
     }
   };
-  if (s || s == '1') {
-      s = 1;
-      l.setItem('s', s);
-    c()
-  }
-
-  if (!s || s == '2') {
-      s = 2;
-      l.setItem('s', s);
-    b()
-  };
+  applyTheme();
   if (!n) {
     n = 2;
     l.setItem('n', 2)

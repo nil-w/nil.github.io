@@ -2,55 +2,30 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/550cdc1d.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E7%BC%96%E7%A8%8B%E5%93%B2%E5%AD%A6/550cdc1d.html</loc>
     
     <lastmod>2026-10-19T02:16:41.463Z</lastmod>
     
-
-    <id>550cdc1d</id>
-    <date>1792371600000</date>
-    <title>什么时候该写测试，什么时候不该 | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/f1125d9e.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E7%BC%96%E7%A8%8B%E5%93%B2%E5%AD%A6/f1125d9e.html</loc>
     
     <lastmod>2026-10-19T02:16:26.705Z</lastmod>
     
-
-    <id>f1125d9e</id>
-    <date>1792285200000</date>
-    <title>防御性编程是一种过度设计吗 | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/9d757751.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E6%9D%82%E6%80%9D/9d757751.html</loc>
     
     <lastmod>2026-10-19T02:16:14.115Z</lastmod>
     
-
-    <id>9d757751</id>
-    <date>1792198800000</date>
-    <title>为什么我很少在社交媒体发言 | sudo rm -rf /*</title>
-    
-    <desc></desc>
-  </url>
-  
-  <url>
-    <loc>https://sudo.rm-rf.ink/*/550cdc1d.html</loc>
-    
-    <lastmod>2026-10-19T02:13:03.439Z</lastmod>
-    
-
-    <id>550cdc1d</id>
-    <date>1792371600000</date>
-    <title>什么时候该写测试，什么时候不该 | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   
   <url>
@@ -58,12 +33,8 @@
     
     <lastmod>2026-10-17T14:19:03.929Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743929</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   
   <url>
@@ -71,12 +42,8 @@
     
     <lastmod>2026-10-17T14:19:03.920Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743920</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   
   <url>
@@ -84,12 +51,8 @@
     
     <lastmod>2026-10-17T14:19:03.920Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743920</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc>{"name":"revealjs-animated","version":"1.2.2","description":"RevealJs plugin to facilitate usage of animation inside slides","main":"webpack.config.js","repository":{"type":"git","url":"https://github</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   
   <url>
@@ -97,12 +60,8 @@
     
     <lastmod>2026-10-17T14:19:03.920Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743920</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   
   <url>
@@ -110,12 +69,8 @@
     
     <lastmod>2026-10-17T14:19:03.919Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743919</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   
   <url>
@@ -123,12 +78,8 @@
     
     <lastmod>2026-10-17T14:19:03.912Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743912</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc>{"name":"reveal.js","version":"5.2.1","description":"The HTML Presentation Framework","homepage":"https://revealjs.com","subdomain":"revealjs","main":"dist/reveal.js","module":"dist/reveal.esm.js","li</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   
   <url>
@@ -136,25 +87,8 @@
     
     <lastmod>2026-10-17T14:19:03.910Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743910</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc></desc>
-  </url>
-  
-  <url>
-    <loc>https://sudo.rm-rf.ink/js/reveal.js/demo.html</loc>
-    
-    <lastmod>2026-10-17T14:19:03.910Z</lastmod>
-    
-
-    <id></id>
-    <date>1792246743910</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
   </url>
   
   <url>
@@ -162,12 +96,17 @@
     
     <lastmod>2026-10-17T14:19:03.910Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743910</date>
-    <title> | sudo rm -rf /*</title>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sudo.rm-rf.ink/js/reveal.js/demo.html</loc>
     
-    <desc></desc>
+    <lastmod>2026-10-17T14:19:03.910Z</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
@@ -175,12 +114,8 @@
     
     <lastmod>2026-10-17T14:19:03.910Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743910</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
@@ -188,12 +123,8 @@
     
     <lastmod>2026-10-17T14:19:03.909Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743909</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
@@ -201,12 +132,8 @@
     
     <lastmod>2026-10-17T14:19:03.909Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743909</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc>{"name":"reveal.js-plugins","version":"4.2.5","description":"A plugin collection for your reveal.js presentations","repository":{"type":"git","url":"https://github.com/rajgoel/reveal.js-plugins.git"},</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
@@ -214,12 +141,8 @@
     
     <lastmod>2026-10-17T14:19:03.909Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743909</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
@@ -227,25 +150,8 @@
     
     <lastmod>2026-10-17T14:19:03.909Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743909</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc></desc>
-  </url>
-  
-  <url>
-    <loc>https://sudo.rm-rf.ink/js/reveal.js-plugins/fullscreen/README.html</loc>
-    
-    <lastmod>2026-10-17T14:19:03.909Z</lastmod>
-    
-
-    <id></id>
-    <date>1792246743909</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
@@ -253,12 +159,8 @@
     
     <lastmod>2026-10-17T14:19:03.909Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743909</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
@@ -266,12 +168,8 @@
     
     <lastmod>2026-10-17T14:19:03.909Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743909</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
@@ -279,12 +177,8 @@
     
     <lastmod>2026-10-17T14:19:03.909Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743909</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
@@ -292,12 +186,17 @@
     
     <lastmod>2026-10-17T14:19:03.909Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743909</date>
-    <title> | sudo rm -rf /*</title>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sudo.rm-rf.ink/js/reveal.js-plugins/fullscreen/README.html</loc>
     
-    <desc></desc>
+    <lastmod>2026-10-17T14:19:03.909Z</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
@@ -305,12 +204,8 @@
     
     <lastmod>2026-10-17T14:19:03.908Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743908</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
@@ -318,12 +213,8 @@
     
     <lastmod>2026-10-17T14:19:03.907Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743907</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
@@ -331,12 +222,8 @@
     
     <lastmod>2026-10-17T14:19:03.907Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743907</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
@@ -344,12 +231,8 @@
     
     <lastmod>2026-10-17T14:19:03.906Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743906</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
@@ -357,12 +240,8 @@
     
     <lastmod>2026-10-17T14:19:03.906Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743906</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
@@ -370,12 +249,8 @@
     
     <lastmod>2026-10-17T14:19:03.906Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743906</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
@@ -383,12 +258,8 @@
     
     <lastmod>2026-10-17T14:19:03.886Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743886</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
@@ -396,25 +267,8 @@
     
     <lastmod>2026-10-17T14:19:03.886Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743886</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc></desc>
-  </url>
-  
-  <url>
-    <loc>https://sudo.rm-rf.ink/js/reveal.js-mermaid-plugin/index.html</loc>
-    
-    <lastmod>2026-10-17T14:19:03.886Z</lastmod>
-    
-
-    <id></id>
-    <date>1792246743886</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
@@ -422,25 +276,17 @@
     
     <lastmod>2026-10-17T14:19:03.886Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743886</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc>{"name":"reveal.js-mermaid-plugin","version":"2.2.0","description":"A mermaid plugin for reveal.js.","homepage":"https://zjffun.github.io/reveal.js-mermaid-plugin","main":"plugin/mermaid/mermaid.js","</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/baidu_verify_codeva-O2ay1lLTce.html</loc>
+    <loc>https://sudo.rm-rf.ink/js/reveal.js-mermaid-plugin/index.html</loc>
     
-    <lastmod>2026-10-17T14:19:03.740Z</lastmod>
+    <lastmod>2026-10-17T14:19:03.886Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743740</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
@@ -448,12 +294,17 @@
     
     <lastmod>2026-10-17T14:19:03.740Z</lastmod>
     
-
-    <id></id>
-    <date>1792246743740</date>
-    <title> | sudo rm -rf /*</title>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://sudo.rm-rf.ink/baidu_verify_codeva-O2ay1lLTce.html</loc>
     
-    <desc></desc>
+    <lastmod>2026-10-17T14:19:03.740Z</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
@@ -461,1091 +312,755 @@
     
     <lastmod>2026-10-17T14:19:03.739Z</lastmod>
     
-
-    <id></id>
-    <date>1527609600000</date>
-    <title> | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/1000976984.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/1000976984.html</loc>
     
     <lastmod>2026-10-17T14:19:03.721Z</lastmod>
     
-
-    <id>1000976984</id>
-    <date>1588875432000</date>
-    <title>打造自己的产品 1 | sudo rm -rf /*</title>
-    
-    <desc>我的创业日志</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/762727420.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%AD%A6%E4%B9%A0/762727420.html</loc>
     
     <lastmod>2026-10-17T14:19:03.721Z</lastmod>
     
-
-    <id>762727420</id>
-    <date>1527696000000</date>
-    <title>给博客增加评论功能 | sudo rm -rf /*</title>
-    
-    <desc>插件本身默认支持英文，所以我下载了源码进行一部分改造。以下是源码：[giment.js](yqwoe.space/yqwoe.github.io/static/js/gitment.js)</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/38291047.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/38291047.html</loc>
     
     <lastmod>2026-10-17T14:19:03.721Z</lastmod>
     
-
-    <id>38291047</id>
-    <date>1777631460000</date>
-    <title>改造 Hermes Agent 记忆系统：基于 MemPalace 的实践 | sudo rm -rf /*</title>
-    
-    <desc>围绕 Hermes Agent 内置记忆的局限性，讲解如何用 MemPalace 语义记忆层替换改造</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/b2113df8.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E8%8F%9C%E8%B0%B1/b2113df8.html</loc>
     
     <lastmod>2026-10-17T14:19:03.721Z</lastmod>
     
-
-    <id>b2113df8</id>
-    <date>1704955461000</date>
-    <title>炝锅面 | sudo rm -rf /*</title>
-    
-    <desc>河南大多地方以面食为主，炝锅面又是最经典的面食之一。</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/4278564287.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E7%94%9F%E6%B4%BB/4278564287.html</loc>
     
     <lastmod>2026-10-17T14:19:03.721Z</lastmod>
     
-
-    <id>4278564287</id>
-    <date>1527609600000</date>
-    <title>第一篇博客 | sudo rm -rf /*</title>
-    
-    <desc>今天是2018年05月30日，2015年的昨天是我们第一次见面，今天是我们第一次看电影,我们的所有日子都记得，宝宝是2017年12月22日 早上05:15分 出生。</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/2784064196.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E7%94%9F%E6%B4%BB/2784064196.html</loc>
     
     <lastmod>2026-10-17T14:19:03.721Z</lastmod>
     
-
-    <id>2784064196</id>
-    <date>1532707200000</date>
-    <title>生活计划 | sudo rm -rf /*</title>
-    
-    <desc>有一个健康的身体太重要了</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/465957431.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E7%94%9F%E6%B4%BB/465957431.html</loc>
     
     <lastmod>2026-10-17T14:19:03.721Z</lastmod>
     
-
-    <id>465957431</id>
-    <date>1527782400000</date>
-    <title>过六一的"儿童"们 | sudo rm -rf /*</title>
-    
-    <desc>今天是六一儿童节，早早的起床给儿子去打疫苗，这对于小家伙来说应该是无比痛苦的吧。不过，比起热更痛苦的应该是挨上一针，和看着小家伙挨针的心情！！！</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/72bee84d.html</loc>
+    <loc>https://sudo.rm-rf.ink/uncategorized/ae0adc94.html</loc>
     
     <lastmod>2026-10-17T14:19:03.721Z</lastmod>
     
-
-    <id>72bee84d</id>
-    <date>1707101576000</date>
-    <title>研发年终总结 | sudo rm -rf /*</title>
-    
-    <desc>文章加密了，需要输入密码查看</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/ae0adc94.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E8%8F%9C%E8%B0%B1/1d180e51.html</loc>
     
     <lastmod>2026-10-17T14:19:03.721Z</lastmod>
     
-
-    <id>ae0adc94</id>
-    <date>1606892764000</date>
-    <title>航空港区-兴港-沟通 | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/1d180e51.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/72bee84d.html</loc>
     
     <lastmod>2026-10-17T14:19:03.721Z</lastmod>
     
-
-    <id>1d180e51</id>
-    <date>1704861963000</date>
-    <title>芝麻叶糊涂面 | sudo rm -rf /*</title>
-    
-    <desc>芝麻叶面条是河南的家常面食，喜不喜欢面食，吃上一次就会想第二次。</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/1061411954.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/74a10861.html</loc>
     
     <lastmod>2026-10-17T14:19:03.721Z</lastmod>
     
-
-    <id>1061411954</id>
-    <date>1539014400000</date>
-    <title>英语学习 | sudo rm -rf /*</title>
-    
-    <desc>英语学习</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/74a10861.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%AD%A6%E4%B9%A0/1061411954.html</loc>
     
     <lastmod>2026-10-17T14:19:03.721Z</lastmod>
     
-
-    <id>74a10861</id>
-    <date>1706576311000</date>
-    <title>表单中心功能清单 | sudo rm -rf /*</title>
-    
-    <desc>文章加密了，需要输入密码查看</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/3042827788.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E7%94%9F%E6%B4%BB/3042827788.html</loc>
     
     <lastmod>2026-10-17T14:19:03.721Z</lastmod>
     
-
-    <id>3042827788</id>
-    <date>1584802640000</date>
-    <title>路 | sudo rm -rf /*</title>
-    
-    <desc>var ap = new APlayer({ element: document.getElementById("aplayer-MuTyBHxT"), narrow: false, autoplay: true, showlrc: false, music: { title: "The Lion Sleeps Tonight", author: "The Tokens", url: "/musi</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/751843018.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/751843018.html</loc>
     
     <lastmod>2026-10-17T14:19:03.721Z</lastmod>
     
-
-    <id>751843018</id>
-    <date>1596597975000</date>
-    <title>边缘计算 1 | sudo rm -rf /*</title>
-    
-    <desc>边缘计算、云计算、雾计算的区别</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/7178be5f.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/4074971168.html</loc>
     
     <lastmod>2026-10-17T14:19:03.721Z</lastmod>
     
-
-    <id>7178be5f</id>
-    <date>1681263894000</date>
-    <title>通用excel导入设计 | sudo rm -rf /*</title>
-    
-    <desc>业务场景: 上传excel按需写入字段； 覆盖更新数据；</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/4074971168.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/1156593666.html</loc>
     
     <lastmod>2026-10-17T14:19:03.721Z</lastmod>
     
-
-    <id>4074971168</id>
-    <date>1542384000000</date>
-    <title>集群、负载均衡、分布式 | sudo rm -rf /*</title>
-    
-    <desc>集群、负载均衡、分布式 三者的区别</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/1156593666.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E8%8F%9C%E8%B0%B1/9ddcf808.html</loc>
     
     <lastmod>2026-10-17T14:19:03.721Z</lastmod>
     
-
-    <id>1156593666</id>
-    <date>1661928364000</date>
-    <title>飞桨OCR硬件清单 | sudo rm -rf /*</title>
-    
-    <desc>机器学习入门</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/2375039249.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E7%94%9F%E6%B4%BB/2375039249.html</loc>
     
     <lastmod>2026-10-17T14:19:03.721Z</lastmod>
     
-
-    <id>2375039249</id>
-    <date>1649411295000</date>
-    <title>鲁迅先生写道: 父母存在的意义 | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/9ddcf808.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/7178be5f.html</loc>
     
     <lastmod>2026-10-17T14:19:03.721Z</lastmod>
     
-
-    <id>9ddcf808</id>
-    <date>1705300061000</date>
-    <title>麻辣炒虾尾 🦞 | sudo rm -rf /*</title>
-    
-    <desc>我媳妇、儿子最喜欢的菜之一</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/1406322052.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/1406322052.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>1406322052</id>
-    <date>1661928364000</date>
-    <title>搭建maven私库 | sudo rm -rf /*</title>
-    
-    <desc>java</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/3058125875.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/3058125875.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>3058125875</id>
-    <date>1540828800000</date>
-    <title>mybatis动态查询实现 | sudo rm -rf /*</title>
-    
-    <desc>mybatis动态查询实现</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/202678719.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/202678719.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>202678719</id>
-    <date>1665383881000</date>
-    <title>mysql 'No DataSource Set'解决办法 | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/9f600c63.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/9f600c63.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>9f600c63</id>
-    <date>1704785880000</date>
-    <title>mysql count函数正确使用姿势 | sudo rm -rf /*</title>
-    
-    <desc>count() 是mysql聚合函数，返回指定匹配条件的行数。开发中常用来统计表中数据，全部数据，不为null数据，或者去重数据。</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/1101146699.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/3031836898.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>1101146699</id>
-    <date>1528041600000</date>
-    <title>nginx支持ssl+acme.sh定时更新证书 | sudo rm -rf /*</title>
-    
-    <desc>acme.sh 、nginx、https</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/3031836898.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/1101146699.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>3031836898</id>
-    <date>1528128000000</date>
-    <title>阿里云mysql外网访问 | sudo rm -rf /*</title>
-    
-    <desc>阿里云 ecs 上安装了 mysql 但是外网访问不了</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/1506548690.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/1506548690.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>1506548690</id>
-    <date>1542384000000</date>
-    <title>nginx 负载均衡 | sudo rm -rf /*</title>
-    
-    <desc>nginx 负载均衡</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/8f0491a1.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/8f0491a1.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>8f0491a1</id>
-    <date>1711360590000</date>
-    <title>redis主从-哨兵模式 | sudo rm -rf /*</title>
-    
-    <desc>文章加密了，需要输入密码查看</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/8212ba91.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%AD%A6%E4%B9%A0/8212ba91.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>8212ba91</id>
-    <date>1706090416000</date>
-    <title>revealjs-animated动画文档 | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/1911085415.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/1911085415.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>1911085415</id>
-    <date>1539273600000</date>
-    <title>ruby 爬虫 一 | sudo rm -rf /*</title>
-    
-    <desc>做爬虫第一个想到的肯定是python,python解决方案多，代码简洁，容易上手...</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/eec35d0e.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%AD%A6%E4%B9%A0/eec35d0e.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>eec35d0e</id>
-    <date>1710376872000</date>
-    <title>rust-if-let简洁控制流 | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/d1274d86.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%AD%A6%E4%B9%A0/d1274d86.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>d1274d86</id>
-    <date>1710321512000</date>
-    <title>rust-方法语法 | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/7d69317e.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%AD%A6%E4%B9%A0/7d69317e.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>7d69317e</id>
-    <date>1710322529000</date>
-    <title>rust-枚举与模式匹配 | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/e0d5ed17.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%AD%A6%E4%B9%A0/e0d5ed17.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>e0d5ed17</id>
-    <date>1710320002000</date>
-    <title>rust-结构定义和实例化 | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/94fe59ce.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%AD%A6%E4%B9%A0/752254673.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>94fe59ce</id>
-    <date>1710120648000</date>
-    <title>rust入门 | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/3724466435.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%AD%A6%E4%B9%A0/94fe59ce.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>3724466435</id>
-    <date>1605236700000</date>
-    <title>k8s 1.19.2 部署 traefik 2.2 | sudo rm -rf /*</title>
-    
-    <desc>k8s 1.19.2部署 traefik 2.2</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/2855774435.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%AD%A6%E4%B9%A0/2855774435.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>2855774435</id>
-    <date>1584288000000</date>
-    <title>读《小王子》 | sudo rm -rf /*</title>
-    
-    <desc>旅行的途中遇到点灯的人给我很大的启示，我们都在做着自己讨厌的事情，但在别人眼里我们却是幸福的人。</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/752254673.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%AD%A6%E4%B9%A0/965849311.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>752254673</id>
-    <date>1538755200000</date>
-    <title>笔记0-《程序员数学-1》 | sudo rm -rf /*</title>
-    
-    <desc>程序员数学1</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/965849311.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%AD%A6%E4%B9%A0/1634039770.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>965849311</id>
-    <date>1585538415000</date>
-    <title>笔记1-《程序员数学 1》 | sudo rm -rf /*</title>
-    
-    <desc>程序员数学-进制计数法</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/1634039770.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%AD%A6%E4%B9%A0/375539532.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>1634039770</id>
-    <date>1585621918000</date>
-    <title>笔记2-《程序员数学-1》 | sudo rm -rf /*</title>
-    
-    <desc>程序员数学1-逻辑</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/375539532.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%AD%A6%E4%B9%A0/c88b93d0.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>375539532</id>
-    <date>1585727334000</date>
-    <title>笔记3-《程序员数学-1》 | sudo rm -rf /*</title>
-    
-    <desc>程序员数学1 - 余数</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/c88b93d0.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E7%94%9F%E6%B4%BB/848869235.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>c88b93d0</id>
-    <date>1708304867000</date>
-    <title>笔记4-《程序员数学-1》 | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/848869235.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/3423146f.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>848869235</id>
-    <date>1605110400000</date>
-    <title>一年要赚多少钱才能支撑一个三口之家？ | sudo rm -rf /*</title>
-    
-    <desc>一年要赚多少钱才能支撑一个三口之家？</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/5f9c1a2b.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/149409992.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>5f9c1a2b</id>
-    <date>1777645800000</date>
-    <title>从 OpenClaw 迁移到 Hermes：我的实战记录 | sudo rm -rf /*</title>
-    
-    <desc>从 OpenClaw 换到 Hermes Agent，迁移过程中遇到的问题、解决方案，以及两个平台记忆系统的真实对比</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/149409992.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/5f9c1a2b.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>149409992</id>
-    <date>1527868800000</date>
-    <title>一次ios网页样式问题排查心路历程 | sudo rm -rf /*</title>
-    
-    <desc>我的开发环境：Macos 、iphone,手机端页面使用 vue、scss。本次出现的问题是一个 css 样式在 iphone 手机端无法正常显示。</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/3423146f.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/3382022550.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>3423146f</id>
-    <date>1704956971000</date>
-    <title>前端定时器 | sudo rm -rf /*</title>
-    
-    <desc>前端开发中，会经常接到定时器的需求，倒计时、计时器、动画效果。</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/3382022550.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E8%8F%9C%E8%B0%B1/c43e7c0d.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>3382022550</id>
-    <date>1606200364000</date>
-    <title>基于k8s、traefik、springboot的微服务实践 | sudo rm -rf /*</title>
-    
-    <desc>基于k8s、traefik、springboot的微服务实践</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/c43e7c0d.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/2576489939.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>c43e7c0d</id>
-    <date>1705370807000</date>
-    <title>大盘鸡🐔 | sudo rm -rf /*</title>
-    
-    <desc>吃鸡最痛快的吃法之一，一定有大盘鸡。</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/2afb063d.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E7%94%9F%E6%B4%BB/2afb063d.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>2afb063d</id>
-    <date>1706148551000</date>
-    <title>奇怪的梦 | sudo rm -rf /*</title>
-    
-    <desc>文章加密了，需要输入密码查看</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/2576489939.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E7%94%9F%E6%B4%BB/340466787.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>2576489939</id>
-    <date>1597714380000</date>
-    <title>安全风险评估 | sudo rm -rf /*</title>
-    
-    <desc>安全风险在工业中的应用</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/73b21f0a.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/73b21f0a.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>73b21f0a</id>
-    <date>1708239620000</date>
-    <title>开年大吉，工作顺利！ | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/fb428c48.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/fb428c48.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>fb428c48</id>
-    <date>1706166594000</date>
-    <title>成本核算 | sudo rm -rf /*</title>
-    
-    <desc>文章加密了，需要输入密码查看</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/340466787.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/3724466435.html</loc>
     
     <lastmod>2026-10-17T14:19:03.720Z</lastmod>
     
-
-    <id>340466787</id>
-    <date>1585293612000</date>
-    <title>我们不像诗歌 | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/8e7d0c8.html</loc>
+    <loc>https://sudo.rm-rf.ink/css/8e7d0c8.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>8e7d0c8</id>
-    <date>1527868800000</date>
-    <title>一次ios网页样式问题排查心路历程 | sudo rm -rf /*</title>
-    
-    <desc>我的开发环境：Macbook pro 、iphone,手机端页面使用 vue、scss。本次出现的问题是一个 css 样式在 iphone 手机端无法正常显示。</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/53577de6.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E6%9C%8D%E5%8A%A1%E5%99%A8/53577de6.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>53577de6</id>
-    <date>1527955200000</date>
-    <title>一次gogs采坑之旅 | sudo rm -rf /*</title>
-    
-    <desc>ubuntu 安装 gogs</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/41a22a4b.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E6%9C%8D%E5%8A%A1%E5%99%A8/b4b628e2.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>41a22a4b</id>
-    <date>1528041600000</date>
-    <title>nginx支持ssl+acme.sh定时更新证书 | sudo rm -rf /*</title>
-    
-    <desc>acme.sh 、nginx、https</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/b4b628e2.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%AD%A6%E4%B9%A0/2cd67ed1.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>b4b628e2</id>
-    <date>1528128000000</date>
-    <title>阿里云mysql外网访问 | sudo rm -rf /*</title>
-    
-    <desc>阿里云 ecs 上安装了 mysql 但是外网访问不了</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/a5f172c4.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%AD%A6%E4%B9%A0/3f43dc72.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>a5f172c4</id>
-    <date>1532707200000</date>
-    <title>生活计划 | sudo rm -rf /*</title>
-    
-    <desc>有一个健康的身体太重要了</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/2cd67ed1.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E7%88%AC%E8%99%AB/71e8d967.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>2cd67ed1</id>
-    <date>1538755200000</date>
-    <title>程序员数学1 | sudo rm -rf /*</title>
-    
-    <desc>程序员数学1</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/3f43dc72.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E7%94%9F%E6%B4%BB/a5f172c4.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>3f43dc72</id>
-    <date>1539014400000</date>
-    <title>英语学习 | sudo rm -rf /*</title>
-    
-    <desc>英语学习</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/71e8d967.html</loc>
+    <loc>https://sudo.rm-rf.ink/mybatis/b6474c33.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>71e8d967</id>
-    <date>1539273600000</date>
-    <title>ruby 爬虫 一 | sudo rm -rf /*</title>
-    
-    <desc>做爬虫第一个想到的肯定是python,python解决方案多，代码简洁，容易上手...</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/b6474c33.html</loc>
+    <loc>https://sudo.rm-rf.ink/nginx/59cc1bd2.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>b6474c33</id>
-    <date>1540828800000</date>
-    <title>mybatis动态查询实现 | sudo rm -rf /*</title>
-    
-    <desc>mybatis动态查询实现</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/6e8cb24c.html</loc>
+    <loc>https://sudo.rm-rf.ink/Cas/6e8cb24c.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>6e8cb24c</id>
-    <date>1540915200000</date>
-    <title>Cas Server 本地部署 | sudo rm -rf /*</title>
-    
-    <desc>Cas Server 本地部署</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/59cc1bd2.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E6%9C%8D%E5%8A%A1%E5%99%A8/f2e32020.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>59cc1bd2</id>
-    <date>1542384000000</date>
-    <title>nginx 负载均衡 | sudo rm -rf /*</title>
-    
-    <desc>nginx 负载均衡</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/f2e32020.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E8%AF%BB%E4%B9%A6/aa37a8e3.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>f2e32020</id>
-    <date>1542384000000</date>
-    <title>集群、负载均衡、分布式 | sudo rm -rf /*</title>
-    
-    <desc>集群、负载均衡、分布式 三者的区别</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/aa37a8e3.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E7%94%9F%E6%B4%BB/3298b773.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>aa37a8e3</id>
-    <date>1584288000000</date>
-    <title>《小王子》阅读 | sudo rm -rf /*</title>
-    
-    <desc>旅行的途中遇到点灯的人给我很大的启示，我们都在做着自己讨厌的事情，但在别人眼里我们却是幸福的人。</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/3298b773.html</loc>
+    <loc>https://sudo.rm-rf.ink/k8s/ddfed903.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>3298b773</id>
-    <date>1605110400000</date>
-    <title>一年要赚多少钱才能支撑一个三口之家？ | sudo rm -rf /*</title>
-    
-    <desc>一年要赚多少钱才能支撑一个三口之家？</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/ddfed903.html</loc>
+    <loc>https://sudo.rm-rf.ink/AI/46499b7b.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>ddfed903</id>
-    <date>1605236700000</date>
-    <title>k8s 1.19.2 部署 traefik 2.2 | sudo rm -rf /*</title>
-    
-    <desc>k8s 1.19.2部署 traefik 2.2</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/46499b7b.html</loc>
+    <loc>https://sudo.rm-rf.ink/nginx/41a22a4b.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>46499b7b</id>
-    <date>1779379200000</date>
-    <title>从零构建 Hermes Agent 记忆系统——memory-filtration-layer 迭代手记 | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/1873749776.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E7%94%9F%E6%B4%BB/1873749776.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>1873749776</id>
-    <date>1586312139000</date>
-    <title>29岁,再见！ | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/96208538.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/c2cb16de.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>96208538</id>
-    <date>1777303920000</date>
-    <title>Hello Hermes Agent | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/c2cb16de.html</loc>
+    <loc>https://sudo.rm-rf.ink/uncategorized/96208538.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>c2cb16de</id>
-    <date>1680856509000</date>
-    <title>4月份wbs | sudo rm -rf /*</title>
-    
-    <desc>文章加密了，需要输入密码查看</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/8b6d76da.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/1854714444.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>8b6d76da</id>
-    <date>1774861857000</date>
-    <title>OpenClaw 0 | sudo rm -rf /*</title>
-    
-    <desc>文章加密了，需要输入密码查看</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/6befbd07.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%AD%A6%E4%B9%A0/e4b8a22b.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>6befbd07</id>
-    <date>1705917312000</date>
-    <title>Reveal.js使用 | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/1854714444.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/1398242790.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>1854714444</id>
-    <date>1540915200000</date>
-    <title>Cas Server 本地部署 | sudo rm -rf /*</title>
-    
-    <desc>Cas Server 本地部署</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/e4b8a22b.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/2050102104.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>e4b8a22b</id>
-    <date>1708570874000</date>
-    <title>Transformer模型 | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/f135226f.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/8b6d76da.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>f135226f</id>
-    <date>1777073400000</date>
-    <title>daily-news-2026-04-25 | sudo rm -rf /*</title>
-    
-    <desc>文章加密了，需要输入密码查看</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/1398242790.html</loc>
+    <loc>https://sudo.rm-rf.ink/daily-news/f135226f.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>1398242790</id>
-    <date>1527955200000</date>
-    <title>一次gogs踩坑之路 | sudo rm -rf /*</title>
-    
-    <desc>ubuntu 安装 gogs</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/2050102104.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%AD%A6%E4%B9%A0/6befbd07.html</loc>
     
     <lastmod>2026-10-17T14:19:03.719Z</lastmod>
     
-
-    <id>2050102104</id>
-    <date>1679971236000</date>
-    <title>gitlab & OKR 进行项目管理  | sudo rm -rf /*</title>
-    
-    <desc>本文章围绕gitlab 和 OKR，使用gitlab已有功能，进行项目管理、问题追踪和开发流程规范。</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/725797460.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/725797460.html</loc>
     
     <lastmod>2026-10-17T14:19:03.718Z</lastmod>
     
-
-    <id>725797460</id>
-    <date>1671682473000</date>
-    <title>0. 低代码 | sudo rm -rf /*</title>
-    
-    <desc>0.什么是低代码？ 低代码（Low Code）是一种可视化的应用开发方法，用较少的代码、以较快的速度来交付应用程序，将程序员不想开发的代码做到自动化，称之为低代码。 低代码是一组数字技术工具平台，基于图形化拖拽、参数化配置等更为高效的方式，实现快速构建、数据编排、连接生态、中台服务。通过少量代码或不用代码实现数字化转型中的场景应用创新。</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/2967963195.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/2967963195.html</loc>
     
     <lastmod>2026-10-17T14:19:03.718Z</lastmod>
     
-
-    <id>2967963195</id>
-    <date>1671707176000</date>
-    <title>1. 低代码 | sudo rm -rf /*</title>
-    
-    <desc>代码技术路线，整体功能介绍。</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/4278564287.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E7%94%9F%E6%B4%BB/4278564287.html</loc>
     
     <lastmod>2026-10-17T14:19:03.718Z</lastmod>
     
-
-    <id>4278564287</id>
-    <date>1527609600000</date>
-    <title>第一篇博客 | sudo rm -rf /*</title>
-    
-    <desc>今天是2018年05月30日，2015年的昨天是我们第一次见面，今天是我们第一次看电影,我们的所有日子都记得，宝宝是2017年12月22日 早上05:15分 出生。</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/2d764bfc.html</loc>
+    <loc>https://sudo.rm-rf.ink/Jekyll/2d764bfc.html</loc>
     
     <lastmod>2026-10-17T14:19:03.718Z</lastmod>
     
-
-    <id>2d764bfc</id>
-    <date>1527696000000</date>
-    <title>给博客增加评论功能 | sudo rm -rf /*</title>
-    
-    <desc>插件本身默认支持英文，所以我下载了源码进行一部分改造。以下是源码：[giment.js](yqwoe.space/yqwoe.github.io/static/js/gitment.js)</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/1bc5f237.html</loc>
+    <loc>https://sudo.rm-rf.ink/%E7%94%9F%E6%B4%BB/1bc5f237.html</loc>
     
     <lastmod>2026-10-17T14:19:03.718Z</lastmod>
     
-
-    <id>1bc5f237</id>
-    <date>1527782400000</date>
-    <title>过六一的"儿童"们 | sudo rm -rf /*</title>
-    
-    <desc>今天是六一儿童节，早早的起床给儿子去打疫苗，这对于小家伙来说应该是无比痛苦的吧。不过，比起热更痛苦的应该是挨上一针，和看着小家伙挨针的心情！！！</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
@@ -1553,51 +1068,35 @@
     
     <lastmod>2026-10-17T14:19:03.717Z</lastmod>
     
-
-    <id></id>
-    <date>1774861663000</date>
-    <title>Openclaw 0 | sudo rm -rf /*</title>
-    
-    <desc></desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/feishu-markdown-table-truth.html</loc>
+    <loc>https://sudo.rm-rf.ink/uncategorized/feishu-markdown-table-truth.html</loc>
     
     <lastmod>2026-06-03T02:32:06.638Z</lastmod>
     
-
-    <id>feishu-markdown-table-truth</id>
-    <date>1780452000000</date>
-    <title>飞书真的能发表格吗？我赌它不能，然后输了 | sudo rm -rf /*</title>
-    
-    <desc>一个从错误公理到 CardKit v2 的工程故事</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/474c79ed.html</loc>
+    <loc>https://sudo.rm-rf.ink/uncategorized/474c79ed.html</loc>
     
     <lastmod>2026-06-02T15:06:42.876Z</lastmod>
     
-
-    <id>474c79ed</id>
-    <date>1780286400000</date>
-    <title>改造 Hermes Memory Provider 的曲折历程 | sudo rm -rf /*</title>
-    
-    <desc>从 MemPalace 到 Filtration Layer 再到 mem-md，一次关于记忆系统本质的回归</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
   <url>
-    <loc>https://sudo.rm-rf.ink/*/mem-md-opensource.html</loc>
+    <loc>https://sudo.rm-rf.ink/uncategorized/mem-md-opensource.html</loc>
     
     <lastmod>2026-06-02T15:04:13.800Z</lastmod>
     
-
-    <id>mem-md-opensource</id>
-    <date>1780410600000</date>
-    <title>mem-md 开源：一个反向量库的 Agent 记忆系统 | sudo rm -rf /*</title>
-    
-    <desc>从 5.2 万行 MemPalace 到 0.1.0 mem-md，把记忆系统退回到第一性原理</desc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
   </url>
   
 </urlset>

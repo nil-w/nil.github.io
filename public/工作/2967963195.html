@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://github.com" />
+  <link rel="dns-prefetch" href="https://unpkg.com" />
+  
+  <title>1. 低代码 | sudo rm -rf /*</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  
+
+  
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+    
+
+  
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+    
+
+  
+    <link rel="mask-icon" href="{{ url_for(theme.favicon.safari_pinned_tab) }}" color="{{ theme.android_chrome_color }}">
+    
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/search.css">
+
+  
+<link rel="stylesheet" href="/css/katex.min.css">
+
+  
+<link rel="stylesheet" href="/css/googleapis.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="代码技术路线，整体功能介绍。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="1. 低代码">
+<meta property="og:url" content="https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/2967963195.html">
+<meta property="og:site_name" content="sudo rm -rf &#x2F;*">
+<meta property="og:description" content="代码技术路线，整体功能介绍。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sudo.rm-rf.ink/images/image-20240109101551889.png">
+<meta property="og:image" content="https://sudo.rm-rf.ink/images/image-20240109101856167.png">
+<meta property="og:image" content="https://sudo.rm-rf.ink/images/image-20240109102001046.png">
+<meta property="og:image" content="https://sudo.rm-rf.ink/images/image-20240109102023589.png">
+<meta property="og:image" content="https://sudo.rm-rf.ink/images/image-20240109102152348.png">
+<meta property="og:image" content="https://sudo.rm-rf.ink/images/image-20240109101322427.png">
+<meta property="og:image" content="https://sudo.rm-rf.ink/images/image-20240109101351478.png">
+<meta property="og:image" content="https://sudo.rm-rf.ink/images/image-20240109102332963.png">
+<meta property="article:published_time" content="2022-12-22T11:06:16.000Z">
+<meta property="article:modified_time" content="2026-10-17T14:19:03.718Z">
+<meta property="article:author" content="Yq Woe">
+<meta property="article:tag" content="国立软件">
+<meta property="article:tag" content="低代码">
+<meta property="article:tag" content="权限管理">
+<meta property="article:tag" content="流程引擎">
+<meta property="article:tag" content="组织管理">
+<meta property="article:tag" content="flowable">
+<meta property="article:tag" content="bpmn">
+<meta property="article:tag" content="lowcode">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://sudo.rm-rf.ink/images/image-20240109101551889.png">  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@yqwoe" />
+  <meta name="twitter:creator" content="@yqwoe" />
+  
+  <link rel="canonical" href="https://sudo.rm-rf.ink工作/2967963195.html" />
+  
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "1. 低代码",
+    "datePublished": "2022-12-22T11:06:16.000Z",
+    "dateModified": "2026-10-17T14:19:03.718Z",
+    "author": {
+      "@type": "Person",
+      "name": "Yq Woe",
+      "url": "https://sudo.rm-rf.ink"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "sudo rm -rf /*",
+      "url": "https://sudo.rm-rf.ink"
+    },
+    "description": "技术｜思考｜生活。一个独立开发者的持续输出频道。",
+    "url": "https://sudo.rm-rf.ink工作/2967963195.html"
+  }
+  </script>
+  
+  
+<link rel="stylesheet" href="/css/reveal.css">
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="sudo rm -rf /*" type="application/atom+xml">
+</head>
+
+
+  <body>
+    <div id="wrapper">
+        <div id="content">
+          <article id="post-1-低代码" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h3 class="article-title" itemprop="headline name">
+      1. 低代码&nbsp;&nbsp;
+    </h3>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2022-12-22T11:06:16.000Z" itemprop="datePublished">2022.12.22 19:06 晚上</time>
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+          <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#0%E6%8A%80%E6%9C%AF%E8%B7%AF%E7%BA%BF"><span class="toc-text"> 0.技术路线</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1%E5%8A%9F%E8%83%BD"><span class="toc-text"> 1.功能</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2%E4%BB%8B%E7%BB%8D"><span class="toc-text"> 2.介绍</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E7%B3%BB%E7%BB%9F"><span class="toc-text"> 系统</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%B7%A5%E4%BD%9C%E6%B5%81"><span class="toc-text"> 工作流</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%BC%80%E5%8F%91%E8%80%85"><span class="toc-text"> 开发者</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E9%A1%B5%E9%9D%A2%E8%AE%BE%E8%AE%A1"><span class="toc-text"> 页面设计</span></a></li></ol></li></ol></li></ol>
+</div>
+
+      
+        <p>代码技术路线，整体功能介绍。</p>
+<span id="more"></span>
+<h2 id="0技术路线"><a class="markdownIt-Anchor" href="#0技术路线"></a> 0.技术路线</h2>
+<table>
+<thead>
+<tr>
+<th>服务端</th>
+<th>前端</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Java</td>
+<td>react</td>
+</tr>
+<tr>
+<td>springboot</td>
+<td>ant-design</td>
+</tr>
+<tr>
+<td>shenyu</td>
+<td>formily</td>
+</tr>
+<tr>
+<td>redis</td>
+<td>Form-render</td>
+</tr>
+<tr>
+<td>mysql</td>
+<td>Designable</td>
+</tr>
+<tr>
+<td>magic-api</td>
+<td></td>
+</tr>
+<tr>
+<td>dataway</td>
+<td></td>
+</tr>
+<tr>
+<td>es(全文检索)</td>
+<td></td>
+</tr>
+<tr>
+<td>flowable</td>
+<td></td>
+</tr>
+<tr>
+<td>Paddle</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="1功能"><a class="markdownIt-Anchor" href="#1功能"></a> 1.功能</h2>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>系统权限</td>
+<td>用户管理、菜单管理、角色管理、权限管理、系统字典…</td>
+</tr>
+<tr>
+<td>组织机构</td>
+<td>行政区域、机构、部门、职位、人员…</td>
+</tr>
+<tr>
+<td>流程引擎</td>
+<td>流程设计器、表单、按钮、流程事务、流程监控、钉钉通知…</td>
+</tr>
+<tr>
+<td>开发者工具</td>
+<td>数据库维护、代码生成、数据源、模板管理、任务调度、git提交…</td>
+</tr>
+<tr>
+<td>页面设计器</td>
+<td>api接口维护、业务逻辑编辑、中后台页面拖拽设计…待开发（流程页面拖拽设计、小程序页面拖拽设计、前台页面拖拽设计）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2介绍"><a class="markdownIt-Anchor" href="#2介绍"></a> 2.介绍</h2>
+<h5 id="系统"><a class="markdownIt-Anchor" href="#系统"></a> 系统</h5>
+<p><img src="/images/image-20240109101551889.png" alt="image-20240109101551889"></p>
+<p><img src="/images/image-20240109101856167.png" alt="image-20240109101856167"></p>
+<h4 id="工作流"><a class="markdownIt-Anchor" href="#工作流"></a> 工作流</h4>
+<p><img src="/images/image-20240109102001046.png" alt="image-20240109102001046"></p>
+<p><img src="/images/image-20240109102023589.png" alt="image-20240109102023589"></p>
+<h4 id="开发者"><a class="markdownIt-Anchor" href="#开发者"></a> 开发者</h4>
+<p><img src="/images/image-20240109102152348.png" alt="image-20240109102152348"></p>
+<h4 id="页面设计"><a class="markdownIt-Anchor" href="#页面设计"></a> 页面设计</h4>
+<p><img src="/images/image-20240109101322427.png" alt="image-20240109101322427"></p>
+<p><img src="/images/image-20240109101351478.png" alt="image-20240109101351478"></p>
+<p><img src="/images/image-20240109102332963.png" alt="image-20240109102332963"></p>
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <a class="article-category-link" href="/categories/%E5%B7%A5%E4%BD%9C/">工作</a>
+
+        <b>&nbsp;:分类 </b>
+      
+      
+        <br/>
+      
+      
+        <a class="article-tag-none-link" href="/tags/bpmn/" rel="tag">bpmn</a>, <a class="article-tag-none-link" href="/tags/flowable/" rel="tag">flowable</a>, <a class="article-tag-none-link" href="/tags/lowcode/" rel="tag">lowcode</a>, <a class="article-tag-none-link" href="/tags/%E4%BD%8E%E4%BB%A3%E7%A0%81/" rel="tag">低代码</a>, <a class="article-tag-none-link" href="/tags/%E5%9B%BD%E7%AB%8B%E8%BD%AF%E4%BB%B6/" rel="tag">国立软件</a>, <a class="article-tag-none-link" href="/tags/%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/" rel="tag">权限管理</a>, <a class="article-tag-none-link" href="/tags/%E6%B5%81%E7%A8%8B%E5%BC%95%E6%93%8E/" rel="tag">流程引擎</a>, <a class="article-tag-none-link" href="/tags/%E7%BB%84%E7%BB%87%E7%AE%A1%E7%90%86/" rel="tag">组织管理</a>
+
+        <b>
+          &nbsp;:标签
+        </b>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/%E5%B7%A5%E4%BD%9C/2050102104.html" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          gitlab &amp; OKR 进行项目管理 
+        
+      </div>
+    </a>
+  
+  
+    <a href="/%E5%B7%A5%E4%BD%9C/725797460.html" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          0. 低代码
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+  
+    
+
+<div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+if(true){
+	var gitalk = new Gitalk({
+  	clientID: 'd99a4bdc344cff33585d',
+  	clientSecret: '4819ca8aa103e688f259b5ed6b3cd3fffdf0f96e',
+  	repo: 'yqwoe.github.io',
+  	owner: 'yqwoe',
+  	admin: ['yqwoe'],
+    perPage: 20,
+  	id: '2967963195',
+  	distractionFreeMode: 'true',
+    pagerDirection: 'last'
+})
+gitalk.render('gitalk-container')
+}
+</script>
+
+    
+
+
+
+
+        </div>
+        <header id="header">
+  <nav>
+    <div class="header-nav-links">
+      <a class="nav-link-first" href="/">sudo rm -rf /*</a>
+      <span class="nav-spacer"></span>
+      
+      
+        
+        <a class="nav-link" href="/archives">文章</a>
+      
+        
+          <span class="nav-spacer"> </span>
+        
+        <a class="nav-link" href="/categories">分类</a>
+      
+        
+          <span class="nav-spacer"> </span>
+        
+        <a class="nav-link" href="/about">关于我</a>
+      
+      
+    </div>
+    <div class="poem-wrap">
+      <p id="poem">加载中...</p>
+      <p id="info"/>
+    </div>
+  </nav>
+</header>
+
+    </div>
+    
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode"></div>
+  <div id="sans-font"></div>
+</div>
+
+
+<span class="post-count">49.2k</span>
+
+<script type="text/javascript">
+
+
+  let d = document,
+    r = d.documentElement.style,
+    f = r.setProperty.bind(r),
+    l = localStorage,
+    rawS = l.getItem('s'),
+    s = (rawS === '1' || rawS === '2') ? Number(rawS) : 0,
+    sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches,
+    m = d.getElementById("dark-mode"),
+    b = () => {
+      f('--bg-color', '#fafafa');
+      f('--code-bg-color', '#f4f4f4');
+      f('--text-color', '#212121');
+      f('--secondary-color', '#808080');
+      f('--tertiary-color', '#b0b0b0');
+      f('--link-color', '#b5c8cf');
+      f('--link-hover-color', '#618794');
+      f('--link-bg-color', '#dae4e7');
+      f('--selection-color', '#dae4e7');
+    },
+    c = () => {
+      f('--bg-color', '#212121');
+      f('--code-bg-color', '#292929');
+      f('--text-color', '#fff');
+      f('--secondary-color', '#c0c0c0');
+      f('--tertiary-color', '#6e6e6e');
+      f('--link-color', '#4d6b75');
+      f('--link-hover-color', '#96b1bb');
+      f('--link-bg-color', '#5d828e');
+      f('--selection-color', '#acc1c9');
+    },
+    o = d.getElementById("sans-font"),
+    e = () => {
+      f('--body-stack', '"Lora", "Georgia", "Times New Roman", serif');
+    },
+    g = () => {
+      f('--body-stack', '"Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');
+    },
+    applyTheme = () => {
+      if (s === 1) b();
+      else if (s === 2) c();
+      else (sysDark ? c() : b());
+    };
+  m.onclick = function(){
+    s = s === 2 ? 0 : s + 1;
+    l.setItem('s', s);
+    applyTheme();
+  };
+  o.onclick =function(){
+    if (n == 2) {
+      n = 1;
+      l.setItem('n', n);
+      g()
+    } else {
+      n = 2;
+      l.setItem('n', n);
+      e()
+    }
+  };
+  applyTheme();
+  if (!n) {
+    n = 2;
+    l.setItem('n', 2)
+  };
+  if (n == '1') {
+    g();
+  };
+  if (n == '2') {
+    e();
+  };
+</script>
+
+
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@9.4.3/+esm";
+  let theme = localStorage.getItem("s");
+  mermaid.initialize({
+      startOnLoad: true,
+      logLevel: 'debug',
+      theme: theme === '2' ? 'forest' : 'dark',
+    });
+  let mode = document.getElementById("dark-mode");
+   let arrayGraphs =  [];
+  let nodes = document.getElementsByClassName('mermaid')
+  for(let n of nodes){
+    console.log(n.innerHTML)
+    arrayGraphs.push(n.innerHTML);
+  }
+
+  mode.addEventListener("click",async ()=>{
+    theme = localStorage.getItem("s");
+    mermaid.initialize({
+      startOnLoad: true,
+      logLevel: 'debug',
+      theme: theme === '2' ? 'forest' : 'dark',
+    });
+  for(let i = 0;i< nodes.length;i++){
+      let n =  nodes[i]
+      // console.log(n.innerHTML)
+      let id = `mermaid-${i}`
+      n.removeAttribute("data-processed");
+      n.setAttribute("id",`mermaid-${i}`)
+      n.replaceChildren();
+      n.innerHTML = arrayGraphs[i]
+      mermaid.init(undefined,n)
+    }
+  },false);
+
+</script>
+
+
+
+<script src="/js/jquery.min.js" defer ></script>
+<script src="/js/jquery.qrcode.min.js" defer ></script>
+<script src="https://unpkg.com/reveal.js@5.0.4/dist/reveal.js" defer></script>
+<script src="https://unpkg.com/reveal.js-mermaid-plugin@2.1.0/plugin/mermaid/mermaid.js" defer></script>
+
+<script type="module">
+  import qrcodeInit from '/js/qrcode.js'
+  qrcodeInit();
+</script>
+<script type="module">
+/***
+ * 兼容不支持requestAnimationFrame的浏览器
+ ***/
+window.requestAnimationFrame = (function () {
+  return window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||/* Safari 和 Chrome */
+    window.mozRequestAnimationFrame ||/* Firefox */
+    window.oRequestAnimationFrame      ||/* Opera */
+    window.msRequestAnimationFrame     ||/* IE 9 */
+    function (callback) {
+      window.setTimeout(callback, 6000 / 60)
+    }
+})();
+window.cancelAnimationFrame = (function () {
+  return window.cancelAnimationFrame ||
+    window.webkitCancelAnimationFrame ||
+    window.mozCancelAnimationFrame ||
+    window.oCancelAnimationFrame ||
+    window.msCancelAnimationFrame || clearTimeout
+})();
+</script>
+<script type="module">
+  /*诗*/
+if ($("div").hasClass("poem-wrap")) {
+            get_poem('#poem', '#info')
+}
+function get_poem(poem_ele, info_ele) {
+    var poem = document.querySelector(poem_ele);
+    var info = document.querySelector(info_ele);
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', 'https://v2.jinrishici.com/one.json?client=browser-sdk/1.2');
+    xhr.withCredentials = true;
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            var data = JSON.parse(xhr.responseText);
+            poem.innerHTML = data.data.content;
+            info.innerHTML = '[' + data.data.origin.dynasty + '] ' + data.data.origin.author + '《' + data.data.origin.title + '》';
+        }
+    };
+    xhr.send();
+}
+
+function modifySubmitBtn(){
+  var btn = $('.hbe-button');
+  var password = $('#hbePass');
+  if(btn.length > 0){
+    btn.text('重新输入密码')
+  }
+  if(password.length > 0){
+    password.attr('autocomplete','false')
+  }
+}
+modifySubmitBtn();
+
+function layoutTagCloud(){
+  // var list = $('.tagcloud a');
+  // var size = Math.round(Math.random() * 20);
+
+  // for(let i = 0;i< list.length;i++){
+  //       if(i % even == 0 ){
+  //         list[i].classList = `${list[i].classList} deg_90`
+  //       }
+  // }
+}
+
+function loopHover(){
+  var list = $('.tagcloud a');
+  var hover = $('.tagcloud a[class="tag-hover"]')
+  var next = Math.round(Math.random() * (list.length  - 1))
+
+  if(next < 0){
+    next = 0
+  }
+
+  if(next > list.length){
+    next = list.length - 1
+  }
+  if(list.length){
+    if(hover.length){
+      for(let i = 0;i< hover.length;i++){
+        hover[i].classList = ''
+      }
+    }
+    list[next].classList = 'tag-hover'
+  }
+}
+// layoutTagCloud();
+
+
+/**
+ * 设置精度定时器
+ * @param {function} 回调函数
+ * @param {number}   延迟时间
+ * @return {number}  定时器ID
+ */
+ function setIntervalPrecision(callback, delay) {
+  // 生成并记录定时器ID
+  let obj = window.interValPrecisionObj || (window.interValPrecisionObj = { num: 0 })
+  obj.num++
+  obj['n' + obj.num] = true
+  var intervalId = obj.num
+  // 开始时间
+  var startTime = +new Date()
+  // 已执行次数
+  var count = 0
+  // 延迟时间
+  delay = delay || 0
+
+
+  ;(function loop() {
+    // 定时器被清除，则终止
+    if (!obj['n' + intervalId]) return
+
+    // 满足条件执行回调
+    if (+new Date() > startTime + delay * (count + 1)) {
+      count++
+      callback(count)
+    }
+
+    window.requestAnimationFrame(loop)
+  })()
+
+  return intervalId
+}
+
+/**
+ * 清除精度定时器
+ * @param {number} 定时器ID
+ */
+function clearIntervalPrecision(intervalId) {
+  if (window.interValPrecisionObj) {
+    window.cancelAnimationFrame('n' + intervalId)
+    delete window.interValPrecisionObj['n' + intervalId]
+  }
+}
+
+setIntervalPrecision(loopHover, 250)
+
+</script>
+
+  
+  </body>
+
+</html>

@@ -103,7 +103,7 @@
                 06-05 凌晨
               </div>
               <div class="archive-article-title">
-                <a href="/*/b4b628e2.html" target="_self">
+                <a href="/%E6%9C%8D%E5%8A%A1%E5%99%A8/b4b628e2.html" target="_self">
                   阿里云mysql外网访问&nbsp;&nbsp;
                 </a>
               </div>
@@ -115,7 +115,7 @@
                 06-05 凌晨
               </div>
               <div class="archive-article-title">
-                <a href="/*/3031836898.html" target="_self">
+                <a href="/%E5%B7%A5%E4%BD%9C/3031836898.html" target="_self">
                   阿里云mysql外网访问&nbsp;&nbsp;
                 </a>
               </div>
@@ -127,7 +127,7 @@
                 06-04 凌晨
               </div>
               <div class="archive-article-title">
-                <a href="/*/41a22a4b.html" target="_self">
+                <a href="/nginx/41a22a4b.html" target="_self">
                   nginx支持ssl+acme.sh定时更新证书&nbsp;&nbsp;
                 </a>
               </div>
@@ -139,7 +139,7 @@
                 06-04 凌晨
               </div>
               <div class="archive-article-title">
-                <a href="/*/1101146699.html" target="_self">
+                <a href="/%E5%B7%A5%E4%BD%9C/1101146699.html" target="_self">
                   nginx支持ssl+acme.sh定时更新证书&nbsp;&nbsp;
                 </a>
               </div>
@@ -151,7 +151,7 @@
                 06-03 凌晨
               </div>
               <div class="archive-article-title">
-                <a href="/*/53577de6.html" target="_self">
+                <a href="/%E6%9C%8D%E5%8A%A1%E5%99%A8/53577de6.html" target="_self">
                   一次gogs采坑之旅&nbsp;&nbsp;
                 </a>
               </div>
@@ -163,7 +163,7 @@
                 06-03 凌晨
               </div>
               <div class="archive-article-title">
-                <a href="/*/1398242790.html" target="_self">
+                <a href="/%E5%B7%A5%E4%BD%9C/1398242790.html" target="_self">
                   一次gogs踩坑之路&nbsp;&nbsp;
                 </a>
               </div>
@@ -223,7 +223,7 @@
 </div>
 
 
-<span class="post-count">50.1k</span>
+<span class="post-count">49.2k</span>
 
 <script type="text/javascript">
 
@@ -232,8 +232,9 @@
     r = d.documentElement.style,
     f = r.setProperty.bind(r),
     l = localStorage,
-    s = l.getItem('s') ||(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches),
-    n = l.getItem('n'),
+    rawS = l.getItem('s'),
+    s = (rawS === '1' || rawS === '2') ? Number(rawS) : 0,
+    sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches,
     m = d.getElementById("dark-mode"),
     b = () => {
       f('--bg-color', '#fafafa');
@@ -260,22 +261,19 @@
     o = d.getElementById("sans-font"),
     e = () => {
       f('--body-stack', '"Lora", "Georgia", "Times New Roman", serif');
-      // o.innerHTML = "无衬"
     },
     g = () => {
       f('--body-stack', '"Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');
-      // o.innerHTML = "衬线"
+    },
+    applyTheme = () => {
+      if (s === 1) b();
+      else if (s === 2) c();
+      else (sysDark ? c() : b());
     };
   m.onclick = function(){
-    if (s == 2) {
-      s = 1;
-      l.setItem('s', s);
-      c()
-    } else {
-      s = 2;
-      l.setItem('s', s);
-      b()
-    }
+    s = s === 2 ? 0 : s + 1;
+    l.setItem('s', s);
+    applyTheme();
   };
   o.onclick =function(){
     if (n == 2) {
@@ -288,17 +286,7 @@
       e()
     }
   };
-  if (s || s == '1') {
-      s = 1;
-      l.setItem('s', s);
-    c()
-  }
-
-  if (!s || s == '2') {
-      s = 2;
-      l.setItem('s', s);
-    b()
-  };
+  applyTheme();
   if (!n) {
     n = 2;
     l.setItem('n', 2)

@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://github.com" />
+  <link rel="dns-prefetch" href="https://unpkg.com" />
+  
+  <title>飞桨OCR硬件清单 | sudo rm -rf /*</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  
+
+  
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+    
+
+  
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+    
+
+  
+    <link rel="mask-icon" href="{{ url_for(theme.favicon.safari_pinned_tab) }}" color="{{ theme.android_chrome_color }}">
+    
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/search.css">
+
+  
+<link rel="stylesheet" href="/css/katex.min.css">
+
+  
+<link rel="stylesheet" href="/css/googleapis.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="机器学习入门">
+<meta property="og:type" content="article">
+<meta property="og:title" content="飞桨OCR硬件清单">
+<meta property="og:url" content="https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/1156593666.html">
+<meta property="og:site_name" content="sudo rm -rf &#x2F;*">
+<meta property="og:description" content="机器学习入门">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://pic3.zhimg.com/v2-c997a6cc407a491a6613f025640da266_r.jpg">
+<meta property="og:image" content="https://pic2.zhimg.com/80/v2-3b17505bf0574e12f53b9b6fb7551bb5_720w.jpg">
+<meta property="article:published_time" content="2022-08-31T06:46:04.000Z">
+<meta property="article:modified_time" content="2026-10-17T14:19:03.721Z">
+<meta property="article:author" content="Yq Woe">
+<meta property="article:tag" content="机器学习">
+<meta property="article:tag" content="ocr">
+<meta property="article:tag" content="人工智能">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://pic3.zhimg.com/v2-c997a6cc407a491a6613f025640da266_r.jpg">  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@yqwoe" />
+  <meta name="twitter:creator" content="@yqwoe" />
+  
+  <link rel="canonical" href="https://sudo.rm-rf.ink工作/1156593666.html" />
+  
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "飞桨OCR硬件清单",
+    "datePublished": "2022-08-31T06:46:04.000Z",
+    "dateModified": "2026-10-17T14:19:03.721Z",
+    "author": {
+      "@type": "Person",
+      "name": "Yq Woe",
+      "url": "https://sudo.rm-rf.ink"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "sudo rm -rf /*",
+      "url": "https://sudo.rm-rf.ink"
+    },
+    "description": "机器学习入门",
+    "url": "https://sudo.rm-rf.ink工作/1156593666.html"
+  }
+  </script>
+  
+  
+<link rel="stylesheet" href="/css/reveal.css">
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="sudo rm -rf /*" type="application/atom+xml">
+</head>
+
+
+  <body>
+    <div id="wrapper">
+        <div id="content">
+          <article id="post-飞桨服务器资源需求" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h3 class="article-title" itemprop="headline name">
+      飞桨OCR硬件清单&nbsp;&nbsp;
+    </h3>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2022-08-31T06:46:04.000Z" itemprop="datePublished">2022.08.31 14:46 下午</time>
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+          <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A3%9E%E6%A1%A8%E5%AE%98%E6%96%B9%E8%A6%81%E6%B1%82"><span class="toc-text"> 飞桨官方要求</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#4-gpu-%E6%94%AF%E6%8C%81%E6%83%85%E5%86%B5"><span class="toc-text"> 4.  GPU 支持情况：</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%8E%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E7%A1%AC%E4%BB%B6%E6%9E%B6%E6%9E%84%E5%88%86%E6%9E%90%E7%A1%AC%E4%BB%B6%E9%9C%80%E6%B1%82"><span class="toc-text"> 从深度学习硬件架构分析硬件需求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A2%84%E7%AE%9715000-20000-%E5%85%83"><span class="toc-text"> 预算：15000-20000 元</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9C%80%E6%B1%82"><span class="toc-text"> 需求：</span></a><ol class="toc-child"><li class="toc-item toc-level-6"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E4%BB%B7%E6%A0%BC"><span class="toc-text"> 内存价格：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E7%A1%AC%E4%BB%B6%E4%BB%B7%E6%A0%BC%E6%80%BB%E8%AE%A1"><span class="toc-text"> 核心硬件价格总计 ：</span></a></li><li class="toc-item toc-level-6"><a class="toc-link" href="#intel-%E9%85%B7%E7%9D%BF-i9-12900k-%E8%8B%B1%E4%BC%9F%E8%BE%BEnvidia-rtx3080-%E9%87%91%E5%A3%AB%E9%A1%BF-kingston-fury-32gb-ddr4-3200-%E8%A5%BF%E9%83%A8%E6%95%B0%E6%8D%AEwestern-digital-10tb-4649-8999-899-1759-16306-%E5%85%83"><span class="toc-text"> Intel 酷睿 i9 12900K  +  英伟达（NVIDIA） RTX3080  + 金士顿 (Kingston) FURY 32GB DDR4 3200 + 西部数据(Western Digital) 10TB  &#x3D; 4649 +   8999  + 899 + 1759 &#x3D;16306 元</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-text"> </span></a></li></ol>
+</div>
+
+      
+        <h3 id="飞桨官方要求"><a class="markdownIt-Anchor" href="#飞桨官方要求"></a> 飞桨官方要求</h3>
+<p><strong>1. 操作系统要求：</strong></p>
+<ul class="lvl-0">
+<li class="lvl-3">
+<p>Ubuntu 20.04</p>
+</li>
+<li class="lvl-2">
+<p>CentOS 7</p>
+</li>
+<li class="lvl-2">
+<p>操作系统要求是 64 位版本</p>
+</li>
+</ul>
+<span id="more"></span>
+<p><strong>2. 处理器要求</strong></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>处理器支持 MKL</p>
+</li>
+<li class="lvl-2">
+<p>处理器架构是x86_64（或称作 x64、Intel 64、AMD64）架构，目前PaddlePaddle不支持arm64架构（mac M1除外，paddle 已支持Mac M1 芯片）</p>
+</li>
+</ul>
+<h5 id="4-gpu-支持情况"><a class="markdownIt-Anchor" href="#4-gpu-支持情况"></a> 4.  <strong>GPU 支持情况：</strong></h5>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>目前 <strong>PaddlePaddle</strong> 支持 <strong>NVIDIA</strong> 显卡的 <strong>CUDA</strong> 驱动和 <strong>AMD</strong> 显卡的 <strong>ROCm</strong> 架构</p>
+<hr>
+</li>
+</ul>
+<h3 id="从深度学习硬件架构分析硬件需求"><a class="markdownIt-Anchor" href="#从深度学习硬件架构分析硬件需求"></a> 从深度学习硬件架构分析硬件需求</h3>
+<p>众所知周深度学习最需要的性能是GPU也就是显卡性能，理论上在同等条件下GPU性能越高，深度学习的效率越高。但这其中也有一个很大的误区，就是电脑性能是一个整体并不是由单一硬件所决定的，是一个木桶效应。</p>
+<p><strong>当GPU性能达到一定高度之后，其他硬件性能没有跟上，再好的GPU也带来不了性能的提升。</strong></p>
+<p><strong>GPU＞CPU≈主板（CPU主板相辅相成）＞内存＞硬盘＞电源＞机箱（装的下就行）</strong></p>
+<p><img src="https://pic3.zhimg.com/v2-c997a6cc407a491a6613f025640da266_r.jpg" alt="preview"></p>
+<p>上述图示，深度神经网络计算大致流程，下面通过深度神经网络计算环节，分析核心硬件配置理想要求：</p>
+<p><img src="https://pic2.zhimg.com/80/v2-3b17505bf0574e12f53b9b6fb7551bb5_720w.jpg" alt="img"></p>
+<h3 id="预算15000-20000-元"><a class="markdownIt-Anchor" href="#预算15000-20000-元"></a> 预算：15000-20000 元</h3>
+<h3 id="需求"><a class="markdownIt-Anchor" href="#需求"></a> 需求：</h3>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>CPU支持 MKL，架构是x86_64，</p>
+</li>
+<li class="lvl-2">
+<p>CPU为英特尔 I5,I7,I9</p>
+</li>
+<li class="lvl-2">
+<p>GPU 为RTX3080TI、RTX3090TI</p>
+</li>
+<li class="lvl-2">
+<p>内存32GB</p>
+</li>
+<li class="lvl-2">
+<p>硬盘10T</p>
+</li>
+</ul>
+<p><strong>inter 处理器价格</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>型号</th>
+<th>cpu架构</th>
+<th>京东报价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Intel 酷睿 i5 12600K</td>
+<td>Golden Cove</td>
+<td>2029元</td>
+</tr>
+<tr>
+<td>Intel 酷睿 i7 12700K</td>
+<td>Golden Cove</td>
+<td>2929元</td>
+</tr>
+<tr>
+<td>Intel 酷睿 i9 12900K</td>
+<td>Golden Cove</td>
+<td>4649元</td>
+</tr>
+</tbody>
+</table>
+<p><strong>GPU价格</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>型号</th>
+<th>显存容量</th>
+<th>京东报价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>英伟达（NVIDIA） RTX3090</td>
+<td>24G</td>
+<td>12999元</td>
+</tr>
+<tr>
+<td>英伟达（NVIDIA） RTX3080</td>
+<td>10G</td>
+<td>8999元</td>
+</tr>
+<tr>
+<td>英伟达（NVIDIA） RTX3070</td>
+<td>8G</td>
+<td>4699元</td>
+</tr>
+<tr>
+<td>英伟达（NVIDIA） RTX3060</td>
+<td>12G</td>
+<td>5499元</td>
+</tr>
+</tbody>
+</table>
+<h6 id="内存价格"><a class="markdownIt-Anchor" href="#内存价格"></a> <strong>内存价格：</strong></h6>
+<table>
+<thead>
+<tr>
+<th>型号</th>
+<th>内存容量</th>
+<th>京东报价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>威刚（ADATA） DDR4 3600 16*2</td>
+<td>32G</td>
+<td>1189元</td>
+</tr>
+<tr>
+<td>金士顿 (Kingston) FURY 32GB DDR4 3200</td>
+<td>32G</td>
+<td>899元</td>
+</tr>
+<tr>
+<td>金士顿 (Kingston) FURY 32GB DDR4 3200               16×2</td>
+<td>32G</td>
+<td>899元</td>
+</tr>
+<tr>
+<td>金士顿 (Kingston) FURY 32GB DDR5 5200               16×2</td>
+<td>32G</td>
+<td>1179元</td>
+</tr>
+<tr>
+<td>光威（Gloway）32GB(16Gx2)套装 DDR4 3200</td>
+<td>32G</td>
+<td>599元</td>
+</tr>
+<tr>
+<td>美商海盗船（USCORSAIR）32GB(16G×2)</td>
+<td>32G</td>
+<td>799元</td>
+</tr>
+</tbody>
+</table>
+<p><strong>机械硬盘价格</strong>：</p>
+<table>
+<thead>
+<tr>
+<th>型号</th>
+<th>容量</th>
+<th>接口</th>
+<th>京东报价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>西部数据（WD）20T 氦气 WUH722020ALE6L4</td>
+<td>20T</td>
+<td>SATA</td>
+<td>3659元</td>
+</tr>
+<tr>
+<td>西部数据(Western Digital) 10TB  WUS721010ALE6L4</td>
+<td>10T</td>
+<td>SATA</td>
+<td>1759元</td>
+</tr>
+<tr>
+<td>西部数据(Western Digital) 14TB  WUH721414ALE6L4</td>
+<td>14T</td>
+<td>SATA</td>
+<td>1699元</td>
+</tr>
+<tr>
+<td>希捷Seagate   20T【ST20000NM007D】</td>
+<td>20T</td>
+<td>SATA</td>
+<td>4599元</td>
+</tr>
+<tr>
+<td>希捷（SEAGATE）【ST10000NM001G】10TB</td>
+<td>10T</td>
+<td>SATA</td>
+<td>1879元</td>
+</tr>
+<tr>
+<td>希捷（SEAGATE）【ST12000NM000J】12TB</td>
+<td>12T</td>
+<td>SATA</td>
+<td>1899元</td>
+</tr>
+<tr>
+<td>東芝（TOSHIBA）</td>
+<td>18T</td>
+<td>SATA</td>
+<td>2259元</td>
+</tr>
+<tr>
+<td>东芝(TOSHIBA) 10TB</td>
+<td>10T</td>
+<td>SATA</td>
+<td>1499元</td>
+</tr>
+<tr>
+<td>东芝(TOSHIBA) 12TB</td>
+<td>12T</td>
+<td>SATA</td>
+<td>1579元</td>
+</tr>
+<tr>
+<td>西部数据（WD） 4T HUS726T4TALE6L4</td>
+<td>4T</td>
+<td>STAT</td>
+<td>939元</td>
+</tr>
+<tr>
+<td>希捷Seagate     4TB【ST4000DM004】</td>
+<td>4T</td>
+<td>STAT</td>
+<td>549元</td>
+</tr>
+<tr>
+<td>東芝（TOSHIBA）</td>
+<td>4T</td>
+<td>STAT</td>
+<td>479元</td>
+</tr>
+</tbody>
+</table>
+<p><strong>固态硬盘价格：</strong></p>
+<table>
+<thead>
+<tr>
+<th>型号</th>
+<th>容量</th>
+<th>接口</th>
+<th>京东报价</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>金士顿（Kingston）FURY系列  2TB</td>
+<td>2TB</td>
+<td>NVMe</td>
+<td>2199元</td>
+</tr>
+<tr>
+<td>英睿达（Crucial）美光 2TB</td>
+<td>2TB</td>
+<td>NVMe</td>
+<td>949.9元</td>
+</tr>
+<tr>
+<td>铠侠（Kioxia）2000GB</td>
+<td>2TB</td>
+<td>NVMe</td>
+<td>1149元</td>
+</tr>
+<tr>
+<td>西部数据（Western Digital）2T</td>
+<td>2TB</td>
+<td>NVMe</td>
+<td>1459元</td>
+</tr>
+<tr>
+<td>致态（ZhiTai）长江存储 2TB</td>
+<td>2TB</td>
+<td>NVMe</td>
+<td>1299元</td>
+</tr>
+<tr>
+<td>七彩虹(Colorful) 2TB</td>
+<td>2TB</td>
+<td>NVMe</td>
+<td>999元</td>
+</tr>
+<tr>
+<td>三星（SAMSUNG）2TB</td>
+<td>2TB</td>
+<td>NVMe</td>
+<td>2399元</td>
+</tr>
+<tr>
+<td>海康威视（HIKVISION）2TB</td>
+<td>2TB</td>
+<td>NVMe</td>
+<td>1049元</td>
+</tr>
+<tr>
+<td>闪迪（SanDisk） 2TB</td>
+<td>2TB</td>
+<td>NVMe</td>
+<td>1399元</td>
+</tr>
+<tr>
+<td>美商海盗船（USCORSAIR） 2TB</td>
+<td>2TB</td>
+<td>NVMe</td>
+<td>1399元</td>
+</tr>
+</tbody>
+</table>
+<h6 id="核心硬件价格总计"><a class="markdownIt-Anchor" href="#核心硬件价格总计"></a> 核心硬件价格总计 ：</h6>
+<ul class="lvl-0">
+<li class="lvl-2">
+<h6 id="intel-酷睿-i9-12900k-英伟达nvidia-rtx3080-金士顿-kingston-fury-32gb-ddr4-3200-西部数据western-digital-10tb-4649-8999-899-1759-16306-元"><a class="markdownIt-Anchor" href="#intel-酷睿-i9-12900k-英伟达nvidia-rtx3080-金士顿-kingston-fury-32gb-ddr4-3200-西部数据western-digital-10tb-4649-8999-899-1759-16306-元"></a> Intel 酷睿 i9 12900K  +  英伟达（NVIDIA） RTX3080  + 金士顿 (Kingston) FURY 32GB DDR4 3200 + 西部数据(Western Digital) 10TB  = 4649 +   8999  + 899 + 1759 =16306 元</h6>
+</li>
+<li class="lvl-2">
+<p>Intel 酷睿 i9 12900K  +  英伟达（NVIDIA） RTX3080  + 金士顿 (Kingston) FURY 32GB DDR4 3200 + 金士顿（Kingston）FURY系列  2TB x 2  = 4649 +   8999  + 899 + 2199 X 2 = 18945 元</p>
+</li>
+</ul>
+<h3 id><a class="markdownIt-Anchor" href="#"></a> </h3>
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <a class="article-category-link" href="/categories/%E5%B7%A5%E4%BD%9C/">工作</a>
+
+        <b>&nbsp;:分类 </b>
+      
+      
+        <br/>
+      
+      
+        <a class="article-tag-none-link" href="/tags/ocr/" rel="tag">ocr</a>, <a class="article-tag-none-link" href="/tags/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/" rel="tag">人工智能</a>, <a class="article-tag-none-link" href="/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" rel="tag">机器学习</a>
+
+        <b>
+          &nbsp;:标签
+        </b>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/%E5%B7%A5%E4%BD%9C/1406322052.html" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          搭建maven私库
+        
+      </div>
+    </a>
+  
+  
+    <a href="/%E7%94%9F%E6%B4%BB/2375039249.html" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          鲁迅先生写道: 父母存在的意义
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+  
+    
+
+<div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+if(true){
+	var gitalk = new Gitalk({
+  	clientID: 'd99a4bdc344cff33585d',
+  	clientSecret: '4819ca8aa103e688f259b5ed6b3cd3fffdf0f96e',
+  	repo: 'yqwoe.github.io',
+  	owner: 'yqwoe',
+  	admin: ['yqwoe'],
+    perPage: 20,
+  	id: '1156593666',
+  	distractionFreeMode: 'true',
+    pagerDirection: 'last'
+})
+gitalk.render('gitalk-container')
+}
+</script>
+
+    
+
+
+
+
+        </div>
+        <header id="header">
+  <nav>
+    <div class="header-nav-links">
+      <a class="nav-link-first" href="/">sudo rm -rf /*</a>
+      <span class="nav-spacer"></span>
+      
+      
+        
+        <a class="nav-link" href="/archives">文章</a>
+      
+        
+          <span class="nav-spacer"> </span>
+        
+        <a class="nav-link" href="/categories">分类</a>
+      
+        
+          <span class="nav-spacer"> </span>
+        
+        <a class="nav-link" href="/about">关于我</a>
+      
+      
+    </div>
+    <div class="poem-wrap">
+      <p id="poem">加载中...</p>
+      <p id="info"/>
+    </div>
+  </nav>
+</header>
+
+    </div>
+    
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode"></div>
+  <div id="sans-font"></div>
+</div>
+
+
+<span class="post-count">49.2k</span>
+
+<script type="text/javascript">
+
+
+  let d = document,
+    r = d.documentElement.style,
+    f = r.setProperty.bind(r),
+    l = localStorage,
+    rawS = l.getItem('s'),
+    s = (rawS === '1' || rawS === '2') ? Number(rawS) : 0,
+    sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches,
+    m = d.getElementById("dark-mode"),
+    b = () => {
+      f('--bg-color', '#fafafa');
+      f('--code-bg-color', '#f4f4f4');
+      f('--text-color', '#212121');
+      f('--secondary-color', '#808080');
+      f('--tertiary-color', '#b0b0b0');
+      f('--link-color', '#b5c8cf');
+      f('--link-hover-color', '#618794');
+      f('--link-bg-color', '#dae4e7');
+      f('--selection-color', '#dae4e7');
+    },
+    c = () => {
+      f('--bg-color', '#212121');
+      f('--code-bg-color', '#292929');
+      f('--text-color', '#fff');
+      f('--secondary-color', '#c0c0c0');
+      f('--tertiary-color', '#6e6e6e');
+      f('--link-color', '#4d6b75');
+      f('--link-hover-color', '#96b1bb');
+      f('--link-bg-color', '#5d828e');
+      f('--selection-color', '#acc1c9');
+    },
+    o = d.getElementById("sans-font"),
+    e = () => {
+      f('--body-stack', '"Lora", "Georgia", "Times New Roman", serif');
+    },
+    g = () => {
+      f('--body-stack', '"Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');
+    },
+    applyTheme = () => {
+      if (s === 1) b();
+      else if (s === 2) c();
+      else (sysDark ? c() : b());
+    };
+  m.onclick = function(){
+    s = s === 2 ? 0 : s + 1;
+    l.setItem('s', s);
+    applyTheme();
+  };
+  o.onclick =function(){
+    if (n == 2) {
+      n = 1;
+      l.setItem('n', n);
+      g()
+    } else {
+      n = 2;
+      l.setItem('n', n);
+      e()
+    }
+  };
+  applyTheme();
+  if (!n) {
+    n = 2;
+    l.setItem('n', 2)
+  };
+  if (n == '1') {
+    g();
+  };
+  if (n == '2') {
+    e();
+  };
+</script>
+
+
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@9.4.3/+esm";
+  let theme = localStorage.getItem("s");
+  mermaid.initialize({
+      startOnLoad: true,
+      logLevel: 'debug',
+      theme: theme === '2' ? 'forest' : 'dark',
+    });
+  let mode = document.getElementById("dark-mode");
+   let arrayGraphs =  [];
+  let nodes = document.getElementsByClassName('mermaid')
+  for(let n of nodes){
+    console.log(n.innerHTML)
+    arrayGraphs.push(n.innerHTML);
+  }
+
+  mode.addEventListener("click",async ()=>{
+    theme = localStorage.getItem("s");
+    mermaid.initialize({
+      startOnLoad: true,
+      logLevel: 'debug',
+      theme: theme === '2' ? 'forest' : 'dark',
+    });
+  for(let i = 0;i< nodes.length;i++){
+      let n =  nodes[i]
+      // console.log(n.innerHTML)
+      let id = `mermaid-${i}`
+      n.removeAttribute("data-processed");
+      n.setAttribute("id",`mermaid-${i}`)
+      n.replaceChildren();
+      n.innerHTML = arrayGraphs[i]
+      mermaid.init(undefined,n)
+    }
+  },false);
+
+</script>
+
+
+
+<script src="/js/jquery.min.js" defer ></script>
+<script src="/js/jquery.qrcode.min.js" defer ></script>
+<script src="https://unpkg.com/reveal.js@5.0.4/dist/reveal.js" defer></script>
+<script src="https://unpkg.com/reveal.js-mermaid-plugin@2.1.0/plugin/mermaid/mermaid.js" defer></script>
+
+<script type="module">
+  import qrcodeInit from '/js/qrcode.js'
+  qrcodeInit();
+</script>
+<script type="module">
+/***
+ * 兼容不支持requestAnimationFrame的浏览器
+ ***/
+window.requestAnimationFrame = (function () {
+  return window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||/* Safari 和 Chrome */
+    window.mozRequestAnimationFrame ||/* Firefox */
+    window.oRequestAnimationFrame      ||/* Opera */
+    window.msRequestAnimationFrame     ||/* IE 9 */
+    function (callback) {
+      window.setTimeout(callback, 6000 / 60)
+    }
+})();
+window.cancelAnimationFrame = (function () {
+  return window.cancelAnimationFrame ||
+    window.webkitCancelAnimationFrame ||
+    window.mozCancelAnimationFrame ||
+    window.oCancelAnimationFrame ||
+    window.msCancelAnimationFrame || clearTimeout
+})();
+</script>
+<script type="module">
+  /*诗*/
+if ($("div").hasClass("poem-wrap")) {
+            get_poem('#poem', '#info')
+}
+function get_poem(poem_ele, info_ele) {
+    var poem = document.querySelector(poem_ele);
+    var info = document.querySelector(info_ele);
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', 'https://v2.jinrishici.com/one.json?client=browser-sdk/1.2');
+    xhr.withCredentials = true;
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            var data = JSON.parse(xhr.responseText);
+            poem.innerHTML = data.data.content;
+            info.innerHTML = '[' + data.data.origin.dynasty + '] ' + data.data.origin.author + '《' + data.data.origin.title + '》';
+        }
+    };
+    xhr.send();
+}
+
+function modifySubmitBtn(){
+  var btn = $('.hbe-button');
+  var password = $('#hbePass');
+  if(btn.length > 0){
+    btn.text('重新输入密码')
+  }
+  if(password.length > 0){
+    password.attr('autocomplete','false')
+  }
+}
+modifySubmitBtn();
+
+function layoutTagCloud(){
+  // var list = $('.tagcloud a');
+  // var size = Math.round(Math.random() * 20);
+
+  // for(let i = 0;i< list.length;i++){
+  //       if(i % even == 0 ){
+  //         list[i].classList = `${list[i].classList} deg_90`
+  //       }
+  // }
+}
+
+function loopHover(){
+  var list = $('.tagcloud a');
+  var hover = $('.tagcloud a[class="tag-hover"]')
+  var next = Math.round(Math.random() * (list.length  - 1))
+
+  if(next < 0){
+    next = 0
+  }
+
+  if(next > list.length){
+    next = list.length - 1
+  }
+  if(list.length){
+    if(hover.length){
+      for(let i = 0;i< hover.length;i++){
+        hover[i].classList = ''
+      }
+    }
+    list[next].classList = 'tag-hover'
+  }
+}
+// layoutTagCloud();
+
+
+/**
+ * 设置精度定时器
+ * @param {function} 回调函数
+ * @param {number}   延迟时间
+ * @return {number}  定时器ID
+ */
+ function setIntervalPrecision(callback, delay) {
+  // 生成并记录定时器ID
+  let obj = window.interValPrecisionObj || (window.interValPrecisionObj = { num: 0 })
+  obj.num++
+  obj['n' + obj.num] = true
+  var intervalId = obj.num
+  // 开始时间
+  var startTime = +new Date()
+  // 已执行次数
+  var count = 0
+  // 延迟时间
+  delay = delay || 0
+
+
+  ;(function loop() {
+    // 定时器被清除，则终止
+    if (!obj['n' + intervalId]) return
+
+    // 满足条件执行回调
+    if (+new Date() > startTime + delay * (count + 1)) {
+      count++
+      callback(count)
+    }
+
+    window.requestAnimationFrame(loop)
+  })()
+
+  return intervalId
+}
+
+/**
+ * 清除精度定时器
+ * @param {number} 定时器ID
+ */
+function clearIntervalPrecision(intervalId) {
+  if (window.interValPrecisionObj) {
+    window.cancelAnimationFrame('n' + intervalId)
+    delete window.interValPrecisionObj['n' + intervalId]
+  }
+}
+
+setIntervalPrecision(loopHover, 250)
+
+</script>
+
+  
+  </body>
+
+</html>

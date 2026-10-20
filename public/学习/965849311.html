@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://github.com" />
+  <link rel="dns-prefetch" href="https://unpkg.com" />
+  
+  <title>笔记1-《程序员数学 1》 | sudo rm -rf /*</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  
+
+  
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+    
+
+  
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+    
+
+  
+    <link rel="mask-icon" href="{{ url_for(theme.favicon.safari_pinned_tab) }}" color="{{ theme.android_chrome_color }}">
+    
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/search.css">
+
+  
+<link rel="stylesheet" href="/css/katex.min.css">
+
+  
+<link rel="stylesheet" href="/css/googleapis.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="程序员数学-进制计数法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="笔记1-《程序员数学 1》">
+<meta property="og:url" content="https://sudo.rm-rf.ink/%E5%AD%A6%E4%B9%A0/965849311.html">
+<meta property="og:site_name" content="sudo rm -rf &#x2F;*">
+<meta property="og:description" content="程序员数学-进制计数法">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-30T03:20:15.000Z">
+<meta property="article:modified_time" content="2026-10-17T14:19:03.720Z">
+<meta property="article:author" content="Yq Woe">
+<meta property="article:tag" content="进制">
+<meta property="article:tag" content="计数法">
+<meta name="twitter:card" content="summary">  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@yqwoe" />
+  <meta name="twitter:creator" content="@yqwoe" />
+  
+  <link rel="canonical" href="https://sudo.rm-rf.ink学习/965849311.html" />
+  
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "笔记1-《程序员数学 1》",
+    "datePublished": "2020-03-30T03:20:15.000Z",
+    "dateModified": "2026-10-17T14:19:03.720Z",
+    "author": {
+      "@type": "Person",
+      "name": "Yq Woe",
+      "url": "https://sudo.rm-rf.ink"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "sudo rm -rf /*",
+      "url": "https://sudo.rm-rf.ink"
+    },
+    "description": "程序员数学-进制计数法",
+    "url": "https://sudo.rm-rf.ink学习/965849311.html"
+  }
+  </script>
+  
+  
+<link rel="stylesheet" href="/css/reveal.css">
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="sudo rm -rf /*" type="application/atom+xml">
+</head>
+
+
+  <body>
+    <div id="wrapper">
+        <div id="content">
+          <article id="post-《程序员数学-1》-笔记1" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h3 class="article-title" itemprop="headline name">
+      笔记1-《程序员数学 1》&nbsp;&nbsp;
+    </h3>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2020-03-30T03:20:15.000Z" itemprop="datePublished">2020.03.30 11:20 上午</time>
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+          <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%AC%AC%E4%B8%80%E7%AB%A0-0-%E7%9A%84%E6%95%85%E4%BA%8B%E6%97%A0%E5%8D%B3%E6%98%AF%E6%9C%89"><span class="toc-text"> 第一章 0 的故事–无即是有</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#10-%E8%BF%9B%E5%88%B6%E8%AE%A1%E6%95%B0%E6%B3%95"><span class="toc-text"> 10 进制计数法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E8%BF%9B%E5%88%B6%E8%AE%A1%E6%95%B0%E6%B3%95"><span class="toc-text"> 2 进制计数法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8C%89%E4%BD%8D%E8%AE%A1%E6%95%B0%E6%B3%95"><span class="toc-text"> 按位计数法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0-%E6%89%80%E8%B5%B7%E7%9A%84%E4%BD%9C%E7%94%A8"><span class="toc-text"> 0 所起的作用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%BA%E7%B1%BB%E7%9A%84%E6%9E%81%E9%99%90%E5%92%8C%E6%9E%84%E9%80%A0%E7%9A%84%E5%8F%91%E7%8E%B0"><span class="toc-text"> 人类的极限和构造的发现</span></a></li></ol></li></ol>
+</div>
+
+      
+        <h1 id="第一章-0-的故事无即是有"><a class="markdownIt-Anchor" href="#第一章-0-的故事无即是有"></a> 第一章 0 的故事–无即是有</h1>
+<h2 id="10-进制计数法"><a class="markdownIt-Anchor" href="#10-进制计数法"></a> 10 进制计数法</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>什么是 10 进制计数法</p>
+<ul class="lvl-2">
+<li class="lvl-4">数字有 10 种，0、1、2、3、4、5、6、7、8、9.</li>
+<li class="lvl-4">数位:从右往左数表示 个、十、百、千、万…位。</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>分解</p>
+<ul class="lvl-2">
+<li class="lvl-4">2503 = (2 x 10 ** 3 )+ (5 x 10 ** 2) + (0 x 10 ** 1) + (3 x 10 ** 0)</li>
+</ul>
+</li>
+</ul>
+<span id="more"></span>
+<h2 id="2-进制计数法"><a class="markdownIt-Anchor" href="#2-进制计数法"></a> 2 进制计数法</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>什么是 2 进制计数法</p>
+<ul class="lvl-2">
+<li class="lvl-4">数字有 2 种，0、1.</li>
+<li class="lvl-4">从右往左分别表示 1 位、2 位、4 位、8 位</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>分解</p>
+<ul class="lvl-2">
+<li class="lvl-4">1100 = (1 x 2 ** 3) + (1 x 2 ** 2) + (0 x 2 ** 1) + (0 x 2 ** 0)</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>基数转换</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/**</span><br><span class="line">* 逆向排序 1100</span><br><span class="line">*/</span><br><span class="line">12 / 2 = 6  余数 0</span><br><span class="line">6  / 2 = 3  余数 0</span><br><span class="line">3  / 2 = 1  余数 1</span><br><span class="line">1  / 2 = 0  余数 1</span><br><span class="line">/**</span><br><span class="line">* 1000 转换 二进制 逆向 1111101000</span><br><span class="line">*/</span><br><span class="line">1000 / 2 = 500 余数 0</span><br><span class="line">500  / 2 = 250 余数 0</span><br><span class="line">250  / 2 = 125 余数 0</span><br><span class="line">125  / 2 = 62  余数 1</span><br><span class="line">62   / 2 = 31  余数 0</span><br><span class="line">31   / 2 = 15  余数 1</span><br><span class="line">15   / 2 = 7   余数 1</span><br><span class="line">7    / 2 = 3   余数 1</span><br><span class="line">3    / 2 = 1   余数 1</span><br><span class="line">1    / 2 = 0   余数 1</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p>计算机中为什么采用 2 进制计数法</p>
+<ul class="lvl-2">
+<li class="lvl-4">在十进制计数法中，位数少，但是数字种类多。 对人类来说，这种比较易用。</li>
+<li class="lvl-4">在 2 进制计数法中，数字的种类少，但是位数多。对计算机来说，这种比较易用。</li>
+</ul>
+</li>
+</ul>
+<h2 id="按位计数法"><a class="markdownIt-Anchor" href="#按位计数法"></a> 按位计数法</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>什么是按位计数法</p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>16、10、8、2、N 进制计数法都被称作为 <strong>按位计数法</strong></p>
+</li>
+<li class="lvl-4">
+<p>N 进制计数法:</p>
+<ul class="lvl-4">
+<li class="lvl-6">使用数字有 0、1、2、3…、N-1,共 N 种</li>
+<li class="lvl-6">从右往左分别为 Nº 的位、N¹ 的位…(基数是 N)</li>
+<li class="lvl-6">例如: 4 位数的 N 进制 a₃a₂a₁a₀ = a₃ x N³ + a₂ x N² + a₁ x N¹ + a₀ x Nº</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>不按位计数法的罗马数字</p>
+<ul class="lvl-2">
+<li class="lvl-4">没有数位，只表示数字本身</li>
+<li class="lvl-4">没有 0</li>
+<li class="lvl-4">使用 I(1)、V(5)、X(10)、L(50)、C(100)、D(500)、M(1000)来计数</li>
+<li class="lvl-4">并排的数字加起来，就是所表示的数</li>
+<li class="lvl-4">III(3)、VI(6)、VIII(8)、CXXIII(123)、LXXVIII(78)</li>
+<li class="lvl-4">IV(4) 减法规则表示 5 - 1 = 4</li>
+</ul>
+</li>
+</ul>
+<p>##指数法则</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>10 的 0 次方是什么？</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">10³ = 1000</span><br><span class="line">10² = 100</span><br><span class="line">10¹ = 10</span><br><span class="line">10º = ？</span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p>10 右上角的 数字（指数）减 1，数字就变为原本的 10 分之 1.</p>
+</li>
+<li class="lvl-2">
+<p>规则的扩展</p>
+<ul class="lvl-2">
+<li class="lvl-4">指数法则表达式: N ** a + N ** b = N ** (a + b)</li>
+</ul>
+</li>
+</ul>
+<h2 id="0-所起的作用"><a class="markdownIt-Anchor" href="#0-所起的作用"></a> 0 所起的作用</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>0 的作用: 占位</p>
+<ul class="lvl-2">
+<li class="lvl-4">2503 如果没有了 0 就变成了 253</li>
+</ul>
+</li>
+</ul>
+<h2 id="人类的极限和构造的发现"><a class="markdownIt-Anchor" href="#人类的极限和构造的发现"></a> 人类的极限和构造的发现</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>重温历史进程</p>
+<ul class="lvl-2">
+<li class="lvl-4"><strong>古埃及人</strong>使用 5 进制和 10 进制混合的计数法</li>
+<li class="lvl-4"><strong>巴比伦人</strong>使用 1 和 10 两种菱形来表示 1 - 59，并通过几号的所在位置表示 60 ** N 的数位。现在的 1 小时 60 分钟、1 分钟 60 秒换算源于巴比伦的 60 进制计数法。</li>
+<li class="lvl-4"><strong>古希腊人</strong>数字不仅是运算工具，还注入哲学真理。他们将图形、宇宙、音乐和数字相关联</li>
+<li class="lvl-4"><strong>玛雅人</strong>使用 20 进制计数法，从 0 开始。</li>
+<li class="lvl-4"><strong>罗马人</strong> 使用 5 进制和 10 进制混用。</li>
+<li class="lvl-4"><strong>印度人</strong>引进巴比伦的按位计数法，采用的是 10 进制计数法，被称为<strong>阿拉伯数字</strong>而不是<strong>印度数字</strong></li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
+
+        <b>&nbsp;:分类 </b>
+      
+      
+        <br/>
+      
+      
+        <a class="article-tag-none-link" href="/tags/%E8%AE%A1%E6%95%B0%E6%B3%95/" rel="tag">计数法</a>, <a class="article-tag-none-link" href="/tags/%E8%BF%9B%E5%88%B6/" rel="tag">进制</a>
+
+        <b>
+          &nbsp;:标签
+        </b>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <a href="/%E5%AD%A6%E4%B9%A0/1634039770.html" id="article-nav-newer" class="article-nav-link-wrap newer">
+      <strong class="article-nav-caption">上一篇</strong>
+      <div class="article-nav-title">
+        
+          笔记2-《程序员数学-1》
+        
+      </div>
+    </a>
+  
+  
+    <a href="/%E7%94%9F%E6%B4%BB/340466787.html" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          我们不像诗歌
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+  
+    
+
+<div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+if(true){
+	var gitalk = new Gitalk({
+  	clientID: 'd99a4bdc344cff33585d',
+  	clientSecret: '4819ca8aa103e688f259b5ed6b3cd3fffdf0f96e',
+  	repo: 'yqwoe.github.io',
+  	owner: 'yqwoe',
+  	admin: ['yqwoe'],
+    perPage: 20,
+  	id: '965849311',
+  	distractionFreeMode: 'true',
+    pagerDirection: 'last'
+})
+gitalk.render('gitalk-container')
+}
+</script>
+
+    
+
+
+
+
+        </div>
+        <header id="header">
+  <nav>
+    <div class="header-nav-links">
+      <a class="nav-link-first" href="/">sudo rm -rf /*</a>
+      <span class="nav-spacer"></span>
+      
+      
+        
+        <a class="nav-link" href="/archives">文章</a>
+      
+        
+          <span class="nav-spacer"> </span>
+        
+        <a class="nav-link" href="/categories">分类</a>
+      
+        
+          <span class="nav-spacer"> </span>
+        
+        <a class="nav-link" href="/about">关于我</a>
+      
+      
+    </div>
+    <div class="poem-wrap">
+      <p id="poem">加载中...</p>
+      <p id="info"/>
+    </div>
+  </nav>
+</header>
+
+    </div>
+    
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode"></div>
+  <div id="sans-font"></div>
+</div>
+
+
+<span class="post-count">49.2k</span>
+
+<script type="text/javascript">
+
+
+  let d = document,
+    r = d.documentElement.style,
+    f = r.setProperty.bind(r),
+    l = localStorage,
+    rawS = l.getItem('s'),
+    s = (rawS === '1' || rawS === '2') ? Number(rawS) : 0,
+    sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches,
+    m = d.getElementById("dark-mode"),
+    b = () => {
+      f('--bg-color', '#fafafa');
+      f('--code-bg-color', '#f4f4f4');
+      f('--text-color', '#212121');
+      f('--secondary-color', '#808080');
+      f('--tertiary-color', '#b0b0b0');
+      f('--link-color', '#b5c8cf');
+      f('--link-hover-color', '#618794');
+      f('--link-bg-color', '#dae4e7');
+      f('--selection-color', '#dae4e7');
+    },
+    c = () => {
+      f('--bg-color', '#212121');
+      f('--code-bg-color', '#292929');
+      f('--text-color', '#fff');
+      f('--secondary-color', '#c0c0c0');
+      f('--tertiary-color', '#6e6e6e');
+      f('--link-color', '#4d6b75');
+      f('--link-hover-color', '#96b1bb');
+      f('--link-bg-color', '#5d828e');
+      f('--selection-color', '#acc1c9');
+    },
+    o = d.getElementById("sans-font"),
+    e = () => {
+      f('--body-stack', '"Lora", "Georgia", "Times New Roman", serif');
+    },
+    g = () => {
+      f('--body-stack', '"Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');
+    },
+    applyTheme = () => {
+      if (s === 1) b();
+      else if (s === 2) c();
+      else (sysDark ? c() : b());
+    };
+  m.onclick = function(){
+    s = s === 2 ? 0 : s + 1;
+    l.setItem('s', s);
+    applyTheme();
+  };
+  o.onclick =function(){
+    if (n == 2) {
+      n = 1;
+      l.setItem('n', n);
+      g()
+    } else {
+      n = 2;
+      l.setItem('n', n);
+      e()
+    }
+  };
+  applyTheme();
+  if (!n) {
+    n = 2;
+    l.setItem('n', 2)
+  };
+  if (n == '1') {
+    g();
+  };
+  if (n == '2') {
+    e();
+  };
+</script>
+
+
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@9.4.3/+esm";
+  let theme = localStorage.getItem("s");
+  mermaid.initialize({
+      startOnLoad: true,
+      logLevel: 'debug',
+      theme: theme === '2' ? 'forest' : 'dark',
+    });
+  let mode = document.getElementById("dark-mode");
+   let arrayGraphs =  [];
+  let nodes = document.getElementsByClassName('mermaid')
+  for(let n of nodes){
+    console.log(n.innerHTML)
+    arrayGraphs.push(n.innerHTML);
+  }
+
+  mode.addEventListener("click",async ()=>{
+    theme = localStorage.getItem("s");
+    mermaid.initialize({
+      startOnLoad: true,
+      logLevel: 'debug',
+      theme: theme === '2' ? 'forest' : 'dark',
+    });
+  for(let i = 0;i< nodes.length;i++){
+      let n =  nodes[i]
+      // console.log(n.innerHTML)
+      let id = `mermaid-${i}`
+      n.removeAttribute("data-processed");
+      n.setAttribute("id",`mermaid-${i}`)
+      n.replaceChildren();
+      n.innerHTML = arrayGraphs[i]
+      mermaid.init(undefined,n)
+    }
+  },false);
+
+</script>
+
+
+
+<script src="/js/jquery.min.js" defer ></script>
+<script src="/js/jquery.qrcode.min.js" defer ></script>
+<script src="https://unpkg.com/reveal.js@5.0.4/dist/reveal.js" defer></script>
+<script src="https://unpkg.com/reveal.js-mermaid-plugin@2.1.0/plugin/mermaid/mermaid.js" defer></script>
+
+<script type="module">
+  import qrcodeInit from '/js/qrcode.js'
+  qrcodeInit();
+</script>
+<script type="module">
+/***
+ * 兼容不支持requestAnimationFrame的浏览器
+ ***/
+window.requestAnimationFrame = (function () {
+  return window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||/* Safari 和 Chrome */
+    window.mozRequestAnimationFrame ||/* Firefox */
+    window.oRequestAnimationFrame      ||/* Opera */
+    window.msRequestAnimationFrame     ||/* IE 9 */
+    function (callback) {
+      window.setTimeout(callback, 6000 / 60)
+    }
+})();
+window.cancelAnimationFrame = (function () {
+  return window.cancelAnimationFrame ||
+    window.webkitCancelAnimationFrame ||
+    window.mozCancelAnimationFrame ||
+    window.oCancelAnimationFrame ||
+    window.msCancelAnimationFrame || clearTimeout
+})();
+</script>
+<script type="module">
+  /*诗*/
+if ($("div").hasClass("poem-wrap")) {
+            get_poem('#poem', '#info')
+}
+function get_poem(poem_ele, info_ele) {
+    var poem = document.querySelector(poem_ele);
+    var info = document.querySelector(info_ele);
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', 'https://v2.jinrishici.com/one.json?client=browser-sdk/1.2');
+    xhr.withCredentials = true;
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            var data = JSON.parse(xhr.responseText);
+            poem.innerHTML = data.data.content;
+            info.innerHTML = '[' + data.data.origin.dynasty + '] ' + data.data.origin.author + '《' + data.data.origin.title + '》';
+        }
+    };
+    xhr.send();
+}
+
+function modifySubmitBtn(){
+  var btn = $('.hbe-button');
+  var password = $('#hbePass');
+  if(btn.length > 0){
+    btn.text('重新输入密码')
+  }
+  if(password.length > 0){
+    password.attr('autocomplete','false')
+  }
+}
+modifySubmitBtn();
+
+function layoutTagCloud(){
+  // var list = $('.tagcloud a');
+  // var size = Math.round(Math.random() * 20);
+
+  // for(let i = 0;i< list.length;i++){
+  //       if(i % even == 0 ){
+  //         list[i].classList = `${list[i].classList} deg_90`
+  //       }
+  // }
+}
+
+function loopHover(){
+  var list = $('.tagcloud a');
+  var hover = $('.tagcloud a[class="tag-hover"]')
+  var next = Math.round(Math.random() * (list.length  - 1))
+
+  if(next < 0){
+    next = 0
+  }
+
+  if(next > list.length){
+    next = list.length - 1
+  }
+  if(list.length){
+    if(hover.length){
+      for(let i = 0;i< hover.length;i++){
+        hover[i].classList = ''
+      }
+    }
+    list[next].classList = 'tag-hover'
+  }
+}
+// layoutTagCloud();
+
+
+/**
+ * 设置精度定时器
+ * @param {function} 回调函数
+ * @param {number}   延迟时间
+ * @return {number}  定时器ID
+ */
+ function setIntervalPrecision(callback, delay) {
+  // 生成并记录定时器ID
+  let obj = window.interValPrecisionObj || (window.interValPrecisionObj = { num: 0 })
+  obj.num++
+  obj['n' + obj.num] = true
+  var intervalId = obj.num
+  // 开始时间
+  var startTime = +new Date()
+  // 已执行次数
+  var count = 0
+  // 延迟时间
+  delay = delay || 0
+
+
+  ;(function loop() {
+    // 定时器被清除，则终止
+    if (!obj['n' + intervalId]) return
+
+    // 满足条件执行回调
+    if (+new Date() > startTime + delay * (count + 1)) {
+      count++
+      callback(count)
+    }
+
+    window.requestAnimationFrame(loop)
+  })()
+
+  return intervalId
+}
+
+/**
+ * 清除精度定时器
+ * @param {number} 定时器ID
+ */
+function clearIntervalPrecision(intervalId) {
+  if (window.interValPrecisionObj) {
+    window.cancelAnimationFrame('n' + intervalId)
+    delete window.interValPrecisionObj['n' + intervalId]
+  }
+}
+
+setIntervalPrecision(loopHover, 250)
+
+</script>
+
+  
+  </body>
+
+</html>

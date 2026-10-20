@@ -88,7 +88,7 @@
 
 <div class="list-group">
   <h3 class="list-header">
-    3 编程哲学
+    2 编程哲学
   </h3>
   
     
@@ -103,19 +103,7 @@
                 10-19 上午
               </div>
               <div class="archive-article-title">
-                <a href="/*/550cdc1d.html" target="_self">
-                  什么时候该写测试，什么时候不该&nbsp;&nbsp;
-                </a>
-              </div>
-            </div>
-            
-      
-            <div class="list-group-item">
-              <div class="archive-article-date">
-                10-19 上午
-              </div>
-              <div class="archive-article-title">
-                <a href="/*/550cdc1d.html" target="_self">
+                <a href="/%E7%BC%96%E7%A8%8B%E5%93%B2%E5%AD%A6/550cdc1d.html" target="_self">
                   什么时候该写测试，什么时候不该&nbsp;&nbsp;
                 </a>
               </div>
@@ -127,7 +115,7 @@
                 10-18 上午
               </div>
               <div class="archive-article-title">
-                <a href="/*/f1125d9e.html" target="_self">
+                <a href="/%E7%BC%96%E7%A8%8B%E5%93%B2%E5%AD%A6/f1125d9e.html" target="_self">
                   防御性编程是一种过度设计吗&nbsp;&nbsp;
                 </a>
               </div>
@@ -187,7 +175,7 @@
 </div>
 
 
-<span class="post-count">50.1k</span>
+<span class="post-count">49.2k</span>
 
 <script type="text/javascript">
 
@@ -196,8 +184,9 @@
     r = d.documentElement.style,
     f = r.setProperty.bind(r),
     l = localStorage,
-    s = l.getItem('s') ||(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches),
-    n = l.getItem('n'),
+    rawS = l.getItem('s'),
+    s = (rawS === '1' || rawS === '2') ? Number(rawS) : 0,
+    sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches,
     m = d.getElementById("dark-mode"),
     b = () => {
       f('--bg-color', '#fafafa');
@@ -224,22 +213,19 @@
     o = d.getElementById("sans-font"),
     e = () => {
       f('--body-stack', '"Lora", "Georgia", "Times New Roman", serif');
-      // o.innerHTML = "无衬"
     },
     g = () => {
       f('--body-stack', '"Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');
-      // o.innerHTML = "衬线"
+    },
+    applyTheme = () => {
+      if (s === 1) b();
+      else if (s === 2) c();
+      else (sysDark ? c() : b());
     };
   m.onclick = function(){
-    if (s == 2) {
-      s = 1;
-      l.setItem('s', s);
-      c()
-    } else {
-      s = 2;
-      l.setItem('s', s);
-      b()
-    }
+    s = s === 2 ? 0 : s + 1;
+    l.setItem('s', s);
+    applyTheme();
   };
   o.onclick =function(){
     if (n == 2) {
@@ -252,17 +238,7 @@
       e()
     }
   };
-  if (s || s == '1') {
-      s = 1;
-      l.setItem('s', s);
-    c()
-  }
-
-  if (!s || s == '2') {
-      s = 2;
-      l.setItem('s', s);
-    b()
-  };
+  applyTheme();
   if (!n) {
     n = 2;
     l.setItem('n', 2)

@@ -103,7 +103,7 @@
                 01-30 早上
               </div>
               <div class="archive-article-title">
-                <a href="/*/74a10861.html" target="_self">
+                <a href="/%E5%B7%A5%E4%BD%9C/74a10861.html" target="_self">
                   表单中心功能清单&nbsp;&nbsp;🔐
                 </a>
               </div>
@@ -115,7 +115,7 @@
                 01-11 下午
               </div>
               <div class="archive-article-title">
-                <a href="/*/3423146f.html" target="_self">
+                <a href="/%E5%B7%A5%E4%BD%9C/3423146f.html" target="_self">
                   前端定时器&nbsp;&nbsp;
                 </a>
               </div>
@@ -132,7 +132,7 @@
                 06-02 凌晨
               </div>
               <div class="archive-article-title">
-                <a href="/*/8e7d0c8.html" target="_self">
+                <a href="/css/8e7d0c8.html" target="_self">
                   一次ios网页样式问题排查心路历程&nbsp;&nbsp;
                 </a>
               </div>
@@ -144,7 +144,7 @@
                 06-02 凌晨
               </div>
               <div class="archive-article-title">
-                <a href="/*/149409992.html" target="_self">
+                <a href="/%E5%B7%A5%E4%BD%9C/149409992.html" target="_self">
                   一次ios网页样式问题排查心路历程&nbsp;&nbsp;
                 </a>
               </div>
@@ -204,7 +204,7 @@
 </div>
 
 
-<span class="post-count">50.1k</span>
+<span class="post-count">49.2k</span>
 
 <script type="text/javascript">
 
@@ -213,8 +213,9 @@
     r = d.documentElement.style,
     f = r.setProperty.bind(r),
     l = localStorage,
-    s = l.getItem('s') ||(window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches),
-    n = l.getItem('n'),
+    rawS = l.getItem('s'),
+    s = (rawS === '1' || rawS === '2') ? Number(rawS) : 0,
+    sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches,
     m = d.getElementById("dark-mode"),
     b = () => {
       f('--bg-color', '#fafafa');
@@ -241,22 +242,19 @@
     o = d.getElementById("sans-font"),
     e = () => {
       f('--body-stack', '"Lora", "Georgia", "Times New Roman", serif');
-      // o.innerHTML = "无衬"
     },
     g = () => {
       f('--body-stack', '"Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');
-      // o.innerHTML = "衬线"
+    },
+    applyTheme = () => {
+      if (s === 1) b();
+      else if (s === 2) c();
+      else (sysDark ? c() : b());
     };
   m.onclick = function(){
-    if (s == 2) {
-      s = 1;
-      l.setItem('s', s);
-      c()
-    } else {
-      s = 2;
-      l.setItem('s', s);
-      b()
-    }
+    s = s === 2 ? 0 : s + 1;
+    l.setItem('s', s);
+    applyTheme();
   };
   o.onclick =function(){
     if (n == 2) {
@@ -269,17 +267,7 @@
       e()
     }
   };
-  if (s || s == '1') {
-      s = 1;
-      l.setItem('s', s);
-    c()
-  }
-
-  if (!s || s == '2') {
-      s = 2;
-      l.setItem('s', s);
-    b()
-  };
+  applyTheme();
   if (!n) {
     n = 2;
     l.setItem('n', 2)
