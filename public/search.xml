@@ -2026,6 +2026,34 @@
       </tags>
   </entry>
   <entry>
+    <title>Using Claude提升代码安全性</title>
+    <url>/AI/3e7c94ef.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="用claude提升代码安全性我的表格预判是否正确"><a class="markdownIt-Anchor" href="#用claude提升代码安全性我的表格预判是否正确"></a> 用Claude提升代码安全性：我的表格预判是否正确？</h2>
+<p>Claude是一款由Anthropic公司开发的AI助手，旨在提升代码的安全性。通过Claude，开发者可以更好地识别潜在的安全漏洞，减少代码中的攻击面。最近，Claude在代码安全领域的应用引起了我的注意。我想知道，我当初对于表格功能的预判是否正确，Claude是否也能帮助我们改进代码中的表格使用方式？</p>
+<h3 id="用claude减少代码攻击面"><a class="markdownIt-Anchor" href="#用claude减少代码攻击面"></a> 用Claude减少代码攻击面</h3>
+<p>Claude可以通过语法检查和代码审查来提高代码的安全性。例如，对于使用表格进行数据存储或处理的代码，Claude可以检测是否使用了不安全的函数或库，从而减少代码中的攻击面。这让我想起当年对于表格功能的预判。当时，我担心表格功能过于简化，可能会导致安全性问题。然而，随着时间的推移，我发现表格功能的使用越来越普遍，尤其是在低代码开发中。那么，Claude是否也能帮助我们改进代码中的表格使用方式，提高安全性呢？</p>
+<blockquote>
+<p>根据C++中的Using的四种用法，Claude可以检测是否使用了不安全的using声明，从而减少代码中的攻击面。例如，如果一个using声明将基类的赋值运算符引入到派生类，并且其签名恰好与派生类的复制赋值或移动赋值运算符匹配，这可能会导致一些不安全的行为。</p>
+</blockquote>
+<h3 id="回顾过去的预判"><a class="markdownIt-Anchor" href="#回顾过去的预判"></a> 回顾过去的预判</h3>
+<p>在我2018年的文章《Notion、Obsidian、飞书——我用下来的真实对比》中，我提到了Notion的强大功能和简洁设计，特别是其在创建待办事项列表时的便捷性。我预判，这种简洁的设计可能会忽略一些低代码应用中的安全性问题。然而，Claude的出现改变了我的想法。它不仅能够帮助识别代码中的潜在安全漏洞，还能在低代码应用中提供必要的安全性保障。</p>
+<h3 id="低代码应用中的安全挑战"><a class="markdownIt-Anchor" href="#低代码应用中的安全挑战"></a> 低代码应用中的安全挑战</h3>
+<p>低代码应用通常简化了代码开发过程，使更多人能够快速构建应用程序。然而，这种简化可能会导致安全性的下降。Claude可以帮助我们识别这些潜在的安全问题。例如，如果一个应用程序使用了不安全的表格操作，Claude可以及时提醒开发者进行修正。</p>
+<blockquote>
+<p>在C#中，using语句可以引入命名空间、管理资源释放和简化静态成员访问。然而，如果不正确地使用using声明，可能会引入不安全的库或函数。Claude可以检测并提醒开发者，从而避免潜在的安全风险。</p>
+</blockquote>
+<h3 id="开放性思考"><a class="markdownIt-Anchor" href="#开放性思考"></a> 开放性思考</h3>
+<p>尽管Claude在提高代码安全性方面具有巨大潜力，但我们也需要考虑其适用范围。对于一些低代码应用，Claude可能并不能完全覆盖所有的安全检查。因此，开发者在使用Claude时，仍需保持警惕，结合其他安全检查工具，确保代码的安全性。</p>
+<p>Claude的出现，让我们看到了在代码安全性方面的新希望。但我仍然认为，对于表格功能的安全性预判，我们仍需谨慎对待。在未来，随着技术的发展，Claude是否能更好地帮助我们解决这些问题，还需要进一步观察。</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>知识付费七年，我踩过的那些坑</title>
     <url>/%E6%9D%82%E6%80%9D/3da2209e.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>我做知识付费产品七年了，最大的感受是：踩坑无处不在。在这一路上，我经历了不少波折，也从中学到了不少经验。下面我将分享几个我在做知识付费产品时踩过的坑。</p>
@@ -2139,39 +2167,6 @@
       </categories>
       <tags>
         <tag>reveal.js</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Cas Server 本地部署</title>
-    <url>/%E5%B7%A5%E4%BD%9C/1854714444.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="cas"><a class="markdownIt-Anchor" href="#cas"></a> Cas</h1>
-<blockquote>
-<p><strong><a href="https://github.com/apereo/cas">Cas</a></strong> 中心认证服务。Cas 是一种面向 Web 的企业级、多语言单点登录解决方案，它是满足身份验证和授权管理的综合平台</p>
-<p>Cas 是一种开放优秀的身份验证协议。</p>
-</blockquote>
-<span id="more"></span>
-<p><img src="https://user-images.githubusercontent.com/1205228/30969994-e2fe6bf0-a470-11e7-80f9-d54d1e4d348e.png" alt="1205228/30969994-e2fe6bf0-a470-11e7-80f9-d54d1e4d348e"></p>
-<p>我在本地部署的是**<a href="https://github.com/apereo/cas-overlay-template">cas-overlay-template</a>** 分支 5.2</p>
-<h2 id="部署-cas-server"><a class="markdownIt-Anchor" href="#部署-cas-server"></a> 部署 Cas Server</h2>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/apereo/cas<span class="literal">-overlay-template</span>.git</span><br><span class="line"><span class="built_in">cd</span> cas<span class="literal">-overlay-template</span></span><br><span class="line">git checkout <span class="number">5.2</span></span><br><span class="line">mvn package //因为本地jdk1.<span class="number">8</span> <span class="number">5.2</span>版本支持</span><br><span class="line"></span><br><span class="line">mkdir <span class="literal">-p</span> src/main/resources</span><br><span class="line">mkdir <span class="literal">-p</span> src/main/resources/services</span><br><span class="line"><span class="built_in">cp</span> /target/cas/WEB<span class="literal">-INF</span>/classes/application.prpperties src/main/resources/application.prpperties</span><br><span class="line"><span class="built_in">cp</span> /target/cas/WEB<span class="literal">-INF</span>/classes/services/HTTPSandIMAPS<span class="literal">-10000001</span>.json src/main/resources/services/HTTPSandIMAPS<span class="literal">-10000001</span>.json</span><br></pre></td></tr></table></figure>
-<h4 id="applicationproperties"><a class="markdownIt-Anchor" href="#applicationproperties"></a> application.properties</h4>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="comment"># CAS Server Context Configuration</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">server.context<span class="literal">-path</span>=/cas</span><br><span class="line">server.port=<span class="number">8443</span></span><br><span class="line"></span><br><span class="line">cas.tgc.secure=false</span><br><span class="line">cas.serviceRegistry.initFromJson=true</span><br><span class="line">server.ssl.enabled=false <span class="comment">#禁用https访问</span></span><br><span class="line"><span class="comment">#...省略</span></span><br><span class="line">cas.authn.accept.users=admin::admin <span class="comment">#静态访问用户名密码 admin/admin</span></span><br></pre></td></tr></table></figure>
-<h4 id="serviceshttpsandimaps-10000001json"><a class="markdownIt-Anchor" href="#serviceshttpsandimaps-10000001json"></a> services/HTTPSandIMAPS-10000001.json</h4>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;@class&quot;</span><span class="punctuation">:</span> <span class="string">&quot;org.apereo.cas.services.RegexRegisteredService&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;serviceId&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^(https|imaps|http)://.*&quot;</span><span class="punctuation">,</span> <span class="comment">//增加http访问规则</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;HTTPS and IMAPS&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">10000001</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;This service definition authorizes all application urls that support HTTPS and IMAPS protocols.&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;evaluationOrder&quot;</span><span class="punctuation">:</span> <span class="number">10000</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>以上操作按照顺序执行</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./build.sh run</span><br></pre></td></tr></table></figure>
-<p>打开浏览器访问 <a href="http://cas.simple.org:8443/cas" target="_blank">http://cas.simple.org:8443/cas</a></p>
-<p>Cas Server 已经 setup 起来了。</p>
-<p>明天继续更新 Cas Client 与 Spring boot 集成，并实现 Cas Server 的用户存储数据库。</p>
-]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-      <tags>
-        <tag>spring boot</tag>
-        <tag>cas client</tag>
-        <tag>cas server</tag>
-        <tag>sso</tag>
       </tags>
   </entry>
   <entry>
@@ -2492,37 +2487,6 @@ section 运维阶段
       </tags>
   </entry>
   <entry>
-    <title>mybatis动态查询实现</title>
-    <url>/%E5%B7%A5%E4%BD%9C/3058125875.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>model Product，我们希望通过实现 service 的一个方法，并支持所有类型的查询，如 &gt;、&gt;=、&lt;、&lt;=、like 、order by 等常用的查询、排序。</p>
-<span id="more"></span>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Product</span> &#123;</span><br><span class="line">    <span class="type">long</span> id;</span><br><span class="line">    String name;</span><br><span class="line">    String category;</span><br><span class="line">    String price;</span><br><span class="line">    String ...;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="分析"><a class="markdownIt-Anchor" href="#分析"></a> 分析:</h2>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> product</span><br><span class="line"><span class="keyword">where</span> id <span class="operator">&gt;</span> <span class="number">1</span> <span class="keyword">or</span> price <span class="operator">&gt;</span> <span class="string">&#x27;100.00&#x27;</span> ...;</span><br></pre></td></tr></table></figure>
-<p>Where 条件中包含 字段名称、运算符、值。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 查询类型</span></span><br><span class="line"><span class="comment">* lt 小于</span></span><br><span class="line"><span class="comment">* lte 小于等于</span></span><br><span class="line"><span class="comment">* gt 大于</span></span><br><span class="line"><span class="comment">* gte 大于等于</span></span><br><span class="line"><span class="comment">* slike &#x27;value%&#x27; start_with</span></span><br><span class="line"><span class="comment">* elike &#x27;%value&#x27; end_with</span></span><br><span class="line"><span class="comment">* like &#x27;%value%&#x27;</span></span><br><span class="line"><span class="comment">* in 1,2,3,4,5</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Item</span> &#123;</span><br><span class="line">    String name; <span class="comment">//字段名称</span></span><br><span class="line">    String value; <span class="comment">//值</span></span><br><span class="line">    String itemType; <span class="comment">//查询类型</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">type</span> <span class="operator">=</span> <span class="string">&quot;and&quot;</span>; <span class="comment">// 逻辑运算 and or</span></span><br><span class="line">    String[] values; <span class="comment">//如果是in查询转换为字符串数组</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以上是对查询条件的简单封装,如果我们需要满足多个条件的话。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">QueryParam</span>&#123;</span><br><span class="line">    List&lt;Item&gt; items = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>mybatis 公共 xml 文件配置</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span> <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span> <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;BaseMapper&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;BaseQuery&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;items != null &quot;</span>&gt;</span></span><br><span class="line">            where 1 = 1</span><br><span class="line">            <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;items&quot;</span> <span class="attr">item</span>=<span class="string">&quot;item&quot;</span> <span class="attr">index</span>=<span class="string">&quot;index&quot;</span></span></span><br><span class="line"><span class="tag">                     <span class="attr">separator</span>=<span class="string">&quot; &quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;eq&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    $&#123;item.type&#125; $&#123;item.fieldName&#125; = #&#123;item.value&#125;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;lt&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[  $&#123;item.type&#125;  $&#123;item.name&#125; &lt; #&#123;item.value&#125; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;lte&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[ $&#123;item.type&#125;  $&#123;item.name&#125; &lt;= #&#123;item.value&#125; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;gt&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[  $&#123;item.type&#125;  $&#123;item.name&#125; &gt; #&#123;item.value&#125; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;gte&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[  $&#123;item.type&#125;  $&#123;item.name&#125; &gt;= #&#123;item.value&#125; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;slike&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[  $&#123;item.type&#125;  $&#123;item.name&#125; like &#x27;$&#123;item.value&#125;%&#x27; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.typeitemType == &#x27;elike&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[  $&#123;item.type&#125;  $&#123;item.name&#125; like &#x27;%$&#123;item.value&#125;&#x27; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;like&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[  AND $&#123;item.name&#125; like &#x27;%$&#123;item.value&#125;%&#x27; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;in&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    $&#123;item.type&#125;</span><br><span class="line">                    <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;item.values&quot;</span> <span class="attr">item</span>=<span class="string">&quot;value&quot;</span> <span class="attr">index</span>=<span class="string">&quot;index&quot;</span> <span class="attr">open</span>=<span class="string">&quot;(&quot;</span> <span class="attr">close</span>=<span class="string">&quot;)&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;OR&quot;</span>&gt;</span></span><br><span class="line">                        $&#123;item.name&#125; =  #&#123;value&#125;</span><br><span class="line">                    <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>Product mapper.xml</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span> <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span> <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.yqwoe.codegenerator.dao.ProductMapper&quot;</span> &gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;BaseResultMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;com.yqwoe.codegenerator.model.Product&quot;</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">&quot;u_id&quot;</span> <span class="attr">property</span>=<span class="string">&quot;uId&quot;</span> <span class="attr">jdbcType</span>=<span class="string">&quot;VARCHAR&quot;</span> /&gt;</span></span><br><span class="line">      <span class="comment">&lt;!--省略 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;Base_Column_List&quot;</span> &gt;</span></span><br><span class="line">    id, name, category, price ,.....</span><br><span class="line">  <span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAll&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;BaseResultMap&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;com.yqwoe.model.param.QueryParam&quot;</span>&gt;</span></span><br><span class="line">    select</span><br><span class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;Base_Column_List&quot;</span> /&gt;</span></span><br><span class="line">    from s_user</span><br><span class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;BaseMapper.BaseQuery&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;BaseMapper.BaseOrder&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>ProductController</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ProductController</span>&#123;</span><br><span class="line">    ProductService productService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/products&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Pageinfo <span class="title function_">index</span><span class="params">(QueryParam param)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> productService.selectAll(param);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="演示"><a class="markdownIt-Anchor" href="#演示"></a> 演示</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">api: http://localhost:8000/products?items[0].name=name&amp;items[0].value=nil?,超级管理员&amp;items[0].itemType=in</span><br><span class="line"></span><br><span class="line">sql: select * from product where 1 = 1 and (name = &#x27;nil?&#x27; OR name = &#x27;超级管理员&#x27;)</span><br><span class="line"></span><br><span class="line">//type 默认为 and</span><br><span class="line">response:</span><br><span class="line">&#123;</span><br><span class="line">    data:[</span><br><span class="line">        ....</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以上为动态查询，照这样的思路，可以继续围绕 mapper 扩展排序或者更复杂的查询。</p>
-]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-        <tag>mybatis</tag>
-        <tag>api</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mysql &#39;No DataSource Set&#39;解决办法</title>
     <url>/%E5%B7%A5%E4%BD%9C/202678719.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>mysql 8.0.13开始，使用sslMode属性代替了原来的useSSL属性， 所以把<code>useSSL=true</code>改成<code>sslMode=DISABLED</code> 或者添加<code>allowPublicKeyRetrieval=true</code></p>
@@ -2595,115 +2559,6 @@ section 运维阶段
         <tag>聚合函数</tag>
         <tag>InnoDB</tag>
         <tag>MyISAM</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>阿里云mysql外网访问</title>
-    <url>/%E5%B7%A5%E4%BD%9C/3031836898.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>转载原文评论: <a href="https://segmentfault.com/q/1010000009603559?sort=created">阿里云 ecs 上安装了 mysql 但是外网访问不了</a></p>
-<span id="more"></span>
-<p>1.阿里云 ECS 有安全组防火墙.默认只开了 ICMP,22,3389. 在服务器控制台找到 安全组-配置规则-添加安全组规则</p>
-<p><img src="/images/1950746143-596a46107163e_articlex.png" alt="1950746143-596a46107163e_articlex"></p>
-<p>2.如果是用 root 登录 MySQL,在登陆后 use mysql, user 表 root 对应的 localhost 改为%</p>
-<p>3.mysql 默认只能自本机访问</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line">#bind-address = 127.0.0.1</span><br><span class="line"></span><br><span class="line">service mysql restart</span><br></pre></td></tr></table></figure>
-<p>4.检查是不是在监听状态</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netstat -ntpl |grep 3306</span><br></pre></td></tr></table></figure>
-<p>5.防火墙是否对 mysql 端口限制,设置防火墙</p>
-]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-      <tags>
-        <tag>aliyun</tag>
-        <tag>阿里云</tag>
-        <tag>ubuntu 14.04</tag>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>nginx支持ssl+acme.sh定时更新证书</title>
-    <url>/%E5%B7%A5%E4%BD%9C/1101146699.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>不废话，直接进入实战。</p>
-<span id="more"></span>
-<p>1.安装 nginx</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt install nginx</span><br></pre></td></tr></table></figure>
-<p>2.配置 nginx</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi /etc/nginx/sites-enabled/default</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">  listen 80;</span><br><span class="line">  server_name example.com ;</span><br><span class="line">  return 301 https://example.com$request_uri;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">  listen 443 ssl;</span><br><span class="line"></span><br><span class="line">  server_name example.com;</span><br><span class="line"></span><br><span class="line">  ssl on;</span><br><span class="line">  ssl_certificate         /var/www/ssl/example.com.cer;</span><br><span class="line">  ssl_certificate_key     /var/www/ssl/example.com.key;</span><br><span class="line">  ssl_dhparam             /var/www/ssl/dhparam.pem;</span><br><span class="line">  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><br><span class="line">  ssl_prefer_server_ciphers on;</span><br><span class="line">  ssl_ciphers EECDH+CHACHA20:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5; #加密算法(CloudFlare 推荐的加密套件组)</span><br><span class="line">  ssl_session_timeout 5m; #客户端会话缓存时间</span><br><span class="line">  ssl_session_cache builtin:1000 shared:SSL:10m; #SSL 会话缓存类型和大小</span><br><span class="line"></span><br><span class="line">  root /var/www/example/current/public;</span><br><span class="line">  access_log /var/www/example/current/log/nginx.access.log;</span><br><span class="line">  error_log /var/www/example/current/log/nginx.error.log info;</span><br><span class="line"></span><br><span class="line">  error_page 500 502 503 504 /500.html;</span><br><span class="line">  client_max_body_size 10M;</span><br><span class="line">  keepalive_timeout 10;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>3.安装 <a href="http://acme.sh">acme.sh</a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">curl https://get.acme.sh | sh</span><br><span class="line">source ~/.bashrc</span><br><span class="line">备注:如果本地创建了.bash_profie建议把此命令加入</span><br></pre></td></tr></table></figure>
-<p>4.申请证书</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">acme.sh --issue -d example.com -w /var/www/example/current/public</span><br><span class="line">备注: 命令中的目录一定是通过nginx 80端口能够访问到的位置。命令执行成功后证书会存放在 ~/.acme.sh/example.com/</span><br></pre></td></tr></table></figure>
-<p>5.设置证书，并重启 nginx</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">acme.sh --installcert -d example.com \</span><br><span class="line">               --keypath       /var/www/ssl/example.com.key  \</span><br><span class="line">               --fullchainpath /var/www/ssl/example.com.cer \</span><br><span class="line">               --reloadcmd     &quot;nginx -s reload&quot;</span><br></pre></td></tr></table></figure>
-<p>6.生成 dhparam.pem 文件</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">openssl dhparam -out /var/www/ssl/dhparam.pem 2048</span><br><span class="line">备注：注意观察的话，证书和dhparam.pem的目录和nginx中是保持一致的。</span><br></pre></td></tr></table></figure>
-<p>7.查看定时更换任务</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">$ crontab -l</span><br><span class="line">0 0 * * * &quot;/home/ubuntu/.acme.sh&quot;/acme.sh --cron --home &quot;/home/ubuntu/.acme.sh&quot; &gt; /dev/null</span><br></pre></td></tr></table></figure>
-<p>8.验证 <a href="http://acme.sh">acme.sh</a> 定时更换任务</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">acme.sh --cron -f</span><br></pre></td></tr></table></figure>
-<p>9.你可能遇到的问题</p>
-<p><a href="https://ruby-china.org/topics/31983">使用 acme.sh 给 Nginx 安装 Let’ s Encrypt 提供的免费 SSL 证书</a></p>
-]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-      <tags>
-        <tag>aliyun</tag>
-        <tag>阿里云</tag>
-        <tag>ubuntu 14.04</tag>
-        <tag>nginx</tag>
-        <tag>ssl</tag>
-        <tag>acme.sh</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>nginx 负载均衡</title>
-    <url>/%E5%B7%A5%E4%BD%9C/1506548690.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="nginx-是什么"><a class="markdownIt-Anchor" href="#nginx-是什么"></a> nginx 是什么？</h1>
-<span id="more"></span>
-<blockquote>
-<p>Nginx：Nginx (“engine x”) ，Nginx (“engine x”) 是俄罗斯人 Igor Sysoev(塞索耶夫)编写的一款高性能的 HTTP 和反向代理服务器。也是一个 IMAP/POP3/SMTP 代理服务器；也就是说，Nginx 本身就可以托管网站，进行 HTTP 服务处理，也可以作为反向代理服务器使用。</p>
-</blockquote>
-<h1 id="nginx-特点"><a class="markdownIt-Anchor" href="#nginx-特点"></a> nginx 特点</h1>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>跨平台：Nginx 可以在大多数 Unix like OS 编译运行，而且也有 Windows 的移植版本。</p>
-</li>
-<li class="lvl-2">
-<p>配置异常简单：非常容易上手。配置风格跟程序开发一样，神一般的配置</p>
-</li>
-<li class="lvl-2">
-<p>非阻塞、高并发连接：数据复制时，磁盘 I/O 的第一阶段是非阻塞的。官方测试能够支撑 5 万并发连接，在实际生产环境中跑到 2 ～ 3 万并发连接数.(这得益于 Nginx 使用了最新的 epoll 模型)</p>
-</li>
-<li class="lvl-2">
-<p>事件驱动：通信机制采用 epoll 模型，支持更大的并发连接。</p>
-</li>
-</ul>
-<h1 id="nginx-特性"><a class="markdownIt-Anchor" href="#nginx-特性"></a> nginx 特性</h1>
-<p><strong>master/worker 结构：</strong> 一个 master 进程，生成一个或多个 worker 进程</p>
-<p><strong>内存消耗小：</strong>  处理大并发的请求内存消耗非常小。在 3 万并发连接下，开启的 10 个 Nginx 进程才消耗 150M 内存（15M*10=150M）</p>
-<p><strong>成本低廉：</strong> Nginx 为开源软件，可以免费使用。而购买 F5 BIG-IP、NetScaler 等硬件负载均衡交换机则需要十多万至几十万人民币</p>
-<p><strong>内置的健康检查功能：</strong> 如果 Nginx Proxy 后端的某台 Web 服务器宕机了，不会影响前端访问。</p>
-<p><strong>节省带宽：</strong> 支持 GZIP 压缩，可以添加浏览器本地缓存的 Header 头。</p>
-<p><strong>稳定性高：</strong> 用于反向代理，宕机的概率微乎其微</p>
-<p>1、nginx 代理和后端 web 服务器间无需长连接；</p>
-<p>2、接收用户请求是异步的，即先将用户请求全部接收下来，再一次性发送后后端 web 服务器，极大的减轻后端 web 服务器的压力</p>
-<p>3、发送响应报文时，是边接收来自后端 web 服务器的数据，边发送给客户端的</p>
-<p>4、网络依赖型低。NGINX 对网络的依赖程度非常低，理论上讲，只要能够 ping 通就可以实施负载均衡，而且可以有效区分内网和外网流量</p>
-<p>5、支持服务器检测。NGINX 能够根据应用服务器处理页面返回的状态码、超时信息等检测服务器是否出现故障，并及时返回错误的请求重新提交到其它节点上</p>
-<h1 id="nginx-配置"><a class="markdownIt-Anchor" href="#nginx-配置"></a> nginx 配置</h1>
-<figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">upstream</span> www.blog.com &#123;</span><br><span class="line">    <span class="comment">#upstream的负载均衡，weight是权重，可以根据机器配置定义权重。weigth参数表示权值，权值越高被分配到的几率越大。</span></span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.80.121:80</span> weight=<span class="number">3</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.80.122:80</span> weight=<span class="number">2</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.80.123:80</span> weight=<span class="number">3</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-      <tags>
-        <tag>nginx</tag>
-        <tag>epoll</tag>
-        <tag>poll</tag>
-        <tag>linux</tag>
-        <tag>unix like os</tag>
       </tags>
   </entry>
   <entry>
@@ -2892,57 +2747,6 @@ section 运维阶段
         <tag>animate</tag>
         <tag>css动画</tag>
         <tag>css</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>ruby 爬虫 一</title>
-    <url>/%E5%B7%A5%E4%BD%9C/1911085415.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>​ 拖延了半个多月，把之前写的东西整理一下发现，好多内容都在脑子里，没有形成转化后的内容，所以，吃过晚饭就决定写完在睡觉。</p>
-<span id="more"></span>
-<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="title class_">Time</span>.now.to_s =&gt; <span class="string">&quot;2018-10-30 20:29:36 +0800&quot;</span></span><br></pre></td></tr></table></figure>
-<p>​ 印象中，大多数人做爬虫第一个想到的肯定是 python，“python 解决方案多，代码简洁，容易上手…”,blah…blah</p>
-<p>​ 事实上我也写 python，但是强制缩进这点让我很伤脑筋，没用 ruby 之前，我觉得 python 可能是我做 java 以来最优雅的语言。直到我用 ruby。</p>
-<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="number">10</span>.times <span class="keyword">do</span> |<span class="params">i</span>|</span><br><span class="line">	puts <span class="string">&quot;I Love Ruby!!&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">=&gt;</span><br><span class="line"><span class="string">&quot;I Love Ruby!!&quot;</span></span><br><span class="line"><span class="string">&quot;I Love Ruby!!&quot;</span></span><br><span class="line"><span class="string">&quot;I Love Ruby!!&quot;</span></span><br><span class="line"><span class="string">&quot;I Love Ruby!!&quot;</span></span><br><span class="line"><span class="string">&quot;I Love Ruby!!&quot;</span></span><br><span class="line"><span class="string">&quot;I Love Ruby!!&quot;</span></span><br><span class="line"><span class="string">&quot;I Love Ruby!!&quot;</span></span><br><span class="line"><span class="string">&quot;I Love Ruby!!&quot;</span></span><br><span class="line"><span class="string">&quot;I Love Ruby!!&quot;</span></span><br><span class="line"><span class="string">&quot;I Love Ruby!!&quot;</span></span><br></pre></td></tr></table></figure>
-<p>​ 废话不多说。</p>
-<p>​ 为什么选择用 ruby，而不用 python 呢？</p>
-<p>​ 不为别的，就是顺手而已。</p>
-<h1 id="kimurai"><a class="markdownIt-Anchor" href="#kimurai"></a> kimurai</h1>
-<blockquote>
-<p>Kimurai 是一个用 Ruby 实现的现代网络爬虫框架，和 <strong>Headless Chromium</strong> / <strong>Firefox</strong> 、<strong>PhantomJS</strong> 一样开箱即用，并且能够模拟**“用户”**访问抓取 javascript 交互的网站。</p>
-<p>Kimurai 基于 <strong><a href="https://github.com/teamcapybara/capybara">Capybara</a></strong> 和 <strong><a href="https://github.com/sparklemotion/nokogiri">Nokogir</a></strong> gems，所以你不必学习新的东西。</p>
-</blockquote>
-<h2 id="实操"><a class="markdownIt-Anchor" href="#实操"></a> 实操</h2>
-<h4 id="1安装"><a class="markdownIt-Anchor" href="#1安装"></a> 1.安装</h4>
-<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">gem install kimurai</span><br></pre></td></tr></table></figure>
-<p>使用<a href="http://npm.taobao.org/mirrors/chromedriver/">chromiumdriver</a> 或<a href="https://github.com/ariya/phantomjs">phantomJS</a>需另外安装。</p>
-<h4 id="2创建项目-demo"><a class="markdownIt-Anchor" href="#2创建项目-demo"></a> 2.创建项目 demo</h4>
-<p>kimurai 提供了像 rails new project 这样的命令式创建项目。</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">kimurai generate project demo</span><br></pre></td></tr></table></figure>
-<p>等待命令执行完成会生成如下结构</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">|demo</span><br><span class="line">	|config  #用于存放全局配置</span><br><span class="line">		|application.rb #全局配置</span><br><span class="line">		|automaiton.yml #用于配置浏览器和部署</span><br><span class="line">		|schedule.rb #支持定时任务</span><br><span class="line">	|db #数据库文件？</span><br><span class="line">	|helpers #辅助方法</span><br><span class="line">	|lib #插件</span><br><span class="line">	|log #日志</span><br><span class="line">	|pipelines</span><br><span class="line">	|spiders #爬虫存放目录</span><br><span class="line">	|tmp #缓存文件</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="3创建-spider"><a class="markdownIt-Anchor" href="#3创建-spider"></a> 3.创建 spider</h4>
-<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line">kimurai generate spider test_spider</span><br><span class="line"></span><br><span class="line"><span class="comment">#demo/spiders/test_spider.rb</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">TestSpider</span> &lt; <span class="title class_ inherited__">ApplicationSpider</span></span><br><span class="line">  <span class="variable">@name</span> = <span class="string">&quot;test_spider&quot;</span></span><br><span class="line">  <span class="variable">@start_urls</span> = []</span><br><span class="line">  <span class="variable">@config</span> = &#123;&#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">parse</span>(<span class="params">response, <span class="symbol">url:</span>, <span class="symbol">data:</span> &#123;&#125;</span>)</span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="4修改-spider"><a class="markdownIt-Anchor" href="#4修改-spider"></a> 4.修改 spider</h4>
-<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">TestSpider</span> &lt; <span class="title class_ inherited__">ApplicationSpider</span></span><br><span class="line">  <span class="variable">@name</span> = <span class="string">&quot;test_spider&quot;</span></span><br><span class="line">  <span class="variable">@start_urls</span> = [<span class="string">&quot;https://baike.pcbaby.com.cn&quot;</span>]</span><br><span class="line"></span><br><span class="line">  <span class="keyword">def</span> <span class="title function_">parse</span>(<span class="params">response, <span class="symbol">url:</span>, <span class="symbol">data:</span> &#123;&#125;</span>)</span><br><span class="line">    items = &#123;&#125;</span><br><span class="line">    items[<span class="symbol">:links</span>] = []</span><br><span class="line">    response.xpath(<span class="string">&quot;//div[@class=&#x27;baike-th main&#x27;]&quot;</span>).each <span class="keyword">do</span> |<span class="params">row</span>|</span><br><span class="line">      logger.info row.to_s</span><br><span class="line">      items[<span class="symbol">:links</span>] &lt;&lt; &#123;</span><br><span class="line">          <span class="symbol">title:</span> row.css(<span class="string">&quot;/a&quot;</span>).text.squish,</span><br><span class="line">          <span class="symbol">url:</span> <span class="string">&quot;https:<span class="subst">#&#123;row.css(<span class="string">&quot;/a&quot;</span>).first[<span class="string">&quot;href&quot;</span>]&#125;</span>&quot;</span></span><br><span class="line">      &#125;</span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">    save_to <span class="string">&quot;results.json&quot;</span>, items, <span class="symbol">format:</span> <span class="symbol">:pretty_json</span></span><br><span class="line">  <span class="keyword">end</span></span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
-<h5 id="resultsjson"><a class="markdownIt-Anchor" href="#resultsjson"></a> results.json</h5>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">[</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;links&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;备孕百科&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://baike.pcbaby.com.cn/yunqian.html&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;孕期百科&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://baike.pcbaby.com.cn/yunqi.html&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;分娩百科&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://baike.pcbaby.com.cn/fenmian.html&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;月子百科&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://baike.pcbaby.com.cn/yuezi.html&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;新生儿百科&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://baike.pcbaby.com.cn/xinshenger.html&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0-1岁百科&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://baike.pcbaby.com.cn/yinger.html&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1-3岁百科&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://baike.pcbaby.com.cn/youer.html&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;3-6岁百科&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://baike.pcbaby.com.cn/xuelingqian.html&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;用品百科&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://baike.pcbaby.com.cn/yongpin.html&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;美食百科&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://baike.pcbaby.com.cn/meishi.html&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;生活百科&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://baike.pcbaby.com.cn/shenghuo.html&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;position&quot;</span><span class="punctuation">:</span> <span class="number">1</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
-<h4 id="5application_spiderrb"><a class="markdownIt-Anchor" href="#5application_spiderrb"></a> 5.application_spider.rb</h4>
-<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ApplicationSpider is a default base spider class. You can set here</span></span><br><span class="line"><span class="comment"># default settings for all spiders inherited from ApplicationSpider.</span></span><br><span class="line"><span class="comment"># To generate a new spider, run: `$ kimurai generate spider spider_name`</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;net/http&#x27;</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;kimurai&#x27;</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ApplicationSpider</span> &lt; <span class="title class_ inherited__">Kimurai::Base</span></span><br><span class="line">  <span class="keyword">include</span> <span class="title class_">ApplicationHelper</span></span><br><span class="line"></span><br><span class="line">  <span class="variable">@engine</span> = <span class="symbol">:selenium_chrome</span></span><br><span class="line">  <span class="variable constant_">USER_AGENTS</span> = []</span><br><span class="line"></span><br><span class="line">  <span class="comment"># PROXIES = [&quot;127.0.0.1:1086:socks5&quot;]</span></span><br><span class="line"></span><br><span class="line">  <span class="variable">@config</span> = &#123;</span><br><span class="line">    <span class="symbol">user_agent:</span> <span class="string">&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36&quot;</span>,</span><br><span class="line">    <span class="symbol">skip_request_errors:</span> [&#123; <span class="symbol">error:</span> <span class="title class_">RuntimeError</span>, <span class="symbol">message:</span> <span class="string">&quot;404 =&gt; Net::HTTPNotFound&quot;</span> &#125;],</span><br><span class="line">	<span class="symbol">retry_request_errors:</span> [<span class="title class_">Net</span><span class="symbol">:</span><span class="symbol">:ReadTimeout</span>],</span><br><span class="line">    <span class="symbol">restart_if:</span> &#123;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="symbol">before_request:</span> &#123;</span><br><span class="line">        <span class="symbol">delay:</span> <span class="number">4</span>..<span class="number">7</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h4 id="6运行"><a class="markdownIt-Anchor" href="#6运行"></a> 6.运行</h4>
-<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line">bundle exec kimurai runner -j <span class="number">3</span></span><br></pre></td></tr></table></figure>
-<p>可以依次运行多个爬虫。</p>
-<p>按照以上步骤可以运行示例中的代码。</p>
-<p>更多细节配置可以查看 <a href="https://github.com/vifreefly/kimuraframework#installation">kimurai</a></p>
-]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-      <tags>
-        <tag>ruby</tag>
-        <tag>爬虫</tag>
-        <tag>python</tag>
-        <tag>java</tag>
-        <tag>kimurai</tag>
       </tags>
   </entry>
   <entry>
@@ -3240,94 +3044,6 @@ section 运维阶段
         <tag>cargo</tag>
         <tag>rustc</tag>
         <tag>rustup</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>k8s 1.19.2 部署 traefik 2.2</title>
-    <url>/%E5%B7%A5%E4%BD%9C/3724466435.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p><strong>系统环境：</strong></p>
-<span id="more"></span>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>Traefik 版本：v2.2</p>
-</li>
-<li class="lvl-2">
-<p>Kubernetes 版本：1.19.2</p>
-</li>
-</ul>
-<p><strong>地址：</strong></p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>Traefik 2.2 官方文档：<a href="https://doc.traefik.io/traefik/v2.2/">https://doc.traefik.io/traefik/v2.2/</a></p>
-</li>
-</ul>
-<h2 id="一-traefik-简介"><a class="markdownIt-Anchor" href="#一-traefik-简介"></a> 一、Traefik 简介</h2>
-<p>Traefik 最新推出了 v2.2 版本，这里将 Traefik 升级到最新版本，简单的介绍了下如何在 Kubernetes 环境下安装 Traefik v2.2</p>
-<h2 id="二-kubernetes-部署-traefik"><a class="markdownIt-Anchor" href="#二-kubernetes-部署-traefik"></a> 二、Kubernetes 部署 Traefik</h2>
-<blockquote>
-<p>注意：这里 Traefik 是部署在 Kube-system Namespace 下，使用kustomize部署。</p>
-</blockquote>
- <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">-rw-r--r--  1 yqwoe  staff   287 11 23 09:54 cluster-role-binding.yaml</span><br><span class="line">-rw-r--r--  1 yqwoe  staff   736 11 23 09:54 cluster-role.yaml</span><br><span class="line">-rw-r--r--  1 yqwoe  staff  2578 11 23 09:54 config.yaml</span><br><span class="line">-rw-r--r--  1 yqwoe  staff  1110 11 23 09:54 daemon-set.yaml</span><br><span class="line">-rw-r--r--  1 yqwoe  staff  2021 11 23 09:54 ingress-route.yml</span><br><span class="line">-rw-r--r--  1 yqwoe  staff   268 11 23 09:54 kustomization.yaml</span><br><span class="line">-rw-r--r--  1 yqwoe  staff    81 11 23 09:54 service-account.yaml</span><br><span class="line">-rw-r--r--  1 yqwoe  staff   220 11 23 09:54 service.yaml</span><br><span class="line">-rw-r--r--  1 yqwoe  staff   257 11 23 09:54 traefik-dashboard-route.yml</span><br></pre></td></tr></table></figure>
-<p><strong>kustomization.yaml</strong></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">kustomize.config.k8s.io/v1beta1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Kustomization</span></span><br><span class="line"></span><br><span class="line"><span class="attr">resources:</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">cluster-role.yaml</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">cluster-role-binding.yaml</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">service-account.yaml</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">config.yaml</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">daemon-set.yaml</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">service.yaml</span></span><br><span class="line"><span class="bullet">-</span> <span class="string">ingress-route.yaml</span></span><br><span class="line"><span class="attr">namespace:</span> <span class="string">kube-system</span></span><br><span class="line"></span><br><span class="line"><span class="attr">commonLabels:</span></span><br><span class="line">  <span class="attr">app:</span> <span class="string">traefik</span></span><br></pre></td></tr></table></figure>
-<h3 id="1-ingress-routeyml"><a class="markdownIt-Anchor" href="#1-ingress-routeyml"></a> 1、ingress-route.yml</h3>
-<p>在 traefik v2.1 版本后，开始使用 CRD（Custom Resource Definition）来完成路由配置等，所以需要提前创建 CRD 资源。</p>
-<p><strong>创建 ingress-route.yml 文件</strong></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">apiextensions.k8s.io/v1beta1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">CustomResourceDefinition</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">ingressroutes.traefik.containo.us</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">group:</span> <span class="string">traefik.containo.us</span></span><br><span class="line">  <span class="attr">version:</span> <span class="string">v1alpha1</span></span><br><span class="line">  <span class="attr">names:</span></span><br><span class="line">    <span class="attr">kind:</span> <span class="string">IngressRoute</span></span><br><span class="line">    <span class="attr">plural:</span> <span class="string">ingressroutes</span></span><br><span class="line">    <span class="attr">singular:</span> <span class="string">ingressroute</span></span><br><span class="line">  <span class="attr">scope:</span> <span class="string">Namespaced</span></span><br><span class="line"></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">apiextensions.k8s.io/v1beta1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">CustomResourceDefinition</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">middlewares.traefik.containo.us</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">group:</span> <span class="string">traefik.containo.us</span></span><br><span class="line">  <span class="attr">version:</span> <span class="string">v1alpha1</span></span><br><span class="line">  <span class="attr">names:</span></span><br><span class="line">    <span class="attr">kind:</span> <span class="string">Middleware</span></span><br><span class="line">    <span class="attr">plural:</span> <span class="string">middlewares</span></span><br><span class="line">    <span class="attr">singular:</span> <span class="string">middleware</span></span><br><span class="line">  <span class="attr">scope:</span> <span class="string">Namespaced</span></span><br><span class="line"></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">apiextensions.k8s.io/v1beta1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">CustomResourceDefinition</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">ingressroutetcps.traefik.containo.us</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">group:</span> <span class="string">traefik.containo.us</span></span><br><span class="line">  <span class="attr">version:</span> <span class="string">v1alpha1</span></span><br><span class="line">  <span class="attr">names:</span></span><br><span class="line">    <span class="attr">kind:</span> <span class="string">IngressRouteTCP</span></span><br><span class="line">    <span class="attr">plural:</span> <span class="string">ingressroutetcps</span></span><br><span class="line">    <span class="attr">singular:</span> <span class="string">ingressroutetcp</span></span><br><span class="line">  <span class="attr">scope:</span> <span class="string">Namespaced</span></span><br><span class="line"></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">apiextensions.k8s.io/v1beta1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">CustomResourceDefinition</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">ingressrouteudps.traefik.containo.us</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">group:</span> <span class="string">traefik.containo.us</span></span><br><span class="line">  <span class="attr">version:</span> <span class="string">v1alpha1</span></span><br><span class="line">  <span class="attr">names:</span></span><br><span class="line">    <span class="attr">kind:</span> <span class="string">IngressRouteUDP</span></span><br><span class="line">    <span class="attr">plural:</span> <span class="string">ingressrouteudps</span></span><br><span class="line">    <span class="attr">singular:</span> <span class="string">ingressrouteudp</span></span><br><span class="line">  <span class="attr">scope:</span> <span class="string">Namespaced</span></span><br><span class="line"></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">apiextensions.k8s.io/v1beta1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">CustomResourceDefinition</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">tlsoptions.traefik.containo.us</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">group:</span> <span class="string">traefik.containo.us</span></span><br><span class="line">  <span class="attr">version:</span> <span class="string">v1alpha1</span></span><br><span class="line">  <span class="attr">names:</span></span><br><span class="line">    <span class="attr">kind:</span> <span class="string">TLSOption</span></span><br><span class="line">    <span class="attr">plural:</span> <span class="string">tlsoptions</span></span><br><span class="line">    <span class="attr">singular:</span> <span class="string">tlsoption</span></span><br><span class="line">  <span class="attr">scope:</span> <span class="string">Namespaced</span></span><br><span class="line"></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">apiextensions.k8s.io/v1beta1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">CustomResourceDefinition</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">tlsstores.traefik.containo.us</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">group:</span> <span class="string">traefik.containo.us</span></span><br><span class="line">  <span class="attr">version:</span> <span class="string">v1alpha1</span></span><br><span class="line">  <span class="attr">names:</span></span><br><span class="line">    <span class="attr">kind:</span> <span class="string">TLSStore</span></span><br><span class="line">    <span class="attr">plural:</span> <span class="string">tlsstores</span></span><br><span class="line">    <span class="attr">singular:</span> <span class="string">tlsstore</span></span><br><span class="line">  <span class="attr">scope:</span> <span class="string">Namespaced</span></span><br><span class="line"></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">apiextensions.k8s.io/v1beta1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">CustomResourceDefinition</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">traefikservices.traefik.containo.us</span></span><br><span class="line"></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">group:</span> <span class="string">traefik.containo.us</span></span><br><span class="line">  <span class="attr">version:</span> <span class="string">v1alpha1</span></span><br><span class="line">  <span class="attr">names:</span></span><br><span class="line">    <span class="attr">kind:</span> <span class="string">TraefikService</span></span><br><span class="line">    <span class="attr">plural:</span> <span class="string">traefikservices</span></span><br><span class="line">    <span class="attr">singular:</span> <span class="string">traefikservice</span></span><br><span class="line">  <span class="attr">scope:</span> <span class="string">Namespaced</span></span><br></pre></td></tr></table></figure>
-<h3 id="2-创建-rbac-权限"><a class="markdownIt-Anchor" href="#2-创建-rbac-权限"></a> 2、创建 RBAC 权限</h3>
-<p>Kubernetes 在 1.6 版本中引入了基于角色的访问控制（RBAC）策略，方便对 Kubernetes 资源和 API 进行细粒度控制。Traefik 需要一定的权限，所以这里提前创建好 Traefik ServiceAccount 并分配一定的权限。</p>
-<p><strong>创建 service-account.yaml 文件</strong></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ServiceAccount</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">traefik-ingress-controller</span></span><br></pre></td></tr></table></figure>
-<p><strong>创建cluster-role.yaml</strong></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">ClusterRole</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">rbac.authorization.k8s.io/v1beta1</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">traefik-ingress-controller</span></span><br><span class="line"><span class="attr">rules:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">apiGroups:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">&quot;&quot;</span></span><br><span class="line">    <span class="attr">resources:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">services</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">endpoints</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">secrets</span></span><br><span class="line">    <span class="attr">verbs:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">get</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">list</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">watch</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">apiGroups:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">extensions</span></span><br><span class="line">    <span class="attr">resources:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ingresses</span></span><br><span class="line">    <span class="attr">verbs:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">get</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">list</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">watch</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">apiGroups:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">extensions</span></span><br><span class="line">    <span class="attr">resources:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ingresses/status</span></span><br><span class="line">    <span class="attr">verbs:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">update</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">apiGroups:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">traefik.containo.us</span></span><br><span class="line">    <span class="attr">resources:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">middlewares</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ingressroutes</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">traefikservices</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ingressroutetcps</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">ingressrouteudps</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">tlsoptions</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">tlsstores</span></span><br><span class="line">    <span class="attr">verbs:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">get</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">list</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">watch</span></span><br></pre></td></tr></table></figure>
-<p><strong>创建cluster-role-binding.yaml</strong></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">ClusterRoleBinding</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">rbac.authorization.k8s.io/v1beta1</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">traefik-ingress-controller</span></span><br><span class="line"><span class="attr">roleRef:</span></span><br><span class="line">  <span class="attr">apiGroup:</span> <span class="string">rbac.authorization.k8s.io</span></span><br><span class="line">  <span class="attr">kind:</span> <span class="string">ClusterRole</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">traefik-ingress-controller</span></span><br><span class="line"><span class="attr">subjects:</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">kind:</span> <span class="string">ServiceAccount</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">traefik-ingress-controller</span></span><br></pre></td></tr></table></figure>
-<h3 id="3-创建-traefik-配置文件"><a class="markdownIt-Anchor" href="#3-创建-traefik-配置文件"></a> 3、创建 Traefik 配置文件</h3>
-<p>由于 Traefik 配置很多，通过 CLI 定义不是很方便，一般时候选择将其配置选项放到配置文件中，然后存入 ConfigMap，将其挂入 traefik 中。</p>
-<p><strong>创建 config.yaml 文件</strong></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">ConfigMap</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">traefik-config</span></span><br><span class="line"><span class="attr">data:</span></span><br><span class="line">  <span class="attr">traefik.yaml:</span> <span class="string">|-</span></span><br><span class="line"><span class="string">    ping: &quot;&quot;                    ## 启用 Ping</span></span><br><span class="line"><span class="string">    serversTransport:</span></span><br><span class="line"><span class="string">      insecureSkipVerify: true  ## Traefik 忽略验证代理服务的 TLS 证书</span></span><br><span class="line"><span class="string">    api:</span></span><br><span class="line"><span class="string">      insecure: true            ## 允许 HTTP 方式访问 API</span></span><br><span class="line"><span class="string">      dashboard: true           ## 启用 Dashboard</span></span><br><span class="line"><span class="string">      debug: false              ## 启用 Debug 调试模式</span></span><br><span class="line"><span class="string">    metrics:</span></span><br><span class="line"><span class="string">      prometheus: &quot;&quot;            ## 配置 Prometheus 监控指标数据，并使用默认配置</span></span><br><span class="line"><span class="string">    entryPoints:</span></span><br><span class="line"><span class="string">      web:</span></span><br><span class="line"><span class="string">        address: &quot;:80&quot;          ## 配置 80 端口，并设置入口名称为 web</span></span><br><span class="line"><span class="string">      websecure:</span></span><br><span class="line"><span class="string">        address: &quot;:443&quot;         ## 配置 443 端口，并设置入口名称为 websecure</span></span><br><span class="line"><span class="string">    providers:</span></span><br><span class="line"><span class="string">      kubernetesCRD: &quot;&quot;         ## 启用 Kubernetes CRD 方式来配置路由规则</span></span><br><span class="line"><span class="string">      kubernetesIngress: &quot;&quot;     ## 启动 Kubernetes Ingress 方式来配置路由规则</span></span><br><span class="line"><span class="string">    log:</span></span><br><span class="line"><span class="string">      filePath: &quot;&quot;              ## 设置调试日志文件存储路径，如果为空则输出到控制台</span></span><br><span class="line"><span class="string">      level: error              ## 设置调试日志级别</span></span><br><span class="line"><span class="string">      format: json              ## 设置调试日志格式</span></span><br><span class="line"><span class="string">    accessLog:</span></span><br><span class="line"><span class="string">      filePath: &quot;&quot;              ## 设置访问日志文件存储路径，如果为空则输出到控制台</span></span><br><span class="line"><span class="string">      format: json              ## 设置访问调试日志格式</span></span><br><span class="line"><span class="string">      bufferingSize: 0          ## 设置访问日志缓存行数</span></span><br><span class="line"><span class="string">      filters:</span></span><br><span class="line"><span class="string">        #statusCodes: [&quot;200&quot;]   ## 设置只保留指定状态码范围内的访问日志</span></span><br><span class="line"><span class="string">        retryAttempts: true     ## 设置代理访问重试失败时，保留访问日志</span></span><br><span class="line"><span class="string">        minDuration: 20         ## 设置保留请求时间超过指定持续时间的访问日志</span></span><br><span class="line"><span class="string">      fields:                   ## 设置访问日志中的字段是否保留（keep 保留、drop 不保留）</span></span><br><span class="line"><span class="string">        defaultMode: keep       ## 设置默认保留访问日志字段</span></span><br><span class="line"><span class="string">        names:                  ## 针对访问日志特别字段特别配置保留模式</span></span><br><span class="line"><span class="string">          ClientUsername: drop</span></span><br><span class="line"><span class="string">        headers:                ## 设置 Header 中字段是否保留</span></span><br><span class="line"><span class="string">          defaultMode: keep     ## 设置默认保留 Header 中字段</span></span><br><span class="line"><span class="string">          names:                ## 针对 Header 中特别字段特别配置保留模式</span></span><br><span class="line"><span class="string">            User-Agent: redact</span></span><br><span class="line"><span class="string">            Authorization: drop</span></span><br><span class="line"><span class="string">            Content-Type: keep</span></span><br><span class="line"><span class="string">    certificatesresolvers:</span></span><br><span class="line"><span class="string">      default:</span></span><br><span class="line"><span class="string">        acme:</span></span><br><span class="line"><span class="string">          tlsChallenge: true</span></span><br><span class="line"><span class="string">          email: &quot;yqwoe@live.cn&quot;</span></span><br><span class="line"><span class="string">          storage: &quot;acme.json&quot;</span></span><br><span class="line"><span class="string">          caserver: &quot;https://acme-v02.api.letsencrypt.org/directory&quot;</span></span><br></pre></td></tr></table></figure>
-<h3 id="4-节点设置-label-标签"><a class="markdownIt-Anchor" href="#4-节点设置-label-标签"></a> 4、节点设置 Label 标签</h3>
-<p>由于是 Kubernetes DeamonSet 这种方式部署 Traefik，所以需要提前给节点设置 Label，这样当程序部署时 Pod 会自动调度到设置 Label 的节点上。</p>
-<p><strong>节点设置 Label 标签</strong></p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>格式：kubectl label nodes [节点名] [key=value]</p>
-</li>
-</ul>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ kubectl label nodes minikube IngressProxy=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
-<p><strong>查看节点是否设置 Label 成功</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ kubectl get nodes --show-labels</span><br><span class="line"></span><br><span class="line">NAME       STATUS   ROLES    AGE   VERSION   LABELS</span><br><span class="line">minikube   Ready    master   3d    v1.19.2   IngressProxy=<span class="literal">true</span>,beta.kubernetes.io/arch=amd64,beta.kubernetes.io/os=linux,kubernetes.io/arch=amd64,kubernetes.io/hostname=minikube,kubernetes.io/os=linux,minikube.k8s.io/commit=b09ee50ec047410326a85435f4d99026f9c4f5c4,minikube.k8s.io/name=minikube,minikube.k8s.io/updated_at=2020_11_10T10_20_51_0700,minikube.k8s.io/version=v1.14.0,node-role.kubernetes.io/master=</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>如果想删除标签，可以使用 <code>kubectl label nodes minikube IngressProxy-</code> 命令</p>
-</blockquote>
-<h3 id="5-kubernetes-部署-traefik"><a class="markdownIt-Anchor" href="#5-kubernetes-部署-traefik"></a> 5、Kubernetes 部署 Traefik</h3>
-<p>DaemonSet 方式部署，便于在多服务器间扩展，用 hostport 方式占用服务器 80、443 端口，方便流量进入。</p>
-<p><strong>创建 traefik 部署文件 daemon-set.yaml</strong></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">DaemonSet</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">traefik</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">serviceAccountName:</span> <span class="string">traefik-ingress-controller</span></span><br><span class="line">      <span class="attr">terminationGracePeriodSeconds:</span> <span class="number">60</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">image:</span> <span class="string">traefik:v2.2</span></span><br><span class="line">        <span class="attr">name:</span> <span class="string">traefik-ingress-lb</span></span><br><span class="line">        <span class="attr">ports:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">web</span></span><br><span class="line">          <span class="attr">containerPort:</span> <span class="number">80</span></span><br><span class="line">          <span class="attr">hostPort:</span> <span class="number">80</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">websecure</span></span><br><span class="line">          <span class="attr">containerPort:</span> <span class="number">443</span></span><br><span class="line">          <span class="attr">hostPort:</span> <span class="number">443</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">admin</span></span><br><span class="line">          <span class="attr">containerPort:</span> <span class="number">8080</span></span><br><span class="line">          <span class="attr">hostPort:</span> <span class="number">8080</span></span><br><span class="line">        <span class="attr">securityContext:</span></span><br><span class="line">          <span class="attr">capabilities:</span></span><br><span class="line">            <span class="attr">drop:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">ALL</span></span><br><span class="line">            <span class="attr">add:</span></span><br><span class="line">            <span class="bullet">-</span> <span class="string">NET_BIND_SERVICE</span></span><br><span class="line">        <span class="attr">args:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="string">--configfile=/config/traefik.yaml</span></span><br><span class="line">        <span class="attr">volumeMounts:</span></span><br><span class="line">          <span class="bullet">-</span> <span class="attr">mountPath:</span> <span class="string">&quot;/config&quot;</span></span><br><span class="line">            <span class="attr">name:</span> <span class="string">&quot;config&quot;</span></span><br><span class="line">      <span class="attr">volumes:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">config</span></span><br><span class="line">          <span class="attr">configMap:</span></span><br><span class="line">            <span class="attr">name:</span> <span class="string">traefik-config</span></span><br><span class="line">      <span class="attr">tolerations:</span>              <span class="comment">## 设置容忍所有污点，防止节点被设置污点</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">operator:</span> <span class="string">&quot;Exists&quot;</span></span><br><span class="line">      <span class="attr">nodeSelector:</span>             <span class="comment">## 设置node筛选器，在特定label的节点上启动</span></span><br><span class="line">        <span class="attr">IngressProxy:</span> <span class="string">&quot;true&quot;</span></span><br></pre></td></tr></table></figure>
-<p><strong>创建Traefik Service service.yaml</strong></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">traefik</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">ports:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">web</span></span><br><span class="line">      <span class="attr">port:</span> <span class="number">80</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">websecure</span></span><br><span class="line">      <span class="attr">port:</span> <span class="number">443</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">admin</span></span><br><span class="line">      <span class="attr">port:</span> <span class="number">8080</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">traefik</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">NodePort</span></span><br></pre></td></tr></table></figure>
-<p>至此，traefik的配置基本完成。</p>
-<p><strong>执行 kustomization.yaml</strong></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">kubectl apply -k . -n kube-system</span><br></pre></td></tr></table></figure>
-<h2 id="三-traefik-路由规则配置"><a class="markdownIt-Anchor" href="#三-traefik-路由规则配置"></a> 三、Traefik 路由规则配置</h2>
-<h3 id="1-配置-http-路由规则-traefik-dashboard-为例"><a class="markdownIt-Anchor" href="#1-配置-http-路由规则-traefik-dashboard-为例"></a> 1、配置 HTTP 路由规则 （Traefik Dashboard 为例）</h3>
-<p>Traefik 应用已经部署完成，但是想让外部访问 Kubernetes 内部服务，还需要配置路由规则，这里开启了 Traefik Dashboard 配置，所以首先配置 Traefik Dashboard 看板的路由规则，使外部能够访问 Traefik Dashboard。</p>
-<p><strong>创建 Traefik Dashboard 路由规则文件 traefik-dashboard-route.yaml</strong></p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">traefik.containo.us/v1alpha1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">IngressRoute</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">traefik-dashboard-route</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">entryPoints:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">web</span></span><br><span class="line">  <span class="attr">routes:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">match:</span> <span class="string">Host(`yqwoe.k8s.com`)</span></span><br><span class="line">      <span class="attr">kind:</span> <span class="string">Rule</span></span><br><span class="line">      <span class="attr">services:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">traefik</span></span><br><span class="line">          <span class="attr">port:</span> <span class="number">8080</span></span><br></pre></td></tr></table></figure>
-<p><strong>创建 Traefik Dashboard 路由规则对象</strong></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">$ kubectl apply -f traefik-dashboard-route.yaml -n kube-system</span><br></pre></td></tr></table></figure>
-<p><strong>接下来配置 Hosts</strong>，客户端想通过域名访问服务，必须要进行 DNS 解析，由于这里没有 DNS 服务器进行域名解析，所以修改 hosts 文件将 Traefik 指定节点的 IP 和自定义 host 绑定。打开电脑的 Hosts 配置文件，往其加入下面配置：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">192.168.10.2  yqwoe.k8s.com</span><br></pre></td></tr></table></figure>
-<p><strong>配置完成后，打开浏览器输入地址：http://<code>yqwoe.k8s.com</code> 打开 Traefik Dashboard。</strong></p>
-]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-      <tags>
-        <tag>k8s</tag>
-        <tag>docker</tag>
-        <tag>容器技术</tag>
-        <tag>traefik2</tag>
       </tags>
   </entry>
   <entry>
@@ -3981,116 +3697,6 @@ section 运维阶段
       </categories>
   </entry>
   <entry>
-    <title>一年要赚多少钱才能支撑一个三口之家？</title>
-    <url>/%E7%94%9F%E6%B4%BB/848869235.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><table>
-<thead>
-<tr>
-<th>预算</th>
-<th>年收入</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>年收入 * 0.1 = 1.5w</td>
-<td>15w</td>
-</tr>
-</tbody>
-</table>
-<span id="more"></span>
-<table>
-<thead>
-<tr>
-<th>风险</th>
-<th>险种</th>
-<th>保额</th>
-<th>期限</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>身故没有收入、养家费用没保障、房贷车贷无力偿还</td>
-<td>寿险</td>
-<td>250w + 50w （300w）</td>
-<td>60岁</td>
-</tr>
-<tr>
-<td>高额医疗费、生病期间没收入、后期康复费用</td>
-<td>重疾</td>
-<td>50 + 30 （80w）</td>
-<td></td>
-</tr>
-<tr>
-<td>医疗费用报销</td>
-<td>百万医疗</td>
-<td>100 + 100 (200w) 一万不计免赔</td>
-<td></td>
-</tr>
-<tr>
-<td>意外伤残 意外身故</td>
-<td>意外险</td>
-<td>100 + 100 (200w)</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>年收入</th>
-<th>类型</th>
-<th>比例</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>15w</td>
-<td>保险</td>
-<td>10%</td>
-</tr>
-<tr>
-<td></td>
-<td>投资</td>
-<td>？</td>
-</tr>
-<tr>
-<td></td>
-<td>子女教育</td>
-<td>？</td>
-</tr>
-<tr>
-<td></td>
-<td>生活支出</td>
-<td>？</td>
-</tr>
-<tr>
-<td></td>
-<td>紧急备用金</td>
-<td>？</td>
-</tr>
-<tr>
-<td></td>
-<td>父母赡养</td>
-<td>?</td>
-</tr>
-<tr>
-<td></td>
-<td>…</td>
-<td>?</td>
-</tr>
-</tbody>
-</table>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>保险</tag>
-        <tag>收入</tag>
-        <tag>支出</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>从 OpenClaw 迁移到 Hermes：我的实战记录</title>
     <url>/%E5%B7%A5%E4%BD%9C/5f9c1a2b.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="为什么要换"><a class="markdownIt-Anchor" href="#为什么要换"></a> 为什么要换</h2>
@@ -4197,64 +3803,6 @@ section 运维阶段
         <tag>OpenClaw</tag>
         <tag>迁移</tag>
         <tag>记忆系统</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一次ios网页样式问题排查心路历程</title>
-    <url>/%E5%B7%A5%E4%BD%9C/149409992.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>我的开发环境：Macos 、iphone,手机端页面使用 vue、scss。本次出现的问题是一个 css 样式在 iphone 手机端无法正常显示。</p>
-<span id="more"></span>
-<p>大概是这样：</p>
-<p><img src="../images/WechatIMG86.jpeg" alt="WechatIMG86"></p>
-<p>选中的区域无法正常显示。</p>
-<h3 id="准备调试环境"><a class="markdownIt-Anchor" href="#准备调试环境"></a> 准备调试环境:</h3>
-<h4 id="1打开-sifari-的开发模式"><a class="markdownIt-Anchor" href="#1打开-sifari-的开发模式"></a> 1.打开 sifari 的开发模式。</h4>
-<p><img src="../images/1527947682461.jpg" alt="1527947682461"></p>
-<h4 id="2手机-sifari-打开调试模式"><a class="markdownIt-Anchor" href="#2手机-sifari-打开调试模式"></a> 2.手机 sifari 打开调试模式</h4>
-<p><img src="../images/WechatIMG87.jpeg" alt="WechatIMG87"></p>
-<h4 id="3手机连接电脑"><a class="markdownIt-Anchor" href="#3手机连接电脑"></a> 3.手机连接电脑</h4>
-<p><img src="../images/1527947709241.jpg" alt="1527947709241"></p>
-<p>勾选上图的 ip 地址自动会弹出开发者窗口。接下来你就可以尽情的撒野了。</p>
-<p>正经话题，我是如何找到问题并解决的。</p>
-<p>调试窗口大概长这样，找到你要排错的 div 选中，然后，一个个勾选右侧样式，看是否存在冲突或失效的样式。</p>
-<p><img src="../images/1527950086573.jpg" alt="1527950086573"></p>
-<h4 id="4最后锁定"><a class="markdownIt-Anchor" href="#4最后锁定"></a> 4.最后锁定</h4>
-<figure class="highlight css"><table><tr><td class="code"><pre><span class="line"><span class="selector-tag">body</span> &#123;</span><br><span class="line">  -webkit-<span class="attribute">overflow</span>-scrolling: touch;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h5 id><a class="markdownIt-Anchor" href="#"></a> </h5>
-<p><strong>-webkit-overflow-scrolling 属性控制元素在移动设备上是否使用滚动回弹效果.</strong></p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>auto: 使用普通滚动, 当手指从触摸屏上移开，滚动会立即停止。</p>
-</li>
-<li class="lvl-2">
-<p>touch: 使用具有回弹效果的滚动, 当手指从触摸屏上移开，内容会继续保持一段时间的滚动效果。继续滚动的速度和持续的时间和滚动手势的强烈程度成正比。同时也会创建一个新的堆栈上下文。</p>
-</li>
-</ul>
-<p><strong>最常见的例子就是，</strong></p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>在 safari 上，使用了-webkit-overflow-scrolling:touch 之后，页面偶尔会卡住不动。</p>
-</li>
-<li class="lvl-2">
-<p>在 safari 上，点击其他区域，再在滚动区域滑动，滚动条无法滚动的 bug。</p>
-</li>
-<li class="lvl-2">
-<p>通过动态添加内容撑开容器，结果根本不能滑动的 bug。</p>
-</li>
-<li class="lvl-2">
-<p>最终无得解决方法是改成 auto，我还没有找到更完美解决的办法。</p>
-</li>
-</ul>
-<p>网上有很多关于 -webkit-overflow-scrolling + ios 的问题，有兴趣的可以研究一下。<s>不过我不建议研究，一研究估计小半年就过去了，也没有答案</s></p>
-]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-      <tags>
-        <tag>mac</tag>
-        <tag>ios</tag>
-        <tag>vue</tag>
-        <tag>mbp</tag>
       </tags>
   </entry>
   <entry>
@@ -4665,42 +4213,6 @@ section 运维阶段
       </tags>
   </entry>
   <entry>
-    <title>给博客增加评论功能</title>
-    <url>/%E5%AD%A6%E4%B9%A0/762727420.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>首先感谢<a href="https://github.com/imsun">@imsun</a>大神的插件<a href="https://imsun.github.io/gitment/">Gitment</a></p>
-<span id="more"></span>
-<p>插件本身默认支持英文，所以我下载了源码进行一部分改造。以下是源码：<a href="yqwoe.space/yqwoe.github.io/static/js/gitment.js">giment.js</a> 、 <a href="yqwoe.space/yqwoe.github.io/static/css/gitment.css">giement.css</a></p>
-<p>下边是操作步骤，不是技术同学先参考一下<a href="https://imsun.github.io/gitment/">Gitment Demo Page</a> 再进行操作。</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><a href="https://www.jekyll.com.cn/docs/home/">Jekyll 教程</a></p>
-</li>
-<li class="lvl-2">
-<p><a href="https://github.com/imsun/gitment">Gitment Readme</a></p>
-</li>
-</ul>
-<h3 id="基本使用"><a class="markdownIt-Anchor" href="#基本使用"></a> 基本使用</h3>
-<h4 id="1-注册-oauth-application"><a class="markdownIt-Anchor" href="#1-注册-oauth-application"></a> 1. 注册 OAuth Application</h4>
-<p><a href="https://github.com/settings/applications/new">New OAuth</a> ，填写内容时候确保 callback URL 与你的博客地址域名一致。</p>
-<h4 id="2引入-js-css-到文章页面"><a class="markdownIt-Anchor" href="#2引入-js-css-到文章页面"></a> 2.引入 js、css 到文章页面</h4>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;container&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://yqwoe.space/yqwoe.github.io/static/css/gitment.css&quot;&gt;</span><br><span class="line">&lt;script src=&quot;https://yqwoe.space/yqwoe.github.io/static/js/gitment.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">/**</span><br><span class="line">*第一个坑，默认id是填入完整的url，而issue的label长度限制为50，所以url必然会超长。</span><br><span class="line">*/</span><br><span class="line">var paths = location.pathname.split(&#x27;/&#x27;)</span><br><span class="line">var id = decodeURI(paths[paths.length - 1 ]))</span><br><span class="line">var gitment = new Gitment(&#123;</span><br><span class="line">  id: id, // 必填，不然评论信息不会加载成功！</span><br><span class="line">  owner: &#x27;你的 GitHub ID&#x27;,</span><br><span class="line">  repo: &#x27;存储评论的 repo&#x27;,</span><br><span class="line">  oauth: &#123;</span><br><span class="line">    client_id: &#x27;你注册 OAuth 的 client ID&#x27;,</span><br><span class="line">    client_secret: &#x27;你注册 OAuth 的 client secret&#x27;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line">gitment.render(&#x27;container&#x27;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="3-初始化评论"><a class="markdownIt-Anchor" href="#3-初始化评论"></a> 3. 初始化评论</h4>
-<p>页面发布后，你需要访问页面并使用你的 GitHub 账号登录（请确保你的账号是第二步所填 repo 的 owner），点击初始化按钮。</p>
-<p><strong>敲黑板，下一篇博客会介绍 《<strong>Jekyll-Admin 插件的使用方法</strong>》和一些填坑技巧。</strong></p>
-<p>我的博客评论功能目前只支持全球最大<s>同性</s>交友网站<a href="github.com/yqwoe">Github</a>的账号，以后会慢慢扩展。<br>
-以上是我的分享，谢谢！！</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>技巧</tag>
-        <tag>gitment</tag>
-        <tag>git</tag>
-        <tag>Jekyll</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>改造 Hermes Agent 记忆系统：基于 MemPalace 的实践</title>
     <url>/%E5%B7%A5%E4%BD%9C/38291047.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="背景hermes-内置记忆有什么问题"><a class="markdownIt-Anchor" href="#背景hermes-内置记忆有什么问题"></a> 背景：Hermes 内置记忆有什么问题</h2>
@@ -4970,260 +4482,6 @@ section 运维阶段
       </tags>
   </entry>
   <entry>
-    <title>第一篇博客</title>
-    <url>/%E7%94%9F%E6%B4%BB/4278564287.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>  <strong>今天是 2018 年 05 月 30 日，2015 年的昨天是我们第一次见面，今天是我们第一次看电影,我们的所有日子都记得，宝宝是 2017 年 12 月 22 日 早上 05:15 分 出生</strong>。</p>
-<p>  一生中有很多重要时刻，而能让你清晰的记得的，只有几个 — <strong>成人礼、成家、生子</strong>。</p>
-<span id="more"></span>
-<p><img src="../images/2I3A3839.JPG" alt="2I3A3839"></p>
-<p>  距离辞职已经一个月了，那是做了很长的时间斗争，在五月的一个早晨做的决定。每天早出晚归，早上孩子没有睡醒我就爬起来上班，晚上孩子睡着了，我才到家。那段时间我只要抱他就会哭，所以就决定在家里多<s>陪陪</s>他们母子俩。</p>
-<p>  作为<strong>新手</strong><s>自由职业者</s>，也有一个月时间了，这段时间我的<strong>作息</strong>及其不<s>规律</s>，很多次夜里 12 点之后睡觉，早上 10 点起床。<strong>不建议自律性比较差的同学从事自由职业。</strong></p>
-<h2 id="这是我的第一篇博客上一次写不记得是什么时候了还没有组织好语言要说些什么下边我就引用一下-bob-dylan-的-犹如滚石像一颗滚石一样顽强的活着吧"><a class="markdownIt-Anchor" href="#这是我的第一篇博客上一次写不记得是什么时候了还没有组织好语言要说些什么下边我就引用一下-bob-dylan-的-犹如滚石像一颗滚石一样顽强的活着吧"></a>   这是我的第一篇博客，上一次写不记得是什么时候了,还没有组织好语言要说些什么，下边我就引用一下 Bob Dylan 的 《<strong>犹如滚石</strong>》，像一颗滚石一样<strong>顽强</strong>的活着吧！！！！</h2>
-<blockquote>
-<h5 id="like-a-rolling-stone"><a class="markdownIt-Anchor" href="#like-a-rolling-stone"></a> 《Like a Rolling Stone》</h5>
-<p>作词 : Dylan</p>
-<p>Once upon a time you dressed so fine</p>
-<p>Threw bums a dime in your prime,</p>
-<p>随手抛给路边潦倒不堪的乞丐几个小钱，</p>
-<p>didn’t you?</p>
-<p>对不？</p>
-<p>People’d call say, Beware doll,</p>
-<p>人们屡屡良言相劝:“成熟点小丫头，你早晚得明白什么叫风水轮流转”</p>
-<p>You thought they were all</p>
-<p>而你只当他们</p>
-<p>kidding you</p>
-<p>存心嘲弄视若不见</p>
-<p>You used to laugh about</p>
-<p>你总是肆意嗤笑着毫不掩饰自己的优越感</p>
-<p>Everybody that was hangin’ out</p>
-<p>那些落魄人儿游荡飘零在外</p>
-<p>Now you don’t talk so loud</p>
-<p>你那些高谈阔论怎么收起来了？</p>
-<p>Now you don’t seem so proud</p>
-<p>你那高贵的头颅怎么低下去了？</p>
-<p>About having to be scrounging your next meal</p>
-<p>只因今天的你已三餐不继，衣食无着，为寻生计迫不得已四处奔波。</p>
-<p>How does it feel, how does it feel?</p>
-<p>这滋味如何？ 这滋味如何？</p>
-<p>To be without a home</p>
-<p>你孑身独行 找不到回家的方向</p>
-<p>Like a complete unknown, like a rolling stone</p>
-<p>完全没有人知道你颠沛流离一如滚石</p>
-<p>You’ve gone to the finest schools,</p>
-<p>你考上了一所名牌校</p>
-<p>but you know you only used to</p>
-<p>可你也清楚</p>
-<p>alright miss lonely</p>
-<p>你除了被榨干的灵魂外</p>
-<p>get juiced in it</p>
-<p>一无所获</p>
-<p>Nobody’s ever taught you</p>
-<p>你从不曾想过</p>
-<p>how to live out on the street</p>
-<p>真实的底层社会该是怎般图景</p>
-<p>And now you’re gonna have to get used to it</p>
-<p>如今你为了讨生活已不得不学着去直面污浊与残缺</p>
-<p>You say you never compromise</p>
-<p>你曾经说，你永不妥协</p>
-<p>With the mystery tramp, but now you realize</p>
-<p>但面对那位神秘的流浪者，现在你已明白</p>
-<p>He’s not selling any alibies</p>
-<p>他可不会跟你卖关子故作姿态</p>
-<p>As you stare into the vacuum of his eyes</p>
-<p>你只得强忍厌恶望向他空洞无物的瞳眸，问道</p>
-<p>And say do you want to make a deal</p>
-<p>用最卑下的口吻问他要不要做笔买卖</p>
-<p>How does it feel, how does it feel</p>
-<p>这滋味如何？这滋味如何？</p>
-<p>To be on your own,With no direction home</p>
-<p>你孑身独行找不到回家的方向</p>
-<p>a complete unknown, like a rolling stone</p>
-<p>完全没有人知道你颠沛流离一如滚石</p>
-<p>Oh, you never turned around to see the frowns</p>
-<p>你从未注意过那些魔术师和小丑们</p>
-<p>On the jumpers and the clowns</p>
-<p>笑容中藏着双眉紧蹙</p>
-<p>when they did their tricks for you</p>
-<p>他们极尽卑下变着花样不过为了取悦于你</p>
-<p>You never understood that it ain’t no good</p>
-<p>你从来不明白那样不对</p>
-<p>You shouldn’t let other people</p>
-<p>你让别人</p>
-<p>get your kicks for you</p>
-<p>替你受苦受难你还颇以为乐</p>
-<p>You used to ride on your chrome horse</p>
-<p>你那位跨着哈雷机车带你兜风的花花公子</p>
-<p>Who carried on his shoulder a siamese cat</p>
-<p>肩头还安伏着一只华贵的暹罗猫</p>
-<p>Ain’t it hard when you discovered that</p>
-<p>而当你一朝醒悟</p>
-<p>He really wasn’t where it’s at</p>
-<p>他并非你心所渴求</p>
-<p>After he took from you</p>
-<p>却发现他已携着</p>
-<p>everything he could steal</p>
-<p>你所有的一切飘然远遁</p>
-<p>How does it feel, how does it feel?</p>
-<p>这滋味如何？这滋味如何？</p>
-<p>To be on your own, With no direction home</p>
-<p>你孑身独行 找不到回家的方向</p>
-<p>Like a complete unknown, like a rolling stone</p>
-<p>完全没有人知道你颠沛流离一如滚石</p>
-<p>Princess on a steeple</p>
-<p>幽居高塔的公主</p>
-<p>and all the pretty people</p>
-<p>和所有那些优雅体面的上层人士</p>
-<p>They’re all drinking,</p>
-<p>整日里狂饮，</p>
-<p>thinking that they’ve got it made</p>
-<p>以为他们已经成功</p>
-<p>Exchanging all precious gifts</p>
-<p>他们交换著各种珍贵的玩意和礼物</p>
-<p>You better take your diamond ring,</p>
-<p>可是你最好脱下那只钻石戒指</p>
-<p>you better pawn it babe</p>
-<p>当掉它吧，宝贝</p>
-<p>You used to be so amused</p>
-<p>你过去不是觉得很有趣吗？</p>
-<p>At Napoleon in rags</p>
-<p>对于那满面风尘</p>
-<p>and the language that he used</p>
-<p>用语鄙俗的流浪汉</p>
-<p>Go to him he calls you, you can’t refuse</p>
-<p>现在，到他那儿去吧。而今召唤声中你向他走去这一切不由你自主</p>
-<p>When you ain’t got nothing,</p>
-<p>当你一无所有，</p>
-<p>you got nothing to loose</p>
-<p>你也就再没什么可失去</p>
-<p>You’re invisible now,</p>
-<p>现在你周身透明</p>
-<p>you’ve got not secret to conceal</p>
-<p>再藏不住一丝秘密。</p>
-<p>How does it feel, how does it feel?</p>
-<p>这滋味如何？这滋味如何？</p>
-<p>To be on your own, With no direction home</p>
-<p>你孑身独行 找不到回家的方向</p>
-<p>Like a complete unknown, like a rolling stone</p>
-<p>完全没有人知道你颠沛流离一如滚石</p>
-</blockquote>
-<embed src="http://dl.stream.qqmusic.qq.com/C400003dcpAx3m6OM1.m4a?vkey=D142AEB05AAA6506B86F32ABAFCDCC88DFE1E924CA52C3E5098E9C989B3056240302A2B466C7A1A9ADEEF1A234834ADB0E43660F7E22B22E&guid=6280129848&uin=470510471&fromtag=66" height="0" width="0" loop="true" autostart="true">
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>生活</tag>
-        <tag>重要时刻</tag>
-        <tag>心情</tag>
-        <tag>Like a Rolling Stone</tag>
-        <tag>Bob Dylan</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>生活计划</title>
-    <url>/%E7%94%9F%E6%B4%BB/2784064196.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>有段没有更新博客了，最近身体状态堪忧，加上忙碌，孩子生病，我也支气管炎，怎么吃药都不见好。<br>
-所以，我深刻的意识到有一个健康的身体太重要了。</p>
-<span id="more"></span>
-<p>以下是我近期的生活计划</p>
-<table>
-<thead>
-<tr>
-<th>时间</th>
-<th>项目</th>
-<th>时长</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>06:00</td>
-<td>山地车</td>
-<td>2h</td>
-</tr>
-<tr>
-<td>08:00</td>
-<td>早饭 、洗漱</td>
-<td>1h</td>
-</tr>
-<tr>
-<td>09:00</td>
-<td>工作时间</td>
-<td>3h</td>
-</tr>
-<tr>
-<td>12:00</td>
-<td>午饭、午休</td>
-<td>2h</td>
-</tr>
-<tr>
-<td>14:00</td>
-<td>工作时间</td>
-<td>4h</td>
-</tr>
-<tr>
-<td>18:00</td>
-<td>遛娃、买菜、做饭</td>
-<td>2h</td>
-</tr>
-<tr>
-<td>20:00</td>
-<td>孩子洗澡</td>
-<td>1h</td>
-</tr>
-<tr>
-<td>21:00</td>
-<td>二人世界</td>
-<td>2h</td>
-</tr>
-<tr>
-<td>–</td>
-<td>结束</td>
-<td>14h</td>
-</tr>
-</tbody>
-</table>
-<p>饮食（待补充…）</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>山地车</tag>
-        <tag>篮球</tag>
-        <tag>羽毛球</tag>
-        <tag>带孩子</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>过六一的&quot;儿童&quot;们</title>
-    <url>/%E7%94%9F%E6%B4%BB/465957431.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>  <strong>今天是六一儿童节，早早的起床给儿子去打疫苗，这对于小家伙来说应该是无比痛苦的吧。不过，比起热更痛苦的应该是挨上一针，和看着小家伙挨针的心情！！！_</strong></p>
-<span id="more"></span>
-<p>  刚才我俩因为给孩子换尿不湿又拌了一次嘴，我想这大概和天气有关系，也和这个日子不太贴合，黄历上说：今天忌老成，得耍点小脾气。</p>
-<p><img src="../images/WechatIMG80.jpeg" alt="WechatIMG80"></p>
-<p>  我们时常会羡慕别人，为什么自己不是幸运的大多数，偏偏自己就是最不幸的。可是往往我们忽略了，如果幸运降临的时候，你真的能接住吗？<br>
-  每次当我有&quot;我不是幸运的大多数&quot;这种想法的时候，我就会怀疑一切。我大概活成了插图一样的命运。</p>
-<p><img src="../images/WechatIMG81.jpeg" alt="WechatIMG81"></p>
-<p>  我的儿子叫冬冬，今天是五个月十天了。不瞒你们说，我和老婆都有过&quot;<s>是冬冬毁掉了我的生活</s>&quot;这样的想法。很长一段时间夜里没有好好睡过觉，做梦都是围绕着冬冬的情节，电影、美食、逛街…就是看个电视都是奢侈的。<br>
-每天要看着他拉的屎下饭，颜色不正会直接导致你吃不下饭，如果是拉稀你就别想着吃饭了。<br>
-说话要小声，走路要小声，就连呼吸都要思考着呼吸，“这样呼吸对吗？我是不是不该这样呼吸？”</p>
-<p>  ~~_“W T F !!!”</p>
-<p>  <s><em>“完了完了完了！！！”</em></s></p>
-<p>  <s><em>“我的生活是不是就这样了？”</em></s></p>
-<p>  不是的，其实也有快乐的部分，每天早晨冬冬会冲着我们笑，看到漂亮的小妹妹小姐姐会笑，像天使一样，给了我们生活下去的勇气,</p>
-<p>  如果因此你更加坚定做一个丁克。如果因此你害怕要孩子，那我只能祝福你们，<s>你们是对的！！！！</s> 你们还只是孩子。</p>
-<p>  写完我也准备开始一天的<em>工作</em> 了，六一节快乐！</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>六一</tag>
-        <tag>巨婴</tag>
-        <tag>孩子</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>研发年终总结</title>
     <url>/%E5%B7%A5%E4%BD%9C/72bee84d.html</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
@@ -5350,23 +4608,6 @@ section 运维阶段
       </tags>
   </entry>
   <entry>
-    <title>英语学习</title>
-    <url>/%E5%AD%A6%E4%B9%A0/1061411954.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>App: <code>duolinguo(多邻国)</code></p>
-<span id="more"></span>
-<p>你使用 Duolingo 的时候你不单单是在学外语，你还是个译者。Duolingo 里面还有一个 Strength（力量）的概念，所有学过的内容在一开始是满血状态的，但是随着时间流逝和你在其它相关练习犯错误，你的 strength 就会不断降低，这时候你就需要通过复习来保持满血状态，这就是我上面提到的，通过一个复习系统将学到的知识从短期记忆放到长期记忆里面，Duolingo 提供了一个非常科学有效的复习管理系统。</p>
-<p>语法手册《无敌英语语法终身学习版(最新修订)》</p>
-<p>待补充…</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>英语单词</tag>
-        <tag>入门</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>表单中心功能清单</title>
     <url>/%E5%B7%A5%E4%BD%9C/74a10861.html</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.">
@@ -5397,12 +4638,12 @@ section 运维阶段
     <title>路</title>
     <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-        <div id="aplayer-nAxMPJIh" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-KGnmSmmV" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-nAxMPJIh"),
+            element: document.getElementById("aplayer-KGnmSmmV"),
             narrow: false,
             autoplay: true,
             showlrc: false,
@@ -5563,47 +4804,6 @@ ExcelUtil --> RecordHandler</pre>
         <tag>replace</tag>
         <tag>ignore</tag>
         <tag>insert</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>集群、负载均衡、分布式</title>
-    <url>/%E5%B7%A5%E4%BD%9C/4074971168.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>下面就我的理解简单通俗的介绍下三者的区别：</p>
-<span id="more"></span>
-<h2 id="1集群"><a class="markdownIt-Anchor" href="#1集群"></a> 1.集群</h2>
-<p>集群是个物理概念，是指同一个系统，部署在多台服务器上，将很多服务器集中起来一起进行同一种服务，在客户端看来就像是只有一个服务器。集群可以利用多个计算机进行并行计算从而获得很高的计算速度，也可以用多个计算机做备份，从而使得任何一个机器坏了整个系统还是能正常运行。</p>
-<p>就比如新浪网，访问的人多了，他可以做一个集群，前面放一个响应服务器，后面几台服务器完成同一种业务。如果有业务访问的时候，响应服务器看哪台服务器的负载不是很重，就将给哪一台去完成。 一台服务器垮了，其它的服务器可以顶上来。</p>
-<h2 id="2负载均衡"><a class="markdownIt-Anchor" href="#2负载均衡"></a> 2.负载均衡</h2>
-<p>至于集群服务器之间如何分工，需要引入负载均衡的概念了，负载均衡是指将请求分摊到多个操作单元也就是分开部署的服务器上，nginx 是常用的反向代理服务器，可以用来做负载均衡。集群与负载均衡之间有紧密联系，可以结合理解。</p>
-<h2 id="3分布式"><a class="markdownIt-Anchor" href="#3分布式"></a> 3.分布式</h2>
-<p>分布式侧重将一个系统拆分成多个业务单元，例如一个门户网站里面可能有登录、视频、图片等，每一个都可以拆分出来独立部署，而且每一个都可以弄成集群，视频服务集群，图片服务集群，主系统可以对这些子系统进行调用，子系统之间可以有调用关系也可以没有，看实际业务情况。</p>
-<p><strong>今天看到个通俗的例子，大家可以借鉴下：</strong></p>
-<p>小饭店原来只有一个厨师，切菜洗菜备料炒菜全干。后来客人多了，厨房一个厨师忙不过来，又请了个厨师，两个厨师都能炒一样的菜，这两个厨师的关系是集群。为了让厨师专心炒菜，把菜做到极致，又请了个配菜师负责切菜，备菜，备料，厨师和配菜师的关系是分布式，一个配菜师也忙不过来了，又请了个配菜师，两个配菜师关系是集群。</p>
-<blockquote>
-<p>补充：最常见的三种集群类型：负载均衡集群、高可用性集群、高性能也就科学集群。</p>
-</blockquote>
-<h3 id="1负载均衡集群lbload-balancing"><a class="markdownIt-Anchor" href="#1负载均衡集群lbload-balancing"></a> 1）负载均衡集群（LB:load balancing）</h3>
-<p>负载均衡集群为企业需求提供了更实用的系统。如名称所暗示的，该系统使负载可以在计算机集群中尽可能平均地分摊处理。该负载可能是需要均衡的应用程序处理负载或网络流量负载。这样的系统非常适合于运行同一组应用程序的大量用户。每个节点都可以处理一部分负载，并且可以在节点之间动态分配负载，以实现平衡。对于网络流量也是如此。通常，网络服务器应用程序接受了太多入网流量，以致无法迅速处理，这就需要将流量发送给在其它节点上运行的网络服务器应用。还可以根据每个节点上不同的可用资源或网络的特殊环境来进行优化</p>
-<h3 id="2高可用性集群hahigh-availability"><a class="markdownIt-Anchor" href="#2高可用性集群hahigh-availability"></a> 2）高可用性集群（HA:High Availability）</h3>
-<p>高可用性集群的出现是为了使集群的整体服务尽可能可用，以便考虑计算硬件和软件的易错性。如果高可用性集群中的主节点发生了故障，那么这段时间内将由次节点代替它。次节点通常是主节点的镜像，所以当它代替主节点时，它可以完全接管其身份，并且因此使系统环境对于用户是一致的。</p>
-<p>在集群的这三种基本类型之间，经常会发生混合与交杂。于是，可以发现高可用性集群也可以在其节点之间均衡用户负载，同时仍试图维持高可用性程度。同样，可以从要编入应用程序的集群中找到一个并行集群，它可以在节点之间执行负载均衡。尽管集群系统本身独立于它在使用的软件或硬件，但要有效运行系统时，硬件连接将起关键作用。</p>
-<h3 id="3高性能集群hphigh-performance"><a class="markdownIt-Anchor" href="#3高性能集群hphigh-performance"></a> 3）高性能集群（HP:High Performance）</h3>
-<p>通常，第一种涉及为集群开发并行编程应用程序，以解决复杂的科学问题。这是并行计算的基础，尽管它不使用专门的并行超级计算机，这种超级计算机内部由十至上万个独立处理器组成。但它却使用商业系统，如通过高速连接来链接的一组单处理器或双处理器 PC，并且在公共消息传递层上进行通信以运行并行应用程序。因此，您会常常听说又有一种便宜的 Linux 超级计算机问世了。但它实际是一个计算机集群，其处理能力与真的超级计算机相等，通常一套象样的集群配置开销要超过 $100,000。这对一般人来说似乎是太贵了，但与价值上百万美元的专用超级计算机相比还算是便宜的。</p>
-<p>作者：普 if 加的帕<br>
-来源：CSDN<br>
-原文：<a href="https://blog.csdn.net/qq_34896887/article/details/78616209">https://blog.csdn.net/qq_34896887/article/details/78616209</a><br>
-版权声明：本文为博主原创文章，转载请附上博文链接！</p>
-<p><a href="http://server.51cto.com/News-557053.htm">http://server.51cto.com/News-557053.htm</a></p>
-<p><a href="https://www.cnblogs.com/xzwblog/p/7255364.html">https://www.cnblogs.com/xzwblog/p/7255364.html</a></p>
-]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-      <tags>
-        <tag>nginx</tag>
-        <tag>集群</tag>
-        <tag>负载均衡</tag>
-        <tag>分布式</tag>
       </tags>
   </entry>
   <entry>
