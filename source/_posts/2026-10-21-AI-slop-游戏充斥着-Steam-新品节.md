@@ -1,12 +1,13 @@
 ---
 title: AI slop 游戏充斥着 Steam 新品节
-date: 2026-10-21 09:00:00
 categories:
   - AI
 tags:
   - AI
 toc: true
 comments: true
+abbrlink: 92f7e4de
+date: 2026-10-21 09:00:00
 ---
 
 ## AI 游戏的泛滥是否意味着技术门槛降低？
