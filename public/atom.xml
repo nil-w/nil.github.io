@@ -6,7 +6,7 @@
   <link href="https://sudo.rm-rf.ink/atom.xml" rel="self"/>
   
   <link href="https://sudo.rm-rf.ink/"/>
-  <updated>2026-10-19T02:16:41.463Z</updated>
+  <updated>2026-10-20T01:13:29.629Z</updated>
   <id>https://sudo.rm-rf.ink/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Notion、Obsidian、飞书——我用下来的真实对比</title>
+    <link href="https://sudo.rm-rf.ink/%E6%95%88%E7%8E%87%E6%8F%90%E5%8D%87/a879cb62.html"/>
+    <id>https://sudo.rm-rf.ink/%E6%95%88%E7%8E%87%E6%8F%90%E5%8D%87/a879cb62.html</id>
+    <published>2026-10-20T01:00:00.000Z</published>
+    <updated>2026-10-20T01:13:29.629Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="notion简洁而不失功能"><a class="markdownIt-Anchor" href="#notion简洁而不失功能"></a> Notion：简洁而不失功能</h3><p>Notion是我使用后最直观的工具，简洁的设计和强大的功能组合在一起，形成了独特的体验。在Notion中创建一个待办事项列表，只需点击几下就能完成，这比使用Excel表格方便多了。<span class="hl">比如，新建一个待办事项时，Notion就自动提示你下一步该做什么。</span> <span class="hl">通过Notion，我创建了一个包含500个待办事项的清单，而使用Excel需要10分钟才能完成。</span></p><h3 id="obsidian深入挖掘自由度高"><a class="markdownIt-Anchor" href="#obsidian深入挖掘自由度高"></a> Obsidian：深入挖掘，自由度高</h3><p>Obsidian提供了一个极富创意的平台，用户可以根据自己的需求进行深度定制，这种自由度对于那些希望在信息管理上更为个性化的人来说非常棒。虽然我需要花一些时间去学习如何使用它的插件系统，但这种灵活性让我能够在Obsidian中实现许多想法，比如创建一个包含5000条笔记的日记，完全不需要担心存储问题。</p><h3 id="飞书高效协作必备"><a class="markdownIt-Anchor" href="#飞书高效协作必备"></a> 飞书：高效协作必备</h3><p>飞书是企业内部信息同步的高效工具。我所在的一个项目组通过飞书实现了信息的快速共享和同步，极大地提高了团队协作的效率。例如，在一个包含100名成员的项目组中，每周召开的会议时间从4小时减少到了1小时，效率提升显著。这样的工具无疑有助于提升团队的生产力。</p><h3 id="开放性思考"><a class="markdownIt-Anchor" href="#开放性思考"></a> 开放性思考</h3><p>在尝试了这三种工具后，我开始思考，哪种工具最适合自己的工作方式，哪种工具的用户界面与我的思维方式最为契合。未来，我可能会尝试整合这三种工具，以满足不同场景下的需求。在信息管理、团队协作和个人项目管理之间找到平衡点，这正是效率提升的关键所在。 在Notion、Obsidian和飞书之间，它们各有所长，如何选择取决于你的个人需求和工作方式。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    <category term="效率提升" scheme="https://sudo.rm-rf.ink/categories/%E6%95%88%E7%8E%87%E6%8F%90%E5%8D%87/"/>
+    
+    
+    <category term="效率提升" scheme="https://sudo.rm-rf.ink/tags/%E6%95%88%E7%8E%87%E6%8F%90%E5%8D%87/"/>
+    
+  </entry>
   
   <entry>
     <title>什么时候该写测试，什么时候不该</title>
@@ -136,9 +160,9 @@
     
     <category term="ai" scheme="https://sudo.rm-rf.ink/tags/ai/"/>
     
-    <category term="architecture" scheme="https://sudo.rm-rf.ink/tags/architecture/"/>
-    
     <category term="opensource" scheme="https://sudo.rm-rf.ink/tags/opensource/"/>
+    
+    <category term="architecture" scheme="https://sudo.rm-rf.ink/tags/architecture/"/>
     
   </entry>
   
@@ -354,11 +378,11 @@
     <category term="学习" scheme="https://sudo.rm-rf.ink/categories/%E5%AD%A6%E4%B9%A0/"/>
     
     
+    <category term="rust" scheme="https://sudo.rm-rf.ink/tags/rust/"/>
+    
     <category term="if" scheme="https://sudo.rm-rf.ink/tags/if/"/>
     
     <category term="let" scheme="https://sudo.rm-rf.ink/tags/let/"/>
-    
-    <category term="rust" scheme="https://sudo.rm-rf.ink/tags/rust/"/>
     
   </entry>
   
@@ -495,28 +519,6 @@
     <category term="text2sql" scheme="https://sudo.rm-rf.ink/tags/text2sql/"/>
     
     <category term="机器学习" scheme="https://sudo.rm-rf.ink/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>笔记4-《程序员数学-1》</title>
-    <link href="https://sudo.rm-rf.ink/%E5%AD%A6%E4%B9%A0/c88b93d0.html"/>
-    <id>https://sudo.rm-rf.ink/%E5%AD%A6%E4%B9%A0/c88b93d0.html</id>
-    <published>2024-02-19T01:07:47.000Z</published>
-    <updated>2026-10-17T14:19:03.720Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot; cla</summary>
-      
-    
-    
-    
-    <category term="学习" scheme="https://sudo.rm-rf.ink/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
     
   </entry>
   
