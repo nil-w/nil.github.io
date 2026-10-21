@@ -6,7 +6,7 @@
   <link href="https://sudo.rm-rf.ink/atom.xml" rel="self"/>
   
   <link href="https://sudo.rm-rf.ink/"/>
-  <updated>2026-10-20T01:13:29.629Z</updated>
+  <updated>2026-10-21T01:13:47.758Z</updated>
   <id>https://sudo.rm-rf.ink/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>知识付费七年，我踩过的那些坑</title>
+    <link href="https://sudo.rm-rf.ink/%E6%9D%82%E6%80%9D/3da2209e.html"/>
+    <id>https://sudo.rm-rf.ink/%E6%9D%82%E6%80%9D/3da2209e.html</id>
+    <published>2026-10-21T01:00:00.000Z</published>
+    <updated>2026-10-21T01:13:47.758Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>我做知识付费产品七年了，最大的感受是：踩坑无处不在。在这一路上，我经历了不少波折，也从中学到了不少经验。下面我将分享几个我在做知识付费产品时踩过的坑。</p><h2 id="没有真实需求调研就按个人喜好做内容"><a class="markdownIt-Anchor" href="#没有真实需求调研就按个人喜好做内容"></a> 没有真实需求调研就按个人喜好做内容</h2><p>一开始，我觉得自己是这个领域里的专家，于是按照自己的兴趣爱好来制作内容，结果发现效果并不好。我花了大量时间写了一些关于编程的教程，但后来发现这些内容并没有满足用户的真实需求。有一次，我接到了一个用户的投诉，说我的教程里没有涉及到前端开发的技术。这个反馈让我意识到，光靠个人喜好是不够的，必须有市场调研。</p><blockquote><p>有一次，我投入了 <span class="hl">80%的时间</span> 制作了一套关于Python的教程，结果发现用户更需要的是React框架的教程。</p></blockquote><h2 id="内容形式单一"><a class="markdownIt-Anchor" href="#内容形式单一"></a> 内容形式单一</h2><p>后来，我开始意识到内容形式单一是一个大问题。刚开始时，我只专注于文本内容，但后来发现，视频和直播等形式更能吸引用户的注意力。我曾经做了一次直播，分享了一个半小时的技术观点，结果用户反馈说他们更希望看到更多的互动环节，而不是单纯的讲授。这让我意识到，多样化的内容形式能提高用户参与度。</p><blockquote><p>我曾经做了一个关于React的直播课程，结果观看人数只有 <span class="hl">20人</span>，而我投入了 <span class="hl">15小时</span> 的时间。</p></blockquote><h2 id="忽视内容更新迭代导致生命周期短"><a class="markdownIt-Anchor" href="#忽视内容更新迭代导致生命周期短"></a> 忽视内容更新迭代导致生命周期短</h2><p>最致命的一个坑就是忽视了内容的更新和迭代。我认为内容发布出去后就万事大吉了，但其实内容需要不断更新以保持其相关性和吸引力。有一次，我发布了一套关于Node.js的教程，但发布后就没有再更新过。结果，当我发现市场上已经出现了很多新的框架和技术时，这套教程已经失去了竞争力。这让我深刻意识到，内容的生命周期是有限的，需要定期更新以适应市场变化。</p><blockquote><p>有一次，我发布了一套关于Node.js的教程，但之后就没有再更新过。结果我发现市场上出现了很多新的框架和技术，这套教程很快就失去了 <span class="hl">80%</span> 的价值。</p></blockquote><h2 id="总结与思考"><a class="markdownIt-Anchor" href="#总结与思考"></a> 总结与思考</h2><p>回顾这七年，我意识到知识付费产品的成功并不是一蹴而就的，而是一个需要不断学习、适应和改进的过程。每次踩坑后，我都学到了很多。现在，我更加注重用户需求调研，内容形式的多样性，以及内容的持续更新。但我相信，未来还会遇到新的挑战，而这正是成长的过程。对于那些想要踏入知识付费领域的开发者来说，保持开放的心态和持续学习的态度至关重要。</p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot; cla</summary>
+      
+    
+    
+    
+    <category term="杂思" scheme="https://sudo.rm-rf.ink/categories/%E6%9D%82%E6%80%9D/"/>
+    
+    
+    <category term="杂思" scheme="https://sudo.rm-rf.ink/tags/%E6%9D%82%E6%80%9D/"/>
+    
+  </entry>
   
   <entry>
     <title>Notion、Obsidian、飞书——我用下来的真实对比</title>
@@ -160,9 +184,9 @@
     
     <category term="ai" scheme="https://sudo.rm-rf.ink/tags/ai/"/>
     
-    <category term="opensource" scheme="https://sudo.rm-rf.ink/tags/opensource/"/>
-    
     <category term="architecture" scheme="https://sudo.rm-rf.ink/tags/architecture/"/>
+    
+    <category term="opensource" scheme="https://sudo.rm-rf.ink/tags/opensource/"/>
     
   </entry>
   
@@ -378,11 +402,11 @@
     <category term="学习" scheme="https://sudo.rm-rf.ink/categories/%E5%AD%A6%E4%B9%A0/"/>
     
     
-    <category term="rust" scheme="https://sudo.rm-rf.ink/tags/rust/"/>
-    
     <category term="if" scheme="https://sudo.rm-rf.ink/tags/if/"/>
     
     <category term="let" scheme="https://sudo.rm-rf.ink/tags/let/"/>
+    
+    <category term="rust" scheme="https://sudo.rm-rf.ink/tags/rust/"/>
     
   </entry>
   
@@ -491,34 +515,6 @@
     <category term="rustc" scheme="https://sudo.rm-rf.ink/tags/rustc/"/>
     
     <category term="rustup" scheme="https://sudo.rm-rf.ink/tags/rustup/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>Transformer模型</title>
-    <link href="https://sudo.rm-rf.ink/%E5%AD%A6%E4%B9%A0/e4b8a22b.html"/>
-    <id>https://sudo.rm-rf.ink/%E5%AD%A6%E4%B9%A0/e4b8a22b.html</id>
-    <published>2024-02-22T03:01:14.000Z</published>
-    <updated>2026-10-17T14:19:03.719Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>  Transformer模型最早是由Google的研究团队在2017年提出的，并在论文《Attention is All You Need》<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> 中进行了详细的介绍。这个模型是为了解决自然语言处理（NLP）任务中的一些问题而设计的，特别是为了克服传统循环神经网络（RNN）和长短期记忆网络（LSTM）在处理长序列时的局限性，如梯度消失或梯度爆炸问题。</p><p>  Transformer模型的核心思想是使用自注意力机制（Self-Attention Mechanism）来捕捉输入序列中的依赖关系。这种机制允许模型在处理每个输入元素时，都能够关注到输入序列中的所有其他元素，从而能够捕捉到更长的依赖关系。此外，Transformer模型还采用了位置编码（Positional Encoding）来弥补模型本身不具备处理序列顺序的能力。</p><p>  Transformer模型由两部分组成：编码器（Encoder）和解码器（Decoder）。编码器负责将输入序列转换为一系列向量表示，而解码器则负责根据这些向量表示生成输出序列。这两部分都由多个相同的层堆叠而成，每一层都包含一个多头自注意力子层和一个简单的全连接前馈神经网络。</p><p>  由于Transformer模型不依赖RNN的顺序结构，因此它可以实现高效的并行化训练，这使得它在处理大规模数据集时具有显著的优势。此外，Transformer模型的强大表示能力和灵活性使得它在多个NLP任务上都取得了显著的效果，成为了自然语言处理领域的一种主流模型。</p><p>  总的来说，Transformer模型是Google研究团队在2017年提出的一种基于自注意力机制的深度学习模型，它的出现为自然语言处理领域的发展带来了革命性的突破。</p><p>引用:</p><ul class="lvl-0"><li class="lvl-2"><p><a href="https://zhuanlan.zhihu.com/p/647249972">Text-to-SQL小白入门（一）</a></p></li><li class="lvl-2"><p><a href="https://zhuanlan.zhihu.com/p/650407036">Text-to-SQL小白入门（二）</a></p></li></ul><p>原论文:</p><div class="row">    <embed src="/images/1706.03762.pdf" width="100%" height="550" type="application/pdf"></div><hr class="footnotes-sep"><section class="footnotes"><ol class="footnotes-list"><li id="fn1" class="footnote-item"><p>《Attention is All You Need》 <a href="#fnref1" class="footnote-backref">↩︎</a></p></li></ol></section>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;link rel=&quot;stylesheet&quot; class=&quot;aplayer-secondary-style-marker&quot; href=&quot;/assets/css/APlayer.min.css&quot;&gt;&lt;script src=&quot;/assets/js/APlayer.min.js&quot; cla</summary>
-      
-    
-    
-    
-    <category term="学习" scheme="https://sudo.rm-rf.ink/categories/%E5%AD%A6%E4%B9%A0/"/>
-    
-    
-    <category term="NLP" scheme="https://sudo.rm-rf.ink/tags/NLP/"/>
-    
-    <category term="text2sql" scheme="https://sudo.rm-rf.ink/tags/text2sql/"/>
-    
-    <category term="机器学习" scheme="https://sudo.rm-rf.ink/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
     
   </entry>
   
