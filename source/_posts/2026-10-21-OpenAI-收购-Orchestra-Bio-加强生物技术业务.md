@@ -1,12 +1,13 @@
 ---
 title: OpenAI 收购 Orchestra Bio 加强生物技术业务
-date: 2026-10-21 09:00:00
 categories:
   - AI
 tags:
   - AI
 toc: true
 comments: true
+abbrlink: 6dff07e5
+date: 2026-10-21 09:00:00
 ---
 
 ## OpenAI 收购 Orchestra Bio 加强生物技术业务
