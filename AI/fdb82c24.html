@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="https://github.com" />
+  <link rel="dns-prefetch" href="https://unpkg.com" />
+  
+  <title>四分之一PR是AI垃圾，独立开发者正在替AI买单 | sudo rm -rf /*</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+  
+
+  
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+    
+
+  
+    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+    
+
+  
+    <link rel="mask-icon" href="{{ url_for(theme.favicon.safari_pinned_tab) }}" color="{{ theme.android_chrome_color }}">
+    
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+<link rel="stylesheet" href="/css/search.css">
+
+  
+<link rel="stylesheet" href="/css/katex.min.css">
+
+  
+<link rel="stylesheet" href="/css/googleapis.css">
+
+  
+    
+<link rel="stylesheet" href="/css/highlight.css">
+
+  
+  <meta name="description" content="四分之一PR不是产能问题，而是成本搬家 四分之一PR带来的核心变化，不是代码产量，而是维护者承担的证伪成本。 把这个比例摊开：每100份PR里有25份由AI生成，增加的不是可交付价值，而是25次额外判断。我起初把“AI垃圾”当成质量标签，后来更在意它制造的负担：代码即使能编译、测试能过，只要作者没说清问题、理由和边界，维护者仍要重建上下文。 AI标签本身不该成为判决。人类也会制造垃圾，AI也能写">
+<meta property="og:type" content="article">
+<meta property="og:title" content="四分之一PR是AI垃圾，独立开发者正在替AI买单">
+<meta property="og:url" content="https://sudo.rm-rf.ink/AI/fdb82c24.html">
+<meta property="og:site_name" content="sudo rm -rf &#x2F;*">
+<meta property="og:description" content="四分之一PR不是产能问题，而是成本搬家 四分之一PR带来的核心变化，不是代码产量，而是维护者承担的证伪成本。 把这个比例摊开：每100份PR里有25份由AI生成，增加的不是可交付价值，而是25次额外判断。我起初把“AI垃圾”当成质量标签，后来更在意它制造的负担：代码即使能编译、测试能过，只要作者没说清问题、理由和边界，维护者仍要重建上下文。 AI标签本身不该成为判决。人类也会制造垃圾，AI也能写">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2026-10-26T01:00:00.000Z">
+<meta property="article:modified_time" content="2026-10-26T07:17:51.978Z">
+<meta property="article:author" content="Yq Woe">
+<meta property="article:tag" content="AI">
+<meta name="twitter:card" content="summary">  
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@yqwoe" />
+  <meta name="twitter:creator" content="@yqwoe" />
+  
+  <link rel="canonical" href="https://sudo.rm-rf.inkAI/fdb82c24.html" />
+  
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": "四分之一PR是AI垃圾，独立开发者正在替AI买单",
+    "datePublished": "2026-10-26T01:00:00.000Z",
+    "dateModified": "2026-10-26T07:17:51.978Z",
+    "author": {
+      "@type": "Person",
+      "name": "Yq Woe",
+      "url": "https://sudo.rm-rf.ink"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "sudo rm -rf /*",
+      "url": "https://sudo.rm-rf.ink"
+    },
+    "description": "技术｜思考｜生活。一个独立开发者的持续输出频道。",
+    "url": "https://sudo.rm-rf.inkAI/fdb82c24.html"
+  }
+  </script>
+  
+  
+<link rel="stylesheet" href="/css/reveal.css">
+
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="sudo rm -rf /*" type="application/atom+xml">
+</head>
+
+
+  <body>
+    <div id="wrapper">
+        <div id="content">
+          <article id="post-2026-10-26-2-四分之一PR是AI垃圾-独立开发者正在替AI买单" class="article article-type-post" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h3 class="article-title" itemprop="headline name">
+      四分之一PR是AI垃圾，独立开发者正在替AI买单&nbsp;&nbsp;
+    </h3>
+  
+
+
+        <div class="article-meta">
+          <time class="article-date" datetime="2026-10-26T01:00:00.000Z" itemprop="datePublished">2026.10.26 09:00 上午</time>
+
+          
+        </div>
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+      
+          <div id="toc" class="toc-article">
+    <div class="toc-title">目录</div>
+    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E5%88%86%E4%B9%8B%E4%B8%80pr%E4%B8%8D%E6%98%AF%E4%BA%A7%E8%83%BD%E9%97%AE%E9%A2%98%E8%80%8C%E6%98%AF%E6%88%90%E6%9C%AC%E6%90%AC%E5%AE%B6"><span class="toc-text"> 四分之一PR不是产能问题，而是成本搬家</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9C%9F%E6%AD%A3%E6%98%82%E8%B4%B5%E7%9A%84%E6%98%AF%E5%AE%A1%E6%9F%A5%E4%B8%8D%E6%98%AF%E7%94%9F%E6%88%90"><span class="toc-text"> 真正昂贵的是审查，不是生成</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E6%AC%A1%E5%90%88%E5%B9%B6%E6%98%AF%E7%BB%B4%E6%8A%A4%E5%80%BA%E5%BC%80%E5%A7%8B%E8%AE%A1%E6%81%AF"><span class="toc-text"> 一次合并，是维护债开始计息</span></a></li></ol>
+</div>
+
+      
+        <h2 id="四分之一pr不是产能问题而是成本搬家"><a class="markdownIt-Anchor" href="#四分之一pr不是产能问题而是成本搬家"></a> 四分之一PR不是产能问题，而是成本搬家</h2>
+<p><span class="hl">四分之一PR带来的核心变化，不是代码产量，而是维护者承担的证伪成本。</span> 把这个比例摊开：每100份PR里有25份由AI生成，增加的不是可交付价值，而是25次额外判断。我起初把“AI垃圾”当成质量标签，后来更在意它制造的负担：代码即使能编译、测试能过，只要作者没说清问题、理由和边界，维护者仍要重建上下文。</p>
+<p>AI标签本身不该成为判决。人类也会制造垃圾，AI也能写出好补丁，按来源封杀既不公平，也抓不住要害。真正该问的是：改动是否必要、能否验证、出错后谁收拾。生成成本接近零后，提交者会多投一些“也许有用”的草稿；这种供给过剩是经济问题，不是道德问题。</p>
+<blockquote>
+<p>100份PR里有25份AI草稿，提交者获得25次机会，维护者承担的却是25次判断；“多写”从来不等于“多做”。</p>
+</blockquote>
+<h2 id="真正昂贵的是审查不是生成"><a class="markdownIt-Anchor" href="#真正昂贵的是审查不是生成"></a> 真正昂贵的是审查，不是生成</h2>
+<p><span class="hl">生成器优化的是产量，独立开发者被卡住的是注意力。</span> 团队还能分摊审查，独立开发者只能自己付。我审PR时会列4项：它想解决什么、实际改了什么、测试证明了什么、依赖会不会出问题。25份AI PR按这4项核验，就是100个审查单元；即使全部值得合并，解释成本也不会消失。</p>
+<p>最便宜的反例，是只改1行、附1个可复现测试、意图清楚的PR，它完全值得快速通过。最贵的反例，是横跨3个文件、声称“已修复”却无法复现原问题的PR。AI能快速给出答案，却经常不交代问题，维护者得把补丁反向还原成需求，再判断它是否值得进入仓库。</p>
+<blockquote>
+<p>25×4＝100：生成端可以迅速交差，审查端仍要逐项证明；瓶颈从来不是“写得慢”，而是“信不过”。</p>
+</blockquote>
+<h2 id="一次合并是维护债开始计息"><a class="markdownIt-Anchor" href="#一次合并是维护债开始计息"></a> 一次合并，是维护债开始计息</h2>
+<p><span class="hl">一次合并只是代码进入仓库，不是维护责任的结束。</span> 我把后续成本拆成3个时间点：刚合并时是否引入缺陷，依赖变化后还能否工作，下次升级时旧假设会不会重新爆炸。生成器只经历第1个时间点，维护者却可能一路赔到第3个。</p>
+<p>在《改造 Hermes Memory Provider 的曲折历程》（2026-06-01）里，我写过要靠排除错误答案看见本质。今天我的判断更尖锐：AI不只生成错误答案，还批量生成等人排除的草稿。即使最终只有1个人维护，生成、审查、测试、升级这4种责任仍可能压在同一个人身上。</p>
+<blockquote>
+<p>1份被接受的AI PR会经过“合并、变化、升级”3个阶段；今天省下的生成时间，可能明天就变成定位时间。</p>
+</blockquote>
+<p>我仍然没想明白：当生成器能交100份、维护者只看得完25份时，该限制AI PR数量，要求作者披露上下文，还是给审查本身付费？我暂时没有答案。比起PR总数，我更想追踪每1份有用改动究竟让维护者付出了多少分钟；否则我们所谓的提速，是否只是把账单寄给了明天？</p>
+
+      
+    </div>
+    
+    
+    <div class="article-category">
+      
+        <a class="article-category-link" href="/categories/AI/">AI</a>
+
+        <b>&nbsp;:分类 </b>
+      
+      
+        <br/>
+      
+      
+        <a class="article-tag-none-link" href="/tags/AI/" rel="tag">AI</a>
+
+        <b>
+          &nbsp;:标签
+        </b>
+      
+    </div>
+    
+    
+  </div>
+</article>
+
+  
+<nav id="article-nav" class="article-nav">
+  
+    <span id="article-nav-newer" class="article-nav-link-wrap newer"></span>
+  
+  
+    <a href="/%E4%B8%96%E7%95%8C%E8%A7%82/d96dc4d6.html" id="article-nav-older" class="article-nav-link-wrap older">
+      <strong class="article-nav-caption">下一篇</strong>
+      <div class="article-nav-title">
+        
+          下班后整理房间，我学到的办法未必适合别人
+        
+      </div>
+    </a>
+  
+</nav>
+
+
+  
+    
+
+<div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<script type="text/javascript">
+if(true){
+	var gitalk = new Gitalk({
+  	clientID: 'd99a4bdc344cff33585d',
+  	clientSecret: '4819ca8aa103e688f259b5ed6b3cd3fffdf0f96e',
+  	repo: 'yqwoe.github.io',
+  	owner: 'yqwoe',
+  	admin: ['yqwoe'],
+    perPage: 20,
+  	id: 'fdb82c24',
+  	distractionFreeMode: 'true',
+    pagerDirection: 'last'
+})
+gitalk.render('gitalk-container')
+}
+</script>
+
+    
+
+
+
+
+        </div>
+        <header id="header">
+  <nav>
+    <div class="header-nav-links">
+      <a class="nav-link-first" href="/">sudo rm -rf /*</a>
+      <span class="nav-spacer"></span>
+      
+      
+        
+        <a class="nav-link" href="/archives">文章</a>
+      
+        
+          <span class="nav-spacer"> </span>
+        
+        <a class="nav-link" href="/categories">分类</a>
+      
+        
+          <span class="nav-spacer"> </span>
+        
+        <a class="nav-link" href="/about">关于我</a>
+      
+      
+    </div>
+    <div class="poem-wrap">
+      <p id="poem">加载中...</p>
+      <p id="info"/>
+    </div>
+  </nav>
+</header>
+
+    </div>
+    
+
+
+
+
+<div id="settings-container">
+  <div id="dark-mode"></div>
+  <div id="sans-font"></div>
+</div>
+
+
+<span class="post-count">44.9k</span>
+
+<script type="text/javascript">
+
+
+  let d = document,
+    r = d.documentElement.style,
+    f = r.setProperty.bind(r),
+    l = localStorage,
+    rawS = l.getItem('s'),
+    s = (rawS === '1' || rawS === '2') ? Number(rawS) : 0,
+    sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches,
+    m = d.getElementById("dark-mode"),
+    b = () => {
+      f('--bg-color', '#fafafa');
+      f('--code-bg-color', '#f4f4f4');
+      f('--text-color', '#212121');
+      f('--secondary-color', '#808080');
+      f('--tertiary-color', '#b0b0b0');
+      f('--link-color', '#b5c8cf');
+      f('--link-hover-color', '#618794');
+      f('--link-bg-color', '#dae4e7');
+      f('--selection-color', '#dae4e7');
+    },
+    c = () => {
+      f('--bg-color', '#212121');
+      f('--code-bg-color', '#292929');
+      f('--text-color', '#fff');
+      f('--secondary-color', '#c0c0c0');
+      f('--tertiary-color', '#6e6e6e');
+      f('--link-color', '#4d6b75');
+      f('--link-hover-color', '#96b1bb');
+      f('--link-bg-color', '#5d828e');
+      f('--selection-color', '#acc1c9');
+    },
+    o = d.getElementById("sans-font"),
+    e = () => {
+      f('--body-stack', '"Lora", "Georgia", "Times New Roman", serif');
+    },
+    g = () => {
+      f('--body-stack', '"Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');
+    },
+    applyTheme = () => {
+      if (s === 1) b();
+      else if (s === 2) c();
+      else (sysDark ? c() : b());
+    };
+  m.onclick = function(){
+    s = s === 2 ? 0 : s + 1;
+    l.setItem('s', s);
+    applyTheme();
+  };
+  o.onclick =function(){
+    if (n == 2) {
+      n = 1;
+      l.setItem('n', n);
+      g()
+    } else {
+      n = 2;
+      l.setItem('n', n);
+      e()
+    }
+  };
+  applyTheme();
+  if (!n) {
+    n = 2;
+    l.setItem('n', 2)
+  };
+  if (n == '1') {
+    g();
+  };
+  if (n == '2') {
+    e();
+  };
+</script>
+
+
+<script type="module">
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@9.4.3/+esm";
+  let theme = localStorage.getItem("s");
+  mermaid.initialize({
+      startOnLoad: true,
+      logLevel: 'debug',
+      theme: theme === '2' ? 'forest' : 'dark',
+    });
+  let mode = document.getElementById("dark-mode");
+   let arrayGraphs =  [];
+  let nodes = document.getElementsByClassName('mermaid')
+  for(let n of nodes){
+    console.log(n.innerHTML)
+    arrayGraphs.push(n.innerHTML);
+  }
+
+  mode.addEventListener("click",async ()=>{
+    theme = localStorage.getItem("s");
+    mermaid.initialize({
+      startOnLoad: true,
+      logLevel: 'debug',
+      theme: theme === '2' ? 'forest' : 'dark',
+    });
+  for(let i = 0;i< nodes.length;i++){
+      let n =  nodes[i]
+      // console.log(n.innerHTML)
+      let id = `mermaid-${i}`
+      n.removeAttribute("data-processed");
+      n.setAttribute("id",`mermaid-${i}`)
+      n.replaceChildren();
+      n.innerHTML = arrayGraphs[i]
+      mermaid.init(undefined,n)
+    }
+  },false);
+
+</script>
+
+
+
+<script src="/js/jquery.min.js" defer ></script>
+<script src="/js/jquery.qrcode.min.js" defer ></script>
+<script src="https://unpkg.com/reveal.js@5.0.4/dist/reveal.js" defer></script>
+<script src="https://unpkg.com/reveal.js-mermaid-plugin@2.1.0/plugin/mermaid/mermaid.js" defer></script>
+
+<script type="module">
+  import qrcodeInit from '/js/qrcode.js'
+  qrcodeInit();
+</script>
+<script type="module">
+/***
+ * 兼容不支持requestAnimationFrame的浏览器
+ ***/
+window.requestAnimationFrame = (function () {
+  return window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||/* Safari 和 Chrome */
+    window.mozRequestAnimationFrame ||/* Firefox */
+    window.oRequestAnimationFrame      ||/* Opera */
+    window.msRequestAnimationFrame     ||/* IE 9 */
+    function (callback) {
+      window.setTimeout(callback, 6000 / 60)
+    }
+})();
+window.cancelAnimationFrame = (function () {
+  return window.cancelAnimationFrame ||
+    window.webkitCancelAnimationFrame ||
+    window.mozCancelAnimationFrame ||
+    window.oCancelAnimationFrame ||
+    window.msCancelAnimationFrame || clearTimeout
+})();
+</script>
+<script type="module">
+  /*诗*/
+if ($("div").hasClass("poem-wrap")) {
+            get_poem('#poem', '#info')
+}
+function get_poem(poem_ele, info_ele) {
+    var poem = document.querySelector(poem_ele);
+    var info = document.querySelector(info_ele);
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', 'https://v2.jinrishici.com/one.json?client=browser-sdk/1.2');
+    xhr.withCredentials = true;
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            var data = JSON.parse(xhr.responseText);
+            poem.innerHTML = data.data.content;
+            info.innerHTML = '[' + data.data.origin.dynasty + '] ' + data.data.origin.author + '《' + data.data.origin.title + '》';
+        }
+    };
+    xhr.send();
+}
+
+function modifySubmitBtn(){
+  var btn = $('.hbe-button');
+  var password = $('#hbePass');
+  if(btn.length > 0){
+    btn.text('重新输入密码')
+  }
+  if(password.length > 0){
+    password.attr('autocomplete','false')
+  }
+}
+modifySubmitBtn();
+
+function layoutTagCloud(){
+  // var list = $('.tagcloud a');
+  // var size = Math.round(Math.random() * 20);
+
+  // for(let i = 0;i< list.length;i++){
+  //       if(i % even == 0 ){
+  //         list[i].classList = `${list[i].classList} deg_90`
+  //       }
+  // }
+}
+
+function loopHover(){
+  var list = $('.tagcloud a');
+  var hover = $('.tagcloud a[class="tag-hover"]')
+  var next = Math.round(Math.random() * (list.length  - 1))
+
+  if(next < 0){
+    next = 0
+  }
+
+  if(next > list.length){
+    next = list.length - 1
+  }
+  if(list.length){
+    if(hover.length){
+      for(let i = 0;i< hover.length;i++){
+        hover[i].classList = ''
+      }
+    }
+    list[next].classList = 'tag-hover'
+  }
+}
+// layoutTagCloud();
+
+
+/**
+ * 设置精度定时器
+ * @param {function} 回调函数
+ * @param {number}   延迟时间
+ * @return {number}  定时器ID
+ */
+ function setIntervalPrecision(callback, delay) {
+  // 生成并记录定时器ID
+  let obj = window.interValPrecisionObj || (window.interValPrecisionObj = { num: 0 })
+  obj.num++
+  obj['n' + obj.num] = true
+  var intervalId = obj.num
+  // 开始时间
+  var startTime = +new Date()
+  // 已执行次数
+  var count = 0
+  // 延迟时间
+  delay = delay || 0
+
+
+  ;(function loop() {
+    // 定时器被清除，则终止
+    if (!obj['n' + intervalId]) return
+
+    // 满足条件执行回调
+    if (+new Date() > startTime + delay * (count + 1)) {
+      count++
+      callback(count)
+    }
+
+    window.requestAnimationFrame(loop)
+  })()
+
+  return intervalId
+}
+
+/**
+ * 清除精度定时器
+ * @param {number} 定时器ID
+ */
+function clearIntervalPrecision(intervalId) {
+  if (window.interValPrecisionObj) {
+    window.cancelAnimationFrame('n' + intervalId)
+    delete window.interValPrecisionObj['n' + intervalId]
+  }
+}
+
+setIntervalPrecision(loopHover, 250)
+
+</script>
+
+  
+  </body>
+
+</html>

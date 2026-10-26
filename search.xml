@@ -2080,6 +2080,36 @@
       </tags>
   </entry>
   <entry>
+    <title>四分之一PR是AI垃圾，独立开发者正在替AI买单</title>
+    <url>/AI/fdb82c24.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="四分之一pr不是产能问题而是成本搬家"><a class="markdownIt-Anchor" href="#四分之一pr不是产能问题而是成本搬家"></a> 四分之一PR不是产能问题，而是成本搬家</h2>
+<p><span class="hl">四分之一PR带来的核心变化，不是代码产量，而是维护者承担的证伪成本。</span> 把这个比例摊开：每100份PR里有25份由AI生成，增加的不是可交付价值，而是25次额外判断。我起初把“AI垃圾”当成质量标签，后来更在意它制造的负担：代码即使能编译、测试能过，只要作者没说清问题、理由和边界，维护者仍要重建上下文。</p>
+<p>AI标签本身不该成为判决。人类也会制造垃圾，AI也能写出好补丁，按来源封杀既不公平，也抓不住要害。真正该问的是：改动是否必要、能否验证、出错后谁收拾。生成成本接近零后，提交者会多投一些“也许有用”的草稿；这种供给过剩是经济问题，不是道德问题。</p>
+<blockquote>
+<p>100份PR里有25份AI草稿，提交者获得25次机会，维护者承担的却是25次判断；“多写”从来不等于“多做”。</p>
+</blockquote>
+<h2 id="真正昂贵的是审查不是生成"><a class="markdownIt-Anchor" href="#真正昂贵的是审查不是生成"></a> 真正昂贵的是审查，不是生成</h2>
+<p><span class="hl">生成器优化的是产量，独立开发者被卡住的是注意力。</span> 团队还能分摊审查，独立开发者只能自己付。我审PR时会列4项：它想解决什么、实际改了什么、测试证明了什么、依赖会不会出问题。25份AI PR按这4项核验，就是100个审查单元；即使全部值得合并，解释成本也不会消失。</p>
+<p>最便宜的反例，是只改1行、附1个可复现测试、意图清楚的PR，它完全值得快速通过。最贵的反例，是横跨3个文件、声称“已修复”却无法复现原问题的PR。AI能快速给出答案，却经常不交代问题，维护者得把补丁反向还原成需求，再判断它是否值得进入仓库。</p>
+<blockquote>
+<p>25×4＝100：生成端可以迅速交差，审查端仍要逐项证明；瓶颈从来不是“写得慢”，而是“信不过”。</p>
+</blockquote>
+<h2 id="一次合并是维护债开始计息"><a class="markdownIt-Anchor" href="#一次合并是维护债开始计息"></a> 一次合并，是维护债开始计息</h2>
+<p><span class="hl">一次合并只是代码进入仓库，不是维护责任的结束。</span> 我把后续成本拆成3个时间点：刚合并时是否引入缺陷，依赖变化后还能否工作，下次升级时旧假设会不会重新爆炸。生成器只经历第1个时间点，维护者却可能一路赔到第3个。</p>
+<p>在《改造 Hermes Memory Provider 的曲折历程》（2026-06-01）里，我写过要靠排除错误答案看见本质。今天我的判断更尖锐：AI不只生成错误答案，还批量生成等人排除的草稿。即使最终只有1个人维护，生成、审查、测试、升级这4种责任仍可能压在同一个人身上。</p>
+<blockquote>
+<p>1份被接受的AI PR会经过“合并、变化、升级”3个阶段；今天省下的生成时间，可能明天就变成定位时间。</p>
+</blockquote>
+<p>我仍然没想明白：当生成器能交100份、维护者只看得完25份时，该限制AI PR数量，要求作者披露上下文，还是给审查本身付费？我暂时没有答案。比起PR总数，我更想追踪每1份有用改动究竟让维护者付出了多少分钟；否则我们所谓的提速，是否只是把账单寄给了明天？</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>下班后整理房间，我学到的办法未必适合别人</title>
     <url>/%E4%B8%96%E7%95%8C%E8%A7%82/d96dc4d6.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="清理不是把东西藏起来"><a class="markdownIt-Anchor" href="#清理不是把东西藏起来"></a> 清理不是把东西藏起来</h2>
@@ -2110,6 +2140,44 @@
       </categories>
       <tags>
         <tag>世界观</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我下班后整理出租屋时，发现整洁会让孤独更具体</title>
+    <url>/%E5%AE%87%E5%AE%99%E8%A7%82/d315c89b.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="整洁没有驱赶孤独反而给它标了地址"><a class="markdownIt-Anchor" href="#整洁没有驱赶孤独反而给它标了地址"></a> 整洁没有驱赶孤独，反而给它标了地址</h2>
+<p><span class="hl">我越把出租屋收拾得井井有条，越能确认：这里只有我一个人生活。</span></p>
+<p>周一下班回来，我拧亮厨房的灯，先把垃圾袋系好，再擦掉桌面上的水渍。杯子洗净，倒扣在沥水架上；充电线绕成整齐的一圈，挂回墙边。最后，我拉上椅子，把台灯摆正。</p>
+<blockquote>
+<p>杯子归位后，桌面只剩一盏台灯，安静得像一间等待检查的房间。</p>
+</blockquote>
+<p>我最初相信秩序可以抵挡混乱。东西各有位置，生活就容易控制。那时的我刚搬进这间出租屋，窗外是陌生的街声，屋里却只有自己的行李。至少在所有东西都放回原处时，我会觉得今天仍然掌握着什么。</p>
+<p>但那天晚上，我忽然意识到，所谓“各归其位”，也意味着没有任何东西偏离过我设定的轨迹。没有别人的外套搭在椅背上，没有喝了一半的杯子提醒我有人来过，连插线板都整齐得不需要别人帮忙。</p>
+<p>我过去把凌乱理解为生活的噪声，现在却觉得，噪声有时也是有人共同在场的证据。房间太干净，就像一句话被删得只剩主语：我。</p>
+<h2 id="真正让我难受的不是空是我能证明这里没人来过"><a class="markdownIt-Anchor" href="#真正让我难受的不是空是我能证明这里没人来过"></a> 真正让我难受的，不是空，是我能证明“这里没人来过”</h2>
+<p><span class="hl">真正让我孤单的不是房间空，而是每件东西都被归位后，生活的痕迹也一起消失了。</span></p>
+<p>我住的地方不大，东西也不多。收拾之前，桌上可能有没收好的耳机，沙发靠垫上可能留着凹陷，厨房水槽里可能还有一只不属于我的杯子。这些东西并不能证明另一个人此刻还在，却至少说明这里曾有另一种生活擦肩而过。</p>
+<p>有一次朋友来拿落在桌上的充电器，我随手把线递给她。她走后，我先把充电孔周围擦了一遍，又把那把被她坐过的椅子推回桌边。</p>
+<blockquote>
+<p>那个“她来过”的证据，被我自己绕好、归档，成了“我一直独居”。</p>
+</blockquote>
+<p>我这才发现，我整理的并不只是物品。我也在清理自己与他人相处的可能。过去的我把“乱”当作失控，把“整齐”当作安心；现在我怀疑，这种安心有时只是把门关得更轻，把退路收得更窄。</p>
+<p>秩序让我觉得安全，却也让我无处怀疑。一个人若认定所有痕迹都该消失，他看到的就不再是陌生，而是确定：没有人来，也不需要有人来。</p>
+<h2 id="我现在保留整洁但不再让它替我证明没人会来"><a class="markdownIt-Anchor" href="#我现在保留整洁但不再让它替我证明没人会来"></a> 我现在保留整洁，但不再让它替我证明“没人会来”</h2>
+<p><span class="hl">我现在保留整洁，但不再把它当作封闭生活的证明，而把它当作给生活留下边界的办法。</span></p>
+<p>所以下班后，我依然会倒垃圾、擦桌面、换洗抹布。但我不再把每件东西都收得毫无余地：备用杯放在容易拿的地方，椅子不总是严丝合缝地贴回墙边，偶尔留下的小票也不急着撕掉。它们不是故意制造的凌乱，而是给偶然留下入口。</p>
+<blockquote>
+<p>我把第二只杯子擦干，放到桌边。房间没有更满，却第一次不像在等待验收。</p>
+</blockquote>
+<p>这并不代表我开始崇拜杂乱。脏乱仍然会消耗我，失败和废弃品也仍然需要处理。我只是不再把“独处”误认成“只能独处”。一个房间若只能容纳我此刻的秩序，它就是封闭的；若它也为别人留一把椅子、一只杯子，它才可能成为邀请。</p>
+<p>整理归位物品时，我仍然会孤单。但现在的孤单不再只是一个需要消灭的敌人。它至少提醒我：我希望被看见，也希望有一天，有人拿起那只杯子时，不必先问一句“可以碰吗”？</p>
+<p>今晚收拾完书桌后，我会把台灯打开，把另一把椅子留在身边。也许下一次有人坐在那里时，我会下意识地重新整理；也许这一次，我会把杯子递过去。</p>
+]]></content>
+      <categories>
+        <category>宇宙观</category>
+      </categories>
+      <tags>
+        <tag>宇宙观</tag>
       </tags>
   </entry>
   <entry>
@@ -3836,21 +3904,6 @@ section 运维阶段
       </tags>
   </entry>
   <entry>
-    <title>基于k8s、traefik、springboot的微服务实践</title>
-    <url>/%E5%B7%A5%E4%BD%9C/3382022550.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-      <tags>
-        <tag>k8s</tag>
-        <tag>docker</tag>
-        <tag>容器技术</tag>
-        <tag>traefik2</tag>
-        <tag>springboot</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>前端定时器</title>
     <url>/%E5%B7%A5%E4%BD%9C/3423146f.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>  前端开发中，会经常接到<code>定时器</code>的需求，<code>倒计时</code>、<code>计时器</code>、<code>动画效果</code>。</p>
@@ -3936,6 +3989,21 @@ section 运维阶段
         <tag>setTimeout</tag>
         <tag>setInterval</tag>
         <tag>requestAnimationFrame</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于k8s、traefik、springboot的微服务实践</title>
+    <url>/%E5%B7%A5%E4%BD%9C/3382022550.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>]]></content>
+      <categories>
+        <category>工作</category>
+      </categories>
+      <tags>
+        <tag>k8s</tag>
+        <tag>docker</tag>
+        <tag>容器技术</tag>
+        <tag>traefik2</tag>
+        <tag>springboot</tag>
       </tags>
   </entry>
   <entry>
@@ -4668,12 +4736,12 @@ section 运维阶段
     <title>路</title>
     <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-        <div id="aplayer-HKSKYRcR" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-fYPTJROw" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-HKSKYRcR"),
+            element: document.getElementById("aplayer-fYPTJROw"),
             narrow: false,
             autoplay: true,
             showlrc: false,
