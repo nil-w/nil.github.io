@@ -83,11 +83,11 @@ lazyload:
 
 gitalk:
   enable:  true
-  githubID:  yqwoe  # 配置项基本于 GitTalk保持一致
-  repo:  'yqwoe.github.io'
+  githubID:  nil-w  # 配置项基本于 GitTalk保持一致
+  repo:  'nil.github.io'
   ClientID:  'd99a4bdc344cff33585d'
   # ClientSecret 不入库：构建时由环境变量 GITALK_CLIENT_SECRET 注入
   # （见 scripts/security-config.js）。未设置则自动停用评论，避免明文泄露。
   ClientSecret:  ''
-  adminUser:  yqwoe
+  adminUser:  nil-w
   distractionFreeMode: true

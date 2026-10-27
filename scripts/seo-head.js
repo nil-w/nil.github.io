@@ -58,7 +58,13 @@ function absUrl(p) {
 function deriveDescription(page) {
   if (page.description) return String(page.description).trim();
 
-  const raw = page.raw || page._content || page.content || '';
+  // 加密文章不要从正文推摘要，否则 meta 里会泄露明文
+  if (page.encrypt || page.password) return hexo.config.description || '';
+
+  // content 已剥离 front-matter，raw 是完整原文（含 front-matter），优先用 content
+  const raw = String(page.content || page._content || page.raw || '')
+    // 兜底：部分文章的 content 仍带 front-matter，先剥掉
+    .replace(/^\uFEFF?---\r?\n[\s\S]*?\r?\n---\r?\n/, '');
   const text = String(raw)
     .replace(/```[\s\S]*?```/g, ' ')      // 代码块
     .replace(/<[^>]+>/g, ' ')               // html 标签
