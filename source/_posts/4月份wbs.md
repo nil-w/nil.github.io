@@ -2,7 +2,7 @@
 title: 4月份wbs
 abbrlink: c2cb16de
 toc: false
-password: 181622
+encrypt: true
 tags:
   - wbs
   - 项目一览

@@ -7,11 +7,13 @@
 # subtitle: "Viva La Vida"
 # description: "生命万岁"
 # keywords: 生命,生命万岁,Viva,Viva La Vida
-title: sudo rm -rf /*
+title: Nil W
 subtitle: "生命万岁"
 description: "技术｜思考｜生活。一个独立开发者的持续输出频道。"
 keywords: 技术博客,独立开发,编程,效率工具,AI,生命万岁
-author: Yq Woe
+# Twitter handle（GitHub 账号已改名 nil-w，主题里硬编码的 @yqwoe 由 scripts/seo-head.js 改写）
+twitter: "@nil-w"
+author: Nil W
 language: zh-CN
 timezone: ""
 
@@ -32,7 +34,7 @@ search:
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: https://sudo.rm-rf.ink
+url: https://nilw.rm-rf.ink
 root: /
 # permalink: posts/:year/:month/:day/:title/
 permalink: :category/:abbrlink.html
@@ -136,7 +138,7 @@ theme: ascent
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   - type: git
-    repo: git@github.com:yqwoe/yqwoe.github.io.git
+    repo: git@github.com:nil-w/nil.github.io.git
     branch: master
 
 favicon:
@@ -377,3 +379,60 @@ reveal:
     dependencies:
       - src: '/js/revealjs-animated/dist/revealjs-animated.js'
         async: true
+
+# ── 安全与 SEO（2026-10-26 新增）────────────────────────────────────────
+# 全部通过 hexo 插件 scripts/*.js 实现，不改主题模板。
+
+# ICP 备案信息（域名安全评级必查项，页脚展示）
+beian:
+  icp: 豫ICP备2023032045号-1
+  police: ''            # 公安备案号（拿到后填这里）
+  url: https://beian.miit.gov.cn
+
+# RFC 9116 security.txt（联系与响应承诺）
+security:
+  contact: 'mailto:admin@nilw.rm-rf.ink'
+  expires: '2027-10-26T00:00:00.000Z'
+  encryption: 'https://nilw.rm-rf.ink/.well-known/security.txt'
+  preferred_languages: 'zh-CN, en'
+  canonical: 'https://nilw.rm-rf.ink/.well-known/security.txt'
+  policy: 'https://nilw.rm-rf.ink/about/'
+
+# 加密文章密码：真实密码不入库，走环境变量 BLOG_ENCRYPT_PASSWORD
+# （front-matter 里只留 encrypt: true 标记）
+# 注意：encrypt 段已在上面 284 行由 hexo-blog-encrypt 定义，此处不重复。
+# 密码来源逻辑在 scripts/security-hardening.js 的 resolvePassword()：
+#   1) 环境变量 BLOG_ENCRYPT_PASSWORD  2) encrypt.tags 按 tag 匹配  3) 无则不加密
+
+# 第三方静态资源：在线地址优先，本地映射降级
+asset_fallback:
+  fonts:
+    "https://fonts.gstatic.com/s/lato/v24/S6u8w4BMUTPHjxsAUi-qNiXg7eU0.woff2": "/fonts/S6u8w4BMUTPHjxsAUi-qNiXg7eU0.woff2"
+    "https://fonts.gstatic.com/s/lato/v24/S6u8w4BMUTPHjxsAXC-qNiXg7Q.woff2": "/fonts/S6u8w4BMUTPHjxsAXC-qNiXg7Q.woff2"
+    "https://fonts.gstatic.com/s/lato/v24/S6u9w4BMUTPHh6UVSwaPGQ3q5d0N7w.woff2": "/fonts/S6u9w4BMUTPHh6UVSwaPGQ3q5d0N7w.woff2"
+    "https://fonts.gstatic.com/s/lato/v24/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2": "/fonts/S6u9w4BMUTPHh6UVSwiPGQ3q5d0.woff2"
+    "https://fonts.gstatic.com/s/lato/v24/S6uyw4BMUTPHjx4wXiWtFCc.woff2": "/fonts/S6uyw4BMUTPHjx4wXiWtFCc.woff2"
+    "https://fonts.gstatic.com/s/lato/v24/S6uyw4BMUTPHjxAwXiWtFCfQ7A.woff2": "/fonts/S6uyw4BMUTPHjxAwXiWtFCfQ7A.woff2"
+    "https://fonts.gstatic.com/s/lora/v32/0QI8MX1D_JOuMw_hLdO6T2wV9KnW-MoFoq92nPWc3ZyhTg.woff2": "/fonts/0QI8MX1D_JOuMw_hLdO6T2wV9KnW-MoFoq92nPWc3ZyhTg.woff2"
+    "https://fonts.gstatic.com/s/lora/v32/0QI8MX1D_JOuMw_hLdO6T2wV9KnW-MoFoqB2nPWc3ZyhTjcV.woff2": "/fonts/0QI8MX1D_JOuMw_hLdO6T2wV9KnW-MoFoqB2nPWc3ZyhTjcV.woff2"
+    "https://fonts.gstatic.com/s/lora/v32/0QI8MX1D_JOuMw_hLdO6T2wV9KnW-MoFoqF2nPWc3ZyhTjcV.woff2": "/fonts/0QI8MX1D_JOuMw_hLdO6T2wV9KnW-MoFoqF2nPWc3ZyhTjcV.woff2"
+    "https://fonts.gstatic.com/s/lora/v32/0QI8MX1D_JOuMw_hLdO6T2wV9KnW-MoFoqJ2nPWc3ZyhTjcV.woff2": "/fonts/0QI8MX1D_JOuMw_hLdO6T2wV9KnW-MoFoqJ2nPWc3ZyhTjcV.woff2"
+    "https://fonts.gstatic.com/s/lora/v32/0QI8MX1D_JOuMw_hLdO6T2wV9KnW-MoFoqt2nPWc3ZyhTjcV.woff2": "/fonts/0QI8MX1D_JOuMw_hLdO6T2wV9KnW-MoFoqt2nPWc3ZyhTjcV.woff2"
+    "https://fonts.gstatic.com/s/lora/v32/0QIvMX1D_JOuMw77I_FMl_GW8g.woff2": "/fonts/0QIvMX1D_JOuMw77I_FMl_GW8g.woff2"
+    "https://fonts.gstatic.com/s/lora/v32/0QIvMX1D_JOuMwf7I_FMl_GW8g.woff2": "/fonts/0QIvMX1D_JOuMwf7I_FMl_GW8g.woff2"
+    "https://fonts.gstatic.com/s/lora/v32/0QIvMX1D_JOuMwr7I_FMl_E.woff2": "/fonts/0QIvMX1D_JOuMwr7I_FMl_E.woff2"
+    "https://fonts.gstatic.com/s/lora/v32/0QIvMX1D_JOuMwT7I_FMl_GW8g.woff2": "/fonts/0QIvMX1D_JOuMwT7I_FMl_GW8g.woff2"
+    "https://fonts.gstatic.com/s/lora/v32/0QIvMX1D_JOuMwX7I_FMl_GW8g.woff2": "/fonts/0QIvMX1D_JOuMwX7I_FMl_GW8g.woff2"
+    "https://fonts.gstatic.com/s/playfairdisplaysc/v15/ke80OhoaMkR6-hSn7kbHVoFf7ZfgMPr_nTorBcgXLqAXIyDZIA.woff2": "/fonts/ke80OhoaMkR6-hSn7kbHVoFf7ZfgMPr_nTorBcgXLqAXIyDZIA.woff2"
+    "https://fonts.gstatic.com/s/playfairdisplaysc/v15/ke80OhoaMkR6-hSn7kbHVoFf7ZfgMPr_nTorBcIXLqAXIyDZIA.woff2": "/fonts/ke80OhoaMkR6-hSn7kbHVoFf7ZfgMPr_nTorBcIXLqAXIyDZIA.woff2"
+    "https://fonts.gstatic.com/s/playfairdisplaysc/v15/ke80OhoaMkR6-hSn7kbHVoFf7ZfgMPr_nTorBcMXLqAXIyDZIA.woff2": "/fonts/ke80OhoaMkR6-hSn7kbHVoFf7ZfgMPr_nTorBcMXLqAXIyDZIA.woff2"
+    "https://fonts.gstatic.com/s/playfairdisplaysc/v15/ke80OhoaMkR6-hSn7kbHVoFf7ZfgMPr_nTorBcwXLqAXIyA.woff2": "/fonts/ke80OhoaMkR6-hSn7kbHVoFf7ZfgMPr_nTorBcwXLqAXIyA.woff2"
+    "https://fonts.gstatic.com/s/playfairdisplaysc/v15/ke85OhoaMkR6-hSn7kbHVoFf7ZfgMPr_lb0MEOE1I4otKg.woff2": "/fonts/ke85OhoaMkR6-hSn7kbHVoFf7ZfgMPr_lb0MEOE1I4otKg.woff2"
+    "https://fonts.gstatic.com/s/playfairdisplaysc/v15/ke85OhoaMkR6-hSn7kbHVoFf7ZfgMPr_lbcMEOE1I4otKg.woff2": "/fonts/ke85OhoaMkR6-hSn7kbHVoFf7ZfgMPr_lbcMEOE1I4otKg.woff2"
+    "https://fonts.gstatic.com/s/playfairdisplaysc/v15/ke85OhoaMkR6-hSn7kbHVoFf7ZfgMPr_lbkMEOE1I4o.woff2": "/fonts/ke85OhoaMkR6-hSn7kbHVoFf7ZfgMPr_lbkMEOE1I4o.woff2"
+    "https://fonts.gstatic.com/s/playfairdisplaysc/v15/ke85OhoaMkR6-hSn7kbHVoFf7ZfgMPr_lbYMEOE1I4otKg.woff2": "/fonts/ke85OhoaMkR6-hSn7kbHVoFf7ZfgMPr_lbYMEOE1I4otKg.woff2"
+  scripts:
+    'https://unpkg.com/reveal.js@5.0.4/dist/reveal.js': '/js/reveal.js/js/reveal.js'
+    'https://unpkg.com/reveal.js-mermaid-plugin@2.1.0/plugin/mermaid/mermaid.js': '/js/reveal.js-mermaid-plugin/plugin/mermaid/mermaid.js'
+  esm:
+    'https://cdn.jsdelivr.net/npm/mermaid@9.4.3/+esm': '/js/mermaid.js'

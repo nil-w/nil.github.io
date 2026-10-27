@@ -1,6 +1,6 @@
 ---
 title: redis主从-哨兵模式
-password: 181622
+encrypt: true
 toc: false
 categories:
   - 工作

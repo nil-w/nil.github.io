@@ -1,6 +1,6 @@
 ---
 title: daily-news-2026-04-25
-password: 181622
+encrypt: true
 toc: false
 categories:
   - daily news

@@ -1,6 +1,6 @@
 ---
 title: OpenClaw 0
-password: 181622
+encrypt: true
 toc: false
 categories:
   - 工作
