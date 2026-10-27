@@ -390,12 +390,15 @@ beian:
   url: https://beian.miit.gov.cn
 
 # RFC 9116 security.txt（联系与响应承诺）
+# 注意：GitHub Pages 不发布 .well-known/ 点目录（实测 raw 200 / 站点 404），
+# 所以规范路径改为根目录 /security.txt（RFC 9116 允许）。
+# 完整说明见 scripts/security-hardening.js 的 FALLBACK_SECURITY_TXT()。
 security:
   contact: 'mailto:admin@nilw.rm-rf.ink'
   expires: '2027-10-26T00:00:00.000Z'
-  encryption: 'https://nilw.rm-rf.ink/.well-known/security.txt'
+  encryption: 'https://nilw.rm-rf.ink/security.txt'
   preferred_languages: 'zh-CN, en'
-  canonical: 'https://nilw.rm-rf.ink/.well-known/security.txt'
+  canonical: 'https://nilw.rm-rf.ink/security.txt'
   policy: 'https://nilw.rm-rf.ink/about/'
 
 # 加密文章密码：真实密码不入库，走环境变量 BLOG_ENCRYPT_PASSWORD

@@ -106,11 +106,29 @@ hexo.extend.filter.register('after_generate', function () {
   if (!publicDir) return;
 
   // ── 1. security.txt（RFC 9116）────────────────────────────
+  // 注意：GitHub Pages 不发布点目录（.well-known/），实测 /.well-known/security.txt
+  // 在 raw 上 200 但站点上 404。所以走 RFC 9116 允许的根目录路径 /security.txt，
+  // 同时保留 .well-known 副本（若将来换到支持点目录的托管商即可生效）。
   const st = FALLBACK_SECURITY_TXT();
   if (st) {
+    // ① 根目录：走 hexo 正常发布流程（source/ → public/ → 部署仓库）
+    fs.writeFileSync(path.join(publicDir, 'security.txt'), st, 'utf8');
+
+    // ② .well-known 副本：直接写进部署仓库，绕过 copyDir 的点目录过滤
     const dir = path.join(publicDir, '.well-known');
     fs.mkdirSync(dir, { recursive: true });
     fs.writeFileSync(path.join(dir, 'security.txt'), st, 'utf8');
+
+    const deployDir = hexo.base_dir && path.join(hexo.base_dir, '.deploy_git');
+    if (deployDir && fs.existsSync(deployDir)) {
+      try {
+        const dWellKnown = path.join(deployDir, '.well-known');
+        fs.mkdirSync(dWellKnown, { recursive: true });
+        fs.writeFileSync(path.join(dWellKnown, 'security.txt'), st, 'utf8');
+      } catch (e) {
+        console.warn('[security-hardening] 写入 deploy 仓库失败:', e.message);
+      }
+    }
   }
 
   // ── 2. 自定义 404 页 ─────────────────────────────────────
