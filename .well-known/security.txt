@@ -1,6 +1,6 @@
 Expires: 2027-10-26T00:00:00.000Z
-Encryption: https://nilw.rm-rf.ink/.well-known/security.txt
+Encryption: https://nilw.rm-rf.ink/security.txt
 Preferred-Languages: zh-CN, en
-Canonical: https://nilw.rm-rf.ink/.well-known/security.txt
+Canonical: https://nilw.rm-rf.ink/security.txt
 Policy: https://nilw.rm-rf.ink/about/
 Contact: mailto:admin@nilw.rm-rf.ink
