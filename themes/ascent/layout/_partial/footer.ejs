@@ -96,39 +96,54 @@
 <% } %>
 
 <script type="module">
-  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@9.4.3/+esm";
+  // mermaid 9.4.3 → 12.2.0（9.x 有 7 个已知 CVE，且 9 已停止维护）
+  // 注意：v10 起废弃 mermaid.init()，改用 mermaid.run()
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@12.2.0/+esm";
   let theme = localStorage.getItem("s");
   mermaid.initialize({
       startOnLoad: true,
-      logLevel: 'debug',
+      logLevel: 'error',
+      securityLevel: 'strict',
       theme: theme === '2' ? 'forest' : 'dark',
     });
   let mode = document.getElementById("dark-mode");
    let arrayGraphs =  [];
   let nodes = document.getElementsByClassName('mermaid')
   for(let n of nodes){
-    console.log(n.innerHTML)
     arrayGraphs.push(n.innerHTML);
   }
 
-  mode.addEventListener("click",async ()=>{
+  if (mode) mode.addEventListener("click",async ()=>{
     theme = localStorage.getItem("s");
     mermaid.initialize({
       startOnLoad: true,
-      logLevel: 'debug',
+      logLevel: 'error',
+      securityLevel: 'strict',
       theme: theme === '2' ? 'forest' : 'dark',
     });
   for(let i = 0;i< nodes.length;i++){
       let n =  nodes[i]
-      // console.log(n.innerHTML)
       let id = `mermaid-${i}`
       n.removeAttribute("data-processed");
       n.setAttribute("id",`mermaid-${i}`)
       n.replaceChildren();
       n.innerHTML = arrayGraphs[i]
-      mermaid.init(undefined,n)
+      mermaid.run({ nodes: [n] })
     }
   },false);
+
+  // 加密文章解密后，hexo-blog-encrypt 把明文注入 DOM，
+  // 此时新出现的 .mermaid 不在初始 nodes 快照里 → 需补渲染一次。
+  // 注意：该插件用 window.dispatchEvent(new CustomEvent('hexo-blog-decrypt'))
+  // 派发（实测 v4.1.0），故必须监听 window；document 上冗余保留以兼容旧版。
+  const rerenderMermaid = () => {
+    const pending = Array.from(document.querySelectorAll('.mermaid:not([data-processed])'));
+    if (pending.length) {
+      mermaid.run({ nodes: pending }).catch(() => {});
+    }
+  };
+  window.addEventListener('hexo-blog-decrypt', rerenderMermaid);
+  document.addEventListener('hexo-blog-decrypt', rerenderMermaid);
 
 </script>
 
@@ -154,8 +169,9 @@
 
 <script src="<%= theme.cdn.jquery %>" defer ></script>
 <script src="<%= theme.cdn.qrcode %>" defer ></script>
-<script src="https://unpkg.com/reveal.js@5.0.4/dist/reveal.js" defer></script>
-<script src="https://unpkg.com/reveal.js-mermaid-plugin@2.1.0/plugin/mermaid/mermaid.js" defer></script>
+<%# reveal 版本与本地 vendored 副本（source/js/reveal.js）保持一致，避免降级时行为漂移 %>
+<script src="https://unpkg.com/reveal.js@5.2.1/dist/reveal.js" defer></script>
+<script src="https://unpkg.com/reveal.js-mermaid-plugin@11.15.0/plugin/mermaid/mermaid.js" defer></script>
 <%# echarts defer script optional %>
 <script type="module">
   import qrcodeInit from '/js/qrcode.js'

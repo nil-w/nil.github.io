@@ -3,7 +3,7 @@ title: revealjs-animated动画文档
 toc: true
 abbrlink: 8212ba91
 date: 2024-01-24 18:00:16
-password:
+categories:
   - 学习
 tags:
   - animate

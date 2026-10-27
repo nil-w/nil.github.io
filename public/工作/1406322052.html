@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https:; frame-src 'self' https://www.slideshare.net https://player.bilibili.com; media-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta charset="utf-8">
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="dns-prefetch" href="https://github.com" />
   <link rel="dns-prefetch" href="https://unpkg.com" />
   
-  <title>搭建maven私库 | sudo rm -rf /*</title>
+  <title>搭建maven私库 | Nil W</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
@@ -46,50 +48,59 @@
   <meta name="description" content="java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="搭建maven私库">
-<meta property="og:url" content="https://sudo.rm-rf.ink/%E5%B7%A5%E4%BD%9C/1406322052.html">
-<meta property="og:site_name" content="sudo rm -rf &#x2F;*">
+<meta property="og:url" content="https://nilw.rm-rf.ink/%E5%B7%A5%E4%BD%9C/1406322052.html">
+<meta property="og:site_name" content="Nil W">
 <meta property="og:description" content="java">
+  <meta property="og:image" content="https://nilw.rm-rf.ink/images/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2022-08-31T06:46:04.000Z">
-<meta property="article:modified_time" content="2026-10-17T14:19:03.720Z">
-<meta property="article:author" content="Yq Woe">
+<meta property="article:modified_time" content="2024-01-10T12:53:27.280Z">
+<meta property="article:author" content="Nil W">
 <meta property="article:tag" content="java">
 <meta property="article:tag" content="docker">
 <meta property="article:tag" content="maven">
 <meta name="twitter:card" content="summary">  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@yqwoe" />
-  <meta name="twitter:creator" content="@yqwoe" />
   
-  <link rel="canonical" href="https://sudo.rm-rf.ink工作/1406322052.html" />
+  <meta name="twitter:site" content="@nil-w" />
+  <meta name="twitter:creator" content="@nil-w" />
+  
+  <link rel="canonical" href="https://nilw.rm-rf.ink/工作/1406322052.html" />
   
   
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     "headline": "搭建maven私库",
     "datePublished": "2022-08-31T06:46:04.000Z",
-    "dateModified": "2026-10-17T14:19:03.720Z",
+    "dateModified": "2024-01-10T12:53:27.280Z",
     "author": {
       "@type": "Person",
-      "name": "Yq Woe",
-      "url": "https://sudo.rm-rf.ink"
+      "name": "Nil W",
+      "url": "https://nilw.rm-rf.ink"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "sudo rm -rf /*",
-      "url": "https://sudo.rm-rf.ink"
+      "name": "Nil W",
+      "url": "https://nilw.rm-rf.ink"
     },
     "description": "java",
-    "url": "https://sudo.rm-rf.ink工作/1406322052.html"
+    "url": "https://nilw.rm-rf.ink/工作/1406322052.html",
+    "image": "https://nilw.rm-rf.ink/images/og-default.png",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nilw.rm-rf.ink/工作/1406322052.html"
+    }
   }
   </script>
   
   
 <link rel="stylesheet" href="/css/reveal.css">
 
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="sudo rm -rf /*" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Nil W" type="application/atom+xml">
 </head>
 
 
@@ -128,7 +139,7 @@
 <span id="more"></span>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -d --name nexus -p 8081:8081 -d --restart always -u root --privileged=true -v ~/opt/nexus-data:/nexus-data sonatype/nexus3</span><br></pre></td></tr></table></figure>
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">docker exec -it nexus //进入容器</span><br><span class="line">cd /nexus-data</span><br><span class="line">cat admin.password //复制密码</span><br></pre></td></tr></table></figure>
-<p>访问 <a target="_blank" rel="noopener" href="http://ip:8081">http://ip:8081</a><br>
+<p>访问 <a target="_blank" rel="noopener" href="http://ip:8081">http://ip:8081</a><br />
 修改密码后 admin.password自动删除</p>
 <h1 id="2-配置maven私库"><a class="markdownIt-Anchor" href="#2-配置maven私库"></a> 2. 配置maven私库</h1>
 <h4 id="21添加-role"><a class="markdownIt-Anchor" href="#21添加-role"></a> 2.1添加 role</h4>
@@ -195,30 +206,6 @@
 
 
   
-    
-
-<div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-
-<script type="text/javascript">
-if(true){
-	var gitalk = new Gitalk({
-  	clientID: 'd99a4bdc344cff33585d',
-  	clientSecret: '4819ca8aa103e688f259b5ed6b3cd3fffdf0f96e',
-  	repo: 'yqwoe.github.io',
-  	owner: 'yqwoe',
-  	admin: ['yqwoe'],
-    perPage: 20,
-  	id: '1406322052',
-  	distractionFreeMode: 'true',
-    pagerDirection: 'last'
-})
-gitalk.render('gitalk-container')
-}
-</script>
-
-    
 
 
 
@@ -227,7 +214,7 @@ gitalk.render('gitalk-container')
         <header id="header">
   <nav>
     <div class="header-nav-links">
-      <a class="nav-link-first" href="/">sudo rm -rf /*</a>
+      <a class="nav-link-first" href="/">Nil W</a>
       <span class="nav-spacer"></span>
       
       
@@ -265,7 +252,7 @@ gitalk.render('gitalk-container')
 </div>
 
 
-<span class="post-count">42.1k</span>
+<span class="post-count">48.3k</span>
 
 <script type="text/javascript">
 
@@ -343,39 +330,54 @@ gitalk.render('gitalk-container')
 
 
 <script type="module">
-  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@9.4.3/+esm";
+  // mermaid 9.4.3 → 12.2.0（9.x 有 7 个已知 CVE，且 9 已停止维护）
+  // 注意：v10 起废弃 mermaid.init()，改用 mermaid.run()
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@12.2.0/+esm";
   let theme = localStorage.getItem("s");
   mermaid.initialize({
       startOnLoad: true,
-      logLevel: 'debug',
+      logLevel: 'error',
+      securityLevel: 'strict',
       theme: theme === '2' ? 'forest' : 'dark',
     });
   let mode = document.getElementById("dark-mode");
    let arrayGraphs =  [];
   let nodes = document.getElementsByClassName('mermaid')
   for(let n of nodes){
-    console.log(n.innerHTML)
     arrayGraphs.push(n.innerHTML);
   }
 
-  mode.addEventListener("click",async ()=>{
+  if (mode) mode.addEventListener("click",async ()=>{
     theme = localStorage.getItem("s");
     mermaid.initialize({
       startOnLoad: true,
-      logLevel: 'debug',
+      logLevel: 'error',
+      securityLevel: 'strict',
       theme: theme === '2' ? 'forest' : 'dark',
     });
   for(let i = 0;i< nodes.length;i++){
       let n =  nodes[i]
-      // console.log(n.innerHTML)
       let id = `mermaid-${i}`
       n.removeAttribute("data-processed");
       n.setAttribute("id",`mermaid-${i}`)
       n.replaceChildren();
       n.innerHTML = arrayGraphs[i]
-      mermaid.init(undefined,n)
+      mermaid.run({ nodes: [n] })
     }
   },false);
+
+  // 加密文章解密后，hexo-blog-encrypt 把明文注入 DOM，
+  // 此时新出现的 .mermaid 不在初始 nodes 快照里 → 需补渲染一次。
+  // 注意：该插件用 window.dispatchEvent(new CustomEvent('hexo-blog-decrypt'))
+  // 派发（实测 v4.1.0），故必须监听 window；document 上冗余保留以兼容旧版。
+  const rerenderMermaid = () => {
+    const pending = Array.from(document.querySelectorAll('.mermaid:not([data-processed])'));
+    if (pending.length) {
+      mermaid.run({ nodes: pending }).catch(() => {});
+    }
+  };
+  window.addEventListener('hexo-blog-decrypt', rerenderMermaid);
+  document.addEventListener('hexo-blog-decrypt', rerenderMermaid);
 
 </script>
 
@@ -383,8 +385,9 @@ gitalk.render('gitalk-container')
 
 <script src="/js/jquery.min.js" defer ></script>
 <script src="/js/jquery.qrcode.min.js" defer ></script>
-<script src="https://unpkg.com/reveal.js@5.0.4/dist/reveal.js" defer></script>
-<script src="https://unpkg.com/reveal.js-mermaid-plugin@2.1.0/plugin/mermaid/mermaid.js" defer></script>
+
+<script src="https://unpkg.com/reveal.js@5.2.1/dist/reveal.js" onerror="this.onerror=null;this.src='/js/reveal.js/js/reveal.js'" defer></script>
+<script src="https://unpkg.com/reveal.js-mermaid-plugin@11.15.0/plugin/mermaid/mermaid.js" onerror="this.onerror=null;this.src='/js/reveal.js-mermaid-plugin/plugin/mermaid/mermaid.js'" defer></script>
 
 <script type="module">
   import qrcodeInit from '/js/qrcode.js'
@@ -532,6 +535,8 @@ setIntervalPrecision(loopHover, 250)
 </script>
 
   
-  </body>
+  
+  <div id="beian-info" style="text-align:center;font-size:12px;line-height:1.9;color:#808080;padding:14px 12px 22px;opacity:.85;"><a href="https://beian.miit.gov.cn" target="_blank" rel="noopener nofollow nofollow">豫ICP备2023032045号-1</a></div>
+</body>
 
 </html>

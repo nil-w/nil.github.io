@@ -288,12 +288,19 @@ encrypt:
   abstract: 文章加密了，需要输入密码查看
   message: 输入密码查看内容
   theme: wave
-  tags:
-  - {name: tagName, password: 密码A}
-  - {name: tagName, password: 密码B}
-  template: <div id="hexo-blog-encrypt" data-wpm="{{hbeWrongPassMessage}}" data-whm="{{hbeWrongHashMessage}}"><div class="hbe-input-container"><input type="password" id="hbePass" placeholder="{{hbeMessage}}" /><label>{{hbeMessage}}</label><div class="bottom-line"></div></div><script id="hbeData" type="hbeData" data-hmacdigest="{{hbeHmacDigest}}">{{hbeEncryptedData}}</script></div>
   wrong_pass_message: 糟糕！密码错误了.
-  wrong_hash_message: 抱歉, 这个文章不能被校验, 不过您还是能看看解密后的内容.
+  # ── 2026-10-27 升级 hexo-blog-encrypt v3.1.9 → v4.1.0 ──────────────
+  # v4 变更：AES-256-GCM + 每篇独立 salt/nonce；不再支持自定义 template；
+  #          wrong_hash_message 已废弃；只认 front-matter 的 password 字段
+  #          （`encrypt: true` 单独标记在 v4 中不再触发加密）。
+  # 密码仍不入库：由 scripts/security-hardening.js 在 before_post_render 阶段
+  # 从 BLOG_ENCRYPT_PASSWORD（环境变量或 .env.local）注入内存中的 password。
+  # stableSalt：permalink 不变时 salt 稳定，减少每次构建的密文抖动。
+  # kdf.iterations：PBKDF2 迭代次数，插件下限 100000、OWASP 2023 建议 ≥600000，
+  #                 默认仅 250000 会告警，此处上调到 600000。
+  stableSalt: true
+  kdf:
+    iterations: 600000
 
 
 reveal:
@@ -435,7 +442,8 @@ asset_fallback:
     "https://fonts.gstatic.com/s/playfairdisplaysc/v15/ke85OhoaMkR6-hSn7kbHVoFf7ZfgMPr_lbkMEOE1I4o.woff2": "/fonts/ke85OhoaMkR6-hSn7kbHVoFf7ZfgMPr_lbkMEOE1I4o.woff2"
     "https://fonts.gstatic.com/s/playfairdisplaysc/v15/ke85OhoaMkR6-hSn7kbHVoFf7ZfgMPr_lbYMEOE1I4otKg.woff2": "/fonts/ke85OhoaMkR6-hSn7kbHVoFf7ZfgMPr_lbYMEOE1I4otKg.woff2"
   scripts:
-    'https://unpkg.com/reveal.js@5.0.4/dist/reveal.js': '/js/reveal.js/js/reveal.js'
-    'https://unpkg.com/reveal.js-mermaid-plugin@2.1.0/plugin/mermaid/mermaid.js': '/js/reveal.js-mermaid-plugin/plugin/mermaid/mermaid.js'
-  esm:
-    'https://cdn.jsdelivr.net/npm/mermaid@9.4.3/+esm': '/js/mermaid.js'
+    'https://unpkg.com/reveal.js@5.2.1/dist/reveal.js': '/js/reveal.js/js/reveal.js'
+    'https://unpkg.com/reveal.js-mermaid-plugin@11.15.0/plugin/mermaid/mermaid.js': '/js/reveal.js-mermaid-plugin/plugin/mermaid/mermaid.js'
+  # esm 降级表：mermaid 已于 2026-10-27 从 9.4.3（7 个 CVE）升到 12.2.0，
+  # 旧的 /js/mermaid.js 本地副本只有 9.4.3 且源文件已丢失，降级反而带回漏洞，
+  # 故此处不再提供 mermaid 本地降级（图表渲染失败不影响正文与安全）。

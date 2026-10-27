@@ -25,6 +25,25 @@ const path = require('path');
 const BEIAN = hexo.config.beian || {};
 
 /**
+ * 读取站根 .env.local（不入库）注入进程环境变量。
+ * 只补缺失键，不覆盖已有环境变量；解析故意保持极简（KEY=VALUE、可选引号）。
+ */
+(function loadDotEnv() {
+  try {
+    const fp = path.join(hexo.base_dir, '.env.local');
+    if (!fs.existsSync(fp)) return;
+    for (const line of fs.readFileSync(fp, 'utf8').split(/\r?\n/)) {
+      const m = line.match(/^\s*([A-Za-z_][A-Za-z0-9_]*)\s*=\s*(.*?)\s*$/);
+      if (!m || line.trim().startsWith('#')) continue;
+      const val = m[2].replace(/^['"]|['"]$/g, '');
+      if (!(m[1] in process.env)) process.env[m[1]] = val;
+    }
+  } catch (e) {
+    hexo.log.warn('[security] 读取 .env.local 失败: ' + e.message);
+  }
+})();
+
+/**
  * 密码注入：把 encrypt:true 标记的文章接上真实密码。
  * 优先级：环境变量 BLOG_ENCRYPT_PASSWORD > encrypt.tags[].password > encrypt.tags[].name
  */
@@ -54,14 +73,30 @@ function resolvePassword(page) {
 hexo.extend.filter.register('before_post_render', function (data) {
   if (!data) return data;
 
-  // 明文 password → encrypt 标记 + 运行时注入
-  if (data.password && typeof data.password === 'string' && data.password.trim()) {
-    if (!data.encrypt) data.encrypt = true;
-    const pw = resolvePassword(data);
-    if (pw) data.password = pw;
-    else data.password = '';   // 无密码来源 → 公开，避免整站构建失败
+  const hasPlainPw = typeof data.password === 'string' && data.password.trim();
+  const wantsEncrypt = data.encrypt === true || data.encrypt === 'true';
+
+  if (!hasPlainPw && !wantsEncrypt) return data;
+
+  if (hasPlainPw) {
+    hexo.log.warn('[security] ' + (data.source || data.title) + ' 的 front-matter 含明文 password，已被运行时密钥覆盖');
   }
 
+  const pw = resolvePassword(data);
+  if (!pw) {
+    // fail-closed：绝不把「要求加密」的文章以明文发布。
+    // 2026-10-27 实测教训：hexo-blog-encrypt v4 已不支持 `encrypt: true` 标记，
+    // 只认 password 字段；原逻辑仅在 data.password 非空时才注入，
+    // 导致 8 篇只有 mark:true 的文章被明文发布。
+    throw new Error(
+      '[security] 加密文章「' + (data.title || data.source) + '」缺少密码来源。' +
+      '请设置环境变量 BLOG_ENCRYPT_PASSWORD（可写入 .env.local，已 gitignore），' +
+      '或在 _config.yml 的 encrypt.tags 中配置。已中止构建，避免加密内容以明文上线。'
+    );
+  }
+
+  data.password = pw;
+  data.encrypt = true;
   return data;
 });
 
@@ -229,3 +264,135 @@ function render404() {
 </html>
 `;
 }
+
+/**
+ * after_render:html —— 注入安全响应头的 meta 等价物。
+ *
+ * 背景（2026-10-27）：GitHub Pages 不支持自定义响应头（实测无 X-Frame-Options、
+ * X-Content-Type-Options、CSP 等），唯一可用的下行通道是 <meta>。其中：
+ *   - Content-Security-Policy：meta 支持（frame-ancestors / report-uri / sandbox 除外）
+ *   - Referrer-Policy：meta 支持（http-equiv="referrer" 已废弃，用 name="referrer"）
+ *   - X-Content-Type-Options / X-Frame-Options / HSTS：meta 无效，只能靠托管商，
+ *     已写入根目录 _headers（GitHub Pages 忽略，迁 Cloudflare/Netlify 即生效）
+ *
+ * CSP 白名单依据构建产物实测（public/*.html 的 script src 域名统计）：
+ *   unpkg.com（reveal 幻灯片）/ cdn.jsdelivr.net（gitalk、搜索）/ cdnjs.cloudflare.com
+ * 主题大量内联脚本，无法去掉 'unsafe-inline'；script-src 保留域名白名单，
+ * 目的是挡住任意第三方域注入脚本，而非彻底消除 XSS 面。
+ */
+const SECURITY_HEADERS = hexo.config.security_headers || {};
+
+function buildCsp() {
+  const h = SECURITY_HEADERS;
+  if (h.csp === false) return '';
+
+  const scriptSrc = [
+    "'self'",
+    "'unsafe-inline'",
+    // 实测必要性（2026-10-27，Chromium）：hexo-blog-encrypt v4 在解密渲染阶段
+    // 触发 eval，缺此项时控制台报 script-src 违规。鉴于主题本身大量内联脚本、
+    // 'unsafe-inline' 无法去除，补 'unsafe-eval' 不实质放大攻击面。
+    "'unsafe-eval'",
+    'https://cdn.jsdelivr.net',
+    'https://unpkg.com',
+    'https://cdnjs.cloudflare.com',
+  ].join(' ');
+
+  const styleSrc = [
+    "'self'",
+    "'unsafe-inline'",
+    'https://cdn.jsdelivr.net',
+    'https://unpkg.com',
+    'https://cdnjs.cloudflare.com',
+    'https://fonts.googleapis.com',
+  ].join(' ');
+
+  return [
+    "default-src 'self'",
+    `script-src ${scriptSrc}`,
+    `style-src ${styleSrc}`,
+    "img-src 'self' data: https:",
+    "font-src 'self' data: https://fonts.gstatic.com",
+    "connect-src 'self' https:",
+    "frame-src 'self' https://www.slideshare.net https://player.bilibili.com",
+    "media-src 'self' https:",
+    "object-src 'none'",
+    "base-uri 'self'",
+    "form-action 'self'",
+    "frame-ancestors 'self'",
+  ].join('; ');
+}
+
+hexo.extend.filter.register('after_render:html', function (html) {
+  if (typeof html !== 'string' || !html) return html;
+  if (/http-equiv=["']Content-Security-Policy["']/i.test(html)) return html;  // 幂等
+  if (!/<head[^>]*>/i.test(html)) return html;                                // 非完整页面跳过
+
+  const tags = [];
+  const csp = buildCsp();
+  if (csp) {
+    tags.push(`<meta http-equiv="Content-Security-Policy" content="${csp}">`);
+  }
+  if (SECURITY_HEADERS.referrer !== false) {
+    tags.push('<meta name="referrer" content="strict-origin-when-cross-origin">');
+  }
+  if (!tags.length) return html;
+
+  // CSP meta 必须尽早出现，否则之前加载的资源不受约束 → 插在 <head> 之后
+  return html.replace(/<head[^>]*>/i, (m) => `${m}\n  ${tags.join('\n  ')}`);
+});
+
+/**
+ * after_generate —— 补齐非渲染链路产出的 HTML 的 CSP。
+ *
+ * 背景（2026-10-27 实测）：source/_slides 由幻灯片插件直接写盘成
+ * public/slide/下的 index.html，不经过 after_render:html，导致这些页面
+ * 完全没有 CSP meta（浏览器端「0 违规」实为「无策略可违反」），形成加固盲区。
+ * 此处在产物落地后统一补注入，幂等：已含 CSP 的页面跳过。
+ */
+hexo.extend.filter.register('after_generate', function () {
+  const csp = buildCsp();
+  if (!csp && SECURITY_HEADERS.referrer === false) return;
+
+  const targets = [];
+  (function walk(dir) {
+    let entries;
+    try {
+      entries = fs.readdirSync(dir, { withFileTypes: true });
+    } catch (e) {
+      return; // slide 目录不存在时静默跳过
+    }
+    for (const ent of entries) {
+      const p = path.join(dir, ent.name);
+      if (ent.isDirectory()) walk(p);
+      else if (ent.isFile() && ent.name === 'index.html') targets.push(p);
+    }
+  })(path.join(hexo.public_dir, 'slide'));
+
+  let patched = 0;
+  for (const fp of targets) {
+    let html;
+    try {
+      html = fs.readFileSync(fp, 'utf8');
+    } catch (e) {
+      continue;
+    }
+    if (/http-equiv=["']Content-Security-Policy["']/i.test(html)) continue;
+    if (!/<head[^>]*>/i.test(html)) continue;
+    const tags = [];
+    if (csp) tags.push(`<meta http-equiv="Content-Security-Policy" content="${csp}">`);
+    if (SECURITY_HEADERS.referrer !== false) {
+      tags.push('<meta name="referrer" content="strict-origin-when-cross-origin">');
+    }
+    html = html.replace(/<head[^>]*>/i, (m) => `${m}\n  ${tags.join('\n  ')}`);
+    try {
+      fs.writeFileSync(fp, html);
+      patched += 1;
+    } catch (e) {
+      hexo.log.warn('[security] 写入失败 ' + fp + ': ' + e.message);
+    }
+  }
+  if (patched) {
+    hexo.log.info(`[security] 已为 ${patched} 个 slide 页面补注入 CSP/referrer`);
+  }
+});

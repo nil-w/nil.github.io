@@ -48,3 +48,15 @@ gitalk-init-cache.json
 gitalk-init-error.json
 gitalk-init-success.json
 gitalk-init-error.json
+
+# ── 安全修复 2026-10-27 ────────────────────────────────
+# hexo 数据库：含全部文章明文正文 + 加密文章 front-matter 密码，
+# 随仓库公开等于加密失效（db.json 曾入库，需 git rm --cached 后生效）
+db.json
+# 本地密钥文件（GITALK_CLIENT_SECRET / BLOG_ENCRYPT_PASSWORD 等）
+.env
+.env.local
+.env.*.local
+# 部署缓存与工具残留
+.deploy_git
+.workbuddy/

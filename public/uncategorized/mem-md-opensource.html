@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https:; frame-src 'self' https://www.slideshare.net https://player.bilibili.com; media-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta charset="utf-8">
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="dns-prefetch" href="https://github.com" />
   <link rel="dns-prefetch" href="https://unpkg.com" />
   
-  <title>mem-md 开源：一个反向量库的 Agent 记忆系统 | sudo rm -rf /*</title>
+  <title>mem-md 开源：一个反向量库的 Agent 记忆系统 | Nil W</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
@@ -46,52 +48,61 @@
   <meta name="description" content="从 5.2 万行 MemPalace 到 0.1.0 mem-md，把记忆系统退回到第一性原理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="mem-md 开源：一个反向量库的 Agent 记忆系统">
-<meta property="og:url" content="https://sudo.rm-rf.ink/uncategorized/mem-md-opensource.html">
-<meta property="og:site_name" content="sudo rm -rf &#x2F;*">
+<meta property="og:url" content="https://nilw.rm-rf.ink/uncategorized/mem-md-opensource.html">
+<meta property="og:site_name" content="Nil W">
 <meta property="og:description" content="从 5.2 万行 MemPalace 到 0.1.0 mem-md，把记忆系统退回到第一性原理">
+  <meta property="og:image" content="https://nilw.rm-rf.ink/images/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2026-06-02T14:30:00.000Z">
-<meta property="article:modified_time" content="2026-06-02T15:04:13.800Z">
-<meta property="article:author" content="Yq Woe">
+<meta property="article:modified_time" content="2026-10-27T01:49:00.625Z">
+<meta property="article:author" content="Nil W">
 <meta property="article:tag" content="hermes">
 <meta property="article:tag" content="memory">
 <meta property="article:tag" content="ai">
 <meta property="article:tag" content="architecture">
 <meta property="article:tag" content="opensource">
 <meta name="twitter:card" content="summary">  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@yqwoe" />
-  <meta name="twitter:creator" content="@yqwoe" />
   
-  <link rel="canonical" href="https://sudo.rm-rf.inkuncategorized/mem-md-opensource.html" />
+  <meta name="twitter:site" content="@nil-w" />
+  <meta name="twitter:creator" content="@nil-w" />
+  
+  <link rel="canonical" href="https://nilw.rm-rf.ink/uncategorized/mem-md-opensource.html" />
   
   
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "Article",
+    "@type": "BlogPosting",
     "headline": "mem-md 开源：一个反向量库的 Agent 记忆系统",
     "datePublished": "2026-06-02T14:30:00.000Z",
-    "dateModified": "2026-06-02T15:04:13.800Z",
+    "dateModified": "2026-10-27T01:49:00.625Z",
     "author": {
       "@type": "Person",
-      "name": "Yq Woe",
-      "url": "https://sudo.rm-rf.ink"
+      "name": "Nil W",
+      "url": "https://nilw.rm-rf.ink"
     },
     "publisher": {
       "@type": "Organization",
-      "name": "sudo rm -rf /*",
-      "url": "https://sudo.rm-rf.ink"
+      "name": "Nil W",
+      "url": "https://nilw.rm-rf.ink"
     },
     "description": "从 5.2 万行 MemPalace 到 0.1.0 mem-md，把记忆系统退回到第一性原理",
-    "url": "https://sudo.rm-rf.inkuncategorized/mem-md-opensource.html"
+    "url": "https://nilw.rm-rf.ink/uncategorized/mem-md-opensource.html",
+    "image": "https://nilw.rm-rf.ink/images/og-default.png",
+    "inLanguage": "zh-CN",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": "https://nilw.rm-rf.ink/uncategorized/mem-md-opensource.html"
+    }
   }
   </script>
   
   
 <link rel="stylesheet" href="/css/reveal.css">
 
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="sudo rm -rf /*" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Nil W" type="application/atom+xml">
 </head>
 
 
@@ -124,13 +135,13 @@
 <blockquote>
 <p>Markdown is all you need.</p>
 </blockquote>
-<hr>
+<hr />
 <h2 id="序从-mempalace-到-mem-md"><a class="markdownIt-Anchor" href="#序从-mempalace-到-mem-md"></a> 序：从 MemPalace 到 mem-md</h2>
 <p>上个月写了《改造 Hermes Memory Provider 的曲折历程》，把记忆系统的演化讲到了 MFL（Memory Filtration Layer）阶段。那篇文章结尾埋了一个伏笔：mempalace 里有 5.2 万行历史观测数据，要怎么迁移到 MFL？</p>
 <p>这篇文章就是这个伏笔的答案：<strong>不迁移到 MFL，直接退回到更底层的 mem-md</strong>。</p>
 <p><code>mem-md</code> 今天 0.1.0 开源。代码在 <a target="_blank" rel="noopener" href="https://gitlab.ha-guoli.cn/yqwoe/mem-md">gitlab.ha-guoli.cn/yqwoe/mem-md</a>，171 个测试全过，P0/P1 稳定性全部落地。</p>
 <p>但这不是一个&quot;我做了一个项目&quot;的炫耀贴。这是一个<strong>关于记忆本质的回归</strong>。</p>
-<hr>
+<hr />
 <h2 id="核心问题记忆到底是什么"><a class="markdownIt-Anchor" href="#核心问题记忆到底是什么"></a> 核心问题：记忆到底是什么？</h2>
 <p>先把问题拆到不能再拆。</p>
 <p><strong>公理 A</strong>：记忆是「在未来的某个时间点，能被检索出来辅助决策的文本」。</p>
@@ -151,7 +162,7 @@
 </ol>
 <p>mem-md 的选择是：<strong>用 LLM 做语义判断，用 Markdown 文件做存储</strong>。</p>
 <p>不压缩。<strong>可读</strong>。<strong>可审计</strong>。<strong><code>cp -r</code> 就能迁移</strong>。</p>
-<hr>
+<hr />
 <h2 id="架构"><a class="markdownIt-Anchor" href="#架构"></a> 架构</h2>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">~/.mem-md/</span><br><span class="line">├── personal/</span><br><span class="line">│   ├── MEMORY.md</span><br><span class="line">│   ├── &#123;user_id&#125;/</span><br><span class="line">│   │   ├── user/         # 用户画像</span><br><span class="line">│   │   ├── feedback/     # 工作方式</span><br><span class="line">│   │   ├── project/      # 项目上下文</span><br><span class="line">│   │   └── reference/    # 外部引用</span><br><span class="line">├── project/&lt;path&gt;/</span><br><span class="line">└── team/&lt;owner&gt;/&lt;repo&gt;/</span><br></pre></td></tr></table></figure>
 <p>四条规则，没有第六条：</p>
@@ -182,7 +193,7 @@
 </tbody>
 </table>
 <p>闭集。LLM 不需要分类。</p>
-<hr>
+<hr />
 <h2 id="三个反直觉的设计"><a class="markdownIt-Anchor" href="#三个反直觉的设计"></a> 三个反直觉的设计</h2>
 <h3 id="1-不用向量库"><a class="markdownIt-Anchor" href="#1-不用向量库"></a> 1. 不用向量库</h3>
 <table>
@@ -242,7 +253,7 @@
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;root&quot;</span><span class="punctuation">:</span> <span class="string">&quot;/home/nil/.mem-md/personal/feishu:oc_xxx&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;files&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;/path/to/memory1.md&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span></span><br><span class="line">      <span class="attr">&quot;mtime&quot;</span><span class="punctuation">:</span> <span class="number">1748934567.89</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;size&quot;</span><span class="punctuation">:</span> <span class="number">1234</span><span class="punctuation">,</span></span><br><span class="line">      <span class="attr">&quot;frontmatter&quot;</span><span class="punctuation">:</span> <span class="punctuation">&#123;</span><span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;...&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;...&quot;</span><span class="punctuation">,</span> <span class="attr">&quot;type&quot;</span><span class="punctuation">:</span> <span class="string">&quot;project&quot;</span><span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">&#125;</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
 <p>下次扫描时：mtime + size 都没变 → <strong>直接用缓存的 frontmatter，不读盘</strong>。变了才重新读。</p>
 <p>5 秒内存 TTL 兜底跨进程同步，<strong>写盘后通过 <code>fire_invalidation()</code> 全局事件立即失效</strong>。</p>
-<hr>
+<hr />
 <h2 id="稳定性p0-p1-共-8-项机制"><a class="markdownIt-Anchor" href="#稳定性p0-p1-共-8-项机制"></a> 稳定性：P0 + P1 共 8 项机制</h2>
 <p>0.1.0 不是 demo。<strong>该爆的雷全拆了</strong>：</p>
 <h3 id="p0必落地"><a class="markdownIt-Anchor" href="#p0必落地"></a> P0（必落地）</h3>
@@ -296,11 +307,11 @@
 </tbody>
 </table>
 <p>写盘后的 cache 失效这个最微妙。<code>MemMdProvider._init_modules()</code> 注册 scanner 的 <code>invalidate_memory_cache</code> 为全局监听器，<strong><code>MemoryStorage.write_memory</code> / <code>update_memory</code> / <code>delete_memory</code> 末尾自动 fire</strong>。端到端：write → scan 立即看到新文件，不再受 5s 窗口期限制。</p>
-<hr>
+<hr />
 <h2 id="公开-cli"><a class="markdownIt-Anchor" href="#公开-cli"></a> 公开 CLI</h2>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 安装</span></span><br><span class="line">pip install mem-md</span><br><span class="line"></span><br><span class="line"><span class="comment"># 导入 Hermes sessions（飞书 / 微信 / 任意平台）</span></span><br><span class="line"><span class="built_in">export</span> MEM_MD_USER_ID=feishu:oc_xxxxxxxx</span><br><span class="line">mem-md import-sessions feishu</span><br><span class="line"></span><br><span class="line"><span class="comment"># 查询</span></span><br><span class="line">mem-md recall <span class="string">&quot;吴的商业思维&quot;</span> --budget high</span><br><span class="line"></span><br><span class="line"><span class="comment"># 手动写入</span></span><br><span class="line">mem-md retain <span class="string">&quot;用户偏好极简界面&quot;</span> feedback --name ui_preference</span><br><span class="line"></span><br><span class="line"><span class="comment"># auto-dream</span></span><br><span class="line">mem-md consolidate</span><br><span class="line"></span><br><span class="line"><span class="comment"># 归档清理（dry-run 默认）</span></span><br><span class="line">mem-md archive-prune --apply</span><br></pre></td></tr></table></figure>
 <p><code>user_id</code> 三级回退：<code>--user-id</code> CLI 参数 &gt; <code>MEM_MD_USER_ID</code> 环境变量 &gt; <code>PLATFORM_USER_ID_MAP</code> 配置。</p>
-<hr>
+<hr />
 <h2 id="scripts-分离原则"><a class="markdownIt-Anchor" href="#scripts-分离原则"></a> scripts 分离原则</h2>
 <p>仓库里的 <code>scripts/</code> 目录分两类：</p>
 <ul class="lvl-0">
@@ -312,12 +323,12 @@
 </li>
 </ul>
 <p>个人脚本里残留的个人 user_id / API key 全部隔离，<strong>不进入 pip 包</strong>。<code>pyproject.toml</code> 的 authors 写的是 <code>nil &lt;yqwoe@live.cn&gt;</code>，没有联系方式泄露，没有凭据泄露。</p>
-<hr>
+<hr />
 <h2 id="memmdproviderhermes-集成"><a class="markdownIt-Anchor" href="#memmdproviderhermes-集成"></a> MemMdProvider：Hermes 集成</h2>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> mem_md <span class="keyword">import</span> MemMdProvider</span><br><span class="line"></span><br><span class="line">provider = MemMdProvider()</span><br><span class="line">provider.initialize(</span><br><span class="line">    session_id=<span class="string">&quot;20260516_xxx&quot;</span>,</span><br><span class="line">    platform=<span class="string">&quot;feishu&quot;</span>,</span><br><span class="line">    user_id=<span class="string">&quot;feishu:oc_xxx&quot;</span>,</span><br><span class="line">    hermes_home=<span class="string">&quot;~/.hermes&quot;</span>,</span><br><span class="line">)</span><br><span class="line">provider.inject_ctx_llm(ctx.llm)  <span class="comment"># 用 Hermes 的主模型</span></span><br></pre></td></tr></table></figure>
 <p><code>MemMdProvider</code> 实现 <code>MemoryProvider</code> ABC——和 MemPalace 完全相同的接口签名。<strong>底层从 ChromaDB + embedding 替换为文件系统 + LLM 决策</strong>。</p>
 <p>这是关键：上层代码（content extraction、session import、Hermes agent loop）<strong>完全不需要改</strong>。换 provider 一行配置搞定。</p>
-<hr>
+<hr />
 <h2 id="路线图"><a class="markdownIt-Anchor" href="#路线图"></a> 路线图</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
@@ -334,7 +345,7 @@
 </li>
 </ul>
 <p>UI 不在核心包里——这是哲学选择。核心包的哲学是「<strong>Markdown is all you need</strong>」。UI 是另一回事。Obsidian 直接打开 <code>~/.mem-md/personal/&#123;user_id&#125;/</code> 就是现成的浏览/编辑/搜索 UI。为什么要重复造轮子？</p>
-<hr>
+<hr />
 <h2 id="写给想用的人"><a class="markdownIt-Anchor" href="#写给想用的人"></a> 写给想用的人</h2>
 <p><strong>如果你在用 ChromaDB / FAISS / Qdrant 做 Agent 记忆</strong>，请先问自己一个问题：</p>
 <blockquote>
@@ -345,18 +356,18 @@
 <p><strong>如果你只是想给 agent 加个跨会话记忆</strong>，最简路径：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">from</span> mem_md <span class="keyword">import</span> MemMdProvider</span><br><span class="line">provider = MemMdProvider()</span><br><span class="line">provider.initialize(session_id=<span class="string">&quot;...&quot;</span>, platform=<span class="string">&quot;feishu&quot;</span>, user_id=<span class="string">&quot;feishu:oc_xxx&quot;</span>)</span><br><span class="line"><span class="comment"># 然后在 agent loop 里调 provider.recall(...) 和 provider.retain(...)</span></span><br></pre></td></tr></table></figure>
 <p>完。</p>
-<hr>
+<hr />
 <h2 id="一句话总结"><a class="markdownIt-Anchor" href="#一句话总结"></a> 一句话总结</h2>
 <blockquote>
 <p><strong>记忆是文本，文本存在文件里，按需读取。</strong></p>
 <p>任何把文本压成向量的方案，都在做<strong>不可逆的信息损失</strong>——除非你能证明这种损失对你的任务没有影响。</p>
 <p>如果你不能证明——试试 mem-md。</p>
 </blockquote>
-<hr>
-<p><strong>项目地址</strong>：<a target="_blank" rel="noopener" href="https://gitlab.ha-guoli.cn/yqwoe/mem-md">gitlab.ha-guoli.cn/yqwoe/mem-md</a><br>
-<strong>许可</strong>：MIT<br>
-<strong>版本</strong>：0.1.0<br>
-<strong>测试</strong>：171 passed<br>
+<hr />
+<p><strong>项目地址</strong>：<a target="_blank" rel="noopener" href="https://gitlab.ha-guoli.cn/yqwoe/mem-md">gitlab.ha-guoli.cn/yqwoe/mem-md</a><br />
+<strong>许可</strong>：MIT<br />
+<strong>版本</strong>：0.1.0<br />
+<strong>测试</strong>：171 passed<br />
 <strong>作者</strong>：nil <a href="mailto:yqwoe@live.cn">yqwoe@live.cn</a></p>
 
       
@@ -405,30 +416,6 @@
 
 
   
-    
-
-<div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-
-<script type="text/javascript">
-if(true){
-	var gitalk = new Gitalk({
-  	clientID: 'd99a4bdc344cff33585d',
-  	clientSecret: '4819ca8aa103e688f259b5ed6b3cd3fffdf0f96e',
-  	repo: 'yqwoe.github.io',
-  	owner: 'yqwoe',
-  	admin: ['yqwoe'],
-    perPage: 20,
-  	id: 'mem-md-opensource',
-  	distractionFreeMode: 'true',
-    pagerDirection: 'last'
-})
-gitalk.render('gitalk-container')
-}
-</script>
-
-    
 
 
 
@@ -437,7 +424,7 @@ gitalk.render('gitalk-container')
         <header id="header">
   <nav>
     <div class="header-nav-links">
-      <a class="nav-link-first" href="/">sudo rm -rf /*</a>
+      <a class="nav-link-first" href="/">Nil W</a>
       <span class="nav-spacer"></span>
       
       
@@ -475,7 +462,7 @@ gitalk.render('gitalk-container')
 </div>
 
 
-<span class="post-count">42.1k</span>
+<span class="post-count">48.3k</span>
 
 <script type="text/javascript">
 
@@ -553,39 +540,54 @@ gitalk.render('gitalk-container')
 
 
 <script type="module">
-  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@9.4.3/+esm";
+  // mermaid 9.4.3 → 12.2.0（9.x 有 7 个已知 CVE，且 9 已停止维护）
+  // 注意：v10 起废弃 mermaid.init()，改用 mermaid.run()
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@12.2.0/+esm";
   let theme = localStorage.getItem("s");
   mermaid.initialize({
       startOnLoad: true,
-      logLevel: 'debug',
+      logLevel: 'error',
+      securityLevel: 'strict',
       theme: theme === '2' ? 'forest' : 'dark',
     });
   let mode = document.getElementById("dark-mode");
    let arrayGraphs =  [];
   let nodes = document.getElementsByClassName('mermaid')
   for(let n of nodes){
-    console.log(n.innerHTML)
     arrayGraphs.push(n.innerHTML);
   }
 
-  mode.addEventListener("click",async ()=>{
+  if (mode) mode.addEventListener("click",async ()=>{
     theme = localStorage.getItem("s");
     mermaid.initialize({
       startOnLoad: true,
-      logLevel: 'debug',
+      logLevel: 'error',
+      securityLevel: 'strict',
       theme: theme === '2' ? 'forest' : 'dark',
     });
   for(let i = 0;i< nodes.length;i++){
       let n =  nodes[i]
-      // console.log(n.innerHTML)
       let id = `mermaid-${i}`
       n.removeAttribute("data-processed");
       n.setAttribute("id",`mermaid-${i}`)
       n.replaceChildren();
       n.innerHTML = arrayGraphs[i]
-      mermaid.init(undefined,n)
+      mermaid.run({ nodes: [n] })
     }
   },false);
+
+  // 加密文章解密后，hexo-blog-encrypt 把明文注入 DOM，
+  // 此时新出现的 .mermaid 不在初始 nodes 快照里 → 需补渲染一次。
+  // 注意：该插件用 window.dispatchEvent(new CustomEvent('hexo-blog-decrypt'))
+  // 派发（实测 v4.1.0），故必须监听 window；document 上冗余保留以兼容旧版。
+  const rerenderMermaid = () => {
+    const pending = Array.from(document.querySelectorAll('.mermaid:not([data-processed])'));
+    if (pending.length) {
+      mermaid.run({ nodes: pending }).catch(() => {});
+    }
+  };
+  window.addEventListener('hexo-blog-decrypt', rerenderMermaid);
+  document.addEventListener('hexo-blog-decrypt', rerenderMermaid);
 
 </script>
 
@@ -593,8 +595,9 @@ gitalk.render('gitalk-container')
 
 <script src="/js/jquery.min.js" defer ></script>
 <script src="/js/jquery.qrcode.min.js" defer ></script>
-<script src="https://unpkg.com/reveal.js@5.0.4/dist/reveal.js" defer></script>
-<script src="https://unpkg.com/reveal.js-mermaid-plugin@2.1.0/plugin/mermaid/mermaid.js" defer></script>
+
+<script src="https://unpkg.com/reveal.js@5.2.1/dist/reveal.js" onerror="this.onerror=null;this.src='/js/reveal.js/js/reveal.js'" defer></script>
+<script src="https://unpkg.com/reveal.js-mermaid-plugin@11.15.0/plugin/mermaid/mermaid.js" onerror="this.onerror=null;this.src='/js/reveal.js-mermaid-plugin/plugin/mermaid/mermaid.js'" defer></script>
 
 <script type="module">
   import qrcodeInit from '/js/qrcode.js'
@@ -742,6 +745,8 @@ setIntervalPrecision(loopHover, 250)
 </script>
 
   
-  </body>
+  
+  <div id="beian-info" style="text-align:center;font-size:12px;line-height:1.9;color:#808080;padding:14px 12px 22px;opacity:.85;"><a href="https://beian.miit.gov.cn" target="_blank" rel="noopener nofollow nofollow">豫ICP备2023032045号-1</a></div>
+</body>
 
 </html>

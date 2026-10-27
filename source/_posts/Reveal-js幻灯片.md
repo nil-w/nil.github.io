@@ -3,7 +3,7 @@ title: Reveal.js使用
 toc: true
 abbrlink: 6befbd07
 date: 2024-01-22 17:55:12
-password:
+categories:
   - 学习
 tags:
   - reveal.js

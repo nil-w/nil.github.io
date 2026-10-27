@@ -1,0 +1,39 @@
+// Blockquote with all children centered.
+
+
+.blockquote-center {
+    position: relative;
+    padding: 10px 15px 10px 60px;
+    box-sizing: border-box;
+    font-style: italic;
+    background: #f5f5f5;
+    color: var(--text-color);
+    border-left: 4px solid ;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.14);
+}
+
+.blockquote-center:before{
+    display: inline-block;
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    content: "\f10d";
+    font-family: FontAwesome;
+    color: var(--text-color);
+    font-size: 30px;
+    line-height: 1;
+    font-weight: 900;
+}
+
+.blockquote-center p {
+    padding: 0;
+    margin: 7px 0;
+    line-height: 1.7;
+}
+
+.blockquote-center cite {
+    display: block;
+    text-align: right;
+    color: #888888;
+    font-size: 0.9em;
+}

@@ -1,22 +1,36 @@
-
-
+<%
+/**
+ * gitalk.ejs — 评论区
+ *
+ * 安全约束（2026-10-27）：
+ *   1. ClientSecret 不再来自主题配置明文，而是 scripts/security-config.js
+ *      从环境变量 GITALK_CLIENT_SECRET 注入；为空则整块不渲染（fail-closed）。
+ *   2. 评论库版本锁定，不用浮动 tag（gitalk@1 → gitalk@1.8.0）。
+ *   3. secret 缺失时连 js/css 都不加载，避免无谓的第三方请求。
+ */
+%><%
+  const _g = theme.gitalk || {};
+  const _gitalkSecret = (_g.ClientSecret || '').trim();
+  const _gitalkOn = !!_g.enable && !!_g.ClientID && !!_gitalkSecret;
+%><% if (_gitalkOn){ %>
 <div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1.8.0/dist/gitalk.min.js" defer></script>
 <script type="text/javascript">
-if(<%=theme.gitalk.enable%>){
-	var gitalk = new Gitalk({
-  	clientID: '<%=theme.gitalk.ClientID%>',
-  	clientSecret: '<%=theme.gitalk.ClientSecret%>',
-  	repo: '<%=theme.gitalk.repo%>',
-  	owner: '<%=theme.gitalk.githubID%>',
-  	admin: ['<%=theme.gitalk.adminUser%>'],
+window.addEventListener('DOMContentLoaded', function () {
+  if (typeof Gitalk === 'undefined') return;   // 库加载失败则不初始化
+  var gitalk = new Gitalk({
+    clientID: '<%- _g.ClientID %>',
+    clientSecret: '<%- _gitalkSecret %>',
+    repo: '<%- _g.repo %>',
+    owner: '<%- _g.githubID %>',
+    admin: ['<%- _g.adminUser %>'],
     perPage: 20,
-  	id: '<%= page.abbrlink %>',
-  	distractionFreeMode: '<%=theme.gitalk.distractionFreeMode%>',
+    id: '<%- page.abbrlink || page.slug %>',
+    distractionFreeMode: <%- _g.distractionFreeMode ? 'true' : 'false' %>,
     pagerDirection: 'last'
-})
-gitalk.render('gitalk-container')
-}
+  });
+  gitalk.render('gitalk-container');
+});
 </script>
+<% } %>

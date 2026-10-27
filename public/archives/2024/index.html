@@ -1,13 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-CN">
 <head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https:; frame-src 'self' https://www.slideshare.net https://player.bilibili.com; media-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta charset="utf-8">
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="dns-prefetch" href="https://github.com" />
   <link rel="dns-prefetch" href="https://unpkg.com" />
   
-  <title>文章: 2024 | sudo rm -rf /*</title>
+  <title>文章: 2024 | Nil W</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
@@ -45,31 +47,39 @@
   
   <meta name="description" content="技术｜思考｜生活。一个独立开发者的持续输出频道。">
 <meta property="og:type" content="website">
-<meta property="og:title" content="sudo rm -rf &#x2F;*">
-<meta property="og:url" content="https://sudo.rm-rf.ink/archives/2024/index.html">
-<meta property="og:site_name" content="sudo rm -rf &#x2F;*">
+<meta property="og:title" content="Nil W">
+<meta property="og:url" content="https://nilw.rm-rf.ink/archives/2024/index.html">
+<meta property="og:site_name" content="Nil W">
 <meta property="og:description" content="技术｜思考｜生活。一个独立开发者的持续输出频道。">
+  <meta property="og:image" content="https://nilw.rm-rf.ink/images/og-default.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:author" content="Yq Woe">
+<meta property="article:author" content="Nil W">
 <meta property="article:tag" content="技术博客,独立开发,编程,效率工具,AI,生命万岁">
 <meta name="twitter:card" content="summary">  
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@yqwoe" />
-  <meta name="twitter:creator" content="@yqwoe" />
   
-  <link rel="canonical" href="https://sudo.rm-rf.inkarchives/2024/index.html" />
+  <meta name="twitter:site" content="@nil-w" />
+  <meta name="twitter:creator" content="@nil-w" />
+  
+  <link rel="canonical" href="https://nilw.rm-rf.ink/archives/2024/index.html" />
   
   
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    "name": "sudo rm -rf /*",
+    "name": "Nil W",
     "description": "技术｜思考｜生活。一个独立开发者的持续输出频道。",
-    "url": "https://sudo.rm-rf.ink",
+    "url": "https://nilw.rm-rf.ink/",
     "author": {
       "@type": "Person",
-      "name": "Yq Woe"
+      "name": "Nil W"
+    },
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://nilw.rm-rf.ink/search/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
     }
   }
   </script>
@@ -77,7 +87,7 @@
   
 <link rel="stylesheet" href="/css/reveal.css">
 
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="sudo rm -rf /*" type="application/atom+xml">
+<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Nil W" type="application/atom+xml">
 </head>
 
 
@@ -109,10 +119,10 @@
     <div class="archive-article-header  ">
       
   
-    <h3 class="archive-article-title" itemprop="name">
+    <h1 class="archive-article-title" itemprop="name">
       <a href="/%E5%B7%A5%E4%BD%9C/8f0491a1.html"><span>redis主从-哨兵模式 &nbsp;&nbsp;🔐</span></a>
       
-    </h3>
+    </h1>
   
 
 
@@ -576,7 +586,7 @@
         <header id="header">
   <nav>
     <div class="header-nav-links">
-      <a class="nav-link-first" href="/">sudo rm -rf /*</a>
+      <a class="nav-link-first" href="/">Nil W</a>
       <span class="nav-spacer"></span>
       
       
@@ -621,7 +631,7 @@
 </div>
 
 
-<span class="post-count">42.1k</span>
+<span class="post-count">48.3k</span>
 
 <script type="text/javascript">
 
@@ -699,39 +709,54 @@
 
 
 <script type="module">
-  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@9.4.3/+esm";
+  // mermaid 9.4.3 → 12.2.0（9.x 有 7 个已知 CVE，且 9 已停止维护）
+  // 注意：v10 起废弃 mermaid.init()，改用 mermaid.run()
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@12.2.0/+esm";
   let theme = localStorage.getItem("s");
   mermaid.initialize({
       startOnLoad: true,
-      logLevel: 'debug',
+      logLevel: 'error',
+      securityLevel: 'strict',
       theme: theme === '2' ? 'forest' : 'dark',
     });
   let mode = document.getElementById("dark-mode");
    let arrayGraphs =  [];
   let nodes = document.getElementsByClassName('mermaid')
   for(let n of nodes){
-    console.log(n.innerHTML)
     arrayGraphs.push(n.innerHTML);
   }
 
-  mode.addEventListener("click",async ()=>{
+  if (mode) mode.addEventListener("click",async ()=>{
     theme = localStorage.getItem("s");
     mermaid.initialize({
       startOnLoad: true,
-      logLevel: 'debug',
+      logLevel: 'error',
+      securityLevel: 'strict',
       theme: theme === '2' ? 'forest' : 'dark',
     });
   for(let i = 0;i< nodes.length;i++){
       let n =  nodes[i]
-      // console.log(n.innerHTML)
       let id = `mermaid-${i}`
       n.removeAttribute("data-processed");
       n.setAttribute("id",`mermaid-${i}`)
       n.replaceChildren();
       n.innerHTML = arrayGraphs[i]
-      mermaid.init(undefined,n)
+      mermaid.run({ nodes: [n] })
     }
   },false);
+
+  // 加密文章解密后，hexo-blog-encrypt 把明文注入 DOM，
+  // 此时新出现的 .mermaid 不在初始 nodes 快照里 → 需补渲染一次。
+  // 注意：该插件用 window.dispatchEvent(new CustomEvent('hexo-blog-decrypt'))
+  // 派发（实测 v4.1.0），故必须监听 window；document 上冗余保留以兼容旧版。
+  const rerenderMermaid = () => {
+    const pending = Array.from(document.querySelectorAll('.mermaid:not([data-processed])'));
+    if (pending.length) {
+      mermaid.run({ nodes: pending }).catch(() => {});
+    }
+  };
+  window.addEventListener('hexo-blog-decrypt', rerenderMermaid);
+  document.addEventListener('hexo-blog-decrypt', rerenderMermaid);
 
 </script>
 
@@ -739,8 +764,9 @@
 
 <script src="/js/jquery.min.js" defer ></script>
 <script src="/js/jquery.qrcode.min.js" defer ></script>
-<script src="https://unpkg.com/reveal.js@5.0.4/dist/reveal.js" defer></script>
-<script src="https://unpkg.com/reveal.js-mermaid-plugin@2.1.0/plugin/mermaid/mermaid.js" defer></script>
+
+<script src="https://unpkg.com/reveal.js@5.2.1/dist/reveal.js" onerror="this.onerror=null;this.src='/js/reveal.js/js/reveal.js'" defer></script>
+<script src="https://unpkg.com/reveal.js-mermaid-plugin@11.15.0/plugin/mermaid/mermaid.js" onerror="this.onerror=null;this.src='/js/reveal.js-mermaid-plugin/plugin/mermaid/mermaid.js'" defer></script>
 
 <script type="module">
   import qrcodeInit from '/js/qrcode.js'
@@ -888,6 +914,8 @@ setIntervalPrecision(loopHover, 250)
 </script>
 
   
-  </body>
+  
+  <div id="beian-info" style="text-align:center;font-size:12px;line-height:1.9;color:#808080;padding:14px 12px 22px;opacity:.85;"><a href="https://beian.miit.gov.cn" target="_blank" rel="noopener nofollow nofollow">豫ICP备2023032045号-1</a></div>
+</body>
 
 </html>
