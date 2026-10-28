@@ -8,5 +8,5 @@ Allow: /resources/
 Disallow: /vendors/
 Disallow: /fancybox/
 
-Sitemap: https://sudo.rm-rf.ink/sitemap.xml
-Sitemap: https://sudo.rm-rf.ink/baidusitemap.xml
+Sitemap: https://nilw.rm-rf.ink/sitemap.xml
+Sitemap: https://nilw.rm-rf.ink/baidusitemap.xml
