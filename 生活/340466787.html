@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https:; frame-src 'self' https://www.slideshare.net https://player.bilibili.com; media-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta charset="utf-8">
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
@@ -43,12 +45,12 @@
 <link rel="stylesheet" href="/css/highlight.css">
 
   
-  <meta name="description" content="title: 我们不像诗歌 tags: 少年 年轻 诗歌 abbrlink: 340466787 toc: true categories: 生活 date: 2020-03-27 15:20:12 我们不像诗歌 &emsp;--才华横溢, 我们拒绝押韵。">
+  <meta name="description" content="我们不像诗歌 &emsp;--才华横溢, 我们拒绝押韵。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="我们不像诗歌">
 <meta property="og:url" content="https://nilw.rm-rf.ink/%E7%94%9F%E6%B4%BB/340466787.html">
 <meta property="og:site_name" content="Nil W">
-<meta property="og:description" content="title: 我们不像诗歌 tags: 少年 年轻 诗歌 abbrlink: 340466787 toc: true categories: 生活 date: 2020-03-27 15:20:12 我们不像诗歌 &emsp;--才华横溢, 我们拒绝押韵。">
+<meta property="og:description" content="我们不像诗歌 &emsp;--才华横溢, 我们拒绝押韵。">
   <meta property="og:image" content="https://nilw.rm-rf.ink/images/og-default.png">
   <meta property="og:image:width" content="1200">
   <meta property="og:image:height" content="630">
@@ -84,7 +86,7 @@
       "name": "Nil W",
       "url": "https://nilw.rm-rf.ink"
     },
-    "description": "title: 我们不像诗歌 tags: 少年 年轻 诗歌 abbrlink: 340466787 toc: true categories: 生活 date: 2020-03-27 15:20:12 我们不像诗歌 &amp;emsp;--才华横溢, 我们拒绝押韵。",
+    "description": "我们不像诗歌 &amp;emsp;--才华横溢, 我们拒绝押韵。",
     "url": "https://nilw.rm-rf.ink/生活/340466787.html",
     "image": "https://nilw.rm-rf.ink/images/og-default.png",
     "inLanguage": "zh-CN",
@@ -191,30 +193,6 @@
 
 
   
-    
-
-<div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-
-<script type="text/javascript">
-if(true){
-	var gitalk = new Gitalk({
-  	clientID: 'd99a4bdc344cff33585d',
-  	clientSecret: '4819ca8aa103e688f259b5ed6b3cd3fffdf0f96e',
-  	repo: 'yqwoe.github.io',
-  	owner: 'yqwoe',
-  	admin: ['yqwoe'],
-    perPage: 20,
-  	id: '340466787',
-  	distractionFreeMode: 'true',
-    pagerDirection: 'last'
-})
-gitalk.render('gitalk-container')
-}
-</script>
-
-    
 
 
 
@@ -261,7 +239,7 @@ gitalk.render('gitalk-container')
 </div>
 
 
-<span class="post-count">46k</span>
+<span class="post-count">45k</span>
 
 <script type="text/javascript">
 
@@ -339,41 +317,54 @@ gitalk.render('gitalk-container')
 
 
 <script type="module">
-  let mermaid;
-  try { mermaid = (await import("https://cdn.jsdelivr.net/npm/mermaid@9.4.3/+esm")).default; }
-  catch (e) { console.warn("[asset-fallback] CDN failed, using local:", "/js/mermaid.js"); mermaid = (await import("/js/mermaid.js")).default; }
+  // mermaid 9.4.3 → 12.2.0（9.x 有 7 个已知 CVE，且 9 已停止维护）
+  // 注意：v10 起废弃 mermaid.init()，改用 mermaid.run()
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@12.2.0/+esm";
   let theme = localStorage.getItem("s");
   mermaid.initialize({
       startOnLoad: true,
-      logLevel: 'debug',
+      logLevel: 'error',
+      securityLevel: 'strict',
       theme: theme === '2' ? 'forest' : 'dark',
     });
   let mode = document.getElementById("dark-mode");
    let arrayGraphs =  [];
   let nodes = document.getElementsByClassName('mermaid')
   for(let n of nodes){
-    console.log(n.innerHTML)
     arrayGraphs.push(n.innerHTML);
   }
 
-  mode.addEventListener("click",async ()=>{
+  if (mode) mode.addEventListener("click",async ()=>{
     theme = localStorage.getItem("s");
     mermaid.initialize({
       startOnLoad: true,
-      logLevel: 'debug',
+      logLevel: 'error',
+      securityLevel: 'strict',
       theme: theme === '2' ? 'forest' : 'dark',
     });
   for(let i = 0;i< nodes.length;i++){
       let n =  nodes[i]
-      // console.log(n.innerHTML)
       let id = `mermaid-${i}`
       n.removeAttribute("data-processed");
       n.setAttribute("id",`mermaid-${i}`)
       n.replaceChildren();
       n.innerHTML = arrayGraphs[i]
-      mermaid.init(undefined,n)
+      mermaid.run({ nodes: [n] })
     }
   },false);
+
+  // 加密文章解密后，hexo-blog-encrypt 把明文注入 DOM，
+  // 此时新出现的 .mermaid 不在初始 nodes 快照里 → 需补渲染一次。
+  // 注意：该插件用 window.dispatchEvent(new CustomEvent('hexo-blog-decrypt'))
+  // 派发（实测 v4.1.0），故必须监听 window；document 上冗余保留以兼容旧版。
+  const rerenderMermaid = () => {
+    const pending = Array.from(document.querySelectorAll('.mermaid:not([data-processed])'));
+    if (pending.length) {
+      mermaid.run({ nodes: pending }).catch(() => {});
+    }
+  };
+  window.addEventListener('hexo-blog-decrypt', rerenderMermaid);
+  document.addEventListener('hexo-blog-decrypt', rerenderMermaid);
 
 </script>
 
@@ -381,8 +372,9 @@ gitalk.render('gitalk-container')
 
 <script src="/js/jquery.min.js" defer ></script>
 <script src="/js/jquery.qrcode.min.js" defer ></script>
-<script src="https://unpkg.com/reveal.js@5.0.4/dist/reveal.js" onerror="this.onerror=null;this.src='/js/reveal.js/js/reveal.js'" defer></script>
-<script src="https://unpkg.com/reveal.js-mermaid-plugin@2.1.0/plugin/mermaid/mermaid.js" onerror="this.onerror=null;this.src='/js/reveal.js-mermaid-plugin/plugin/mermaid/mermaid.js'" defer></script>
+
+<script src="https://unpkg.com/reveal.js@5.2.1/dist/reveal.js" onerror="this.onerror=null;this.src='/js/reveal.js/js/reveal.js'" defer></script>
+<script src="https://unpkg.com/reveal.js-mermaid-plugin@11.15.0/plugin/mermaid/mermaid.js" onerror="this.onerror=null;this.src='/js/reveal.js-mermaid-plugin/plugin/mermaid/mermaid.js'" defer></script>
 
 <script type="module">
   import qrcodeInit from '/js/qrcode.js'

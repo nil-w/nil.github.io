@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https:; frame-src 'self' https://www.slideshare.net https://player.bilibili.com; media-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta charset="utf-8">
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
@@ -212,15 +214,15 @@
     A[OpenClaw workspace] --> B{hermes claw migrate --dry-run}
     B -->|预览| C[确认文件清单]
     C --> D[执行迁移]
-    D --> E[SOUL.md<br>~/.hermes/SOUL.md]
-    D --> F[AGENTS.md<br>指定目标路径]
-    D --> G[MEMORY.md + USER.md<br>~/.hermes/memories/]
-    D --> H[openclaw.json<br>API keys 保留]
+    D --> E[SOUL.md<br/>~/.hermes/SOUL.md]
+    D --> F[AGENTS.md<br/>指定目标路径]
+    D --> G[MEMORY.md + USER.md<br/>~/.hermes/memories/]
+    D --> H[openclaw.json<br/>API keys 保留]
     E --> I[核对配置]
     F --> I
     G --> I
     H --> I
-    I --> J[接 MemPalace<br>语义记忆层]
+    I --> J[接 MemPalace<br/>语义记忆层]
     J --> K[完成]</pre>
 <h2 id="踩过的坑"><a class="markdownIt-Anchor" href="#踩过的坑"></a> 踩过的坑</h2>
 <p><strong>坑一：<a target="_blank" rel="noopener" href="http://AGENTS.md">AGENTS.md</a> 没指定路径就被跳过了。</strong> 第一次跑迁移命令，没加 <code>--workspace-target</code>，<a target="_blank" rel="noopener" href="http://AGENTS.md">AGENTS.md</a> 直接被跳过。直到发现 Agent 行为和之前不一样，才发现指令集根本没迁移过来。</p>
@@ -282,30 +284,6 @@
 
 
   
-    
-
-<div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-
-<script type="text/javascript">
-if(true){
-	var gitalk = new Gitalk({
-  	clientID: 'd99a4bdc344cff33585d',
-  	clientSecret: '4819ca8aa103e688f259b5ed6b3cd3fffdf0f96e',
-  	repo: 'yqwoe.github.io',
-  	owner: 'yqwoe',
-  	admin: ['yqwoe'],
-    perPage: 20,
-  	id: '5f9c1a2b',
-  	distractionFreeMode: 'true',
-    pagerDirection: 'last'
-})
-gitalk.render('gitalk-container')
-}
-</script>
-
-    
 
 
 
@@ -352,7 +330,7 @@ gitalk.render('gitalk-container')
 </div>
 
 
-<span class="post-count">46k</span>
+<span class="post-count">45k</span>
 
 <script type="text/javascript">
 
@@ -430,41 +408,54 @@ gitalk.render('gitalk-container')
 
 
 <script type="module">
-  let mermaid;
-  try { mermaid = (await import("https://cdn.jsdelivr.net/npm/mermaid@9.4.3/+esm")).default; }
-  catch (e) { console.warn("[asset-fallback] CDN failed, using local:", "/js/mermaid.js"); mermaid = (await import("/js/mermaid.js")).default; }
+  // mermaid 9.4.3 → 12.2.0（9.x 有 7 个已知 CVE，且 9 已停止维护）
+  // 注意：v10 起废弃 mermaid.init()，改用 mermaid.run()
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@12.2.0/+esm";
   let theme = localStorage.getItem("s");
   mermaid.initialize({
       startOnLoad: true,
-      logLevel: 'debug',
+      logLevel: 'error',
+      securityLevel: 'strict',
       theme: theme === '2' ? 'forest' : 'dark',
     });
   let mode = document.getElementById("dark-mode");
    let arrayGraphs =  [];
   let nodes = document.getElementsByClassName('mermaid')
   for(let n of nodes){
-    console.log(n.innerHTML)
     arrayGraphs.push(n.innerHTML);
   }
 
-  mode.addEventListener("click",async ()=>{
+  if (mode) mode.addEventListener("click",async ()=>{
     theme = localStorage.getItem("s");
     mermaid.initialize({
       startOnLoad: true,
-      logLevel: 'debug',
+      logLevel: 'error',
+      securityLevel: 'strict',
       theme: theme === '2' ? 'forest' : 'dark',
     });
   for(let i = 0;i< nodes.length;i++){
       let n =  nodes[i]
-      // console.log(n.innerHTML)
       let id = `mermaid-${i}`
       n.removeAttribute("data-processed");
       n.setAttribute("id",`mermaid-${i}`)
       n.replaceChildren();
       n.innerHTML = arrayGraphs[i]
-      mermaid.init(undefined,n)
+      mermaid.run({ nodes: [n] })
     }
   },false);
+
+  // 加密文章解密后，hexo-blog-encrypt 把明文注入 DOM，
+  // 此时新出现的 .mermaid 不在初始 nodes 快照里 → 需补渲染一次。
+  // 注意：该插件用 window.dispatchEvent(new CustomEvent('hexo-blog-decrypt'))
+  // 派发（实测 v4.1.0），故必须监听 window；document 上冗余保留以兼容旧版。
+  const rerenderMermaid = () => {
+    const pending = Array.from(document.querySelectorAll('.mermaid:not([data-processed])'));
+    if (pending.length) {
+      mermaid.run({ nodes: pending }).catch(() => {});
+    }
+  };
+  window.addEventListener('hexo-blog-decrypt', rerenderMermaid);
+  document.addEventListener('hexo-blog-decrypt', rerenderMermaid);
 
 </script>
 
@@ -472,8 +463,9 @@ gitalk.render('gitalk-container')
 
 <script src="/js/jquery.min.js" defer ></script>
 <script src="/js/jquery.qrcode.min.js" defer ></script>
-<script src="https://unpkg.com/reveal.js@5.0.4/dist/reveal.js" onerror="this.onerror=null;this.src='/js/reveal.js/js/reveal.js'" defer></script>
-<script src="https://unpkg.com/reveal.js-mermaid-plugin@2.1.0/plugin/mermaid/mermaid.js" onerror="this.onerror=null;this.src='/js/reveal.js-mermaid-plugin/plugin/mermaid/mermaid.js'" defer></script>
+
+<script src="https://unpkg.com/reveal.js@5.2.1/dist/reveal.js" onerror="this.onerror=null;this.src='/js/reveal.js/js/reveal.js'" defer></script>
+<script src="https://unpkg.com/reveal.js-mermaid-plugin@11.15.0/plugin/mermaid/mermaid.js" onerror="this.onerror=null;this.src='/js/reveal.js-mermaid-plugin/plugin/mermaid/mermaid.js'" defer></script>
 
 <script type="module">
   import qrcodeInit from '/js/qrcode.js'

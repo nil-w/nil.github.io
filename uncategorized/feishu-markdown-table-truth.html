@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https:; frame-src 'self' https://www.slideshare.net https://player.bilibili.com; media-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'">
+  <meta name="referrer" content="strict-origin-when-cross-origin">
   <meta charset="utf-8">
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
   <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
@@ -133,7 +135,7 @@
 <p>三个月前我做了一个判断：飞书 IM v1 API 拒收 <code>&#123;tag:&quot;table&quot;&#125;</code>，会返 230001。</p>
 <p>这判断没有依据。可能是某次旧测试留下的印象，可能是从某个 issue 抄来的，可能就是猜的。但它在我脑子里生了根，长成了一棵树——一整套「飞书发表格 = 降级到纯文本 + 中文提示」的代码就围着它长起来。</p>
 <p>直到上周看到 chapafan 那个 200 行的方案。</p>
-<hr>
+<hr />
 <h2 id="那-200-行"><a class="markdownIt-Anchor" href="#那-200-行"></a> 那 200 行</h2>
 <p><code>chapafan/Hermes-feishu-to-table</code> 的 README 写得克制：</p>
 <blockquote>
@@ -143,21 +145,21 @@
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_parse_markdown_table</span>(<span class="params">text</span>) -&gt; <span class="type">List</span>[<span class="type">Dict</span>]:</span><br><span class="line">    <span class="comment"># 把 markdown 拆成 text 段和 table 段</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_build_table_card</span>(<span class="params">headers, rows</span>) -&gt; <span class="type">Dict</span>:</span><br><span class="line">    <span class="comment"># 拼 CardKit v2 table 组件</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_build_interactive_card_with_tables</span>(<span class="params">text</span>) -&gt; <span class="type">Optional</span>[<span class="type">Dict</span>]:</span><br><span class="line">    <span class="comment"># 包成 schema 2.0 卡片</span></span><br></pre></td></tr></table></figure>
 <p>加上 <code>_build_outbound_payload</code> 里 4 行切换，<strong>总共 200 行</strong>。</p>
 <p>我盯着这 200 行看了十分钟。它和我脑子里那个「飞书拒收 table」的公理是矛盾的。两个里一定有一个是错的。</p>
-<hr>
+<hr />
 <h2 id="错的那个"><a class="markdownIt-Anchor" href="#错的那个"></a> 错的那个</h2>
 <p>移植到本地的过程很顺，但眼尖抓到一个<strong>上游隐藏 bug</strong>：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_flush_table</span>():</span><br><span class="line">    <span class="keyword">nonlocal</span> table_lines  <span class="comment"># ← chapafan 写的</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> table_lines:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    ...</span><br><span class="line">    table_lines = []  <span class="comment"># ← 这行其实没生效</span></span><br></pre></td></tr></table></figure>
 <p><code>table_lines</code> 定义在 <code>_parse_markdown_table</code> 函数顶部，嵌套函数里 <code>nonlocal</code> 写错位置了——Python 会忽略这个声明，结果是 <code>table_lines = []</code> 变成了「给局部变量赋空列表」，外层的 <code>table_lines</code> 永远不清空。<strong>第二张表格的解析会混进第一张的残留行。</strong></p>
 <p>chapafan 自己的测试可能没覆盖多表。我用 <code>table_lines.clear()</code> 替换——<code>list.clear()</code> 是 in-place 操作，不需要 <code>nonlocal</code> 也工作。</p>
 <p>顺手做了 22 个单测，全部过。然后——</p>
-<hr>
+<hr />
 <h2 id="实弹"><a class="markdownIt-Anchor" href="#实弹"></a> 实弹</h2>
 <p>跳过文档、跳过猜测，直接发：</p>
 <figure class="highlight python"><table><tr><td class="code"><pre><span class="line">content = <span class="string">&quot;&quot;&quot;## 诊断测试</span></span><br><span class="line"><span class="string">| 名称 | 数值 | 状态 |</span></span><br><span class="line"><span class="string">|---|---|---|</span></span><br><span class="line"><span class="string">| 单元 A | 42 | OK |</span></span><br><span class="line"><span class="string">| 单元 B | 99 | FAIL |</span></span><br><span class="line"><span class="string">| 单元 C | 17 | OK |</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">response = <span class="keyword">await</span> client.im.v1.message.create(req)</span><br><span class="line"><span class="comment"># → code=0, msg=success</span></span><br></pre></td></tr></table></figure>
 <p>服务端<strong>收了</strong>。message_id 拿到了。<strong>但服务端收 ≠ 客户端渲染</strong>——这个区别我吃过亏。</p>
 <p>打开手机飞书。**3 行表格真渲染成了 CardKit v2 组件。**表头加粗、列对齐、卡片有 header 装饰。</p>
 <p>那个陪了我三个月的公理是错的。</p>
-<hr>
+<hr />
 <h2 id="边界"><a class="markdownIt-Anchor" href="#边界"></a> 边界</h2>
 <p>P0 跑通不等于能投产。飞书 CardKit v2 的官方文档列了一堆限制，<strong>每个限制都对应一个会出事的真实场景</strong>：</p>
 <ul class="lvl-0">
@@ -177,19 +179,19 @@
 <p>每一个都得有守卫。加完，测试从 22 涨到 35。</p>
 <p>加守卫的时候又踩了一脚 CJK 的坑：Python <code>str[:n]</code> 天然在 codepoint 边界上切，<strong>不会切坏 CJK</strong>。我一开始还写了一段 back-off 逻辑，发现是多余的，删了。删比写更难——要承认自己想多了。</p>
 <p>嵌套表格也想了半天怎么防。最后方案是：如果 cell 里还含 <code>|</code>，整行合并成单 cell。粗暴，但飞书 CardKit v2 不支持嵌套，没优雅解。</p>
-<hr>
+<hr />
 <h2 id="200-行"><a class="markdownIt-Anchor" href="#200-行"></a> 200 行</h2>
 <p>给飞书发了 200 行的任务清单：</p>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">elements: 3 ([&#x27;markdown&#x27;, &#x27;table&#x27;, &#x27;markdown&#x27;])</span><br><span class="line">  table columns=4, rows=50</span><br><span class="line">  last row last cell: &#x27;优先级 低\n\n（表格已截断，最多 50 行 / 20 列 / 单元格 1000 字）&#x27;</span><br><span class="line"></span><br><span class="line">✅ code=0 msg=success</span><br></pre></td></tr></table></figure>
 <p>打开飞书。<strong>前 50 行清晰渲染</strong>，最后一行右下角挂着中文提示。**没崩。**用户的 200 行变成了 50 行 + 一句解释，<strong>这不是降级，是有边界的服务</strong>。</p>
-<hr>
+<hr />
 <h2 id="我学到的"><a class="markdownIt-Anchor" href="#我学到的"></a> 我学到的</h2>
 <p>最大的收获不是表格能渲染。是<strong>我脑子里那棵&quot;飞书拒收 table&quot;的树被砍了</strong>。一个错公理曾经让我写了不必要的降级代码，让用户看不到真表格，让系统放弃了它能做的事。<strong>三个月。</strong></p>
 <p>如果我没偶然点进 chapafan，那棵树可能还在。</p>
 <p>所以现在的我，每个&quot;已知限制&quot;都会在脑子里加一个标签：「这个有实弹证据吗？」没有的，就当传说对待。</p>
-<hr>
+<hr />
 <p>实弹一次，胜过翻十遍文档。这是我这个月最贵的一课。</p>
-<hr>
+<hr />
 <p><em>附录：commit <code>600db9109</code>（P0 移植）、<code>d1d1d5cc5</code>（P1 边界）。代码 200 行，测试 35 个，3 次实弹。</em></p>
 
       
@@ -238,30 +240,6 @@
 
 
   
-    
-
-<div id="gitalk-container" style="padding: 0px 30px 0px 30px;"></div>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
-  <script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
-
-<script type="text/javascript">
-if(true){
-	var gitalk = new Gitalk({
-  	clientID: 'd99a4bdc344cff33585d',
-  	clientSecret: '4819ca8aa103e688f259b5ed6b3cd3fffdf0f96e',
-  	repo: 'yqwoe.github.io',
-  	owner: 'yqwoe',
-  	admin: ['yqwoe'],
-    perPage: 20,
-  	id: 'feishu-markdown-table-truth',
-  	distractionFreeMode: 'true',
-    pagerDirection: 'last'
-})
-gitalk.render('gitalk-container')
-}
-</script>
-
-    
 
 
 
@@ -308,7 +286,7 @@ gitalk.render('gitalk-container')
 </div>
 
 
-<span class="post-count">46k</span>
+<span class="post-count">45k</span>
 
 <script type="text/javascript">
 
@@ -386,41 +364,54 @@ gitalk.render('gitalk-container')
 
 
 <script type="module">
-  let mermaid;
-  try { mermaid = (await import("https://cdn.jsdelivr.net/npm/mermaid@9.4.3/+esm")).default; }
-  catch (e) { console.warn("[asset-fallback] CDN failed, using local:", "/js/mermaid.js"); mermaid = (await import("/js/mermaid.js")).default; }
+  // mermaid 9.4.3 → 12.2.0（9.x 有 7 个已知 CVE，且 9 已停止维护）
+  // 注意：v10 起废弃 mermaid.init()，改用 mermaid.run()
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@12.2.0/+esm";
   let theme = localStorage.getItem("s");
   mermaid.initialize({
       startOnLoad: true,
-      logLevel: 'debug',
+      logLevel: 'error',
+      securityLevel: 'strict',
       theme: theme === '2' ? 'forest' : 'dark',
     });
   let mode = document.getElementById("dark-mode");
    let arrayGraphs =  [];
   let nodes = document.getElementsByClassName('mermaid')
   for(let n of nodes){
-    console.log(n.innerHTML)
     arrayGraphs.push(n.innerHTML);
   }
 
-  mode.addEventListener("click",async ()=>{
+  if (mode) mode.addEventListener("click",async ()=>{
     theme = localStorage.getItem("s");
     mermaid.initialize({
       startOnLoad: true,
-      logLevel: 'debug',
+      logLevel: 'error',
+      securityLevel: 'strict',
       theme: theme === '2' ? 'forest' : 'dark',
     });
   for(let i = 0;i< nodes.length;i++){
       let n =  nodes[i]
-      // console.log(n.innerHTML)
       let id = `mermaid-${i}`
       n.removeAttribute("data-processed");
       n.setAttribute("id",`mermaid-${i}`)
       n.replaceChildren();
       n.innerHTML = arrayGraphs[i]
-      mermaid.init(undefined,n)
+      mermaid.run({ nodes: [n] })
     }
   },false);
+
+  // 加密文章解密后，hexo-blog-encrypt 把明文注入 DOM，
+  // 此时新出现的 .mermaid 不在初始 nodes 快照里 → 需补渲染一次。
+  // 注意：该插件用 window.dispatchEvent(new CustomEvent('hexo-blog-decrypt'))
+  // 派发（实测 v4.1.0），故必须监听 window；document 上冗余保留以兼容旧版。
+  const rerenderMermaid = () => {
+    const pending = Array.from(document.querySelectorAll('.mermaid:not([data-processed])'));
+    if (pending.length) {
+      mermaid.run({ nodes: pending }).catch(() => {});
+    }
+  };
+  window.addEventListener('hexo-blog-decrypt', rerenderMermaid);
+  document.addEventListener('hexo-blog-decrypt', rerenderMermaid);
 
 </script>
 
@@ -428,8 +419,9 @@ gitalk.render('gitalk-container')
 
 <script src="/js/jquery.min.js" defer ></script>
 <script src="/js/jquery.qrcode.min.js" defer ></script>
-<script src="https://unpkg.com/reveal.js@5.0.4/dist/reveal.js" onerror="this.onerror=null;this.src='/js/reveal.js/js/reveal.js'" defer></script>
-<script src="https://unpkg.com/reveal.js-mermaid-plugin@2.1.0/plugin/mermaid/mermaid.js" onerror="this.onerror=null;this.src='/js/reveal.js-mermaid-plugin/plugin/mermaid/mermaid.js'" defer></script>
+
+<script src="https://unpkg.com/reveal.js@5.2.1/dist/reveal.js" onerror="this.onerror=null;this.src='/js/reveal.js/js/reveal.js'" defer></script>
+<script src="https://unpkg.com/reveal.js-mermaid-plugin@11.15.0/plugin/mermaid/mermaid.js" onerror="this.onerror=null;this.src='/js/reveal.js-mermaid-plugin/plugin/mermaid/mermaid.js'" defer></script>
 
 <script type="module">
   import qrcodeInit from '/js/qrcode.js'
