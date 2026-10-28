@@ -9,7 +9,7 @@
   <link rel="dns-prefetch" href="https://github.com" />
   <link rel="dns-prefetch" href="https://unpkg.com" />
   
-  <title>标签: 宇宙观 | Nil W</title>
+  <title>标签: ai | Nil W</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
@@ -48,7 +48,7 @@
   <meta name="description" content="技术｜思考｜生活。一个独立开发者的持续输出频道。">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Nil W">
-<meta property="og:url" content="https://nilw.rm-rf.ink/tags/%E5%AE%87%E5%AE%99%E8%A7%82/index.html">
+<meta property="og:url" content="https://nilw.rm-rf.ink/tags/ai/index.html">
 <meta property="og:site_name" content="Nil W">
 <meta property="og:description" content="技术｜思考｜生活。一个独立开发者的持续输出频道。">
   <meta property="og:image" content="https://nilw.rm-rf.ink/images/og-default.png">
@@ -62,7 +62,7 @@
   <meta name="twitter:site" content="@nil-w" />
   <meta name="twitter:creator" content="@nil-w" />
   
-  <link rel="canonical" href="https://nilw.rm-rf.ink/tags/宇宙观/index.html" />
+  <link rel="canonical" href="https://nilw.rm-rf.ink/tags/ai/index.html" />
   
   
   <script type="application/ld+json">
@@ -98,7 +98,7 @@
 
 <div class="list-group">
   <h3 class="list-header">
-    2 宇宙观
+    2 ai
   </h3>
   
     
@@ -110,11 +110,11 @@
           
             <div class="list-group-item">
               <div class="archive-article-date">
-                10-27 上午
+                06-02 晚上
               </div>
               <div class="archive-article-title">
-                <a href="/%E5%AE%87%E5%AE%99%E8%A7%82/4b710c6b.html" target="_self">
-                  凌晨被告警叫醒后，我发现熵增先于事故发生&nbsp;&nbsp;
+                <a href="/uncategorized/mem-md-opensource.html" target="_self">
+                  mem-md 开源：一个反向量库的 Agent 记忆系统&nbsp;&nbsp;
                 </a>
               </div>
             </div>
@@ -122,11 +122,11 @@
       
             <div class="list-group-item">
               <div class="archive-article-date">
-                10-26 上午
+                06-01 中午
               </div>
               <div class="archive-article-title">
-                <a href="/%E5%AE%87%E5%AE%99%E8%A7%82/d315c89b.html" target="_self">
-                  我下班后整理出租屋时，发现整洁会让孤独更具体&nbsp;&nbsp;
+                <a href="/uncategorized/474c79ed.html" target="_self">
+                  改造 Hermes Memory Provider 的曲折历程&nbsp;&nbsp;
                 </a>
               </div>
             </div>
@@ -185,7 +185,7 @@
 </div>
 
 
-<span class="post-count">48.3k</span>
+<span class="post-count">45.1k</span>
 
 <script type="text/javascript">
 
@@ -421,6 +421,59 @@ function loopHover(){
  * @param {function} 回调函数
  * @param {number}   延迟时间
  * @return {number}  定时器ID
+ */
+ function setIntervalPrecision(callback, delay) {
+  // 生成并记录定时器ID
+  let obj = window.interValPrecisionObj || (window.interValPrecisionObj = { num: 0 })
+  obj.num++
+  obj['n' + obj.num] = true
+  var intervalId = obj.num
+  // 开始时间
+  var startTime = +new Date()
+  // 已执行次数
+  var count = 0
+  // 延迟时间
+  delay = delay || 0
+
+
+  ;(function loop() {
+    // 定时器被清除，则终止
+    if (!obj['n' + intervalId]) return
+
+    // 满足条件执行回调
+    if (+new Date() > startTime + delay * (count + 1)) {
+      count++
+      callback(count)
+    }
+
+    window.requestAnimationFrame(loop)
+  })()
+
+  return intervalId
+}
+
+/**
+ * 清除精度定时器
+ * @param {number} 定时器ID
+ */
+function clearIntervalPrecision(intervalId) {
+  if (window.interValPrecisionObj) {
+    window.cancelAnimationFrame('n' + intervalId)
+    delete window.interValPrecisionObj['n' + intervalId]
+  }
+}
+
+setIntervalPrecision(loopHover, 250)
+
+</script>
+
+  
+  
+  <div id="beian-info" style="text-align:center;font-size:12px;line-height:1.9;color:#808080;padding:14px 12px 22px;opacity:.85;"><a href="https://beian.miit.gov.cn" target="_blank" rel="noopener nofollow nofollow">豫ICP备2023032045号-1</a></div>
+</body>
+
+</html>
+number}  定时器ID
  */
  function setIntervalPrecision(callback, delay) {
   // 生成并记录定时器ID
