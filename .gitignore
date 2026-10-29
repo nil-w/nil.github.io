@@ -58,5 +58,5 @@ db.json
 .env.local
 .env.*.local
 # 部署缓存与工具残留
-.deploy_git
+.deploy_git*
 .workbuddy/
