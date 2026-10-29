@@ -389,6 +389,108 @@ fn change(s: &mut String){
 
 >  *slice* 允许你引用集合中一段连续的元素序列，而不用引用整个集合。slice 是一种引用，所以它没有所有权。
 
+先看一个需求：写一个函数，接受由空格分隔的字符串，返回第一个单词。如果没有找到空格，整个字符串就是一个单词，要全部返回。
+
+不用 slice 时的签名：
+
+```rust
+fn first_word(s: &String) -> ?
+```
+
+参数是 `&String`，不需要所有权，这没问题。但返回值该是什么？没没有办法表示「字符串的一部分」。只能返回空格所在的字节下标：
+
+```rust
+fn first_word(s: &String) -> usize {
+    let bytes = s.as_bytes();
+
+    for (i, &item) in bytes.iter().enumerate() {
+        if item == b' ' {
+            return i;
+        }
+    }
+
+    s.len()
+}
+```
+
+`as_bytes` 把 `String` 转成字节数组，`iter` 返回迭代器，`enumerate` 把每个元素包成「下标 + 元素引用」的元组 —— 用模式解构出来，比自己算下标方便。
+
+但返回下标很别扭，调用方还得自己再切片一次。slice 直接返回「一部分」：
+
+```rust
+fn first_word(s: &str) -> &str {
+    for (i, &item) in s.as_bytes().iter().enumerate() {
+        if item == b' ' {
+            return &s[0..i];
+        }
+    }
+
+    s
+}
+```
+
+注意返回值的生命周期是**省略**的。编译器根据规则推断：
+
+1. 只有一个输入生命周期参数时（`&self` 除外），这个生命周期被赋给所有输出生命周期参数
+2. 方法有 `&self` 时，输出生命周期等于 `self` 的生命周期
+
+这里 `s: &str` 有唯一输入生命周期，所以 `-> &str` 的生命周期就是 `s` 的。
+
+字符串切片和数组切片是同一套东西：
+
+```rust
+fn main() {
+    let a = [1, 2, 3, 4, 5];
+    let slice = &a[1..3];   // 包含 a[1] 和 a[2]，不含 a[3]
+
+    println!("{:?}", slice);   // [2, 3]
+}
+```
+
+范围语法 `&a[1..3]`：
+
+- `..` 是 `0..`
+- `..3` 是 `0..3`
+- `1..` 是 `1..len`
+- `1..3` 不含右端点
+
+数组切片是编译期定长且连续存储，**越界会 panic**：
+
+```rust
+fn main() {
+    let a = [1, 2, 3, 4, 5];
+    let slice = &a[1..3];
+    println!("{:?}", slice);
+}
+```
+
+```rust
+fn main() {
+    let a = [1, 2, 3, 4, 5];
+    let slice = &a[1..6];   // panic：range end index 6 out of range for slice of length 5
+    println!("{:?}", slice);
+}
+```
+
+字符串切片的边界要落在字符边界上，否则 panic：
+
+```rust
+fn main() {
+    let s = String::from("hello");
+    let slice = &s[0..2];   // 正常
+    println!("{slice}");
+}
+```
+
+```rust
+fn main() {
+    let s = String::from("你好");
+    let slice = &s[0..1];   // panic：end byte index 1 is not a char boundary
+    println!("{slice}");
+}
+```
+
+
 
 
 
