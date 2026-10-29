@@ -268,6 +268,70 @@ body {
   display: block;
 }
 
+/* 列表页主标题（分类/标签/归档）——统一 h1 层级 */
+.list-header {
+  font-family: var(--secondary-stack);
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  margin: 0 0 1.2rem 0;
+  text-transform: none;
+}
+
+/* 首页站点介绍：给首页一个真正的 h1 + 可索引的文本内容 */
+.site-intro {
+  border-bottom: 1px solid var(--code-bg-color);
+  margin: 0 0 2rem 0;
+  padding-bottom: 1.25rem;
+}
+
+.site-intro h1 {
+  font-family: var(--title-stack);
+  font-size: 1.45rem;
+  letter-spacing: 0;
+  line-height: 1.4;
+  margin: 0 0 0.6rem 0;
+  text-transform: none;
+}
+
+.site-intro-note {
+  margin: 0.5rem 0 0.9rem 0 !important;
+  line-height: 1.8;
+}
+
+.site-intro-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.6rem;
+}
+
+.site-intro-links a {
+  border: 1px solid var(--code-bg-color);
+  border-radius: 3px;
+  font-size: 0.82rem;
+  padding: 0.2rem 0.55rem;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.site-intro-links a:hover {
+  border-color: var(--link-color);
+  color: var(--link-color);
+}
+
+.site-intro-count {
+  color: var(--secondary-color);
+  font-size: 0.72rem;
+  margin-left: 0.35rem;
+}
+
+.site-intro p {
+  color: var(--secondary-color);
+  font-size: 0.9rem;
+  line-height: 1.75;
+  margin: 0;
+}
+
 .archive-article {
   margin: 0.25em 0;
   position: relative;

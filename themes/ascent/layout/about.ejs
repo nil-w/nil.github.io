@@ -1,0 +1,14 @@
+<%# 关于页：独立模板，保证页面有唯一 h1（此前 layout: about 无对应模板，页面只有正文 h2，标题层级断裂） %>
+<article class="article article-type-page" itemprop="blogPost" itemscope>
+  <div class="article-inner">
+    <header class="article-header">
+      <h1 class="article-title" itemprop="headline"><%= page.title %></h1>
+    </header>
+    <div class="article-entry" itemprop="articleBody">
+      <% if (page.toc){ %>
+        <%- partial('_partial/post/toc') %>
+      <% } %>
+      <%- page.content %>
+    </div>
+  </div>
+</article>

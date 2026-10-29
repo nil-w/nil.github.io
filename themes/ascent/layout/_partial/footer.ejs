@@ -95,6 +95,15 @@
 </script>
 <% } %>
 
+<%
+  // 性能优化：mermaid（约 3MB CDN 包）与 reveal（约 100KB 脚本 + 主题 CSS）
+  // 只在真正用到它们的页面加载。此前二者会在全站每一页（含首页）请求。
+  var _body = String(page.content || '');
+  var needMermaid = /class=["']mermaid["']/.test(_body);
+  var needReveal = /class=["']slides["']/.test(_body);
+%>
+
+<% if (needMermaid){ %>
 <script type="module">
   // mermaid 9.4.3 → 12.2.0（9.x 有 7 个已知 CVE，且 9 已停止维护）
   // 注意：v10 起废弃 mermaid.init()，改用 mermaid.run()
@@ -146,6 +155,7 @@
   document.addEventListener('hexo-blog-decrypt', rerenderMermaid);
 
 </script>
+<% } %>
 
 <% if (theme.google_analytics.enable && theme.google_analytics.acct){ %>
 <script type="text/javascript">
@@ -170,8 +180,10 @@
 <script src="<%= theme.cdn.jquery %>" defer ></script>
 <script src="<%= theme.cdn.qrcode %>" defer ></script>
 <%# reveal 版本与本地 vendored 副本（source/js/reveal.js）保持一致，避免降级时行为漂移 %>
+<% if (needReveal){ %>
 <script src="https://unpkg.com/reveal.js@5.2.1/dist/reveal.js" defer></script>
 <script src="https://unpkg.com/reveal.js-mermaid-plugin@11.15.0/plugin/mermaid/mermaid.js" defer></script>
+<% } %>
 <%# echarts defer script optional %>
 <script type="module">
   import qrcodeInit from '/js/qrcode.js'

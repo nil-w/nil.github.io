@@ -233,6 +233,6 @@ mem-md phase3-5 已完成，48 个测试全部通过（33 单元 + 15 E2E）。
 
 ---
 
-**续篇**：[《mem-md 开源：一个反向量库的 Agent 记忆系统》](/mem-md-opensource.html)
+**续篇**：[《mem-md 开源：一个反向量库的 Agent 记忆系统》](/uncategorized/mem-md-opensource.html)
 
 *文章使用 humanizer 润色，移除了 AI 写作的典型模式，保留个人思考痕迹。*

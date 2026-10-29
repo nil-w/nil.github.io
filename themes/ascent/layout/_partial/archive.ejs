@@ -9,6 +9,23 @@
   </nav>
 <% } %>
 <% if (pagination == 2){ %>
+  <% if (index){ %>
+  <section class="site-intro">
+    <% if ((page.current || 1) === 1){ %>
+    <h1><%= config.title %> · <%= config.site_tagline || config.subtitle %></h1>
+    <% } else { %>
+    <h1><%= config.title %> · <%= config.site_tagline || config.subtitle %>（第 <%= page.current %> 页）</h1>
+    <% } %>
+    <p><%= config.description %></p>
+    <p class="site-intro-note">记录后端架构与工程实践、AI 与 Agent 落地、独立开发与日常思考——写代码，也写踩过的坑。</p>
+    <nav class="site-intro-links">
+      <% site.categories.sort('-length').limit(8).each(function(c){ %>
+      <a href="<%= url_for(c.path) %>"><%= c.name %><span class="site-intro-count"><%= c.posts.length %></span></a>
+      <% }) %>
+      <a href="<%= url_for('/archives/') %>">全部文章<span class="site-intro-count"><%= site.posts.length %></span></a>
+    </nav>
+  </section>
+  <% } %>
   <div class="archive-body">
     <% var last; %>
   <% var i = 0; %>
@@ -33,7 +50,7 @@
   </div>
 <% } else { %>
   <div class="archive-wrapper">
-  <h2> <%= page.posts.length || 0 %> 文章</h2>
+  <h1 class="list-header"><%= page.posts.length || 0 %> 文章</h1>
   <div class="archive-body">
     <% var last; %>
   <% var i = 0; %>

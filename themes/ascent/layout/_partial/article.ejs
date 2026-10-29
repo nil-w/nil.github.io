@@ -2,7 +2,7 @@
   <div class="article-inner">
     <% if (post.link || post.title){ %>
       <header class="article-header">
-        <%- partial('post/title', {class_name: 'article-title'}) %>
+        <%- partial('post/title', {class_name: 'article-title', index: index}) %>
         <div class="article-meta">
           <%- partial('post/date', {class_name: 'article-date', date_format: 'YYYY.MM.DD HH:mm A'}) %>
           <% if (theme.word_count){ %>

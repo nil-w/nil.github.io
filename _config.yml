@@ -9,6 +9,8 @@
 # keywords: 生命,生命万岁,Viva,Viva La Vida
 title: Nil W
 subtitle: "生命万岁"
+# SEO：用于首页 <title> 的站点定位短语（不参与页面展示）
+site_tagline: "独立开发者的技术笔记"
 description: "技术｜思考｜生活。一个独立开发者的持续输出频道。"
 keywords: 技术博客,独立开发,编程,效率工具,AI,生命万岁
 # Twitter handle（GitHub 账号已改名 nil-w，主题里硬编码的 @yqwoe 由 scripts/seo-head.js 改写）
@@ -22,7 +24,22 @@ default_category: uncategorized
 category_map:
 tag_map:
 
-all_minifier: false
+# 前端资源压缩：HTML 空白占产物约 25%，CSS 由 bundle 承接
+all_minifier: true
+html_minifier:
+  enable: true
+  ignore_error: false
+  exclude: []
+css_minifier:
+  enable: true
+  exclude: ['*.min.css']
+js_minifier:
+  enable: false
+  mangle: true
+  compress: true
+  exclude: ['*.min.js']
+image_minifier:
+  enable: false
 
 search:
   enable: true
@@ -54,7 +71,14 @@ archive_dir: archives
 category_dir: categories
 code_dir: downloads/code
 i18n_dir: :lang
+# 第三方 JS 库（reveal.js 及其插件）中的 README.md / package.json
+# 原本会被渲染成页面并进入 sitemap，造成大量重复 title 的垃圾索引。
+# 这里整目录跳过渲染：仅作为静态资源原样复制，不再生成页面。
 skip_render:
+  - "js/reveal.js/**"
+  - "js/reveal.js-plugins/**"
+  - "js/reveal.js-mermaid-plugin/**"
+  - "js/revealjs-animated/**"
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -116,6 +140,10 @@ archive_generator:
 ## include:/exclude: options only apply to the 'source/' folder
 include:
 exclude:
+  # 第三方 JS 库的说明文档不随站发布，避免被搜索引擎当页面抓取
+  - "js/**/*.md"
+  - "js/**/CHANGELOG*"
+  - "reveal.js/**/*.md"
 ignore:
 aplayer:
   meting: true

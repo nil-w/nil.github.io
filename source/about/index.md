@@ -1,4 +1,5 @@
 ---
+title: 关于
 type: about
 toc: true
 layout: about

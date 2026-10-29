@@ -1,7 +1,7 @@
 <div class="list-group">
-  <h3 class="list-header">
+  <h1 class="list-header">
     <%= params.postTotal %> <%= params.category %>
-  </h3>
+  </h1>
   <% let currDate; %>
     <% page.posts.each(function(post) { %>
       <% if (currDate !==date(post.date, 'YYYY' )) { %>
