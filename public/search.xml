@@ -397,9 +397,9 @@
 <p>我的儿子叫冬冬，今天是五个月十天了。不瞒你们说，我和老婆都有过&quot;<s>是冬冬毁掉了我的生活</s>&quot;这样的想法。很长一段时间夜里没有好好睡过觉，做梦都是围绕着冬冬的情节，电影、美食、逛街…就是看个电视都是奢侈的。<br />
 每天要看着他拉的屎下饭，颜色不正会直接导致你吃不下饭，如果是拉稀你就别想着吃饭了。<br />
 说话要小声，走路要小声，就连呼吸都要思考着呼吸，“这样呼吸对吗？我是不是不该这样呼吸？”</p>
-<h1 id="w-t-f"><a class="markdownIt-Anchor" href="#w-t-f"></a> <s><em>“W T F !!!”</em></s></h1>
-<h1 id="完了完了完了"><a class="markdownIt-Anchor" href="#完了完了完了"></a> <s><em>“完了完了完了！！！”</em></s></h1>
-<h1 id="我的生活是不是就这样了"><a class="markdownIt-Anchor" href="#我的生活是不是就这样了"></a> <s><em>“我的生活是不是就这样了？”</em></s></h1>
+<h2 id="w-t-f"><a class="markdownIt-Anchor" href="#w-t-f"></a> <s><em>“W T F !!!”</em></s></h2>
+<h2 id="完了完了完了"><a class="markdownIt-Anchor" href="#完了完了完了"></a> <s><em>“完了完了完了！！！”</em></s></h2>
+<h2 id="我的生活是不是就这样了"><a class="markdownIt-Anchor" href="#我的生活是不是就这样了"></a> <s><em>“我的生活是不是就这样了？”</em></s></h2>
 <p>不是的，其实也有快乐的部分，每天早晨冬冬会冲着我们笑，看到漂亮的小妹妹小姐姐会笑，像天使一样，给了我们生活下去的勇气,</p>
 <p>如果因此你更加坚定做一个丁克。如果因此你害怕要孩子，那我只能祝福你们，<s>你们是对的！！！！</s> 你们还只是孩子。</p>
 <p>写完我也准备开始一天的<em>工作</em> 了，六一节快乐！</p>
@@ -689,7 +689,7 @@
 <p>​ 废话不多说。</p>
 <p>​ 为什么选择用 ruby，而不用 python 呢？</p>
 <p>​ 不为别的，就是顺手而已。</p>
-<h1 id="kimurai"><a class="markdownIt-Anchor" href="#kimurai"></a> kimurai</h1>
+<h2 id="kimurai"><a class="markdownIt-Anchor" href="#kimurai"></a> kimurai</h2>
 <blockquote>
 <p>Kimurai 是一个用 Ruby 实现的现代网络爬虫框架，和 <strong>Headless Chromium</strong> / <strong>Firefox</strong> 、<strong>PhantomJS</strong> 一样开箱即用，并且能够模拟**“用户”**访问抓取 javascript 交互的网站。</p>
 <p>Kimurai 基于 <strong><a href="https://github.com/teamcapybara/capybara">Capybara</a></strong> 和 <strong><a href="https://github.com/sparklemotion/nokogiri">Nokogir</a></strong> gems，所以你不必学习新的东西。</p>
@@ -710,7 +710,7 @@
 <h5 id="resultsjson"><a class="markdownIt-Anchor" href="#resultsjson"></a> results.json</h5>
 <figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">[</span></span><br><span class="line">  <span class="punctuation">&#123;</span></span><br><span class="line">    <span class="attr">&quot;links&quot;</span><span class="punctuation">:</span> <span class="punctuation">[</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;备孕百科&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://baike.pcbaby.com.cn/yunqian.html&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;孕期百科&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://baike.pcbaby.com.cn/yunqi.html&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;分娩百科&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://baike.pcbaby.com.cn/fenmian.html&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;月子百科&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://baike.pcbaby.com.cn/yuezi.html&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;新生儿百科&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://baike.pcbaby.com.cn/xinshenger.html&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;0-1岁百科&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://baike.pcbaby.com.cn/yinger.html&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;1-3岁百科&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://baike.pcbaby.com.cn/youer.html&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;3-6岁百科&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://baike.pcbaby.com.cn/xuelingqian.html&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;用品百科&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://baike.pcbaby.com.cn/yongpin.html&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;美食百科&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://baike.pcbaby.com.cn/meishi.html&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span><span class="punctuation">,</span></span><br><span class="line">      <span class="punctuation">&#123;</span></span><br><span class="line">        <span class="attr">&quot;title&quot;</span><span class="punctuation">:</span> <span class="string">&quot;生活百科&quot;</span><span class="punctuation">,</span></span><br><span class="line">        <span class="attr">&quot;url&quot;</span><span class="punctuation">:</span> <span class="string">&quot;https://baike.pcbaby.com.cn/shenghuo.html&quot;</span></span><br><span class="line">      <span class="punctuation">&#125;</span></span><br><span class="line">    <span class="punctuation">]</span><span class="punctuation">,</span></span><br><span class="line">    <span class="attr">&quot;position&quot;</span><span class="punctuation">:</span> <span class="number">1</span></span><br><span class="line">  <span class="punctuation">&#125;</span></span><br><span class="line"><span class="punctuation">]</span></span><br></pre></td></tr></table></figure>
 <h4 id="5application_spiderrb"><a class="markdownIt-Anchor" href="#5application_spiderrb"></a> 5.application_spider.rb</h4>
-<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ApplicationSpider is a default base spider class. You can set here</span></span><br><span class="line"><span class="comment"># default settings for all spiders inherited from ApplicationSpider.</span></span><br><span class="line"><span class="comment"># To generate a new spider, run: `$ kimurai generate spider spider_name`</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;net/http&#x27;</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;kimurai&#x27;</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ApplicationSpider</span> &lt; <span class="title class_ inherited__">Kimurai::Base</span></span><br><span class="line">  <span class="keyword">include</span> <span class="title class_">ApplicationHelper</span></span><br><span class="line"></span><br><span class="line">  <span class="variable">@engine</span> = <span class="symbol">:selenium_chrome</span></span><br><span class="line">  <span class="variable constant_">USER_AGENTS</span> = []</span><br><span class="line"></span><br><span class="line">  <span class="comment"># PROXIES = [&quot;127.0.0.1:1086:socks5&quot;]</span></span><br><span class="line"></span><br><span class="line">  <span class="variable">@config</span> = &#123;</span><br><span class="line">    <span class="symbol">user_agent:</span> <span class="string">&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36&quot;</span>,</span><br><span class="line">    <span class="symbol">skip_request_errors:</span> [&#123; <span class="symbol">error:</span> <span class="title class_">RuntimeError</span>, <span class="symbol">message:</span> <span class="string">&quot;404 =&gt; Net::HTTPNotFound&quot;</span> &#125;],</span><br><span class="line">	<span class="symbol">retry_request_errors:</span> [<span class="title class_">Net</span><span class="symbol">:</span><span class="symbol">:ReadTimeout</span>],</span><br><span class="line">    <span class="symbol">restart_if:</span> &#123;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="symbol">before_request:</span> &#123;</span><br><span class="line">        <span class="symbol">delay:</span> <span class="number">4</span>..<span class="number">7</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="comment"># ApplicationSpider is a default base spider class. You can set here</span></span><br><span class="line"><span class="comment"># default settings for all spiders inherited from ApplicationSpider.</span></span><br><span class="line"><span class="comment"># To generate a new spider, run: `$ kimurai generate spider spider_name`</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;net/http&#x27;</span></span><br><span class="line"><span class="keyword">require</span> <span class="string">&#x27;kimurai&#x27;</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ApplicationSpider</span> &lt; <span class="title class_ inherited__">Kimurai::Base</span></span><br><span class="line">  <span class="keyword">include</span> <span class="title class_">ApplicationHelper</span></span><br><span class="line"></span><br><span class="line">  <span class="variable">@engine</span> = <span class="symbol">:selenium_chrome</span></span><br><span class="line">  <span class="variable constant_">USER_AGENTS</span> = []</span><br><span class="line"></span><br><span class="line">  <span class="comment"># PROXIES = [&quot;127.0.0.1:1086:socks5&quot;]</span></span><br><span class="line"></span><br><span class="line">  <span class="variable">@config</span> = &#123;</span><br><span class="line">    <span class="symbol">user_agent:</span> <span class="string">&quot;Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_0) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/69.0.3497.100 Safari/537.36&quot;</span>,</span><br><span class="line">    <span class="symbol">skip_request_errors:</span> [&#123; <span class="symbol">error:</span> <span class="title class_">RuntimeError</span>, <span class="symbol">message:</span> <span class="string">&quot;404 =&gt; Net::HTTPNotFound&quot;</span> &#125;],</span><br><span class="line">	<span class="symbol">retry_request_errors:</span> [<span class="title class_">Net</span>::<span class="title class_">ReadTimeout</span>],</span><br><span class="line">    <span class="symbol">restart_if:</span> &#123;</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="symbol">before_request:</span> &#123;</span><br><span class="line">        <span class="symbol">delay:</span> <span class="number">4</span>..<span class="number">7</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h4 id="6运行"><a class="markdownIt-Anchor" href="#6运行"></a> 6.运行</h4>
 <figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line">bundle exec kimurai runner -j <span class="number">3</span></span><br></pre></td></tr></table></figure>
 <p>可以依次运行多个爬虫。</p>
@@ -739,13 +739,13 @@
 <p>Where 条件中包含 字段名称、运算符、值。</p>
 <figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 查询类型</span></span><br><span class="line"><span class="comment">* lt 小于</span></span><br><span class="line"><span class="comment">* lte 小于等于</span></span><br><span class="line"><span class="comment">* gt 大于</span></span><br><span class="line"><span class="comment">* gte 大于等于</span></span><br><span class="line"><span class="comment">* slike &#x27;value%&#x27; start_with</span></span><br><span class="line"><span class="comment">* elike &#x27;%value&#x27; end_with</span></span><br><span class="line"><span class="comment">* like &#x27;%value%&#x27;</span></span><br><span class="line"><span class="comment">* in 1,2,3,4,5</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Item</span> &#123;</span><br><span class="line">    String name; <span class="comment">//字段名称</span></span><br><span class="line">    String value; <span class="comment">//值</span></span><br><span class="line">    String itemType; <span class="comment">//查询类型</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">type</span> <span class="operator">=</span> <span class="string">&quot;and&quot;</span>; <span class="comment">// 逻辑运算 and or</span></span><br><span class="line">    String[] values; <span class="comment">//如果是in查询转换为字符串数组</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>以上是对查询条件的简单封装,如果我们需要满足多个条件的话。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">QueryParam</span>&#123;</span><br><span class="line">    List&lt;Item&gt; items = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">QueryParam</span>&#123;</span><br><span class="line">    <span class="type">List</span>&lt;Item&gt; <span class="variable">items</span> <span class="operator">=</span> <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>mybatis 公共 xml 文件配置</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span> <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span> <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;BaseMapper&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;BaseQuery&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;items != null &quot;</span>&gt;</span></span><br><span class="line">            where 1 = 1</span><br><span class="line">            <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;items&quot;</span> <span class="attr">item</span>=<span class="string">&quot;item&quot;</span> <span class="attr">index</span>=<span class="string">&quot;index&quot;</span></span></span><br><span class="line"><span class="tag">                     <span class="attr">separator</span>=<span class="string">&quot; &quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;eq&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    $&#123;item.type&#125; $&#123;item.fieldName&#125; = #&#123;item.value&#125;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;lt&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[  $&#123;item.type&#125;  $&#123;item.name&#125; &lt; #&#123;item.value&#125; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;lte&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[ $&#123;item.type&#125;  $&#123;item.name&#125; &lt;= #&#123;item.value&#125; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;gt&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[  $&#123;item.type&#125;  $&#123;item.name&#125; &gt; #&#123;item.value&#125; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;gte&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[  $&#123;item.type&#125;  $&#123;item.name&#125; &gt;= #&#123;item.value&#125; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;slike&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[  $&#123;item.type&#125;  $&#123;item.name&#125; like &#x27;$&#123;item.value&#125;%&#x27; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.typeitemType == &#x27;elike&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[  $&#123;item.type&#125;  $&#123;item.name&#125; like &#x27;%$&#123;item.value&#125;&#x27; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;like&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[  AND $&#123;item.name&#125; like &#x27;%$&#123;item.value&#125;%&#x27; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;in&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    $&#123;item.type&#125;</span><br><span class="line">                    <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;item.values&quot;</span> <span class="attr">item</span>=<span class="string">&quot;value&quot;</span> <span class="attr">index</span>=<span class="string">&quot;index&quot;</span> <span class="attr">open</span>=<span class="string">&quot;(&quot;</span> <span class="attr">close</span>=<span class="string">&quot;)&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;OR&quot;</span>&gt;</span></span><br><span class="line">                        $&#123;item.name&#125; =  #&#123;value&#125;</span><br><span class="line">                    <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>Product mapper.xml</p>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span> <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span> <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.yqwoe.codegenerator.dao.ProductMapper&quot;</span> &gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;BaseResultMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;com.yqwoe.codegenerator.model.Product&quot;</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">&quot;u_id&quot;</span> <span class="attr">property</span>=<span class="string">&quot;uId&quot;</span> <span class="attr">jdbcType</span>=<span class="string">&quot;VARCHAR&quot;</span> /&gt;</span></span><br><span class="line">      <span class="comment">&lt;!--省略 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;Base_Column_List&quot;</span> &gt;</span></span><br><span class="line">    id, name, category, price ,.....</span><br><span class="line">  <span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAll&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;BaseResultMap&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;com.yqwoe.model.param.QueryParam&quot;</span>&gt;</span></span><br><span class="line">    select</span><br><span class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;Base_Column_List&quot;</span> /&gt;</span></span><br><span class="line">    from s_user</span><br><span class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;BaseMapper.BaseQuery&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;BaseMapper.BaseOrder&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
 <p>ProductController</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ProductController</span>&#123;</span><br><span class="line">    ProductService productService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/products&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Pageinfo <span class="title function_">index</span><span class="params">(QueryParam param)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> productService.selectAll(param);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ProductController</span>&#123;</span><br><span class="line">    ProductService productService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/products&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">Pageinfo</span> <span class="title function_">index</span><span class="params">(QueryParam param)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> productService.selectAll(param);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <h3 id="演示"><a class="markdownIt-Anchor" href="#演示"></a> 演示</h3>
 <figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">api: http://localhost:8000/products?items[0].name=name&amp;items[0].value=nil?,超级管理员&amp;items[0].itemType=in</span><br><span class="line"></span><br><span class="line">sql: select * from product where 1 = 1 and (name = &#x27;nil?&#x27; OR name = &#x27;超级管理员&#x27;)</span><br><span class="line"></span><br><span class="line">//type 默认为 and</span><br><span class="line">response:</span><br><span class="line">&#123;</span><br><span class="line">    data:[</span><br><span class="line">        ....</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>以上为动态查询，照这样的思路，可以继续围绕 mapper 扩展排序或者更复杂的查询。</p>
@@ -762,7 +762,7 @@
   <entry>
     <title>Cas Server 本地部署</title>
     <url>/Cas/6e8cb24c.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="cas"><a class="markdownIt-Anchor" href="#cas"></a> Cas</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="cas"><a class="markdownIt-Anchor" href="#cas"></a> Cas</h2>
 <blockquote>
 <p><strong><a href="https://github.com/apereo/cas">Cas</a></strong> 中心认证服务。Cas 是一种面向 Web 的企业级、多语言单点登录解决方案，它是满足身份验证和授权管理的综合平台</p>
 </blockquote>
@@ -797,12 +797,12 @@
   <entry>
     <title>nginx 负载均衡</title>
     <url>/nginx/59cc1bd2.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="nginx-是什么"><a class="markdownIt-Anchor" href="#nginx-是什么"></a> nginx 是什么？</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="nginx-是什么"><a class="markdownIt-Anchor" href="#nginx-是什么"></a> nginx 是什么？</h2>
 <span id="more"></span>
 <blockquote>
 <p>Nginx：Nginx (“engine x”) ，Nginx (“engine x”) 是俄罗斯人 Igor Sysoev(塞索耶夫)编写的一款高性能的 HTTP 和反向代理服务器。也是一个 IMAP/POP3/SMTP 代理服务器；也就是说，Nginx 本身就可以托管网站，进行 HTTP 服务处理，也可以作为反向代理服务器使用。</p>
 </blockquote>
-<h1 id="nginx-特点"><a class="markdownIt-Anchor" href="#nginx-特点"></a> nginx 特点</h1>
+<h2 id="nginx-特点"><a class="markdownIt-Anchor" href="#nginx-特点"></a> nginx 特点</h2>
 <blockquote>
 <ul class="lvl-1">
 <li class="lvl-2">
@@ -819,7 +819,7 @@
 </li>
 </ul>
 </blockquote>
-<h1 id="nginx-特性"><a class="markdownIt-Anchor" href="#nginx-特性"></a> nginx 特性</h1>
+<h2 id="nginx-特性"><a class="markdownIt-Anchor" href="#nginx-特性"></a> nginx 特性</h2>
 <p>master/worker 结构：一个 master 进程，生成一个或多个 worker 进程</p>
 <p>内存消耗小：处理大并发的请求内存消耗非常小。在 3 万并发连接下，开启的 10 个 Nginx 进程才消耗 150M 内存（15M*10=150M） 成本低廉：Nginx 为开源软件，可以免费使用。而购买 F5 BIG-IP、NetScaler 等硬件负载均衡交换机则需要十多万至几十万人民币</p>
 <p>内置的健康检查功能：如果 Nginx Proxy 后端的某台 Web 服务器宕机了，不会影响前端访问。</p>
@@ -830,7 +830,7 @@
 <p>3、发送响应报文时，是边接收来自后端 web 服务器的数据，边发送给客户端的</p>
 <p>4、网络依赖型低。NGINX 对网络的依赖程度非常低，理论上讲，只要能够 ping 通就可以实施负载均衡，而且可以有效区分内网和外网流量</p>
 <p>5、支持服务器检测。NGINX 能够根据应用服务器处理页面返回的状态码、超时信息等检测服务器是否出现故障，并及时返回错误的请求重新提交到其它节点上</p>
-<h1 id="nginx-配置"><a class="markdownIt-Anchor" href="#nginx-配置"></a> nginx 配置</h1>
+<h2 id="nginx-配置"><a class="markdownIt-Anchor" href="#nginx-配置"></a> nginx 配置</h2>
 <figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">upstream</span> www.blog.com &#123;</span><br><span class="line">    <span class="comment">#upstream的负载均衡，weight是权重，可以根据机器配置定义权重。weigth参数表示权值，权值越高被分配到的几率越大。</span></span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.80.121:80</span> weight=<span class="number">3</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.80.122:80</span> weight=<span class="number">2</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.80.123:80</span> weight=<span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
@@ -1114,7 +1114,7 @@
   <entry>
     <title>从零构建 Hermes Agent 记忆系统——memory-filtration-layer 迭代手记</title>
     <url>/AI/46499b7b.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="从零构建-hermes-agent-记忆系统"><a class="markdownIt-Anchor" href="#从零构建-hermes-agent-记忆系统"></a> 从零构建 Hermes Agent 记忆系统</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="从零构建-hermes-agent-记忆系统"><a class="markdownIt-Anchor" href="#从零构建-hermes-agent-记忆系统"></a> 从零构建 Hermes Agent 记忆系统</h2>
 <h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
 <p>在做 Hermes Agent 的记忆系统时，遇到了一个核心问题：</p>
 <blockquote>
@@ -1336,7 +1336,7 @@
   <entry>
     <title>改造 Hermes Memory Provider 的曲折历程</title>
     <url>/uncategorized/474c79ed.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="改造-hermes-memory-provider-的曲折历程"><a class="markdownIt-Anchor" href="#改造-hermes-memory-provider-的曲折历程"></a> 改造 Hermes Memory Provider 的曲折历程</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="改造-hermes-memory-provider-的曲折历程"><a class="markdownIt-Anchor" href="#改造-hermes-memory-provider-的曲折历程"></a> 改造 Hermes Memory Provider 的曲折历程</h2>
 <blockquote>
 <p>这不是一个讲&quot;正确答案&quot;的故事。这是一个讲&quot;如何一步步排除错误答案，直到看见本质&quot;的故事。</p>
 </blockquote>
@@ -1536,7 +1536,7 @@
 </ul>
 <p>下一步是接入 Hermes Agent 作为 Memory Provider，让记忆真正进入赫妹的工作流。</p>
 <hr />
-<p><strong>续篇</strong>：<a href="/mem-md-opensource.html">《mem-md 开源：一个反向量库的 Agent 记忆系统》</a></p>
+<p><strong>续篇</strong>：<a href="/uncategorized/mem-md-opensource.html">《mem-md 开源：一个反向量库的 Agent 记忆系统》</a></p>
 <p><em>文章使用 humanizer 润色，移除了 AI 写作的典型模式，保留个人思考痕迹。</em></p>
 ]]></content>
       <tags>
@@ -1549,7 +1549,7 @@
   <entry>
     <title>mem-md 开源：一个反向量库的 Agent 记忆系统</title>
     <url>/uncategorized/mem-md-opensource.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="mem-md-开源一个反向量库的-agent-记忆系统"><a class="markdownIt-Anchor" href="#mem-md-开源一个反向量库的-agent-记忆系统"></a> mem-md 开源：一个反向量库的 Agent 记忆系统</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="mem-md-开源一个反向量库的-agent-记忆系统"><a class="markdownIt-Anchor" href="#mem-md-开源一个反向量库的-agent-记忆系统"></a> mem-md 开源：一个反向量库的 Agent 记忆系统</h2>
 <blockquote>
 <p>Markdown is all you need.</p>
 </blockquote>
@@ -1799,7 +1799,7 @@
   <entry>
     <title>飞书真的能发表格吗？我赌它不能，然后输了</title>
     <url>/uncategorized/feishu-markdown-table-truth.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="飞书真的能发表格吗我赌它不能然后输了"><a class="markdownIt-Anchor" href="#飞书真的能发表格吗我赌它不能然后输了"></a> 飞书真的能发表格吗？我赌它不能，然后输了</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="飞书真的能发表格吗我赌它不能然后输了"><a class="markdownIt-Anchor" href="#飞书真的能发表格吗我赌它不能然后输了"></a> 飞书真的能发表格吗？我赌它不能，然后输了</h2>
 <p>三个月前我做了一个判断：飞书 IM v1 API 拒收 <code>&#123;tag:&quot;table&quot;&#125;</code>，会返 230001。</p>
 <p>这判断没有依据。可能是某次旧测试留下的印象，可能是从某个 issue 抄来的，可能就是猜的。但它在我脑子里生了根，长成了一棵树——一整套「飞书发表格 = 降级到纯文本 + 中文提示」的代码就围着它长起来。</p>
 <p>直到上周看到 chapafan 那个 200 行的方案。</p>
@@ -2194,6 +2194,67 @@
       </tags>
   </entry>
   <entry>
+    <title>Tor出口节点大规模劫持暴露匿名网络信任危机</title>
+    <url>/%E6%8A%80%E6%9C%AF/277d0d7d.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="恶意出口指向了匿名网络的安全边界"><a class="markdownIt-Anchor" href="#恶意出口指向了匿名网络的安全边界"></a> 恶意出口指向了匿名网络的安全边界</h2>
+<p>333 个恶意出口足以让 Tor 的信任模型露出裂缝。问题出在 Tor 把大量安全责任交给了用户：链路加密保护传输，路径选择隐藏来源，出口节点却可能直接看到未加密的访问内容。</p>
+<p>我第一次认真使用 Tor，是在一个网络审查突然收紧的时期。那时我把“匿名”理解成一个开关，连上就能把真实身份藏起来。后来我才明白，匿名依赖客户端、守卫节点、中继节点和出口节点共同维持，任何一环失守都可能改变风险。</p>
+<p>这次事件让我重新审视了自己的习惯。我一直更在意登录、支付和发布内容时使用的身份隔离，却很少检查最终访问的网站是否可信。恶意出口出现后，这种偏向很危险。</p>
+<blockquote>
+<p>恶意出口掌握的是出口位置，攻击者还需要主动观察流量或篡改连接。</p>
+</blockquote>
+<p>Tor 本身不会替用户识别恶意出口。普通用户也不会逐一核验每个出口的信誉。这组落差决定了风险会从网络层泄漏到应用层。</p>
+<h2 id="信任从来不是一次确认"><a class="markdownIt-Anchor" href="#信任从来不是一次确认"></a> 信任从来不是一次确认</h2>
+<p>网络匿名社区常用“信任”来概括节点选择。这个词容易让人放松警惕。节点信誉会变化，运营者也会更换，单次验证无法覆盖长期使用。</p>
+<p>我过去写过《Tor 的匿名性边界在哪里》，那篇文章更强调浏览器指纹与 HTTPS 的作用。现在看，文章对出口节点的危险估计偏低。TLS 能保护传输过程，恶意出口仍有机会接触未加密请求、注入内容，并记录用户访问了哪些地址。</p>
+<p>这次复盘最有价值的地方，在于把“恶意出口”从抽象威胁变成了具体故障。数量本身不是全部。恶意节点是否集中、活跃时间是否同步、目标网站是否集中，都会影响实际损害。现有公开材料没有提供足够的统计细节，我无法判断整张网络是否出现了系统性劫持。</p>
+<p>事实依据里没有相关统计数字，只有与“333”有关的灵性解读和体育页面内容。这些资料无法证明 Tor 事件的规模，也无法替代安全研究报告。写到这里，我更愿意保留判断的边界，而不是补一个看似完整的故事。</p>
+<blockquote>
+<p>查到的“333”资料主要讨论数字寓意和体育信息，无法解释出口劫持。</p>
+</blockquote>
+<p>这暴露了我处理安全议题时的一个惯性：先接受事件标题里的严重程度，再寻找证据校正。顺序反了。证据不足时，我应该先降低结论强度。</p>
+<h2 id="用户仍然承担了过多安全责任"><a class="markdownIt-Anchor" href="#用户仍然承担了过多安全责任"></a> 用户仍然承担了过多安全责任</h2>
+<p>Tor 的匿名性有明确目标，但它无法自动保证用户访问的内容真实。HTTPS、证书验证、扩展安全和操作习惯仍然重要。恶意出口大规模出现后，这些要求更不能省略。</p>
+<p>我不同意“只要经过 Tor 就已经安全”的看法。出口节点处在用户与目标网站之间，它能看到部分连接元数据，也能影响某些未加密通信。匿名路径保护了来源，站点安全决定了内容能否被可靠接收。</p>
+<p>这不意味着 Tor 失效。多层中继和路径隔离仍然有作用。我的疑问在于，社区是否应该把更多异常检测与处置能力交给客户端，而不是要求每个用户理解节点之间的关系。</p>
+<p>检测放在入口更有效。入口节点直接影响用户的第一跳，也更容易在路径形成前阻断已知恶意节点。出口节点承担最终转发，恶意行为出现得更晚，用户往往已经完成访问。</p>
+<p>这个判断也需要现实条件支撑。入口同样可能被攻陷或冒充，信誉机制可能误判，持续监测还会增加资源负担。把检测前移，只是重新分配风险，不会消灭风险。</p>
+<blockquote>
+<p>路径上的节点越早发现异常，越可能在用户接触恶意内容前采取行动。</p>
+</blockquote>
+<p>我至今也没搞明白，Tor 社区应怎样平衡去中心化与自动处置。自动拦截可能误伤正常出口，也容易让少数审查者获得新的控制权。完全依赖用户判断，又会让攻击成本变得很低。</p>
+<p>这次事件至少确认了一件事：匿名网络的安全边界，由整套系统的 weakest link 决定。</p>
+<p>下一步该怎样处理？</p>
+<h2 id="信任从来不是一次确认-2"><a class="markdownIt-Anchor" href="#信任从来不是一次确认-2"></a> 信任从来不是一次确认</h2>
+<p>网络匿名社区常用“信任”来概括节点选择。这个词容易让人放松警惕。节点信誉会变化，运营者也会更换，单次验证无法覆盖长期使用。</p>
+<p>我过去写过《Tor 的匿名性边界在哪里》，那篇文章更强调浏览器指纹与 HTTPS 的作用。现在看，文章对出口节点的危险估计偏低。TLS 能保护传输过程，恶意出口仍有机会接触未加密请求、注入内容，并记录用户访问了哪些地址。</p>
+<p>这次复盘最有价值的地方，在于把“恶意出口”从抽象威胁变成了具体故障。数量本身不是全部。恶意节点是否集中、活跃时间是否同步、目标网站是否集中，都会影响实际损害。现有公开材料没有提供足够的统计细节，我无法判断整张网络是否出现了系统性劫持。</p>
+<p>事实依据里没有相关统计数字，只有与“333”有关的灵性解读和体育页面内容。这些资料无法证明 Tor 事件的规模，也无法替代安全研究报告。写到这里，我更愿意保留判断的边界，而不是补一个看似完整的故事。</p>
+<blockquote>
+<p>查到的“333”资料主要讨论数字寓意和体育信息，无法解释出口劫持。</p>
+</blockquote>
+<p>这暴露了我处理安全议题时的一个惯性：先接受事件标题里的严重程度，再寻找证据校正。顺序反了。证据不足时，我应该先降低结论强度。</p>
+<h2 id="用户仍然承担了过多安全责任-2"><a class="markdownIt-Anchor" href="#用户仍然承担了过多安全责任-2"></a> 用户仍然承担了过多安全责任</h2>
+<p>Tor 的匿名性有明确目标，但它无法自动保证用户访问的内容真实。HTTPS、证书验证、扩展安全和操作习惯仍然重要。恶意出口大规模出现后，这些要求更不能省略。</p>
+<p>我不同意“只要经过 Tor 就已经安全”的看法。出口节点处在用户与目标网站之间，它能看到部分连接元数据，也能影响某些未加密通信。匿名路径保护了来源，站点安全决定了内容能否被可靠接收。</p>
+<p>这不意味着 Tor 失效。多层中继和路径隔离仍然有作用。我的疑问在于，社区是否应该把更多异常检测与处置能力交给客户端，而不是要求每个用户理解节点之间的关系。</p>
+<p>检测放在入口更有效。入口节点直接影响用户的第一跳，也更容易在路径形成前阻断已知恶意节点。出口节点承担最终转发，恶意行为出现得更晚，用户往往已经完成访问。</p>
+<p>这个判断也需要现实条件支撑。入口同样可能被攻陷或冒充，信誉机制可能误判，持续监测还会增加资源负担。把检测前移，只是重新分配风险，不会消灭风险。</p>
+<blockquote>
+<p>路径上的节点越早发现异常，越可能在用户接触恶意内容前采取行动。</p>
+</blockquote>
+<p>我至今也没搞明白，Tor 社区应怎样平衡去中心化与自动处置。自动拦截可能误伤正常出口，也容易让少数审查者获得新的控制权。完全依赖用户判断，又会让攻击成本变得很低。</p>
+<p>这次事件至少确认了一件事：匿名网络的安全边界，由整套系统中最薄弱的环节决定。</p>
+<p>下一步该怎样处理？</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>29岁,再见！</title>
     <url>/%E7%94%9F%E6%B4%BB/1873749776.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
@@ -2210,29 +2271,54 @@
       </tags>
   </entry>
   <entry>
-    <title>4月份wbs</title>
-    <url>/%E5%B7%A5%E4%BD%9C/c2cb16de.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="9f5b05b711cd8d76c78f522186c670c84ac386564dc4d3dd96eea637bcd65112">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d01b15f88bbf2f997a33ad0e4769faa2f375c06bbd0f0afbcebbc908a2fe4364deaf4f72f036cb807ae265943182dfb5bbe20ddce9924d0b51c7a7b667d702f15bb01847cd66970a3280b2ad672ba9f970f36becada1fb6c8e16bd97fe8122bbf3617184d08ec68939ade86ad83698f447e1f8119d12295fc3d4506a7f5c99ef3a9c61fdc9c7b558de110d0360dfc88ea84b02e20aa9564467bafa4dca79e88e11cd567128ef4bbe395ebdb7dd9a8279f3e3d0260261d41878b90418135fe46e100ca78ecd0e6f9753c5b3757cf29d0b71e2fdbb08848b51c8b99cc109c2cd80cbd34c9dd34e29906c0df3351353120fa9e045c94e232bbbe462fd3aab6fa3351bfbd857bd1eb32968916d6a12703c290f9e28a3b0b503d538f8358b8e007c54ca591c8e8dc7540724a58eab4f1c5845f1e27b76e639e78d17423b1c806f3f41f18bf176afd62e13d0b60f456b223e3a6bedfe2007cd3557d5fe8bdafb5d452da0979e169a72f8eed5208da7cd82514d85837708c9842661acf486198d1d3fcd7bab421f49fb1f86ae7662b96e9e5f656d07e1710f75d35653efe19fd03490f624429b157ce990fcbdfc3cf1cb28697b2807e7ba8c5b9e242a5eb24cf16dc2751218784374d3b196f02f34fa64e52c94c04f217aa44574ef1fae4936ddb7b4a05cc1cf83ea7fdbf441589da61a168e13fd51b40e20d634992fb5d5e35223c18fb1fbf87aa2e7db1997cbf592aa24f7683913436b1d46f5b3ab51e0090f1c0988d95608244eed85b8fb0c1857424b0c502613f019a0de482a242b703f14df8bfcb26fe1ea62de73cc826452ef10e4673714760da97f3a45f1fbb6d72d8527c8e54fa48bdc6020cb1650742e722d99df070303ed4fcfa1281d0dcf35a85543af3b578679282168877d886854c0d8593cbf17a6bc8fae57b6d05d459ee9b2f911935474562741036a9d1f71e0367f428cd770adebca9d7b96a3209ebb67077b79065f7b7566e28e271b9b7df3ec1d40f1e15ce6a84e248bf91e1606d2157bc2a93e96e9d2fe9d7eee2d2ce4e4a90655e7c3e09c4398a3b8de17623d2ad576b168d4d7e2de9fc0a02c08fe4a9ae5302b5256d940e8ae37a7d0c95a3b7833bb83423f6dae16410b57b7a667809fe58203e109f1fec151b082ce61596d5c2d445a342cd738f0f878a460d41dc7d971d2b6e2637eb8d10430129a0e356525eac5e4b1d8c3e759633a4923a07446397e206d511f8c66887d0cc9b8c00fa7a0eeb39532e65fc6bc7a9827bd941e38b775adbfa03d7adeb50d47ea4eccf1ce3b3445932dc111e56282f775d8e6b610c536824cced3de1f99519753e4eea4d32afbb4e3765a153887c7a16e3876072494702c179af7d2e8bdce142374c49ba16d0d8ee6d0d5121afa1c4efad18b5f855cb0f3e59160bde78ee21557ddc006808cf391dac622d5aa9d21ddfcfc0d6bce9e560b576a63a32c394a7dd4a4ed8dc1504f9801e94da547d4c3f44a8d5611703f3c9a9c2bde310dfc158ccce17413832b106234e8c2b6af7b2a6131ea8c727452c44ac37a49a0e6a26c4c46c9eb337e7033aa43ca37d338f100a06f5891b6a194581a27fbc11a251b1b7ed5d3228afa6ebe78d6ecf26277a6dc7b9ef309191eab42826f2daf2641522510e0357b64b1c25d4f1bab2b57d98caf3569e9252a05755f0de3a0d27216fcd07cf40de7fad8fbe70dadd3c557ca6d302313391b7a6d6b8bb0b8248779cb4b9bb0a3d23daa00fadb84f9ba4d53d7639463d02cb1886f98bc82e71290b7ca9f3cc6e476ffa6e1b2f215e843e4f7a625bdefd3a3a5687aaffa3bf2ff4a467924844fc9e0fb66bb488f722a7bc8d6ac4d90a795dbb4d5469f2a98ef64266e47f5aed1cdbdb94bdc21bf67d067552fba6fd551cb0f3a0521b12993b98d55577acc10c71730ad10712df52fc28710825d53e5e59a3ce0c21ef68f7381ae6c5eb84f906ac9ae992cf374db7a44594486e336e21c007d72b29f569054bf1c5e1277491a02bb54373351b12317bd174c46dd64bdac0dd6b542f92cb6f9b53ba9ab5ca2fbf5cba495c1f509d89661f18c83ee2b81e3b26ba3c777c8e12bf05e528028f991b91756cd3f609ed9cdaa000286ceacaa30c1fbdc8903674aa31d0ec1a2a5091c20be91a01e1af4bdc7c26a90661b8df6831eb5a9b5edbcf81ffbe00dafd370445a625bde337f12df1e4722a097e4557c6ab79404fb0f543ee1864fc17d9d6e1e1d96f5b8f89ca5601231c6278b468afc3dd02012006c95039eed28ec36687d32ae2ad1fded9026ee6deeda4281a05d6e511ce7f507318c03a8b0396613a3d566ab2498c6bcdb5fd285efe03341ca6e97d64f78fc767e6ef328b82bd8bd449a4d21c5b01c60650aa8d19f88feb1df7bf40f8c70b352437ce1b85fd0259de9951dadf82e1f828f8528101b59b5fcfb2e6caab15d3bf75f8c857d420cb04368ed96d3aab6fb58fcd31ee46d88bb64ccf50b84c4feb967d1734c944e71f76b6f01e2df5a445489ded42edf740c56a4a29e7ba771b8e8800a6c3e8e68a726458d62fe06f1d5f527394cdf7e8d9ff54bf0f007f607a05abc2b2af66f81c9b161fa426f93a70a35baecbe682d9d3d9e91ccf6eb22b992b0543ab56a89f223ab734855d7b809306b00b252125f2ac34a6b6635564f2d203121a1a16c4347a686a95253826d04993d96933c3570742c862647a9c32281ba94491fdb54734dcf438c7e357013318c25cd18b781f5a1282adb3ef0827047c1de9edee3258c3a5f473447e96206663b668c09a5fae2324a306658a2e13f45e23fc6a61a6b7f5736ff2e0e1232779c717b3c0006d71b4907f85284d9a267fbed7d4d8643921ddf5ea6d4402ee96b07b446071adcd91d577d8e5104133f49c115fa293a829b5d34b9d27606a1f480f7611b8d8b7c441bc2caf2cd5c34630cfae78d3240981df2fe2969015824231c98ddc4ce3991f85268bda68e12e1604fda7132e7edb358d7af6f62a2184360dfb5e9e67f0442aa685e753a068077897176bf6fce3009c54c0d1c3b2bafcc9f2311a6978e515f81bd97781402b40ff0ebf8cc7ffaec3e8eccd5d0352108f35a8586d119d4f19533a63851e1e231e665d87fdccc613e744fd03f72367b4810ebf6711862e09ad287706716a29ff512b61b5c72548b6a3178af5b5f4ba3929961bc7ee009f6f4d5bc94b1a8c6b9537cc4a64a53b77af173968fcbb5853f5c75090938a55de4a60c733ec065dd3aaa94817ea389493f4c6347a6e663773b2c01d766be76ec60836acc6115e999c9ea9899c12d6c52a811b382751e1c5ff84bb0e6316ddf12254810ee183d1c66593ea8fd76d7142af7884fb951d930962b638d586f967994caaa189e6f156155e8ebeab3072bbc8da26d92dab7d6f59333b7250f34244ef858827785f6b1ef8bab94285b911e4f894b9f2ad13706656b6917137c70eab8af371af427545fa207029377e72bb7bbc4b76b4275b944eef5150cee1dc7a8bb5004b293a82f2bb7f8b3d671e090287a72527e623ed1d039dfde88fc488c93d54bbfe463cf80e540ad4a96766db1e00485c2d663686af4c7d4b21b47fbdcb21d179032b69a35ac6cfeb8fe0c75b36c2c33858a604528328940cc43024dce297d9270f49ac2c9ff8a688e70022b9fd64f461edd3221b624ab97c10cfb9b95c40daa28d8e5b502da68d569dc2596e941d9fb631884325812bd91077e6472df0597f883984270d6f0e86bcf2d64b218fc4e02ff0bd33097da63dce68b5f55f98f2a60c2b9dc9bf4b247d800246780b65300640f0683b69b0d8cf48b50d3511c51238b055d8f0b6d3bb2c4552425f40308f1aeb5341c848382e57a3f9b364529a07c5fe773106ce13b4cdd0fd163564d0c4f3a9781c132d1e5bd9714b96496aa33db1749e25c66e5f954e2e1102e58c331cdbbfc7aa735abc6574e47862afe28fc4ec72e0a2995a525cacaa2b9cf61e09462f3b4e55068d331fb33f8869b179995a1261f5b9d92a1a37094919a5e953889c677c3293ce519910fb80bd21c28a870bb9330a66f37060623cedb74084084726b1c4edf8bab5f9190b1791fb8d8a76fb6c2d84d9814ae33c456d5138d9806cfec8205a41192c5bc227a6f615afa70fe2dc719ad26074ee8bb2eb798ff7eb3de39a2488fcfd609632ac32a224802930f62d9526bc0ef5ebddf82af05dc699763da36bc0309a6cf0b9352f4a9640f80bddfcd6e2b4db6974a6e2923d08185147c28f9d41b6e01a244e5948d5fdac9611a700aa0e1ed93711f21cb974a5bb9daa598bb19b23595b01e93fc9f4572c41bb126da96373c089083599ec7ca64e4aa75be9b59447f0ca80f6c385bbc01116f456e0fd389195ba2ef8f0a23769d35e108740d7bdae7bddb242aef6902be760d7299b41473e27ae7c3a3a0890355a92f294c2a463de8213ae61e7ea01e9f00ca6892898ae80e373f988fef69fa6b5594930632557d39e44b8a0658b7ae1451b3174d0e544d7346281d8fbbcc49dd7c7cc2b2f1f2a4d56dc09d252ac2a1bc501af1448c6e0e18fecf58da2e7d70da702d2e0363e162f18eff395206ab655321f815feb0deb6645ada785bc8def166813a644cd7e41dc591b6563fc296ddab92086cc89d621e02a80ad04d9ee302aec4ff17a9482a9c384e5f9135e77b7dabd0c2d9e6c76c97444a196311992e7e695c39693a05a119cd1daacc4ef926f74a0a19cb92165680afd79154175c0febdc17764bec76b279838f7e67c3023c5243fe94d5e0628375109e36377b81ff7e83023f2caf5a7100bf9fdbe8ac70fe6c89f8ae21923f6b0e169fd216b67a9a8e4d96d1f64b0aadb55fd872fa8b701244287f4946d5503adf83b82ff6b8246486a49508b4b9460aad0134f423f18693b166551bb20323a608180e0eea9342f08c048ceea25f855cccfa63b9ba0634e8d70220e5a9bb27ae6b8d7e499da8cf2cc721e159477b92b9cb9fd7bd14502ca55fa4a621643c7ff11e98d59b3bb5dcbe0f510754d143fad2b6c07aa243cbf46d8fec8eed3b29509b46041db1bf224143194356d5762914bed7d3eac7ff64a88b94975308a5983d1b22aea5f9f40d4f44f0610c3d58b8a9827b039ace5f4c74709979919ccd8165a57ae3b1f25e9118320b6842dafb527f6837c7f579e041e9457750c8b1beec33efe7fcc891b57e46d4f5fa1f5753bed0bdfadf56eb337d8375972aeec844d58f9126ad5ede92d62e3c6b7ad7f611d6cd5f9aaea486818c77f2cc32d4d2d6875467ec557603399e7fe82fedb8475cc24c113e56457617be85964e49d61973e5225039d404fb6f25d635868216376ddc309f3f42034a85a5e2863ca3bb8ff6ccbc2db92b08b010124b076e58366cf87d1b51128ba2947366a8689bc6dae386b84257a69af3a89db0ceb6073c6cb967a218ac2b34eaa2cc60541dad6303f3122102940be39f493b1f5a328874f6fe051c6d385e456b56e9d6948d3859f605582161e61671e351b384cac4a5826fa7fffbd9b6f667bb26c5924a1734f65ce32c4af3b0d4aff9c245cd7c450f14d234d807b05a6a5533be2bd0fd4a238de55fc63908e25af6f85d60ee235121e8f6a6b4f0d958191ccba30364949e159ab6700438e792e49b1014504e63fa705384da67e092964209481999aac14d363f423fdcedf518c50ed77e57d57fb5d44b17fe8bb9a268fe93cf4becde42c9a6e7286b463ee513ac8fc2403b165d362ba98926455282dedba38dc75206f56a09d3b0f3fb913c03ba333c7aa9289039634599120c1bbdac9618218c63a6a10e35ac9664f868adbf7b4ee4263aa3434e32dff12a01f9848c2e3774d177d7498533d4c9b17c329e401742ada870b03e219eb5405d9634eb65580243fec5ea4ce4f9051d174986d377b861c9b6dfb658ef52bbf3fdb37c0cf439f303430618b30f295a03dab8b04e36d1b2393e01ba06efd4b794c9f9703e720659c645b6b32f0a43adf18aad34df5f564e3a2f927f05d277ee323ea13bf3ae14996705c003eee829d81a7e1c733c35bca73dd548cbd5438111f4a682eb92a1cd2861a2c6206eeb8f3545d6e22fa9a7216307570d3eaa0cadec58ab32b7c3ec7e91d12a7d37491abe8f0307daa42af63f2a9b5d0c5fc4b16cc9aa6e4d1f1526b5b32db21ce991186f56a45c14ac4e8b837ca709e908f36f1950fc181e8fc198173adb6917ea9245d1a7819fe4abe881606fbc21079fc392cb9fb1240538547836967eeade86619f592cd56cb8e0c3e97ddc1bc604d364c188c79c364f1b3822b9ad667f0396491b2e430ec617ac93a863bf75de6f8410afe400a3242f8778607b90b9def2dad43256a766d01d5875714d2eb937c943875397dbfc205e921edf0f9971310229ad9d19c8f5bb6ab5b0d5e71f2dfe916ec432a59d74de498e39ba84627d4805d0280e4b472aa4aa61a4522a16e73cd6fe4ea0456a36d1d5ba2d6315b9bc30029d06df180f9820ab66a39ea04d769e0738b3206491c6035dfa60c3fd5438ef5e2380ea72fe409e2c12a84a2ad041d8fb97ddfc585b2bd62dd100d27495ec2ee510c14560816a3eb5f910df81f5f7a15593cb23561406538b438fdd63e661c11423ddd06e2e9a28724d92efeba6be1ffc3b6ff0dd25327864efa3279870956e284686386771c117818881717b507ee828fc0de5dd4c71a88c67fa24d856fbc188da664a59c9aa379e8831b6900ddbf8b696f1dc7abb361e42290c8a55e7401afe89e487f9269b5af8e7cc0b2101c6b7de40ef2f8b9473dc88d38e5d3b761d893f595ec1e8ac264033fac65641631bf802209ab292af69ff1df543b2b6df2ab46701a109b8603455787802cc23681839c92c59484d0c53be11944cefdec685dc65feae1611ddee454d94800e69f8353d52fc5f7d496d1d38681fbbdf70905bc23392872bcaa09f787b2e450c485a26a56deb94eb0f4667e299a06d6653ed8e59fe9ee5db8fde53399bab990cf417d8a61af3009bf44946b2f2fcf06d5f2fbda7c6e74174f4309ea4a9d50172a45b9444d96d7eaa46ffc16c3f787d670bab222fe03419bf27029e9cacdb0e8b29f2623aff1b8f45c8063fe7f5a633e302d87aa10172848c42969ebb4efb00e84bf03019feccb3538f9ff18004662ce1b4fd0aaaaa3a8cac1d45c8d36667892542db38e5d70dde98d1d134024e330d7b7fd991b7d1a9afe5b145486a8eb0e7f8761f9593edaba4ad95abe89238c3ec9f1166f9dafa59801fae06c9e93a2f0b9ee81853005ee3363a9b44d4f6d43d55d57fb1a3b5704433cf0f307345d832ba721c0e2d8c81400773e7ead18c85ebcd5210e536f3bbef12a84305f4adc3057acbcdb249f95968fcc0bd7d8780e36f6a4451a8a1d65ebf32627c00c4bef340247acb7280866b0e3404614dcbe67ab8a7ff75d63274c7d60b968e7a17052ffabb991f1c2d08c1e1a164495ee28edfd60f5012ab2f58acc895b3a66ce0702a401a1d9cd12a684a4c9aa46e118663b261118eb24d7daf933cbe8dd5488f98e0e735bcf21a46c91f01c4463ae7325a94e98ebd438c2ad0711182fed297a5fe5b32e6e47f3bc81ab8f4c2e7d91d40e4c46934e91907d06bd5c465e1cfb64954d631aa94ec3e17607dc18ce1d079d1e0a2edb76daefcdc54e35ae51844e034fce1b95945c9b0052b42dcd9f88b694dd4bd9cfbe65781a6e7083621e638a91f4bb006582a1c6a3a9a181a4a2b35569ddd1afae6bbb40c232ce923890aab5d0ec0dbb953b73c24c7b7ee817f9bee7c14b8dc9062a9116ece55eacc1289824a3392b4193b64f32bb776c16e858099326205e3d162729808440741ceedd8469e93ede590d72040171291dc04bd91db995e773eb30348b3d20cf423a37b3a21a61afda389c839b2ce600a009a80895e8e5d21b8dde91cd15f993c4bca4336251c82c3189a404b31570b601ed48312bbf325fafa46560b267e24d433bd74a261bf0fdd0fc547a45a8fade0ca30266a87b2800a76ca19ef3115ed6bae63831093cd5c172c50884a9508ec7a6096a1b875793f70d6a9b6f333ffee54b540be47c5947b2744bb1b205f2a74ad4982bd6eb43acdc680e591c5df85223130640942182028cb790a015404fcb2559fa0ebe3603268b83c94df857d964aa43c2ab694b341c62e9cb58f832b239ccf0dea16b9bfa989328506a6ea581310c8c36bc4a2b57460259b9ef98217ae1ddbfb233026ffffba6d5ec3f30b5ade5f6662f1c70ccc7eb12f2f094b8aadde8330ac6a58f826d523bba35faa9fb5239d47ea83fa00a8dec1dff252e8fc34945ccc465a1bad9448ca8c7531189110fb013fbf74c5acf46a939ae85fcac9b78c66f6f7d422cdcf31e6dce85b4732ce84d92f47df0fadba913893bfb44be710a0bff640468bc757503a49ab173aca63f0e43dc2f5e801fe09bab571ccabab11e43034c1dd41cf589483959a555f4dd5248cd945aa8f708be5a0df488bf9beaa66a267cb030ef2a419b5f7b21c4c0a70f030f61bd46fba808f0237f1a399fa3801a0eb183622fd9c2cf41cf4dc36aefbbf2d6a7c8341ff47b8f9de6c24648c5ca0291e59131c2e56ccc0ad9d79e0185f2d3abd86568b6dc83503ef31423c7e1f6888e677f8626c9ef0d087764a228cb864261f7e7a4f178b5609600c658ee7deaacfc23d8df20a0de8704ed71d29512315005bc6ce0318baaf843ce6fb2ba96c576be0acf7308044fdfb4b156b0c81c2613e28c064a334b02cdf45b6b6432438b339e4a0d90f9c9b3543772ce72c651af7379699e51aa93177bc86adaa6763494e57cd128300124b5d31664c8b6178e3f439ff3c9e8b6bef389cc38df6da2d5f0186e09097c0d6d325c7e3efdefee2f84ed521cfda5a88294244ba07573259b59fd58e19fdfb2753465c5c75c70a50a590440bf759bc0ce4546fc4675af494fee28954281fac9507ee358fc29c27ff3860920aa9271d0cf93e10ab4cafcd9d9c84e0c293e9d84c0e96bfd2205448e1f5975097c15fec2036a3f423f403dcebf0c8397f15503db90e797c4df07128c5f08051f8b6e04269a7534e366f2556358828afb510ea9c02aff3b99056f7622344066ad446ac0fb3bab874efc4b3b371effe9213f68f1fbfe68c1500ee7cd941a49fcb660d3a42abe23c39069feb6230c937e882c15384df948c7a22f560876d34d5740e7a201515de1c80c9e2c935b621547d2c5acfb25313d8eb8608b8e2a6bcdd460294962fc833990d40d9f199f56c567a5fe37a6ff45739210113d465822bf1cdae63c8b15c9eca8fd15080c5ceb5547fa3417be44c5d09a8f6a9f1d4cd6b85e51fd6d71782d1dc39f304743f564e0bbfe955474b171cf874d3976a75d323ab1bb84a162ef09b1b56aa708b468e190f1f4de321250667e3f1f70e3218cf194621778993036edfaa1d665b6d562d8cb973ff07cf1930b6056f4a0460f855f0771ac0e5aec0f5dcc28780e8c559b0a0133173c31c6e9852ca7bf3e93cfce4562857635ed80c9b74c3dd08967cc01ba0cb91e56373a21329dee4ed48e17884381cc5026a85845f4226cdbd1e79fc99fd954944f52386e0c59ecad2867b39795be69424933a58f4720b75703a8bae2970ea8be2fd447f26582520955563b6d5ff950794afba581c9354813e7c2b78da8419d5cfb8bcb5807f2058c8485b07c70dc0f547f51ec37df7cdf869ffcf1731d59e175f09f06ffbf8b16bba439f4a185fd40d64951f1622f296dc84c83b30f3efcb30fa33aaf720d1d690f409fda1fd5a9087d048028afcefda712b67d27c49202f8b21cca438d5144832c8f09ecb4f51ecce15e02d011a3c6a078b7bc050c6ef3100800b4856ba751fffbd3ea94335d8d95879046dc97241be521fa198103b82f5d4767319de5bcb3bebfea430481e72e6c2aca4967e3b798d1a6e944db7a93a65ed52d05e82f528d071a673238f6ca0e6d7da4022b20207db3bd2019dbeaea71df423afd94f09bf6980ef354a3fcba866c845079baf0dab62705abe94319921085faaba8a023ffb547b6ee369184e47832a7598bf327721a25175549bee2c92dd7167d34ed1bea37b965ec209181472f51e0c4964907cbf450b8637295dcf4e9ae595b0e3b4637516d8575e8b6b4887276f398e26db33dd49fc5d0707ea9ba64bde9ed179d54e2d6d68e9ad6b3921f9b57dcbc191687608f91399d68b8c9c91f43f1722a0bdad8ca2a116f7efdbb2b5968ad29735f443b2ed47be93b6c976657a1712f9016c0ec0c33bc2e8023d1f0f9cc77f021f6966483b1efea619eff7c7f37ec935e6a8b7fe0ee0ed830df96922a61206e3e7435abc2889643b6c8400c4ca0920f2c91b5e1de5a6fee6e0c462271ea402ae25ef9314fc5682109b074577007345edf02b4f85f074b8463e633a6d4b5f8a4127d2a179942c79d000d20b8b76bc4e1a57c10dc3d08cf2dc65ab969b26ea249308bcf7154655bd10234b1528a0e500da85b8f55f0280ff6c09099b4088b0054ff4381a064e5cc8dc52f0902b02608f5cbb1a2acc8c38c3d3483f462dae09d48b73acc8f88c611a387ad42e95504c4a41e2e814fdc66cb0abc5f692e3c7ed224a9f7ef03882ee8ecbc254131785696cbed509338bc1a57c2b3a46065491353f65c8313330c11bf12506ed0d0bec294f8fc544bbbaa4143de0c4581136fc2c36e540a6646c38ce2dcf621ac0a8b8ba96c30d209c9</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-wave">
-      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+    <title>Azure年营收332亿美元</title>
+    <url>/%E5%AE%8F%E8%A7%82%E7%BB%8F%E6%B5%8E/5629ff29.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="332亿美元背后的云巨头账单"><a class="markdownIt-Anchor" href="#332亿美元背后的云巨头账单"></a> 332亿美元背后的云巨头账单</h2>
+<p>Azure 年营收达到 332 亿美元，这个数字让我重新审视云服务对 AI 投资的影响。</p>
+<p>微软官网把 Azure 放在 AI、云、生产力、计算、游戏和应用这些业务之中。公开资料给出的营收口径很清楚：Azure 年营收 332 亿美元。时间是 2026 年 10 月 29 日。</p>
+<p>我以前看云业务，容易盯着客户数量和产品功能。总觉得模型再强、平台再全，最后都要落到谁能持续付费。现在回头看，营收更能说明企业究竟愿意为什么长期买单。</p>
+<p>Azure 卖的不只是计算资源。它连接 Microsoft 365、Copilot、Teams、Windows 和各类应用。开发、部署、协作和日常办公可以放在同一套体系里完成。</p>
+<p>这类组合的价值不在于单个产品多漂亮，而在于减少了企业切换系统时反复验证、重新配置和培训团队的成本。</p>
+<blockquote>
+<p>332 亿美元对应的是已经形成的云服务消费。它把技术热度转化成了企业预算，也把平台竞争拉进长期续费和迁移成本之中。</p>
+</blockquote>
+<p>Azure 的增长也会改变微软自身的产品节奏。Copilot 想进入工作流程，Teams 想承接协作，Microsoft Store 和 Windows 又承担分发入口。这些产品彼此连接后，开发者面对的就不仅是独立应用，而是一套现成的用户关系。</p>
+<p>这对独立开发者既是机会，也是压力。机会来自现成基础设施。身份验证、数据库、监控、模型调用和支付，都有成熟服务可以接入。小团队可以先用几天做出产品验证，再决定是否扩大投入。</p>
+<p>我关心的是另一端：如果产品价值主要来自接入 Azure 的便利，开发者还能不能形成自己的客户关系？</p>
+<h2 id="ai-投资正在从模型层走向系统层"><a class="markdownIt-Anchor" href="#ai-投资正在从模型层走向系统层"></a> AI 投资正在从模型层走向系统层</h2>
+<p>我最初把 AI 投资理解成模型能力竞争。参数更大、效果更好，谁就能先获得市场。后来我发现，企业真正承担的成本远不止一次调用。</p>
+<p>系统层才是企业长期付费的核心。数据能否稳定接入，权限能否清楚划分，输出能否被审计，工作流能否持续运行，这些问题共同决定 AI 是否能从演示进入生产环境。</p>
+<p><span class="hl">Azure 的 332 亿美元年营收说明，企业愿意为完整的云服务组合持续付费。</span></p>
+<p>这件事对 AI 创业公司的提醒很直接。模型能力构成入口，系统能力决定续费。开发者不能只展示一次惊艳的生成结果，还要让客户知道数据在哪里、权限归谁、出错后怎么处理。</p>
+<p>AI 投资也会从单点采购转向整体迁移。一家公司引入云服务后，通常会逐步把更多应用、存储和协作工具放上去。每次迁移都会增加新的依赖，也减少未来更换供应商的空间。</p>
+<p>这也解释了为什么云巨头会持续加码办公软件、开发工具和 AI 助手。它们争夺的并非一次聊天或一次生成，而是工作入口。</p>
+<p>我在《我的经验不能自动推广给别人》（2026 年）中写过，方案是否真实发生，比讲得多完整更重要。这个判断放在 AI 投资里同样成立。</p>
+<p>企业不会因为发布会上的演示购买一整套云服务。它们需要真实场景，需要持续运行，也需要有人承担失败成本。</p>
+<blockquote>
+<p>昨天的经验不能直接覆盖今天的业务。昨天的模型演示，也不能替代今天对权限、数据和运维责任的确认。</p>
+</blockquote>
+<h2 id="独立开发者的机会藏在系统缝隙里"><a class="markdownIt-Anchor" href="#独立开发者的机会藏在系统缝隙里"></a> 独立开发者的机会藏在系统缝隙里</h2>
+<p>独立开发者的机会仍然存在，但产品设计需要换一种思路。</p>
+<p>单纯做一个界面更简单的 AI 工具，很容易被平台内置功能覆盖。Copilot、Teams 或 Windows 本身就会吸收高频需求。开发者再把这些需求重新包装一遍，获客成本未必能撑住。</p>
+<p>更可行的方向，是处理云巨头暂时顾不上的具体环节。比如某个行业的数据整理、合规检查和流程交接。客户需要的是业务闭环，少了一个关键环节，平台再强也难以直接交付。</p>
+<p>我还在继续判断，独立开发者应该依附云平台，还是保持足够距离。</p>
+<p>依附平台可以快速获得成熟能力，也能借助微软的账户体系、开发者生态和产品分发渠道。保持距离则需要承担更多基础建设和维护成本，却能降低平台更新带来的依赖。</p>
+<p>开发工具也在变化。Microsoft Store 支持下载 Windows 应用和游戏。开发者可以借助商店触达用户，同时处理安装、更新与支付等问题。</p>
+<p>这类入口仍然值得利用。Microsoft Store、Microsoft 365、Copilot 和 Teams 各自覆盖不同人群。产品能否进入其中，取决于使用场景和数据处理方式，不能只看功能数量。</p>
+<p><span class="hl">云平台降低了产品启动成本，也提高了业务被平台吸收的概率。</span></p>
+<p>这其实是一笔需要反复计算的账。早期靠平台能力快速上线，客户扩大后逐步沉淀自己的工作流和数据关系。若产品始终只是平台功能的替代品，价格和渠道都会受制于人。</p>
+<p>我更愿意把这种关系看成分工。开发者负责发现窄而具体的问题，云平台负责提供身份、计算、存储和分发。合作越深，越要保留迁移能力。</p>
+<h2 id="我还在思考平台依赖的边界"><a class="markdownIt-Anchor" href="#我还在思考平台依赖的边界"></a> 我还在思考平台依赖的边界</h2>
+<p>332 亿美元让我确认了一件事：云服务已经承接真实业务，AI 也不再只是短周期试验。</p>
+<p>但规模本身没有回答全部问题。云巨头掌握基础设施之后，定价、规则和产品优先级都会影响开发者。创业公司获得更强工具，同时也交出更多控制权。</p>
+<p>我到现在也没搞明白，平台最终会留下哪些独立开发空间。也许能够留下来的产品，都有清楚的责任边界和客户关系。也许更多 AI 功能会被直接吸收进办公套件。</p>
+<p>你正在使用的产品，如果明天平台原生版本上线，它还有什么留下来的理由？我会先从这个问题开始，而不是急着扩充功能。</p>
+]]></content>
       <categories>
-        <category>工作</category>
+        <category>宏观经济</category>
       </categories>
       <tags>
-        <tag>wbs</tag>
-        <tag>项目一览</tag>
+        <tag>宏观经济</tag>
       </tags>
   </entry>
   <entry>
@@ -2242,12 +2328,22 @@
 ]]></content>
   </entry>
   <entry>
-    <title>OpenClaw 0</title>
-    <url>/%E5%B7%A5%E4%BD%9C/8b6d76da.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="d3d974b29008aff606283f0e4978d7bf8e58543d1d3a787740a0ae1e7049f1ed">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d01c1c94262bdc858905a4d80759515d1db386e90b995b088a668ce7196174ca5a1b9fde0d6c59e81ace0635b7e811b6eb4</script>
+    <title>4月份wbs</title>
+    <url>/%E5%B7%A5%E4%BD%9C/c2cb16de.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt"
+     data-hbe-format="4"
+     data-wpm="糟糕！密码错误了."
+     data-whm="糟糕！密码错误了."
+     data-salt="22d9056545913dbeab427dfa686a1bec3ebd5e0664af24684398ebf54276d651"
+     data-nonce="5afe2c58c6d999c669428acb"
+     data-kdf-iterations="600000"
+     data-auto-save="false">
+  <script id="hbeData" type="hbeData">
+    c906a3dc26ea95ab4d2c1ddb820d72ec3b018d19cf8b95f041b19783720d31fd175ffa5d3167e4eb5d3e6dc17eab35c21377f84119887d22e29604baab16e0f83276a5aaf5fa6768ec4b6e83f130a6222cc74fd234e8b46a876d63bc2d1c8a72644304175e26adb88ffd6ee35419968242f4ac50d4b053e87b883f0c86fed86be3330e12b3bcff8718214ed2930f78cfc680b0eae66c0464909764354e917b086fa28aa4fbcf241b51546fbe29639fa335165ac469498ba1b12757e72174b4ff1bf14822d6863573543975fa31f9a1bd7f997865b901e750278830f0c77ec8a9ec4c33c14c6b18003325477aa1f1504fc3ac1807b190c5d2cef30d5c0a0aeb7be5c80b563cdb749b00994f863fdacc1665858ef1b5a5a33d239575381e100e289d3a5017e61b6bb4fb4752f1bc55d2c103d7339266aa4430298a1946fd4a953f17595108975b03b43385c99f38ec0a683cb8c32592ca8ae8c4ebadf195b016c3acbc41f60d5d6d042818e8dd2f6c2c4e6a5a28ea8eb806ed2733d89cd61ecc18c43de25b90d6069cd74783aafcfecf1ee02546f079d8df3fd1e1b1578de2a894d6375e0c1720d23e1efeca68a3c9e85193cb405c9b2d4285444c962551c5b7a15dcb8353af65437441fb81c1722a8a57be7b6a31aea463d423c3088150e77840c704e1d25c53f2e72213ebfb79e4bd5ec12dfdfd6756d5aac06abc3e8d0e2bd8db50580d49f82de882646f87102f38cd1712a1109c9c109e36ea9861e911bd3f2332c3355e408cbfb72a26abe5586072106841d477a0ed23a65b0d16b57bffb860f6ca9e6357539769f563a5ce5cf7223ea5b564d5e6c89a502b879e27e901c636b8b6c1561a982611bf873f3b7a4e1140c8939a104519392f8aa2e2930f91399761f4c5eb61051e6eeebfccd073af3e6e4fb4a2c9154f6063c8e12ee85c1d454769354347ee90455dcee4b7f64b9c105869aad20b2f5eb02a916dc054c7f889cdd80476359efa5999844ae20477dd3068445cf7c97332a592980ee43f1fa7dbc5f9b2e16034bbe6ac57e207c96ecf4df38291c140c178192bd38f36be31d6b89d3d4f689678b5831ff57635b184e345e3967146d8765dbbc9e39c6da337dd0a13ea4c4c4a1af1629fce59dfeef8b661e859acca86ddd3ab4ee9e8e6f9dc6b87eb8f47172dd94c916b0a9f8db36e9e44e33a90092773a7898b75f777a5ed0a532e394feba00c2f36f9d292c5e48e07dd24e15b65a8856a93fb3b33210daec1aa1195c6e94a7fecb032b792617a9c7ae8956216fd4ec266f22f9921d430522b74d672be6208c88e623c6a10029a210eabf746de8a1d365dcffa41f426b89e5a68458a390180647eb590eb4c1dec97abff0e93f4949a94e57bac37c7ba1fdd7cd9f29c4be9b4f295b8ae76edc1d6653620f84feb14b88fde5aa7fa7b7f764348782f4846cf93016bc1fe1af8fa4dcddd07afc9f1b3357109bb4c276fe5e88bc705f78186afa848c3482315cfcf7fa356b014f2b49291ffc70adf9ecfdc47e0b3dd8fe9ac76cbbc1221764dfff19cb6dd95318159971f2de236b6c5ce80771d64b38cf2fc15547b198e9343e65a363f92aa1baec1a84c5ec576f53be4ebb36ab9958e96dde515e606e65bce79f03cb614101fd45069d7183cb366af88807ec783563f17c0d97ff692e9a45843f2352c84d88d1433193ac980e81e7dc178d327197082047b9cf23f7279b865533008456e64206abb0a1889918563c65d994325ac5c383b0adb126d8927b9c01633cf771e166d435748e536cbae7ca6386532ad2c57d93d069cd95b5975c63dca79f2cfc65ceb8544c492070e057d0899bce5b093551041e57cf6b5446529f314df9b9c33502e01bbe6b9831267f7f5d3c46e43c1b3d2fdeeb66b27787c89755f5df8ba6ee82d5cf6c81bc843ef7ae5ecde5bca97b8bd5cea070d64d78833fbdcea17213210c11b790a23d5a27eb1ecc281215e2940e0eef615a3ef1a8d57cbc640b2ca65d0e4f3528288dde2d9348b0a9562b5dd5c412b67df55de98edb157c2751b778326e6527ed0f624ad225a3beed130537b3043e771ea463bec7f6077b5b57e493a7a095cddef4965dd18b8e7641280d6a03fda4039450d1e27f3d092dcfca4fed42fd7d12b23c59d7c742b75067c025490d7a0174fb9120b0e77294c076d051ee35e3171fb680af805b026d04cca01a5481f470bfd7f92118215b7c1671d4e71bdb3ebdfb532b813a4f3dadeca64915f31c81e2a50de34b6750976be3bdbf430993db2d8fa55a9f1e3a6fe0a72b03e58f79af1617e04ef6be0f09521e8abf4f994a700f55ef95dfa4419c32c1caddc9fcc1599852b3e3e197efcf8182f3e46ff4e3a9321041f7d50d9b1ba6fdaae43e617fa0a83098acc51a0e9244b5ea7d781582b18235baa0927e42101f37fb80734a47685b2d0b0f9ac4eed897ef77224de33d207536150dca71824c1a0f51978e01569af0c4d4d8d540bc3784eb8384bc197c10652e8334125c2f16d43e9e4488c5a74c151b28738755fccf6aa12c4cad02d3bcdff4e508fa9d7c29c5d3f6b56312748a12cf9b0314e818251c54f050eb9fbac7a7f6d17993df6326537bbb111a511b4329cef62ada7d748ba832a935f1933c6f89971b6d639ab79f59b81c8e6a28dbaacd691ed2dc048aaabc786313719c4543974129ac8eb1f3ad59f6050806d814fef110c327bc66e839f990ded06eebb09dc7fec0bd78413e0e0d1253337461b052b3489cc893fae7518bb80eeafe07e19070d8020b85dbffbb4651e908b7e32df7d216ae164bb72bbaef6df2dc33995e8ebc03acfed2430aa6e6698307bb211d57c07cf60b597f1df40feee1c3efda10fd34aebc7f7431cb3f745f8043fd74820088e7fd57db72b241ac2d10a7fc37bc428106441502663c5303bc931690b94aa777f884dfcee82c77faa1b3f77996a9a3eefd2f5fc46a5668ffa8f8c51d1e0bdf658b36c590a402e2c992bc67cda155661a7ee93f2056ca973e87ee3a8e7389932afa3d31ec0f49c0074d6168650e2e9815e2f9dd7eee1825c8f362d518461c2d95045305c13ebb431b8034343d6b0e7efe66752f517abde6ad6eb4ab70fd1f9038f7ea042235b5be3728893335289962a4b2df43dd5924967899a27447eea892e8dfdf1024da18c729310863c78eda370e8045e3850d4bd6da5a90a5e2c9de3a590726620fd953c613c4d44e32f38ad50292b2cfc39a572cd68d3b50ca53f5d18dbcbeac3f78c0acaf31b28ced1e5794de0f2c4214e6e88f60f7c6e649a91f47c61f02dd2529cccea667a14c86da39378888c8c4b63ebef9cf06a8e5ca5ddd09c7ab8847c2ed46d39db8e0aef5ae4ca0b31fb8c8f0b3d02c90550c386469cfe0a4110410d6951b052b725f3c0207c231e600ccf7bc251cca9a9e9e638af6203f32d23acf9d5abf143feaf18134ca4c521a88530c76be6e0d5827950bcab8ea1f9ab50978b6fd8e18f625e2b2a16a667356e13a6397d11f9a4a43bc8472e8d23a339654b7f2c5581c5570c80402b48b1a36b602369c3fe027331b67811fcd8047838f8ae7b695bdbf6bcb117ff72ff54e8182641d38b6bbc6afbfe6f2e27aa1e8c0a61f310f2dc9eaf6f7eadf7c09bc18aea2be18e02a784bad2b92b870a392ecac4abc7ebe974a8567926450bc1d572821d66f99270636fecc25c0789a699202d4be60113b8ca96d4546136bcb759b139675442b45a2c68c42f8c95a8080b1897bec034f00abcc399e48b61b48058e2ed9df54d21cd68921dc330db60982aeb5e6d484b9f3b46b7c435966b6fa24858b0caa9e9930d73f812a4c1ce7a1db00d156850efc19097be16cef465f223129798805732b3a92873592c022bf4d691bbc6b34b8c43900f134c258ab282dc732e845bd454346fc1d5e9d0331014dad0185af2da75c2c607e3d7ab08c8e6c1bc74583cc11da407e1c9d520bc9704872b1ef92ff0678fc7fe19f418f12ae7fdb57a87b0a3428c631fdd0aeb1eb06eb49905594451b3c02222aa5ca553c94cffe957c6ceb23790a13affb72bdeeed758f069c075b9bb1e704f4e9862b09df315d034ae5c452929bf2beb826316502cf79d094c26a269efb56f6bbfc6e67eab8d7ebe39f7eeca75a39db5c2feba4e03bec059e34a80ac10a01e902d9a982a37b2891fba1be71fe539e1129d3b1415e4e78c6408656688f6eb665cebd3812e5f6e8b49f99987a00882d3fab936594b070f5cf1f48ed92059d98bca2e7a54da15905019b31c7af8e79d8a30f95f2b233256a588f53d7506fec73ed1547dc6da2d22cbe96b901c2ae672bb891a9496b24e0dcc772e78c479c056f0cccd85f375761a6155a03026c0fdfeb50225d1a0c41696b3ed0ed1628e0099ccb4f62ffb3fd7443bad875d34faa7bc17fd923167f1118fe790cd41edf9317a8cc0f51b636955dfe5e1388359a7a86eeddf269eaa0b4f719f695a232c21271b53adea7263909972c1f0b427991a2f138434be2791c11f236b2bd00b55d7412b9d1e65dbe55a3cbf13c422e322f9c769a44ee742ae03d79d8ab6c4353b51940809dc8b9013eb501ef2de81c2b2a098b4e07ba628770f49805812605e26b8d3592c50bfcc5ad2b0b57937da651e136da57ae2f5eba938823aaa8e5d7e27e37fff7c3d7db45a47d0e46e6455b1f6447fe1e7a1991707bfac96c7bf23a3e9222d2a26e7b5e8d5f16fd6346190b6f31134ddac2e9a7c2576b2d83d355476718c0a301e374358df29db0b07ee99e801b0dab2d859cac4dff1ee61f6fdeba0439ef41fa418dbc0bdb3eff1e524347056636f86bd2e7811925585d8698fc22ccb508eabd639503384f9c0f09160567ea611b6c7c1ef37bc54d0a2c630cdb9bb85c98effaf3375619de9a3ffe52cc66ad137051669be934c210ac6800525df34a822832fd1c64789b15bdeb45cfce5a23898b11e794ab094e7176b37f7c1e8046665c55092cc33eaa4e8c2ead0db4de3b3117dc98662ba36823ed03896b8740ca81d99a38f183ba79855559a4d925c9e1aba1effb6e6ac2b1cad51b6eecc7aedc8d47f2c8692380ed70a06ffa06e003173a040cefcee21749d08782eb8a8800a6c6b29da534285c97ff555b3f85b64b625f0203ba2822f631d2c982bcea95c16b7e75345302fd3f9d7d66dca734498027f9d9ec7f9ad5025b5044b81ae38c8f486cffd1c9490f618a462ad92b1ffe34e19a8000c179c2b2c62b96cd8b628288ae8ff0ae956339d6beba6e2d698f89f3547048930e7066d19a3380ea4e4a4bd548037458de031aed4c12c0510c6a2be552db8b4a21841d6fac5800ca8f7f4383bbbe9f2409ed4b4beace29141f73d811720e5f0f8ad755e0551c3a0eb33897fa61a7fb8ebd04d05b00f1b6d8693ffbf2d68ea63a6e52de6bbe9f5bbc7b198c4edfb4f427ddfed6aed624db53d1fd91ec7893547026a11842f4d7ad56995b523262bf6d0430bc178e5205cff5def9aa5b363e966eeb21c4db5da92d838d681887063f7afbdf60a9051b10eaa1ca2c43131e2f1c5c76edd80f42aa18fc614fcb148a00c3d504c2ec1d04489091c1028ba06d246d0dd6792bcf50a96bf4f0edc374be4660112b7ef94908862a39cc01a64659279175947326153ebe4dfdd2043c81f578c082cd487c0eb2c066767bf2074e0e8931734fea60e166de3bc381be05e411e6ef8e58ba6cec80e65a3e6ccb8ebe3c769df03f901921ec26e8ebf17004f71c2dce8bd6c0530b69f752338732fe38500ded0a56a146b5a1373cc81a9f4d870d420f1b4fef2d3af8194aee59229fddd4b1b01ca7d5a7d08d6b546ac714a1c4c098c07b28783bf2ccea41bf6b843dd582203ffcbde9ec29e73de77cc6ea613974cb1df8872930e2bef22c5ac62184d726545c701caaab6efafe204f20773b044b9dabdbe490097d35a049840a6d36e64b6c300eed1d136c81fa50150249e733f6aa5a9518cad14497b1255b285ec18a1b8abca1eb99dc7ea62a1f0c041ba7f1ec39c63a8646edca7bcda8ef50a2d7a4b5b2d584af3e6f3f47e48e5b99fed4d64b6374c959aa0e122331484ceafaa7eb28161bf7007a0909e439d106b697d3b399efd18e5169e353d7d0c709ef36419415049eb65c79af73e92020cd4039b2a927893ec50f1f18ea9c91d53b1fb8f9c52b72c020773be929ad76dd70f6fa80418c661da864b1ed4fb1847df346a44fc3902d3c9d0cfd1ced8a2fa75d03a280e54fd5232562db593f7e7c436ac4e557a266c0cdd61aac889b231911c4f61187ad9c82bbe22feff3b2c14d1a5b4925de49c8d7e6f6f9afbd6a6df2c26062fd6c29d19950587821e821e10eea37278b1a7249383b3cdb9e84b6e15982a5b96176e0f1ff7e6b8d51572761994e1a48589c3f03add32d4102f8399285912bac469c66061e5f460240b36f867cd93f7f3aa52b17dfc86ddef4a14c46c491364a24b3b5e36f50bfdd039ae7b9713af0271d7012e4b4cc3a4187c35b3c4800ad6888a15506d2fe4d2a554352e17fc24d582da94ec68d13d78712322bed7aa27fdb2be9a1a0ffebd127209bc40823f3be268f978b2baf200a76d86a74a26153a62d74b96a6a47114e87b4bc62b95e53a3360e353860baf51de3f9ab8eba4d0bb59508e741bd98543a5f069d3e2546efc2e4e61d83e27da414ced602c5dbbce6e73c53dd5f78362ca9114537d60d9017079a30a5d6acd09422f9e1b1373e8ee8001eef25be5aab7598222739843b4553261c52c4ea04e192672c682eb0c6a076b14a1112afb7d402c216934ab9a75e6ea841104ff4f83e2adf1d0e98c959493cbaa2ca09b8665a653da1b8e3fb63f329f7c648ca9de1965250ec306651c888c0964317e6120638b39c61d435c28f72a488acf4cf8860d77ac7ecd04357822ba03a833a88afc3cd04b923152a26bc9cc88ee3f6fac68444066dacf7a1c5e07b319957d51c53b9c2e6c92f23238d8a56750aa0fa91d3fd3d0f3b83bd07c0ef4df3e1466360c15035e18c61407876085cbe6adf1d08c63d07cad5ae40891553be32866f2ba4ec90b74f7d4e9f2f913dc43d35fc5fcd142834fb4190b69626770c47ee82f7f4fb06a1b790d2cf0ef918ebcad39c2e2fbf8910290e822bc894fc5538b1e0c7941e042a651bf4d9af863d21a3a4974e6780178eb6c0a0f721b6f7e274290c044f7640dd2daa85037682b04eb50b498477de78b965d941d765d5dca1a2851d1862248a0a2d6980a1b95ab0c319b6eca8aaa620004885d528d9eb0a7cf4a2d464b7af24229b093c0f0b46e9b6787549207379da4d7c63f35b73def4474bba5a65416c792009df3ce4a8550e9c82ed217be2ae8b0670dbf4f39f41bf44e7a25ad46113c3a7b2e257f7766301d11391d4af154234b437a5a95ad69581856b086d9e0f26d5cc117d70d78936ba13e5bdb54f521d9496a3f714e5a9e20ab5f5fd07720beebd9d72fc46cfc4dbec8439ce1e8c333e478b572aa0e112bf27b3b3c5252c35333a5565b5b888e02bfa88bf1b9d65f32953770599f1b45e1e22e03d37578cb344190d80d43821a8f1207b676c87f8617b7e053892cae441040fd1f2a645fdc674fdfa4441246bb27149350983f49987bbc659e9fd451c1bdab372a32d9c7913138d482617ae28975063a5d0fde7a404271fb88596155a6357bdc1c7c9910a444e25c506502acb875795562955d8394e08242bdd2fae4ed7a7ec16945c1115b62244fb1a329c36494b0790bb54ebeef4afcfe7ff68ed023a09493e1cd7d2bb4b4c615efd3fe2e6c1b3c3381fb53a8376c5abc4e3aab9047bdccfd3dcc9b0f3a9d279b96101138eb1bd8349396f6cfe587497f62a53329632c9c595e2f6039496c21e276eb9157e08ba85a42bec96c5676377484f50abe1f8c4efd663751f340ed04c87eff5cbe05764be89708e17f724f8ef3a9190e74cc2b2f64167b47790c7fa670564df59788032272c5652f333b17d5039f5dee30b8db97bc142d1b9a58618249e9dc61b36a18008b06918256d8c3b92cbdde89b1ead677d5a92dd4c0399a11394388e2d1af88776c324d3f65597326eec31b36653beb4dce1ba6d45d1fe31b2a9b439cd870839a5cfc455c81bc36161bb615721a3a2897577f02b870102a939d91e8adfc624b4d6e851290f731237946b566283cd4c208360dcec2e73280128296fb1623bfee9742706c5333e31272a33bcc9a68b68e1e0d46719f6bbdfd4ed515de22e69dbba0f8cbf28d5e9bcd5d809696b5a94683a11f2a43bacdcc4912e874b3c4485a846c974a35c5beaaa5de7dfaf2f0b39dcffd50aefaefd6ebd7a13e412a0805379fd05f5fe87f0361b4c0ec7c77723b74f17c08f7f70348c794a743b3cc1b67ba3c7811f3b172212ece835a96e4b06c96d574989ade39e91613ec635efbb3638d1cea9a79ea24aeaad6f2d751f4733d1931e6e316e949d6797987708cd52e38728db5a69ea29b7873ac60e43f40796fe7f40d49a7907e33e52cce4f86279cc0bd07167a6f20a4f07c91e44fd39926a2eee0e0156f8e91c0f62be5cdc0124e609b487ceb4abeec9a2d6061e79d16d843055d8df74a5722d66c9287ccc8aed0bd9b945884893aeb5819fc2e2d21a742c1d5c2c94117942a56c1793ac5b010478ddb030e05f508ee0fe5e34d18d4770671ad5a015c0ae06150fc224cf55be9cd6de5db5214031102bd9174dd46e203ba9f45eef176b51057f73b7568276c9646ce2ea2fc2b7f6b32fbbe5bb0fa9c063244bd8018f6cf062488785c318c9c3bdd88537273414a530851cd0736ba6b642604a314dc494b2272dfbda89b114f160abaacb9707b86e0023eb383cb63afa8b4e336b2764502f37e03ce15696c9d415776f10e0a8fa9f4ff6c1e04d7973391618d9d7a2dcb773bc8279361de57c58b43b248c9c8e7d173fdc24363857d68fcd9e2f630ea3bcde143b50066a0d3dec89ce66c14d5bfd8159533194be1ce0e592375a93d81526f89737d6a18305f0dcb7d48894701dfbecd00843dd3810c2d7d073911803f032a22f701857c05879aff18eff9d2e470a13a666acc2c6c98ce7a2cf1891f8c667da2786e8531fb629f9abbf8c834928d9b2fd6dd9281522b2a97af6edf4d5ac3bb8fed725742a7101fa24c8904300afbbdc74da67df051e2ed998617cbd777c2288209e0c01f335de6f886040500c8417f9219cfd862160980ba424f13aa269f544a459ac1085b356e463dc861ed9a5403d7779cd87b985c10f04066d522fcb68db8c119c63ae2f05ec5b8aa1bcaecad11ca057f13227289f0ced7750eaa7173e69841e33e9eb2309bda2eb2f64d2fd17e76b6a49ca315e8f713bd2b496c14eed90c70360402770112c3f991fe1cb32abbc02dbcb07e9ccd2bbefb2fc51e2c888ffe7a8164cc35dc0c9c4bad7f36dd790a1573ad4f0e723e6abade726a2db90ccfe397b525b4f0084e928e3f5b00e3fc7ed3a49914fe7a20582ad584fa9c88282851c0cfac1d1659ef4c69b6d3c30efed913567119621d7fef8c523dfbfd7269db0fab84e29827751557d41b9e4953a25caebbf930c5676851473f64869e5da3c4f282d27d2b3859e8a20896f217d99198586d3c3e6329a09db9b57fdb78a992f4ac392d505684db05272e6178f9bbed45cbb28cd95064e531bf7192838b48ac5b55401f3528c473ad3ee56530e0cd65bfde3978d297e80ea6ea7e67dc0e3909161c75e9d06b82681181baf39857a3e670af2f4bc6156e29d38e2445c0227eddf3445f21164ca92a99557bc29d446249926b1161656cae8d66f4ac1b4a2896accff1a53ae5a6f63c42a356181a6b4508da58a3abcd6f4c4baf8c92b7c2fb912761be30a81200f35c5bff862fd6a850b993e0aa4b03a6ae5b82ed6f7bc40bd8b26717e17b3153b7bf26536551aa6cc88450ce6bf26343d2642e0204fd1e3e1fd2705a6a9ab2aa2b73daa63bd072c40d6af08681f2c883a28beff68b8056d9d9aee31fee150bb20366cae84bbf83d1eec39b8d55998e50bb2c154b3533e092c0820ed54f42fbf7e1ed28ee17111358dabad3b5f9df653d176ad6002c3ae73260c896fb5b8bf791f863468892c13f8c2dd8689893f9947604820d52d4773234bc24d7f9ad6e90425664c24a728dc5f2fd129b6530970b0e3a8b0e3cdbcf702d970145b069a2c05abe577a59607b0af7e2cdfa719daa082f314171f9e9ab9a652a7560e6c70c37f82139f35d8a385e6c3efb74ad2b6e8fe400207496cc4fcebd5341c71b3785dcdf627f82a2382bc7ecb43d3c235b1e69038050f7a30b841c72f7564e32cc2570a1c5ad489f796b9e07bdb60ec2d18702f1455b32909a7ec60716fecc39e156a0129a1bb511228e9d37c505c413fd2f5d31aaebdb69674d9cee166d583cddc5eac20ab1daa108572b091724959a6845650c6dfd98b056005868a0b7c544aecded9e2660b259ebffc7e7c0f0ca756f2de068c679c0458eb88284a373506c7b8a8d3c982ffb8412007b45f844f753892b73cc1c0aab51e5e8bd06bc033dafacad36e4b0dabd62febb5bcfd40da296fab2356b01e6cd7b636c82a032c76372d83947836f1b27b096e88ad66a59a3b97aa3f0097d3ac6511fe91bf861985d926cccfe2aa1da00698dcf08855507d746f5af0eb3f90fdb5633f63225080bf1b820c2c831770b19cce8455411780b176112ccf01ff83cf59183d5eeaef145afb868be4894d60eaef1196dc23a2e0cdc4b0fed0381c32a97060b5d34f8e8be5c339cc6395f67fc4d03d42613f6dbed04334b304429bd148e5fb3b9d86782e6d15889048b5e0a0262d09977a455ca3d6b969515db128ac64fb3961f3d0c2d8148c572e1c33fb82dd731a5ed39b4a98e32a56635eb51c29f3576d51d153e634138135af95d12ed6873c5c0989f06051b612a8d9927534aaacf8507bf30961839c8c117fe797350f444f9da66b7657b2320e67dac52c2f3272f3d8765571b816f057dfed332f04d8d4547278ae60c7fc76e02a22f7bd747370c884a96c90b733f995fc261afa00358831f8198728f2d0121f3f502e69a1740f9f06428700ba599636b83270a2058f13648e617a02d36f2b6ea82c62f4cfad1c298fc
+  </script>
   <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-wave">
+    <form id="hbeForm" class="hbe hbe-form">
+      <div class="hbe hbe-input hbe-input-wave">
       <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
       <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
         <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
@@ -2256,29 +2352,54 @@
         <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
       </svg>
     </div>
+      <button class="hbe hbe-button" type="submit">解密</button>
+      <div class="hbe hbe-error" role="alert" aria-live="polite"></div>
+    </form>
   </div>
 </div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+<script data-pjax src="/lib/hbe.a3b9f59caa.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
         <category>工作</category>
       </categories>
+      <tags>
+        <tag>wbs</tag>
+        <tag>项目一览</tag>
+      </tags>
   </entry>
   <entry>
-    <title>Reveal.js使用</title>
-    <url>/%E5%AD%A6%E4%B9%A0/6befbd07.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><div class="hexo-reveal-embed"><iframe src="/slide/Reveal.js%E5%B9%BB%E7%81%AF%E7%89%87/" allowfullscreen loading="lazy"></iframe></div>
-<br/>
-<br/>
-<details open>
-<summary><span class="pre-summary">&nbsp;</span><mark><strong>代码:</strong></mark></summary><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .slide: id=&quot;slide1&quot; data-background-image=&quot;./1.jpeg&quot; data-background-opacity=&quot;0.5&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line"># Index 1</span><br><span class="line"></span><br><span class="line">### 我是第一个页面</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment custom blur animated scale-down&quot; data-animated-scale-down-from=&quot;10&quot; data-animated-scale-down-to=&quot;1&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">`js [1|2|3|4]</span><br><span class="line">    let a = 1;</span><br><span class="line">    let b = 2;</span><br><span class="line">    let c = x =&gt; 1 + 2 + x;</span><br><span class="line">    c(3);</span><br><span class="line">`</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in  animated rotate&quot; data-animated-rotate-to=&quot;360deg&quot;--&gt;</span></span><br><span class="line"></span><br><span class="line">`mermaid</span><br><span class="line">gantt</span><br><span class="line">dateFormat YYYY-MM-DD</span><br><span class="line">title 流程中心、表单中心</span><br><span class="line">excludes weekdays</span><br><span class="line"></span><br><span class="line">section 需求阶段</span><br><span class="line">需求调研 :desc1, 2023-11-15,2023-12-05</span><br><span class="line"></span><br><span class="line">section 设计阶段</span><br><span class="line">设计 :desc2,2023-12-05,2023-12-10</span><br><span class="line"></span><br><span class="line">section 开发阶段</span><br><span class="line">开发 :desc3,2023-12-01,2023-12-29</span><br><span class="line"></span><br><span class="line">section 测试阶段</span><br><span class="line">测试     :desc4,2023-12-20,2023-12-29</span><br><span class="line"></span><br><span class="line">section 上线启动</span><br><span class="line">部署培训     :desc5,2023-12-22,2023-12-29</span><br><span class="line">`</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot; fragment fade-in  animated move-to rotate&quot; data-animated-rotate-to=&quot;360deg&quot; data-animated-move-to-top=&quot;-50px&quot; data-animated-move-to-left=&quot;0px&quot; ---&gt;</span></span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">第一个页面的备注文件</span><br><span class="line"></span><br><span class="line">----</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .slide: id=&quot;slide2&quot; data-background-image=&quot;./2.jpeg&quot; data-background-opacity=&quot;0.5&quot;--&gt;</span></span><br><span class="line"></span><br><span class="line"># Index 2</span><br><span class="line"></span><br><span class="line">### 我是第二个页面</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">[打开index1](#/slide1)</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">[打开index3](#/slide3)</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">[打开index3.1](#/slide3.1)</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">[打开index3.2](#/slide3.2)</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">[打开index4](#/slide4)</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">第二个页面的备注文件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">----</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .slide: id=&quot;slide3&quot; data-background-image=&quot;./3.jpeg&quot; data-background-opacity=&quot;0.5&quot;--&gt;</span></span><br><span class="line"></span><br><span class="line"># Index 3</span><br><span class="line"></span><br><span class="line">### 我是第三个页面</span><br><span class="line"></span><br><span class="line">我是<span class="comment">&lt;!-- .element: style=&quot;color: lightred&quot; --&gt;</span></span><br><span class="line">第三<span class="comment">&lt;!-- .element:  style=&quot;color: lightyellow&quot; --&gt;</span></span><br><span class="line">个页面<span class="comment">&lt;!-- .element: style=&quot;color: lightblue&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">* 一 <span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line">* 二 <span class="comment">&lt;!-- .element: class=&quot;fragment highlight-red&quot; --&gt;</span></span><br><span class="line">* 三 <span class="comment">&lt;!-- .element: class=&quot;fragment fade-out&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">第三个页面的备注文件</span><br><span class="line"></span><br><span class="line">--</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .slide: id=&quot;slide3.1&quot; data-background-image=&quot;./3.jpeg&quot; data-background-opacity=&quot;0.5&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line"># Index 3.1</span><br><span class="line"></span><br><span class="line">### 我是第三个页面</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">`mermaid</span><br><span class="line">gantt</span><br><span class="line">dateFormat YYYY-MM-DD</span><br><span class="line">title 流程中心、表单中心</span><br><span class="line">excludes weekdays</span><br><span class="line"></span><br><span class="line">section 需求阶段</span><br><span class="line">需求调研 :desc1, 2023-11-15,2023-12-05</span><br><span class="line"></span><br><span class="line">section 设计阶段</span><br><span class="line">设计 :desc2,2023-12-05,2023-12-10</span><br><span class="line"></span><br><span class="line">section 开发阶段</span><br><span class="line">开发 :desc3,2023-12-01,2023-12-29</span><br><span class="line"></span><br><span class="line">section 测试阶段</span><br><span class="line">测试     :desc4,2023-12-20,2023-12-29</span><br><span class="line"></span><br><span class="line">section 上线启动</span><br><span class="line">部署培训     :desc5,2023-12-22,2023-12-29</span><br><span class="line">`</span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">第三个页面的备注文件</span><br><span class="line"></span><br><span class="line">--</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .slide: id=&quot;slide3.2&quot; data-background-image=&quot;./3.jpeg&quot; data-background-opacity=&quot;0.5&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line"># Index 3.2</span><br><span class="line"></span><br><span class="line">### 我是第三个页面</span><br><span class="line"></span><br><span class="line">&gt; 我是一个备注文件</span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">第三个页面的备注文件</span><br><span class="line"></span><br><span class="line">----</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .slide: id=&quot;slide4&quot; data-background-image=&quot;./4.jpeg&quot; data-background-opacity=&quot;0.5&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line"># Index 4</span><br><span class="line"></span><br><span class="line">### 我是第四个页面</span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">第四个页面的备注文件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</details>
-]]></content>
+    <title>OpenClaw 0</title>
+    <url>/%E5%B7%A5%E4%BD%9C/8b6d76da.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt"
+     data-hbe-format="4"
+     data-wpm="糟糕！密码错误了."
+     data-whm="糟糕！密码错误了."
+     data-salt="f9856f17590d768c913105106ae60c5be4449a1233689d0efa6ac1437b3dae68"
+     data-nonce="27fbed54a050318b62b98918"
+     data-kdf-iterations="600000"
+     data-auto-save="false">
+  <script id="hbeData" type="hbeData">
+    539e3ccc5c69ad4b14a7c6003928d02e4ee696fdc0107445b2344802da69d09799e6869f75935198cff665339dbf5501d89d8d567c8eb55f363b8cd5c6900f65bc76e7e1fc39cb08d42b29cab573ba98372849bf76881a93a9f712a58f370af1df930ff78de2ecd649690b3746a8bc357e253ae11a8dfe06763a50b5cc6a3a6f36993178a26838fee66c04f3a119a0ea33085e7c395a317ed9d90ea5320f5ba011d4af8c3a730861cac19e5f3086132077830b538703332cf69c614bbb202527996f050536ba476214a9bb6fe8d9ec63a849799b3d252f0d47eae97d178647a5e64604e586fd72e97beb985653110b938783268b58b81c395156e0d9259cfe181d8b63bf573579dfe8a1e484a6ada955e7834188b28ee7c610740cc1e161af9ae6f25c744e8684c7efc2ca520cf48a8fa2227f6dc2d1853357
+  </script>
+  <div class="hbe hbe-content">
+    <form id="hbeForm" class="hbe hbe-form">
+      <div class="hbe hbe-input hbe-input-wave">
+      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+      <button class="hbe hbe-button" type="submit">解密</button>
+      <div class="hbe hbe-error" role="alert" aria-live="polite"></div>
+    </form>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.a3b9f59caa.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
-        <category>学习</category>
+        <category>工作</category>
       </categories>
-      <tags>
-        <tag>reveal.js</tag>
-      </tags>
   </entry>
   <entry>
     <title>Transformer模型</title>
@@ -2324,26 +2445,21 @@
       </tags>
   </entry>
   <entry>
-    <title>daily-news-2026-04-25</title>
-    <url>/daily-news/f135226f.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="97442b5ddf56353997a374e4f8b028133ac16d980643a6af87331ecabce08a81">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d01c1c94262bdc858905a4d80759515d1db386e90b995b088a668ce7196174ca5a1b9aba2fcb7975969cbd89e81d1d660e0713c098d776731fd8d15b54c7876ea503cbfbcad334fe1843e2dc94440380ae84d95a5d6f8f470f5e5e38194a5722d941a5695be5e02cf91f1b464206a372a3bf7f85681439a7be1f348cad1c7a59b72575f459e5575173933c978e1f9468637801cd2ecc88c542c3bf74f7984ed052a7e1f858719ef375ded80fdb608963fccdfdf35b5b73e174248cdea419fe4af29bf42779957ee2676458b45f6d32e46f2ae02af8a9b7cd41264e3e029dd6897628424041b07500c135840024eae37e0c2137e3a5155437364ae308c5c39140e36b2afc04c9eec03c2f97b2d91c83cf959582f8399ef4ce810df706ff7b7aa4770e22fc8b4f97fa8eab5778c4aa64fd17399d02f8f14a387d3224e0899380a27cc32933e90ac9e76e468edc8586648c2bf2f2b7e49d885122c2578a8050fc5e7ac431d6aca41092537ee2c815266ff093c737cc81cfff7252fcb4671951a05f157469629df74013c4aae3ffc9676927fac7e0cc157c22af97916efccdfea8b1f9e8129277b6a16f8a8801e305ac01b78bfe5a9f3be076ac15e47f8bf070e774537d3467e06ece04f3bcd9cabdc9f2d7e5986f886ccbad9ca116569270165cfa18d262130aa9395b06a07fa005a2241c9971c6d17b2e38fca144ad59842017ab13f64dffa53f424afccfa78e155f09f74572f34149df53be7a468706a899c91ed3f6894126137086d87882685683e6604cc231b359d28af2ce6b68b23e50b5d547d0ddb2cc0ef4a579d48a5749ef2cb71b3e2684e84da175a45bd2f070756e88ea5d2819716ca60ac6259ed3ae6f742beea2985f7ec0abc003e55484eb82e0f029fb43613a204f1df283cd88c29829fb3286f5f760c503656a982f469d829b57c7331f8615ccf2421f6d69e362559ab0ab9c26e0db9fdc5b60169f4603f89f3368464b214b2626fbc6c10068c7cf658288e680007f5cd3fa57205a4da44a6db51a7d10b1877c4c18cec4b0e1c80a1b88e3bb75ccee12f4fd580b27a0fd35ebe3d146b6cd2c840f861cf1079f6fda348e6f67e594a3788c924509d39cafcac830e701bb2b9dea32fe14c428e4f021dfd27bdfa216c4f99ba7cbacb42fc79156262a1de0f295ad09574e898bb20939969eb1c55c9921e93d0c5360a23c33a5d0cfbfae3d7610b1964936aa4a71017b7e84ee7c8486640b5deb468ee796da94689a1790e436c767cfe6dda78529cdd95388887adb6c60b71eb19cfce44c294c25167b36bb9e538872aeda496ed09920aceb9c02e6ae6ebcdd327b1eb21da43460f4da18e3eecf8ee9ed5239f039c5aea889fc5bbf0de5d8bcb781b2ebaaebb045a9727048f47d4aa42859f4888221f2bb6c7a57074d28f8c1ee9f709fc251a7992e9b2178b0f10b9df6d3c8146efcc6b1e2008f6a68531bad4d1f23e4c2c9d525cad82c2f786106926a0e7b3be3241b752cb55e38f007287781694a0d72fcf93eb93d481a501956729ba49c866b1ed193411e990566bd85d1548789122f0272a8ff6ed42ba90f8234fb3a572f4181530b4ff94bca091d02361a87ba62c3e7895afe68b983fc67d8884d8a5ee82ff5d599bf5e05f84b15959f1d82a47b49a43142a985dce74631ea4789a24dcf8530b9187be4dd8edcf7a1db4fc994134e972e0e3967ae8b1f187f6af6f87fa8f3d4f06d0ec588bbcb6dd26859105286f71db88bea24ec7791c42e4d17903b72b0b311c5631cff64616a90c1724285b76d61ee3e91638e9fed7e96efc6d352f8e13027296fbf99fb6a82bae3853d169fb8dc774300882da9c8b2f906adce800c0e27f787a5ebda05df3245ea768571b7f4c27170189604026ed50f34f365b6e7307c82521aa866051fffd33bbfa445b807b77da387370216c6783b76e7646fab9735cb78491d5549b3930ecb8c584b11b705741a87557e54d655c5030604f748e6096c510f376f95e7d6344b45de6cf998b00b2f5d57a5387145033d6a70aa280634feaa22551f2f40d2a0e522bad8e280acdc96f4bb34a9c7e384ead0d21137aa781b48f8d90bb99f8137a6743402c50d377b0c851445a4beab3e9c99d57a04da91710afd8f6eec0906d90b79009fd92d322d01e76da1c84d8afff216c6c89f2189347b323524967a112e9a23f321eab7a2cd81c5e0c9b9a6b83a2568b17086a1fdafa2a2f3caf7b37d216fc400144268d876e0cb7123af8715d4409d7edb059da1c4c4f5d5daf3e41a80fe0cdddf90d10dfd1ec641d85e2040e5c0adbbaf547b6c1dc2877a2c4968f550c0fd2cbeaf80c9a9253a2d43d07fd28d38bc455c25e99b770e1281099e43bc89dc2bad9f9dce72c9b9e06c7781556a61d0d0d63dcb8cc245dca2e5ec47cd48e91a0298dcf1ca5646cbe6c5ca06c92f4ce14de7ac0ede021ca7f9424f9b5da817930745e6357f35e8c41e2818e88c4be9c28e48cd9f4706e374adda6b7dfa8887138fb891a50f27bb2ab2f5204cae1bcfac4428dec9aeaf95fff7c52e4339b56d97f3f74332b9458bbd175f06cb61262501fa91fa1cb4c69f19c5acfae0d98f00eebe486f07404fba9e39c9b7e4a53493f676ac90e4d736660586ee7ec5a91ddb494576baf7d45bb2379379fb8e45c8dab8cb7c9a44f354e2d936d5511285b5372acd6ce43c3cbfb53fb10fe5be5a9860da4564b0f2b093c598f8826da28412b0f2f0e97b5c3a6233120708df5f7cf5a5d5d7b33054db860bcd27906301ddcd69aa7d16b389fc5565d39acdb2019435789558aad57d5fd8d97fe0ca1472c8e1bb4ceab4adc83f6372ef8e4fd7852b2d4bc6e8076620f77e7c37ca999031171a22577126c9cb628e658d9899254c45f496aa857436c49d0ded5654b36ea5a104b38fc59d5d884a3d0cc3b964d6bd646cd5cdcd78d52778ad927ad46c492c7277974caaa3b91dcfd03831f27aa621bf7b18add4d5b2ce603ed8f8c31a48fc7df64a203fce5ba5bad032943a32bb33e1dc2bc8744e1a9b7626a210a9df0c730fd07d2fd4516bba29b23ef07773d3b51f75ca95ee829dc8cc3852ae56968f8c82f9a65a9bb0eb67113c8d6c1a083ae0debb3d8d6e43b9aaede694ec2dba5248fd07b5989e61ab793e1ad549bfef018de1cba7951337014131f52bf1148cbd5fe5f6b38eeda956b7a94eb46ca7080aa509b326d89b6f4385469ee1c2be98a34aa5073a317e253f607a6f8d88c3e0261e609db0cd12b1ee41728e7a8313035c14dec7172a690a7dc2c7d2f04be1c052b1277bf5d6bdcc2f2f5cd44767140bff774ada618021a06bad294c809cc4a5c77c334d4b760dd0b79c93b13e7277d11fb007abd09091ab79f552185f7959a02aa6cbbcf221495b80cc10d54aa0106f6a0ae199a2e8e08956c7fc04df5123e43ae2008297a8da333311fc287270e475413ced86d9d380e1eb0dd7621bdee201a420d081f270fe43212fa09a288abab2f1a69c0bf4e23237f59f5e01e8aa8b17bdd4b3d97d3571e0b723237c5c6dd54e3b3e1809068e50c16539a34f8c2c60272c2cf6124c56d1a007877b272afb4edce093fa2eba940f02ac4daa9e694b90849dde72e23f0c5ed8dbeb310bda64c0d26b54e16b626639cb643fccba406792c2121bc83e0db0fda513714ca7e6feec366d5204945724a9549bb89d0aea64df80bc4c680ae8f43a68bace0d4f4a1de22629ddc8a1e16fb3fce853551902e737f383f4a53638b89d17c64283075cf01ea15fe18598cddfafb819e89348d8f69c17df657a0313cca1e009e6c2f62690ab014e716f1d689d753ae0bae8ba723815b17a797c74b0b108462a29dc81788e6f2496e9e3326cf8c335d286786742f4392d378234da067e439c648821f8ba08b6f9a57a30f72c87d39bce94e84320f757617358de936d5dbb39293ff8e89e96447e9442a6ea4398131e91bcf07ceebe0028fd26f4189dc907a7cf9b941b0cb099b16479803db82098f8dc66e81676683ea8bf113db3433bbe349dd9ad81261fb801b25df310f1e74af0634822bf5ced7e6fa499534a96605edcb2df947b61527cc4d976dd5c6aac8f5ec809eb80d6405ac878c14936d715fe31a977c67a5a4048ce8f880ce7548aa0fe3c4ad41c0f074562d64ece95e6aec0d2b2e2ee192754f6c58c13d866346c9f30ff2f07f19537360422a9e4e51b7d150bd198da6a22f87cacc8feb18d36364e92692b20cf95eb92004a753b24055510b9e182c6f9cb94a933e94ccf76fd6d68cc086a304b8fb9a6747222e2bc3e9384dfd60b8de455f6ac7c26a1f66bebee14ed1ec2f58384717d601683a4ebbcc34eadbf8d541157f222c017982e13fd7577568d9a0529e8523c8a4</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-wave">
-      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+    <title>Reveal.js使用</title>
+    <url>/%E5%AD%A6%E4%B9%A0/6befbd07.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><div class="hexo-reveal-embed"><iframe src="/slide/Reveal.js%E5%B9%BB%E7%81%AF%E7%89%87/" allowfullscreen loading="lazy"></iframe></div>
+<br/>
+<br/>
+<details open>
+<summary><span class="pre-summary">&nbsp;</span><mark><strong>代码:</strong></mark></summary><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .slide: id=&quot;slide1&quot; data-background-image=&quot;./1.jpeg&quot; data-background-opacity=&quot;0.5&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line"># Index 1</span><br><span class="line"></span><br><span class="line">### 我是第一个页面</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment custom blur animated scale-down&quot; data-animated-scale-down-from=&quot;10&quot; data-animated-scale-down-to=&quot;1&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">`js [1|2|3|4]</span><br><span class="line">    let a = 1;</span><br><span class="line">    let b = 2;</span><br><span class="line">    let c = x =&gt; 1 + 2 + x;</span><br><span class="line">    c(3);</span><br><span class="line">`</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in  animated rotate&quot; data-animated-rotate-to=&quot;360deg&quot;--&gt;</span></span><br><span class="line"></span><br><span class="line">`mermaid</span><br><span class="line">gantt</span><br><span class="line">dateFormat YYYY-MM-DD</span><br><span class="line">title 流程中心、表单中心</span><br><span class="line">excludes weekdays</span><br><span class="line"></span><br><span class="line">section 需求阶段</span><br><span class="line">需求调研 :desc1, 2023-11-15,2023-12-05</span><br><span class="line"></span><br><span class="line">section 设计阶段</span><br><span class="line">设计 :desc2,2023-12-05,2023-12-10</span><br><span class="line"></span><br><span class="line">section 开发阶段</span><br><span class="line">开发 :desc3,2023-12-01,2023-12-29</span><br><span class="line"></span><br><span class="line">section 测试阶段</span><br><span class="line">测试     :desc4,2023-12-20,2023-12-29</span><br><span class="line"></span><br><span class="line">section 上线启动</span><br><span class="line">部署培训     :desc5,2023-12-22,2023-12-29</span><br><span class="line">`</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot; fragment fade-in  animated move-to rotate&quot; data-animated-rotate-to=&quot;360deg&quot; data-animated-move-to-top=&quot;-50px&quot; data-animated-move-to-left=&quot;0px&quot; ---&gt;</span></span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">第一个页面的备注文件</span><br><span class="line"></span><br><span class="line">----</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .slide: id=&quot;slide2&quot; data-background-image=&quot;./2.jpeg&quot; data-background-opacity=&quot;0.5&quot;--&gt;</span></span><br><span class="line"></span><br><span class="line"># Index 2</span><br><span class="line"></span><br><span class="line">### 我是第二个页面</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">[打开index1](#/slide1)</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">[打开index3](#/slide3)</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">[打开index3.1](#/slide3.1)</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">[打开index3.2](#/slide3.2)</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">[打开index4](#/slide4)</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">第二个页面的备注文件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">----</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .slide: id=&quot;slide3&quot; data-background-image=&quot;./3.jpeg&quot; data-background-opacity=&quot;0.5&quot;--&gt;</span></span><br><span class="line"></span><br><span class="line"># Index 3</span><br><span class="line"></span><br><span class="line">### 我是第三个页面</span><br><span class="line"></span><br><span class="line">我是<span class="comment">&lt;!-- .element: style=&quot;color: lightred&quot; --&gt;</span></span><br><span class="line">第三<span class="comment">&lt;!-- .element:  style=&quot;color: lightyellow&quot; --&gt;</span></span><br><span class="line">个页面<span class="comment">&lt;!-- .element: style=&quot;color: lightblue&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">* 一 <span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line">* 二 <span class="comment">&lt;!-- .element: class=&quot;fragment highlight-red&quot; --&gt;</span></span><br><span class="line">* 三 <span class="comment">&lt;!-- .element: class=&quot;fragment fade-out&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">第三个页面的备注文件</span><br><span class="line"></span><br><span class="line">--</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .slide: id=&quot;slide3.1&quot; data-background-image=&quot;./3.jpeg&quot; data-background-opacity=&quot;0.5&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line"># Index 3.1</span><br><span class="line"></span><br><span class="line">### 我是第三个页面</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">`mermaid</span><br><span class="line">gantt</span><br><span class="line">dateFormat YYYY-MM-DD</span><br><span class="line">title 流程中心、表单中心</span><br><span class="line">excludes weekdays</span><br><span class="line"></span><br><span class="line">section 需求阶段</span><br><span class="line">需求调研 :desc1, 2023-11-15,2023-12-05</span><br><span class="line"></span><br><span class="line">section 设计阶段</span><br><span class="line">设计 :desc2,2023-12-05,2023-12-10</span><br><span class="line"></span><br><span class="line">section 开发阶段</span><br><span class="line">开发 :desc3,2023-12-01,2023-12-29</span><br><span class="line"></span><br><span class="line">section 测试阶段</span><br><span class="line">测试     :desc4,2023-12-20,2023-12-29</span><br><span class="line"></span><br><span class="line">section 上线启动</span><br><span class="line">部署培训     :desc5,2023-12-22,2023-12-29</span><br><span class="line">`</span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">第三个页面的备注文件</span><br><span class="line"></span><br><span class="line">--</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .slide: id=&quot;slide3.2&quot; data-background-image=&quot;./3.jpeg&quot; data-background-opacity=&quot;0.5&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line"># Index 3.2</span><br><span class="line"></span><br><span class="line">### 我是第三个页面</span><br><span class="line"></span><br><span class="line">&gt; 我是一个备注文件</span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">第三个页面的备注文件</span><br><span class="line"></span><br><span class="line">----</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .slide: id=&quot;slide4&quot; data-background-image=&quot;./4.jpeg&quot; data-background-opacity=&quot;0.5&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line"># Index 4</span><br><span class="line"></span><br><span class="line">### 我是第四个页面</span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">第四个页面的备注文件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</details>
+]]></content>
       <categories>
-        <category>daily news</category>
+        <category>学习</category>
       </categories>
+      <tags>
+        <tag>reveal.js</tag>
+      </tags>
   </entry>
   <entry>
     <title>一次gogs踩坑之路</title>
@@ -2377,6 +2493,41 @@
         <tag>gogs</tag>
         <tag>ubuntu 14.04</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>daily-news-2026-04-25</title>
+    <url>/daily-news/f135226f.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt"
+     data-hbe-format="4"
+     data-wpm="糟糕！密码错误了."
+     data-whm="糟糕！密码错误了."
+     data-salt="00bcc219157e40f432fba8f040507d55bc975b96bdb59e96669b728b40e4ecf6"
+     data-nonce="6d37bd0dc8d15e2caeaea1d1"
+     data-kdf-iterations="600000"
+     data-auto-save="false">
+  <script id="hbeData" type="hbeData">
+    b84f5c94ca50b526f2fd5cd36e875baca943a43f8d91b7a422609cccc48bf10ee3207be5db697d33419358eb0a9057aa03c470899f89e84a11213a57955af3b830b2b27c4b2e5d87809e589bfc5ac28fff68d454a1211172744e132de0865d067d405b4c81fcc7eda5d7f67e0adcae278198d4cbcbc12143add54df9da32a1a77e297b98edaba1b22d41aa5945c98461a71d73367de2882edccb94295b112c5c26f9d01900a1bf637a84571908fc84f8925907a28be9bce119dba8e7dcd8e36840dee0f72c935af4de6b6f7039dc96c089e9cb3ab572c8c180fda995280278572f0c252da367a74d8b0afb25fe9fb5e9eb3cf7cef5771db5a919efcb1839d74964253236f99028e0f8c1a2676dd858fec93bd9649489d51d784e21c2d1a8e2451e79f69883cc427effcb2a20dc6a5fbcff273ff01e76a626c187decac47fbb0e05b80747dbf3bb660dc88d71f21f4d3f70a554f7c5ff7816860b51436d5f2a58bd87d9f72bd20da797ec3985623917b100ad158b59c9db1c1871119b0f31995ea4d1f7a60125d434dbf128d9fe9c7017c4a7c35fa4297378200ab4346ce728a9d8122d88df5578ffce42121768454308663f00200f4f570606c5667e8b2f670f0dba81aabe83973c7c481e9cb1f9afc421fea4fa2354967060b716d17097cbbe201dfb37fff83f14b0bea4dc877c35065da7d0a9f6633a3bb925ef1dc438e80a45dbe1741767e7324e7374e0f08912d4786a202de0452937580dcb6c6b0e9a517e86c3ff29d4c8d993a029fc78a65e51ffa308308ff3aa8f2f5b47aa8014a1c3ba0f08a6072e7ba8b0ba656052d8636e7942c77d3f889fdddc69aaaad96dfcc79ee1d201ff83f4ce762403270a41d2966a7c5864b12955f8edbb0a0c8ce7012dcec6367f1601bd729496389e2eaaa77de1bc03046f68af2b90c9402512e9d340a8a58f3f37700032477d04575ede2751aafbeaa8e0942b60f918a158c90d8d53db27e074f57ada0a765e4fc674e2af3a717fb22708d3f2225825e642970ad27304d70be190459611b8cb886d36bc13b439aef9bbe009c5974f9d471e9f1b4936de33d560a97460ba132e5fe30e3fb6fca2d40ab4cb77e26ec80211a373af8d34a559f2a3e1f90cf1b762948a0ba44b7a00812fa1a508a2851de63b25d15574cb800f986c38601c13574600d34904531f0b4373db53ef7bfcc2bafd2ebbbd5ba0649e54f24473505678146a76c0dd09be358e76c3e45bf395174e27fa450fe9983f95aa05ae85d974a1d8ae7946ffb2c3874f1cdc6f1a57c12789b573c56013b747111190df5599afa01c095dd5945f8012586da91aa8e5508a28a0ec1101c52cccfbb24b87d46fb5818af4685e876a20931ec3278e4d667cbdcc16844b6bf891af58c9a8c3247a0c24ee965f4ab7578ba77e2c1e829532fa65adaff137dcb3ed4002b5ebd217085b31515ea59b722bb88237067f6bf2ec7491f3ca6d93b5f6844eb8cec4e3c0b71bd48bcbda9001cc62eb240f7d8d2ba9b13f1af0e724c17984b831e53b1e7d2c05e3e08a897611fa63b7cf8d8e4c7ce3cee6de8dcc6c4739634b6b1ec341e94294ba7a32d0429b279c94c30a080ddbb79c6fc84f7739c8f5e533487a1eac2eb7d82fd9257e2bb2695cf9ddea0c26a818a6d243bbc43bd261246b8934ff3d17fa09b89cfc2a03602be0a843be766bf42b536c865ae4ca72575a95e164194a03e7fdade519425dd142ef5a702842f6a6f5fb4a9a4cacefd64ca92cd921e76eb8e1655d0b5b5c326f340c3a0a835876759c9280693f630b3a0ef2304c719da91fa5881019570ea53a5d452a2452c847b288f466f63a77a5c235f9479d0659dcb9608dc58d6ad7cc017aac81ed791d8118e11e57a95165a9eab5546261d79de04431695655a7c229c8f09469f301e9ee46113eb07b3507ad0759da7b5af49c0030f9e29d09c56c4bd0837690d8b08cd4bc4fb3966ff5e3e6d0d4aa81544d74ecd081f1328647f20991363c9feb4687b6b6e0ddbd0c9655a73b50fa3fc10d6cc571ca78c80c9a5f56b30a66f10d43dca5859d5d13a8f7069c72465258d075798498e42495f33d7a3eafdb51b5241f30c77b7ae69a04418805f1b8b778d3a7c51f7ad5b14d7cd9737b483ab6719d718e3e531778232d02eb30d1214f1af6c5b093b1edd6e48ca6d09fca9307598e729c4efa7568ce1cff6b11833b5259fe9d3436c23107ba0302a363a18b647ee71742bfb0b17cb20b24c0d73a6756618af6a5b1f993d9e34ecb3f666cad8d3c2e58ee3bd218aef766408a1f4dedd0363ad349d582889625177dc0408bd02fa33a2ba3b13223d2feb1367f32e844de908137c948de857a472acbcfa6caacf6f400e8fe5a0bbf9da7862aadd4eff157d6f7c0e7072211691290b270b8764325365321a9c50348ec52df17544c4844085c0a2d55039acfba0c00e3334ef2422943e4f104cc489dc6d7a6e0a287221fec7695e283637b0f2006d9e4e2256036bf7b47651f656eb21c557b3f8dec6a51212134a9e1d7c873d28e10a9aef4da695bf7c4801c1c0b740f3f8d2ed1a115588157c8481d2db282cb1ae73c8c77affc891ce6fd940d90f4a02c4f020154e618a2118419066b9b6be1d91c9b60ba8152ee2cc8d081e03d0d004860ca40a38499e7f3da754677211f6f72580c01f24b96152bf1344d3ee35f09eed5050a83106e49a7b251c345003135d1a448af90613bc27ed47605e14f034c2812ccbf4a7272baf84f402216c107b60af591517a9cbfbc0a2c27dfcb85482bf3a2e1c098d118f19b8dca7171591f5ff7661f76679dcf94512f83829b64985214b7fed9b0aa3f5267a77b83c22eccd63b07d3514e7179d1fe301fa6f1e3571076a62d3fc40487d1d731c099e19df8b14f69c56ce0a71368d2cd7417a549621ece98a1357963d88d923463516428642f266097c68970184d426391f4c777150f8aa88d803a8abb284469c23f2be5578f127fd49cacbbcdac208de191d3983e29578c29d7a7f2174a77a1297def9e74e9d953a40e9bbcbbf64b412fa95e2f52397df78270a34fb29d1eec318b500bfe16e372b4479e9d166b8df45c47e42d84dfee17823f5efed48d8a61e5df53279f2644a225771384525f8ea6e6f225419cc58f252c95dc5c73477716cfb3e32842f5590afefcfdf599ed210a8c2c50ebd07caeac8f264d1a8e90fba60d7f60a5aaeca964fa446a85a03fec1141c9ab2aa9d73ef2628a9c36710ba57b6b402041e2408174b2400036206efe917818bd5726416dbdc103deaafffadaebbca16cf1f0f19d69c23d6575063cb30315374828b760380046ca50aeb67a1bde34a986ad3c23c98f86b9c477a98a0bcfa3e1c1639ba3a1e8bb598c878606d77797301ac3171253c3923610c16ef040ec7c3c9741253067f92d0cbdfd511e331ff627b305e30c655e51a5c8ca97af760d97e66628a3809bef1bfe4ab2b382a62a3822da7d0370dd437d161edebf52f05de692a61b0b21d0bd1cb8a6b9357b97513b98cfd9bd9f6b0fc5d5914342ac0e6ca669ff857dbb7a01fa6586cef95c88d4cbd31076327f17a875017dc99ef034ab2bb06456f6502b266b377e00f4c255ba9f9b1423e7faba0eebb5e2b4771ba731ed5bdac65f84e4b6d98bbf4a68b1e4661aab958c893a41381d57139de2df74d2f9b5b26de0a49391a577d6a3a03fbe5ac3a06d3e2947bd3d32b98c8d2870b4878dac614c9a55d4701a1577b5f530303c2798af1f80481d5b3dd818eccb39adb72800e4fa78cbd210b5c7459636d6b6e9790043386b59fa2094777b1387cba9f098808da21dd2365801bec26fae2f8d3d09077878517f29d204bc90dc371c7cad1c1929b4d854ae60aece8c8ac517aea668f2003e8f024bad49d9cf82fb1319ec1812bdc7c8f54e1d5c5fd7ca28f84a585c71cb1ba93be9069d8ef3e440afe3f89a279e7563aaf6f499b4ab9cb4fd84ea3f0a736892ab6fac99b4ff566e5d73fd81d034721547a71f9176a87672dc5d7d416ef573929ec974e2413be8c1875dd7a5d9392a0777af93f2e8adfa27d370b5f504d5dfffa17b57a01325753e00f16d7448e09f73274a8f727634bd10a97ad04488d50fc75db097e3009faed671b163972457a0a09b250bcfa030890e1cbeb82982b22352f0f1b58d11641dd82a7e1862690e9e4996903501a9cb9cd471f72b99c20c1ebb31f12c0258d7fb968f90e7c41786f43e3954b33915feffec147858fcab542041c716418a444b3e5c32f733fbc22292a87c1fe9f4087633ecd77b42e8d2dec2ca094b29c9ba37167cbe7058fa242bacfc579993350c47e7f77e817fc3ba1c463e9511700f0fa0387bba4bc3e3898cc64f5507bf8a42109547415d23ad03e874de01ff341e6bd3a8baca9204f9bd8ae56e2faf4930b46883268558b8d41788129b158ad85b13f8e5e64d9ec90167f0320be1f986612801e8ccf61a07e3d18371e1750f12f7aad1769b488fc0a2089d60122ec0dd12a9a1a763a89abf06464e93629c2f89da7cd7dbfecb7f803c48fc97052192fde747cb5f5a61a51da6481a7f533b9515b3b56049f3f6e0d594e4faa2b8cb1523b9243193d474e02d454a787696cfde41930b6f8401cc2f2a59485c9d7d1bcf88e1561879c8cab6cf7fd23a2eb19c0ada0d102a6623c4d73021a0a642e5b337971a609017854a604a4fc1565a4f0902e20c12160e2ba61dbf516a567538d30edc22ba0ea6d46ab7b6c7815774c3558fc9d134e618
+  </script>
+  <div class="hbe hbe-content">
+    <form id="hbeForm" class="hbe hbe-form">
+      <div class="hbe hbe-input hbe-input-wave">
+      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+      <button class="hbe hbe-button" type="submit">解密</button>
+      <div class="hbe hbe-error" role="alert" aria-live="polite"></div>
+    </form>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.a3b9f59caa.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>daily news</category>
+      </categories>
   </entry>
   <entry>
     <title>gitlab &amp; OKR 进行项目管理 </title>
@@ -2569,18 +2720,18 @@ section 运维阶段
   <entry>
     <title>搭建maven私库</title>
     <url>/%E5%B7%A5%E4%BD%9C/1406322052.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="1-docker-搭建maven私库"><a class="markdownIt-Anchor" href="#1-docker-搭建maven私库"></a> 1. docker 搭建maven私库</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="1-docker-搭建maven私库"><a class="markdownIt-Anchor" href="#1-docker-搭建maven私库"></a> 1. docker 搭建maven私库</h2>
 <span id="more"></span>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -d --name nexus -p 8081:8081 -d --restart always -u root --privileged=true -v ~/opt/nexus-data:/nexus-data sonatype/nexus3</span><br></pre></td></tr></table></figure>
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">docker exec -it nexus //进入容器</span><br><span class="line">cd /nexus-data</span><br><span class="line">cat admin.password //复制密码</span><br></pre></td></tr></table></figure>
 <p>访问 <a href="http://ip:8081">http://ip:8081</a><br />
 修改密码后 admin.password自动删除</p>
-<h1 id="2-配置maven私库"><a class="markdownIt-Anchor" href="#2-配置maven私库"></a> 2. 配置maven私库</h1>
+<h2 id="2-配置maven私库"><a class="markdownIt-Anchor" href="#2-配置maven私库"></a> 2. 配置maven私库</h2>
 <h4 id="21添加-role"><a class="markdownIt-Anchor" href="#21添加-role"></a> 2.1添加 role</h4>
 <p>develop =&gt; nx-all</p>
 <h5 id="22-添加-user"><a class="markdownIt-Anchor" href="#22-添加-user"></a> 2.2 添加 user</h5>
 <p>developer =&gt; develop</p>
-<h1 id="3-插件开发环境配置"><a class="markdownIt-Anchor" href="#3-插件开发环境配置"></a> 3. 插件开发环境配置</h1>
+<h2 id="3-插件开发环境配置"><a class="markdownIt-Anchor" href="#3-插件开发环境配置"></a> 3. 插件开发环境配置</h2>
 <h4 id="31-mavensettingxml配置"><a class="markdownIt-Anchor" href="#31-mavensettingxml配置"></a> 3.1 maven/setting.xml配置</h4>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">settings</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servers</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">server</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>maven-public-gl<span class="tag">&lt;/<span class="name">id</span>&gt;</span> <span class="comment">&lt;!--对应pom.xml的id=maven-public-gl的仓库--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">username</span>&gt;</span>developer<span class="tag">&lt;/<span class="name">username</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">password</span>&gt;</span>Glrj@1234<span class="tag">&lt;/<span class="name">password</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">server</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">server</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>maven-releases-gl<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  <span class="comment">&lt;!--对应pom.xml的id=maven-releases-gl的仓库--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">username</span>&gt;</span>developer<span class="tag">&lt;/<span class="name">username</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">password</span>&gt;</span>Glrj@1234<span class="tag">&lt;/<span class="name">password</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">server</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">server</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>maven-snapshots-gl<span class="tag">&lt;/<span class="name">id</span>&gt;</span> <span class="comment">&lt;!--对应pom.xml中id=maven-snapshots-gl的仓库--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">username</span>&gt;</span>developer<span class="tag">&lt;/<span class="name">username</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">password</span>&gt;</span>Glrj@1234<span class="tag">&lt;/<span class="name">password</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">server</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">servers</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">mirror</span>&gt;</span> <span class="comment">&lt;!--对应pom.xml中id=maven-public-gl的仓库--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>maven-public-gl<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>GZ Repository Mirror.<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://nexus.corebrew.net/repository/maven-public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h4 id="32-插件项目pomxml配置"><a class="markdownIt-Anchor" href="#32-插件项目pomxml配置"></a> 3.2 插件项目pom.xml配置</h4>
@@ -2619,11 +2770,11 @@ section 运维阶段
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>  <code>count()</code> 是<code>mysql</code>聚合函数，返回指定匹配条件的行数。开发中常用来统计表中数据，全部数据，不为null数据，或者去重数据。</p>
 <span id="more"></span>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 统计表中数据包括null</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="number">1</span>) <span class="keyword">from</span> zs_access_log;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 统计表中数据包括null</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="operator">*</span>) <span class="keyword">from</span> zs_access_log;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 统计表中指定列不为null的数据</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(id) <span class="keyword">from</span> zs_access_log;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 统计表中指定列去重不为null的数据</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="keyword">distinct</span> id) <span class="keyword">from</span> zs_access_log;</span><br></pre></td></tr></table></figure>
-<h1 id="1-背景"><a class="markdownIt-Anchor" href="#1-背景"></a> 1. 背景</h1>
+<h2 id="1-背景"><a class="markdownIt-Anchor" href="#1-背景"></a> 1. 背景</h2>
 <p>  生产环境使用 <code>mysql: 8.0.18 Innodb</code>，  <code>mybatis</code>分页查询由两次查询完成，第一次获取总的记录行数，再次获取具体分页数据。<br />
   以下查询可以看到<code>count</code>是存在性能问题的，接口的响应<code>&gt; 800ms</code>  <code>&lt; 4s</code>，但是该如何优化呢？</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(*) from zs_access_log;</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">|    37485 |</span><br><span class="line">+----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.53 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">select</span> * from zs_access_log  <span class="built_in">limit</span> 0,10;</span><br><span class="line">10 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="2-count性能对比"><a class="markdownIt-Anchor" href="#2-count性能对比"></a> 2. count性能对比</h1>
+<h2 id="2-count性能对比"><a class="markdownIt-Anchor" href="#2-count性能对比"></a> 2. count性能对比</h2>
 <p>​		对比 <code>count</code> 几种使用姿势，在<code>InnoDB</code>和<code>MyISAM</code>引擎的性能对比。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; show engines;</span><br><span class="line">+--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</span><br><span class="line">| Engine             | Support | Comment                                                        | Transactions | XA   | Savepoints |</span><br><span class="line">+--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</span><br><span class="line">| FEDERATED          | NO      | Federated MySQL storage engine                                 | NULL         | NULL | NULL       |</span><br><span class="line">| MEMORY             | YES     | Hash based, stored <span class="keyword">in</span> memory, useful <span class="keyword">for</span> temporary tables      | NO           | NO   | NO         |</span><br><span class="line">| InnoDB             | DEFAULT | Supports transactions, row-level locking, and foreign keys     | YES          | YES  | YES        |</span><br><span class="line">| PERFORMANCE_SCHEMA | YES     | Performance Schema                                             | NO           | NO   | NO         |</span><br><span class="line">| MyISAM             | YES     | MyISAM storage engine                                          | NO           | NO   | NO         |</span><br><span class="line">| MRG_MYISAM         | YES     | Collection of identical MyISAM tables                          | NO           | NO   | NO         |</span><br><span class="line">| BLACKHOLE          | YES     | /dev/null storage engine (anything you write to it disappears) | NO           | NO   | NO         |</span><br><span class="line">| CSV                | YES     | CSV storage engine                                             | NO           | NO   | NO         |</span><br><span class="line">| ARCHIVE            | YES     | Archive storage engine                                         | NO           | NO   | NO         |</span><br><span class="line">+--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</span><br><span class="line">9 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
 <p>​		数据表 <code>zs_access_log</code> 和 <code>zs_access_log_myisam</code></p>
@@ -2647,7 +2798,7 @@ section 运维阶段
 <p>​		<code>MyISAM</code>把总行数存在磁盘(<code>information_schema.partitions</code>)中，<code>count(*)</code>和<code>count(1)</code>的性能会好很多。</p>
 <p>​		<code>InnoDB</code>获取所有数据，并逐行计算总行数，<code>count(*)</code>和<code>count(1)</code>的性能会差很多。`</p>
 <p><a href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_count">mysql文档原文</a></p>
-<h1 id="3-性能优化"><a class="markdownIt-Anchor" href="#3-性能优化"></a> 3. 性能优化</h1>
+<h2 id="3-性能优化"><a class="markdownIt-Anchor" href="#3-性能优化"></a> 3. 性能优化</h2>
 <p>​		在实际开发过程中，业务系统的数据表均使用<code>InnoDB</code>支持事务。</p>
 <p>​		该如何优化<code>InnoDB</code>中<code>count</code>的性能？</p>
 <ul class="lvl-0">
@@ -2675,10 +2826,20 @@ section 运维阶段
   <entry>
     <title>redis主从-哨兵模式</title>
     <url>/%E5%B7%A5%E4%BD%9C/8f0491a1.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="d3d974b29008aff606283f0e4978d7bf8e58543d1d3a787740a0ae1e7049f1ed">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d01c1c94262bdc858905a4d80759515d1db386e90b995b088a668ce7196174ca5a1b9fde0d6c59e81ace0635b7e811b6eb4</script>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt"
+     data-hbe-format="4"
+     data-wpm="糟糕！密码错误了."
+     data-whm="糟糕！密码错误了."
+     data-salt="99ebc0a034c57a483286d7f67d4d7bcf2cec13f9286673002b6e32d1c372bbcc"
+     data-nonce="3ade5f9fdb1f4c6473352f5c"
+     data-kdf-iterations="600000"
+     data-auto-save="false">
+  <script id="hbeData" type="hbeData">
+    754f7fafcce546da6db5e9dd033732c28f1f6239866247607080b644b35d325381e3a992858006afb0813feae1f50d3bcdcc8a731cd5f23c2e878a369820de383d7a9ad68b44dc3b9a42fc2e511416be3770d1291ab5fd2e9ebb21baae40724252bec754b514b9538defc7b90d1212cce6153d06e123b9423db90adcdde1ea982d3ab5c007e085e1c1a69c3f2f7bc6d270071cb40af1fcb047957b977dcd54c221d05741e34f66cdfbbf66b1de7a6880a96c58b73b40b10a9be9ffd8769458a00d6c19e38cee08d7a697571396a289659cf54f31bae4aae4d4bc3e7128a8b04ddb01ab50de2059ba8fe8fe14c6f9110144e9d98e8efa0ace8503207dae624b50a8344f072c00af8deecfb3f7ff285c62d824bc4fb4b87a3b68ecfa6536b7aae1cd7181a8229e0451b731e51d82433fd37a6054cc4ceb2e6fd5
+  </script>
   <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-wave">
+    <form id="hbeForm" class="hbe hbe-form">
+      <div class="hbe hbe-input hbe-input-wave">
       <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
       <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
         <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
@@ -2687,9 +2848,12 @@ section 运维阶段
         <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
       </svg>
     </div>
+      <button class="hbe hbe-button" type="submit">解密</button>
+      <div class="hbe hbe-error" role="alert" aria-live="polite"></div>
+    </form>
   </div>
 </div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+<script data-pjax src="/lib/hbe.a3b9f59caa.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
         <category>工作</category>
       </categories>
@@ -2845,7 +3009,7 @@ section 运维阶段
 </tr>
 </tbody>
 </table>
-<h1 id="组合动画"><a class="markdownIt-Anchor" href="#组合动画"></a> 组合动画</h1>
+<h2 id="组合动画"><a class="markdownIt-Anchor" href="#组合动画"></a> 组合动画</h2>
 <p>从1.2.0版本开始，可以将多个动画组合在一起以创建动画。只需要添加多个CSS类。</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--html--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;fragment animated move-to-middle-top rotate&quot;</span>&gt;</span>移动并旋转<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--md--&gt;</span></span><br><span class="line">移动并旋转<span class="comment">&lt;!-- .element: class=&quot;fragment animated  move-to-middle-top rotate&quot; --&gt;</span></span><br></pre></td></tr></table></figure>
 <p><a href="#general-time-attributes">时间属性</a> 只能用于组合动画，不能单独用于每个动画；</p>
@@ -2863,7 +3027,7 @@ section 运维阶段
   <entry>
     <title>rust-if-let简洁控制流</title>
     <url>/%E5%AD%A6%E4%B9%A0/eec35d0e.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="if-let-控制流"><a class="markdownIt-Anchor" href="#if-let-控制流"></a> if let 控制流</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="if-let-控制流"><a class="markdownIt-Anchor" href="#if-let-控制流"></a> if let 控制流</h2>
 ]]></content>
       <categories>
         <category>学习</category>
@@ -2877,7 +3041,7 @@ section 运维阶段
   <entry>
     <title>rust-方法语法</title>
     <url>/%E5%AD%A6%E4%B9%A0/d1274d86.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="方法语法"><a class="markdownIt-Anchor" href="#方法语法"></a> 方法语法</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="方法语法"><a class="markdownIt-Anchor" href="#方法语法"></a> 方法语法</h2>
 <blockquote>
 <p><strong>方法</strong>（method）与函数类似：它们使用 <code>fn</code> 关键字和名称声明，可以拥有参数和返回值，同时包含在某处调用该方法时会执行的代码。不过方法与函数是不同的，因为它们在结构体的上下文中被定义（或者是枚举或 trait 对象的上下文，并且它们第一个参数总是 <code>self</code>，它代表调用该方法的结构体实例。</p>
 </blockquote>
@@ -2897,12 +3061,12 @@ section 运维阶段
   <entry>
     <title>rust-枚举与模式匹配</title>
     <url>/%E5%AD%A6%E4%B9%A0/7d69317e.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="枚举"><a class="markdownIt-Anchor" href="#枚举"></a> 枚举</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="枚举"><a class="markdownIt-Anchor" href="#枚举"></a> 枚举</h2>
 <blockquote>
 <p>结构体给予你将字段和数据聚合在一起的方法，像 <code>Rectangle</code> 结构体有 <code>width</code> 和 <code>height</code> 两个字段。而枚举给予你一个途径去声明某个值是一个集合中的一员。比如，我们想让 <code>Rectangle</code> 是一些形状的集合，包含 <code>Circle</code> 和 <code>Triangle</code> 。为了做到这个，Rust 提供了枚举类型。</p>
 </blockquote>
 <figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">IpAddrKind</span> &#123;</span><br><span class="line">    <span class="title function_ invoke__">V4</span>(<span class="type">u8</span>,<span class="type">u8</span>,<span class="type">u8</span>,<span class="type">u8</span>),</span><br><span class="line">    <span class="title function_ invoke__">V6</span>(<span class="type">String</span>),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Message</span>&#123;</span><br><span class="line">    Quit,</span><br><span class="line">    Move&#123;x: <span class="type">i32</span>,y:<span class="type">i32</span>&#125;,</span><br><span class="line">    <span class="title function_ invoke__">Write</span>(<span class="type">String</span>),</span><br><span class="line">    <span class="title function_ invoke__">ChangeColor</span>(<span class="type">i32</span>,<span class="type">i32</span>,<span class="type">i32</span>),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Message</span>&#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">call</span>(&amp;<span class="keyword">self</span>)&#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;self is &#123;:?&#125;&quot;</span>,&amp;<span class="keyword">self</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Hello, world!&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">four</span> = IpAddrKind::<span class="title function_ invoke__">V4</span>(<span class="number">127</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">six</span> = IpAddrKind::<span class="title function_ invoke__">V6</span>(<span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;::1&quot;</span>));</span><br><span class="line"></span><br><span class="line">    dbg!(&amp;four);</span><br><span class="line">    dbg!(&amp;six);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">m</span> = Message::Move &#123; x: <span class="number">1</span>, y: <span class="number">2</span> &#125;;</span><br><span class="line">    m.<span class="title function_ invoke__">call</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="match匹配模式"><a class="markdownIt-Anchor" href="#match匹配模式"></a> match匹配模式</h1>
+<h2 id="match匹配模式"><a class="markdownIt-Anchor" href="#match匹配模式"></a> match匹配模式</h2>
 <h2 id="option枚举"><a class="markdownIt-Anchor" href="#option枚举"></a> Option枚举</h2>
 <blockquote>
 <p><code>Option</code> 是标准库定义的另一个枚举。<code>Option</code> 类型应用广泛因为它编码了一个非常普遍的场景，即一个值要么有值要么没值。</p>
@@ -2920,7 +3084,7 @@ section 运维阶段
   <entry>
     <title>rust-结构定义和实例化</title>
     <url>/%E5%AD%A6%E4%B9%A0/e0d5ed17.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="结构定义"><a class="markdownIt-Anchor" href="#结构定义"></a> 结构定义</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="结构定义"><a class="markdownIt-Anchor" href="#结构定义"></a> 结构定义</h2>
 <blockquote>
 <p>定义结构体，需要使用 <code>struct</code> 关键字并为整个结构体提供一个名字。结构体的名字需要描述它所组合的数据的意义。接着，在大括号中，定义每一部分数据的名字和类型，我们称为 <strong>字段</strong>（<em>field</em>）。</p>
 </blockquote>
@@ -2949,12 +3113,12 @@ section 运维阶段
   <entry>
     <title>rust入门</title>
     <url>/%E5%AD%A6%E4%B9%A0/94fe59ce.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="cargo是什么"><a class="markdownIt-Anchor" href="#cargo是什么"></a> Cargo是什么？</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="cargo是什么"><a class="markdownIt-Anchor" href="#cargo是什么"></a> Cargo是什么？</h2>
 <p><code>Cargo</code>是rust的构建工具、包管理器；</p>
 <h3 id="crate是什么"><a class="markdownIt-Anchor" href="#crate是什么"></a> crate是什么？</h3>
 <p>  crate类似npm package或ruby gem，类似<code>依赖包</code>的意思；</p>
-<h1 id="rust和动态语言对比"><a class="markdownIt-Anchor" href="#rust和动态语言对比"></a> rust和动态语言对比</h1>
-<h1 id="rust库"><a class="markdownIt-Anchor" href="#rust库"></a> rust库</h1>
+<h2 id="rust和动态语言对比"><a class="markdownIt-Anchor" href="#rust和动态语言对比"></a> rust和动态语言对比</h2>
+<h2 id="rust库"><a class="markdownIt-Anchor" href="#rust库"></a> rust库</h2>
 <h3 id="std-io标准库"><a class="markdownIt-Anchor" href="#std-io标准库"></a> std io标准库</h3>
 <h3 id="let声明变量"><a class="markdownIt-Anchor" href="#let声明变量"></a> let声明变量</h3>
 <figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">apples</span> = <span class="number">5</span>; <span class="comment">// 不可变</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">bananas</span> = <span class="number">5</span>; <span class="comment">// 可变</span></span><br></pre></td></tr></table></figure>
@@ -3212,7 +3376,7 @@ section 运维阶段
   <entry>
     <title>笔记1-《程序员数学 1》</title>
     <url>/%E5%AD%A6%E4%B9%A0/965849311.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="第一章-0-的故事无即是有"><a class="markdownIt-Anchor" href="#第一章-0-的故事无即是有"></a> 第一章 0 的故事–无即是有</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="第一章-0-的故事无即是有"><a class="markdownIt-Anchor" href="#第一章-0-的故事无即是有"></a> 第一章 0 的故事–无即是有</h2>
 <h2 id="10-进制计数法"><a class="markdownIt-Anchor" href="#10-进制计数法"></a> 10 进制计数法</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
@@ -3338,7 +3502,7 @@ section 运维阶段
   <entry>
     <title>笔记2-《程序员数学-1》</title>
     <url>/%E5%AD%A6%E4%B9%A0/1634039770.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="第二章-逻辑"><a class="markdownIt-Anchor" href="#第二章-逻辑"></a> 第二章 逻辑</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="第二章-逻辑"><a class="markdownIt-Anchor" href="#第二章-逻辑"></a> 第二章 逻辑</h2>
 <span id="more"></span>
 <h2 id="为何逻辑如此重要"><a class="markdownIt-Anchor" href="#为何逻辑如此重要"></a> 为何逻辑如此重要</h2>
 <ul class="lvl-0">
@@ -3758,7 +3922,7 @@ section 运维阶段
   <entry>
     <title>笔记3-《程序员数学-1》</title>
     <url>/%E5%AD%A6%E4%B9%A0/375539532.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="第三章-余数"><a class="markdownIt-Anchor" href="#第三章-余数"></a> 第三章 余数</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="第三章-余数"><a class="markdownIt-Anchor" href="#第三章-余数"></a> 第三章 余数</h2>
 <span id="more"></span>
 <ul class="lvl-0">
 <li class="lvl-2">
@@ -3930,7 +4094,7 @@ section 运维阶段
 </div>
     </div>
   </div>
-<h1 id="1定时器"><a class="markdownIt-Anchor" href="#1定时器"></a> 1.定时器</h1>
+<h2 id="1定时器"><a class="markdownIt-Anchor" href="#1定时器"></a> 1.定时器</h2>
 <h2 id="11-settimeout"><a class="markdownIt-Anchor" href="#11-settimeout"></a> 1.1. setTimeout</h2>
 <p>  <strong>setTimeout是JavaScript中的一个函数，用于在指定的延迟时间后执行一段代码或函数。它的工作原理是在指定的延迟时间后，将代码或函数放入JavaScript的事件队列中，等待当前代码执行完毕后再执行。</strong></p>
 <p><strong>setTimeout的语法如下：</strong></p>
@@ -3986,7 +4150,7 @@ section 运维阶段
 <p>  使用requestAnimationFrame时需要注意，它只会在浏览器处于激活状态时执行回调函数。如果浏览器处于最小化或隐藏状态，那么回调函数将不会被执行。因此，在使用requestAnimationFrame时，需要确保浏览器处于激活状态，或者在回调函数中添加适当的逻辑来处理浏览器不处于激活状态的情况。</p>
 <p><strong>示例:</strong></p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">frame</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;frame&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">requestAnimationFrame</span>(frame);</span><br></pre></td></tr></table></figure>
-<h1 id="2-标签动画"><a class="markdownIt-Anchor" href="#2-标签动画"></a> 2. 标签动画</h1>
+<h2 id="2-标签动画"><a class="markdownIt-Anchor" href="#2-标签动画"></a> 2. 标签动画</h2>
 <p>  使用 <code>requestAnimationFrame</code> 可以替代 <code>setInterval</code> 来实现定时任务，因为 <code>requestAnimationFrame</code> 更加高效，能够根据屏幕刷新率来同步动画，避免了不必要的重绘和计算。</p>
 <p>下面是使用 <code>requestAnimationFrame</code> 实现 <code>setInterval</code> 更新<code>博客</code>- <a href="/tags">标签</a>的示例代码：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/***</span></span><br><span class="line"><span class="comment"> * 兼容不支持requestAnimationFrame的浏览器</span></span><br><span class="line"><span class="comment"> ***/</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">requestAnimationFrame</span> = (<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">window</span>.<span class="property">requestAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">webkitRequestAnimationFrame</span> ||<span class="comment">/* Safari 和 Chrome */</span></span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">mozRequestAnimationFrame</span> ||<span class="comment">/* Firefox */</span></span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">oRequestAnimationFrame</span>      ||<span class="comment">/* Opera */</span></span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">msRequestAnimationFrame</span>     ||<span class="comment">/* IE 9 */</span></span><br><span class="line">    <span class="keyword">function</span> (<span class="params">callback</span>) &#123;</span><br><span class="line">      <span class="variable language_">window</span>.<span class="built_in">setTimeout</span>(callback, <span class="number">6000</span> / <span class="number">60</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">cancelAnimationFrame</span> = (<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">window</span>.<span class="property">cancelAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">webkitCancelAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">mozCancelAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">oCancelAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">msCancelAnimationFrame</span> || <span class="built_in">clearTimeout</span></span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 设置精度定时器</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">function</span>&#125; 回调函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125;   延迟时间</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;  定时器ID</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> <span class="keyword">function</span> <span class="title function_">setIntervalPrecision</span>(<span class="params">callback, delay</span>) &#123;</span><br><span class="line">  <span class="comment">// 生成并记录定时器ID</span></span><br><span class="line">  <span class="keyword">let</span> obj = <span class="variable language_">window</span>.<span class="property">interValPrecisionObj</span> || (<span class="variable language_">window</span>.<span class="property">interValPrecisionObj</span> = &#123; <span class="attr">num</span>: <span class="number">0</span> &#125;)</span><br><span class="line">  obj.<span class="property">num</span>++</span><br><span class="line">  obj[<span class="string">&#x27;n&#x27;</span> + obj.<span class="property">num</span>] = <span class="literal">true</span></span><br><span class="line">  <span class="keyword">var</span> intervalId = obj.<span class="property">num</span></span><br><span class="line">  <span class="comment">// 开始时间</span></span><br><span class="line">  <span class="keyword">var</span> startTime = +<span class="keyword">new</span> <span class="title class_">Date</span>()</span><br><span class="line">  <span class="comment">// 已执行次数</span></span><br><span class="line">  <span class="keyword">var</span> count = <span class="number">0</span></span><br><span class="line">  <span class="comment">// 延迟时间</span></span><br><span class="line">  delay = delay || <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  ;(<span class="keyword">function</span> <span class="title function_">loop</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 定时器被清除，则终止</span></span><br><span class="line">    <span class="keyword">if</span> (!obj[<span class="string">&#x27;n&#x27;</span> + intervalId]) <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 满足条件执行回调</span></span><br><span class="line">    <span class="keyword">if</span> (+<span class="keyword">new</span> <span class="title class_">Date</span>() &gt; startTime + delay * (count + <span class="number">1</span>)) &#123;</span><br><span class="line">      count++</span><br><span class="line">      <span class="title function_">callback</span>(count)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">window</span>.<span class="title function_">requestAnimationFrame</span>(loop)</span><br><span class="line">  &#125;)()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> intervalId</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 清除精度定时器</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; 定时器ID</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">clearIntervalPrecision</span>(<span class="params">intervalId</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">interValPrecisionObj</span>) &#123;</span><br><span class="line">    <span class="variable language_">window</span>.<span class="title function_">cancelAnimationFrame</span>(<span class="string">&#x27;n&#x27;</span> + intervalId)</span><br><span class="line">    <span class="keyword">delete</span> <span class="variable language_">window</span>.<span class="property">interValPrecisionObj</span>[<span class="string">&#x27;n&#x27;</span> + intervalId]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//loopHover 自己的业务实现</span></span><br><span class="line"><span class="title function_">setIntervalPrecision</span>(loopHover, <span class="number">100</span>)</span><br></pre></td></tr></table></figure>
@@ -4024,7 +4188,7 @@ section 运维阶段
     <url>/%E8%8F%9C%E8%B0%B1/c43e7c0d.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>吃鸡最痛快的吃法之一，一定有大盘鸡。</p>
 <span id="more"></span>
-<h1 id="食材"><a class="markdownIt-Anchor" href="#食材"></a> 食材</h1>
+<h2 id="食材"><a class="markdownIt-Anchor" href="#食材"></a> 食材</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>鸡肉</p>
@@ -4063,7 +4227,7 @@ section 运维阶段
 <p>啤酒</p>
 </li>
 </ul>
-<h1 id="调味料"><a class="markdownIt-Anchor" href="#调味料"></a> 调味料</h1>
+<h2 id="调味料"><a class="markdownIt-Anchor" href="#调味料"></a> 调味料</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>花生油 20ml</p>
@@ -4087,7 +4251,7 @@ section 运维阶段
 <p>蚝油5ml</p>
 </li>
 </ul>
-<h1 id="操作"><a class="markdownIt-Anchor" href="#操作"></a> 操作</h1>
+<h2 id="操作"><a class="markdownIt-Anchor" href="#操作"></a> 操作</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>起锅烧油，放入梅花肉打底炒出油；</p>
@@ -4123,10 +4287,20 @@ section 运维阶段
   <entry>
     <title>奇怪的梦</title>
     <url>/%E7%94%9F%E6%B4%BB/2afb063d.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="0a751ab2cab789f89ab563c1df7773ac753b4ac0f92147c2c3b943ed66d2bbde">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d01101c2c8c781e0b1cd8c2268fc4efcf73eca9ec52ed737c3e4b1fc88ab5677a7f6b2a62a2e14f94a5baf9c3196a1aa8cb0da095c4d0a4032935d7df8bfad0a2f3b9b456191eff772b024a0d4a32d85d8f8524dec24a9148950127e2adbd9a26578ed16c252bf25c35426dd6517a40c5926e1c6cb8e8294e15ca5801107d94b580ec386c3f00be8540f1b49668ebacc077b6f3336c569dec0e085e833399f37688fd7b3c47f3e1e8de882e4b6d5cd64ac86338f967fc35d1d4eea06035b826eabe2263698ba13b225d97d2c771bb4de617fbafd3c0ffdae4e1e5d3ac1b8ff8491459ea01b954978e52bb44a32630d794663cfc88878f79a6bacc313b01a3e51978bf4e192b35648c90677ab09dfb00fc6d631338b2548542f4858da83e9228d11046a4a1c7726c45eb62eae142e6cb91a36b39470de9bdf2b4e3cd34c2bb3877418d5917305a89b60398ec3dc1e825a69c38ea2a836766665c449052b4c1a682e0f73f068cfbfc28df6cc44b83779e372403309ebbf7ed049e5737817025d9a295ffa9c27673cf2ecc30a20288465b51963d3d0a46d1142ae2a039664f06c2d95e9624899b2987d27754d20a494f7d36c0</script>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt"
+     data-hbe-format="4"
+     data-wpm="糟糕！密码错误了."
+     data-whm="糟糕！密码错误了."
+     data-salt="0b2b27ae9533b8ea8e0c3d82f6494de4a791d1547c91a0b6152b516b018755b7"
+     data-nonce="c6b2cbb537edcb3057c282fc"
+     data-kdf-iterations="600000"
+     data-auto-save="false">
+  <script id="hbeData" type="hbeData">
+    1100cba6c21f2a76bebc6c9d68f0254173fc0aec88c64baa108192d2ff21d659cb61f64085055271441c852e89baebfe53bc3f95582035fbb628f21eb8c2a05093669ef7f7aa1be3f4153e783ef0ac7e50dcfd4f7b2ec336d297a352cd537021a3294e8eb3cab81e258387a7263fcf48f0f18bf64d95a0927325c5f34dfedd9e79c0aa208829324c0df2b10281042e581ad48b1c814cefceba6cacd60808079c50f3c35b573fed5fd72bdf006984f554c899871d52ad217663af208a34cf82f38590111290ed5733fb8193703ae91719770237ee2cbe291346e6aeb0e32299b179cf9820a43e2f45e7f54d525a01a1236db8801afe9d93cdb1c0dd3a4c666ba99d41d9f14e5a8a93d64154582cf12040cc7babb7ec737213ce63526e87d7af5704f2008ee44919af08c0f69e6557c97e9957e0dee6777b3f41df397e96667780bfa68825de7e626377046331d5f0f747412183266ce8d56df5f3a2e392e9c946b2fb4fed05bc91e11687280467c4fcc9efdd78df382e3859f5fb5ba4173db45a4bc1a95fed69ecba427c80ecd0516751c25fbb64bcefb53ffa1f367f2341c6379eedf2c63f447eba5a8864368f7670d3ade84656338340a9c120aeb07834fe7786e9b73135ac4b1d2ac0f26e3197706e15ff6761a9582de1ce7afda31fe94acd0cfbf4bc22ca3c3420b6ed5c610a9e3bec9c1ac9ebea8c21611f82e92df89e95fd16a430773e19ab29452e9851fa70039b08e21abb71b834eb79f9dba703e7d72cd334aa72b7f7ca97de3e427b332007edc721de51e3b71804ae855aaf22c289ec88e004dc7d9387e30c8c0fb9f9b0bac0de126a29e03f972feff5a0d3a1a1611569983eec969780768a8aa802807aa444625df2485bfdebf47214dcdb8e49d020f0e481c707d746f64a850a78419b028e1153127af4e7595f1789d6d50658f2bd72c944b96517a686c96a03cc011e1710eb5e41703353b44db66cb8f84e69371b853f40
+  </script>
   <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-wave">
+    <form id="hbeForm" class="hbe hbe-form">
+      <div class="hbe hbe-input hbe-input-wave">
       <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
       <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
         <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
@@ -4135,9 +4309,12 @@ section 运维阶段
         <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
       </svg>
     </div>
+      <button class="hbe hbe-button" type="submit">解密</button>
+      <div class="hbe hbe-error" role="alert" aria-live="polite"></div>
+    </form>
   </div>
 </div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+<script data-pjax src="/lib/hbe.a3b9f59caa.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
         <category>生活</category>
       </categories>
@@ -4221,10 +4398,20 @@ section 运维阶段
   <entry>
     <title>成本核算</title>
     <url>/%E5%B7%A5%E4%BD%9C/fb428c48.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="d0245914b44837f67429761fad5741bb185a038af74ad445f804eb7f49d93711">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d0195048f25efe9b21ce963d68bba31f68109d09d5e9a4798ba30c885f456814a1f79a3813597deaa347db33459cd74ba7a0df0f4961b35961cf13b305d52d09764798e16bc3970b56199d955ddc1cc9c04c353fb965ceadfc5376a7704a76f05c3da2895c2e503e0f9acd812b0bc56d7b3677b1a7366b54e384df56d66b32e47484884bf3ad6f10f3899fa6a1d0ebc8f4a8f15a25926c5f09faafa892771e672dce8e9193fa9821d44cf076aab160fdd0005724034d18e4ec566a57f74d507df6d98454bbb420fcada5e86fac9dbfa97eeb919651443dcdc350dc638e6283d9e889b5ef81fbdf4f010db814ea35ae2d88b145fddbb9a4ec5fb960e01b8dccc33d9d1472271d360d47d559c2cd5ae29072cf1682091e200aaa447262efc45994d84b2c885e9b76e9f6b3ef00b89976974fb39dc4bdf102c62aba6f4d39dd48aa679f191b17b8ff5f2e0abcd9bd1f2337ad24b07c79ad4db23273f4d9b18e4413df745c0f31919fcc98d3b2a2ff051813176fcb8d58ee7f78dc47725baf6037a8c9c9023cd0664a14ad3df32b1860769e27cfc62a526a7429fc8a9bfa8f0c4eaf21b91b43f495b19552fc3cd3ba2059a4b27288ebba98589861a37f28b9e654f66021082d4c872a88d3facc4a920fd93fbe53794151d3810e0f41ae6ef736202eddf98d357b518c8ee5d24291815099bce81bbd1e3d5be21a6190e11110ebcebc495f364fb7ddd71af01062f3f4331541424ae155572f54b5b1a9e2a4451b7e5a67dc4ae23b02e2bcf8c5405caf52af747361a7e201552703e9e68652e283e243ae778b4fb061e2fe1c5a88b32885fa001c124fa4dbdf27e6dc8717891c8924f961a8d014b440cf0fee0804db043bdcf8004e56c8c9676c2bc925216219597ea804477986a7300a40bcc2a29f11ddfc2a7009402895b472b4d9abf359728dfa7fb1c32e3c396848fb0756c2c6d199f32eb1a953f75159e59b96a5d03d0b25032df570ad289c5da97f1e91fcc79f3132a357fbea1c0585c60b8ced01aa77f53cae07e61e0b01aa3b298aedf9c289ec3f1a8894d5947b2dd4a9790bc417c2fc4fcd46bb38325ad6aca04cf8d969c071d6758837d5e3da1e0708a6fa00fb64ce344ccc5631f40bd3713b7836a6855fd204c3448f21c8523ab9eeb094c7d504fa6dff88478d3e276817712a96f91c3269f5aa04cdf1bb4751a51a64f67bd2782535970e6bd38533bd3e89f41bf230062696042f6be90a95431374bac8d16bde9a58befbd3e2c60144bce8a3cc7fee5217def52301b310c0cfefbc8a1af62f6870a955daecf988ae609d847725cc6d0feccaa6e3142d82eef1ee24fdac8d752f719cf9c2023212e6df6c84f637f43757b7987545e8931c3da36550ec78b3f84e699703d6a72bf242b0da37f109dfe4ce60a5ad452dd3af59a631ecaca57f6ba537627d472300fad6925ff147fc94dc0be104fbfd6a49876ccbb3337af154ecc4e1788fea413e4dccb4049d2dc6010d28135ddca3d954c3668b8cf8dbf563fcdb86efda4822909ab8f17419a4ef3060cdcace08ef372da7a9d2314b1df1b56c8941debc6751d36ac4d8e7f6bc38a5ea7efd036094f137ef5041f35e1df174e62a4e9b85168c98c373cd32ecb6a085e39d243cfd3db5adf7bc0cca77d676cd9ea6cf8b1107a809dacfd8f51cd0b650a165c608439c0f1400e991fb804334832ef4b0220273cc27212101228cb0da9474d977766514151b13a02dfcec92437399a2b7e4d0864d8030d776bcb4b81034fb5eb2c04bbc0fa62ea6b79f119f779efdcdc8442c70894338dc66320290eb56ff022ed0c34906f20705ce50d2b79450d001c79757e3c833de3db9226d052a38b781b149feb66773de072bc2fd8c3782f6ceda0ece7cb0681b977ee13faaf85d92444b052f0bc1295a6415aa25580cc540b96c3117c6270e8f7c43e65564284c38a607c616f7994e40283079c04b11aac4ffec23bc26753cb32ec18bdffa12709caafec6291fe7964cb6600f9034705b0cc8170f11c3c7e4e4d0e2eb0b2a04dd514da1b3779951bd6dc5588e768caccc5a81c91cab48d28a89468d3ddad9325afdb5bba58e8670f7244606e0d4a79bfdcc6ff94d06ba7af6cde978c9bd64a5e3e30534794bc63c5c42c055936e84b687dd1a6d82f2e58eb760f9c422ee12be872c6a01b043cb2c451b9703f52173bd61e09a85b27384c51602adba5b262203d45a7a506e3acad729a66c9cdf31e4b1845e582d4421161b8ed0b9626a6e2519c6938f43fd1907931491dead99bbd81dd3df86855b5350ba141c24c3938f15652141ccbaa1545d257ba1a86e06a457818f51d383679bbfe5622f8f53f1a0859a1bc844832ef06fa880847286f485328b501b88d739515a1d73915fdbcc369edf955d12dd8413b5ac274ac76d6e0d7ee0d1649f5de0d61a63b5267344f4b56f8696eee45f5b0185ef3241c68459eed204579026128d422be49ca865eb117f6af96ea9cc655b403b8f778a8e4d2d07234c6e4fbcf23fcf60af34b40c19e67db6becf86be93c8de2ea7dc998b0d03f8586bccf70ef1f37cab164db5992aedd035a603d1d87d2855f4cdbfd9af4c0a59c23ed92a08d94313697019c45a5f6694ece8f063ac22d2f9268db3941bed7111bf0c92176caa849fe63e86b286caaccf95742d12ddf82991effe24104e780e31a85cda3d035236c764e26c7b45834a55f8a9971ea1efbc3667c6b2bc8253dd3eb6b36e71a73990f3980c1e8684eecad3884bd6aac67290a8601df913288955662bb0898ead1f19da105878e37a00d23aa4e1c7eb96c78e51ebd16d3718a53e86d50db28f716f5fcd437045d9a8d6bc403b0d38fbfad3a8394d731233e46acb25f6eccc017cbb036a48eace341a4defa5d902463d9932e68b95dc75176a957c328f7088f44dde163c434ef06537b9c3575a99984d28c2db33901</script>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt"
+     data-hbe-format="4"
+     data-wpm="糟糕！密码错误了."
+     data-whm="糟糕！密码错误了."
+     data-salt="e4fbb55751b7bd347032a72ed71dff6cf9047f7c74038a062623346f696ed704"
+     data-nonce="e82942a167721b7a2a67a971"
+     data-kdf-iterations="600000"
+     data-auto-save="false">
+  <script id="hbeData" type="hbeData">
+    63133ec6aca98a5748f0274050fcfb3a92cf0b1f814e31b3cad7525ef6469c114cc77c5158842866512d2098b45ade5088094d7bc7e05dcb00f9981e754f1b82112580b8916230a29820adbf6dcfddf042c2235531cc6b29cdcc771f569b7a605d7c862fe952918d391d49565c40c60f3d1d39e06fdb62365727bdf1b328e86b0c97611fa2a1f36f3eebfdeb10cc50681fda3daad66fbd177d27b92b176efda448ac704a680ae3f1d37a4f3b784a664f343433ca1e8f983de382db1d7babe67c32a694dac6a457d4a8374c08c578fdd572f3b78451e3e6b389cdb995896720dc6e1d64119c8d139021078ad4da182ab06050659163ff1a15e4214d1890305d895ee08987f1c32e53f64fe0fa0b8b6dd337936989fdd48216cef7d4c1e3ff00e75e635a11f233680bba5268dff70df62ee6b580e8bd64dc7be77f92e7db23c3c5f3741baaa16219e4e835869c069f05825e04dc71aa3c607b4cb9601fe6ba5ce1d793342ebdf94dc9c37f076581d855c229a0e8640f4df1dd67cc769bb2a92bce09fdd4a137a6a343c479ff6c467065885c3e7ca08608146f54d79a7947bba80cc57343f1bea8af7b833841bdc57347b91530f505a4ee8cebce8c050cf3445a039aaf041b8959ab7cab9b574d7eee58d03024af7536549cca33dfa06fdd21da00006d271d99fd93d9f372672798e0453121a49fa70318087356fdc49ed0ac34fa73524912a8b65d7ad034e4952e3d4692b1d4b73b738c2866c77be56745bd90a6eb76a814e4605fab08552a8b466f9b4cf0acb277703b709e65c8c183bd12a383450cb7d386c1e857004c399d8a04e21506d23bc021035af87146a0df220be3507377e4202a8ee0614c0e50bf9bfa207fe14edff75e4c40a98c96fdb9e873eec75a6610905f0655afe03ae137d7a90f76fe3be716bca869813587a03cfb3ab89d0e52b31f76e3ee131976a6f3acfeb716ebae9facee95cd2172a163ff723b6d39f1f1e928dcee87890ce726456fbdf17cf5089e014eab94e3a5422b5aec728fdef918f31fdf44feca730e427662fda0350b16dfc47f530986d2020f3d1a189379506238a1c39dc861bfdef2833744cc16ea4ac6f45a90c273765b9e282219d011860eaa782ccbe1a331135f26006915b50393871f65a52c031609d0f99be83314b54a7f9ad7b1a7574c9cec03a18e2831f2c1877d11f93c5c720b274ea96739d243325df81ddd1d6cf75a062f27296940338596f0019aa411fba47f67979c82ecb4f59391051246d6028066f9ef8c8bc1297f00dbd3b07ab1e8e870558006c5cbba5cf8f0968c8fde7c3c1ebf68df42afc29e057874ab1980b075e8b9bcdbac9d893c8a323e5c7764d84daa43562fcfb2b1b7a08bb3af831b80cc2379affc8a10de032dec11cbb06c0f92e85411be1b39aeed1cc906dcd6434ef1a1c855e206cadeedfd51e95b0fb9a56c72bd0d68ccb41a8a8adfca88d5ac209e85fc7c4a0f3aaa00f3d6beba9da2951e93f6b147ad778723ffec5ed3cd9a7168fba2291bc50422efa136ecc356e06eca0cc1f611e62b78a86147a15a0067e5da7d3db34d0fcad01c17a4c6a605da4793bb66d7f8d926b1e295dda2f9ebf7af0d2886b8769b65ac5291340a2691d9a7163a1a1e0e2c4e85291cf36aa82135cd05dce2c20c6d5855dbb53414bb0c840c9e9c4c2d100d0c6bce24444c0fcb70246bd9172838052a3c3c46af369354c9c4c111c49814e5f210de022822d124ba487d3f2bfaf7750a479e97bb947a131ac8b3c09872aed66b04acee6fc792c1f7b380cff3c77ac4996ddae111b9a59de4bcee857258b018c9d7d877ed3107cbe3eee7b495d01030e722275c5553aa96a019a335a35520b2be32593f0cb67eb0f6b4b852d8f951124883c6e33789efb14179bb8bf49528c8ea8d0c67e2893d1898ce54de40e2212f8400de72469d2c7816dad4dc0fc6810a648ce50b772d99adeb1b9fc7b15f4452b15b20c2772e81bd23e3d664698ac746684fe54a90aab6e1cda635d032ac2a2daf40cd2f26cfeac08efd8205a96716e25e8b54d2e9cea6e8c70062b3dffedea0655878c1f958935fb44b95a8be57ffe3971c6193ddedc2d6d19b4a779ea052472b6c2eb2b213abe20328c2031fa5baa2fa827e6478fe52a66f8cf12b108d23ce2c2bffdfba4f68f5dba07701b0701549b6bd368fb81c26550b865aebab16d70a90cfcd34d64b713e0a199d12402f0ea4e6c7f219e8857cba2e935f858fa4b07dc09ca6abfcd039b00da1c2f4dabf1ba14c9cef7f1dfdf20a70d36ac58dfce068ca8ac9345f71c92a2472bd0ff2805578ec961a59a952978bce5f2f9f4cb6248fc2cb7d6270f999f5b9a4e1294a21bafbb8f1f4c29bef04431dc529a1a9ebdd3e007c74cb5a7cc6d43bcac0e6dc8eecdb23dcc1281c916563d1cc1c4b9c142255479592a793272ba826aede019f0418fcc741e7400ff5fa76e07b9ae1ce830575b9d10482d086f5ea727571fe171854d8d1a215ca5f4aef1f67fa71bd174ab0da479ec7ae68910941fd3575371a5c7e5254c731f98cbdc0373b804a51200c0d7dfffb2d084be59a4e9bccf74247254c1e1b2a0c34773f6b9e613d8ea529ebc36bfe154e229ce4ef23b3baff76c4b3ce2418398fa19576ca55eee9727d83695e20692f1026da3aa4ee0ddd8f297ac0adaa11893844f15c24b51b3695dfc121ed31dcd6aade10d443b14370545b22659e89e42faf894c4b255dcd5d142038701a659fccc09bd09a1733e5feb4569f9a69a4b76d8c19118ca10cf4f4a70bcd34fb8a7c2c63ec9315f12b1474af5f0860181a4f8ae9f79a7a515eb74f472133ee45ec555a0bae5ebcf3128a8d1af10b50962b354dbfb31937313d40034646c258ee8ce826917facb05cbeaf3311761160fd6197cb1993ef2bb06f986a8ceac3922cfb92b482068cc978e2dbe4e9e6e31254dc05dd252e4535a6db0972ecb62ffe82ad7b2565acf545919249249508b051c0b5f154b5b515abe02b78a159e1e7a4db7ffdce92ad7c1bfa1aa239655fe122ebfb583272f31a678e045ac5e64b9cf128bb6bf0812cd0a208fa845a90351a48727397cc4e15dabde354a8e3b9137c8c3a8aff8e60dc24ec5a0f3b7a90611a463dfabf2fb2f3999f9980be0d6b83f82ad030198f0cd13f4b3299da86afeaedf9975a0f9008a4fc83f31b03bfda3971fc875ec4b8945b0db5b47e84f4a39758181dc8ffbdcf734e6cb6e5dcbb9e888ed61d25e1ee7428ad8ceacd42ce007f4ec0507321ccccbe10e6da8f4dc9d991da82d622f203ce2e2fb6fe7f9d3532d41d6fbfe2241b4a0e5551957ed60dc84857be36d954
+  </script>
   <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-wave">
+    <form id="hbeForm" class="hbe hbe-form">
+      <div class="hbe hbe-input hbe-input-wave">
       <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
       <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
         <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
@@ -4233,9 +4420,12 @@ section 运维阶段
         <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
       </svg>
     </div>
+      <button class="hbe hbe-button" type="submit">解密</button>
+      <div class="hbe hbe-error" role="alert" aria-live="polite"></div>
+    </form>
   </div>
 </div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+<script data-pjax src="/lib/hbe.a3b9f59caa.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
         <category>工作</category>
       </categories>
@@ -4505,7 +4695,7 @@ section 运维阶段
     <url>/%E8%8F%9C%E8%B0%B1/b2113df8.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>河南大多地方以面食为主，炝锅面又是最经典的面食之一。</p>
 <span id="more"></span>
-<h1 id="食材"><a class="markdownIt-Anchor" href="#食材"></a> 食材</h1>
+<h2 id="食材"><a class="markdownIt-Anchor" href="#食材"></a> 食材</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>干面条</p>
@@ -4532,7 +4722,7 @@ section 运维阶段
 <p>花椒</p>
 </li>
 </ul>
-<h1 id="调味料"><a class="markdownIt-Anchor" href="#调味料"></a> 调味料</h1>
+<h2 id="调味料"><a class="markdownIt-Anchor" href="#调味料"></a> 调味料</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>花生油 15ml</p>
@@ -4556,7 +4746,7 @@ section 运维阶段
 <p>香油 5ml</p>
 </li>
 </ul>
-<h1 id="操作"><a class="markdownIt-Anchor" href="#操作"></a> 操作</h1>
+<h2 id="操作"><a class="markdownIt-Anchor" href="#操作"></a> 操作</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>大葱切碎；番茄开水烫后去皮切块；白菜手撕小块备用；（个人喜欢可以放一些黄豆芽）</p>
@@ -4595,10 +4785,20 @@ section 运维阶段
   <entry>
     <title>研发年终总结</title>
     <url>/%E5%B7%A5%E4%BD%9C/72bee84d.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="d750b976d0af0dae30016627668be28e6d2795db96258477d297a1da59746216">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d0184c4df4adb62aec6770ccb2861933b80934badbd52b2032fb7d7fa8ea0a30401ead330577c4c8a85a72eb63f81f2d244582b0bf85438efa61c49e9528be85df7860fd17b3214829fa137b0184419f3fed24cb821d072633aec08c83b1784e73254f5ed31d204d1b341591704aec00a4d084e8d5095986f4aacc7046f1624418b2ec37bd0d60f984141aac07614e7fb2771146fa6ae68844ab7397c9522ac715b</script>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt"
+     data-hbe-format="4"
+     data-wpm="糟糕！密码错误了."
+     data-whm="糟糕！密码错误了."
+     data-salt="c235eb60150af42071cbb90b7b770763c2c0e1e08b8b572a38ede7e81ffef2fa"
+     data-nonce="a710bf98406fcc00b41fcea2"
+     data-kdf-iterations="600000"
+     data-auto-save="false">
+  <script id="hbeData" type="hbeData">
+    dff8226695918210992ab627064bc56238d2cdf04bc442ece72758275f9f26b392b295d0fa97e2dc4d40142f6ee0b55dbddaa7143d3be0311d5f14ee22d9938a1a679f6f4cc885ad3a92dc325ede9b40f7d9e1495654ee774861a0382958f540a8970e2cd01800fa337738caa4035052b43fd94e531a90b5a397a8422280e5cc3d5f263c12db1f7acde0c48fe3de438ce16fb4ca6b9d88f9973e070fd2c0e804f06e705607891c48ea49f40ebec2f31cb88f61f514252c86714329b88ab8acdf916bf778d0219ed238b8d61485bf6d6f6ca129e9e8104cfc8807468d7195a7cc04cc789eb69db96e45a9dc9ca103a5876b0ff3d4ac046cd4101fa2488759ab3178a242cde5e07cad870d9aa98c9ed972c10ee842c24af621f2f0b9dfda236d3eee234c9d9ea779a551300db3aed4bc4dd831e456a872ae97114374a45cc4a310fe84c3ce6f0655f7f06639dda4c6cd3e617d9c4539de2983e152480861a06a2206a391ca34d210b543f752bae21600a43a9958fc9516a81b9beec92d33fe0b6221f8b3ea74075d4296fdab1ae30c6e095a3c95de02a270577e1676a666275b0f0fbb754c58b97c460c2b
+  </script>
   <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-wave">
+    <form id="hbeForm" class="hbe hbe-form">
+      <div class="hbe hbe-input hbe-input-wave">
       <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
       <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
         <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
@@ -4607,9 +4807,12 @@ section 运维阶段
         <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
       </svg>
     </div>
+      <button class="hbe hbe-button" type="submit">解密</button>
+      <div class="hbe hbe-error" role="alert" aria-live="polite"></div>
+    </form>
   </div>
 </div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+<script data-pjax src="/lib/hbe.a3b9f59caa.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
         <category>工作</category>
       </categories>
@@ -4631,7 +4834,7 @@ section 运维阶段
     <url>/%E8%8F%9C%E8%B0%B1/1d180e51.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>芝麻叶面条是河南的家常面食，喜不喜欢面食，吃上一次就会想第二次。</p>
 <span id="more"></span>
-<h1 id="食料"><a class="markdownIt-Anchor" href="#食料"></a> 食料</h1>
+<h2 id="食料"><a class="markdownIt-Anchor" href="#食料"></a> 食料</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>芝麻叶</p>
@@ -4658,7 +4861,7 @@ section 运维阶段
 <p>干辣椒</p>
 </li>
 </ul>
-<h1 id="调味料"><a class="markdownIt-Anchor" href="#调味料"></a> 调味料</h1>
+<h2 id="调味料"><a class="markdownIt-Anchor" href="#调味料"></a> 调味料</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>花生油 25ml</p>
@@ -4679,7 +4882,7 @@ section 运维阶段
 <p>香油 5ml</p>
 </li>
 </ul>
-<h1 id="操作"><a class="markdownIt-Anchor" href="#操作"></a> 操作</h1>
+<h2 id="操作"><a class="markdownIt-Anchor" href="#操作"></a> 操作</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>开水后放入芝麻叶，煮至软化即可，沥干水分备用；</p>
@@ -4721,10 +4924,20 @@ section 运维阶段
   <entry>
     <title>表单中心功能清单</title>
     <url>/%E5%B7%A5%E4%BD%9C/74a10861.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="d4fdaf5f778ad2b7f7839b20408f063600471c71adaf758c95e523234574a9d6">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d0184c4df4adb62aec6770ccb2861933b80362d81b2e5010a91d2c8f139b9eb004455057809151ad7f7ca7b6b37b48037dfaf87a9f1e3fd2e3e9fbcddefded0a9ffe4050860aaf8120a12909a51025f739ff300c37edce140a5b599c11a069c8d6716e7a198692712ae072cb0833533e07f38919c92312fb2f264239dc7ee606385a6f34772835d1e53de7cab5f35053a3c24486db2f6f061efb91dd54dbb6f7b7acb00bb2002d390eee61b94c5e4bcc9b0317177adb53e6fc797830898cc53c48bbcce3f80100cbcd489454ce64ecdd98984531a7dc6f0ef02d73406eda7728fd6</script>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt"
+     data-hbe-format="4"
+     data-wpm="糟糕！密码错误了."
+     data-whm="糟糕！密码错误了."
+     data-salt="7c8a76bd12f6926cfdfc1bd7a4b9248732383c67782cbe54ea1faee5a2991220"
+     data-nonce="52a2cf45910008803c6bce82"
+     data-kdf-iterations="600000"
+     data-auto-save="false">
+  <script id="hbeData" type="hbeData">
+    d477eb29d39a3b8adfe92f71f316ae9dae562f3a333e11271e825c06ef6fe724f86618d32c3c64f0af093aa1f7db7cc7dd25c1127cf574f90e0a330cab3b000694c0eaa28b3e6c460c4486437ab82244ae1cc13558660cfb77ba7a53a0fb92b25209dfc53a1f529f2050334a443298c0e35a739628be478856e0490726ae3586c20ae22356069af49d4e6e098ce2fcbd25a1d0e37d472f345cbc3efeeec0cf4952a23aa162cc704142c9738c3df0fdcf0460552c44e3d5080f44cd48bc50ea7b5c19e5170a67401e31def0a377fa39c7bdd9a80f0f60f9c1dc20f6e8b03377d1c2158b24d5155516e7821083249f4a56db56cfc35dc7641fe34773074efaff26e3e246a715e7da59923da67a41a4da8fa8ca827161e9af3c221fa055f8654555d9bb7eeefbae31c333d4ca3a8a0b1b22a9847e81e7bf0da66d9dad15ea361e7295ec682ea9f224638293ca72890c7067474f39fb2a299bd8205ba7633f22c6daf91f062fce441a0cc121b40839ec94c73f6e22517a26b4abfda5ddd553275580bfc53fb3726e232352e371c83aa6a1b048281279375327fd9bfccef1b104295eb7ce7146160e157a537128c28a4c8356b3c4216b6aa556cdab661a4a4f43f1f4d519207e1c5933ac7eea596cf4792ce581c4d5a0a00b7446ae921913610c0af421d7ce559bbe7e0a70238c3e5753c7f5
+  </script>
   <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-wave">
+    <form id="hbeForm" class="hbe hbe-form">
+      <div class="hbe hbe-input hbe-input-wave">
       <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
       <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
         <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
@@ -4733,9 +4946,12 @@ section 运维阶段
         <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
       </svg>
     </div>
+      <button class="hbe hbe-button" type="submit">解密</button>
+      <div class="hbe hbe-error" role="alert" aria-live="polite"></div>
+    </form>
   </div>
 </div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+<script data-pjax src="/lib/hbe.a3b9f59caa.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
         <category>工作</category>
       </categories>
@@ -4749,12 +4965,12 @@ section 运维阶段
     <title>路</title>
     <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-        <div id="aplayer-xtDsSCFT" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-UuBmOUus" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-xtDsSCFT"),
+            element: document.getElementById("aplayer-UuBmOUus"),
             narrow: false,
             autoplay: true,
             showlrc: false,
@@ -4818,103 +5034,6 @@ section 运维阶段
         <tag>云计算</tag>
         <tag>雾计算</tag>
         <tag>边缘计算</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>通用excel导入设计</title>
-    <url>/%E5%B7%A5%E4%BD%9C/7178be5f.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="业务场景"><a class="markdownIt-Anchor" href="#业务场景"></a> 业务场景:</h2>
-<ol>
-<li class="lvl-3">上传excel按需写入字段；</li>
-<li class="lvl-3">覆盖更新数据；</li>
-</ol>
-<span id="more"></span>
-<h2 id="设计方案"><a class="markdownIt-Anchor" href="#设计方案"></a> 设计方案</h2>
-<pre class="mermaid">sequenceDiagram
-excel ->> handler: 上传文件,传入对应excel的字段名称、类型、索引
-handler ->> execute: insert[插入]\ignore[忽略重复数据]\replace[替换重复数据]
-execute ->> insert: 写入数据库</pre>
-<h2 id="mysql"><a class="markdownIt-Anchor" href="#mysql"></a> mysql</h2>
-<ol>
-<li class="lvl-3">
-<p>insert into  table ()  select ‘’ from dual where not exsits ()</p>
-</li>
-<li class="lvl-3">
-<p>insert ignore into id={IDGenerrate.gernxxx}</p>
-</li>
-<li class="lvl-3">
-<p>Insert into on dupli   update  xx=values()</p>
-</li>
-</ol>
-<p>Sql:</p>
-<ol>
-<li class="lvl-3">
-<p>select id from table where dupKeys = ‘’</p>
-</li>
-<li class="lvl-3">
-<p>insert ignore into  values (id)</p>
-</li>
-<li class="lvl-3">
-<p>ignore :  insert into  table ()  select ‘xx’,‘x’,‘xx from dual where not exsits ( select id from table where dupKeys = ‘’’)</p>
-</li>
-<li class="lvl-3">
-<p>Insert into table ()  select ‘x’,‘id’ from dual  on dupli   update  xx=values()</p>
-</li>
-</ol>
-<pre class="mermaid">classDiagram
-class Field{
-		Intger index 索引
-		String name  字段名
-		String type  字段类型
-		Object value  字段值
-		String exp 校验表达式
-}
-
-class Record{
-		String tableName 表名
-		List fields 字段
-}
-
-class ModeEnum{
-	INSERT("insert") 写入
-	IGNORE("ignore") 忽略重复数据
-	REPLACE("replace") 更新重复数据
-}
-
-class ExcelUtil{
-	+File file excel
-	+List:String fields 字段
-  +String tableName 数据表名
-  +Integer skip 跳过行
-  +ModeEnum mode 写入方式
-  +List:String dupKeys 用于校验重复的字段
-  +RecordHandler recordHandler 数据行处理
-	-static importExcel(file,tableName,fields,skip,mode,recordHandler) 导入
-	-static exportExcel(response,tableName,fields,skip,mode,recordHandler) 导出
-}
-
-class RecordHandler{
-	-read(Record) 读取行
-}
-
-ExcelUtil --> ModeEnum
-ExcelUtil --> Field
-ExcelUtil --> Record
-ExcelUtil --> RecordHandler</pre>
-]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-        <tag>jdbc</tag>
-        <tag>easyexcel</tag>
-        <tag>excel</tag>
-        <tag>import</tag>
-        <tag>export</tag>
-        <tag>replace</tag>
-        <tag>ignore</tag>
-        <tag>insert</tag>
       </tags>
   </entry>
   <entry>
@@ -5256,6 +5375,103 @@ ExcelUtil --> RecordHandler</pre>
       </tags>
   </entry>
   <entry>
+    <title>通用excel导入设计</title>
+    <url>/%E5%B7%A5%E4%BD%9C/7178be5f.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="业务场景"><a class="markdownIt-Anchor" href="#业务场景"></a> 业务场景:</h2>
+<ol>
+<li class="lvl-3">上传excel按需写入字段；</li>
+<li class="lvl-3">覆盖更新数据；</li>
+</ol>
+<span id="more"></span>
+<h2 id="设计方案"><a class="markdownIt-Anchor" href="#设计方案"></a> 设计方案</h2>
+<pre class="mermaid">sequenceDiagram
+excel ->> handler: 上传文件,传入对应excel的字段名称、类型、索引
+handler ->> execute: insert[插入]\ignore[忽略重复数据]\replace[替换重复数据]
+execute ->> insert: 写入数据库</pre>
+<h2 id="mysql"><a class="markdownIt-Anchor" href="#mysql"></a> mysql</h2>
+<ol>
+<li class="lvl-3">
+<p>insert into  table ()  select ‘’ from dual where not exsits ()</p>
+</li>
+<li class="lvl-3">
+<p>insert ignore into id={IDGenerrate.gernxxx}</p>
+</li>
+<li class="lvl-3">
+<p>Insert into on dupli   update  xx=values()</p>
+</li>
+</ol>
+<p>Sql:</p>
+<ol>
+<li class="lvl-3">
+<p>select id from table where dupKeys = ‘’</p>
+</li>
+<li class="lvl-3">
+<p>insert ignore into  values (id)</p>
+</li>
+<li class="lvl-3">
+<p>ignore :  insert into  table ()  select ‘xx’,‘x’,‘xx from dual where not exsits ( select id from table where dupKeys = ‘’’)</p>
+</li>
+<li class="lvl-3">
+<p>Insert into table ()  select ‘x’,‘id’ from dual  on dupli   update  xx=values()</p>
+</li>
+</ol>
+<pre class="mermaid">classDiagram
+class Field{
+		Intger index 索引
+		String name  字段名
+		String type  字段类型
+		Object value  字段值
+		String exp 校验表达式
+}
+
+class Record{
+		String tableName 表名
+		List fields 字段
+}
+
+class ModeEnum{
+	INSERT("insert") 写入
+	IGNORE("ignore") 忽略重复数据
+	REPLACE("replace") 更新重复数据
+}
+
+class ExcelUtil{
+	+File file excel
+	+List:String fields 字段
+  +String tableName 数据表名
+  +Integer skip 跳过行
+  +ModeEnum mode 写入方式
+  +List:String dupKeys 用于校验重复的字段
+  +RecordHandler recordHandler 数据行处理
+	-static importExcel(file,tableName,fields,skip,mode,recordHandler) 导入
+	-static exportExcel(response,tableName,fields,skip,mode,recordHandler) 导出
+}
+
+class RecordHandler{
+	-read(Record) 读取行
+}
+
+ExcelUtil --> ModeEnum
+ExcelUtil --> Field
+ExcelUtil --> Record
+ExcelUtil --> RecordHandler</pre>
+]]></content>
+      <categories>
+        <category>工作</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>jdbc</tag>
+        <tag>easyexcel</tag>
+        <tag>excel</tag>
+        <tag>import</tag>
+        <tag>export</tag>
+        <tag>replace</tag>
+        <tag>ignore</tag>
+        <tag>insert</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>鲁迅先生写道: 父母存在的意义</title>
     <url>/%E7%94%9F%E6%B4%BB/2375039249.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
@@ -5276,7 +5492,7 @@ ExcelUtil --> RecordHandler</pre>
     <url>/%E8%8F%9C%E8%B0%B1/9ddcf808.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>我媳妇、儿子最喜欢的菜之一</p>
 <span id="more"></span>
-<h1 id="食材"><a class="markdownIt-Anchor" href="#食材"></a> 食材</h1>
+<h2 id="食材"><a class="markdownIt-Anchor" href="#食材"></a> 食材</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>小龙虾（冻虾尾）</p>
@@ -5303,7 +5519,7 @@ ExcelUtil --> RecordHandler</pre>
 <p>啤酒</p>
 </li>
 </ul>
-<h1 id="调味料"><a class="markdownIt-Anchor" href="#调味料"></a> 调味料</h1>
+<h2 id="调味料"><a class="markdownIt-Anchor" href="#调味料"></a> 调味料</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>花生油 30ml</p>
@@ -5327,7 +5543,7 @@ ExcelUtil --> RecordHandler</pre>
 <p>蚝油 5ml</p>
 </li>
 </ul>
-<h1 id="操作"><a class="markdownIt-Anchor" href="#操作"></a> 操作</h1>
+<h2 id="操作"><a class="markdownIt-Anchor" href="#操作"></a> 操作</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>清水清洗小龙虾（冻虾尾），起锅烧油炸4分钟；</p>
