@@ -2,9 +2,27 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://nilw.rm-rf.ink/%E6%8A%80%E6%9C%AF/277d0d7d.html</loc>
+    
+    <lastmod>2026-10-29T01:07:02.593Z</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
+    <loc>https://nilw.rm-rf.ink/%E5%AE%8F%E8%A7%82%E7%BB%8F%E6%B5%8E/5629ff29.html</loc>
+    
+    <lastmod>2026-10-29T01:04:03.928Z</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <url>
     <loc>https://nilw.rm-rf.ink/AI/37793209.html</loc>
     
-    <lastmod>2026-10-28T08:18:31.823Z</lastmod>
+    <lastmod>2026-10-28T08:19:11.149Z</lastmod>
     
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
@@ -79,7 +97,7 @@
     <lastmod>2026-10-28T02:58:01.177Z</lastmod>
     
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
   </url>
   
   <url>
@@ -88,7 +106,7 @@
     <lastmod>2026-10-28T02:58:01.177Z</lastmod>
     
     <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
+    <priority>0.6</priority>
   </url>
   
   <url>
@@ -443,7 +461,7 @@
   </url>
   
   <url>
-    <loc>https://nilw.rm-rf.ink/js/reveal.js-plugins/README.html</loc>
+    <loc>https://nilw.rm-rf.ink/js/reveal.js-plugins/CHANGELOG.html</loc>
     
     <lastmod>2026-10-17T14:19:03.906Z</lastmod>
     
@@ -452,7 +470,7 @@
   </url>
   
   <url>
-    <loc>https://nilw.rm-rf.ink/js/reveal.js-plugins/CHANGELOG.html</loc>
+    <loc>https://nilw.rm-rf.ink/js/reveal.js-plugins/README.html</loc>
     
     <lastmod>2026-10-17T14:19:03.906Z</lastmod>
     
