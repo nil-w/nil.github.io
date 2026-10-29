@@ -4,7 +4,7 @@ description: 从 MemPalace 到 Filtration Layer 再到 mem-md，一次关于记�
 tags:
   - hermes
   - memory
-  - ai
+  - AI
   - architecture
 abbrlink: 474c79ed
 date: 2026-06-01 12:00:00

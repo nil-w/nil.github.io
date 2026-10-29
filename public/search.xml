@@ -456,39 +456,6 @@
       </tags>
   </entry>
   <entry>
-    <title>一次gogs采坑之旅</title>
-    <url>/%E6%9C%8D%E5%8A%A1%E5%99%A8/53577de6.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>一定要按照操作步骤走</p>
-<span id="more"></span>
-<p>1.创建用户，一定要记住密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo adduser git</span><br><span class="line">su git</span><br><span class="line">cd ~</span><br></pre></td></tr></table></figure>
-<p>2.下载并解压安装包</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget https://dl.gogs.io/0.11.43/gogs_0.11.43_linux_amd64.zip</span><br><span class="line">unzip gogs_0.11.43_linux_amd64.zip</span><br></pre></td></tr></table></figure>
-<p>3.拷贝启动项到系统下</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp /home/xx/gogs/scripts/init/debian/gogs /etc/init.d/</span><br><span class="line">chmod +x /etc/init.d/gogs</span><br></pre></td></tr></table></figure>
-<p>4.安装 mysql</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt install mysql-server</span><br><span class="line">mysql -u root -p &lt; /home/xx/gogs/scripts/mysql.sql</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mysql -u root -p</span><br><span class="line">&gt; # （输入密码）</span><br><span class="line">&gt; create user &#x27;gogs&#x27;@&#x27;localhost&#x27; identified by &#x27;密码&#x27;;</span><br><span class="line">&gt; grant all privileges on gogs.* to &#x27;gogs&#x27;@&#x27;localhost&#x27;;</span><br><span class="line">&gt; flush privileges;</span><br><span class="line">&gt; exit;</span><br></pre></td></tr></table></figure>
-<p>5.启动 gogs</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">service gogs start</span><br><span class="line">curl -I http://localhost:3000  =&gt; HTTP OK 200</span><br></pre></td></tr></table></figure>
-<p>6.nginx 配置</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">      listen       80;</span><br><span class="line">      server_name  www.example.com;</span><br><span class="line">      location / &#123;</span><br><span class="line">          proxy_pass http://localhost:3000/;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>7.访问 <a href="http://www.example.com/install">www.example.com/install</a> 进行初始化</p>
-<p>8.你可能遇到的问题</p>
-<p><a href="https://blog.csdn.net/u013710784/article/details/78778044">Gogs 与 Linux 主机共享 SSH22 端口</a></p>
-<p><a href="https://blog.csdn.net/bigsea622/article/details/53956786">装 Gogs 后 ssh 无法和远程登录同时使用的解决方案</a></p>
-]]></content>
-      <categories>
-        <category>服务器</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>aliyun</tag>
-        <tag>阿里云</tag>
-        <tag>gogs</tag>
-        <tag>ubuntu 14.04</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>nginx支持ssl+acme.sh定时更新证书</title>
     <url>/nginx/41a22a4b.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>不废话，直接进入实战。</p>
@@ -518,10 +485,43 @@
       <tags>
         <tag>aliyun</tag>
         <tag>阿里云</tag>
-        <tag>ubuntu 14.04</tag>
         <tag>nginx</tag>
         <tag>ssl</tag>
         <tag>acme.sh</tag>
+        <tag>ubuntu 14.04</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>一次gogs采坑之旅</title>
+    <url>/%E6%9C%8D%E5%8A%A1%E5%99%A8/53577de6.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>一定要按照操作步骤走</p>
+<span id="more"></span>
+<p>1.创建用户，一定要记住密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo adduser git</span><br><span class="line">su git</span><br><span class="line">cd ~</span><br></pre></td></tr></table></figure>
+<p>2.下载并解压安装包</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget https://dl.gogs.io/0.11.43/gogs_0.11.43_linux_amd64.zip</span><br><span class="line">unzip gogs_0.11.43_linux_amd64.zip</span><br></pre></td></tr></table></figure>
+<p>3.拷贝启动项到系统下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp /home/xx/gogs/scripts/init/debian/gogs /etc/init.d/</span><br><span class="line">chmod +x /etc/init.d/gogs</span><br></pre></td></tr></table></figure>
+<p>4.安装 mysql</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt install mysql-server</span><br><span class="line">mysql -u root -p &lt; /home/xx/gogs/scripts/mysql.sql</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mysql -u root -p</span><br><span class="line">&gt; # （输入密码）</span><br><span class="line">&gt; create user &#x27;gogs&#x27;@&#x27;localhost&#x27; identified by &#x27;密码&#x27;;</span><br><span class="line">&gt; grant all privileges on gogs.* to &#x27;gogs&#x27;@&#x27;localhost&#x27;;</span><br><span class="line">&gt; flush privileges;</span><br><span class="line">&gt; exit;</span><br></pre></td></tr></table></figure>
+<p>5.启动 gogs</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">service gogs start</span><br><span class="line">curl -I http://localhost:3000  =&gt; HTTP OK 200</span><br></pre></td></tr></table></figure>
+<p>6.nginx 配置</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">      listen       80;</span><br><span class="line">      server_name  www.example.com;</span><br><span class="line">      location / &#123;</span><br><span class="line">          proxy_pass http://localhost:3000/;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>7.访问 <a href="http://www.example.com/install">www.example.com/install</a> 进行初始化</p>
+<p>8.你可能遇到的问题</p>
+<p><a href="https://blog.csdn.net/u013710784/article/details/78778044">Gogs 与 Linux 主机共享 SSH22 端口</a></p>
+<p><a href="https://blog.csdn.net/bigsea622/article/details/53956786">装 Gogs 后 ssh 无法和远程登录同时使用的解决方案</a></p>
+]]></content>
+      <categories>
+        <category>服务器</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>aliyun</tag>
+        <tag>阿里云</tag>
+        <tag>ubuntu 14.04</tag>
+        <tag>gogs</tag>
       </tags>
   </entry>
   <entry>
@@ -723,7 +723,7 @@
       <tags>
         <tag>ruby</tag>
         <tag>爬虫</tag>
-        <tag>python</tag>
+        <tag>Python</tag>
         <tag>java</tag>
         <tag>kimurai</tag>
       </tags>
@@ -881,31 +881,6 @@
         <tag>集群</tag>
         <tag>负载均衡</tag>
         <tag>分布式</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>《小王子》阅读</title>
-    <url>/%E8%AF%BB%E4%B9%A6/aa37a8e3.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p><img src="/images/u=1374754966,3123717663&amp;fm=15&amp;gp=0.jpg" alt="u=1374754966,3123717663&amp;fm=15&amp;gp=0" /></p>
-<span id="more"></span>
-<blockquote>
-<p>​ 《小王子》这本书买了很久了，今天给儿子读了小王子去外星球旅行的奇遇。</p>
-<p>​ 旅行的途中遇到点灯的人给我很大的启示，我们都在做着自己讨厌的事情，但在别人眼里我们却是幸福的人。</p>
-<p>​ 小王子来到地球后，遇到狐狸，它求着小王子驯养它，但小王子心中有’玫瑰‘，而玫瑰是一个不懂得表达情谊的花，因此小王子才离开了自己的星球。狐狸希望他成为自己生命里重要的人，也或许这个人不一定是小王子，而是小王子恰好出现在了这里，小王子金黄的头发和金黄麦田，对于狐狸来说都是生命中可有可无的。</p>
-<p>​ 小王子来到沙漠中的一个秘密花园，发现这里有成千的‘独一无二’的玫瑰，而自己的玫瑰告诉自己，我是世界上‘独一无二’的，也或者只是小王子那个星球独一无二的吧，小王子很伤心，玫瑰不是独一无二的，像极了孩子最珍贵的并不是独一无二的。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>读书</category>
-      </categories>
-      <tags>
-        <tag>小王子</tag>
-        <tag>儿子</tag>
-        <tag>书</tag>
-        <tag>星球旅行</tag>
-        <tag>点灯的人</tag>
-        <tag>狐狸</tag>
-        <tag>独一无二</tag>
       </tags>
   </entry>
   <entry>
@@ -1325,12 +1300,37 @@
         <category>AI</category>
       </categories>
       <tags>
+        <tag>Python</tag>
         <tag>AI</tag>
         <tag>Agent</tag>
-        <tag>Memory</tag>
-        <tag>Hermes</tag>
-        <tag>Python</tag>
+        <tag>memory</tag>
+        <tag>hermes</tag>
         <tag>MemPalace</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>《小王子》阅读</title>
+    <url>/%E8%AF%BB%E4%B9%A6/aa37a8e3.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p><img src="/images/u=1374754966,3123717663&amp;fm=15&amp;gp=0.jpg" alt="u=1374754966,3123717663&amp;fm=15&amp;gp=0" /></p>
+<span id="more"></span>
+<blockquote>
+<p>​ 《小王子》这本书买了很久了，今天给儿子读了小王子去外星球旅行的奇遇。</p>
+<p>​ 旅行的途中遇到点灯的人给我很大的启示，我们都在做着自己讨厌的事情，但在别人眼里我们却是幸福的人。</p>
+<p>​ 小王子来到地球后，遇到狐狸，它求着小王子驯养它，但小王子心中有’玫瑰‘，而玫瑰是一个不懂得表达情谊的花，因此小王子才离开了自己的星球。狐狸希望他成为自己生命里重要的人，也或许这个人不一定是小王子，而是小王子恰好出现在了这里，小王子金黄的头发和金黄麦田，对于狐狸来说都是生命中可有可无的。</p>
+<p>​ 小王子来到沙漠中的一个秘密花园，发现这里有成千的‘独一无二’的玫瑰，而自己的玫瑰告诉自己，我是世界上‘独一无二’的，也或者只是小王子那个星球独一无二的吧，小王子很伤心，玫瑰不是独一无二的，像极了孩子最珍贵的并不是独一无二的。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>读书</category>
+      </categories>
+      <tags>
+        <tag>小王子</tag>
+        <tag>儿子</tag>
+        <tag>书</tag>
+        <tag>星球旅行</tag>
+        <tag>点灯的人</tag>
+        <tag>狐狸</tag>
+        <tag>独一无二</tag>
       </tags>
   </entry>
   <entry>
@@ -1540,9 +1540,9 @@
 <p><em>文章使用 humanizer 润色，移除了 AI 写作的典型模式，保留个人思考痕迹。</em></p>
 ]]></content>
       <tags>
-        <tag>hermes</tag>
+        <tag>AI</tag>
         <tag>memory</tag>
-        <tag>ai</tag>
+        <tag>hermes</tag>
         <tag>architecture</tag>
       </tags>
   </entry>
@@ -1789,9 +1789,9 @@
 <strong>作者</strong>：nil <a href="mailto:yqwoe@live.cn">yqwoe@live.cn</a></p>
 ]]></content>
       <tags>
-        <tag>hermes</tag>
+        <tag>AI</tag>
         <tag>memory</tag>
-        <tag>ai</tag>
+        <tag>hermes</tag>
         <tag>architecture</tag>
         <tag>opensource</tag>
       </tags>
@@ -2255,22 +2255,6 @@
       </tags>
   </entry>
   <entry>
-    <title>29岁,再见！</title>
-    <url>/%E7%94%9F%E6%B4%BB/1873749776.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
-<p>我：儿子，你再也没有29岁的爸爸了。<br />
-冬冬：因为你明天过生日了吗？</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>29岁</tag>
-        <tag>30岁</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Azure年营收332亿美元</title>
     <url>/%E5%AE%8F%E8%A7%82%E7%BB%8F%E6%B5%8E/5629ff29.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="332亿美元背后的云巨头账单"><a class="markdownIt-Anchor" href="#332亿美元背后的云巨头账单"></a> 332亿美元背后的云巨头账单</h2>
@@ -2322,10 +2306,20 @@
       </tags>
   </entry>
   <entry>
-    <title>Hello Hermes Agent</title>
-    <url>/uncategorized/96208538.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>Hello Hermes Agent</p>
+    <title>29岁,再见！</title>
+    <url>/%E7%94%9F%E6%B4%BB/1873749776.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
+<p>我：儿子，你再也没有29岁的爸爸了。<br />
+冬冬：因为你明天过生日了吗？</p>
+</blockquote>
 ]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>29岁</tag>
+        <tag>30岁</tag>
+      </tags>
   </entry>
   <entry>
     <title>4月份wbs</title>
@@ -2335,11 +2329,11 @@
      data-wpm="糟糕！密码错误了."
      data-whm="糟糕！密码错误了."
      data-salt="22d9056545913dbeab427dfa686a1bec3ebd5e0664af24684398ebf54276d651"
-     data-nonce="5afe2c58c6d999c669428acb"
+     data-nonce="a194d91d68f0db9babe19963"
      data-kdf-iterations="600000"
      data-auto-save="false">
   <script id="hbeData" type="hbeData">
-    c906a3dc26ea95ab4d2c1ddb820d72ec3b018d19cf8b95f041b19783720d31fd175ffa5d3167e4eb5d3e6dc17eab35c21377f84119887d22e29604baab16e0f83276a5aaf5fa6768ec4b6e83f130a6222cc74fd234e8b46a876d63bc2d1c8a72644304175e26adb88ffd6ee35419968242f4ac50d4b053e87b883f0c86fed86be3330e12b3bcff8718214ed2930f78cfc680b0eae66c0464909764354e917b086fa28aa4fbcf241b51546fbe29639fa335165ac469498ba1b12757e72174b4ff1bf14822d6863573543975fa31f9a1bd7f997865b901e750278830f0c77ec8a9ec4c33c14c6b18003325477aa1f1504fc3ac1807b190c5d2cef30d5c0a0aeb7be5c80b563cdb749b00994f863fdacc1665858ef1b5a5a33d239575381e100e289d3a5017e61b6bb4fb4752f1bc55d2c103d7339266aa4430298a1946fd4a953f17595108975b03b43385c99f38ec0a683cb8c32592ca8ae8c4ebadf195b016c3acbc41f60d5d6d042818e8dd2f6c2c4e6a5a28ea8eb806ed2733d89cd61ecc18c43de25b90d6069cd74783aafcfecf1ee02546f079d8df3fd1e1b1578de2a894d6375e0c1720d23e1efeca68a3c9e85193cb405c9b2d4285444c962551c5b7a15dcb8353af65437441fb81c1722a8a57be7b6a31aea463d423c3088150e77840c704e1d25c53f2e72213ebfb79e4bd5ec12dfdfd6756d5aac06abc3e8d0e2bd8db50580d49f82de882646f87102f38cd1712a1109c9c109e36ea9861e911bd3f2332c3355e408cbfb72a26abe5586072106841d477a0ed23a65b0d16b57bffb860f6ca9e6357539769f563a5ce5cf7223ea5b564d5e6c89a502b879e27e901c636b8b6c1561a982611bf873f3b7a4e1140c8939a104519392f8aa2e2930f91399761f4c5eb61051e6eeebfccd073af3e6e4fb4a2c9154f6063c8e12ee85c1d454769354347ee90455dcee4b7f64b9c105869aad20b2f5eb02a916dc054c7f889cdd80476359efa5999844ae20477dd3068445cf7c97332a592980ee43f1fa7dbc5f9b2e16034bbe6ac57e207c96ecf4df38291c140c178192bd38f36be31d6b89d3d4f689678b5831ff57635b184e345e3967146d8765dbbc9e39c6da337dd0a13ea4c4c4a1af1629fce59dfeef8b661e859acca86ddd3ab4ee9e8e6f9dc6b87eb8f47172dd94c916b0a9f8db36e9e44e33a90092773a7898b75f777a5ed0a532e394feba00c2f36f9d292c5e48e07dd24e15b65a8856a93fb3b33210daec1aa1195c6e94a7fecb032b792617a9c7ae8956216fd4ec266f22f9921d430522b74d672be6208c88e623c6a10029a210eabf746de8a1d365dcffa41f426b89e5a68458a390180647eb590eb4c1dec97abff0e93f4949a94e57bac37c7ba1fdd7cd9f29c4be9b4f295b8ae76edc1d6653620f84feb14b88fde5aa7fa7b7f764348782f4846cf93016bc1fe1af8fa4dcddd07afc9f1b3357109bb4c276fe5e88bc705f78186afa848c3482315cfcf7fa356b014f2b49291ffc70adf9ecfdc47e0b3dd8fe9ac76cbbc1221764dfff19cb6dd95318159971f2de236b6c5ce80771d64b38cf2fc15547b198e9343e65a363f92aa1baec1a84c5ec576f53be4ebb36ab9958e96dde515e606e65bce79f03cb614101fd45069d7183cb366af88807ec783563f17c0d97ff692e9a45843f2352c84d88d1433193ac980e81e7dc178d327197082047b9cf23f7279b865533008456e64206abb0a1889918563c65d994325ac5c383b0adb126d8927b9c01633cf771e166d435748e536cbae7ca6386532ad2c57d93d069cd95b5975c63dca79f2cfc65ceb8544c492070e057d0899bce5b093551041e57cf6b5446529f314df9b9c33502e01bbe6b9831267f7f5d3c46e43c1b3d2fdeeb66b27787c89755f5df8ba6ee82d5cf6c81bc843ef7ae5ecde5bca97b8bd5cea070d64d78833fbdcea17213210c11b790a23d5a27eb1ecc281215e2940e0eef615a3ef1a8d57cbc640b2ca65d0e4f3528288dde2d9348b0a9562b5dd5c412b67df55de98edb157c2751b778326e6527ed0f624ad225a3beed130537b3043e771ea463bec7f6077b5b57e493a7a095cddef4965dd18b8e7641280d6a03fda4039450d1e27f3d092dcfca4fed42fd7d12b23c59d7c742b75067c025490d7a0174fb9120b0e77294c076d051ee35e3171fb680af805b026d04cca01a5481f470bfd7f92118215b7c1671d4e71bdb3ebdfb532b813a4f3dadeca64915f31c81e2a50de34b6750976be3bdbf430993db2d8fa55a9f1e3a6fe0a72b03e58f79af1617e04ef6be0f09521e8abf4f994a700f55ef95dfa4419c32c1caddc9fcc1599852b3e3e197efcf8182f3e46ff4e3a9321041f7d50d9b1ba6fdaae43e617fa0a83098acc51a0e9244b5ea7d781582b18235baa0927e42101f37fb80734a47685b2d0b0f9ac4eed897ef77224de33d207536150dca71824c1a0f51978e01569af0c4d4d8d540bc3784eb8384bc197c10652e8334125c2f16d43e9e4488c5a74c151b28738755fccf6aa12c4cad02d3bcdff4e508fa9d7c29c5d3f6b56312748a12cf9b0314e818251c54f050eb9fbac7a7f6d17993df6326537bbb111a511b4329cef62ada7d748ba832a935f1933c6f89971b6d639ab79f59b81c8e6a28dbaacd691ed2dc048aaabc786313719c4543974129ac8eb1f3ad59f6050806d814fef110c327bc66e839f990ded06eebb09dc7fec0bd78413e0e0d1253337461b052b3489cc893fae7518bb80eeafe07e19070d8020b85dbffbb4651e908b7e32df7d216ae164bb72bbaef6df2dc33995e8ebc03acfed2430aa6e6698307bb211d57c07cf60b597f1df40feee1c3efda10fd34aebc7f7431cb3f745f8043fd74820088e7fd57db72b241ac2d10a7fc37bc428106441502663c5303bc931690b94aa777f884dfcee82c77faa1b3f77996a9a3eefd2f5fc46a5668ffa8f8c51d1e0bdf658b36c590a402e2c992bc67cda155661a7ee93f2056ca973e87ee3a8e7389932afa3d31ec0f49c0074d6168650e2e9815e2f9dd7eee1825c8f362d518461c2d95045305c13ebb431b8034343d6b0e7efe66752f517abde6ad6eb4ab70fd1f9038f7ea042235b5be3728893335289962a4b2df43dd5924967899a27447eea892e8dfdf1024da18c729310863c78eda370e8045e3850d4bd6da5a90a5e2c9de3a590726620fd953c613c4d44e32f38ad50292b2cfc39a572cd68d3b50ca53f5d18dbcbeac3f78c0acaf31b28ced1e5794de0f2c4214e6e88f60f7c6e649a91f47c61f02dd2529cccea667a14c86da39378888c8c4b63ebef9cf06a8e5ca5ddd09c7ab8847c2ed46d39db8e0aef5ae4ca0b31fb8c8f0b3d02c90550c386469cfe0a4110410d6951b052b725f3c0207c231e600ccf7bc251cca9a9e9e638af6203f32d23acf9d5abf143feaf18134ca4c521a88530c76be6e0d5827950bcab8ea1f9ab50978b6fd8e18f625e2b2a16a667356e13a6397d11f9a4a43bc8472e8d23a339654b7f2c5581c5570c80402b48b1a36b602369c3fe027331b67811fcd8047838f8ae7b695bdbf6bcb117ff72ff54e8182641d38b6bbc6afbfe6f2e27aa1e8c0a61f310f2dc9eaf6f7eadf7c09bc18aea2be18e02a784bad2b92b870a392ecac4abc7ebe974a8567926450bc1d572821d66f99270636fecc25c0789a699202d4be60113b8ca96d4546136bcb759b139675442b45a2c68c42f8c95a8080b1897bec034f00abcc399e48b61b48058e2ed9df54d21cd68921dc330db60982aeb5e6d484b9f3b46b7c435966b6fa24858b0caa9e9930d73f812a4c1ce7a1db00d156850efc19097be16cef465f223129798805732b3a92873592c022bf4d691bbc6b34b8c43900f134c258ab282dc732e845bd454346fc1d5e9d0331014dad0185af2da75c2c607e3d7ab08c8e6c1bc74583cc11da407e1c9d520bc9704872b1ef92ff0678fc7fe19f418f12ae7fdb57a87b0a3428c631fdd0aeb1eb06eb49905594451b3c02222aa5ca553c94cffe957c6ceb23790a13affb72bdeeed758f069c075b9bb1e704f4e9862b09df315d034ae5c452929bf2beb826316502cf79d094c26a269efb56f6bbfc6e67eab8d7ebe39f7eeca75a39db5c2feba4e03bec059e34a80ac10a01e902d9a982a37b2891fba1be71fe539e1129d3b1415e4e78c6408656688f6eb665cebd3812e5f6e8b49f99987a00882d3fab936594b070f5cf1f48ed92059d98bca2e7a54da15905019b31c7af8e79d8a30f95f2b233256a588f53d7506fec73ed1547dc6da2d22cbe96b901c2ae672bb891a9496b24e0dcc772e78c479c056f0cccd85f375761a6155a03026c0fdfeb50225d1a0c41696b3ed0ed1628e0099ccb4f62ffb3fd7443bad875d34faa7bc17fd923167f1118fe790cd41edf9317a8cc0f51b636955dfe5e1388359a7a86eeddf269eaa0b4f719f695a232c21271b53adea7263909972c1f0b427991a2f138434be2791c11f236b2bd00b55d7412b9d1e65dbe55a3cbf13c422e322f9c769a44ee742ae03d79d8ab6c4353b51940809dc8b9013eb501ef2de81c2b2a098b4e07ba628770f49805812605e26b8d3592c50bfcc5ad2b0b57937da651e136da57ae2f5eba938823aaa8e5d7e27e37fff7c3d7db45a47d0e46e6455b1f6447fe1e7a1991707bfac96c7bf23a3e9222d2a26e7b5e8d5f16fd6346190b6f31134ddac2e9a7c2576b2d83d355476718c0a301e374358df29db0b07ee99e801b0dab2d859cac4dff1ee61f6fdeba0439ef41fa418dbc0bdb3eff1e524347056636f86bd2e7811925585d8698fc22ccb508eabd639503384f9c0f09160567ea611b6c7c1ef37bc54d0a2c630cdb9bb85c98effaf3375619de9a3ffe52cc66ad137051669be934c210ac6800525df34a822832fd1c64789b15bdeb45cfce5a23898b11e794ab094e7176b37f7c1e8046665c55092cc33eaa4e8c2ead0db4de3b3117dc98662ba36823ed03896b8740ca81d99a38f183ba79855559a4d925c9e1aba1effb6e6ac2b1cad51b6eecc7aedc8d47f2c8692380ed70a06ffa06e003173a040cefcee21749d08782eb8a8800a6c6b29da534285c97ff555b3f85b64b625f0203ba2822f631d2c982bcea95c16b7e75345302fd3f9d7d66dca734498027f9d9ec7f9ad5025b5044b81ae38c8f486cffd1c9490f618a462ad92b1ffe34e19a8000c179c2b2c62b96cd8b628288ae8ff0ae956339d6beba6e2d698f89f3547048930e7066d19a3380ea4e4a4bd548037458de031aed4c12c0510c6a2be552db8b4a21841d6fac5800ca8f7f4383bbbe9f2409ed4b4beace29141f73d811720e5f0f8ad755e0551c3a0eb33897fa61a7fb8ebd04d05b00f1b6d8693ffbf2d68ea63a6e52de6bbe9f5bbc7b198c4edfb4f427ddfed6aed624db53d1fd91ec7893547026a11842f4d7ad56995b523262bf6d0430bc178e5205cff5def9aa5b363e966eeb21c4db5da92d838d681887063f7afbdf60a9051b10eaa1ca2c43131e2f1c5c76edd80f42aa18fc614fcb148a00c3d504c2ec1d04489091c1028ba06d246d0dd6792bcf50a96bf4f0edc374be4660112b7ef94908862a39cc01a64659279175947326153ebe4dfdd2043c81f578c082cd487c0eb2c066767bf2074e0e8931734fea60e166de3bc381be05e411e6ef8e58ba6cec80e65a3e6ccb8ebe3c769df03f901921ec26e8ebf17004f71c2dce8bd6c0530b69f752338732fe38500ded0a56a146b5a1373cc81a9f4d870d420f1b4fef2d3af8194aee59229fddd4b1b01ca7d5a7d08d6b546ac714a1c4c098c07b28783bf2ccea41bf6b843dd582203ffcbde9ec29e73de77cc6ea613974cb1df8872930e2bef22c5ac62184d726545c701caaab6efafe204f20773b044b9dabdbe490097d35a049840a6d36e64b6c300eed1d136c81fa50150249e733f6aa5a9518cad14497b1255b285ec18a1b8abca1eb99dc7ea62a1f0c041ba7f1ec39c63a8646edca7bcda8ef50a2d7a4b5b2d584af3e6f3f47e48e5b99fed4d64b6374c959aa0e122331484ceafaa7eb28161bf7007a0909e439d106b697d3b399efd18e5169e353d7d0c709ef36419415049eb65c79af73e92020cd4039b2a927893ec50f1f18ea9c91d53b1fb8f9c52b72c020773be929ad76dd70f6fa80418c661da864b1ed4fb1847df346a44fc3902d3c9d0cfd1ced8a2fa75d03a280e54fd5232562db593f7e7c436ac4e557a266c0cdd61aac889b231911c4f61187ad9c82bbe22feff3b2c14d1a5b4925de49c8d7e6f6f9afbd6a6df2c26062fd6c29d19950587821e821e10eea37278b1a7249383b3cdb9e84b6e15982a5b96176e0f1ff7e6b8d51572761994e1a48589c3f03add32d4102f8399285912bac469c66061e5f460240b36f867cd93f7f3aa52b17dfc86ddef4a14c46c491364a24b3b5e36f50bfdd039ae7b9713af0271d7012e4b4cc3a4187c35b3c4800ad6888a15506d2fe4d2a554352e17fc24d582da94ec68d13d78712322bed7aa27fdb2be9a1a0ffebd127209bc40823f3be268f978b2baf200a76d86a74a26153a62d74b96a6a47114e87b4bc62b95e53a3360e353860baf51de3f9ab8eba4d0bb59508e741bd98543a5f069d3e2546efc2e4e61d83e27da414ced602c5dbbce6e73c53dd5f78362ca9114537d60d9017079a30a5d6acd09422f9e1b1373e8ee8001eef25be5aab7598222739843b4553261c52c4ea04e192672c682eb0c6a076b14a1112afb7d402c216934ab9a75e6ea841104ff4f83e2adf1d0e98c959493cbaa2ca09b8665a653da1b8e3fb63f329f7c648ca9de1965250ec306651c888c0964317e6120638b39c61d435c28f72a488acf4cf8860d77ac7ecd04357822ba03a833a88afc3cd04b923152a26bc9cc88ee3f6fac68444066dacf7a1c5e07b319957d51c53b9c2e6c92f23238d8a56750aa0fa91d3fd3d0f3b83bd07c0ef4df3e1466360c15035e18c61407876085cbe6adf1d08c63d07cad5ae40891553be32866f2ba4ec90b74f7d4e9f2f913dc43d35fc5fcd142834fb4190b69626770c47ee82f7f4fb06a1b790d2cf0ef918ebcad39c2e2fbf8910290e822bc894fc5538b1e0c7941e042a651bf4d9af863d21a3a4974e6780178eb6c0a0f721b6f7e274290c044f7640dd2daa85037682b04eb50b498477de78b965d941d765d5dca1a2851d1862248a0a2d6980a1b95ab0c319b6eca8aaa620004885d528d9eb0a7cf4a2d464b7af24229b093c0f0b46e9b6787549207379da4d7c63f35b73def4474bba5a65416c792009df3ce4a8550e9c82ed217be2ae8b0670dbf4f39f41bf44e7a25ad46113c3a7b2e257f7766301d11391d4af154234b437a5a95ad69581856b086d9e0f26d5cc117d70d78936ba13e5bdb54f521d9496a3f714e5a9e20ab5f5fd07720beebd9d72fc46cfc4dbec8439ce1e8c333e478b572aa0e112bf27b3b3c5252c35333a5565b5b888e02bfa88bf1b9d65f32953770599f1b45e1e22e03d37578cb344190d80d43821a8f1207b676c87f8617b7e053892cae441040fd1f2a645fdc674fdfa4441246bb27149350983f49987bbc659e9fd451c1bdab372a32d9c7913138d482617ae28975063a5d0fde7a404271fb88596155a6357bdc1c7c9910a444e25c506502acb875795562955d8394e08242bdd2fae4ed7a7ec16945c1115b62244fb1a329c36494b0790bb54ebeef4afcfe7ff68ed023a09493e1cd7d2bb4b4c615efd3fe2e6c1b3c3381fb53a8376c5abc4e3aab9047bdccfd3dcc9b0f3a9d279b96101138eb1bd8349396f6cfe587497f62a53329632c9c595e2f6039496c21e276eb9157e08ba85a42bec96c5676377484f50abe1f8c4efd663751f340ed04c87eff5cbe05764be89708e17f724f8ef3a9190e74cc2b2f64167b47790c7fa670564df59788032272c5652f333b17d5039f5dee30b8db97bc142d1b9a58618249e9dc61b36a18008b06918256d8c3b92cbdde89b1ead677d5a92dd4c0399a11394388e2d1af88776c324d3f65597326eec31b36653beb4dce1ba6d45d1fe31b2a9b439cd870839a5cfc455c81bc36161bb615721a3a2897577f02b870102a939d91e8adfc624b4d6e851290f731237946b566283cd4c208360dcec2e73280128296fb1623bfee9742706c5333e31272a33bcc9a68b68e1e0d46719f6bbdfd4ed515de22e69dbba0f8cbf28d5e9bcd5d809696b5a94683a11f2a43bacdcc4912e874b3c4485a846c974a35c5beaaa5de7dfaf2f0b39dcffd50aefaefd6ebd7a13e412a0805379fd05f5fe87f0361b4c0ec7c77723b74f17c08f7f70348c794a743b3cc1b67ba3c7811f3b172212ece835a96e4b06c96d574989ade39e91613ec635efbb3638d1cea9a79ea24aeaad6f2d751f4733d1931e6e316e949d6797987708cd52e38728db5a69ea29b7873ac60e43f40796fe7f40d49a7907e33e52cce4f86279cc0bd07167a6f20a4f07c91e44fd39926a2eee0e0156f8e91c0f62be5cdc0124e609b487ceb4abeec9a2d6061e79d16d843055d8df74a5722d66c9287ccc8aed0bd9b945884893aeb5819fc2e2d21a742c1d5c2c94117942a56c1793ac5b010478ddb030e05f508ee0fe5e34d18d4770671ad5a015c0ae06150fc224cf55be9cd6de5db5214031102bd9174dd46e203ba9f45eef176b51057f73b7568276c9646ce2ea2fc2b7f6b32fbbe5bb0fa9c063244bd8018f6cf062488785c318c9c3bdd88537273414a530851cd0736ba6b642604a314dc494b2272dfbda89b114f160abaacb9707b86e0023eb383cb63afa8b4e336b2764502f37e03ce15696c9d415776f10e0a8fa9f4ff6c1e04d7973391618d9d7a2dcb773bc8279361de57c58b43b248c9c8e7d173fdc24363857d68fcd9e2f630ea3bcde143b50066a0d3dec89ce66c14d5bfd8159533194be1ce0e592375a93d81526f89737d6a18305f0dcb7d48894701dfbecd00843dd3810c2d7d073911803f032a22f701857c05879aff18eff9d2e470a13a666acc2c6c98ce7a2cf1891f8c667da2786e8531fb629f9abbf8c834928d9b2fd6dd9281522b2a97af6edf4d5ac3bb8fed725742a7101fa24c8904300afbbdc74da67df051e2ed998617cbd777c2288209e0c01f335de6f886040500c8417f9219cfd862160980ba424f13aa269f544a459ac1085b356e463dc861ed9a5403d7779cd87b985c10f04066d522fcb68db8c119c63ae2f05ec5b8aa1bcaecad11ca057f13227289f0ced7750eaa7173e69841e33e9eb2309bda2eb2f64d2fd17e76b6a49ca315e8f713bd2b496c14eed90c70360402770112c3f991fe1cb32abbc02dbcb07e9ccd2bbefb2fc51e2c888ffe7a8164cc35dc0c9c4bad7f36dd790a1573ad4f0e723e6abade726a2db90ccfe397b525b4f0084e928e3f5b00e3fc7ed3a49914fe7a20582ad584fa9c88282851c0cfac1d1659ef4c69b6d3c30efed913567119621d7fef8c523dfbfd7269db0fab84e29827751557d41b9e4953a25caebbf930c5676851473f64869e5da3c4f282d27d2b3859e8a20896f217d99198586d3c3e6329a09db9b57fdb78a992f4ac392d505684db05272e6178f9bbed45cbb28cd95064e531bf7192838b48ac5b55401f3528c473ad3ee56530e0cd65bfde3978d297e80ea6ea7e67dc0e3909161c75e9d06b82681181baf39857a3e670af2f4bc6156e29d38e2445c0227eddf3445f21164ca92a99557bc29d446249926b1161656cae8d66f4ac1b4a2896accff1a53ae5a6f63c42a356181a6b4508da58a3abcd6f4c4baf8c92b7c2fb912761be30a81200f35c5bff862fd6a850b993e0aa4b03a6ae5b82ed6f7bc40bd8b26717e17b3153b7bf26536551aa6cc88450ce6bf26343d2642e0204fd1e3e1fd2705a6a9ab2aa2b73daa63bd072c40d6af08681f2c883a28beff68b8056d9d9aee31fee150bb20366cae84bbf83d1eec39b8d55998e50bb2c154b3533e092c0820ed54f42fbf7e1ed28ee17111358dabad3b5f9df653d176ad6002c3ae73260c896fb5b8bf791f863468892c13f8c2dd8689893f9947604820d52d4773234bc24d7f9ad6e90425664c24a728dc5f2fd129b6530970b0e3a8b0e3cdbcf702d970145b069a2c05abe577a59607b0af7e2cdfa719daa082f314171f9e9ab9a652a7560e6c70c37f82139f35d8a385e6c3efb74ad2b6e8fe400207496cc4fcebd5341c71b3785dcdf627f82a2382bc7ecb43d3c235b1e69038050f7a30b841c72f7564e32cc2570a1c5ad489f796b9e07bdb60ec2d18702f1455b32909a7ec60716fecc39e156a0129a1bb511228e9d37c505c413fd2f5d31aaebdb69674d9cee166d583cddc5eac20ab1daa108572b091724959a6845650c6dfd98b056005868a0b7c544aecded9e2660b259ebffc7e7c0f0ca756f2de068c679c0458eb88284a373506c7b8a8d3c982ffb8412007b45f844f753892b73cc1c0aab51e5e8bd06bc033dafacad36e4b0dabd62febb5bcfd40da296fab2356b01e6cd7b636c82a032c76372d83947836f1b27b096e88ad66a59a3b97aa3f0097d3ac6511fe91bf861985d926cccfe2aa1da00698dcf08855507d746f5af0eb3f90fdb5633f63225080bf1b820c2c831770b19cce8455411780b176112ccf01ff83cf59183d5eeaef145afb868be4894d60eaef1196dc23a2e0cdc4b0fed0381c32a97060b5d34f8e8be5c339cc6395f67fc4d03d42613f6dbed04334b304429bd148e5fb3b9d86782e6d15889048b5e0a0262d09977a455ca3d6b969515db128ac64fb3961f3d0c2d8148c572e1c33fb82dd731a5ed39b4a98e32a56635eb51c29f3576d51d153e634138135af95d12ed6873c5c0989f06051b612a8d9927534aaacf8507bf30961839c8c117fe797350f444f9da66b7657b2320e67dac52c2f3272f3d8765571b816f057dfed332f04d8d4547278ae60c7fc76e02a22f7bd747370c884a96c90b733f995fc261afa00358831f8198728f2d0121f3f502e69a1740f9f06428700ba599636b83270a2058f13648e617a02d36f2b6ea82c62f4cfad1c298fc
+    eeec7738b3855e3317609e597ddeef1cd583e512b38901ca92a5bb6bf3bf661841c42a5cdf6614a400acde702e87df7455954f50ffad76b193c22dbda1214c59ca975fe1d4e1258c771611f6ef1adb947ae0c3015036209570d261109b0f06bc5b734cfeadceeec49432df8460df2a72eb16e5aba5276ba280bfdc4c8c72893de3a9caf16fe7e7f39ce6dd4cd8073fc8ff32ab77b0b6b42788e19820334ff3f3315597ac36768b013d59852cbe05ee1dd87aca48612f1827c7e26357242a69b649f00285acf049fd416768237b9f09cf08f110f5badf7b9cb81f681a12f2b886e8377355f7614350b37eb58b64c7115f24edd095549afa677621b1d05261cf3170a75ca5df7103a49f5a4c92f32148481fa8db1f7aab8922055d6d48a68e11dc7b460bbe37a7a6fff721b5c8285174a9a79b30123f3a06e1282d6c5e9d1177310f8940a17e5dee66e2b7901f021b3feeb6ffa6600073df569e3d33de763c74678ff238ea75f9cfe69cc60687587996d00fac4037f03e4d94e8858c0dc0332aafd7fe3fd32e7550f69237ebc6e5860eb6115e7d53574342b25e69c2f9170b997669ada89ab76f884da62240a231e51ee6cf2eac6a49a593e4ffefb738936d4ba49701ffdcee74c2a1550f7563d2bc9994e9fc343e37b900aa04777ea54d9b063e56d9a9fe959b403791666cc487767e620b0a7b2366452080d62edd5d3d53c64df4f9c1abde9e22ef8842aa662989b1f0302f24fe66b709a320c2999ae602b4e983263dcf77f1532e56fae33d1b63ac9d9fde21973cfd5da4c643f718f7cdb610cc36c2b96797e27cbdff0d89b575f822c023835120d52e3a76fba23683fb3675b4b99c3750c671f19a0553678990ba8bfee73d423420ce133f04a27a6e10c305b832c2b4af21d07c75d48a3fd7a1ae81fe454f426458eb896554f207e807645c80fed91a32e14edfdc87ddaedd8b4debf18aee26b544104f100857f3f9b2f8e01fec0dc03e5cd31c291793787715113e7560a883e6cea1a4f19cddafcfad2ec8c3e5fd82bc1eeab1ba974b1b352ea2148ca452a82606568fa339dd6f91d1c0c36a502ef8b260c8adb68d062295ef32fcf465415950da3acacb46c92e9164202c987797ce75d1e1238cecdf17a35b7abbe488a8e05743c7ab8faf077c77d9fe09892f391a40d52053544e3b019f56194599c88f11e178843ef8b9668456671e70625bf6d7a3b4730d14dc29b9c90b9343030fd404ff7df475e3c7c34206b29f25c0ba0a8bba1aa92b749739e8d52043d643fff73f5672dee31adb9c700089cc06c63cbeb62231604c35564b76bf000d1d64109be14239c0b53963af6ca6033ad20e249b3e4dd9a64e394248b179beef2c4ca7ce5ebac6c3649173843d722f4e39c13eaa365e7aff880ebc07ddfb3752dd0e31ff7447911f0268defe4f54119570d954885c5e16d668d2310f7a67122efb507dd416793def0ba5510f8ad9dd6adafb5542c6401c169c297237027c5c6a7e606346537180c8eb23d161c7c09996dfe28bf7138eed1602a406e6a2171260fd1803c56413d0b3de18b83af17ba5aa9172ee1761885453d0abecfea8e35ba049f774c63baf9b8d8a14358de6454da33ab1a976b796896b56dcf78de89d3406d788890f1ebb419a2c1e6b8eff866e66fcc3525c2d0aa6610e03f670e3a213ce44156d94b99011367b4a12b98d1fcc73f509348cd70a7aa820e7e445ee4efe2393c5acb5be2a1941f8acc17e4d62739788958442372d4f4f29e50966d1f425fe4f7c323700ee0c2832ed3c28c05e3aef62050591e48538ed47fee191bcd47f6cc21ed147891fba3e647a09db91020fdf4f815d70803be710e2be75a7d62cc0ad789e3d343e89bd15c8f05fecb0383ec3a2bc684728c89cbb3156fd3954fe6ec7c0b5cee279b03aa0c10c0c8a26aa6e77839c849cd04667d39baeac0659cd3221c8df3d54ea42e773c2034b1bc27d4e0022e774f891673a240d9a6e6d5043ad88e39c0894d455d4ab580779a78d64c27e3d6d2ef840a1ca68b122c3ddd69cd279f9796233100b0e70f10a571a93795f1dfcc5f3f85534ffad92d66d3218db8f72af404d95012b6b3a56f44f8af324f4d2d17d0512c18de78c05a2f9257c5a65e5393b3d84f529745e5e27e1a22dbba3d8a65868a98ff556bff835072e66616944f91a5ff2bc414dcc289d05e0037c343ebb94e0e3b453365d124817ffce67247b306a991b1863ea29a177df8a0c43c07da4f54974bba669c0b0e2321dece2e642a5202595938536fae7dd57e28f1e85d1061c94872f5883c33aa874c1e8bbd26c0665e45caa88afea9b2fbedcb5a6411da22746faf2bd358e757a0682608a9bbbe9d0317e2ac3b6fba823a86a932c0e4bf5e60b65991487658b3efa57849ff77f2ad00d9253ca98b99941d0badcdaca136f0340c2d403faf1369668aea5ff936b104d3ec2ffe6c1b1a787711fa15d319c2fddf09cd118979097a29626941cea3cf6b4bd25599264f5e5abccc0cd9b15b73851f33c1b266e5c0060ab9be4ad8c33c9750564238c897a59779575904caf7b62eb763a54b46899c0866fa042a7b18c453360034c67e2d2149d2704490281648ec814defd5afc41e2f2e175980fd829664e0f405d7375afc958e8e0f9089e97106d6c1cd141ef10d7e1a264295ac0e6b65a477f0cbdfb9e872b7484cd6454468e5a2281dcbe79f747f2b3297a889c2746b8192f1786d5f42778b192d47e520e957911957a98aca2edf7ef175f143b02e24c0418092b743d4541afaf55e763f4ebc55d62f76589f1acfed976e6f06f8aff3edf2b9b053075377e85a4649f0fe7d368e25b84d7e9e702b4063cc3e27f19308cbf92aa64e844345f2270836fc42f6e396db829e07c064aa70d03d27acff52ded5a35442151d2cd99e644892746d66dba7f542e294f6c028a69e070ca912011a8a074c1c91550967b46bc94dec2e579186831cc5f702cbf0845866152a83a1a8a458f43d247faf07be6270e2040694cbaa491b1e2e01870dbcfbe14e45df25e20aa1f06aa8813aa1340b8528e3d36ea00f95da1a9bb37ef1f1ef497448e0601ca91c9f33c98d81138434865ea17f015cbd810b73d4d9c0a75fc0bc23a03ca7ecea875918eac205367063b7e15472fa09a5212ea4096bc7c8008c3f503be9de3b34901e51c551c429eb6a5ac298d6ea7b569cf6396c621eaaf78178089da95b98f0ed7b944b422da74d933f6d8d0be373a97b5542b077de9bf914a95927594973f7d2cfc4493149629b2504b2551ee007850f8f85f9be7c6fd051874c642ff35eff979aea4298497b61f2ff577889269b3f78fd5c738a8c86be759f3e5585ef8ff962b8bfbcf1ac5cdf01df23f0a832f10c533c637c46eedf3429a426d9155e6da07141134cb6f53a992657d8da9aee9d03790d740d6aec69ddb3119078835ff53dbae0b3a26eb9f26799bfb016f8e491741673448d8b71375bf4bb154a1e667110d725fd83330d9468acb397ef65b41597e1bedf06c67c0a0ec7ce49b23e978e0cf3146bfde67a21077d412421c1b3682f44ab4eeb27e9a852efba569207ca151e1812781787c0470bf9bfc6c593b05266a50f379d1a4ca93c1caf11fe24f77cf5130e386360d239cb21ef513fe660a4d74c8e868b9181dc5b8cd99016ef874523ec965c2d004bb6db411128be39845e7497c65e6552b7bcb643e18d00f7831142ab16b7b93d3653c7ec6d7651196690a0f3262e3983ffac5fbee965c2aa79114719409f531b67b32f7608f01a3e645a0fb47fd3064522cff2c457a99007af195754f6a87341861be4590b3da50d9cfd030f95d5ff6d56febc7f05b48da350095f354b21d33a66c88baafb38005bd4076c39d9580c7fd8dfae4cb60f8ad338ebffbbfe1384d3c5c556c42ffaae24485ec368f3763236bb2f6896454fd7914afe0bac6aefb0adea593b3e85e67dfbfcbc24acd8cbd2bba7dac19ce8f3d300e54fec44d410c73e9493b0f8e4b989f0d83e1b2bf2f9f364f9688275385612f3fe2fd3b8ac855e419d70fa9c3d97ae70066239ad7b1471e2d19e5465b67ba810f4f286022cd66d97ed4974595341e5fa800335f8c2dbe525ab24e3e7c69989138c6ed0fbf7ed5e2a7cae2d93824948e21468d041199520a3aa4b582d1629fdf3c963409cfc7558faa53a01c35f10591a9f8f25952f73db43c53da4ff27abda9c223fa2fc08eaa224ed948d7d3f67ec3b9365f6ef687e2e09e8940dd52bf8306de5ab09311f00dd77227bdf73b89460d46b83837eaaf06e7e26f236017306b5d0801990e4fe0002695be111377ef4a05b3d293edd49a1c842b9e7ad3f816d7ac27f9e7c287843139a856d8092fd090747d02e8cb36fad0951c28e9357d84e24428c0f798566a0adec2d8f77b78f8f3a3454a11617731c1845b5a8e5bdf108c8ea22104698be765af45e5b22aba6137642fcb5e7233e7b1006de4ac567346316f3ffa2fd00ef3ac7f5aff7f69f84805266006e7c2024a578a60d553822ff12365741845027b6f39df13bcecb4a94f118b23e513456fd40385c3e07818eb322538c8e222b9a93f3fb6e7e8df27a481e680004942e57283d73c0720ad1d499579a169b4923e2f7263920103bf9cae839481480d05193cad512e653b3c89dc2d6b9e423bca0eaad4516e5191ff5acd4ff9041249c101eca01b36a4d1074866fd409f9b4bd721fe9e5fa5ea05ec11c201ceccf9cbf9729a29af7dd5af549218ae70265f7a982e6159fb6ba16b31c2f4b1bd748cd299a045c1a66ab841ac3bc28e15edadf2182694a778bd42b36f78e5fa1c6ea4aa203d2e249e186b42ecaad5e842e1af660b91c5af60dacd540ecd0f4b4472b1c36753231bf8f2a3de317e640a7b609568a76ee5af7cce5a0fb5d0a5cac8891cf849c45609ea65a44da5b7e700ee497d83e4f536853e271a06579f6cffab692e6ca08b92b65051c59a0793fe9bbcccc9fb9d0fb5254fd5cee688819107cae6494178703b22fe9b3f5bc5e6cb4fce7612aafdd650a9cad035d952824cedf592a38342a09c1ccec143615480f237dc8262a406da73bfbab7ba5981bfe6cd42db58c756c687bfd46cdf60efd552a276d05d5f2d780eea5430e06f72a7e6cf7994c0340ac57a977b5b7a0da31b8d8713eb1232ce0d02d54f4435a772788f2291a09063f4ef06c08f8f216c472c8b80b04663204719df8b1751ef1f7f286975fe7d4fbe8750cb2d035ca861e075d68bf862e4ada590b6f88322fd6c9f4fd7aaff5fd6c2ee5c7af54915549a469fb1b5f170da88ffdb38a1dbc089a06a09ffb836d69e555701151254b1b6b274224a6f037f176563bbf84b3ea3639129dd60d12109d1f464de2ddd696a06a02e0217fa3b53a408f0fea56c7bb0376695f3546ca29a396a46bd954c2d789ffb2f4ae2cc9482b84fca175a46498cb03cfae72e93b3e55e4d84486daac2d8e4bdd00dac85ac2857697a9f3d9ac31c97594d4f2cc3df6b80b0998ad6b5258f2ca8275c3835e4528fbd49f54a90b444b4ee94bb0c3c858f7ae8570cce5a3101b0b115ea503449fb263b3e49db59cccf899d0fa47db2473c3db4b8935640220a8ef3c582c23fbb04a2b82655b096381db4e21de256af7e08dba3a3990289b2f47b35bc42dc66ea3b339b327d2fa33cf27a0ea57f2a2b620df17bfaf8bab880f619ea4aa0bed601fadfa61b054532a3778fd69d34a13961c2d0b23926a591cb35ad75e5c995ea34582b1a17fde48c387f5c08448601f6096dabeaba886f72934ecc5508ea768072de71b9b25375f03dde09f32a5467f35fbb878878ae8c66820984ef53182f0ec713880bdcc4aeb6e620e02002a1768dab78f9e414301e3e0bfaeeb8993f22c8fe51380316eebeec385ad86bbf43b9f59dd702330a8a1f29fbb7c5289f9085be0be38923dabc35f62ef5dcc3b3c3d8d3c759719e6b70a594f0d266a37a03a19e5c1e4e134c22992cd62bda6f472a95b729a78fd3eee8a3c897a987252ec903a75b325ef78baff25a514b7e976064adca5bd48ff7b8faabe7996019230364311299a72e47e34f798eefa19248ade4113a165c1ba500a32c238c9b626bd17cc87a292d28a6a5a35ab394d25a9eabd5b67ccac6ce7c56150554c67226dbee5850c62266e61c68f47653d7e5fb1ef0ab41461139cfa60248b7e8cdcf46f3052df5c913f120cbe43d0a5141ec228d641606c6f2c71fa776c83604c3d8798e05a46d427718b8a8d797267b4fc867ab7fd7d5822a797e55d4a2ffcdb43bf6d8997c4ecd4bc0319a5d2dae492c89fc39ba7d31af8459b2e219faa5e4dc95bad6de6c5b0d38e63dd3636d57e4c3bf028db29fdf69a3ef4553fb9f5f6a16232a57912a0eeb1e75f4f98b33a12bc603e9b22021d581df6871d16cbd718be97f2b27fade060ef43ffc1ce976e1a359e02fb16a5d895a644c3d372dc576263a7a5c3a7c5496d4af0db38f1d20457dfba908123fff198d6ff3495f1f96b8a929717cb39bc361d64cea304275d9d729c01190f8df778078d5cf999023e6edc2e03bba71959c8760e88ccd1caae0e0dfb4fc974fe6f07a691aef115336538e3b2bb2fbc6a9da39604a3bc8a50cd3c698d4f9aa5f5404f9e3871356cbe0d700790f420262d53e846679da76aa4ff908ceee91e734488e6fed80426f2af541b98835f703d0123d8c0ff6f1ddd028eb4f337af72e624d544169dd54f1c73dd19514ade22b75afb144b74e260f48b88f8fe50ee4a93cdedd7312709f2eb75e3ad4fa61a8675c867993baf8d51dd67c478e3e2b293c32e4ba55ac8eb352fc266d93545507189fb95e053bb3b74babcc2d048e676f1c8d95288a4421d706acd42321bf7d8645e8db1cc868df91af8cedd26fe7ecda1f37680ce0ef874d64382f580569acd4a7a54c2df4b89d2d2e87e49abbdd1e394a66ffa839846b4fcca629aaa80e4817aa05c68d9601c38dfefa8c08e230e1ac097595a1ff15766f8815087117c38568253b78f35747d51e379d47fbc4eb2653fa513f6acdde0f054de83d3d0af868098481cf7ff7113d7800fcae7b97f201e0dcfcb31cb9e7cdfa1e50364df309cb22ec894cdd6a76a2810d84e3fa0fca961fe3be1340501223fca7803731edd581d00f46ef6adab4b71ae61c9f39f1770c7c1819b55fa43e09bf494edb69bb962855d8a834f56e98b67893541dfa688fa3b9955f20e58463adcf9dc6253c15cadd3b02a2b01fe4e309526590c036fc26c46ab1dfc2466146f0eaa6c5f4d6a80ad91a82cb74f46962f4195f4a981747ce89d27d8146e5e62cde544ba6f63f0a2800b42f99e497e55d5315f4a71e05ac8dc2283b93b97fc369b3df352398aa77e68a7ea34791ae1e82526d3f00d1b18a172442f577eb27dbe6d32e527fd4acd82a67bb2e966b5c56269b6fb4eee6ec20ab7488962fb8395f8fdeaabc02dae87af9170b7de8c482d0dc9ebad345039a1c7644cb70d0c3b831817affcba2b93f277a68b9cd6f0bc1f48b65c1360a417f4bbddcf42148d2856169e1f2c9401f621a4e896fb7a099ec429e46b01ef463e1eb0ce65203c38399f3b9a2d10e17d6de7eb54207d2dd1d686db2f555f3dd81053967cd0e6fb7de55ed757635c73e68f4a7c2d0aff8b8f25d69def53f43fa87069ba3f2fb5f761261d385c67f811ebf8fc9919ed73629517ec29753b1908ddaf625f5bca52a8ea694abdab1dcd0bc9f50340a5333657e80922cccc494a3c6e797450da5cb5c361be610b2f041569652fdd0b150abb791a68044a64f5c233bf8de3ee05606399e038c1e85ee0133599d97c90f64a0f2882bf4c8f1760da399df27f3a08dfdfd0e1eb49f2896a439b26200ce07271c6a0e68c829947ffe27b437f0ff9698aaae5e13beee5537c13e5b1c15f4cfc3ba36fe78c23be531f09cbaa13240790e2bf27996e037ff326d961cb681e8743813461dd52967b27266f50e5658734eef0d1fc02457f7f584bbde2a2a4e428ec74ff28718d1eb69df281bdfb22c69d4758b5c267e27aebb44a868d35a00206654150a6b239082c420a8c067bf09dadf16d0356d0641ec3ba3de40c8940b6f263206eecc708307d7e6e26e5307f47a7280421768818d1eaf51d7b4179f5ba416623b9aa4200332d5cbc21e6d5fbc10aa21dbb49c0de3987278cd1b21f59e3ed14cf224428834a4f6243635087e40532170ccbbf5157a0f76c41149983f0c62f5bae24000c04cdbabaa8d057ec93ddeda2a78e789315c98e2aa66b539991b56e0b0799a19109ac175eb2a40f16137c4b302bf5866a25d2d5f9e3c7011bdc60f221effb2eb1124176f5e616045c7162738eb491e9dbf0fe0635b46eb8b6133e0d0c43ac89ffabea9a70a2bedcd5d58cb8736698b2f98f7f4a72fd2612608bd69c03e882e0c7bf5765ee8f4bf6fe57c0aefdda62d6e82a3d65321220b3a24b121a86c3cc4ecd122240f1213af4941c009c0d1c4d760afa1e52070b0c206446aac852e9f2bcf384369b1fcfde22be38e7c1b9fee559adaadb7f4df3869a3b7bff10935bf89889b9ebc0db8db5382b62c20f22f5fe862332a8b6341dae06adbca7e4181465568d5b6f8d90a67fe0d652839449fd7c1555f5d6824e6606951a542b9b992e49a2fb60dee98319f4436db7211dcb9b8b21fba368a8085ad3c7798ddc5c62012bf23b05cdfaac4ed2104731bfa8630ffb50c407b9d7606099db7c3fac013881709ecb2d1e2702f8b8583c72ef8b3e07d630637f8a8956c57b49c73dadb2368903577072020544f5f559c26be8acde47fc058c3ecfb25bdb6462d2157e227efd08c94c703e7646537c1aec1682e5396e30858a918c2e6ee3483959b70c1ebf29b19ab7db8e0e44af65e64533d43386114db477bad9d7ef6288405d1bf1384c51bd84771bddef76f5456116d9792462c5c8b1ec3e2ddda392bd8028bb27349cdcb3e264ed6b7f6dd46a3df0c7b46fe89f95e15ce1b1c92c60ab1fb70357eb9dadbccb866776e5180837a71eaaab35f7363f34541e8d9701aae1340fba21690ef58061a0d2fc56e88765a5953c0dad612ec277a6ff8c88821b64fd770b1badb262909a2e2181295c934a7988d3f328b6da89bdc7369c63e8989c5abfe489cf6881d6651eacd648b474a4cea5ea1cbf878103ca0bce26bacfc75295fc20d853f557f7d8ce80962283c9d66daec92fc7b88025aa279de313b939b400aeb98cec64e85d5e51403358a88870bde7e0c8612392db5f8d4f9958d0e20586d56f0847fe97dcc16366832c8a56c5cd61bdd10402b50172bb1bc070168eebbfe08a15584a84163a8873a29ccc6d025a2d52bc9a489ddf0fc419e0d0a527759b2c47265bc288c4e33179938de58d614303fd10d6d6a402a00b7732333970104753a5035b19aafbfe25ea5e51c498d2b458bf44d6417f4bda6b552fe12dfb636897d2b470c11f4d9816d249074253c81b70387d1183485396b100201270da29ee1b4cb1a783128c8f9f4d37449b1634a2cb42b0ffa137fe4f79a5b6046a48170d2bf762a6f4b588a9c2529f09291486dd68804d9913a1694ad14b0304a9e21424e3f078b0e3344ce7906251efd07303ec5afc7543a5648f1c636b875b65f3ad642239f9fb67a9020d6f85c6ce642d15758d499679444fd5b99b23da551af37ae6c9643fb9913478b6ceb29a268409d50e86254c5452dee20b131ced7da6ee431916115d64174942d74786617ac4ed63e8b575addaa11db3ae9394a8b9b294f0a325fe8fc75dfd1ca9f18499763bf60e702eaa538699105517f1ca5ce98abe57fc095ef6b6d72ce024f30a6dbc5479b568263760ffb7cf271a622fdadcee414343eab029c8f54f566cf9c386223ae70b13b3538e85b71e64efaf6911eebaf9d326672fc0e29475ff1769813395af9ec54595b587fa306ec9d6e02e2567ceb1fffc3101d40af5fe8118f4f75d4a7118242fa7da25a112b8ab20f10e81a35d513f17e5ec0052e1957c6ab813fcbab44b23bfa391bd9e4fc3bf254e52b45f1d3212f917530cbef4d92fd4bd807063139bd70f926475deca9b6d8d1c1573c34cd1d29718fd40f95cb212eebf2702b83565690703dd11e32029932c35b9c9a901638c017b20c70ce01f3a2a846c5d93aac715ea095cae2a299f813a406ab3efcb120d681a7eddd248755c587c34a7fee77e137cfa3d8d88c53795ba1be31994e6dd92ac054761e11425c0a1eaebf75e2ad7ed770bd5b4e3dd58bb10e1789116f4062c948962b7a931de4c99f3e1eaa4e31e49a915d1e2dce337a1376b4bbce5bb377f20e2ad49c7e32ad3cb2f216e27d744d3cae79032d17b16bb570dbb3b41112a80dfe864e1773c0cc2b04f3eb669d01cb40dbcdf75b48af5aa1f025a8949a48e2d5d72470536106845552bf64f26da424f4461afd8f7e5faa33580a35273508ed835915f822563383357a36beb146aad9d2d6d5a3995aadd6ee5be80f643b5d304ef0cf680b4a5c5f6829f4dcabbcf6145dd4e8f2d281258b6c2c52e4f09026032aae34953d0da5fa2e17df06c669f093213a2f0137bf7b1107c640a0af1249d09079a37a4793083b7fde3a2cf973b3cd1f6800a25daa465b08a91b84a99c1e0f3674828a822cbd1a44bbe2f1fd84e70b5160dc21dea2247ffdeb13ce15df15b455bf1a6dff0d0db62f5bc7f92317035a979ebef8582b87bca2be50c04f8cd17c791fff86793db239bee03e10ace6a5dc6b1757a598c4a5d19093f291d70a0e268fa2769c60a57741b6859050096d2b5c88b09b35eeee9adb9bb035553aee62083a50d4343330bcaa4d8ab32a713faadd96648ed17262acb56e8b3c52763b37fd8ae2a7eaf1160bea8dacf463e509b03d5b1619b5a63d4c5ca54d4c22bad99cb916095622ee565efdfe028f7eb3c1c7fdec53b1484f0dc85c28bc19e25553b841203ca9fbdd9b017950aa23893912a28229c13d010b16f6e7fc93053fd00b1d370cb82ea274c58b0d75276d1d8090c03984f89053b2c39f9ac5ac1c36c4ade0509efde50ae1acb7683ec8796bd8eff2dc486ce22d745e2e503677d62f0b91da682ea2d375961ecbc6e27f8c7c6ec1b5ef52da3ba896659ca9
   </script>
   <div class="hbe hbe-content">
     <form id="hbeForm" class="hbe hbe-form">
@@ -2367,6 +2361,12 @@
       </tags>
   </entry>
   <entry>
+    <title>Hello Hermes Agent</title>
+    <url>/uncategorized/96208538.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>Hello Hermes Agent</p>
+]]></content>
+  </entry>
+  <entry>
     <title>OpenClaw 0</title>
     <url>/%E5%B7%A5%E4%BD%9C/8b6d76da.html</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt"
@@ -2374,11 +2374,11 @@
      data-wpm="糟糕！密码错误了."
      data-whm="糟糕！密码错误了."
      data-salt="f9856f17590d768c913105106ae60c5be4449a1233689d0efa6ac1437b3dae68"
-     data-nonce="27fbed54a050318b62b98918"
+     data-nonce="dba39b521df713474e2db02a"
      data-kdf-iterations="600000"
      data-auto-save="false">
   <script id="hbeData" type="hbeData">
-    539e3ccc5c69ad4b14a7c6003928d02e4ee696fdc0107445b2344802da69d09799e6869f75935198cff665339dbf5501d89d8d567c8eb55f363b8cd5c6900f65bc76e7e1fc39cb08d42b29cab573ba98372849bf76881a93a9f712a58f370af1df930ff78de2ecd649690b3746a8bc357e253ae11a8dfe06763a50b5cc6a3a6f36993178a26838fee66c04f3a119a0ea33085e7c395a317ed9d90ea5320f5ba011d4af8c3a730861cac19e5f3086132077830b538703332cf69c614bbb202527996f050536ba476214a9bb6fe8d9ec63a849799b3d252f0d47eae97d178647a5e64604e586fd72e97beb985653110b938783268b58b81c395156e0d9259cfe181d8b63bf573579dfe8a1e484a6ada955e7834188b28ee7c610740cc1e161af9ae6f25c744e8684c7efc2ca520cf48a8fa2227f6dc2d1853357
+    5fff37ba5809d67fe3c97871477fb4c3fcc9c94474c8ada66dfd12383b02a06af9544280dfee6b3800bfc2314a8d66e29a594b152afb93cbbfc33501b8a527905a7ae566656637ac88d283335a3aa18595d0a37e1571ccf7063275bf7b90fa39b92580ded81f304ae62c081b352117a017472d5fe30c058cf5dffad69bcf03b3b627c436c8657e18eff80ca43046d257a82c71c278dad342fbf70dde81e82f20930b6bf23b0ec8c6924fe8c7851b32b991f727d8dc587d667179263eb57d685bea6f98c398d524d9890c92f8cbd203d6bf8f8df3b4e5aab38a7b4e7ff0b8e7720b6d724439acc0e2aebfb73f6e0b5626a784121f6f39835e9ec70d4d2ef039df52741d4bace43822ca215e7b12eb9a95ff2c99dd4ef89056f464e139012ee14d77d176f360c2047900eb638c0b4b633f9936df848bbc1ddd2a
   </script>
   <div class="hbe hbe-content">
     <form id="hbeForm" class="hbe hbe-form">
@@ -2400,6 +2400,23 @@
       <categories>
         <category>工作</category>
       </categories>
+  </entry>
+  <entry>
+    <title>Reveal.js使用</title>
+    <url>/%E5%AD%A6%E4%B9%A0/6befbd07.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><div class="hexo-reveal-embed"><iframe src="/slide/Reveal.js%E5%B9%BB%E7%81%AF%E7%89%87/" allowfullscreen loading="lazy"></iframe></div>
+<br/>
+<br/>
+<details open>
+<summary><span class="pre-summary">&nbsp;</span><mark><strong>代码:</strong></mark></summary><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .slide: id=&quot;slide1&quot; data-background-image=&quot;./1.jpeg&quot; data-background-opacity=&quot;0.5&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line"># Index 1</span><br><span class="line"></span><br><span class="line">### 我是第一个页面</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment custom blur animated scale-down&quot; data-animated-scale-down-from=&quot;10&quot; data-animated-scale-down-to=&quot;1&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">`js [1|2|3|4]</span><br><span class="line">    let a = 1;</span><br><span class="line">    let b = 2;</span><br><span class="line">    let c = x =&gt; 1 + 2 + x;</span><br><span class="line">    c(3);</span><br><span class="line">`</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in  animated rotate&quot; data-animated-rotate-to=&quot;360deg&quot;--&gt;</span></span><br><span class="line"></span><br><span class="line">`mermaid</span><br><span class="line">gantt</span><br><span class="line">dateFormat YYYY-MM-DD</span><br><span class="line">title 流程中心、表单中心</span><br><span class="line">excludes weekdays</span><br><span class="line"></span><br><span class="line">section 需求阶段</span><br><span class="line">需求调研 :desc1, 2023-11-15,2023-12-05</span><br><span class="line"></span><br><span class="line">section 设计阶段</span><br><span class="line">设计 :desc2,2023-12-05,2023-12-10</span><br><span class="line"></span><br><span class="line">section 开发阶段</span><br><span class="line">开发 :desc3,2023-12-01,2023-12-29</span><br><span class="line"></span><br><span class="line">section 测试阶段</span><br><span class="line">测试     :desc4,2023-12-20,2023-12-29</span><br><span class="line"></span><br><span class="line">section 上线启动</span><br><span class="line">部署培训     :desc5,2023-12-22,2023-12-29</span><br><span class="line">`</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot; fragment fade-in  animated move-to rotate&quot; data-animated-rotate-to=&quot;360deg&quot; data-animated-move-to-top=&quot;-50px&quot; data-animated-move-to-left=&quot;0px&quot; ---&gt;</span></span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">第一个页面的备注文件</span><br><span class="line"></span><br><span class="line">----</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .slide: id=&quot;slide2&quot; data-background-image=&quot;./2.jpeg&quot; data-background-opacity=&quot;0.5&quot;--&gt;</span></span><br><span class="line"></span><br><span class="line"># Index 2</span><br><span class="line"></span><br><span class="line">### 我是第二个页面</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">[打开index1](#/slide1)</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">[打开index3](#/slide3)</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">[打开index3.1](#/slide3.1)</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">[打开index3.2](#/slide3.2)</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">[打开index4](#/slide4)</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">第二个页面的备注文件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">----</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .slide: id=&quot;slide3&quot; data-background-image=&quot;./3.jpeg&quot; data-background-opacity=&quot;0.5&quot;--&gt;</span></span><br><span class="line"></span><br><span class="line"># Index 3</span><br><span class="line"></span><br><span class="line">### 我是第三个页面</span><br><span class="line"></span><br><span class="line">我是<span class="comment">&lt;!-- .element: style=&quot;color: lightred&quot; --&gt;</span></span><br><span class="line">第三<span class="comment">&lt;!-- .element:  style=&quot;color: lightyellow&quot; --&gt;</span></span><br><span class="line">个页面<span class="comment">&lt;!-- .element: style=&quot;color: lightblue&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">* 一 <span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line">* 二 <span class="comment">&lt;!-- .element: class=&quot;fragment highlight-red&quot; --&gt;</span></span><br><span class="line">* 三 <span class="comment">&lt;!-- .element: class=&quot;fragment fade-out&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">第三个页面的备注文件</span><br><span class="line"></span><br><span class="line">--</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .slide: id=&quot;slide3.1&quot; data-background-image=&quot;./3.jpeg&quot; data-background-opacity=&quot;0.5&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line"># Index 3.1</span><br><span class="line"></span><br><span class="line">### 我是第三个页面</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">`mermaid</span><br><span class="line">gantt</span><br><span class="line">dateFormat YYYY-MM-DD</span><br><span class="line">title 流程中心、表单中心</span><br><span class="line">excludes weekdays</span><br><span class="line"></span><br><span class="line">section 需求阶段</span><br><span class="line">需求调研 :desc1, 2023-11-15,2023-12-05</span><br><span class="line"></span><br><span class="line">section 设计阶段</span><br><span class="line">设计 :desc2,2023-12-05,2023-12-10</span><br><span class="line"></span><br><span class="line">section 开发阶段</span><br><span class="line">开发 :desc3,2023-12-01,2023-12-29</span><br><span class="line"></span><br><span class="line">section 测试阶段</span><br><span class="line">测试     :desc4,2023-12-20,2023-12-29</span><br><span class="line"></span><br><span class="line">section 上线启动</span><br><span class="line">部署培训     :desc5,2023-12-22,2023-12-29</span><br><span class="line">`</span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">第三个页面的备注文件</span><br><span class="line"></span><br><span class="line">--</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .slide: id=&quot;slide3.2&quot; data-background-image=&quot;./3.jpeg&quot; data-background-opacity=&quot;0.5&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line"># Index 3.2</span><br><span class="line"></span><br><span class="line">### 我是第三个页面</span><br><span class="line"></span><br><span class="line">&gt; 我是一个备注文件</span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">第三个页面的备注文件</span><br><span class="line"></span><br><span class="line">----</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .slide: id=&quot;slide4&quot; data-background-image=&quot;./4.jpeg&quot; data-background-opacity=&quot;0.5&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line"># Index 4</span><br><span class="line"></span><br><span class="line">### 我是第四个页面</span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">第四个页面的备注文件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</details>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>reveal.js</tag>
+      </tags>
   </entry>
   <entry>
     <title>Transformer模型</title>
@@ -2445,21 +2462,39 @@
       </tags>
   </entry>
   <entry>
-    <title>Reveal.js使用</title>
-    <url>/%E5%AD%A6%E4%B9%A0/6befbd07.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><div class="hexo-reveal-embed"><iframe src="/slide/Reveal.js%E5%B9%BB%E7%81%AF%E7%89%87/" allowfullscreen loading="lazy"></iframe></div>
-<br/>
-<br/>
-<details open>
-<summary><span class="pre-summary">&nbsp;</span><mark><strong>代码:</strong></mark></summary><figure class="highlight html"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .slide: id=&quot;slide1&quot; data-background-image=&quot;./1.jpeg&quot; data-background-opacity=&quot;0.5&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line"># Index 1</span><br><span class="line"></span><br><span class="line">### 我是第一个页面</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment custom blur animated scale-down&quot; data-animated-scale-down-from=&quot;10&quot; data-animated-scale-down-to=&quot;1&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">`js [1|2|3|4]</span><br><span class="line">    let a = 1;</span><br><span class="line">    let b = 2;</span><br><span class="line">    let c = x =&gt; 1 + 2 + x;</span><br><span class="line">    c(3);</span><br><span class="line">`</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in  animated rotate&quot; data-animated-rotate-to=&quot;360deg&quot;--&gt;</span></span><br><span class="line"></span><br><span class="line">`mermaid</span><br><span class="line">gantt</span><br><span class="line">dateFormat YYYY-MM-DD</span><br><span class="line">title 流程中心、表单中心</span><br><span class="line">excludes weekdays</span><br><span class="line"></span><br><span class="line">section 需求阶段</span><br><span class="line">需求调研 :desc1, 2023-11-15,2023-12-05</span><br><span class="line"></span><br><span class="line">section 设计阶段</span><br><span class="line">设计 :desc2,2023-12-05,2023-12-10</span><br><span class="line"></span><br><span class="line">section 开发阶段</span><br><span class="line">开发 :desc3,2023-12-01,2023-12-29</span><br><span class="line"></span><br><span class="line">section 测试阶段</span><br><span class="line">测试     :desc4,2023-12-20,2023-12-29</span><br><span class="line"></span><br><span class="line">section 上线启动</span><br><span class="line">部署培训     :desc5,2023-12-22,2023-12-29</span><br><span class="line">`</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot; fragment fade-in  animated move-to rotate&quot; data-animated-rotate-to=&quot;360deg&quot; data-animated-move-to-top=&quot;-50px&quot; data-animated-move-to-left=&quot;0px&quot; ---&gt;</span></span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">第一个页面的备注文件</span><br><span class="line"></span><br><span class="line">----</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .slide: id=&quot;slide2&quot; data-background-image=&quot;./2.jpeg&quot; data-background-opacity=&quot;0.5&quot;--&gt;</span></span><br><span class="line"></span><br><span class="line"># Index 2</span><br><span class="line"></span><br><span class="line">### 我是第二个页面</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">[打开index1](#/slide1)</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">[打开index3](#/slide3)</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">[打开index3.1](#/slide3.1)</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">[打开index3.2](#/slide3.2)</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">[打开index4](#/slide4)</span><br><span class="line"><span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">第二个页面的备注文件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">----</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .slide: id=&quot;slide3&quot; data-background-image=&quot;./3.jpeg&quot; data-background-opacity=&quot;0.5&quot;--&gt;</span></span><br><span class="line"></span><br><span class="line"># Index 3</span><br><span class="line"></span><br><span class="line">### 我是第三个页面</span><br><span class="line"></span><br><span class="line">我是<span class="comment">&lt;!-- .element: style=&quot;color: lightred&quot; --&gt;</span></span><br><span class="line">第三<span class="comment">&lt;!-- .element:  style=&quot;color: lightyellow&quot; --&gt;</span></span><br><span class="line">个页面<span class="comment">&lt;!-- .element: style=&quot;color: lightblue&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">* 一 <span class="comment">&lt;!-- .element: class=&quot;fragment fade-in&quot; --&gt;</span></span><br><span class="line">* 二 <span class="comment">&lt;!-- .element: class=&quot;fragment highlight-red&quot; --&gt;</span></span><br><span class="line">* 三 <span class="comment">&lt;!-- .element: class=&quot;fragment fade-out&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">第三个页面的备注文件</span><br><span class="line"></span><br><span class="line">--</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .slide: id=&quot;slide3.1&quot; data-background-image=&quot;./3.jpeg&quot; data-background-opacity=&quot;0.5&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line"># Index 3.1</span><br><span class="line"></span><br><span class="line">### 我是第三个页面</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">`mermaid</span><br><span class="line">gantt</span><br><span class="line">dateFormat YYYY-MM-DD</span><br><span class="line">title 流程中心、表单中心</span><br><span class="line">excludes weekdays</span><br><span class="line"></span><br><span class="line">section 需求阶段</span><br><span class="line">需求调研 :desc1, 2023-11-15,2023-12-05</span><br><span class="line"></span><br><span class="line">section 设计阶段</span><br><span class="line">设计 :desc2,2023-12-05,2023-12-10</span><br><span class="line"></span><br><span class="line">section 开发阶段</span><br><span class="line">开发 :desc3,2023-12-01,2023-12-29</span><br><span class="line"></span><br><span class="line">section 测试阶段</span><br><span class="line">测试     :desc4,2023-12-20,2023-12-29</span><br><span class="line"></span><br><span class="line">section 上线启动</span><br><span class="line">部署培训     :desc5,2023-12-22,2023-12-29</span><br><span class="line">`</span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">第三个页面的备注文件</span><br><span class="line"></span><br><span class="line">--</span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .slide: id=&quot;slide3.2&quot; data-background-image=&quot;./3.jpeg&quot; data-background-opacity=&quot;0.5&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line"># Index 3.2</span><br><span class="line"></span><br><span class="line">### 我是第三个页面</span><br><span class="line"></span><br><span class="line">&gt; 我是一个备注文件</span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">第三个页面的备注文件</span><br><span class="line"></span><br><span class="line">----</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- .slide: id=&quot;slide4&quot; data-background-image=&quot;./4.jpeg&quot; data-background-opacity=&quot;0.5&quot; --&gt;</span></span><br><span class="line"></span><br><span class="line"># Index 4</span><br><span class="line"></span><br><span class="line">### 我是第四个页面</span><br><span class="line"></span><br><span class="line">Note:</span><br><span class="line">第四个页面的备注文件</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</details>
-]]></content>
+    <title>daily-news-2026-04-25</title>
+    <url>/daily-news/f135226f.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt"
+     data-hbe-format="4"
+     data-wpm="糟糕！密码错误了."
+     data-whm="糟糕！密码错误了."
+     data-salt="00bcc219157e40f432fba8f040507d55bc975b96bdb59e96669b728b40e4ecf6"
+     data-nonce="4bcdcaa32abf40538fa16f0b"
+     data-kdf-iterations="600000"
+     data-auto-save="false">
+  <script id="hbeData" type="hbeData">
+    8d4681157cc1e380fa7766555a0cd1e06c78f848c25919b74028b299152841e73ab5dca2eb00ab5f482274eb0e9c7c31c7f18603d16b976955fd2a8a902e24dff4c5c226c0fa67e7a7646b6e979e21c8605fd98a16f040424c39492c983f15acdaf717c7bc12ba22eba72ed03c6204fd1a8b05a79672f6a2779abeeba8db35285048b4e504577cd1684c08e2b2d7f24b1629b3ef3b75f91e10e05ee2526ac71bd7c1b70d77c89dc58191aca0bcfa6ec77bb459ac6a209b068b4fbb9227788f9261ee49b57025154b99f4563b5fac52be7e67913cccea56c95f28dd98ef799ad08d7c67b70d0f71fd84947197ea31a2800b348165a433131c9da9e5b2f1b070810a9a652914d7a9a5d7315a1877ccb738f83eca7c7e4ba1e11adc88b0b8cc8fd5f611850d1d66f766fe4d29331fc9357ec9abad9df5f6068773d2e418a85b33b8c777f7503b0e25664737a3c43885319f910c50f77a2bd94e01f24705b4a4b0f68a4ccf2522f4c665e1458f7b526bd50d6338031b161c94c191025e83d4cc10c8af9ab56fa4a6d83ac5898ee90098bbb5cd2d7db31f29eac151da21379bf853fbf3c47825e942c5558874a7bf079a62f4208f2645013a8e2891d546e8e15bc8370a02170f4602d196a964c648d106fb66e7ce35242a4250c765b6f81f81b66ccc33db36ef9407d1e091fb05f0cf47bea264f55e0c921f9ea54889013c41172096f5a589d1833db4bbf6b796f2511983004eec88f22f6a9dee98205eb270c2ab63e52b4046daf62e73dd3786c55f43b5f83aee1cbaa3a8ee533c1d9b25bf7c7ecb9bdfb2a40eebf6bca90dd01cdfdda4c271d1c958e45fed7f70dfd6bc65ade18891f995c7a6898ea35b3248c71eb734ea8790e5fe0ef25ccead66a9c20f5c8656151d7a86f8ec4da85a99d4612e0d75af97a5d0c991f2c20ca4e642b1878d9ecc4dc765dd966d0bf1fedd4a861496bcf93b4b737a1461a110cbecd27be6b21aa255db77e50640d9516b757d49a3e0c366c99f51f8be33291804069e467d4b85ad0e7ac584cef24db9acca63b78dec4e062a522aed1696eb1f450df981d0e3618e256db769a509845219c67805dfa8dee7727e786e37780a100de526aa3f82985f42a7c9c31b2469bb674af52294b6b0dad69db0ac718baa16d238b7893f65bce6e3c31f0c00134a5b2845c71a654144877099fd80bba0c78383934a6e62b55dc5680069759631f2f97420480de8a70542ba7f35c1ce731e912f8987e72019a27e78204303f09101217af80ae86ae9ad1e050ccc6b6c297cbbf2ef4a6e2bd8d7097e2639f740121732ed0cde24ecd79dafe96863117ec836d9aa56b3b7229e5d3a79e6a796fcd3d83f98876b3aa30ef2d78193a596a4be9e8cf746756b771bfc56354a5e96389a27f381d37290eb338160a4ae132e2d1a8f4cabb8d7c4c2a4a131e7d0eead8deb401b7183017d318a74c5d009100b2d2e7c4bbf04d4ab0f1e2319f0254c26a567b3357d1995d7bdb67aff7ee2780a710cd18a6ef93e8cb803c382aa34f3dd3b7b961a35b23cada15ad3781fb045b50c39ee551e718d77fb3c938eeed7b3da7347bae836876e5eb28d377adc1409d0589bbcd954a098d253062268c438d1dfef6498ef63ace9266836095a534066aade716997866b37902a88e536eb8ab79ebdf1cfd3ba43affaef1ceec3726028b1ccd669980a3ee71c75be093b15d8ec4379e74b605b26d2334af0631943ae8c1aabaa10e671d0b0018bfcc4cb4b25416caaca64fbb04b71b61247730ad25a4b049b3adb32b08e24ae7fabe086c031055091a3ccf93d4f0c498bb3fb55e9919365361b5c78d941d5e0f611722df2acbe628e91ca07327895dc8b83b7eb0328ad93878b3702d5d264469ae0fd8b1856b1c3e9b9ea48ff2bfddc11322ba5c93bde55266e17dd02454d26f9c1d2885eab247a8179e390fbbcd4e924499751155a0a38eacd5639f3af8663f7c94872dcf9a113108067603b93ccd52dfe3e0aac7fe717846e627d87613c6eeb83e79f3bcb892f43a7ea2e14fc66355180ad4c02162c42bb6aa3cbd30ef47d4b45400c0cf6b52695cadf1ddf641b4876892fbc47b328d11d5e0eb69842d392bbf203a155a83662fbc14bebf1deaf2cfbc522ea6c9bbae46f592cdac3cd4aaf9d39af4923391d8f47eb4a929330f9fdf1b87d9bcdfa5a8d39b99aa4f02b62b62990ae8e86800a4467af8871edae2477627b762bfe38ab15708e3212f5b117ebb8d00d27eae4248339d31afbe79cf76f68432df76717b31d3aa7720b04093c7661e524e0be4d1bd77ee362694cce0a07360b4f5243f696ab8ec3ccf13e4386aaae08d1a0a5b4a44274995bd29dc8b2f93edead8dbd362db675d4461b5f8e8baf3d79750c4232601fa64c3a1ca3c73b3900961d307940c881ee210496cab12be7b10bec048f23e51739d8476dad57f097b7d85e4f8e9d0328bed25d610cd6a77eb27c663894d225a600deacef88b5d160899afa3448443ef93a50397eca4daaa4644736cbed9996e124ea699823b85c3cbd5da3c5fcb0f9a222e88d616203283aea04e9358218cc5c18b5942756e37e9a79d88f4ec47857b5a1c3c062f3b97d2fff9ebe414d1871bcd47f4c6dba748a19c923c942e1b1b8bc3b702381565e279dad8efc76cd718ef891faacf99275140e4fc7b996dab55fe2aab582c56b95c2fc6106fe187fd77f679d9b06e712ad8a2deaeafda444e94a208acdfb5cf87e29b1ca898340fc3081f3f89889e7444e10c91ac6fe5faf679ac05905abdcef29f2f999dcf5d741990a4ddd602113af42feffaa2e570fe50ab0785d110dc494845bbb273e0d802bef3056851daa7f1aedaf7ec77cfb5b11836a10816da8220f935e419af5ed34a97bc4385b6188ae154f899b564b983a36f1d70db815ef5b305be23b0559d6775a7a70375f34028373a6f767764b4fd8129bd98a98c819314192a50b4f888af703937e64ded1f2ce7c5f623843f9994735d469496be0b801bdc82bb97b298473d0883a432415dfb567e246cc4a41e681e2665eab8ac269e466fa8c506b8010953061f3b9f88ebc3bcd818d22e2a99d5930a46498bbacd6824fc43e45821bc9013527665dad42e9894f68bee25d5edd6fa9acf7c89fa04a294153b6386a3a5c9965f85f3f909523bb4b0149302695220ad50dde7c8169cee41bc21d82afc5fa144209d79170ed273d281e447e3e4fe6c9ab2cb4747e3ceb5619fe928295343c6e8020ff3b7748762d3c8a70a6be58372f05312dc23a742ab452d16b4e31ad06882509e1359216166f0a580e4b67063103822909e53b88e255d293e0223430fc099a0f13c6a2cbec7c043f7de4e7cbed5c139570fb5bf343ca4f612a8a20a17bc646dd2bc023c0a9606805c03b052ee6e10129dd2d0e92232a5c97bcf3f87fdc07e85abcb1501f3ad04a2ff20b03e2d6adb9887b4a16708a59ab21b677f3a58f7463f44daccf120044792f1c9b9bee05a1e2861738a5c6e87d9dafa4dc07263e3357422596a4910a89090c594c57d6c102e4fd94a89b59d1bb69b0b34e5cbf5279df00c4c976b6b928b3141903077b9f62ebec38d23264c2895b1f8f6870bd0b02dacc5f4d40a5d54c3bd596473c99fcf24b127743aa05d12a3b64ed543cddca27bf96c63638e90d2e604ee564f45b052a3df22964d363bccb4bc0edac11ab42eb39f30b9cd6479f90053e187067b3033178932624c06e2ec2ffc2867689586adbc6bec1f312b0b8d37bd87b83e2fd093009cf912fe85ec8378854b4e475f5cb0dbce8de00960130cc89bc579586241a17ea95d855cf00188c95c5d6b51df76cf8d82d397504fc81aa0349cf384e36059597174b74186615e94856d861dff3e4dbefd5c482aaa5f237e7c175bf2feddc97998ac20527c280d2872b264c93497224147035781de1973ee263291cd4557fdf8304840edea47ddec2dc893f42f873f51286148b46b396d36a3bc86fb4fd5f654b3739cef806b8d7e9dc7c30ce42982e94be602ad04fa1ea98a10d9da78b2317792e76d7356b889b188c9bf5c527dbb21cdc532abe5eeb23295518f8499bf8e09fd73aec87d553f0fb3000fc77600b698159ea45da8a339cc4174193b65a7a98d77bec2612fbe4505b79e120fc07ed906687a216274b803c39784f0d3e373fb4ac0cfbee564ca28b3c525f7dde8d72e170ce8f7f0cdb18b14739aef4427f64c33e49c496d4281906e6f71da646464cc464513ed7909505b0b974f815d0725eb9ed7516e216c990ab4d615ee22c07547792adb25151f93b6760cf7ea88b4b973abe7691e9085bbc5df1bc3718fd3b0b2550b0e71f55348f09a076bb55a99ae0b64646c2c736656729d106d1724dc80cd4bdf72ec5380ac96f0a8ae3c69c952f7c9a331cc7297a5fa33bb3dfccd4c1b39d857bc4b43c5e57920309207703c55c86d80ed3ee916e617c02e9d84967208bb36f003c7931930cec7101b005348a3bf904e63832e54dc6e8a4225b11eeb23f9afeb3913a21fcf145994f55c631d3b791687fc71e0a0a112cf91724924ba2dfcba3e35b763bdece6494b10a1cf73e5a47e3b4045e023e4a1b93994aa09cbb1efd5cb91c5314e3c51092e25f2119ea651d31db7fd8b7c66de331fcf26e53dec5445a166e8db8d217e05a1ac8029a6632ab786ec0e7b879cf7291ebd855d5d55c04b23130bbb4e4c064b67ccafc07ca989628e56a71aeb88e0c059ec2073fe2677bf8e74875883392a33c3d3fcb544f
+  </script>
+  <div class="hbe hbe-content">
+    <form id="hbeForm" class="hbe hbe-form">
+      <div class="hbe hbe-input hbe-input-wave">
+      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+      <button class="hbe hbe-button" type="submit">解密</button>
+      <div class="hbe hbe-error" role="alert" aria-live="polite"></div>
+    </form>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.a3b9f59caa.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
-        <category>学习</category>
+        <category>daily news</category>
       </categories>
-      <tags>
-        <tag>reveal.js</tag>
-      </tags>
   </entry>
   <entry>
     <title>一次gogs踩坑之路</title>
@@ -2490,44 +2525,9 @@
         <tag>git</tag>
         <tag>aliyun</tag>
         <tag>阿里云</tag>
-        <tag>gogs</tag>
         <tag>ubuntu 14.04</tag>
+        <tag>gogs</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>daily-news-2026-04-25</title>
-    <url>/daily-news/f135226f.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt"
-     data-hbe-format="4"
-     data-wpm="糟糕！密码错误了."
-     data-whm="糟糕！密码错误了."
-     data-salt="00bcc219157e40f432fba8f040507d55bc975b96bdb59e96669b728b40e4ecf6"
-     data-nonce="6d37bd0dc8d15e2caeaea1d1"
-     data-kdf-iterations="600000"
-     data-auto-save="false">
-  <script id="hbeData" type="hbeData">
-    b84f5c94ca50b526f2fd5cd36e875baca943a43f8d91b7a422609cccc48bf10ee3207be5db697d33419358eb0a9057aa03c470899f89e84a11213a57955af3b830b2b27c4b2e5d87809e589bfc5ac28fff68d454a1211172744e132de0865d067d405b4c81fcc7eda5d7f67e0adcae278198d4cbcbc12143add54df9da32a1a77e297b98edaba1b22d41aa5945c98461a71d73367de2882edccb94295b112c5c26f9d01900a1bf637a84571908fc84f8925907a28be9bce119dba8e7dcd8e36840dee0f72c935af4de6b6f7039dc96c089e9cb3ab572c8c180fda995280278572f0c252da367a74d8b0afb25fe9fb5e9eb3cf7cef5771db5a919efcb1839d74964253236f99028e0f8c1a2676dd858fec93bd9649489d51d784e21c2d1a8e2451e79f69883cc427effcb2a20dc6a5fbcff273ff01e76a626c187decac47fbb0e05b80747dbf3bb660dc88d71f21f4d3f70a554f7c5ff7816860b51436d5f2a58bd87d9f72bd20da797ec3985623917b100ad158b59c9db1c1871119b0f31995ea4d1f7a60125d434dbf128d9fe9c7017c4a7c35fa4297378200ab4346ce728a9d8122d88df5578ffce42121768454308663f00200f4f570606c5667e8b2f670f0dba81aabe83973c7c481e9cb1f9afc421fea4fa2354967060b716d17097cbbe201dfb37fff83f14b0bea4dc877c35065da7d0a9f6633a3bb925ef1dc438e80a45dbe1741767e7324e7374e0f08912d4786a202de0452937580dcb6c6b0e9a517e86c3ff29d4c8d993a029fc78a65e51ffa308308ff3aa8f2f5b47aa8014a1c3ba0f08a6072e7ba8b0ba656052d8636e7942c77d3f889fdddc69aaaad96dfcc79ee1d201ff83f4ce762403270a41d2966a7c5864b12955f8edbb0a0c8ce7012dcec6367f1601bd729496389e2eaaa77de1bc03046f68af2b90c9402512e9d340a8a58f3f37700032477d04575ede2751aafbeaa8e0942b60f918a158c90d8d53db27e074f57ada0a765e4fc674e2af3a717fb22708d3f2225825e642970ad27304d70be190459611b8cb886d36bc13b439aef9bbe009c5974f9d471e9f1b4936de33d560a97460ba132e5fe30e3fb6fca2d40ab4cb77e26ec80211a373af8d34a559f2a3e1f90cf1b762948a0ba44b7a00812fa1a508a2851de63b25d15574cb800f986c38601c13574600d34904531f0b4373db53ef7bfcc2bafd2ebbbd5ba0649e54f24473505678146a76c0dd09be358e76c3e45bf395174e27fa450fe9983f95aa05ae85d974a1d8ae7946ffb2c3874f1cdc6f1a57c12789b573c56013b747111190df5599afa01c095dd5945f8012586da91aa8e5508a28a0ec1101c52cccfbb24b87d46fb5818af4685e876a20931ec3278e4d667cbdcc16844b6bf891af58c9a8c3247a0c24ee965f4ab7578ba77e2c1e829532fa65adaff137dcb3ed4002b5ebd217085b31515ea59b722bb88237067f6bf2ec7491f3ca6d93b5f6844eb8cec4e3c0b71bd48bcbda9001cc62eb240f7d8d2ba9b13f1af0e724c17984b831e53b1e7d2c05e3e08a897611fa63b7cf8d8e4c7ce3cee6de8dcc6c4739634b6b1ec341e94294ba7a32d0429b279c94c30a080ddbb79c6fc84f7739c8f5e533487a1eac2eb7d82fd9257e2bb2695cf9ddea0c26a818a6d243bbc43bd261246b8934ff3d17fa09b89cfc2a03602be0a843be766bf42b536c865ae4ca72575a95e164194a03e7fdade519425dd142ef5a702842f6a6f5fb4a9a4cacefd64ca92cd921e76eb8e1655d0b5b5c326f340c3a0a835876759c9280693f630b3a0ef2304c719da91fa5881019570ea53a5d452a2452c847b288f466f63a77a5c235f9479d0659dcb9608dc58d6ad7cc017aac81ed791d8118e11e57a95165a9eab5546261d79de04431695655a7c229c8f09469f301e9ee46113eb07b3507ad0759da7b5af49c0030f9e29d09c56c4bd0837690d8b08cd4bc4fb3966ff5e3e6d0d4aa81544d74ecd081f1328647f20991363c9feb4687b6b6e0ddbd0c9655a73b50fa3fc10d6cc571ca78c80c9a5f56b30a66f10d43dca5859d5d13a8f7069c72465258d075798498e42495f33d7a3eafdb51b5241f30c77b7ae69a04418805f1b8b778d3a7c51f7ad5b14d7cd9737b483ab6719d718e3e531778232d02eb30d1214f1af6c5b093b1edd6e48ca6d09fca9307598e729c4efa7568ce1cff6b11833b5259fe9d3436c23107ba0302a363a18b647ee71742bfb0b17cb20b24c0d73a6756618af6a5b1f993d9e34ecb3f666cad8d3c2e58ee3bd218aef766408a1f4dedd0363ad349d582889625177dc0408bd02fa33a2ba3b13223d2feb1367f32e844de908137c948de857a472acbcfa6caacf6f400e8fe5a0bbf9da7862aadd4eff157d6f7c0e7072211691290b270b8764325365321a9c50348ec52df17544c4844085c0a2d55039acfba0c00e3334ef2422943e4f104cc489dc6d7a6e0a287221fec7695e283637b0f2006d9e4e2256036bf7b47651f656eb21c557b3f8dec6a51212134a9e1d7c873d28e10a9aef4da695bf7c4801c1c0b740f3f8d2ed1a115588157c8481d2db282cb1ae73c8c77affc891ce6fd940d90f4a02c4f020154e618a2118419066b9b6be1d91c9b60ba8152ee2cc8d081e03d0d004860ca40a38499e7f3da754677211f6f72580c01f24b96152bf1344d3ee35f09eed5050a83106e49a7b251c345003135d1a448af90613bc27ed47605e14f034c2812ccbf4a7272baf84f402216c107b60af591517a9cbfbc0a2c27dfcb85482bf3a2e1c098d118f19b8dca7171591f5ff7661f76679dcf94512f83829b64985214b7fed9b0aa3f5267a77b83c22eccd63b07d3514e7179d1fe301fa6f1e3571076a62d3fc40487d1d731c099e19df8b14f69c56ce0a71368d2cd7417a549621ece98a1357963d88d923463516428642f266097c68970184d426391f4c777150f8aa88d803a8abb284469c23f2be5578f127fd49cacbbcdac208de191d3983e29578c29d7a7f2174a77a1297def9e74e9d953a40e9bbcbbf64b412fa95e2f52397df78270a34fb29d1eec318b500bfe16e372b4479e9d166b8df45c47e42d84dfee17823f5efed48d8a61e5df53279f2644a225771384525f8ea6e6f225419cc58f252c95dc5c73477716cfb3e32842f5590afefcfdf599ed210a8c2c50ebd07caeac8f264d1a8e90fba60d7f60a5aaeca964fa446a85a03fec1141c9ab2aa9d73ef2628a9c36710ba57b6b402041e2408174b2400036206efe917818bd5726416dbdc103deaafffadaebbca16cf1f0f19d69c23d6575063cb30315374828b760380046ca50aeb67a1bde34a986ad3c23c98f86b9c477a98a0bcfa3e1c1639ba3a1e8bb598c878606d77797301ac3171253c3923610c16ef040ec7c3c9741253067f92d0cbdfd511e331ff627b305e30c655e51a5c8ca97af760d97e66628a3809bef1bfe4ab2b382a62a3822da7d0370dd437d161edebf52f05de692a61b0b21d0bd1cb8a6b9357b97513b98cfd9bd9f6b0fc5d5914342ac0e6ca669ff857dbb7a01fa6586cef95c88d4cbd31076327f17a875017dc99ef034ab2bb06456f6502b266b377e00f4c255ba9f9b1423e7faba0eebb5e2b4771ba731ed5bdac65f84e4b6d98bbf4a68b1e4661aab958c893a41381d57139de2df74d2f9b5b26de0a49391a577d6a3a03fbe5ac3a06d3e2947bd3d32b98c8d2870b4878dac614c9a55d4701a1577b5f530303c2798af1f80481d5b3dd818eccb39adb72800e4fa78cbd210b5c7459636d6b6e9790043386b59fa2094777b1387cba9f098808da21dd2365801bec26fae2f8d3d09077878517f29d204bc90dc371c7cad1c1929b4d854ae60aece8c8ac517aea668f2003e8f024bad49d9cf82fb1319ec1812bdc7c8f54e1d5c5fd7ca28f84a585c71cb1ba93be9069d8ef3e440afe3f89a279e7563aaf6f499b4ab9cb4fd84ea3f0a736892ab6fac99b4ff566e5d73fd81d034721547a71f9176a87672dc5d7d416ef573929ec974e2413be8c1875dd7a5d9392a0777af93f2e8adfa27d370b5f504d5dfffa17b57a01325753e00f16d7448e09f73274a8f727634bd10a97ad04488d50fc75db097e3009faed671b163972457a0a09b250bcfa030890e1cbeb82982b22352f0f1b58d11641dd82a7e1862690e9e4996903501a9cb9cd471f72b99c20c1ebb31f12c0258d7fb968f90e7c41786f43e3954b33915feffec147858fcab542041c716418a444b3e5c32f733fbc22292a87c1fe9f4087633ecd77b42e8d2dec2ca094b29c9ba37167cbe7058fa242bacfc579993350c47e7f77e817fc3ba1c463e9511700f0fa0387bba4bc3e3898cc64f5507bf8a42109547415d23ad03e874de01ff341e6bd3a8baca9204f9bd8ae56e2faf4930b46883268558b8d41788129b158ad85b13f8e5e64d9ec90167f0320be1f986612801e8ccf61a07e3d18371e1750f12f7aad1769b488fc0a2089d60122ec0dd12a9a1a763a89abf06464e93629c2f89da7cd7dbfecb7f803c48fc97052192fde747cb5f5a61a51da6481a7f533b9515b3b56049f3f6e0d594e4faa2b8cb1523b9243193d474e02d454a787696cfde41930b6f8401cc2f2a59485c9d7d1bcf88e1561879c8cab6cf7fd23a2eb19c0ada0d102a6623c4d73021a0a642e5b337971a609017854a604a4fc1565a4f0902e20c12160e2ba61dbf516a567538d30edc22ba0ea6d46ab7b6c7815774c3558fc9d134e618
-  </script>
-  <div class="hbe hbe-content">
-    <form id="hbeForm" class="hbe hbe-form">
-      <div class="hbe hbe-input hbe-input-wave">
-      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-      <button class="hbe hbe-button" type="submit">解密</button>
-      <div class="hbe hbe-error" role="alert" aria-live="polite"></div>
-    </form>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.a3b9f59caa.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>daily news</category>
-      </categories>
   </entry>
   <entry>
     <title>gitlab &amp; OKR 进行项目管理 </title>
@@ -2831,11 +2831,11 @@ section 运维阶段
      data-wpm="糟糕！密码错误了."
      data-whm="糟糕！密码错误了."
      data-salt="99ebc0a034c57a483286d7f67d4d7bcf2cec13f9286673002b6e32d1c372bbcc"
-     data-nonce="3ade5f9fdb1f4c6473352f5c"
+     data-nonce="60c3d655d6caaaeda81be8c4"
      data-kdf-iterations="600000"
      data-auto-save="false">
   <script id="hbeData" type="hbeData">
-    754f7fafcce546da6db5e9dd033732c28f1f6239866247607080b644b35d325381e3a992858006afb0813feae1f50d3bcdcc8a731cd5f23c2e878a369820de383d7a9ad68b44dc3b9a42fc2e511416be3770d1291ab5fd2e9ebb21baae40724252bec754b514b9538defc7b90d1212cce6153d06e123b9423db90adcdde1ea982d3ab5c007e085e1c1a69c3f2f7bc6d270071cb40af1fcb047957b977dcd54c221d05741e34f66cdfbbf66b1de7a6880a96c58b73b40b10a9be9ffd8769458a00d6c19e38cee08d7a697571396a289659cf54f31bae4aae4d4bc3e7128a8b04ddb01ab50de2059ba8fe8fe14c6f9110144e9d98e8efa0ace8503207dae624b50a8344f072c00af8deecfb3f7ff285c62d824bc4fb4b87a3b68ecfa6536b7aae1cd7181a8229e0451b731e51d82433fd37a6054cc4ceb2e6fd5
+    ea2291e8583e6800021b8846ce4bd09a6323b24b4fbc7070d92b7e78c3f984a4ab65c206cc46010ee322e3309a29483d957ad0016770258556846b0491ba6bec1a1e2877f3766cd76a6d7bd0c4809d310852c3bb033fa61c9954bf663af4de751e07120c75c22dc02b10f23ec3d274b01d3261d58d77069354637cfcc0e5e26921a204efbd6784cc5656eb3ccfb1f6cbd6efcb252f40bc777c9c2b245733641c75f62103223f29ce9a20ae101f181238dad51911d07440cd7bd094ed5393a03e1685689405bf439527a774fa559f999a793d40ad92c90dfdcd7de5b9fda74139b092c9315e7573fcf926c2286e6f9de595c6216d0a9ee6fca81c4ea9069393e32798efee467a0139018c0923280c0d83640782057f41aadf3c4cb44644e1754d8be0839ea840c492de722698023a7790fecbe55712b212d630
   </script>
   <div class="hbe hbe-content">
     <form id="hbeForm" class="hbe hbe-form">
@@ -3322,29 +3322,6 @@ section 运维阶段
       </tags>
   </entry>
   <entry>
-    <title>读《小王子》</title>
-    <url>/%E5%AD%A6%E4%B9%A0/2855774435.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><img src="/images/u=1374754966,3123717663&fm=15&gp=0.jpg" class="image-wrapper" title="旅行的途中遇到点灯的人给我很大的启示，我们都在做着自己讨厌的事情，但在别人眼里我们却是幸福的人" alt="旅行的途中遇到点灯的人给我很大的启示，我们都在做着自己讨厌的事情，但在别人眼里我们却是幸福的人">
-<span id="more"></span>
-<p>  《小王子》这本书买了很久了，今天给儿子读了小王子去外星球旅行的奇遇。</p>
-<p>  旅行的途中遇到点灯的人给我很大的启示，我们都在做着自己讨厌的事情，但在别人眼里我们却是幸福的人。</p>
-<p>  小王子来到地球后，遇到狐狸，它求着小王子驯养它，但小王子心中有’玫瑰‘，而玫瑰是一个不懂得表达情谊的花，因此小王子才离开了自己的星球。狐狸希望他成为自己生命里重要的人，也或许这个人不一定是小王子，而是小王子恰好出现在了这里，小王子金黄的头发和金黄麦田，对于狐狸来说都是生命中可有可无的。</p>
-<p>  小王子来到沙漠中的一个秘密花园，发现这里有成千的‘独一无二’的玫瑰，而自己的玫瑰告诉自己，我是世界上‘独一无二’的，也或者只是小王子那个星球独一无二的吧，小王子很伤心，玫瑰不是独一无二的，像极了孩子最珍贵的并不是独一无二的。</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>小王子</tag>
-        <tag>儿子</tag>
-        <tag>书</tag>
-        <tag>星球旅行</tag>
-        <tag>点灯的人</tag>
-        <tag>狐狸</tag>
-        <tag>独一无二</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>笔记0-《程序员数学-1》</title>
     <url>/%E5%AD%A6%E4%B9%A0/752254673.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="学习列表"><a class="markdownIt-Anchor" href="#学习列表"></a> 学习列表:</h2>
@@ -3371,6 +3348,29 @@ section 运维阶段
         <tag>进制</tag>
         <tag>指数</tag>
         <tag>指数法则</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>读《小王子》</title>
+    <url>/%E5%AD%A6%E4%B9%A0/2855774435.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><img src="/images/u=1374754966,3123717663&fm=15&gp=0.jpg" class="image-wrapper" title="旅行的途中遇到点灯的人给我很大的启示，我们都在做着自己讨厌的事情，但在别人眼里我们却是幸福的人" alt="旅行的途中遇到点灯的人给我很大的启示，我们都在做着自己讨厌的事情，但在别人眼里我们却是幸福的人">
+<span id="more"></span>
+<p>  《小王子》这本书买了很久了，今天给儿子读了小王子去外星球旅行的奇遇。</p>
+<p>  旅行的途中遇到点灯的人给我很大的启示，我们都在做着自己讨厌的事情，但在别人眼里我们却是幸福的人。</p>
+<p>  小王子来到地球后，遇到狐狸，它求着小王子驯养它，但小王子心中有’玫瑰‘，而玫瑰是一个不懂得表达情谊的花，因此小王子才离开了自己的星球。狐狸希望他成为自己生命里重要的人，也或许这个人不一定是小王子，而是小王子恰好出现在了这里，小王子金黄的头发和金黄麦田，对于狐狸来说都是生命中可有可无的。</p>
+<p>  小王子来到沙漠中的一个秘密花园，发现这里有成千的‘独一无二’的玫瑰，而自己的玫瑰告诉自己，我是世界上‘独一无二’的，也或者只是小王子那个星球独一无二的吧，小王子很伤心，玫瑰不是独一无二的，像极了孩子最珍贵的并不是独一无二的。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>小王子</tag>
+        <tag>儿子</tag>
+        <tag>书</tag>
+        <tag>星球旅行</tag>
+        <tag>点灯的人</tag>
+        <tag>狐狸</tag>
+        <tag>独一无二</tag>
       </tags>
   </entry>
   <entry>
@@ -3972,6 +3972,94 @@ section 运维阶段
       </categories>
   </entry>
   <entry>
+    <title>前端定时器</title>
+    <url>/%E5%B7%A5%E4%BD%9C/3423146f.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>  前端开发中，会经常接到<code>定时器</code>的需求，<code>倒计时</code>、<code>计时器</code>、<code>动画效果</code>。</p>
+<span id="more"></span>
+<p>  在<code>博客</code>- <a href="/tags">标签</a>页面中使用到了<code>定时器</code>来做<code>::hover</code>动画效果。接下来我会对比一下<code>setTimeout</code>、<code>setInterval</code>、<code>requestAnimationFrame</code>来实现定时器。</p>
+<div style="display:flex;justify-content: center;">
+    <div>
+      <video width="100%" height="auto" src="/images/video/tags-view.mp4"  autoplay muted loop ></video>
+      <div style="text-align: center;user-select: none;">视频：
+博客-标签
+</div>
+    </div>
+  </div>
+<h2 id="1定时器"><a class="markdownIt-Anchor" href="#1定时器"></a> 1.定时器</h2>
+<h2 id="11-settimeout"><a class="markdownIt-Anchor" href="#11-settimeout"></a> 1.1. setTimeout</h2>
+<p>  <strong>setTimeout是JavaScript中的一个函数，用于在指定的延迟时间后执行一段代码或函数。它的工作原理是在指定的延迟时间后，将代码或函数放入JavaScript的事件队列中，等待当前代码执行完毕后再执行。</strong></p>
+<p><strong>setTimeout的语法如下：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>||<span class="string">&#x27;func()&#x27;</span>,delay,[args...])</span><br></pre></td></tr></table></figure>
+<p><strong>参数说明：</strong></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>func|code</code>：要执行的函数或代码。</p>
+</li>
+<li class="lvl-2">
+<p><code>delay</code>：延迟时间，以毫秒为单位。</p>
+</li>
+<li class="lvl-2">
+<p><code>arg1, arg2, ...</code>：可选参数，表示传递给函数的参数。</p>
+</li>
+</ul>
+<p>  当使用setTimeout时，它将在指定的延迟时间后执行一次函数或代码，然后返回一个定时器ID，可以使用<code>clearTimeout()</code>方法来取消定时器的执行。</p>
+<p>  需要注意的是，setTimeout并不会立即执行函数或代码，而是在指定的延迟时间后放入事件队列中等待执行。如果当前的代码执行时间较长，或者存在其他的延迟操作，那么setTimeout中的函数或代码可能会在预期的时间之后才被执行。</p>
+<p><strong>示例:</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">args</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(args)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">setTimeout</span>(test,<span class="number">1000</span>,[<span class="string">&#x27;test&#x27;</span>,<span class="string">&#x27;test1&#x27;</span>]);</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="string">&#x27;test()&#x27;</span>,<span class="number">1000</span>,[<span class="string">&#x27;test&#x27;</span>,<span class="string">&#x27;test1&#x27;</span>]);</span><br><span class="line"><span class="title function_">cleatTimeout</span>();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="12-setinterval"><a class="markdownIt-Anchor" href="#12-setinterval"></a> 1.2. setInterval</h2>
+<p>  <strong>setInterval是JavaScript中的一个函数，用于在指定的时间间隔后重复执行一段代码或函数。它的工作原理是在指定的时间间隔后，将代码或函数放入JavaScript的事件队列中，等待当前代码执行完毕后再执行。</strong></p>
+<p><strong>setInterval的语法如下：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">setInterval</span>(<span class="function">()=&gt;</span>||<span class="string">&#x27;func()&#x27;</span>,delay,[args...])</span><br></pre></td></tr></table></figure>
+<p><strong>参数说明：</strong></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>func|code</code>：要执行的函数或代码。</p>
+</li>
+<li class="lvl-2">
+<p><code>delay</code>：时间间隔，以毫秒为单位。</p>
+</li>
+<li class="lvl-2">
+<p><code>arg1, arg2, ...</code>：可选参数，表示传递给函数的参数。</p>
+</li>
+</ul>
+<p>  当使用setInterval时，它将在指定的时间间隔后重复执行函数或代码，直到调用<code>clearInterval()</code>方法来停止执行。与setTimeout不同的是，setInterval会持续不断地重复执行函数或代码，直到被明确停止。</p>
+<p>  需要注意的是，setInterval并不会立即执行函数或代码，而是在指定的时间间隔后放入事件队列中等待执行。如果当前的代码执行时间较长，或者存在其他的延迟操作，那么setInterval中的函数或代码可能会在预期的时间之后才被执行。</p>
+<p><strong>示例:</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">args</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(args)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">setInterval</span>(test,<span class="number">1000</span>,[<span class="string">&#x27;test&#x27;</span>,<span class="string">&#x27;test1&#x27;</span>]);</span><br><span class="line"><span class="built_in">setInterval</span>(<span class="string">&#x27;test()&#x27;</span>,<span class="number">1000</span>,[<span class="string">&#x27;test&#x27;</span>,<span class="string">&#x27;test1&#x27;</span>]);</span><br><span class="line"><span class="built_in">clearInterval</span>();</span><br></pre></td></tr></table></figure>
+<h2 id="13-requestanimationframe"><a class="markdownIt-Anchor" href="#13-requestanimationframe"></a> 1.3. requestAnimationFrame</h2>
+<p>  <strong>requestAnimationFrame是Web动画API的一部分，用于在浏览器下一次重绘之前调用指定的回调函数，从而实现平滑的动画效果。与setTimeout和setInterval相比，requestAnimationFrame具有更高的性能和更好的用户体验。</strong></p>
+<p><strong>requestAnimationFrame的语法如下：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">requestAnimationFrame</span>(callback);</span><br></pre></td></tr></table></figure>
+<p><strong>参数说明：</strong></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>callback</code>：要执行的回调函数。</p>
+</li>
+</ul>
+<p>  当使用requestAnimationFrame时，它会返回一个唯一的ID，可以使用这个ID来取消动画帧的调用。与setTimeout和setInterval不同的是，requestAnimationFrame的回调函数将在浏览器下一次重绘之前执行，而不是简单地等待指定的时间后执行。这样可以充分利用浏览器的重绘机制，实现更平滑的动画效果。</p>
+<p>  requestAnimationFrame的优势在于它能够根据浏览器的刷新率来同步动画，避免了由于不同的屏幕刷新率和硬件配置导致的动画卡顿和闪烁。同时，它也避免了在动画过程中不必要的重绘和计算，提高了动画的性能和响应性。</p>
+<p>  使用requestAnimationFrame时需要注意，它只会在浏览器处于激活状态时执行回调函数。如果浏览器处于最小化或隐藏状态，那么回调函数将不会被执行。因此，在使用requestAnimationFrame时，需要确保浏览器处于激活状态，或者在回调函数中添加适当的逻辑来处理浏览器不处于激活状态的情况。</p>
+<p><strong>示例:</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">frame</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;frame&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">requestAnimationFrame</span>(frame);</span><br></pre></td></tr></table></figure>
+<h2 id="2-标签动画"><a class="markdownIt-Anchor" href="#2-标签动画"></a> 2. 标签动画</h2>
+<p>  使用 <code>requestAnimationFrame</code> 可以替代 <code>setInterval</code> 来实现定时任务，因为 <code>requestAnimationFrame</code> 更加高效，能够根据屏幕刷新率来同步动画，避免了不必要的重绘和计算。</p>
+<p>下面是使用 <code>requestAnimationFrame</code> 实现 <code>setInterval</code> 更新<code>博客</code>- <a href="/tags">标签</a>的示例代码：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/***</span></span><br><span class="line"><span class="comment"> * 兼容不支持requestAnimationFrame的浏览器</span></span><br><span class="line"><span class="comment"> ***/</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">requestAnimationFrame</span> = (<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">window</span>.<span class="property">requestAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">webkitRequestAnimationFrame</span> ||<span class="comment">/* Safari 和 Chrome */</span></span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">mozRequestAnimationFrame</span> ||<span class="comment">/* Firefox */</span></span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">oRequestAnimationFrame</span>      ||<span class="comment">/* Opera */</span></span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">msRequestAnimationFrame</span>     ||<span class="comment">/* IE 9 */</span></span><br><span class="line">    <span class="keyword">function</span> (<span class="params">callback</span>) &#123;</span><br><span class="line">      <span class="variable language_">window</span>.<span class="built_in">setTimeout</span>(callback, <span class="number">6000</span> / <span class="number">60</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">cancelAnimationFrame</span> = (<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">window</span>.<span class="property">cancelAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">webkitCancelAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">mozCancelAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">oCancelAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">msCancelAnimationFrame</span> || <span class="built_in">clearTimeout</span></span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 设置精度定时器</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">function</span>&#125; 回调函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125;   延迟时间</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;  定时器ID</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> <span class="keyword">function</span> <span class="title function_">setIntervalPrecision</span>(<span class="params">callback, delay</span>) &#123;</span><br><span class="line">  <span class="comment">// 生成并记录定时器ID</span></span><br><span class="line">  <span class="keyword">let</span> obj = <span class="variable language_">window</span>.<span class="property">interValPrecisionObj</span> || (<span class="variable language_">window</span>.<span class="property">interValPrecisionObj</span> = &#123; <span class="attr">num</span>: <span class="number">0</span> &#125;)</span><br><span class="line">  obj.<span class="property">num</span>++</span><br><span class="line">  obj[<span class="string">&#x27;n&#x27;</span> + obj.<span class="property">num</span>] = <span class="literal">true</span></span><br><span class="line">  <span class="keyword">var</span> intervalId = obj.<span class="property">num</span></span><br><span class="line">  <span class="comment">// 开始时间</span></span><br><span class="line">  <span class="keyword">var</span> startTime = +<span class="keyword">new</span> <span class="title class_">Date</span>()</span><br><span class="line">  <span class="comment">// 已执行次数</span></span><br><span class="line">  <span class="keyword">var</span> count = <span class="number">0</span></span><br><span class="line">  <span class="comment">// 延迟时间</span></span><br><span class="line">  delay = delay || <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  ;(<span class="keyword">function</span> <span class="title function_">loop</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 定时器被清除，则终止</span></span><br><span class="line">    <span class="keyword">if</span> (!obj[<span class="string">&#x27;n&#x27;</span> + intervalId]) <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 满足条件执行回调</span></span><br><span class="line">    <span class="keyword">if</span> (+<span class="keyword">new</span> <span class="title class_">Date</span>() &gt; startTime + delay * (count + <span class="number">1</span>)) &#123;</span><br><span class="line">      count++</span><br><span class="line">      <span class="title function_">callback</span>(count)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">window</span>.<span class="title function_">requestAnimationFrame</span>(loop)</span><br><span class="line">  &#125;)()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> intervalId</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 清除精度定时器</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; 定时器ID</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">clearIntervalPrecision</span>(<span class="params">intervalId</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">interValPrecisionObj</span>) &#123;</span><br><span class="line">    <span class="variable language_">window</span>.<span class="title function_">cancelAnimationFrame</span>(<span class="string">&#x27;n&#x27;</span> + intervalId)</span><br><span class="line">    <span class="keyword">delete</span> <span class="variable language_">window</span>.<span class="property">interValPrecisionObj</span>[<span class="string">&#x27;n&#x27;</span> + intervalId]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//loopHover 自己的业务实现</span></span><br><span class="line"><span class="title function_">setIntervalPrecision</span>(loopHover, <span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>工作</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+        <tag>react</tag>
+        <tag>javascript</tag>
+        <tag>typescript</tag>
+        <tag>setTimeout</tag>
+        <tag>setInterval</tag>
+        <tag>requestAnimationFrame</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>从 OpenClaw 迁移到 Hermes：我的实战记录</title>
     <url>/%E5%B7%A5%E4%BD%9C/5f9c1a2b.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="为什么要换"><a class="markdownIt-Anchor" href="#为什么要换"></a> 为什么要换</h2>
@@ -4078,94 +4166,6 @@ section 运维阶段
         <tag>OpenClaw</tag>
         <tag>迁移</tag>
         <tag>记忆系统</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>前端定时器</title>
-    <url>/%E5%B7%A5%E4%BD%9C/3423146f.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>  前端开发中，会经常接到<code>定时器</code>的需求，<code>倒计时</code>、<code>计时器</code>、<code>动画效果</code>。</p>
-<span id="more"></span>
-<p>  在<code>博客</code>- <a href="/tags">标签</a>页面中使用到了<code>定时器</code>来做<code>::hover</code>动画效果。接下来我会对比一下<code>setTimeout</code>、<code>setInterval</code>、<code>requestAnimationFrame</code>来实现定时器。</p>
-<div style="display:flex;justify-content: center;">
-    <div>
-      <video width="100%" height="auto" src="/images/video/tags-view.mp4"  autoplay muted loop ></video>
-      <div style="text-align: center;user-select: none;">视频：
-博客-标签
-</div>
-    </div>
-  </div>
-<h2 id="1定时器"><a class="markdownIt-Anchor" href="#1定时器"></a> 1.定时器</h2>
-<h2 id="11-settimeout"><a class="markdownIt-Anchor" href="#11-settimeout"></a> 1.1. setTimeout</h2>
-<p>  <strong>setTimeout是JavaScript中的一个函数，用于在指定的延迟时间后执行一段代码或函数。它的工作原理是在指定的延迟时间后，将代码或函数放入JavaScript的事件队列中，等待当前代码执行完毕后再执行。</strong></p>
-<p><strong>setTimeout的语法如下：</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>||<span class="string">&#x27;func()&#x27;</span>,delay,[args...])</span><br></pre></td></tr></table></figure>
-<p><strong>参数说明：</strong></p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><code>func|code</code>：要执行的函数或代码。</p>
-</li>
-<li class="lvl-2">
-<p><code>delay</code>：延迟时间，以毫秒为单位。</p>
-</li>
-<li class="lvl-2">
-<p><code>arg1, arg2, ...</code>：可选参数，表示传递给函数的参数。</p>
-</li>
-</ul>
-<p>  当使用setTimeout时，它将在指定的延迟时间后执行一次函数或代码，然后返回一个定时器ID，可以使用<code>clearTimeout()</code>方法来取消定时器的执行。</p>
-<p>  需要注意的是，setTimeout并不会立即执行函数或代码，而是在指定的延迟时间后放入事件队列中等待执行。如果当前的代码执行时间较长，或者存在其他的延迟操作，那么setTimeout中的函数或代码可能会在预期的时间之后才被执行。</p>
-<p><strong>示例:</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">args</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(args)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">setTimeout</span>(test,<span class="number">1000</span>,[<span class="string">&#x27;test&#x27;</span>,<span class="string">&#x27;test1&#x27;</span>]);</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="string">&#x27;test()&#x27;</span>,<span class="number">1000</span>,[<span class="string">&#x27;test&#x27;</span>,<span class="string">&#x27;test1&#x27;</span>]);</span><br><span class="line"><span class="title function_">cleatTimeout</span>();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="12-setinterval"><a class="markdownIt-Anchor" href="#12-setinterval"></a> 1.2. setInterval</h2>
-<p>  <strong>setInterval是JavaScript中的一个函数，用于在指定的时间间隔后重复执行一段代码或函数。它的工作原理是在指定的时间间隔后，将代码或函数放入JavaScript的事件队列中，等待当前代码执行完毕后再执行。</strong></p>
-<p><strong>setInterval的语法如下：</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">setInterval</span>(<span class="function">()=&gt;</span>||<span class="string">&#x27;func()&#x27;</span>,delay,[args...])</span><br></pre></td></tr></table></figure>
-<p><strong>参数说明：</strong></p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><code>func|code</code>：要执行的函数或代码。</p>
-</li>
-<li class="lvl-2">
-<p><code>delay</code>：时间间隔，以毫秒为单位。</p>
-</li>
-<li class="lvl-2">
-<p><code>arg1, arg2, ...</code>：可选参数，表示传递给函数的参数。</p>
-</li>
-</ul>
-<p>  当使用setInterval时，它将在指定的时间间隔后重复执行函数或代码，直到调用<code>clearInterval()</code>方法来停止执行。与setTimeout不同的是，setInterval会持续不断地重复执行函数或代码，直到被明确停止。</p>
-<p>  需要注意的是，setInterval并不会立即执行函数或代码，而是在指定的时间间隔后放入事件队列中等待执行。如果当前的代码执行时间较长，或者存在其他的延迟操作，那么setInterval中的函数或代码可能会在预期的时间之后才被执行。</p>
-<p><strong>示例:</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">args</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(args)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">setInterval</span>(test,<span class="number">1000</span>,[<span class="string">&#x27;test&#x27;</span>,<span class="string">&#x27;test1&#x27;</span>]);</span><br><span class="line"><span class="built_in">setInterval</span>(<span class="string">&#x27;test()&#x27;</span>,<span class="number">1000</span>,[<span class="string">&#x27;test&#x27;</span>,<span class="string">&#x27;test1&#x27;</span>]);</span><br><span class="line"><span class="built_in">clearInterval</span>();</span><br></pre></td></tr></table></figure>
-<h2 id="13-requestanimationframe"><a class="markdownIt-Anchor" href="#13-requestanimationframe"></a> 1.3. requestAnimationFrame</h2>
-<p>  <strong>requestAnimationFrame是Web动画API的一部分，用于在浏览器下一次重绘之前调用指定的回调函数，从而实现平滑的动画效果。与setTimeout和setInterval相比，requestAnimationFrame具有更高的性能和更好的用户体验。</strong></p>
-<p><strong>requestAnimationFrame的语法如下：</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">requestAnimationFrame</span>(callback);</span><br></pre></td></tr></table></figure>
-<p><strong>参数说明：</strong></p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><code>callback</code>：要执行的回调函数。</p>
-</li>
-</ul>
-<p>  当使用requestAnimationFrame时，它会返回一个唯一的ID，可以使用这个ID来取消动画帧的调用。与setTimeout和setInterval不同的是，requestAnimationFrame的回调函数将在浏览器下一次重绘之前执行，而不是简单地等待指定的时间后执行。这样可以充分利用浏览器的重绘机制，实现更平滑的动画效果。</p>
-<p>  requestAnimationFrame的优势在于它能够根据浏览器的刷新率来同步动画，避免了由于不同的屏幕刷新率和硬件配置导致的动画卡顿和闪烁。同时，它也避免了在动画过程中不必要的重绘和计算，提高了动画的性能和响应性。</p>
-<p>  使用requestAnimationFrame时需要注意，它只会在浏览器处于激活状态时执行回调函数。如果浏览器处于最小化或隐藏状态，那么回调函数将不会被执行。因此，在使用requestAnimationFrame时，需要确保浏览器处于激活状态，或者在回调函数中添加适当的逻辑来处理浏览器不处于激活状态的情况。</p>
-<p><strong>示例:</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">frame</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;frame&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">requestAnimationFrame</span>(frame);</span><br></pre></td></tr></table></figure>
-<h2 id="2-标签动画"><a class="markdownIt-Anchor" href="#2-标签动画"></a> 2. 标签动画</h2>
-<p>  使用 <code>requestAnimationFrame</code> 可以替代 <code>setInterval</code> 来实现定时任务，因为 <code>requestAnimationFrame</code> 更加高效，能够根据屏幕刷新率来同步动画，避免了不必要的重绘和计算。</p>
-<p>下面是使用 <code>requestAnimationFrame</code> 实现 <code>setInterval</code> 更新<code>博客</code>- <a href="/tags">标签</a>的示例代码：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/***</span></span><br><span class="line"><span class="comment"> * 兼容不支持requestAnimationFrame的浏览器</span></span><br><span class="line"><span class="comment"> ***/</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">requestAnimationFrame</span> = (<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">window</span>.<span class="property">requestAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">webkitRequestAnimationFrame</span> ||<span class="comment">/* Safari 和 Chrome */</span></span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">mozRequestAnimationFrame</span> ||<span class="comment">/* Firefox */</span></span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">oRequestAnimationFrame</span>      ||<span class="comment">/* Opera */</span></span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">msRequestAnimationFrame</span>     ||<span class="comment">/* IE 9 */</span></span><br><span class="line">    <span class="keyword">function</span> (<span class="params">callback</span>) &#123;</span><br><span class="line">      <span class="variable language_">window</span>.<span class="built_in">setTimeout</span>(callback, <span class="number">6000</span> / <span class="number">60</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">cancelAnimationFrame</span> = (<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">window</span>.<span class="property">cancelAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">webkitCancelAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">mozCancelAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">oCancelAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">msCancelAnimationFrame</span> || <span class="built_in">clearTimeout</span></span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 设置精度定时器</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">function</span>&#125; 回调函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125;   延迟时间</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;  定时器ID</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> <span class="keyword">function</span> <span class="title function_">setIntervalPrecision</span>(<span class="params">callback, delay</span>) &#123;</span><br><span class="line">  <span class="comment">// 生成并记录定时器ID</span></span><br><span class="line">  <span class="keyword">let</span> obj = <span class="variable language_">window</span>.<span class="property">interValPrecisionObj</span> || (<span class="variable language_">window</span>.<span class="property">interValPrecisionObj</span> = &#123; <span class="attr">num</span>: <span class="number">0</span> &#125;)</span><br><span class="line">  obj.<span class="property">num</span>++</span><br><span class="line">  obj[<span class="string">&#x27;n&#x27;</span> + obj.<span class="property">num</span>] = <span class="literal">true</span></span><br><span class="line">  <span class="keyword">var</span> intervalId = obj.<span class="property">num</span></span><br><span class="line">  <span class="comment">// 开始时间</span></span><br><span class="line">  <span class="keyword">var</span> startTime = +<span class="keyword">new</span> <span class="title class_">Date</span>()</span><br><span class="line">  <span class="comment">// 已执行次数</span></span><br><span class="line">  <span class="keyword">var</span> count = <span class="number">0</span></span><br><span class="line">  <span class="comment">// 延迟时间</span></span><br><span class="line">  delay = delay || <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  ;(<span class="keyword">function</span> <span class="title function_">loop</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 定时器被清除，则终止</span></span><br><span class="line">    <span class="keyword">if</span> (!obj[<span class="string">&#x27;n&#x27;</span> + intervalId]) <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 满足条件执行回调</span></span><br><span class="line">    <span class="keyword">if</span> (+<span class="keyword">new</span> <span class="title class_">Date</span>() &gt; startTime + delay * (count + <span class="number">1</span>)) &#123;</span><br><span class="line">      count++</span><br><span class="line">      <span class="title function_">callback</span>(count)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">window</span>.<span class="title function_">requestAnimationFrame</span>(loop)</span><br><span class="line">  &#125;)()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> intervalId</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 清除精度定时器</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; 定时器ID</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">clearIntervalPrecision</span>(<span class="params">intervalId</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">interValPrecisionObj</span>) &#123;</span><br><span class="line">    <span class="variable language_">window</span>.<span class="title function_">cancelAnimationFrame</span>(<span class="string">&#x27;n&#x27;</span> + intervalId)</span><br><span class="line">    <span class="keyword">delete</span> <span class="variable language_">window</span>.<span class="property">interValPrecisionObj</span>[<span class="string">&#x27;n&#x27;</span> + intervalId]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//loopHover 自己的业务实现</span></span><br><span class="line"><span class="title function_">setIntervalPrecision</span>(loopHover, <span class="number">100</span>)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-        <tag>react</tag>
-        <tag>javascript</tag>
-        <tag>typescript</tag>
-        <tag>setTimeout</tag>
-        <tag>setInterval</tag>
-        <tag>requestAnimationFrame</tag>
       </tags>
   </entry>
   <entry>
@@ -4292,11 +4292,11 @@ section 运维阶段
      data-wpm="糟糕！密码错误了."
      data-whm="糟糕！密码错误了."
      data-salt="0b2b27ae9533b8ea8e0c3d82f6494de4a791d1547c91a0b6152b516b018755b7"
-     data-nonce="c6b2cbb537edcb3057c282fc"
+     data-nonce="0053b8e987b4fd4355cfbbac"
      data-kdf-iterations="600000"
      data-auto-save="false">
   <script id="hbeData" type="hbeData">
-    1100cba6c21f2a76bebc6c9d68f0254173fc0aec88c64baa108192d2ff21d659cb61f64085055271441c852e89baebfe53bc3f95582035fbb628f21eb8c2a05093669ef7f7aa1be3f4153e783ef0ac7e50dcfd4f7b2ec336d297a352cd537021a3294e8eb3cab81e258387a7263fcf48f0f18bf64d95a0927325c5f34dfedd9e79c0aa208829324c0df2b10281042e581ad48b1c814cefceba6cacd60808079c50f3c35b573fed5fd72bdf006984f554c899871d52ad217663af208a34cf82f38590111290ed5733fb8193703ae91719770237ee2cbe291346e6aeb0e32299b179cf9820a43e2f45e7f54d525a01a1236db8801afe9d93cdb1c0dd3a4c666ba99d41d9f14e5a8a93d64154582cf12040cc7babb7ec737213ce63526e87d7af5704f2008ee44919af08c0f69e6557c97e9957e0dee6777b3f41df397e96667780bfa68825de7e626377046331d5f0f747412183266ce8d56df5f3a2e392e9c946b2fb4fed05bc91e11687280467c4fcc9efdd78df382e3859f5fb5ba4173db45a4bc1a95fed69ecba427c80ecd0516751c25fbb64bcefb53ffa1f367f2341c6379eedf2c63f447eba5a8864368f7670d3ade84656338340a9c120aeb07834fe7786e9b73135ac4b1d2ac0f26e3197706e15ff6761a9582de1ce7afda31fe94acd0cfbf4bc22ca3c3420b6ed5c610a9e3bec9c1ac9ebea8c21611f82e92df89e95fd16a430773e19ab29452e9851fa70039b08e21abb71b834eb79f9dba703e7d72cd334aa72b7f7ca97de3e427b332007edc721de51e3b71804ae855aaf22c289ec88e004dc7d9387e30c8c0fb9f9b0bac0de126a29e03f972feff5a0d3a1a1611569983eec969780768a8aa802807aa444625df2485bfdebf47214dcdb8e49d020f0e481c707d746f64a850a78419b028e1153127af4e7595f1789d6d50658f2bd72c944b96517a686c96a03cc011e1710eb5e41703353b44db66cb8f84e69371b853f40
+    f6f5d5d9bac3abc343251dca70c0f460b9f7c0d54f2cea49ec8e44fb8810c979802ea9e38ab555bf71c9e737d1f07a5fd4f658e9d1356198bcd28e312b3f507cbda89a352af96e05ae31d03b6e681350109710f2b5156d197a3444bbc0209cf52bb8f81a9e191e4ff768278486654dd57025fe6d4df20283847949c988e79a1771526767493915891803d7f1584472614d4c8cc2601257d71f09bbaa714f9e08fbb6065a09a34977df05086195862e5954a53c4a3dc76cddbdbce8d3fd90a69405d48615170e891547cfa0b46aa2bba68b4e456388e2874387a02739f22bd5905c2c373d725aa439c2f37ace1794ee15c564e1e75cd471e40b341cee3f0182cd5b40cefa0bf0e83a0f4a52d600174e580df0b97336c02ae4fad4bb8fa60647139de2ccadd85d3ee88c3a63db5fda471182e88fdbc3f94d2c939cd11f9e998ab0983f5b8cb4fabaee2135ff0294876a4a4292361e076ccf3d72d75dd182a636c03a50f2b1f6a626ab6215e73290c18406c5594f94418dca618204fea104d39df18c0883cd77447a0d7c682e9da78909ee9cbed05b21ae2aeae3e150df266c9f741f6f208adadd58b647688ccc383720cfd872d68856744cb8486abfb1368823d0ad6d4e3bc422c7cceeed42d3144da9bb9c2ad5977d85f2499b907f1174a91a074ce91a0f06b0057303e3478c41ba66dc3f5fb951adee6d1d58d2f4ad0c850c536e656079c2461cd5892efb219b45050d359d37edf097cc5d9f32522350ec21350b53ff99efbe842d56a8288a399779bc55a6078aa826b9c3cb7deeb21055814eaafbe5cdb7f2d441fc7cc98be8fd37324efe7586d05e9fc26316e8fb0afc3277f82dfb9ade4a125f7ad7acafff72675076c47844666a975fcb31bf823d141aeafca9d02be9ab29651f517c9a25fbefe2f6ed9880cc19b68c8c36ad412773d9092c4b7f37778a3f0cd335abfd5e1de6c4b922246dc0d83ab88b2c29a0fc440a12c3d2c13b
   </script>
   <div class="hbe hbe-content">
     <form id="hbeForm" class="hbe hbe-form">
@@ -4391,41 +4391,6 @@ section 运维阶段
     </div>
   </div>
 ]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-  </entry>
-  <entry>
-    <title>成本核算</title>
-    <url>/%E5%B7%A5%E4%BD%9C/fb428c48.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt"
-     data-hbe-format="4"
-     data-wpm="糟糕！密码错误了."
-     data-whm="糟糕！密码错误了."
-     data-salt="e4fbb55751b7bd347032a72ed71dff6cf9047f7c74038a062623346f696ed704"
-     data-nonce="e82942a167721b7a2a67a971"
-     data-kdf-iterations="600000"
-     data-auto-save="false">
-  <script id="hbeData" type="hbeData">
-    63133ec6aca98a5748f0274050fcfb3a92cf0b1f814e31b3cad7525ef6469c114cc77c5158842866512d2098b45ade5088094d7bc7e05dcb00f9981e754f1b82112580b8916230a29820adbf6dcfddf042c2235531cc6b29cdcc771f569b7a605d7c862fe952918d391d49565c40c60f3d1d39e06fdb62365727bdf1b328e86b0c97611fa2a1f36f3eebfdeb10cc50681fda3daad66fbd177d27b92b176efda448ac704a680ae3f1d37a4f3b784a664f343433ca1e8f983de382db1d7babe67c32a694dac6a457d4a8374c08c578fdd572f3b78451e3e6b389cdb995896720dc6e1d64119c8d139021078ad4da182ab06050659163ff1a15e4214d1890305d895ee08987f1c32e53f64fe0fa0b8b6dd337936989fdd48216cef7d4c1e3ff00e75e635a11f233680bba5268dff70df62ee6b580e8bd64dc7be77f92e7db23c3c5f3741baaa16219e4e835869c069f05825e04dc71aa3c607b4cb9601fe6ba5ce1d793342ebdf94dc9c37f076581d855c229a0e8640f4df1dd67cc769bb2a92bce09fdd4a137a6a343c479ff6c467065885c3e7ca08608146f54d79a7947bba80cc57343f1bea8af7b833841bdc57347b91530f505a4ee8cebce8c050cf3445a039aaf041b8959ab7cab9b574d7eee58d03024af7536549cca33dfa06fdd21da00006d271d99fd93d9f372672798e0453121a49fa70318087356fdc49ed0ac34fa73524912a8b65d7ad034e4952e3d4692b1d4b73b738c2866c77be56745bd90a6eb76a814e4605fab08552a8b466f9b4cf0acb277703b709e65c8c183bd12a383450cb7d386c1e857004c399d8a04e21506d23bc021035af87146a0df220be3507377e4202a8ee0614c0e50bf9bfa207fe14edff75e4c40a98c96fdb9e873eec75a6610905f0655afe03ae137d7a90f76fe3be716bca869813587a03cfb3ab89d0e52b31f76e3ee131976a6f3acfeb716ebae9facee95cd2172a163ff723b6d39f1f1e928dcee87890ce726456fbdf17cf5089e014eab94e3a5422b5aec728fdef918f31fdf44feca730e427662fda0350b16dfc47f530986d2020f3d1a189379506238a1c39dc861bfdef2833744cc16ea4ac6f45a90c273765b9e282219d011860eaa782ccbe1a331135f26006915b50393871f65a52c031609d0f99be83314b54a7f9ad7b1a7574c9cec03a18e2831f2c1877d11f93c5c720b274ea96739d243325df81ddd1d6cf75a062f27296940338596f0019aa411fba47f67979c82ecb4f59391051246d6028066f9ef8c8bc1297f00dbd3b07ab1e8e870558006c5cbba5cf8f0968c8fde7c3c1ebf68df42afc29e057874ab1980b075e8b9bcdbac9d893c8a323e5c7764d84daa43562fcfb2b1b7a08bb3af831b80cc2379affc8a10de032dec11cbb06c0f92e85411be1b39aeed1cc906dcd6434ef1a1c855e206cadeedfd51e95b0fb9a56c72bd0d68ccb41a8a8adfca88d5ac209e85fc7c4a0f3aaa00f3d6beba9da2951e93f6b147ad778723ffec5ed3cd9a7168fba2291bc50422efa136ecc356e06eca0cc1f611e62b78a86147a15a0067e5da7d3db34d0fcad01c17a4c6a605da4793bb66d7f8d926b1e295dda2f9ebf7af0d2886b8769b65ac5291340a2691d9a7163a1a1e0e2c4e85291cf36aa82135cd05dce2c20c6d5855dbb53414bb0c840c9e9c4c2d100d0c6bce24444c0fcb70246bd9172838052a3c3c46af369354c9c4c111c49814e5f210de022822d124ba487d3f2bfaf7750a479e97bb947a131ac8b3c09872aed66b04acee6fc792c1f7b380cff3c77ac4996ddae111b9a59de4bcee857258b018c9d7d877ed3107cbe3eee7b495d01030e722275c5553aa96a019a335a35520b2be32593f0cb67eb0f6b4b852d8f951124883c6e33789efb14179bb8bf49528c8ea8d0c67e2893d1898ce54de40e2212f8400de72469d2c7816dad4dc0fc6810a648ce50b772d99adeb1b9fc7b15f4452b15b20c2772e81bd23e3d664698ac746684fe54a90aab6e1cda635d032ac2a2daf40cd2f26cfeac08efd8205a96716e25e8b54d2e9cea6e8c70062b3dffedea0655878c1f958935fb44b95a8be57ffe3971c6193ddedc2d6d19b4a779ea052472b6c2eb2b213abe20328c2031fa5baa2fa827e6478fe52a66f8cf12b108d23ce2c2bffdfba4f68f5dba07701b0701549b6bd368fb81c26550b865aebab16d70a90cfcd34d64b713e0a199d12402f0ea4e6c7f219e8857cba2e935f858fa4b07dc09ca6abfcd039b00da1c2f4dabf1ba14c9cef7f1dfdf20a70d36ac58dfce068ca8ac9345f71c92a2472bd0ff2805578ec961a59a952978bce5f2f9f4cb6248fc2cb7d6270f999f5b9a4e1294a21bafbb8f1f4c29bef04431dc529a1a9ebdd3e007c74cb5a7cc6d43bcac0e6dc8eecdb23dcc1281c916563d1cc1c4b9c142255479592a793272ba826aede019f0418fcc741e7400ff5fa76e07b9ae1ce830575b9d10482d086f5ea727571fe171854d8d1a215ca5f4aef1f67fa71bd174ab0da479ec7ae68910941fd3575371a5c7e5254c731f98cbdc0373b804a51200c0d7dfffb2d084be59a4e9bccf74247254c1e1b2a0c34773f6b9e613d8ea529ebc36bfe154e229ce4ef23b3baff76c4b3ce2418398fa19576ca55eee9727d83695e20692f1026da3aa4ee0ddd8f297ac0adaa11893844f15c24b51b3695dfc121ed31dcd6aade10d443b14370545b22659e89e42faf894c4b255dcd5d142038701a659fccc09bd09a1733e5feb4569f9a69a4b76d8c19118ca10cf4f4a70bcd34fb8a7c2c63ec9315f12b1474af5f0860181a4f8ae9f79a7a515eb74f472133ee45ec555a0bae5ebcf3128a8d1af10b50962b354dbfb31937313d40034646c258ee8ce826917facb05cbeaf3311761160fd6197cb1993ef2bb06f986a8ceac3922cfb92b482068cc978e2dbe4e9e6e31254dc05dd252e4535a6db0972ecb62ffe82ad7b2565acf545919249249508b051c0b5f154b5b515abe02b78a159e1e7a4db7ffdce92ad7c1bfa1aa239655fe122ebfb583272f31a678e045ac5e64b9cf128bb6bf0812cd0a208fa845a90351a48727397cc4e15dabde354a8e3b9137c8c3a8aff8e60dc24ec5a0f3b7a90611a463dfabf2fb2f3999f9980be0d6b83f82ad030198f0cd13f4b3299da86afeaedf9975a0f9008a4fc83f31b03bfda3971fc875ec4b8945b0db5b47e84f4a39758181dc8ffbdcf734e6cb6e5dcbb9e888ed61d25e1ee7428ad8ceacd42ce007f4ec0507321ccccbe10e6da8f4dc9d991da82d622f203ce2e2fb6fe7f9d3532d41d6fbfe2241b4a0e5551957ed60dc84857be36d954
-  </script>
-  <div class="hbe hbe-content">
-    <form id="hbeForm" class="hbe hbe-form">
-      <div class="hbe hbe-input hbe-input-wave">
-      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-      <button class="hbe hbe-button" type="submit">解密</button>
-      <div class="hbe hbe-error" role="alert" aria-live="polite"></div>
-    </form>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.a3b9f59caa.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
       <categories>
         <category>工作</category>
       </categories>
@@ -4790,11 +4755,46 @@ section 运维阶段
      data-wpm="糟糕！密码错误了."
      data-whm="糟糕！密码错误了."
      data-salt="c235eb60150af42071cbb90b7b770763c2c0e1e08b8b572a38ede7e81ffef2fa"
-     data-nonce="a710bf98406fcc00b41fcea2"
+     data-nonce="7aa9541509ce798093315112"
      data-kdf-iterations="600000"
      data-auto-save="false">
   <script id="hbeData" type="hbeData">
-    dff8226695918210992ab627064bc56238d2cdf04bc442ece72758275f9f26b392b295d0fa97e2dc4d40142f6ee0b55dbddaa7143d3be0311d5f14ee22d9938a1a679f6f4cc885ad3a92dc325ede9b40f7d9e1495654ee774861a0382958f540a8970e2cd01800fa337738caa4035052b43fd94e531a90b5a397a8422280e5cc3d5f263c12db1f7acde0c48fe3de438ce16fb4ca6b9d88f9973e070fd2c0e804f06e705607891c48ea49f40ebec2f31cb88f61f514252c86714329b88ab8acdf916bf778d0219ed238b8d61485bf6d6f6ca129e9e8104cfc8807468d7195a7cc04cc789eb69db96e45a9dc9ca103a5876b0ff3d4ac046cd4101fa2488759ab3178a242cde5e07cad870d9aa98c9ed972c10ee842c24af621f2f0b9dfda236d3eee234c9d9ea779a551300db3aed4bc4dd831e456a872ae97114374a45cc4a310fe84c3ce6f0655f7f06639dda4c6cd3e617d9c4539de2983e152480861a06a2206a391ca34d210b543f752bae21600a43a9958fc9516a81b9beec92d33fe0b6221f8b3ea74075d4296fdab1ae30c6e095a3c95de02a270577e1676a666275b0f0fbb754c58b97c460c2b
+    5ee8423edd976db63a525f46dc29870a14ac8bf2398eef48d0ca01ba640ce4e0c2ddfa02a5ab926e988a00b7ab4bdf14af87e3a2d4e2cc0621e6ed2772d4460260deda0009b2d417c0173963a3f39b6e695cb53b19c6a8460d999372b566c0977828ee34b9c0e14e2a2f5ed8d792a90c67f0951429cf7b3a8eb7e3a33fa0d4a7cd831b536029eaf12f13aa349f68f8c34561f997999bf64ae90965940a3499564465c91232c649679c7441040ff9d56026d10314e8a07357c37e99b43265b948cc5ad1724ccf85ea96c5b487fd23b0cdb885a9df4219731d346057752538d5e24c24fa84f08bb0295da437f7531a62173171d25f531178bf4232841ad9e28130f1a5fb4f363f8195658a25026566262484d15107c46c191bbcaaebf08fc385402b60df46905c505a562bfe1f3c7320f769d7dc513520ad98974e822a02bcfc1469c3633ee8091b63a20ce5f61c69af8c93558a8d6e111fbca712b20c86987da8a56fb932a1e492f33fdc99390e73e7a8e37870a295fa16e8e7163893f55e321ae1430356d31bcf8b911ff697f46484384cc3c755c7824ac70707b9a297310ae858b56d652de6631d0ece
+  </script>
+  <div class="hbe hbe-content">
+    <form id="hbeForm" class="hbe hbe-form">
+      <div class="hbe hbe-input hbe-input-wave">
+      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+      <button class="hbe hbe-button" type="submit">解密</button>
+      <div class="hbe hbe-error" role="alert" aria-live="polite"></div>
+    </form>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.a3b9f59caa.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>工作</category>
+      </categories>
+  </entry>
+  <entry>
+    <title>成本核算</title>
+    <url>/%E5%B7%A5%E4%BD%9C/fb428c48.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt"
+     data-hbe-format="4"
+     data-wpm="糟糕！密码错误了."
+     data-whm="糟糕！密码错误了."
+     data-salt="e4fbb55751b7bd347032a72ed71dff6cf9047f7c74038a062623346f696ed704"
+     data-nonce="51301e5906f6b2af6e8ed4b3"
+     data-kdf-iterations="600000"
+     data-auto-save="false">
+  <script id="hbeData" type="hbeData">
+    d706d491f155a51e091daf43bc63168d714a0b051335d9ece7cba5bc33ce5fdd75f9e6e30ec9c8d938ebe5d26149bd318039fe87222ee9c6c021647b177cca9bfd9d7ec8132e82bb54a8f13471ffb2edcac531613feb168378526cb45d4ef1767eb43159e7a837af1f58d938e0a0bc46833190e86d1ea8f90b86bfd7c26ea832e4ede1dd63315036d066b6150ca0a5783f0bd0c45dd0a064dd913ed89ee84f462b0514441c4b6e327d39bfcc11ec400820db8c13d41695404065be4614d1cc5349bb02022aa015da4aeb9bd6e639b9874215287ce9c9b3312754d40a98c6ea5b2199e3f2d17211c9637972c9ea3741b51b1a8395470bce05377c346ad2c51ba89d47c6e3d19e2ca55cfde691e7a2879b5d589df6e3d42640f217d70c4134252340ffa0f0d2e9de5c207c6df53c39c6283ba447b81342f7de2422197e352ba3a7673c276488625b7e84e6692c44ef17573e899e095b5ea3bd9c96d5c6f70f9e72de5eb49a05cf9a1411c2ab567472d23bb57d8766d699fadcb90b8b51dfde995528565e8aba70fc13cb4630c3b4707d9614ba77649d498e9d31071a78eca4ad036f9d73c8516155db21a09f6e3b01fd9e9b1370bfadc636fc2314b50ca60d4c2a2e6fb3b5fbba28a0af6ede0c14911bef241e5c9d38ccb49fb0fd3c1205481b1e11e08529845156b34cc03da5d93f505d0a905bc747843b66127917771bf3e8a3cbef4ddb486bf8d7ee4723ef50857eb860030977d06586095afef35cfe7943376cceb528328e046c3b71210e527c9052816b1ffc7f30a3fbe6d5c29a349b887892058665910a5f92188ebf9a755d7cd087918d95bc75a65a90baa0bcc5bd7e5754cb313b22292c21bccfbcbc7a7a5acffb5a52b55e4b237e2041b3507915896b05f6849a874d5d473a12647423482dbbe8ef79014e0986f846397af331065d90e992cbbbfcaefb7a49c4b5a568f64352b76a748b76e8fa11021dc92ac4631a52ebd7f21def5b047a450a80874794bac36200e6dd1f76966038de0149977f427708d47e930a98026bbb9e63d7b8f3c68a723484d27ee2ba1c9480b1dcc02799e27d39da2c8ee008e7df7f3a2618d2844b9c9f0c443ae75c8a938ea13e61c6091b5e2bc1c6c0901563ecd05fcb66bd45f476a837b8edb91a592b28468716b0bc551549ad5f633c5835d4bc002f3f42c812bef3026a45fcc26d41a358e77613f827d7ac9ced89ab8daf3b78054102455b55a1e753f31183b62350a130ea7edeb57ee0f8743ae028eb68eea43966292c7e1bb11beff5575c9e33f4797b4d09663551570ab5de5332d8f5768b9ae96bfb5e3f387a494bbdc42d7c812ea64840cec44f45220ba178b7641b368d0cf66350c6a2ec61bcd2f55221c1bc49c6710ad6b4002ce8af28d544b2ceb1e2c0a24227e78822067301f410909d131f7768bdac7b8d4bfa965be04018e89108e6275b73849836d82f63d76d741b6ab1df02b5c7f045ef6b874ac10a5969971c8d595356ba5501e6ed40eb9e27826ca8e76ab04c018dad7da0e6a88eb8cb925b4ca419b57369d896a93d9581e927dd6cda060e3d14021ee41a3e188588fab1428fc36b82dc4d56ad45e93d0c91f2e8d76cff0027c4be5ed1ff3d189b898690b4f5aa76067ccef85d73474dd7cde385d41deee15bddcdd4575952d01a4ed65a931d99bfc7b19a0a612d0d76098d473edcb75150833bdd59fcc7dffd32a0285bf97297000e2f53894dc8dcfffaf2379a57e5eb91afc69c30392ab7b5b18ae26d12e824e7dd03dd25cf024ddf50fc73532b150eb31caaf64c487e6a697e5fe8adc9e089abb50f48761c41ac443313ba5a475d04af7bc82b2c8ff575b7138ffd396ecebae0e64227e17591ef8dc6cfc2401615f404b213147328df805c69451bec447f8f8369123b9c8d8ae52fdabfc7147a4742d5051d294d70ff729459b221e8e08535fa1410349c6cc0732bf2c62a72cd5d8cc6c1fd5783a2ed916b8879d5588a8ecca60dddf069fd5181e9d84c0041c91ec9f801983a50be843abe7d8517085cd158e98481fdbe6ba11133f2b4177edb6d422975bfff44e328ed44b4d87c1387eb78336fff3366eb5d6d9c257138d7086abb0f0d209bdeb289d974a31448a3dfe75259396674f8e3c5154b2fb43b37a92028e16cd90a17bbfee350348a4ea2c466dce78a9d60d4277922a393e47ed6c11b6307b505494f5110ca6d80f3adb526466ac00ef835a49507889344d38cef7bfad38e3f8f22ca10cce0e614ca459e8c6574bb05ab3144ed4c47582ae2e95d07eb9fdb8d86bb9166f4a584f640b16950fcc5f5f2cb238adec560255243b8f4baf236247e61535a1942bd78571f039e3703713270c7d990b632f43bcb5bb96950672d097db166bb479a2b06db9506b696bdab77e16be3e4cb78bea268464d33396e531ed403e0e46c3902d61de933bafe5c7b41b14b34b84fb6ad84534e1c26456ac06a5decdc8c2057b103eebd009fa5647604c045ee32dd5a24b43fc4370018d7dbb56b7904ca100f7a8a484febf6ca701b9f70bf2b7e1486e5968b32606fe2e76534bff9ec0b0e423297f3027f17530c61867810ca65de4890c80ea154ef57dc7726b12ee4ba2dd6d19396b133f87471fc2a19cd268602991137d032bf644472c21fa1408123a2f2c37adcb91f56a1bc122c154de63d4779bc7cdc49aab5a89d30e8cec4b6361c6e625c7656c96c76737aecceeec7d1c4d50fee173da96be68694d9fd3cce8ee5c9573829bbef574a93150ce299630a041f18c8df485b456483412a655d241c823314f52f7789cb607c08b6e76ccbb7a44e812b515784d63dd058183c3b7394786eb7f6a1b74ba9c685044d0aabe80886138aec1952bf191c6ccc9ab53706d30c0a6369c23a47ea30db6681d4442fb5d977429195bd04de304593d38ea0e1c6834f1ee4997a0a3bf00dd0d293709ac4e4870dd8c98abd9a2f8a17d60be4e43543551aee5dcd83551764d8fde28e66b723c5b257779038370c0c7549128e0ecad233a6ff5f326a616cdab7705e31ba29ab23c361f67bb17364f29d7431200907c2a848e9befba6b30f835b818ecac33c1a84fd0b591abc9bbd5e300964b9638e3aae1776f44c3b7829f5dc033e0744a2fb970bb3bc0e91d183b03e524368a85517bbe85a04a678d09ea4e22f687d36d76b7b0a3f74b9caad592f8b4933ca499ca7a9eada9cf02d0969d140f505717a24c97f64b8d4156a2edbef3ab1b3f01ee87631e317bc5556c279fe5684b77912a35658164448efbb77812ef9385b1195cd725d8f94809fb16ce29e7c71ef8805408cb30e05c98f914381cc9289639b91
   </script>
   <div class="hbe hbe-content">
     <form id="hbeForm" class="hbe hbe-form">
@@ -4828,6 +4828,46 @@ section 运维阶段
 </li>
 </ol>
 ]]></content>
+  </entry>
+  <entry>
+    <title>表单中心功能清单</title>
+    <url>/%E5%B7%A5%E4%BD%9C/74a10861.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt"
+     data-hbe-format="4"
+     data-wpm="糟糕！密码错误了."
+     data-whm="糟糕！密码错误了."
+     data-salt="7c8a76bd12f6926cfdfc1bd7a4b9248732383c67782cbe54ea1faee5a2991220"
+     data-nonce="09e608ec1603f16b852a87b2"
+     data-kdf-iterations="600000"
+     data-auto-save="false">
+  <script id="hbeData" type="hbeData">
+    90df8c2ccffd10974253163b6b757f238cc622ffeb5eb2a2d2fa03ed04aef1894f2fe8bfad1f38d8a24047de9bd2349dbf1d2d126635eb5eee43757dded1a7bf64472580fe22c7e9648083646a4b1d5c080c52993174631de002f1102c9d826a92d14ed45fd92d40f1b7ab66db64efd4d533019698d842102b9485f55cbc3a8b369fda5666ea179d002afda8df7f724a96c89f8036c795b8252b72dc5470bc929206f6a5e62153b71d5dd077d5f85ca391abb3c5bed488e661af5d71e13726765be54b8d9d3d4a04005c6e6f5b11fbf09ae473e9aa4aacb5ee63d2131b5845ef58e3cd933be511173359ccfd541e4fffffdbab0d956d41fb9df3d80e9ae59c1441cb69719f293a08951f74f466bb0046f4925d2736332280d579310dffe53369f7163da4aa29eb1a0d6c3532c0a59bb3856d5fa67e0ae1b6fc529102e225c8c927cf333bf42c7f97ae6dfb0450b4d4c84bcf684ed4b27ccd654fe79f393d548248796461efa60ff0fc66bede7e64c5eb8d9c09f2259b65d09ea0dc754ad68fa24595eb6793c5ec3217e468ef744e23479c7cdeb2c81f484023513535943ed789b7ea31c0cfca3d81c6a7a243e5244dc8e6742a242040252445af8700a01034ba289ce5667a27d70b6549dc11b67b705c1180141f8fec349732c07bf1047ccefbf6693720c023fa19e9b77fe7c243bae8
+  </script>
+  <div class="hbe hbe-content">
+    <form id="hbeForm" class="hbe hbe-form">
+      <div class="hbe hbe-input hbe-input-wave">
+      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+      <button class="hbe hbe-button" type="submit">解密</button>
+      <div class="hbe hbe-error" role="alert" aria-live="polite"></div>
+    </form>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.a3b9f59caa.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>工作</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+        <tag>表单</tag>
+        <tag>formily</tag>
+      </tags>
   </entry>
   <entry>
     <title>芝麻叶糊涂面</title>
@@ -4922,55 +4962,15 @@ section 运维阶段
       </tags>
   </entry>
   <entry>
-    <title>表单中心功能清单</title>
-    <url>/%E5%B7%A5%E4%BD%9C/74a10861.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt"
-     data-hbe-format="4"
-     data-wpm="糟糕！密码错误了."
-     data-whm="糟糕！密码错误了."
-     data-salt="7c8a76bd12f6926cfdfc1bd7a4b9248732383c67782cbe54ea1faee5a2991220"
-     data-nonce="52a2cf45910008803c6bce82"
-     data-kdf-iterations="600000"
-     data-auto-save="false">
-  <script id="hbeData" type="hbeData">
-    d477eb29d39a3b8adfe92f71f316ae9dae562f3a333e11271e825c06ef6fe724f86618d32c3c64f0af093aa1f7db7cc7dd25c1127cf574f90e0a330cab3b000694c0eaa28b3e6c460c4486437ab82244ae1cc13558660cfb77ba7a53a0fb92b25209dfc53a1f529f2050334a443298c0e35a739628be478856e0490726ae3586c20ae22356069af49d4e6e098ce2fcbd25a1d0e37d472f345cbc3efeeec0cf4952a23aa162cc704142c9738c3df0fdcf0460552c44e3d5080f44cd48bc50ea7b5c19e5170a67401e31def0a377fa39c7bdd9a80f0f60f9c1dc20f6e8b03377d1c2158b24d5155516e7821083249f4a56db56cfc35dc7641fe34773074efaff26e3e246a715e7da59923da67a41a4da8fa8ca827161e9af3c221fa055f8654555d9bb7eeefbae31c333d4ca3a8a0b1b22a9847e81e7bf0da66d9dad15ea361e7295ec682ea9f224638293ca72890c7067474f39fb2a299bd8205ba7633f22c6daf91f062fce441a0cc121b40839ec94c73f6e22517a26b4abfda5ddd553275580bfc53fb3726e232352e371c83aa6a1b048281279375327fd9bfccef1b104295eb7ce7146160e157a537128c28a4c8356b3c4216b6aa556cdab661a4a4f43f1f4d519207e1c5933ac7eea596cf4792ce581c4d5a0a00b7446ae921913610c0af421d7ce559bbe7e0a70238c3e5753c7f5
-  </script>
-  <div class="hbe hbe-content">
-    <form id="hbeForm" class="hbe hbe-form">
-      <div class="hbe hbe-input hbe-input-wave">
-      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-      <button class="hbe hbe-button" type="submit">解密</button>
-      <div class="hbe hbe-error" role="alert" aria-live="polite"></div>
-    </form>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.a3b9f59caa.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-        <tag>表单</tag>
-        <tag>formily</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>路</title>
     <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-        <div id="aplayer-UuBmOUus" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-VzZiXwfe" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-UuBmOUus"),
+            element: document.getElementById("aplayer-VzZiXwfe"),
             narrow: false,
             autoplay: true,
             showlrc: false,
@@ -5034,6 +5034,103 @@ section 运维阶段
         <tag>云计算</tag>
         <tag>雾计算</tag>
         <tag>边缘计算</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>通用excel导入设计</title>
+    <url>/%E5%B7%A5%E4%BD%9C/7178be5f.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="业务场景"><a class="markdownIt-Anchor" href="#业务场景"></a> 业务场景:</h2>
+<ol>
+<li class="lvl-3">上传excel按需写入字段；</li>
+<li class="lvl-3">覆盖更新数据；</li>
+</ol>
+<span id="more"></span>
+<h2 id="设计方案"><a class="markdownIt-Anchor" href="#设计方案"></a> 设计方案</h2>
+<pre class="mermaid">sequenceDiagram
+excel ->> handler: 上传文件,传入对应excel的字段名称、类型、索引
+handler ->> execute: insert[插入]\ignore[忽略重复数据]\replace[替换重复数据]
+execute ->> insert: 写入数据库</pre>
+<h2 id="mysql"><a class="markdownIt-Anchor" href="#mysql"></a> mysql</h2>
+<ol>
+<li class="lvl-3">
+<p>insert into  table ()  select ‘’ from dual where not exsits ()</p>
+</li>
+<li class="lvl-3">
+<p>insert ignore into id={IDGenerrate.gernxxx}</p>
+</li>
+<li class="lvl-3">
+<p>Insert into on dupli   update  xx=values()</p>
+</li>
+</ol>
+<p>Sql:</p>
+<ol>
+<li class="lvl-3">
+<p>select id from table where dupKeys = ‘’</p>
+</li>
+<li class="lvl-3">
+<p>insert ignore into  values (id)</p>
+</li>
+<li class="lvl-3">
+<p>ignore :  insert into  table ()  select ‘xx’,‘x’,‘xx from dual where not exsits ( select id from table where dupKeys = ‘’’)</p>
+</li>
+<li class="lvl-3">
+<p>Insert into table ()  select ‘x’,‘id’ from dual  on dupli   update  xx=values()</p>
+</li>
+</ol>
+<pre class="mermaid">classDiagram
+class Field{
+		Intger index 索引
+		String name  字段名
+		String type  字段类型
+		Object value  字段值
+		String exp 校验表达式
+}
+
+class Record{
+		String tableName 表名
+		List fields 字段
+}
+
+class ModeEnum{
+	INSERT("insert") 写入
+	IGNORE("ignore") 忽略重复数据
+	REPLACE("replace") 更新重复数据
+}
+
+class ExcelUtil{
+	+File file excel
+	+List:String fields 字段
+  +String tableName 数据表名
+  +Integer skip 跳过行
+  +ModeEnum mode 写入方式
+  +List:String dupKeys 用于校验重复的字段
+  +RecordHandler recordHandler 数据行处理
+	-static importExcel(file,tableName,fields,skip,mode,recordHandler) 导入
+	-static exportExcel(response,tableName,fields,skip,mode,recordHandler) 导出
+}
+
+class RecordHandler{
+	-read(Record) 读取行
+}
+
+ExcelUtil --> ModeEnum
+ExcelUtil --> Field
+ExcelUtil --> Record
+ExcelUtil --> RecordHandler</pre>
+]]></content>
+      <categories>
+        <category>工作</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>jdbc</tag>
+        <tag>easyexcel</tag>
+        <tag>excel</tag>
+        <tag>import</tag>
+        <tag>export</tag>
+        <tag>replace</tag>
+        <tag>ignore</tag>
+        <tag>insert</tag>
       </tags>
   </entry>
   <entry>
@@ -5372,103 +5469,6 @@ section 运维阶段
         <tag>机器学习</tag>
         <tag>ocr</tag>
         <tag>人工智能</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>通用excel导入设计</title>
-    <url>/%E5%B7%A5%E4%BD%9C/7178be5f.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="业务场景"><a class="markdownIt-Anchor" href="#业务场景"></a> 业务场景:</h2>
-<ol>
-<li class="lvl-3">上传excel按需写入字段；</li>
-<li class="lvl-3">覆盖更新数据；</li>
-</ol>
-<span id="more"></span>
-<h2 id="设计方案"><a class="markdownIt-Anchor" href="#设计方案"></a> 设计方案</h2>
-<pre class="mermaid">sequenceDiagram
-excel ->> handler: 上传文件,传入对应excel的字段名称、类型、索引
-handler ->> execute: insert[插入]\ignore[忽略重复数据]\replace[替换重复数据]
-execute ->> insert: 写入数据库</pre>
-<h2 id="mysql"><a class="markdownIt-Anchor" href="#mysql"></a> mysql</h2>
-<ol>
-<li class="lvl-3">
-<p>insert into  table ()  select ‘’ from dual where not exsits ()</p>
-</li>
-<li class="lvl-3">
-<p>insert ignore into id={IDGenerrate.gernxxx}</p>
-</li>
-<li class="lvl-3">
-<p>Insert into on dupli   update  xx=values()</p>
-</li>
-</ol>
-<p>Sql:</p>
-<ol>
-<li class="lvl-3">
-<p>select id from table where dupKeys = ‘’</p>
-</li>
-<li class="lvl-3">
-<p>insert ignore into  values (id)</p>
-</li>
-<li class="lvl-3">
-<p>ignore :  insert into  table ()  select ‘xx’,‘x’,‘xx from dual where not exsits ( select id from table where dupKeys = ‘’’)</p>
-</li>
-<li class="lvl-3">
-<p>Insert into table ()  select ‘x’,‘id’ from dual  on dupli   update  xx=values()</p>
-</li>
-</ol>
-<pre class="mermaid">classDiagram
-class Field{
-		Intger index 索引
-		String name  字段名
-		String type  字段类型
-		Object value  字段值
-		String exp 校验表达式
-}
-
-class Record{
-		String tableName 表名
-		List fields 字段
-}
-
-class ModeEnum{
-	INSERT("insert") 写入
-	IGNORE("ignore") 忽略重复数据
-	REPLACE("replace") 更新重复数据
-}
-
-class ExcelUtil{
-	+File file excel
-	+List:String fields 字段
-  +String tableName 数据表名
-  +Integer skip 跳过行
-  +ModeEnum mode 写入方式
-  +List:String dupKeys 用于校验重复的字段
-  +RecordHandler recordHandler 数据行处理
-	-static importExcel(file,tableName,fields,skip,mode,recordHandler) 导入
-	-static exportExcel(response,tableName,fields,skip,mode,recordHandler) 导出
-}
-
-class RecordHandler{
-	-read(Record) 读取行
-}
-
-ExcelUtil --> ModeEnum
-ExcelUtil --> Field
-ExcelUtil --> Record
-ExcelUtil --> RecordHandler</pre>
-]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-        <tag>jdbc</tag>
-        <tag>easyexcel</tag>
-        <tag>excel</tag>
-        <tag>import</tag>
-        <tag>export</tag>
-        <tag>replace</tag>
-        <tag>ignore</tag>
-        <tag>insert</tag>
       </tags>
   </entry>
   <entry>

@@ -4,7 +4,7 @@ description: 从 5.2 万行 MemPalace 到 0.1.0 mem-md，把记忆系统退回�
 tags:
   - hermes
   - memory
-  - ai
+  - AI
   - opensource
   - architecture
 abbrlink: mem-md-opensource

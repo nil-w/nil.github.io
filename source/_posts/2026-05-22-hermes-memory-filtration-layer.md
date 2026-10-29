@@ -3,8 +3,8 @@ title: 从零构建 Hermes Agent 记忆系统——memory-filtration-layer 迭�
 tags:
   - AI
   - Agent
-  - Memory
-  - Hermes
+  - memory
+  - hermes
   - Python
   - MemPalace
 categories: AI

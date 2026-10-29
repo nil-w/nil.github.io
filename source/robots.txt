@@ -17,5 +17,9 @@ Disallow: /js/revealjs-animated/
 Disallow: /slide/
 Disallow: /reveal.js/
 
+# 站点验证文件：非内容页，避免与首页 title 重复被收录
+Disallow: /baidu_verify_
+Disallow: /*.txt$
+
 Sitemap: https://nilw.rm-rf.ink/sitemap.xml
 Sitemap: https://nilw.rm-rf.ink/baidusitemap.xml
