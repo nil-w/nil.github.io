@@ -3457,6 +3457,169 @@ section 运维阶段
       </tags>
   </entry>
   <entry>
+    <title>笔记1-《程序员的数学3：线性代数》向量与空间</title>
+    <url>/%E5%AD%A6%E4%B9%A0/8c4d2f17.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="向量与空间"><a class="markdownIt-Anchor" href="#向量与空间"></a> 向量与空间</h1>
+<span id="more"></span>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>第 0 章 动机</p>
+<ul class="lvl-2">
+<li class="lvl-4">我们生活在 3 维空间中，为了处理现实世界的问题，需要一种合适的方式描述「空间」</li>
+<li class="lvl-4">作线性代数施展作用的舞台，向量空间是对现实空间进行一定程度抽象化后得到的东西</li>
+<li class="lvl-4">打个比方：把 3 维空间中的物体在 2 维的显示屏上展示出来的时候，我们需要面对很多问题
+<ul class="lvl-4">
+<li class="lvl-6">当我们的目光跟随物体的变换而移动、旋转时，映入眼帘的 2 维画面是怎么变化的？</li>
+<li class="lvl-6">要解决这类问题，线性代数发挥了基础性的作用</li>
+</ul>
+</li>
+<li class="lvl-4">学习线性代数可不只是为了了解现实空间的问题</li>
+<li class="lvl-4">几乎处处都会遇到由多个数值组成的一组数据，即使与「空间」看似没什么直接关系，也能进行推理</li>
+<li class="lvl-4">只要将数据诠释为高维空间中的点，就可以利用自己的直观感受，通过「空间」来理解数据的行为</li>
+<li class="lvl-4">直观认知仅限于 3 维以下的空间，但只要稍加推广，对于一般的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 维空间中的现象，同样可以从直观上理解</li>
+<li class="lvl-4">这已经是数据分析中强有力的工具了</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>有效利用线性近似的手段</p>
+<ul class="lvl-2">
+<li class="lvl-4">线性代数在「空间」中大显身手的地方：主成分分析、最小二乘法</li>
+<li class="lvl-4">本书作为「基础篇」，原则上不考虑带度量的问题，以无量度的问题为中心</li>
+</ul>
+</li>
+</ul>
+<h2 id="最直接的定义把数值罗列起来就是向量"><a class="markdownIt-Anchor" href="#最直接的定义把数值罗列起来就是向量"></a> 最直接的定义：把数值罗列起来就是向量</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>把数排成一列就是向量</p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>比如</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mo fence="true">(</mo><mtable rowspacing="0.15999999999999992em" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>2</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>5</mn></mstyle></mtd></mtr></mtable><mo fence="true">)</mo></mrow><mspace width="1em"/><mi mathvariant="normal">和</mi><mspace width="1em"/><mrow><mo fence="true">(</mo><mtable rowspacing="0.15999999999999992em" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>6</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>3</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>3</mn></mstyle></mtd></mtr></mtable><mo fence="true">)</mo></mrow><mspace width="1em"/><mi mathvariant="normal">和</mi><mspace width="1em"/><mrow><mo fence="true">(</mo><mtable rowspacing="0.15999999999999992em" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>2.9</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mo>−</mo><mn>0.3</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mrow><mn>1</mn><mi mathvariant="normal">/</mi><mn>7</mn></mrow></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><msqrt><mi>π</mi></msqrt></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>42</mn></mstyle></mtd></mtr></mtable><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">\begin{pmatrix} 2 \\ 5 \end{pmatrix}
+\quad 和 \quad
+\begin{pmatrix} 6 \\ 3 \\ 3 \end{pmatrix}
+\quad 和 \quad
+\begin{pmatrix} 2.9 \\ -0.3 \\ 1/7 \\ \sqrt{\pi} \\ 42 \end{pmatrix}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:6.00008em;vertical-align:-2.75004em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-2.4099999999999997em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9500000000000004em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:1em;"></span><span class="mord cjk_fallback">和</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:1em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05002em;"><span style="top:-2.2500000000000004em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎝</span></span></span><span style="top:-4.05002em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎛</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55002em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05em;"><span style="top:-4.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">6</span></span></span><span style="top:-3.0099999999999993em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span></span></span><span style="top:-1.8099999999999994em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.5500000000000007em;"><span></span></span></span></span></span></span></span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.05002em;"><span style="top:-2.2500000000000004em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎠</span></span></span><span style="top:-4.05002em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎞</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:1.55002em;"><span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:1em;"></span><span class="mord cjk_fallback">和</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mspace" style="margin-right:1em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:3.25004em;"><span style="top:-1.0499800000000006em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎝</span></span></span><span style="top:-2.2049900000000004em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎜</span></span></span><span style="top:-2.805em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎜</span></span></span><span style="top:-3.4050100000000003em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎜</span></span></span><span style="top:-4.00502em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎜</span></span></span><span style="top:-5.250039999999999em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎛</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.75004em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:3.2500000000000004em;"><span style="top:-5.410000000000001em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span><span class="mord">.</span><span class="mord">9</span></span></span><span style="top:-4.21em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">−</span><span class="mord">0</span><span class="mord">.</span><span class="mord">3</span></span></span><span style="top:-3.01em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">1</span><span class="mord">/</span><span class="mord">7</span></span></span><span style="top:-1.8099999999999998em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord sqrt"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8002800000000001em;"><span class="svg-align" style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="mord" style="padding-left:0.833em;"><span class="mord mathdefault" style="margin-right:0.03588em;">π</span></span></span><span style="top:-2.76028em;"><span class="pstrut" style="height:3em;"></span><span class="hide-tail" style="min-width:0.853em;height:1.08em;"><svg width='400em' height='1.08em' viewBox='0 0 400000 1080' preserveAspectRatio='xMinYMin slice'><path d='M95,702c-2.7,0,-7.17,-2.7,-13.5,-8c-5.8,-5.3,-9.5,
+-10,-9.5,-14c0,-2,0.3,-3.3,1,-4c1.3,-2.7,23.83,-20.7,67.5,-54c44.2,-33.3,65.8,
+-50.3,66.5,-51c1.3,-1.3,3,-2,5,-2c4.7,0,8.7,3.3,12,10s173,378,173,378c0.7,0,
+35.3,-71,104,-213c68.7,-142,137.5,-285,206.5,-429c69,-144,104.5,-217.7,106.5,
+-221c5.3,-9.3,12,-14,20,-14H400000v40H845.2724s-225.272,467,-225.272,467
+s-235,486,-235,486c-2.7,4.7,-9,7,-19,7c-6,0,-10,-1,-12,-3s-194,-422,-194,-422
+s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.23972em;"><span></span></span></span></span></span></span></span><span style="top:-0.6099999999999997em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">4</span><span class="mord">2</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.7500000000000004em;"><span></span></span></span></span></span></span></span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:3.25004em;"><span style="top:-1.0499800000000006em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎠</span></span></span><span style="top:-2.2049900000000004em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎟</span></span></span><span style="top:-2.805em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎟</span></span></span><span style="top:-3.4050100000000003em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎟</span></span></span><span style="top:-4.00502em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎟</span></span></span><span style="top:-5.250039999999999em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎞</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.75004em;"><span></span></span></span></span></span></span></span></span></span></span></span></p>
+</li>
+<li class="lvl-4">
+<p>需要强调分量个数时，分别称为 2 维向量、3 维向量和 5 维向量</p>
+</li>
+<li class="lvl-4">
+<p>提到向量，不特别说明就指上面这样的竖排的「列向量」</p>
+</li>
+<li class="lvl-4">
+<p>也存在像 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mo separator="true">,</mo><mn>5</mn><mo separator="true">,</mo><mn>8</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(2, 3, 5, 8)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">8</span><span class="mclose">)</span></span></span></span> 这样的横排的「行向量」，但本书中不加说明时默认为列向量</p>
+</li>
+<li class="lvl-4">
+<p>列向量书写起来比较占空间，所以使用以下写法</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mn>2</mn><mo separator="true">,</mo><mn>3</mn><mo separator="true">,</mo><mn>5</mn><mo separator="true">,</mo><mn>8</mn><msup><mo stretchy="false">)</mo><mi>T</mi></msup><mo>=</mo><mrow><mo fence="true">(</mo><mtable rowspacing="0.15999999999999992em" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>2</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>3</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>5</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>8</mn></mstyle></mtd></mtr></mtable><mo fence="true">)</mo></mrow><mo>=</mo><msup><mrow><mo fence="true">(</mo><mtable rowspacing="0.15999999999999992em" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>2</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>3</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>5</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>8</mn></mstyle></mtd></mtr></mtable><mo fence="true">)</mo></mrow><mi>T</mi></msup></mrow><annotation encoding="application/x-tex">(2, 3, 5, 8)^T = \begin{pmatrix} 2 \\ 3 \\ 5 \\ 8 \end{pmatrix}
+= \begin{pmatrix} 2 \\ 3 \\ 5 \\ 8 \end{pmatrix}^{T}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1413309999999999em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord">2</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">3</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">5</span><span class="mpunct">,</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord">8</span><span class="mclose"><span class="mclose">)</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913309999999999em;"><span style="top:-3.113em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:4.80006em;vertical-align:-2.15003em;"></span><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.6500299999999997em;"><span style="top:-1.6499900000000003em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎝</span></span></span><span style="top:-2.805em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎜</span></span></span><span style="top:-3.4050100000000003em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎜</span></span></span><span style="top:-4.65003em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎛</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.15003em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.6500000000000004em;"><span style="top:-4.8100000000000005em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span></span></span><span style="top:-2.4099999999999997em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">5</span></span></span><span style="top:-1.2099999999999997em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">8</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.1500000000000004em;"><span></span></span></span></span></span></span></span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.6500299999999997em;"><span style="top:-1.6499900000000003em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎠</span></span></span><span style="top:-2.805em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎟</span></span></span><span style="top:-3.4050100000000003em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎟</span></span></span><span style="top:-4.65003em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎞</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.15003em;"><span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:5.0312909999999995em;vertical-align:-2.15003em;"></span><span class="minner"><span class="minner"><span class="mopen"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.6500299999999997em;"><span style="top:-1.6499900000000003em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎝</span></span></span><span style="top:-2.805em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎜</span></span></span><span style="top:-3.4050100000000003em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎜</span></span></span><span style="top:-4.65003em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎛</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.15003em;"><span></span></span></span></span></span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.6500000000000004em;"><span style="top:-4.8100000000000005em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">2</span></span></span><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">3</span></span></span><span style="top:-2.4099999999999997em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">5</span></span></span><span style="top:-1.2099999999999997em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">8</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.1500000000000004em;"><span></span></span></span></span></span></span></span><span class="mclose"><span class="delimsizing mult"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:2.6500299999999997em;"><span style="top:-1.6499900000000003em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎠</span></span></span><span style="top:-2.805em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎟</span></span></span><span style="top:-3.4050100000000003em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎟</span></span></span><span style="top:-4.65003em;"><span class="pstrut" style="height:3.1550000000000002em;"></span><span class="delimsizinginner delim-size4"><span>⎞</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:2.15003em;"><span></span></span></span></span></span></span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:2.8812609999999994em;"><span style="top:-5.10293em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.13889em;">T</span></span></span></span></span></span></span></span></span></span></span></span></span></p>
+</li>
+<li class="lvl-4">
+<p>其中 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>T</mi></mrow><annotation encoding="application/x-tex">T</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">T</span></span></span></span> 是 Transpose（转置）的首字母</p>
+</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>为什么偏爱列向量</p>
+<ul class="lvl-2">
+<li class="lvl-4">对于「将映射 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi></mrow><annotation encoding="application/x-tex">f</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span></span></span></span> 作用于 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>」的操作，一般人会写成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(x)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">x</span><span class="mclose">)</span></span></span></span></li>
+<li class="lvl-4">对于「将矩阵 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span>（所表示的线性映射）作用于向量 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span>」的操作，用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mi>x</mi></mrow><annotation encoding="application/x-tex">Ax</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord mathdefault">x</span></span></span></span> 表示</li>
+<li class="lvl-4">如果这里的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi></mrow><annotation encoding="application/x-tex">x</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">x</span></span></span></span> 是行向量，结果就变成了 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>x</mi><mi>A</mi></mrow><annotation encoding="application/x-tex">xA</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">x</span><span class="mord mathdefault">A</span></span></span></span> —— 先对象后操作的写法，不太符合一般人的思维</li>
+<li class="lvl-4">面向对象程序设计的读者，相比 <code>f(x)</code> 来说，说不准会觉得 <code>x.f</code> 的写法更加自然</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>一个应用场景</p>
+<ul class="lvl-2">
+<li class="lvl-4">一个搭载了 10 个传感器的机器人观测到了 10 组数据，当想要把它们作为一个整体来处理时，向量就派上用场了</li>
+</ul>
+</li>
+</ul>
+<h2 id="空间的形象"><a class="markdownIt-Anchor" href="#空间的形象"></a> 「空间」的形象</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>什么是空间</p>
+<ul class="lvl-2">
+<li class="lvl-4">直觉上，空间是「能容纳物体的容器」</li>
+<li class="lvl-4">1 维的空间是一条线，2 维是平面，3 维是立体</li>
+<li class="lvl-4">更高维的空间无法直接想象，但有办法构造出来</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>构造 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 维空间</p>
+<ul class="lvl-2">
+<li class="lvl-4">用 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个数来指定一个点的位置，这 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个数就是坐标</li>
+<li class="lvl-4">关键在于「坐标」这个概念：坐标一旦给定，点就唯一确定了</li>
+<li class="lvl-4">在 2 维平面上，每个点由 2 个数指定；在 3 维空间中，每个点由 3 个数指定</li>
+</ul>
+</li>
+</ul>
+<h2 id="基底"><a class="markdownIt-Anchor" href="#基底"></a> 基底</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>为什么要基底</p>
+<ul class="lvl-2">
+<li class="lvl-4">有了坐标就能描述点的位置，但「坐标本身」依赖于用什么来度量</li>
+<li class="lvl-4">同一个物理位置，在不同的坐标下是不同的数值</li>
+<li class="lvl-4">基底就是一组「用来造坐标的基准」</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>基底的定义</p>
+<ul class="lvl-2">
+<li class="lvl-4">一组向量，如果它们能「撑起」整个空间，就称为这组向量构成该空间的一个<strong>基底</strong></li>
+<li class="lvl-4">构成基底的条件（1.1.4）：
+<ul class="lvl-4">
+<li class="lvl-6">线性无关 —— 不能由其他向量线性组合得到</li>
+<li class="lvl-6">张成整个空间 —— 空间里的任何向量都能由它们线性组合得到</li>
+</ul>
+</li>
+<li class="lvl-4">基底不唯一，但只要选定一个，空间里的每个向量就有唯一的表示</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>维数</p>
+<ul class="lvl-2">
+<li class="lvl-4">基底里向量的个数，称为这个空间的<strong>维数</strong></li>
+<li class="lvl-4">2 维空间维数为 2，3 维空间维数为 3</li>
+<li class="lvl-4"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 维空间的基底含 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 个向量</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>坐标</p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>有了基底，向量就能唯一分解成基底的线性组合</p>
+</li>
+<li class="lvl-4">
+<p>各个系数就是这个向量在这组基底下的坐标</p>
+</li>
+<li class="lvl-4">
+<p>用 Ruby 验证：向量在标准基底和另一组基底下的坐标</p>
+<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="comment">#ruby</span></span><br><span class="line"><span class="comment"># 向量 v = (2, 5)，在标准基底下的坐标就是它自己</span></span><br><span class="line">v = [<span class="number">2.0</span>, <span class="number">5.0</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># 换一组基底：b1 = (1, 0), b2 = (1, 1)</span></span><br><span class="line"><span class="comment"># 解 c1*b1 + c2*b2 = v，即 c1 + c2 = 2, c2 = 5</span></span><br><span class="line">b1 = [<span class="number">1.0</span>, <span class="number">0.0</span>]</span><br><span class="line">b2 = [<span class="number">1.0</span>, <span class="number">1.0</span>]</span><br><span class="line"><span class="comment"># 由 c2 = v[1]，c1 = v[0] - c2</span></span><br><span class="line">c2 = v[<span class="number">1</span>]</span><br><span class="line">c1 = v[<span class="number">0</span>] - c2</span><br><span class="line">coords = [c1, c2]</span><br><span class="line"></span><br><span class="line">puts <span class="string">&quot;坐标: <span class="subst">#&#123;coords&#125;</span>&quot;</span>                        <span class="comment"># 坐标: [-3.0, 5.0]</span></span><br><span class="line"><span class="comment"># 还原：c1*b1 + c2*b2 应该等于 v</span></span><br><span class="line">restored = <span class="number">2</span>.times.map &#123; |<span class="params">j</span>| coords[<span class="number">0</span>] * b1[j] + coords[<span class="number">1</span>] * b2[j] &#125;</span><br><span class="line">puts <span class="string">&quot;还原: <span class="subst">#&#123;restored&#125;</span>&quot;</span>                      <span class="comment"># 还原: [2.0, 5.0]</span></span><br><span class="line">puts <span class="string">&quot;与原向量相等? <span class="subst">#&#123;restored == v&#125;</span>&quot;</span>          <span class="comment"># 与原向量相等? true</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 标准基底下的坐标</span></span><br><span class="line">puts <span class="string">&quot;标准基底坐标: <span class="subst">#&#123;v&#125;</span>&quot;</span>                     <span class="comment"># 标准基底坐标: [2.0, 5.0]</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>线性代数</tag>
+        <tag>向量</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记0-《程序员的数学》进制与指数法则</title>
     <url>/%E5%AD%A6%E4%B9%A0/752254673.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="学习列表"><a class="markdownIt-Anchor" href="#学习列表"></a> 学习列表:</h2>
@@ -7207,12 +7370,12 @@ section 运维阶段
     <title>路</title>
     <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-        <div id="aplayer-mIAdrbXM" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-yguMITKx" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-mIAdrbXM"),
+            element: document.getElementById("aplayer-yguMITKx"),
             narrow: false,
             autoplay: true,
             showlrc: false,
