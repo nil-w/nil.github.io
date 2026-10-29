@@ -56,7 +56,7 @@
   <meta property="og:image:height" content="630">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-03-11T01:30:48.000Z">
-<meta property="article:modified_time" content="2026-10-17T14:19:03.720Z">
+<meta property="article:modified_time" content="2026-10-29T07:56:29.184Z">
 <meta property="article:author" content="Nil W">
 <meta property="article:tag" content="cargo">
 <meta property="article:tag" content="rustc">
@@ -75,7 +75,7 @@
     "@type": "BlogPosting",
     "headline": "rust入门",
     "datePublished": "2024-03-11T01:30:48.000Z",
-    "dateModified": "2026-10-17T14:19:03.720Z",
+    "dateModified": "2026-10-29T07:56:29.184Z",
     "author": {
       "@type": "Person",
       "name": "Nil W",
@@ -327,6 +327,47 @@
 <blockquote>
 <p><em>slice</em> 允许你引用集合中一段连续的元素序列，而不用引用整个集合。slice 是一种引用，所以它没有所有权。</p>
 </blockquote>
+<p>先看一个需求：写一个函数，接受由空格分隔的字符串，返回第一个单词。如果没有找到空格，整个字符串就是一个单词，要全部返回。</p>
+<p>不用 slice 时的签名：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">first_word</span>(s: &amp;<span class="type">String</span>) <span class="punctuation">-&gt;</span> ?</span><br></pre></td></tr></table></figure>
+<p>参数是 <code>&amp;String</code>，不需要所有权，这没问题。但返回值该是什么？没没有办法表示「字符串的一部分」。只能返回空格所在的字节下标：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">first_word</span>(s: &amp;<span class="type">String</span>) <span class="punctuation">-&gt;</span> <span class="type">usize</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">bytes</span> = s.<span class="title function_ invoke__">as_bytes</span>();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (i, &amp;item) <span class="keyword">in</span> bytes.<span class="title function_ invoke__">iter</span>().<span class="title function_ invoke__">enumerate</span>() &#123;</span><br><span class="line">        <span class="keyword">if</span> item == <span class="string">b&#x27; &#x27;</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> i;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    s.<span class="title function_ invoke__">len</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>as_bytes</code> 把 <code>String</code> 转成字节数组，<code>iter</code> 返回迭代器，<code>enumerate</code> 把每个元素包成「下标 + 元素引用」的元组 —— 用模式解构出来，比自己算下标方便。</p>
+<p>但返回下标很别扭，调用方还得自己再切片一次。slice 直接返回「一部分」：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">first_word</span>(s: &amp;<span class="type">str</span>) <span class="punctuation">-&gt;</span> &amp;<span class="type">str</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> (i, &amp;item) <span class="keyword">in</span> s.<span class="title function_ invoke__">as_bytes</span>().<span class="title function_ invoke__">iter</span>().<span class="title function_ invoke__">enumerate</span>() &#123;</span><br><span class="line">        <span class="keyword">if</span> item == <span class="string">b&#x27; &#x27;</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> &amp;s[<span class="number">0</span>..i];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    s</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>注意返回值的生命周期是<strong>省略</strong>的。编译器根据规则推断：</p>
+<ol>
+<li class="lvl-3">
+<p>只有一个输入生命周期参数时（<code>&amp;self</code> 除外），这个生命周期被赋给所有输出生命周期参数</p>
+</li>
+<li class="lvl-3">
+<p>方法有 <code>&amp;self</code> 时，输出生命周期等于 <code>self</code> 的生命周期</p>
+</li>
+</ol>
+<p>这里 <code>s: &amp;str</code> 有唯一输入生命周期，所以 <code>-&gt; &amp;str</code> 的生命周期就是 <code>s</code> 的。</p>
+<p>字符串切片和数组切片是同一套东西：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">a</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">slice</span> = &amp;a[<span class="number">1</span>..<span class="number">3</span>];   <span class="comment">// 包含 a[1] 和 a[2]，不含 a[3]</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, slice);   <span class="comment">// [2, 3]</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>范围语法 <code>&amp;a[1..3]</code>：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>..</code> 是 <code>0..</code></p>
+</li>
+<li class="lvl-2">
+<p><code>..3</code> 是 <code>0..3</code></p>
+</li>
+<li class="lvl-2">
+<p><code>1..</code> 是 <code>1..len</code></p>
+</li>
+<li class="lvl-2">
+<p><code>1..3</code> 不含右端点</p>
+</li>
+</ul>
+<p>数组切片是编译期定长且连续存储，<strong>越界会 panic</strong>：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">a</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">slice</span> = &amp;a[<span class="number">1</span>..<span class="number">3</span>];</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, slice);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">a</span> = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">slice</span> = &amp;a[<span class="number">1</span>..<span class="number">6</span>];   <span class="comment">// panic：range end index 6 out of range for slice of length 5</span></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, slice);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>字符串切片的边界要落在字符边界上，否则 panic：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">slice</span> = &amp;s[<span class="number">0</span>..<span class="number">2</span>];   <span class="comment">// 正常</span></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;slice&#125;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;你好&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">slice</span> = &amp;s[<span class="number">0</span>..<span class="number">1</span>];   <span class="comment">// panic：end byte index 1 is not a char boundary</span></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;slice&#125;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -426,7 +467,7 @@
 </div>
 
 
-<span class="post-count">63k</span>
+<span class="post-count">70.5k</span>
 
 <script type="text/javascript">
 
