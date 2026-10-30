@@ -10,6 +10,12 @@
 <% } %>
 <% if (pagination == 2){ %>
   <% if (index){ %>
+  <%# .site-intro 已停用。分类页顶部的站点标题/简介/分类导航块。
+      EJS 的单行注释标签不能跨多行、也不能含嵌套的 EJS 标签，
+      所以整块用 if(false) 包裹：内容不渲染、不进 HTML 源码。
+      恢复时把下面这行的 false 改成 true 即可。
+      样式残留在 themes/ascent/source/css/style.css 的 .site-intro 规则里，不影响其他页面。 %>
+  <% if (false) { %>
   <section class="site-intro">
     <% if ((page.current || 1) === 1){ %>
     <h1><%= config.title %> · <%= config.site_tagline || config.subtitle %></h1>
@@ -25,6 +31,7 @@
       <a href="<%= url_for('/archives/') %>">全部文章<span class="site-intro-count"><%= site.posts.length %></span></a>
     </nav>
   </section>
+  <% } %>
   <% } %>
   <div class="archive-body">
     <% var last; %>

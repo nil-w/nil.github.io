@@ -147,7 +147,10 @@ function applyCssBundle() {
   hexo.log.info('[seo] CSS 已合并为 bundle.css（' + (bundle.length / 1024).toFixed(1) + ' KB），处理页面 ' + touched + ' 个');
 }
 
-// generate 结束后写盘、以及 deploy 前各执行一次（幂等）
+// generate 结束后写盘时执行一次（after_generate 在所有文件落盘后触发）
+// deployBefore 保留：hexo deploy 会重新 generate，after_generate 已经跑过，
+// 但 deployBefore 再跑一次保证 deploy 拿到的是合并后的产物
+hexo.extend.filter.register('after_generate', applyCssBundle);
 hexo.on('exit', applyCssBundle);
 hexo.on('deployBefore', applyCssBundle);
 
