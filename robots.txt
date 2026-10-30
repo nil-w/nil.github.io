@@ -7,6 +7,19 @@ Allow: /tags/
 Allow: /resources/
 Disallow: /vendors/
 Disallow: /fancybox/
+# 第三方 JS 库目录：内含 README / package.json 等非内容文件，无需索引
+Disallow: /js/reveal.js/
+Disallow: /js/reveal.js-plugins/
+Disallow: /js/reveal.js-mermaid-plugin/
+Disallow: /js/revealjs-animated/
+
+# 演示文稿页与 reveal.js 库文件：非文章内容，无需索引
+Disallow: /slide/
+Disallow: /reveal.js/
+
+# 站点验证文件：非内容页，避免与首页 title 重复被收录
+Disallow: /baidu_verify_
+Disallow: /*.txt$
 
 Sitemap: https://nilw.rm-rf.ink/sitemap.xml
 Sitemap: https://nilw.rm-rf.ink/baidusitemap.xml

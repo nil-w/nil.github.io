@@ -1,620 +1,82 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
+<!DOCTYPE html><html lang="zh-CN"><head>
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https:; frame-src 'self' https://www.slideshare.net https://player.bilibili.com; media-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta charset="utf-8">
-  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-  <link rel="dns-prefetch" href="https://github.com" />
-  <link rel="dns-prefetch" href="https://unpkg.com" />
-  
-  <title>从 OpenClaw 迁移到 Hermes：我的实战记录 | Nil W</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
-  
-
-  
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
-    
-
-  
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
-    
-
-  
-    <link rel="mask-icon" href="{{ url_for(theme.favicon.safari_pinned_tab) }}" color="{{ theme.android_chrome_color }}">
-    
-
-  
-<link rel="stylesheet" href="/css/style.css">
-
-  
-<link rel="stylesheet" href="/css/search.css">
-
-  
-<link rel="stylesheet" href="/css/katex.min.css">
-
-  
-<link rel="stylesheet" href="/css/googleapis.css">
-
-  
-    
-<link rel="stylesheet" href="/css/highlight.css">
-
-  
-  <meta name="description" content="从 OpenClaw 换到 Hermes Agent，迁移过程中遇到的问题、解决方案，以及两个平台记忆系统的真实对比">
-<meta property="og:type" content="article">
-<meta property="og:title" content="从 OpenClaw 迁移到 Hermes：我的实战记录">
-<meta property="og:url" content="https://nilw.rm-rf.ink/%E5%B7%A5%E4%BD%9C/5f9c1a2b.html">
-<meta property="og:site_name" content="Nil W">
-<meta property="og:description" content="从 OpenClaw 换到 Hermes Agent，迁移过程中遇到的问题、解决方案，以及两个平台记忆系统的真实对比">
-  <meta property="og:image" content="https://nilw.rm-rf.ink/images/og-default.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2026-05-01T14:30:00.000Z">
-<meta property="article:modified_time" content="2026-10-17T14:19:03.720Z">
-<meta property="article:author" content="Nil W">
-<meta property="article:tag" content="AI">
-<meta property="article:tag" content="Hermes Agent">
-<meta property="article:tag" content="OpenClaw">
-<meta property="article:tag" content="迁移">
-<meta property="article:tag" content="记忆系统">
-<meta name="twitter:card" content="summary">  
-  
-  <meta name="twitter:site" content="@nil-w" />
-  <meta name="twitter:creator" content="@nil-w" />
-  
-  <link rel="canonical" href="https://nilw.rm-rf.ink/工作/5f9c1a2b.html" />
-  
-  
-  <script type="application/ld+json">
+  <meta name="referrer" content="strict-origin-when-cross-origin"><meta charset="utf-8"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://github.com"><link rel="dns-prefetch" href="https://unpkg.com"><title>从 OpenClaw 迁移到 Hermes：我的实战记录 - Nil W</title><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="keywords" content="AI,Hermes Agent,OpenClaw,迁移,记忆系统,工作"><meta name="author" content="Nil W"><meta name="theme-color" content="#212121"><link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico"><link rel="mask-icon" href="/images/favicon.ico" color="#212121"><link rel="stylesheet" href="/css/katex.min.css"><meta name="description" content="从 OpenClaw 换到 Hermes Agent，迁移过程中遇到的问题、解决方案，以及两个平台记忆系统的真实对比"><meta property="og:type" content="article"><meta property="og:title" content="从 OpenClaw 迁移到 Hermes：我的实战记录"><meta property="og:url" content="https://nilw.rm-rf.ink/%E5%B7%A5%E4%BD%9C/5f9c1a2b.html"><meta property="og:site_name" content="Nil W"><meta property="og:description" content="从 OpenClaw 换到 Hermes Agent，迁移过程中遇到的问题、解决方案，以及两个平台记忆系统的真实对比"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://nilw.rm-rf.ink/images/og-default.png"><meta property="article:published_time" content="2026-05-01T14:30:00.000Z"><meta property="article:modified_time" content="2026-05-01T14:30:00.000Z"><meta property="article:author" content="Nil W"><meta property="article:tag" content="AI"><meta property="article:tag" content="Hermes Agent"><meta property="article:tag" content="OpenClaw"><meta property="article:tag" content="迁移"><meta property="article:tag" content="记忆系统"><meta name="twitter:image" content="https://nilw.rm-rf.ink/images/og-default.png"><meta name="twitter:creator" content="@nil-w"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@nil-w"><meta name="twitter:creator" content="@nil-w"><meta name="twitter:title" content="从 OpenClaw 迁移到 Hermes：我的实战记录 - Nil W"><meta name="twitter:description" content="从 OpenClaw 换到 Hermes Agent，迁移过程中遇到的问题、解决方案，以及两个平台记忆系统的真实对比"><meta name="twitter:image" content="https://nilw.rm-rf.ink/images/og-default.png"><link rel="canonical" href="https://nilw.rm-rf.ink/%E5%B7%A5%E4%BD%9C/5f9c1a2b.html"><script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": "从 OpenClaw 迁移到 Hermes：我的实战记录",
     "datePublished": "2026-05-01T14:30:00.000Z",
-    "dateModified": "2026-10-17T14:19:03.720Z",
+    "dateModified": "2026-05-01T14:30:00.000Z",
     "author": {
       "@type": "Person",
       "name": "Nil W",
-      "url": "https://nilw.rm-rf.ink"
+      "url": "https://nilw.rm-rf.ink/"
     },
     "publisher": {
       "@type": "Organization",
       "name": "Nil W",
-      "url": "https://nilw.rm-rf.ink"
+      "url": "https://nilw.rm-rf.ink/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nilw.rm-rf.ink/images/og-default.png",
+        "width": 1200,
+        "height": 630
+      }
     },
     "description": "从 OpenClaw 换到 Hermes Agent，迁移过程中遇到的问题、解决方案，以及两个平台记忆系统的真实对比",
-    "url": "https://nilw.rm-rf.ink/工作/5f9c1a2b.html",
-    "image": "https://nilw.rm-rf.ink/images/og-default.png",
-    "inLanguage": "zh-CN",
+    "image": [
+      "https://nilw.rm-rf.ink/images/og-default.png"
+    ],
+    "url": "https://nilw.rm-rf.ink/%E5%B7%A5%E4%BD%9C/5f9c1a2b.html",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://nilw.rm-rf.ink/工作/5f9c1a2b.html"
-    }
+      "@id": "https://nilw.rm-rf.ink/%E5%B7%A5%E4%BD%9C/5f9c1a2b.html"
+    },
+    "inLanguage": "zh-CN",
+    "wordCount": 1071,
+    "articleSection": "工作",
+    "keywords": "AI,Hermes Agent,OpenClaw,迁移,记忆系统"
   }
-  </script>
-  
-  
-<link rel="stylesheet" href="/css/reveal.css">
-
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Nil W" type="application/atom+xml">
-</head>
-
-
-  <body>
-    <div id="wrapper">
-        <div id="content">
-          <article id="post-从-OpenClaw-迁移到-Hermes-实战记录" class="article article-type-post" itemprop="blogPost" itemscope>
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="headline name">
-      从 OpenClaw 迁移到 Hermes：我的实战记录&nbsp;&nbsp;
-    </h1>
-  
-
-
-        <div class="article-meta">
-          <time class="article-date" datetime="2026-05-01T14:30:00.000Z" itemprop="datePublished">2026.05.01 22:30 晚上</time>
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-          <div id="toc" class="toc-article">
-    <div class="toc-title">目录</div>
-    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%8D%A2"><span class="toc-text"> 为什么要换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%81%E7%A7%BB%E4%BA%86%E4%BB%80%E4%B9%88"><span class="toc-text"> 迁移了什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%B0%E5%BF%86%E6%96%87%E4%BB%B6"><span class="toc-text"> 记忆文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#skill"><span class="toc-text"> Skill</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-text"> 配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hermes-%E7%9A%84%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84"><span class="toc-text"> Hermes 的记忆系统是什么样的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%81%E7%A7%BB%E5%90%8E%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text"> 迁移后遇到的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A4%E4%B8%AA%E5%B9%B3%E5%8F%B0%E7%9A%84%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F%E5%AF%B9%E6%AF%94"><span class="toc-text"> 两个平台的记忆系统对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%81%E7%A7%BB%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-text"> 迁移流程图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91"><span class="toc-text"> 踩过的坑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text"> 总结</span></a></li></ol>
-</div>
-
-      
-        <h2 id="为什么要换"><a class="markdownIt-Anchor" href="#为什么要换"></a> 为什么要换</h2>
-<p>用 OpenClaw 一段时间后，有几个问题实在忍不了。</p>
-<p>任务一多，换个 session 上下文就没了。调试时想找之前的思路，找不到；换个方式问同样的问题，AI 给的答案和上次完全不一样。记忆管理基本靠手功——key 命名看心情，同一条信息被存三五份是常事。</p>
-<p>换 Hermes 的原因就一个：<strong>它真的能记住上下文，跨 session 不会断。</strong></p>
-<h2 id="迁移了什么"><a class="markdownIt-Anchor" href="#迁移了什么"></a> 迁移了什么</h2>
-<h3 id="记忆文件"><a class="markdownIt-Anchor" href="#记忆文件"></a> 记忆文件</h3>
-<p>OpenClaw workspace 里有几个核心文件：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><code>SOUL.md</code> — 人设/性格设定</p>
-</li>
-<li class="lvl-2">
-<p><code>AGENTS.md</code> — 工作指令集</p>
-</li>
-<li class="lvl-2">
-<p><code>MEMORY.md</code> — 长期记忆</p>
-</li>
-<li class="lvl-2">
-<p><code>USER.md</code> — 用户信息</p>
-</li>
-</ul>
-<p>迁移之后分散到了不同位置：<code>SOUL.md</code> 进了 <code>~/.hermes/SOUL.md</code>，<code>AGENTS.md</code> 要手动指定目标路径，<code>MEMORY.md</code> 和 <code>USER.md</code> 解析后写入了 <code>~/.hermes/memories/</code>。</p>
-<p><code>hermes claw migrate</code> 可以自动迁移，但默认是 <code>--dry-run</code> 只预览不执行，别漏了这个参数。</p>
-<h3 id="skill"><a class="markdownIt-Anchor" href="#skill"></a> Skill</h3>
-<p>OpenClaw 的 skill 和 Hermes 不完全兼容。迁移之后要重装，部分自定义 skill 要么重新写，要么直接放弃。</p>
-<h3 id="配置"><a class="markdownIt-Anchor" href="#配置"></a> 配置</h3>
-<p>OpenClaw 的 <code>openclaw.json</code> 里存储了 API keys 和各种配置项。迁移时这些配置默认会保留，但建议迁移完之后仔细核对一遍，特别是 API 相关的配置。</p>
-<h2 id="hermes-的记忆系统是什么样的"><a class="markdownIt-Anchor" href="#hermes-的记忆系统是什么样的"></a> Hermes 的记忆系统是什么样的</h2>
-<p>Hermes 内置记忆分三层：</p>
-<p><strong>短期记忆</strong> 通过 system prompt 注入，受 token 限制，大概 2200 字符。<strong>用户 Profile</strong> 存在 <code>~/.hermes/memories/USER.md</code>，以 <code>§</code> 分隔条目。<strong>长期记忆</strong>是内置记忆的主力，key-value 读写，支持跨 session 持久化。</p>
-<p>比 OpenClaw 强不少，但还有问题：读取依赖精确 key，自然语言描述一变就匹配不上。所以我又接了 MemPalace 做语义记忆层，专门解决这个问题。</p>
-<h2 id="迁移后遇到的问题"><a class="markdownIt-Anchor" href="#迁移后遇到的问题"></a> 迁移后遇到的问题</h2>
-<p><strong>记忆丢失</strong>是第一个坎。新系统对之前的项目上下文一无所知，要手动把 <a target="_blank" rel="noopener" href="http://MEMORY.md">MEMORY.md</a> 迁移过来，重新建立记忆规范。这个工作量不小，之前积累的那些碎片知识大部分要重新喂一遍。</p>
-<p><strong>Skill 兼容性</strong>是第二个。有些在 OpenClaw 上跑得好好的自定义 skill，Hermes 上面直接废掉了。不是语法问题，是整个运行环境不一样。</p>
-<p><strong>配置不一致</strong>是第三个。迁移工具保留了大部分配置，但路径相关的设置还是要自己过一遍。</p>
-<h2 id="两个平台的记忆系统对比"><a class="markdownIt-Anchor" href="#两个平台的记忆系统对比"></a> 两个平台的记忆系统对比</h2>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>OpenClaw</th>
-<th>Hermes</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>记忆持久化</td>
-<td>文件为主，session 之间不共享</td>
-<td>key-value，支持跨 session</td>
-</tr>
-<tr>
-<td>语义搜索</td>
-<td>无</td>
-<td>无（需借助外部插件）</td>
-</tr>
-<tr>
-<td>记忆容量</td>
-<td>受文件大小限制</td>
-<td>受 token 限制，约 2200 字符</td>
-</tr>
-<tr>
-<td>迁移工具</td>
-<td><code>hermes claw migrate</code></td>
-<td>内置，支持预览</td>
-</tr>
-<tr>
-<td>Skill 生态</td>
-<td>独立体系</td>
-<td>Hermes 专属</td>
-</tr>
-</tbody>
-</table>
-<h2 id="迁移流程图"><a class="markdownIt-Anchor" href="#迁移流程图"></a> 迁移流程图</h2>
-<pre class="mermaid">graph LR
+  </script><script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "首页",
+        "item": "https://nilw.rm-rf.ink/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "工作",
+        "item": "https://nilw.rm-rf.ink/categories/%E5%B7%A5%E4%BD%9C/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "从 OpenClaw 迁移到 Hermes：我的实战记录",
+        "item": "https://nilw.rm-rf.ink/%E5%B7%A5%E4%BD%9C/5f9c1a2b.html"
+      }
+    ]
+  }
+  </script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Nil W" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/bundle.css">
+</head><body><div id="wrapper"><div id="content"><article id="post-从-OpenClaw-迁移到-Hermes-实战记录" class="article article-type-post" itemprop="blogPost" itemscope><div class="article-inner"><header class="article-header"><h1 class="article-title" itemprop="headline name">从 OpenClaw 迁移到 Hermes：我的实战记录&nbsp;&nbsp;</h1><div class="article-meta"><time class="article-date" datetime="2026-05-01T14:30:00.000Z" itemprop="datePublished">2026.05.01 22:30 晚上</time></div></header><div class="article-entry" itemprop="articleBody"><div id="toc" class="toc-article"><div class="toc-title">目录</div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E8%A6%81%E6%8D%A2"><span class="toc-text">为什么要换</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%81%E7%A7%BB%E4%BA%86%E4%BB%80%E4%B9%88"><span class="toc-text">迁移了什么</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%B0%E5%BF%86%E6%96%87%E4%BB%B6"><span class="toc-text">记忆文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#skill"><span class="toc-text">Skill</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-text">配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#hermes-%E7%9A%84%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F%E6%98%AF%E4%BB%80%E4%B9%88%E6%A0%B7%E7%9A%84"><span class="toc-text">Hermes 的记忆系统是什么样的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%81%E7%A7%BB%E5%90%8E%E9%81%87%E5%88%B0%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-text">迁移后遇到的问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%A4%E4%B8%AA%E5%B9%B3%E5%8F%B0%E7%9A%84%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F%E5%AF%B9%E6%AF%94"><span class="toc-text">两个平台的记忆系统对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%81%E7%A7%BB%E6%B5%81%E7%A8%8B%E5%9B%BE"><span class="toc-text">迁移流程图</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%B8%A9%E8%BF%87%E7%9A%84%E5%9D%91"><span class="toc-text">踩过的坑</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-text">总结</span></a></li></ol></div><h2 id="为什么要换"><a class="markdownIt-Anchor" href="#为什么要换"></a> 为什么要换</h2><p>用 OpenClaw 一段时间后，有几个问题实在忍不了。</p><p>任务一多，换个 session 上下文就没了。调试时想找之前的思路，找不到；换个方式问同样的问题，AI 给的答案和上次完全不一样。记忆管理基本靠手功——key 命名看心情，同一条信息被存三五份是常事。</p><p>换 Hermes 的原因就一个：<strong>它真的能记住上下文，跨 session 不会断。</strong></p><h2 id="迁移了什么"><a class="markdownIt-Anchor" href="#迁移了什么"></a> 迁移了什么</h2><h3 id="记忆文件"><a class="markdownIt-Anchor" href="#记忆文件"></a> 记忆文件</h3><p>OpenClaw workspace 里有几个核心文件：</p><ul class="lvl-0"><li class="lvl-2"><p><code>SOUL.md</code> — 人设/性格设定</p></li><li class="lvl-2"><p><code>AGENTS.md</code> — 工作指令集</p></li><li class="lvl-2"><p><code>MEMORY.md</code> — 长期记忆</p></li><li class="lvl-2"><p><code>USER.md</code> — 用户信息</p></li></ul><p>迁移之后分散到了不同位置：<code>SOUL.md</code> 进了 <code>~/.hermes/SOUL.md</code>，<code>AGENTS.md</code> 要手动指定目标路径，<code>MEMORY.md</code> 和 <code>USER.md</code> 解析后写入了 <code>~/.hermes/memories/</code>。</p><p><code>hermes claw migrate</code> 可以自动迁移，但默认是 <code>--dry-run</code> 只预览不执行，别漏了这个参数。</p><h3 id="skill"><a class="markdownIt-Anchor" href="#skill"></a> Skill</h3><p>OpenClaw 的 skill 和 Hermes 不完全兼容。迁移之后要重装，部分自定义 skill 要么重新写，要么直接放弃。</p><h3 id="配置"><a class="markdownIt-Anchor" href="#配置"></a> 配置</h3><p>OpenClaw 的 <code>openclaw.json</code> 里存储了 API keys 和各种配置项。迁移时这些配置默认会保留，但建议迁移完之后仔细核对一遍，特别是 API 相关的配置。</p><h2 id="hermes-的记忆系统是什么样的"><a class="markdownIt-Anchor" href="#hermes-的记忆系统是什么样的"></a> Hermes 的记忆系统是什么样的</h2><p>Hermes 内置记忆分三层：</p><p><strong>短期记忆</strong> 通过 system prompt 注入，受 token 限制，大概 2200 字符。<strong>用户 Profile</strong> 存在 <code>~/.hermes/memories/USER.md</code>，以 <code>§</code> 分隔条目。<strong>长期记忆</strong>是内置记忆的主力，key-value 读写，支持跨 session 持久化。</p><p>比 OpenClaw 强不少，但还有问题：读取依赖精确 key，自然语言描述一变就匹配不上。所以我又接了 MemPalace 做语义记忆层，专门解决这个问题。</p><h2 id="迁移后遇到的问题"><a class="markdownIt-Anchor" href="#迁移后遇到的问题"></a> 迁移后遇到的问题</h2><p><strong>记忆丢失</strong>是第一个坎。新系统对之前的项目上下文一无所知，要手动把 <a target="_blank" rel="noopener" href="http://MEMORY.md">MEMORY.md</a> 迁移过来，重新建立记忆规范。这个工作量不小，之前积累的那些碎片知识大部分要重新喂一遍。</p><p><strong>Skill 兼容性</strong>是第二个。有些在 OpenClaw 上跑得好好的自定义 skill，Hermes 上面直接废掉了。不是语法问题，是整个运行环境不一样。</p><p><strong>配置不一致</strong>是第三个。迁移工具保留了大部分配置，但路径相关的设置还是要自己过一遍。</p><h2 id="两个平台的记忆系统对比"><a class="markdownIt-Anchor" href="#两个平台的记忆系统对比"></a> 两个平台的记忆系统对比</h2><table><thead><tr><th></th><th>OpenClaw</th><th>Hermes</th></tr></thead><tbody><tr><td>记忆持久化</td><td>文件为主，session 之间不共享</td><td>key-value，支持跨 session</td></tr><tr><td>语义搜索</td><td>无</td><td>无（需借助外部插件）</td></tr><tr><td>记忆容量</td><td>受文件大小限制</td><td>受 token 限制，约 2200 字符</td></tr><tr><td>迁移工具</td><td><code>hermes claw migrate</code></td><td>内置，支持预览</td></tr><tr><td>Skill 生态</td><td>独立体系</td><td>Hermes 专属</td></tr></tbody></table><h2 id="迁移流程图"><a class="markdownIt-Anchor" href="#迁移流程图"></a> 迁移流程图</h2><pre class="mermaid">graph LR
     A[OpenClaw workspace] --> B{hermes claw migrate --dry-run}
     B -->|预览| C[确认文件清单]
     C --> D[执行迁移]
-    D --> E[SOUL.md<br/>~/.hermes/SOUL.md]
-    D --> F[AGENTS.md<br/>指定目标路径]
-    D --> G[MEMORY.md + USER.md<br/>~/.hermes/memories/]
-    D --> H[openclaw.json<br/>API keys 保留]
+    D --> E[SOUL.md<br>~/.hermes/SOUL.md]
+    D --> F[AGENTS.md<br>指定目标路径]
+    D --> G[MEMORY.md + USER.md<br>~/.hermes/memories/]
+    D --> H[openclaw.json<br>API keys 保留]
     E --> I[核对配置]
     F --> I
     G --> I
     H --> I
-    I --> J[接 MemPalace<br/>语义记忆层]
-    J --> K[完成]</pre>
-<h2 id="踩过的坑"><a class="markdownIt-Anchor" href="#踩过的坑"></a> 踩过的坑</h2>
-<p><strong>坑一：<a target="_blank" rel="noopener" href="http://AGENTS.md">AGENTS.md</a> 没指定路径就被跳过了。</strong> 第一次跑迁移命令，没加 <code>--workspace-target</code>，<a target="_blank" rel="noopener" href="http://AGENTS.md">AGENTS.md</a> 直接被跳过。直到发现 Agent 行为和之前不一样，才发现指令集根本没迁移过来。</p>
-<p><strong>坑二：Skill 迁移完之后路径全变了。</strong> OpenClaw 的 skill 放在 <code>~/.openclaw/skills/</code>，Hermes 在 <code>~/.hermes/skills/</code>。脚本不负责迁移 skill，重新安装花了不少时间。</p>
-<p><strong>坑三：Session 切换后记忆恢复慢。</strong> Hermes 虽然支持跨 session 记忆，但刚迁移完 Agent 对老项目完全没上下文。需要主动把之前 <a target="_blank" rel="noopener" href="http://MEMORY.md">MEMORY.md</a> 的内容通过 MemPalace 重建一遍，不是自动的。</p>
-<h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2>
-<p>从 OpenClaw 到 Hermes，最大的收获是记忆持久化和 session 管理。对需要长期跟踪任务、跨会话保持上下文的人来说，这步迁移值。但 Hermes 内置记忆仍有语义匹配的短板，建议配合 MemPalace 使用。</p>
-<p>迁移本身不算复杂，<code>hermes claw migrate</code> 能处理大部分文件迁移工作，主要工作量在 skill 重装和配置核对。</p>
-
-      
-    </div>
-    
-    
-    <div class="article-category">
-      
-        <a class="article-category-link" href="/categories/%E5%B7%A5%E4%BD%9C/">工作</a>
-
-        <b>&nbsp;:分类 </b>
-      
-      
-        <br/>
-      
-      
-        <a class="article-tag-none-link" href="/tags/AI/" rel="tag">AI</a>, <a class="article-tag-none-link" href="/tags/Hermes-Agent/" rel="tag">Hermes Agent</a>, <a class="article-tag-none-link" href="/tags/OpenClaw/" rel="tag">OpenClaw</a>, <a class="article-tag-none-link" href="/tags/%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F/" rel="tag">记忆系统</a>, <a class="article-tag-none-link" href="/tags/%E8%BF%81%E7%A7%BB/" rel="tag">迁移</a>
-
-        <b>
-          &nbsp;:标签
-        </b>
-      
-    </div>
-    
-    
-  </div>
-</article>
-
-  
-<nav id="article-nav" class="article-nav">
-  
-    <a href="/AI/46499b7b.html" id="article-nav-newer" class="article-nav-link-wrap newer">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          从零构建 Hermes Agent 记忆系统——memory-filtration-layer 迭代手记
-        
-      </div>
-    </a>
-  
-  
-    <a href="/%E5%B7%A5%E4%BD%9C/38291047.html" id="article-nav-older" class="article-nav-link-wrap older">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">
-        
-          改造 Hermes Agent 记忆系统：基于 MemPalace 的实践
-        
-      </div>
-    </a>
-  
-</nav>
-
-
-  
-
-
-
-
-        </div>
-        <header id="header">
-  <nav>
-    <div class="header-nav-links">
-      <a class="nav-link-first" href="/">Nil W</a>
-      <span class="nav-spacer"></span>
-      
-      
-        
-        <a class="nav-link" href="/archives">文章</a>
-      
-        
-          <span class="nav-spacer"> </span>
-        
-        <a class="nav-link" href="/categories">分类</a>
-      
-        
-          <span class="nav-spacer"> </span>
-        
-        <a class="nav-link" href="/about">关于我</a>
-      
-      
-    </div>
-    <div class="poem-wrap">
-      <p id="poem">加载中...</p>
-      <p id="info"/>
-    </div>
-  </nav>
-</header>
-
-    </div>
-    
-
-
-
-
-<div id="settings-container">
-  <div id="dark-mode"></div>
-  <div id="sans-font"></div>
-</div>
-
-
-<span class="post-count">77.5k</span>
-
-<script type="text/javascript">
-
-
-  let d = document,
-    r = d.documentElement.style,
-    f = r.setProperty.bind(r),
-    l = localStorage,
-    rawS = l.getItem('s'),
-    s = (rawS === '1' || rawS === '2') ? Number(rawS) : 0,
-    sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches,
-    m = d.getElementById("dark-mode"),
-    b = () => {
-      f('--bg-color', '#fafafa');
-      f('--code-bg-color', '#f4f4f4');
-      f('--text-color', '#212121');
-      f('--secondary-color', '#808080');
-      f('--tertiary-color', '#b0b0b0');
-      f('--link-color', '#b5c8cf');
-      f('--link-hover-color', '#618794');
-      f('--link-bg-color', '#dae4e7');
-      f('--selection-color', '#dae4e7');
-    },
-    c = () => {
-      f('--bg-color', '#212121');
-      f('--code-bg-color', '#292929');
-      f('--text-color', '#fff');
-      f('--secondary-color', '#c0c0c0');
-      f('--tertiary-color', '#6e6e6e');
-      f('--link-color', '#4d6b75');
-      f('--link-hover-color', '#96b1bb');
-      f('--link-bg-color', '#5d828e');
-      f('--selection-color', '#acc1c9');
-    },
-    o = d.getElementById("sans-font"),
-    e = () => {
-      f('--body-stack', '"Lora", "Georgia", "Times New Roman", serif');
-    },
-    g = () => {
-      f('--body-stack', '"Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');
-    },
-    applyTheme = () => {
-      if (s === 1) b();
-      else if (s === 2) c();
-      else (sysDark ? c() : b());
-    };
-  m.onclick = function(){
-    s = s === 2 ? 0 : s + 1;
-    l.setItem('s', s);
-    applyTheme();
-  };
-  o.onclick =function(){
-    if (n == 2) {
-      n = 1;
-      l.setItem('n', n);
-      g()
-    } else {
-      n = 2;
-      l.setItem('n', n);
-      e()
-    }
-  };
-  applyTheme();
-  if (!n) {
-    n = 2;
-    l.setItem('n', 2)
-  };
-  if (n == '1') {
-    g();
-  };
-  if (n == '2') {
-    e();
-  };
-</script>
-
-
-<script type="module">
-  // mermaid 9.4.3 → 12.2.0（9.x 有 7 个已知 CVE，且 9 已停止维护）
-  // 注意：v10 起废弃 mermaid.init()，改用 mermaid.run()
-  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@12.2.0/+esm";
-  let theme = localStorage.getItem("s");
-  mermaid.initialize({
-      startOnLoad: true,
-      logLevel: 'error',
-      securityLevel: 'strict',
-      theme: theme === '2' ? 'forest' : 'dark',
-    });
-  let mode = document.getElementById("dark-mode");
-   let arrayGraphs =  [];
-  let nodes = document.getElementsByClassName('mermaid')
-  for(let n of nodes){
-    arrayGraphs.push(n.innerHTML);
-  }
-
-  if (mode) mode.addEventListener("click",async ()=>{
-    theme = localStorage.getItem("s");
-    mermaid.initialize({
-      startOnLoad: true,
-      logLevel: 'error',
-      securityLevel: 'strict',
-      theme: theme === '2' ? 'forest' : 'dark',
-    });
-  for(let i = 0;i< nodes.length;i++){
-      let n =  nodes[i]
-      let id = `mermaid-${i}`
-      n.removeAttribute("data-processed");
-      n.setAttribute("id",`mermaid-${i}`)
-      n.replaceChildren();
-      n.innerHTML = arrayGraphs[i]
-      mermaid.run({ nodes: [n] })
-    }
-  },false);
-
-  // 加密文章解密后，hexo-blog-encrypt 把明文注入 DOM，
-  // 此时新出现的 .mermaid 不在初始 nodes 快照里 → 需补渲染一次。
-  // 注意：该插件用 window.dispatchEvent(new CustomEvent('hexo-blog-decrypt'))
-  // 派发（实测 v4.1.0），故必须监听 window；document 上冗余保留以兼容旧版。
-  const rerenderMermaid = () => {
-    const pending = Array.from(document.querySelectorAll('.mermaid:not([data-processed])'));
-    if (pending.length) {
-      mermaid.run({ nodes: pending }).catch(() => {});
-    }
-  };
-  window.addEventListener('hexo-blog-decrypt', rerenderMermaid);
-  document.addEventListener('hexo-blog-decrypt', rerenderMermaid);
-
-</script>
-
-
-
-<script src="/js/jquery.min.js" defer ></script>
-<script src="/js/jquery.qrcode.min.js" defer ></script>
-
-<script src="https://unpkg.com/reveal.js@5.2.1/dist/reveal.js" onerror="this.onerror=null;this.src='/js/reveal.js/js/reveal.js'" defer></script>
-<script src="https://unpkg.com/reveal.js-mermaid-plugin@11.15.0/plugin/mermaid/mermaid.js" onerror="this.onerror=null;this.src='/js/reveal.js-mermaid-plugin/plugin/mermaid/mermaid.js'" defer></script>
-
-<script type="module">
-  import qrcodeInit from '/js/qrcode.js'
-  qrcodeInit();
-</script>
-<script type="module">
-/***
- * 兼容不支持requestAnimationFrame的浏览器
- ***/
-window.requestAnimationFrame = (function () {
-  return window.requestAnimationFrame ||
-    window.webkitRequestAnimationFrame ||/* Safari 和 Chrome */
-    window.mozRequestAnimationFrame ||/* Firefox */
-    window.oRequestAnimationFrame      ||/* Opera */
-    window.msRequestAnimationFrame     ||/* IE 9 */
-    function (callback) {
-      window.setTimeout(callback, 6000 / 60)
-    }
-})();
-window.cancelAnimationFrame = (function () {
-  return window.cancelAnimationFrame ||
-    window.webkitCancelAnimationFrame ||
-    window.mozCancelAnimationFrame ||
-    window.oCancelAnimationFrame ||
-    window.msCancelAnimationFrame || clearTimeout
-})();
-</script>
-<script type="module">
-  /*诗*/
-if ($("div").hasClass("poem-wrap")) {
-            get_poem('#poem', '#info')
-}
-function get_poem(poem_ele, info_ele) {
-    var poem = document.querySelector(poem_ele);
-    var info = document.querySelector(info_ele);
-    var xhr = new XMLHttpRequest();
-    xhr.open('get', 'https://v2.jinrishici.com/one.json?client=browser-sdk/1.2');
-    xhr.withCredentials = true;
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-            var data = JSON.parse(xhr.responseText);
-            poem.innerHTML = data.data.content;
-            info.innerHTML = '[' + data.data.origin.dynasty + '] ' + data.data.origin.author + '《' + data.data.origin.title + '》';
-        }
-    };
-    xhr.send();
-}
-
-function modifySubmitBtn(){
-  var btn = $('.hbe-button');
-  var password = $('#hbePass');
-  if(btn.length > 0){
-    btn.text('重新输入密码')
-  }
-  if(password.length > 0){
-    password.attr('autocomplete','false')
-  }
-}
-modifySubmitBtn();
-
-function layoutTagCloud(){
-  // var list = $('.tagcloud a');
-  // var size = Math.round(Math.random() * 20);
-
-  // for(let i = 0;i< list.length;i++){
-  //       if(i % even == 0 ){
-  //         list[i].classList = `${list[i].classList} deg_90`
-  //       }
-  // }
-}
-
-function loopHover(){
-  var list = $('.tagcloud a');
-  var hover = $('.tagcloud a[class="tag-hover"]')
-  var next = Math.round(Math.random() * (list.length  - 1))
-
-  if(next < 0){
-    next = 0
-  }
-
-  if(next > list.length){
-    next = list.length - 1
-  }
-  if(list.length){
-    if(hover.length){
-      for(let i = 0;i< hover.length;i++){
-        hover[i].classList = ''
-      }
-    }
-    list[next].classList = 'tag-hover'
-  }
-}
-// layoutTagCloud();
-
-
-/**
- * 设置精度定时器
- * @param {function} 回调函数
- * @param {number}   延迟时间
- * @return {number}  定时器ID
- */
- function setIntervalPrecision(callback, delay) {
-  // 生成并记录定时器ID
-  let obj = window.interValPrecisionObj || (window.interValPrecisionObj = { num: 0 })
-  obj.num++
-  obj['n' + obj.num] = true
-  var intervalId = obj.num
-  // 开始时间
-  var startTime = +new Date()
-  // 已执行次数
-  var count = 0
-  // 延迟时间
-  delay = delay || 0
-
-
-  ;(function loop() {
-    // 定时器被清除，则终止
-    if (!obj['n' + intervalId]) return
-
-    // 满足条件执行回调
-    if (+new Date() > startTime + delay * (count + 1)) {
-      count++
-      callback(count)
-    }
-
-    window.requestAnimationFrame(loop)
-  })()
-
-  return intervalId
-}
-
-/**
- * 清除精度定时器
- * @param {number} 定时器ID
- */
-function clearIntervalPrecision(intervalId) {
-  if (window.interValPrecisionObj) {
-    window.cancelAnimationFrame('n' + intervalId)
-    delete window.interValPrecisionObj['n' + intervalId]
-  }
-}
-
-setIntervalPrecision(loopHover, 250)
-
-</script>
-
-  
-  
+    I --> J[接 MemPalace<br>语义记忆层]
+    J --> K[完成]</pre><h2 id="踩过的坑"><a class="markdownIt-Anchor" href="#踩过的坑"></a> 踩过的坑</h2><p><strong>坑一：<a target="_blank" rel="noopener" href="http://AGENTS.md">AGENTS.md</a> 没指定路径就被跳过了。</strong> 第一次跑迁移命令，没加 <code>--workspace-target</code>，<a target="_blank" rel="noopener" href="http://AGENTS.md">AGENTS.md</a> 直接被跳过。直到发现 Agent 行为和之前不一样，才发现指令集根本没迁移过来。</p><p><strong>坑二：Skill 迁移完之后路径全变了。</strong> OpenClaw 的 skill 放在 <code>~/.openclaw/skills/</code>，Hermes 在 <code>~/.hermes/skills/</code>。脚本不负责迁移 skill，重新安装花了不少时间。</p><p><strong>坑三：Session 切换后记忆恢复慢。</strong> Hermes 虽然支持跨 session 记忆，但刚迁移完 Agent 对老项目完全没上下文。需要主动把之前 <a target="_blank" rel="noopener" href="http://MEMORY.md">MEMORY.md</a> 的内容通过 MemPalace 重建一遍，不是自动的。</p><h2 id="总结"><a class="markdownIt-Anchor" href="#总结"></a> 总结</h2><p>从 OpenClaw 到 Hermes，最大的收获是记忆持久化和 session 管理。对需要长期跟踪任务、跨会话保持上下文的人来说，这步迁移值。但 Hermes 内置记忆仍有语义匹配的短板，建议配合 MemPalace 使用。</p><p>迁移本身不算复杂，<code>hermes claw migrate</code> 能处理大部分文件迁移工作，主要工作量在 skill 重装和配置核对。</p></div><div class="article-category"><a class="article-category-link" href="/categories/%E5%B7%A5%E4%BD%9C/">工作</a> <b>&nbsp;:分类</b><br><a class="article-tag-none-link" href="/tags/AI/" rel="tag">AI</a>, <a class="article-tag-none-link" href="/tags/Hermes-Agent/" rel="tag">Hermes Agent</a>, <a class="article-tag-none-link" href="/tags/OpenClaw/" rel="tag">OpenClaw</a>, <a class="article-tag-none-link" href="/tags/%E8%AE%B0%E5%BF%86%E7%B3%BB%E7%BB%9F/" rel="tag">记忆系统</a>, <a class="article-tag-none-link" href="/tags/%E8%BF%81%E7%A7%BB/" rel="tag">迁移</a> <b>&nbsp;:标签</b></div></div></article><nav id="article-nav" class="article-nav"><a href="/AI/46499b7b.html" id="article-nav-newer" class="article-nav-link-wrap newer"><strong class="article-nav-caption">上一篇</strong><div class="article-nav-title">从零构建 Hermes Agent 记忆系统——memory-filtration-layer 迭代手记</div></a><a href="/%E5%B7%A5%E4%BD%9C/38291047.html" id="article-nav-older" class="article-nav-link-wrap older"><strong class="article-nav-caption">下一篇</strong><div class="article-nav-title">改造 Hermes Agent 记忆系统：基于 MemPalace 的实践</div></a></nav></div><header id="header"><nav><div class="header-nav-links"><a class="nav-link-first" href="/">Nil W</a> <span class="nav-spacer"></span> <a class="nav-link" href="/archives">文章</a> <span class="nav-spacer"></span> <a class="nav-link" href="/categories">分类</a> <span class="nav-spacer"></span> <a class="nav-link" href="/about">关于我</a></div><div class="poem-wrap"><p id="poem">加载中...</p><p id="info"></div></nav></header></div><div id="settings-container"><div id="dark-mode"></div><div id="sans-font"></div></div><span class="post-count">77.5k</span><script type="text/javascript">let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,rawS=l.getItem("s"),s="1"===rawS||"2"===rawS?Number(rawS):0,sysDark=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,m=d.getElementById("dark-mode"),b=()=>{f("--bg-color","#fafafa"),f("--code-bg-color","#f4f4f4"),f("--text-color","#212121"),f("--secondary-color","#808080"),f("--tertiary-color","#b0b0b0"),f("--link-color","#b5c8cf"),f("--link-hover-color","#618794"),f("--link-bg-color","#dae4e7"),f("--selection-color","#dae4e7")},c=()=>{f("--bg-color","#212121"),f("--code-bg-color","#292929"),f("--text-color","#fff"),f("--secondary-color","#c0c0c0"),f("--tertiary-color","#6e6e6e"),f("--link-color","#4d6b75"),f("--link-hover-color","#96b1bb"),f("--link-bg-color","#5d828e"),f("--selection-color","#acc1c9")},o=d.getElementById("sans-font"),e=()=>{f("--body-stack",'"Lora", "Georgia", "Times New Roman", serif')},g=()=>{f("--body-stack",'"Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif')},applyTheme=()=>{1===s?b():2===s||sysDark?c():b()};m.onclick=function(){s=2===s?0:s+1,l.setItem("s",s),applyTheme()},o.onclick=function(){2==n?(n=1,l.setItem("n",n),g()):(n=2,l.setItem("n",n),e())},applyTheme(),n||(n=2,l.setItem("n",2)),"1"==n&&g(),"2"==n&&e()</script><script type="module">import mermaid from"https://cdn.jsdelivr.net/npm/mermaid@12.2.0/+esm";let theme=localStorage.getItem("s");mermaid.initialize({startOnLoad:!0,logLevel:"error",securityLevel:"strict",theme:"2"===theme?"forest":"dark"});let mode=document.getElementById("dark-mode"),arrayGraphs=[],nodes=document.getElementsByClassName("mermaid");for(let e of nodes)arrayGraphs.push(e.innerHTML);mode&&mode.addEventListener("click",async()=>{theme=localStorage.getItem("s"),mermaid.initialize({startOnLoad:!0,logLevel:"error",securityLevel:"strict",theme:"2"===theme?"forest":"dark"});for(let e=0;e<nodes.length;e++){let r=nodes[e];r.removeAttribute("data-processed"),r.setAttribute("id","mermaid-"+e),r.replaceChildren(),r.innerHTML=arrayGraphs[e],mermaid.run({nodes:[r]})}},!1);const rerenderMermaid=()=>{const e=Array.from(document.querySelectorAll(".mermaid:not([data-processed])"));e.length&&mermaid.run({nodes:e}).catch(()=>{})};window.addEventListener("hexo-blog-decrypt",rerenderMermaid),document.addEventListener("hexo-blog-decrypt",rerenderMermaid)</script><script src="/js/jquery.min.js" defer></script><script src="/js/jquery.qrcode.min.js" defer></script><script type="module">import qrcodeInit from"/js/qrcode.js";qrcodeInit()</script><script type="module">window.requestAnimationFrame=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||function(n){window.setTimeout(n,100)},window.cancelAnimationFrame=window.cancelAnimationFrame||window.webkitCancelAnimationFrame||window.mozCancelAnimationFrame||window.oCancelAnimationFrame||window.msCancelAnimationFrame||clearTimeout</script><script type="module">function get_poem(n,e){var t=document.querySelector(n),o=document.querySelector(e),i=new XMLHttpRequest;i.open("get","https://v2.jinrishici.com/one.json?client=browser-sdk/1.2"),i.withCredentials=!0,i.onreadystatechange=function(){if(4===i.readyState){var n=JSON.parse(i.responseText);t.innerHTML=n.data.content,o.innerHTML="["+n.data.origin.dynasty+"] "+n.data.origin.author+"《"+n.data.origin.title+"》"}},i.send()}function modifySubmitBtn(){var n=$(".hbe-button"),e=$("#hbePass");n.length>0&&n.text("重新输入密码"),e.length>0&&e.attr("autocomplete","false")}function layoutTagCloud(){}function loopHover(){var n=$(".tagcloud a"),e=$('.tagcloud a[class="tag-hover"]'),t=Math.round(Math.random()*(n.length-1));if(t<0&&(t=0),t>n.length&&(t=n.length-1),n.length){if(e.length)for(let n=0;n<e.length;n++)e[n].classList="";n[t].classList="tag-hover"}}function setIntervalPrecision(n,e){let t=window.interValPrecisionObj||(window.interValPrecisionObj={num:0});t.num++,t["n"+t.num]=!0;var o=t.num,i=+new Date,a=0;return e=e||0,function r(){t["n"+o]&&(+new Date>i+e*(a+1)&&(a++,n(a)),window.requestAnimationFrame(r))}(),o}function clearIntervalPrecision(n){window.interValPrecisionObj&&(window.cancelAnimationFrame("n"+n),delete window.interValPrecisionObj["n"+n])}$("div").hasClass("poem-wrap")&&get_poem("#poem","#info"),modifySubmitBtn(),setIntervalPrecision(loopHover,250)</script>
   <div id="beian-info" style="text-align:center;font-size:12px;line-height:1.9;color:#808080;padding:14px 12px 22px;opacity:.85;"><a href="https://beian.miit.gov.cn" target="_blank" rel="noopener nofollow nofollow">豫ICP备2023032045号-1</a></div>
-</body>
-
-</html>
+</body></html>

@@ -397,9 +397,9 @@
 <p>我的儿子叫冬冬，今天是五个月十天了。不瞒你们说，我和老婆都有过&quot;<s>是冬冬毁掉了我的生活</s>&quot;这样的想法。很长一段时间夜里没有好好睡过觉，做梦都是围绕着冬冬的情节，电影、美食、逛街…就是看个电视都是奢侈的。<br />
 每天要看着他拉的屎下饭，颜色不正会直接导致你吃不下饭，如果是拉稀你就别想着吃饭了。<br />
 说话要小声，走路要小声，就连呼吸都要思考着呼吸，“这样呼吸对吗？我是不是不该这样呼吸？”</p>
-<h1 id="w-t-f"><a class="markdownIt-Anchor" href="#w-t-f"></a> <s><em>“W T F !!!”</em></s></h1>
-<h1 id="完了完了完了"><a class="markdownIt-Anchor" href="#完了完了完了"></a> <s><em>“完了完了完了！！！”</em></s></h1>
-<h1 id="我的生活是不是就这样了"><a class="markdownIt-Anchor" href="#我的生活是不是就这样了"></a> <s><em>“我的生活是不是就这样了？”</em></s></h1>
+<h2 id="w-t-f"><a class="markdownIt-Anchor" href="#w-t-f"></a> <s><em>“W T F !!!”</em></s></h2>
+<h2 id="完了完了完了"><a class="markdownIt-Anchor" href="#完了完了完了"></a> <s><em>“完了完了完了！！！”</em></s></h2>
+<h2 id="我的生活是不是就这样了"><a class="markdownIt-Anchor" href="#我的生活是不是就这样了"></a> <s><em>“我的生活是不是就这样了？”</em></s></h2>
 <p>不是的，其实也有快乐的部分，每天早晨冬冬会冲着我们笑，看到漂亮的小妹妹小姐姐会笑，像天使一样，给了我们生活下去的勇气,</p>
 <p>如果因此你更加坚定做一个丁克。如果因此你害怕要孩子，那我只能祝福你们，<s>你们是对的！！！！</s> 你们还只是孩子。</p>
 <p>写完我也准备开始一天的<em>工作</em> 了，六一节快乐！</p>
@@ -689,7 +689,7 @@
 <p>​ 废话不多说。</p>
 <p>​ 为什么选择用 ruby，而不用 python 呢？</p>
 <p>​ 不为别的，就是顺手而已。</p>
-<h1 id="kimurai"><a class="markdownIt-Anchor" href="#kimurai"></a> kimurai</h1>
+<h2 id="kimurai"><a class="markdownIt-Anchor" href="#kimurai"></a> kimurai</h2>
 <blockquote>
 <p>Kimurai 是一个用 Ruby 实现的现代网络爬虫框架，和 <strong>Headless Chromium</strong> / <strong>Firefox</strong> 、<strong>PhantomJS</strong> 一样开箱即用，并且能够模拟**“用户”**访问抓取 javascript 交互的网站。</p>
 <p>Kimurai 基于 <strong><a href="https://github.com/teamcapybara/capybara">Capybara</a></strong> 和 <strong><a href="https://github.com/sparklemotion/nokogiri">Nokogir</a></strong> gems，所以你不必学习新的东西。</p>
@@ -723,7 +723,7 @@
       <tags>
         <tag>ruby</tag>
         <tag>爬虫</tag>
-        <tag>python</tag>
+        <tag>Python</tag>
         <tag>java</tag>
         <tag>kimurai</tag>
       </tags>
@@ -762,7 +762,7 @@
   <entry>
     <title>Cas Server 本地部署</title>
     <url>/Cas/6e8cb24c.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="cas"><a class="markdownIt-Anchor" href="#cas"></a> Cas</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="cas"><a class="markdownIt-Anchor" href="#cas"></a> Cas</h2>
 <blockquote>
 <p><strong><a href="https://github.com/apereo/cas">Cas</a></strong> 中心认证服务。Cas 是一种面向 Web 的企业级、多语言单点登录解决方案，它是满足身份验证和授权管理的综合平台</p>
 </blockquote>
@@ -797,12 +797,12 @@
   <entry>
     <title>nginx 负载均衡</title>
     <url>/nginx/59cc1bd2.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="nginx-是什么"><a class="markdownIt-Anchor" href="#nginx-是什么"></a> nginx 是什么？</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="nginx-是什么"><a class="markdownIt-Anchor" href="#nginx-是什么"></a> nginx 是什么？</h2>
 <span id="more"></span>
 <blockquote>
 <p>Nginx：Nginx (“engine x”) ，Nginx (“engine x”) 是俄罗斯人 Igor Sysoev(塞索耶夫)编写的一款高性能的 HTTP 和反向代理服务器。也是一个 IMAP/POP3/SMTP 代理服务器；也就是说，Nginx 本身就可以托管网站，进行 HTTP 服务处理，也可以作为反向代理服务器使用。</p>
 </blockquote>
-<h1 id="nginx-特点"><a class="markdownIt-Anchor" href="#nginx-特点"></a> nginx 特点</h1>
+<h2 id="nginx-特点"><a class="markdownIt-Anchor" href="#nginx-特点"></a> nginx 特点</h2>
 <blockquote>
 <ul class="lvl-1">
 <li class="lvl-2">
@@ -819,7 +819,7 @@
 </li>
 </ul>
 </blockquote>
-<h1 id="nginx-特性"><a class="markdownIt-Anchor" href="#nginx-特性"></a> nginx 特性</h1>
+<h2 id="nginx-特性"><a class="markdownIt-Anchor" href="#nginx-特性"></a> nginx 特性</h2>
 <p>master/worker 结构：一个 master 进程，生成一个或多个 worker 进程</p>
 <p>内存消耗小：处理大并发的请求内存消耗非常小。在 3 万并发连接下，开启的 10 个 Nginx 进程才消耗 150M 内存（15M*10=150M） 成本低廉：Nginx 为开源软件，可以免费使用。而购买 F5 BIG-IP、NetScaler 等硬件负载均衡交换机则需要十多万至几十万人民币</p>
 <p>内置的健康检查功能：如果 Nginx Proxy 后端的某台 Web 服务器宕机了，不会影响前端访问。</p>
@@ -830,7 +830,7 @@
 <p>3、发送响应报文时，是边接收来自后端 web 服务器的数据，边发送给客户端的</p>
 <p>4、网络依赖型低。NGINX 对网络的依赖程度非常低，理论上讲，只要能够 ping 通就可以实施负载均衡，而且可以有效区分内网和外网流量</p>
 <p>5、支持服务器检测。NGINX 能够根据应用服务器处理页面返回的状态码、超时信息等检测服务器是否出现故障，并及时返回错误的请求重新提交到其它节点上</p>
-<h1 id="nginx-配置"><a class="markdownIt-Anchor" href="#nginx-配置"></a> nginx 配置</h1>
+<h2 id="nginx-配置"><a class="markdownIt-Anchor" href="#nginx-配置"></a> nginx 配置</h2>
 <figure class="highlight nginx"><table><tr><td class="code"><pre><span class="line"><span class="section">upstream</span> www.blog.com &#123;</span><br><span class="line">    <span class="comment">#upstream的负载均衡，weight是权重，可以根据机器配置定义权重。weigth参数表示权值，权值越高被分配到的几率越大。</span></span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.80.121:80</span> weight=<span class="number">3</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.80.122:80</span> weight=<span class="number">2</span>;</span><br><span class="line">    <span class="attribute">server</span> <span class="number">192.168.80.123:80</span> weight=<span class="number">3</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 ]]></content>
       <categories>
@@ -1114,7 +1114,7 @@
   <entry>
     <title>从零构建 Hermes Agent 记忆系统——memory-filtration-layer 迭代手记</title>
     <url>/AI/46499b7b.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="从零构建-hermes-agent-记忆系统"><a class="markdownIt-Anchor" href="#从零构建-hermes-agent-记忆系统"></a> 从零构建 Hermes Agent 记忆系统</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="从零构建-hermes-agent-记忆系统"><a class="markdownIt-Anchor" href="#从零构建-hermes-agent-记忆系统"></a> 从零构建 Hermes Agent 记忆系统</h2>
 <h2 id="背景"><a class="markdownIt-Anchor" href="#背景"></a> 背景</h2>
 <p>在做 Hermes Agent 的记忆系统时，遇到了一个核心问题：</p>
 <blockquote>
@@ -1325,18 +1325,18 @@
         <category>AI</category>
       </categories>
       <tags>
+        <tag>Python</tag>
         <tag>AI</tag>
         <tag>Agent</tag>
-        <tag>Memory</tag>
-        <tag>Hermes</tag>
-        <tag>Python</tag>
+        <tag>memory</tag>
+        <tag>hermes</tag>
         <tag>MemPalace</tag>
       </tags>
   </entry>
   <entry>
     <title>改造 Hermes Memory Provider 的曲折历程</title>
     <url>/uncategorized/474c79ed.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="改造-hermes-memory-provider-的曲折历程"><a class="markdownIt-Anchor" href="#改造-hermes-memory-provider-的曲折历程"></a> 改造 Hermes Memory Provider 的曲折历程</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="改造-hermes-memory-provider-的曲折历程"><a class="markdownIt-Anchor" href="#改造-hermes-memory-provider-的曲折历程"></a> 改造 Hermes Memory Provider 的曲折历程</h2>
 <blockquote>
 <p>这不是一个讲&quot;正确答案&quot;的故事。这是一个讲&quot;如何一步步排除错误答案，直到看见本质&quot;的故事。</p>
 </blockquote>
@@ -1536,20 +1536,20 @@
 </ul>
 <p>下一步是接入 Hermes Agent 作为 Memory Provider，让记忆真正进入赫妹的工作流。</p>
 <hr />
-<p><strong>续篇</strong>：<a href="/mem-md-opensource.html">《mem-md 开源：一个反向量库的 Agent 记忆系统》</a></p>
+<p><strong>续篇</strong>：<a href="/uncategorized/mem-md-opensource.html">《mem-md 开源：一个反向量库的 Agent 记忆系统》</a></p>
 <p><em>文章使用 humanizer 润色，移除了 AI 写作的典型模式，保留个人思考痕迹。</em></p>
 ]]></content>
       <tags>
-        <tag>hermes</tag>
+        <tag>AI</tag>
         <tag>memory</tag>
-        <tag>ai</tag>
+        <tag>hermes</tag>
         <tag>architecture</tag>
       </tags>
   </entry>
   <entry>
     <title>mem-md 开源：一个反向量库的 Agent 记忆系统</title>
     <url>/uncategorized/mem-md-opensource.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="mem-md-开源一个反向量库的-agent-记忆系统"><a class="markdownIt-Anchor" href="#mem-md-开源一个反向量库的-agent-记忆系统"></a> mem-md 开源：一个反向量库的 Agent 记忆系统</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="mem-md-开源一个反向量库的-agent-记忆系统"><a class="markdownIt-Anchor" href="#mem-md-开源一个反向量库的-agent-记忆系统"></a> mem-md 开源：一个反向量库的 Agent 记忆系统</h2>
 <blockquote>
 <p>Markdown is all you need.</p>
 </blockquote>
@@ -1789,9 +1789,9 @@
 <strong>作者</strong>：nil <a href="mailto:yqwoe@live.cn">yqwoe@live.cn</a></p>
 ]]></content>
       <tags>
-        <tag>hermes</tag>
+        <tag>AI</tag>
         <tag>memory</tag>
-        <tag>ai</tag>
+        <tag>hermes</tag>
         <tag>architecture</tag>
         <tag>opensource</tag>
       </tags>
@@ -1799,7 +1799,7 @@
   <entry>
     <title>飞书真的能发表格吗？我赌它不能，然后输了</title>
     <url>/uncategorized/feishu-markdown-table-truth.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="飞书真的能发表格吗我赌它不能然后输了"><a class="markdownIt-Anchor" href="#飞书真的能发表格吗我赌它不能然后输了"></a> 飞书真的能发表格吗？我赌它不能，然后输了</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="飞书真的能发表格吗我赌它不能然后输了"><a class="markdownIt-Anchor" href="#飞书真的能发表格吗我赌它不能然后输了"></a> 飞书真的能发表格吗？我赌它不能，然后输了</h2>
 <p>三个月前我做了一个判断：飞书 IM v1 API 拒收 <code>&#123;tag:&quot;table&quot;&#125;</code>，会返 230001。</p>
 <p>这判断没有依据。可能是某次旧测试留下的印象，可能是从某个 issue 抄来的，可能就是猜的。但它在我脑子里生了根，长成了一棵树——一整套「飞书发表格 = 降级到纯文本 + 中文提示」的代码就围着它长起来。</p>
 <p>直到上周看到 chapafan 那个 200 行的方案。</p>
@@ -2280,7 +2280,7 @@
   <entry>
     <title>霍金的时间箭头，和我们要在黑暗里走多久</title>
     <url>/%E7%94%9F%E6%B4%BB/e8d63c15.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="霍金的时间箭头和我们要在黑暗里走多久"><a class="markdownIt-Anchor" href="#霍金的时间箭头和我们要在黑暗里走多久"></a> 霍金的时间箭头，和我们要在黑暗里走多久</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="霍金的时间箭头和我们要在黑暗里走多久"><a class="markdownIt-Anchor" href="#霍金的时间箭头和我们要在黑暗里走多久"></a> 霍金的时间箭头，和我们要在黑暗里走多久</h2>
 <blockquote>
 <p>我们对宇宙最初五分钟的理解也许是对的。</p>
 <p>—— 霍金《时间简史》</p>
@@ -2893,18 +2893,18 @@ section 运维阶段
   <entry>
     <title>搭建maven私库</title>
     <url>/%E5%B7%A5%E4%BD%9C/1406322052.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="1-docker-搭建maven私库"><a class="markdownIt-Anchor" href="#1-docker-搭建maven私库"></a> 1. docker 搭建maven私库</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="1-docker-搭建maven私库"><a class="markdownIt-Anchor" href="#1-docker-搭建maven私库"></a> 1. docker 搭建maven私库</h2>
 <span id="more"></span>
 <figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">docker run -d --name nexus -p 8081:8081 -d --restart always -u root --privileged=true -v ~/opt/nexus-data:/nexus-data sonatype/nexus3</span><br></pre></td></tr></table></figure>
 <figure class="highlight text"><table><tr><td class="code"><pre><span class="line">docker exec -it nexus //进入容器</span><br><span class="line">cd /nexus-data</span><br><span class="line">cat admin.password //复制密码</span><br></pre></td></tr></table></figure>
 <p>访问 <a href="http://ip:8081">http://ip:8081</a><br />
 修改密码后 admin.password自动删除</p>
-<h1 id="2-配置maven私库"><a class="markdownIt-Anchor" href="#2-配置maven私库"></a> 2. 配置maven私库</h1>
+<h2 id="2-配置maven私库"><a class="markdownIt-Anchor" href="#2-配置maven私库"></a> 2. 配置maven私库</h2>
 <h4 id="21添加-role"><a class="markdownIt-Anchor" href="#21添加-role"></a> 2.1添加 role</h4>
 <p>develop =&gt; nx-all</p>
 <h5 id="22-添加-user"><a class="markdownIt-Anchor" href="#22-添加-user"></a> 2.2 添加 user</h5>
 <p>developer =&gt; develop</p>
-<h1 id="3-插件开发环境配置"><a class="markdownIt-Anchor" href="#3-插件开发环境配置"></a> 3. 插件开发环境配置</h1>
+<h2 id="3-插件开发环境配置"><a class="markdownIt-Anchor" href="#3-插件开发环境配置"></a> 3. 插件开发环境配置</h2>
 <h4 id="31-mavensettingxml配置"><a class="markdownIt-Anchor" href="#31-mavensettingxml配置"></a> 3.1 maven/setting.xml配置</h4>
 <figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span>?&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">settings</span> <span class="attr">xmlns</span>=<span class="string">&quot;http://maven.apache.org/SETTINGS/1.0.0&quot;</span> <span class="attr">xmlns:xsi</span>=<span class="string">&quot;http://www.w3.org/2001/XMLSchema-instance&quot;</span> <span class="attr">xsi:schemaLocation</span>=<span class="string">&quot;http://maven.apache.org/SETTINGS/1.0.0 http://maven.apache.org/xsd/settings-1.0.0.xsd&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">servers</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">server</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>maven-public-gl<span class="tag">&lt;/<span class="name">id</span>&gt;</span> <span class="comment">&lt;!--对应pom.xml的id=maven-public-gl的仓库--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">username</span>&gt;</span>developer<span class="tag">&lt;/<span class="name">username</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">password</span>&gt;</span>Glrj@1234<span class="tag">&lt;/<span class="name">password</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">server</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">server</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>maven-releases-gl<span class="tag">&lt;/<span class="name">id</span>&gt;</span>  <span class="comment">&lt;!--对应pom.xml的id=maven-releases-gl的仓库--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">username</span>&gt;</span>developer<span class="tag">&lt;/<span class="name">username</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">password</span>&gt;</span>Glrj@1234<span class="tag">&lt;/<span class="name">password</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">server</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">server</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>maven-snapshots-gl<span class="tag">&lt;/<span class="name">id</span>&gt;</span> <span class="comment">&lt;!--对应pom.xml中id=maven-snapshots-gl的仓库--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">username</span>&gt;</span>developer<span class="tag">&lt;/<span class="name">username</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">password</span>&gt;</span>Glrj@1234<span class="tag">&lt;/<span class="name">password</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">server</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">servers</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">mirror</span>&gt;</span> <span class="comment">&lt;!--对应pom.xml中id=maven-public-gl的仓库--&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">id</span>&gt;</span>maven-public-gl<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">name</span>&gt;</span>GZ Repository Mirror.<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">url</span>&gt;</span>https://nexus.corebrew.net/repository/maven-public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">settings</span>&gt;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <h4 id="32-插件项目pomxml配置"><a class="markdownIt-Anchor" href="#32-插件项目pomxml配置"></a> 3.2 插件项目pom.xml配置</h4>
@@ -2943,11 +2943,11 @@ section 运维阶段
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>  <code>count()</code> 是<code>mysql</code>聚合函数，返回指定匹配条件的行数。开发中常用来统计表中数据，全部数据，不为null数据，或者去重数据。</p>
 <span id="more"></span>
 <figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 统计表中数据包括null</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="number">1</span>) <span class="keyword">from</span> zs_access_log;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 统计表中数据包括null</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="operator">*</span>) <span class="keyword">from</span> zs_access_log;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 统计表中指定列不为null的数据</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(id) <span class="keyword">from</span> zs_access_log;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 统计表中指定列去重不为null的数据</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="keyword">distinct</span> id) <span class="keyword">from</span> zs_access_log;</span><br></pre></td></tr></table></figure>
-<h1 id="1-背景"><a class="markdownIt-Anchor" href="#1-背景"></a> 1. 背景</h1>
+<h2 id="1-背景"><a class="markdownIt-Anchor" href="#1-背景"></a> 1. 背景</h2>
 <p>  生产环境使用 <code>mysql: 8.0.18 Innodb</code>，  <code>mybatis</code>分页查询由两次查询完成，第一次获取总的记录行数，再次获取具体分页数据。<br />
   以下查询可以看到<code>count</code>是存在性能问题的，接口的响应<code>&gt; 800ms</code>  <code>&lt; 4s</code>，但是该如何优化呢？</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(*) from zs_access_log;</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">|    37485 |</span><br><span class="line">+----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.53 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">select</span> * from zs_access_log  <span class="built_in">limit</span> 0,10;</span><br><span class="line">10 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="2-count性能对比"><a class="markdownIt-Anchor" href="#2-count性能对比"></a> 2. count性能对比</h1>
+<h2 id="2-count性能对比"><a class="markdownIt-Anchor" href="#2-count性能对比"></a> 2. count性能对比</h2>
 <p>​		对比 <code>count</code> 几种使用姿势，在<code>InnoDB</code>和<code>MyISAM</code>引擎的性能对比。</p>
 <figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; show engines;</span><br><span class="line">+--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</span><br><span class="line">| Engine             | Support | Comment                                                        | Transactions | XA   | Savepoints |</span><br><span class="line">+--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</span><br><span class="line">| FEDERATED          | NO      | Federated MySQL storage engine                                 | NULL         | NULL | NULL       |</span><br><span class="line">| MEMORY             | YES     | Hash based, stored <span class="keyword">in</span> memory, useful <span class="keyword">for</span> temporary tables      | NO           | NO   | NO         |</span><br><span class="line">| InnoDB             | DEFAULT | Supports transactions, row-level locking, and foreign keys     | YES          | YES  | YES        |</span><br><span class="line">| PERFORMANCE_SCHEMA | YES     | Performance Schema                                             | NO           | NO   | NO         |</span><br><span class="line">| MyISAM             | YES     | MyISAM storage engine                                          | NO           | NO   | NO         |</span><br><span class="line">| MRG_MYISAM         | YES     | Collection of identical MyISAM tables                          | NO           | NO   | NO         |</span><br><span class="line">| BLACKHOLE          | YES     | /dev/null storage engine (anything you write to it disappears) | NO           | NO   | NO         |</span><br><span class="line">| CSV                | YES     | CSV storage engine                                             | NO           | NO   | NO         |</span><br><span class="line">| ARCHIVE            | YES     | Archive storage engine                                         | NO           | NO   | NO         |</span><br><span class="line">+--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</span><br><span class="line">9 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
 <p>​		数据表 <code>zs_access_log</code> 和 <code>zs_access_log_myisam</code></p>
@@ -2971,7 +2971,7 @@ section 运维阶段
 <p>​		<code>MyISAM</code>把总行数存在磁盘(<code>information_schema.partitions</code>)中，<code>count(*)</code>和<code>count(1)</code>的性能会好很多。</p>
 <p>​		<code>InnoDB</code>获取所有数据，并逐行计算总行数，<code>count(*)</code>和<code>count(1)</code>的性能会差很多。`</p>
 <p><a href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_count">mysql文档原文</a></p>
-<h1 id="3-性能优化"><a class="markdownIt-Anchor" href="#3-性能优化"></a> 3. 性能优化</h1>
+<h2 id="3-性能优化"><a class="markdownIt-Anchor" href="#3-性能优化"></a> 3. 性能优化</h2>
 <p>​		在实际开发过程中，业务系统的数据表均使用<code>InnoDB</code>支持事务。</p>
 <p>​		该如何优化<code>InnoDB</code>中<code>count</code>的性能？</p>
 <ul class="lvl-0">
@@ -3169,7 +3169,7 @@ section 运维阶段
 </tr>
 </tbody>
 </table>
-<h1 id="组合动画"><a class="markdownIt-Anchor" href="#组合动画"></a> 组合动画</h1>
+<h2 id="组合动画"><a class="markdownIt-Anchor" href="#组合动画"></a> 组合动画</h2>
 <p>从1.2.0版本开始，可以将多个动画组合在一起以创建动画。只需要添加多个CSS类。</p>
 <figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!--html--&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;fragment animated move-to-middle-top rotate&quot;</span>&gt;</span>移动并旋转<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!--md--&gt;</span></span><br><span class="line">移动并旋转<span class="comment">&lt;!-- .element: class=&quot;fragment animated  move-to-middle-top rotate&quot; --&gt;</span></span><br></pre></td></tr></table></figure>
 <p><a href="#general-time-attributes">时间属性</a> 只能用于组合动画，不能单独用于每个动画；</p>
@@ -3187,7 +3187,7 @@ section 运维阶段
   <entry>
     <title>rust-if-let简洁控制流</title>
     <url>/%E5%AD%A6%E4%B9%A0/eec35d0e.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="if-let-控制流"><a class="markdownIt-Anchor" href="#if-let-控制流"></a> if let 控制流</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="if-let-控制流"><a class="markdownIt-Anchor" href="#if-let-控制流"></a> if let 控制流</h2>
 <blockquote>
 <p><code>if let</code> 语法把 <code>if</code> 和 <code>let</code> 合并成一种更简洁的方式，用来处理只匹配一个模式、忽略其余情况的值。</p>
 </blockquote>
@@ -3220,7 +3220,7 @@ section 运维阶段
   <entry>
     <title>rust-所有权与借用</title>
     <url>/%E5%AD%A6%E4%B9%A0/4b7e1a92.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="所有权与借用"><a class="markdownIt-Anchor" href="#所有权与借用"></a> 所有权与借用</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="所有权与借用"><a class="markdownIt-Anchor" href="#所有权与借用"></a> 所有权与借用</h2>
 <blockquote>
 <p><em>所有权</em>（<em>ownership</em>）是一组规则，用于管理 Rust 程序如何管理内存。</p>
 </blockquote>
@@ -3316,7 +3316,7 @@ section 运维阶段
   <entry>
     <title>rust-方法语法</title>
     <url>/%E5%AD%A6%E4%B9%A0/d1274d86.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="方法语法"><a class="markdownIt-Anchor" href="#方法语法"></a> 方法语法</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="方法语法"><a class="markdownIt-Anchor" href="#方法语法"></a> 方法语法</h2>
 <blockquote>
 <p><strong>方法</strong>（method）与函数类似：它们使用 <code>fn</code> 关键字和名称声明，可以拥有参数和返回值，同时包含在某处调用该方法时会执行的代码。不过方法与函数是不同的，因为它们在结构体的上下文中被定义（或者是枚举或 trait 对象的上下文，并且它们第一个参数总是 <code>self</code>，它代表调用该方法的结构体实例。</p>
 </blockquote>
@@ -3336,7 +3336,7 @@ section 运维阶段
   <entry>
     <title>rust-智能指针</title>
     <url>/%E5%AD%A6%E4%B9%A0/92f6c3d8.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="智能指针"><a class="markdownIt-Anchor" href="#智能指针"></a> 智能指针</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="智能指针"><a class="markdownIt-Anchor" href="#智能指针"></a> 智能指针</h2>
 <blockquote>
 <p>最直接的智能指针是 box，类型写作 <code>Box&lt;T&gt;</code>。<em>Box</em> 让你把数据存在堆上而不是栈上，留在栈上的只是指向堆数据的指针。</p>
 </blockquote>
@@ -3401,12 +3401,12 @@ section 运维阶段
   <entry>
     <title>rust-枚举与模式匹配</title>
     <url>/%E5%AD%A6%E4%B9%A0/7d69317e.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="枚举"><a class="markdownIt-Anchor" href="#枚举"></a> 枚举</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="枚举"><a class="markdownIt-Anchor" href="#枚举"></a> 枚举</h2>
 <blockquote>
 <p>结构体给予你将字段和数据聚合在一起的方法，像 <code>Rectangle</code> 结构体有 <code>width</code> 和 <code>height</code> 两个字段。而枚举给予你一个途径去声明某个值是一个集合中的一员。比如，我们想让 <code>Rectangle</code> 是一些形状的集合，包含 <code>Circle</code> 和 <code>Triangle</code> 。为了做到这个，Rust 提供了枚举类型。</p>
 </blockquote>
 <figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">IpAddrKind</span> &#123;</span><br><span class="line">    <span class="title function_ invoke__">V4</span>(<span class="type">u8</span>,<span class="type">u8</span>,<span class="type">u8</span>,<span class="type">u8</span>),</span><br><span class="line">    <span class="title function_ invoke__">V6</span>(<span class="type">String</span>),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Message</span>&#123;</span><br><span class="line">    Quit,</span><br><span class="line">    Move&#123;x: <span class="type">i32</span>,y:<span class="type">i32</span>&#125;,</span><br><span class="line">    <span class="title function_ invoke__">Write</span>(<span class="type">String</span>),</span><br><span class="line">    <span class="title function_ invoke__">ChangeColor</span>(<span class="type">i32</span>,<span class="type">i32</span>,<span class="type">i32</span>),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Message</span>&#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">call</span>(&amp;<span class="keyword">self</span>)&#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;self is &#123;:?&#125;&quot;</span>,&amp;<span class="keyword">self</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Hello, world!&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">four</span> = IpAddrKind::<span class="title function_ invoke__">V4</span>(<span class="number">127</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">six</span> = IpAddrKind::<span class="title function_ invoke__">V6</span>(<span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;::1&quot;</span>));</span><br><span class="line"></span><br><span class="line">    dbg!(&amp;four);</span><br><span class="line">    dbg!(&amp;six);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">m</span> = Message::Move &#123; x: <span class="number">1</span>, y: <span class="number">2</span> &#125;;</span><br><span class="line">    m.<span class="title function_ invoke__">call</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h1 id="match匹配模式"><a class="markdownIt-Anchor" href="#match匹配模式"></a> match匹配模式</h1>
+<h2 id="match匹配模式"><a class="markdownIt-Anchor" href="#match匹配模式"></a> match匹配模式</h2>
 <h2 id="option枚举"><a class="markdownIt-Anchor" href="#option枚举"></a> Option枚举</h2>
 <blockquote>
 <p><code>Option</code> 是标准库定义的另一个枚举。<code>Option</code> 类型应用广泛因为它编码了一个非常普遍的场景，即一个值要么有值要么没值。</p>
@@ -3424,7 +3424,7 @@ section 运维阶段
   <entry>
     <title>rust-泛型与Trait</title>
     <url>/%E5%AD%A6%E4%B9%A0/a1e05b74.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="泛型与-trait"><a class="markdownIt-Anchor" href="#泛型与-trait"></a> 泛型与 Trait</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="泛型与-trait"><a class="markdownIt-Anchor" href="#泛型与-trait"></a> 泛型与 Trait</h2>
 <blockquote>
 <p>trait 定义了某个类型所具有、并能与其他类型共享的功能。我们用 trait 以抽象的方式定义共享行为，用 trait bound 指定某个泛型可以是任何具备特定行为的类型。</p>
 </blockquote>
@@ -3512,7 +3512,7 @@ section 运维阶段
   <entry>
     <title>rust-生命周期</title>
     <url>/%E5%AD%A6%E4%B9%A0/6d3c8f51.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="生命周期"><a class="markdownIt-Anchor" href="#生命周期"></a> 生命周期</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="生命周期"><a class="markdownIt-Anchor" href="#生命周期"></a> 生命周期</h2>
 <blockquote>
 <p>生命周期是另一类泛型，我们一直在用。类型的泛型确保类型具有我们想要的行为，而生命周期确保引用在我们需要它的时候一直有效。</p>
 </blockquote>
@@ -3575,7 +3575,7 @@ section 运维阶段
   <entry>
     <title>rust-结构定义和实例化</title>
     <url>/%E5%AD%A6%E4%B9%A0/e0d5ed17.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="结构定义"><a class="markdownIt-Anchor" href="#结构定义"></a> 结构定义</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="结构定义"><a class="markdownIt-Anchor" href="#结构定义"></a> 结构定义</h2>
 <blockquote>
 <p>定义结构体，需要使用 <code>struct</code> 关键字并为整个结构体提供一个名字。结构体的名字需要描述它所组合的数据的意义。接着，在大括号中，定义每一部分数据的名字和类型，我们称为 <strong>字段</strong>（<em>field</em>）。</p>
 </blockquote>
@@ -3604,12 +3604,12 @@ section 运维阶段
   <entry>
     <title>rust入门</title>
     <url>/%E5%AD%A6%E4%B9%A0/94fe59ce.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="cargo是什么"><a class="markdownIt-Anchor" href="#cargo是什么"></a> Cargo是什么？</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="cargo是什么"><a class="markdownIt-Anchor" href="#cargo是什么"></a> Cargo是什么？</h2>
 <p><code>Cargo</code>是rust的构建工具、包管理器；</p>
 <h3 id="crate是什么"><a class="markdownIt-Anchor" href="#crate是什么"></a> crate是什么？</h3>
 <p>  crate类似npm package或ruby gem，类似<code>依赖包</code>的意思；</p>
-<h1 id="rust和动态语言对比"><a class="markdownIt-Anchor" href="#rust和动态语言对比"></a> rust和动态语言对比</h1>
-<h1 id="rust库"><a class="markdownIt-Anchor" href="#rust库"></a> rust库</h1>
+<h2 id="rust和动态语言对比"><a class="markdownIt-Anchor" href="#rust和动态语言对比"></a> rust和动态语言对比</h2>
+<h2 id="rust库"><a class="markdownIt-Anchor" href="#rust库"></a> rust库</h2>
 <h3 id="std-io标准库"><a class="markdownIt-Anchor" href="#std-io标准库"></a> std io标准库</h3>
 <h3 id="let声明变量"><a class="markdownIt-Anchor" href="#let声明变量"></a> let声明变量</h3>
 <figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">let</span> <span class="variable">apples</span> = <span class="number">5</span>; <span class="comment">// 不可变</span></span><br><span class="line"><span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">bananas</span> = <span class="number">5</span>; <span class="comment">// 可变</span></span><br></pre></td></tr></table></figure>
@@ -3879,7 +3879,7 @@ section 运维阶段
   <entry>
     <title>笔记1-《程序员的数学2：概率统计》概率的定义</title>
     <url>/%E5%AD%A6%E4%B9%A0/f3a27c41.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="概率的定义"><a class="markdownIt-Anchor" href="#概率的定义"></a> 概率的定义</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="概率的定义"><a class="markdownIt-Anchor" href="#概率的定义"></a> 概率的定义</h2>
 <span id="more"></span>
 <ul class="lvl-0">
 <li class="lvl-2">
@@ -4071,7 +4071,7 @@ section 运维阶段
   <entry>
     <title>笔记1-《程序员的数学3：线性代数》向量与空间</title>
     <url>/%E5%AD%A6%E4%B9%A0/8c4d2f17.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="向量与空间"><a class="markdownIt-Anchor" href="#向量与空间"></a> 向量与空间</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="向量与空间"><a class="markdownIt-Anchor" href="#向量与空间"></a> 向量与空间</h2>
 <span id="more"></span>
 <ul class="lvl-0">
 <li class="lvl-2">
@@ -4263,7 +4263,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
   <entry>
     <title>笔记1-《程序员的数学》0 的故事</title>
     <url>/%E5%AD%A6%E4%B9%A0/965849311.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="第一章-0-的故事无即是有"><a class="markdownIt-Anchor" href="#第一章-0-的故事无即是有"></a> 第一章 0 的故事–无即是有</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="第一章-0-的故事无即是有"><a class="markdownIt-Anchor" href="#第一章-0-的故事无即是有"></a> 第一章 0 的故事–无即是有</h2>
 <h2 id="10-进制计数法"><a class="markdownIt-Anchor" href="#10-进制计数法"></a> 10 进制计数法</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
@@ -4389,7 +4389,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
   <entry>
     <title>笔记10-《程序员的数学》卡诺图与三值逻辑</title>
     <url>/%E5%AD%A6%E4%B9%A0/e8c371fa.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="卡诺图与三值逻辑"><a class="markdownIt-Anchor" href="#卡诺图与三值逻辑"></a> 卡诺图与三值逻辑</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="卡诺图与三值逻辑"><a class="markdownIt-Anchor" href="#卡诺图与三值逻辑"></a> 卡诺图与三值逻辑</h2>
 <span id="more"></span>
 <ul class="lvl-0">
 <li class="lvl-2">
@@ -4715,7 +4715,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
   <entry>
     <title>笔记11-《程序员的数学》余数的力量</title>
     <url>/%E5%AD%A6%E4%B9%A0/2b9d64c7.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="余数的力量"><a class="markdownIt-Anchor" href="#余数的力量"></a> 余数的力量</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="余数的力量"><a class="markdownIt-Anchor" href="#余数的力量"></a> 余数的力量</h2>
 <span id="more"></span>
 <ul class="lvl-0">
 <li class="lvl-2">
@@ -4995,7 +4995,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
   <entry>
     <title>笔记12-《程序员的数学》奇偶校验与哥尼斯堡七桥</title>
     <url>/%E5%AD%A6%E4%B9%A0/7a4e8f26.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="奇偶校验与哥尼斯堡七桥"><a class="markdownIt-Anchor" href="#奇偶校验与哥尼斯堡七桥"></a> 奇偶校验与哥尼斯堡七桥</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="奇偶校验与哥尼斯堡七桥"><a class="markdownIt-Anchor" href="#奇偶校验与哥尼斯堡七桥"></a> 奇偶校验与哥尼斯堡七桥</h2>
 <span id="more"></span>
 <ul class="lvl-0">
 <li class="lvl-2">
@@ -5265,7 +5265,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
   <entry>
     <title>笔记2-《程序员的数学》逻辑</title>
     <url>/%E5%AD%A6%E4%B9%A0/1634039770.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="第二章-逻辑"><a class="markdownIt-Anchor" href="#第二章-逻辑"></a> 第二章 逻辑</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="第二章-逻辑"><a class="markdownIt-Anchor" href="#第二章-逻辑"></a> 第二章 逻辑</h2>
 <span id="more"></span>
 <h2 id="为何逻辑如此重要"><a class="markdownIt-Anchor" href="#为何逻辑如此重要"></a> 为何逻辑如此重要</h2>
 <ul class="lvl-0">
@@ -5685,7 +5685,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
   <entry>
     <title>笔记3-《程序员的数学》余数</title>
     <url>/%E5%AD%A6%E4%B9%A0/375539532.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="第三章-余数"><a class="markdownIt-Anchor" href="#第三章-余数"></a> 第三章 余数</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="第三章-余数"><a class="markdownIt-Anchor" href="#第三章-余数"></a> 第三章 余数</h2>
 <span id="more"></span>
 <ul class="lvl-0">
 <li class="lvl-2">
@@ -5729,7 +5729,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
   <entry>
     <title>笔记4-《程序员的数学》数学归纳法</title>
     <url>/%E5%AD%A6%E4%B9%A0/c88b93d0.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="第四章-数学归纳法"><a class="markdownIt-Anchor" href="#第四章-数学归纳法"></a> 第四章 数学归纳法</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="第四章-数学归纳法"><a class="markdownIt-Anchor" href="#第四章-数学归纳法"></a> 第四章 数学归纳法</h2>
 <span id="more"></span>
 <ul class="lvl-0">
 <li class="lvl-2">
@@ -6042,7 +6042,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
   <entry>
     <title>笔记5-《程序员的数学》10 进制与 2 进制</title>
     <url>/%E5%AD%A6%E4%B9%A0/a3f19c72.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="第一章-0-的故事计数法"><a class="markdownIt-Anchor" href="#第一章-0-的故事计数法"></a> 第一章 0 的故事–计数法</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="第一章-0-的故事计数法"><a class="markdownIt-Anchor" href="#第一章-0-的故事计数法"></a> 第一章 0 的故事–计数法</h2>
 <span id="more"></span>
 <ul class="lvl-0">
 <li class="lvl-2">
@@ -6209,7 +6209,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
   <entry>
     <title>笔记6-《程序员的数学》按位计数法与指数法则</title>
     <url>/%E5%AD%A6%E4%B9%A0/d47b2e95.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="第一章-0-的故事按位计数法"><a class="markdownIt-Anchor" href="#第一章-0-的故事按位计数法"></a> 第一章 0 的故事–按位计数法</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="第一章-0-的故事按位计数法"><a class="markdownIt-Anchor" href="#第一章-0-的故事按位计数法"></a> 第一章 0 的故事–按位计数法</h2>
 <span id="more"></span>
 <ul class="lvl-0">
 <li class="lvl-2">
@@ -6373,7 +6373,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
   <entry>
     <title>笔记7-《程序员的数学》0 的作用与历史进程</title>
     <url>/%E5%AD%A6%E4%B9%A0/5f26a8d3.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="第一章-0-的故事无即是有"><a class="markdownIt-Anchor" href="#第一章-0-的故事无即是有"></a> 第一章 0 的故事–无即是有</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="第一章-0-的故事无即是有"><a class="markdownIt-Anchor" href="#第一章-0-的故事无即是有"></a> 第一章 0 的故事–无即是有</h2>
 <span id="more"></span>
 <ul class="lvl-0">
 <li class="lvl-2">
@@ -6503,7 +6503,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
   <entry>
     <title>笔记8-《程序员的数学》乘车费用问题与逻辑</title>
     <url>/%E5%AD%A6%E4%B9%A0/c7301e5b.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="第二章-逻辑真与假的二元世界"><a class="markdownIt-Anchor" href="#第二章-逻辑真与假的二元世界"></a> 第二章 逻辑–真与假的二元世界</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="第二章-逻辑真与假的二元世界"><a class="markdownIt-Anchor" href="#第二章-逻辑真与假的二元世界"></a> 第二章 逻辑–真与假的二元世界</h2>
 <span id="more"></span>
 <ul class="lvl-0">
 <li class="lvl-2">
@@ -6691,7 +6691,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
   <entry>
     <title>笔记9-《程序员的数学》复杂命题与德摩根定律</title>
     <url>/%E5%AD%A6%E4%B9%A0/6b8e04d1.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h1 id="建立复杂命题"><a class="markdownIt-Anchor" href="#建立复杂命题"></a> 建立复杂命题</h1>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="建立复杂命题"><a class="markdownIt-Anchor" href="#建立复杂命题"></a> 建立复杂命题</h2>
 <span id="more"></span>
 <ul class="lvl-0">
 <li class="lvl-2">
@@ -7163,7 +7163,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 </div>
     </div>
   </div>
-<h1 id="1定时器"><a class="markdownIt-Anchor" href="#1定时器"></a> 1.定时器</h1>
+<h2 id="1定时器"><a class="markdownIt-Anchor" href="#1定时器"></a> 1.定时器</h2>
 <h2 id="11-settimeout"><a class="markdownIt-Anchor" href="#11-settimeout"></a> 1.1. setTimeout</h2>
 <p>  <strong>setTimeout是JavaScript中的一个函数，用于在指定的延迟时间后执行一段代码或函数。它的工作原理是在指定的延迟时间后，将代码或函数放入JavaScript的事件队列中，等待当前代码执行完毕后再执行。</strong></p>
 <p><strong>setTimeout的语法如下：</strong></p>
@@ -7219,7 +7219,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>  使用requestAnimationFrame时需要注意，它只会在浏览器处于激活状态时执行回调函数。如果浏览器处于最小化或隐藏状态，那么回调函数将不会被执行。因此，在使用requestAnimationFrame时，需要确保浏览器处于激活状态，或者在回调函数中添加适当的逻辑来处理浏览器不处于激活状态的情况。</p>
 <p><strong>示例:</strong></p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">frame</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;frame&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">requestAnimationFrame</span>(frame);</span><br></pre></td></tr></table></figure>
-<h1 id="2-标签动画"><a class="markdownIt-Anchor" href="#2-标签动画"></a> 2. 标签动画</h1>
+<h2 id="2-标签动画"><a class="markdownIt-Anchor" href="#2-标签动画"></a> 2. 标签动画</h2>
 <p>  使用 <code>requestAnimationFrame</code> 可以替代 <code>setInterval</code> 来实现定时任务，因为 <code>requestAnimationFrame</code> 更加高效，能够根据屏幕刷新率来同步动画，避免了不必要的重绘和计算。</p>
 <p>下面是使用 <code>requestAnimationFrame</code> 实现 <code>setInterval</code> 更新<code>博客</code>- <a href="/tags">标签</a>的示例代码：</p>
 <figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/***</span></span><br><span class="line"><span class="comment"> * 兼容不支持requestAnimationFrame的浏览器</span></span><br><span class="line"><span class="comment"> ***/</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">requestAnimationFrame</span> = (<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">window</span>.<span class="property">requestAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">webkitRequestAnimationFrame</span> ||<span class="comment">/* Safari 和 Chrome */</span></span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">mozRequestAnimationFrame</span> ||<span class="comment">/* Firefox */</span></span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">oRequestAnimationFrame</span>      ||<span class="comment">/* Opera */</span></span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">msRequestAnimationFrame</span>     ||<span class="comment">/* IE 9 */</span></span><br><span class="line">    <span class="keyword">function</span> (<span class="params">callback</span>) &#123;</span><br><span class="line">      <span class="variable language_">window</span>.<span class="built_in">setTimeout</span>(callback, <span class="number">6000</span> / <span class="number">60</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">cancelAnimationFrame</span> = (<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">window</span>.<span class="property">cancelAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">webkitCancelAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">mozCancelAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">oCancelAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">msCancelAnimationFrame</span> || <span class="built_in">clearTimeout</span></span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 设置精度定时器</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">function</span>&#125; 回调函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125;   延迟时间</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;  定时器ID</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> <span class="keyword">function</span> <span class="title function_">setIntervalPrecision</span>(<span class="params">callback, delay</span>) &#123;</span><br><span class="line">  <span class="comment">// 生成并记录定时器ID</span></span><br><span class="line">  <span class="keyword">let</span> obj = <span class="variable language_">window</span>.<span class="property">interValPrecisionObj</span> || (<span class="variable language_">window</span>.<span class="property">interValPrecisionObj</span> = &#123; <span class="attr">num</span>: <span class="number">0</span> &#125;)</span><br><span class="line">  obj.<span class="property">num</span>++</span><br><span class="line">  obj[<span class="string">&#x27;n&#x27;</span> + obj.<span class="property">num</span>] = <span class="literal">true</span></span><br><span class="line">  <span class="keyword">var</span> intervalId = obj.<span class="property">num</span></span><br><span class="line">  <span class="comment">// 开始时间</span></span><br><span class="line">  <span class="keyword">var</span> startTime = +<span class="keyword">new</span> <span class="title class_">Date</span>()</span><br><span class="line">  <span class="comment">// 已执行次数</span></span><br><span class="line">  <span class="keyword">var</span> count = <span class="number">0</span></span><br><span class="line">  <span class="comment">// 延迟时间</span></span><br><span class="line">  delay = delay || <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  ;(<span class="keyword">function</span> <span class="title function_">loop</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 定时器被清除，则终止</span></span><br><span class="line">    <span class="keyword">if</span> (!obj[<span class="string">&#x27;n&#x27;</span> + intervalId]) <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 满足条件执行回调</span></span><br><span class="line">    <span class="keyword">if</span> (+<span class="keyword">new</span> <span class="title class_">Date</span>() &gt; startTime + delay * (count + <span class="number">1</span>)) &#123;</span><br><span class="line">      count++</span><br><span class="line">      <span class="title function_">callback</span>(count)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">window</span>.<span class="title function_">requestAnimationFrame</span>(loop)</span><br><span class="line">  &#125;)()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> intervalId</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 清除精度定时器</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; 定时器ID</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">clearIntervalPrecision</span>(<span class="params">intervalId</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">interValPrecisionObj</span>) &#123;</span><br><span class="line">    <span class="variable language_">window</span>.<span class="title function_">cancelAnimationFrame</span>(<span class="string">&#x27;n&#x27;</span> + intervalId)</span><br><span class="line">    <span class="keyword">delete</span> <span class="variable language_">window</span>.<span class="property">interValPrecisionObj</span>[<span class="string">&#x27;n&#x27;</span> + intervalId]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//loopHover 自己的业务实现</span></span><br><span class="line"><span class="title function_">setIntervalPrecision</span>(loopHover, <span class="number">100</span>)</span><br></pre></td></tr></table></figure>
@@ -7257,7 +7257,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
     <url>/%E8%8F%9C%E8%B0%B1/c43e7c0d.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>吃鸡最痛快的吃法之一，一定有大盘鸡。</p>
 <span id="more"></span>
-<h1 id="食材"><a class="markdownIt-Anchor" href="#食材"></a> 食材</h1>
+<h2 id="食材"><a class="markdownIt-Anchor" href="#食材"></a> 食材</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>鸡肉</p>
@@ -7296,7 +7296,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>啤酒</p>
 </li>
 </ul>
-<h1 id="调味料"><a class="markdownIt-Anchor" href="#调味料"></a> 调味料</h1>
+<h2 id="调味料"><a class="markdownIt-Anchor" href="#调味料"></a> 调味料</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>花生油 20ml</p>
@@ -7320,7 +7320,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>蚝油5ml</p>
 </li>
 </ul>
-<h1 id="操作"><a class="markdownIt-Anchor" href="#操作"></a> 操作</h1>
+<h2 id="操作"><a class="markdownIt-Anchor" href="#操作"></a> 操作</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>起锅烧油，放入梅花肉打底炒出油；</p>
@@ -7455,7 +7455,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
     <title>成本核算</title>
     <url>/%E5%B7%A5%E4%BD%9C/fb428c48.html</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="d0245914b44837f67429761fad5741bb185a038af74ad445f804eb7f49d93711">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d0195048f25efe9b21ce963d68bba31f68109d09d5e9a4798ba30c885f456814a1f79a3813597deaa347db33459cd74ba7a0df0f4961b35961cf13b305d52d09764798e16bc3970b56199d955ddc1cc9c04c353fb965ceadfc5376a7704a76f05c3da2895c2e503e0f9acd812b0bc56d7b3677b1a7366b54e384df56d66b32e47484884bf3ad6f10f3899fa6a1d0ebc8f4a8f15a25926c5f09faafa892771e672dce8e9193fa9821d44cf076aab160fdd0005724034d18e4ec566a57f74d507df6d98454bbb420fcada5e86fac9dbfa97eeb919651443dcdc350dc638e6283d9e889b5ef81fbdf4f010db814ea35ae2d88b145fddbb9a4ec5fb960e01b8dccc33d9d1472271d360d47d559c2cd5ae29072cf1682091e200aaa447262efc45994d84b2c885e9b76e9f6b3ef00b89976974fb39dc4bdf102c62aba6f4d39dd48aa679f191b17b8ff5f2e0abcd9bd1f2337ad24b07c79ad4db23273f4d9b18e4413df745c0f31919fcc98d3b2a2ff051813176fcb8d58ee7f78dc47725baf6037a8c9c9023cd0664a14ad3df32b1860769e27cfc62a526a7429fc8a9bfa8f0c4eaf21b91b43f495b19552fc3cd3ba2059a4b27288ebba98589861a37f28b9e654f66021082d4c872a88d3facc4a920fd93fbe53794151d3810e0f41ae6ef736202eddf98d357b518c8ee5d24291815099bce81bbd1e3d5be21a6190e11110ebcebc495f364fb7ddd71af01062f3f4331541424ae155572f54b5b1a9e2a4451b7e5a67dc4ae23b02e2bcf8c5405caf52af747361a7e201552703e9e68652e283e243ae778b4fb061e2fe1c5a88b32885fa001c124fa4dbdf27e6dc8717891c8924f961a8d014b440cf0fee0804db043bdcf8004e56c8c9676c2bc925216219597ea804477986a7300a40bcc2a29f11ddfc2a7009402895b472b4d9abf359728dfa7fb1c32e3c396848fb0756c2c6d199f32eb1a953f75159e59b96a5d03d0b25032df570ad289c5da97f1e91fcc79f3132a357fbea1c0585c60b8ced01aa77f53cae07e61e0b01aa3b298aedf9c289ec3f1a8894d5947b2dd4a9790bc417c2fc4fcd46bb38325ad6aca04cf8d969c071d6758837d5e3da1e0708a6fa00fb64ce344ccc5631f40bd3713b7836a6855fd204c3448f21c8523ab9eeb094c7d504fa6dff88478d3e276817712a96f91c3269f5aa04cdf1bb4751a51a64f67bd2782535970e6bd38533bd3e89f41bf230062696042f6be90a95431374bac8d16bde9a58befbd3e2c60144bce8a3cc7fee5217def52301b310c0cfefbc8a1af62f6870a955daecf988ae609d847725cc6d0feccaa6e3142d82eef1ee24fdac8d752f719cf9c2023212e6df6c84f637f43757b7987545e8931c3da36550ec78b3f84e699703d6a72bf242b0da37f109dfe4ce60a5ad452dd3af59a631ecaca57f6ba537627d472300fad6925ff147fc94dc0be104fbfd6a49876ccbb3337af154ecc4e1788fea413e4dccb4049d2dc6010d28135ddca3d954c3668b8cf8dbf563fcdb86efda4822909ab8f17419a4ef3060cdcace08ef372da7a9d2314b1df1b56c8941debc6751d36ac4d8e7f6bc38a5ea7efd036094f137ef5041f35e1df174e62a4e9b85168c98c373cd32ecb6a085e39d243cfd3db5adf7bc0cca77d676cd9ea6cf8b1107a809dacfd8f51cd0b650a165c608439c0f1400e991fb804334832ef4b0220273cc27212101228cb0da9474d977766514151b13a02dfcec92437399a2b7e4d0864d8030d776bcb4b81034fb5eb2c04bbc0fa62ea6b79f119f779efdcdc8442c70894338dc66320290eb56ff022ed0c34906f20705ce50d2b79450d001c79757e3c833de3db9226d052a38b781b149feb66773de072bc2fd8c3782f6ceda0ece7cb0681b977ee13faaf85d92444b052f0bc1295a6415aa25580cc540b96c3117c6270e8f7c43e65564284c38a607c616f7994e40283079c04b11aac4ffec23bc26753cb32ec18bdffa12709caafec6291fe7964cb6600f9034705b0cc8170f11c3c7e4e4d0e2eb0b2a04dd514da1b3779951bd6dc5588e768caccc5a81c91cab48d28a89468d3ddad9325afdb5bba58e8670f7244606e0d4a79bfdcc6ff94d06ba7af6cde978c9bd64a5e3e30534794bc63c5c42c055936e84b687dd1a6d82f2e58eb760f9c422ee12be872c6a01b043cb2c451b9703f52173bd61e09a85b27384c51602adba5b262203d45a7a506e3acad729a66c9cdf31e4b1845e582d4421161b8ed0b9626a6e2519c6938f43fd1907931491dead99bbd81dd3df86855b5350ba141c24c3938f15652141ccbaa1545d257ba1a86e06a457818f51d383679bbfe5622f8f53f1a0859a1bc844832ef06fa880847286f485328b501b88d739515a1d73915fdbcc369edf955d12dd8413b5ac274ac76d6e0d7ee0d1649f5de0d61a63b5267344f4b56f8696eee45f5b0185ef3241c68459eed204579026128d422be49ca865eb117f6af96ea9cc655b403b8f778a8e4d2d07234c6e4fbcf23fcf60af34b40c19e67db6becf86be93c8de2ea7dc998b0d03f8586bccf70ef1f37cab164db5992aedd035a603d1d87d2855f4cdbfd9af4c0a59c23ed92a08d94313697019c45a5f6694ece8f063ac22d2f9268db3941bed7111bf0c92176caa849fe63e86b286caaccf95742d12ddf82991effe24104e780e31a85cda3d035236c764e26c7b45834a55f8a9971ea1efbc3667c6b2bc8253dd3eb6b36e71a73990f3980c1e8684eecad3884bd6aac67290a8601df913288955662bb0898ead1f19da105878e37a00d23aa4e1c7eb96c78e51ebd16d3718a53e86d50db28f716f5fcd437045d9a8d6bc403b0d38fbfad3a8394d731233e46acb25f6eccc017cbb036a48eace341a4defa5d902463d9932e68b95dc75176a957c328f7088f44dde163c434ef06537b9c3575a99984d28c2db33901</script>
+  <script id="hbeData" type="hbeData" data-hmacdigest="403034e3763252e0a1d875383418dced566fe36d7f58183614979363551524dd">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d01b15f88bbf2f997a33ad0e4769faa2f3731a35f9c12d7a5ad97247c985de51ed62c20bb6ba6113954fea16ed76707f8571dfaa584b4e3826985032b10288f7e13b93b331fc92e4ebc21cf2f3989f25ee250dd18448f86303d9d929567d54c0a64b2443cfcf3f54aaead2719e45509f355f0caa4661d7651db96a887b5ef79aae101fb73978cce5fa93b24287b98f2639e871f614db934381ee4e241a12fd224faedd825390e487d9287e6e7e03f0f00f6d33956db5549ab690eaa4bb73d57207b7847ceb796384c2d90aa03b08f9b7e3ba9a9a6c7120e569cfed730553994f200ff398b4a63e437ef87626081679e9d7691c9f8e574971d814fc42fa4c170c044f0bcc2d5227ab77afa36e2413a79cc9bf8212fbd04d467345d1da089614c3541e6a0e5e09c42f977cf917b15799600e6b55dfc9e445c2f9dd638939b32bad9f629832be56693f9f509d3cc0be74cc147cd44bc6700722b45b4a11e2ad51071ae0ce795058801497056bc30e1461d624e3ef86c45e64a651b1559f1031fec9ae6443177a5ba67cbe961cc2ee7bcb59a3cb88af0ba1c243d1a9549addf257a8fd8e64d179401465d805f41a2e032f4d5da29b43777ae9d1116ecc9094f9e86b387ece6c26fc4d30c9eaf9739da84f69da0b4ea41e78627adedac8bea9396bbb6806b40612b5c1bbe434a7b618df8245da6fadf861fcd1fe52c022ff5d00bebff5e77aaeb566e6771ee0c72ec95fba73eeda6035933d452127a7eb41d143e35c090114ecb95da3cd9e20fc000491f57605434acdc82a821345325b6fe27933402f57f3bfebbc23ae6d83578dea596364ce1d2de5344a20bc8185ddd344defea04ac49210125785b24cb993cbbd61e9d5c92b2e20c482ae4a367fe05eb0ea7756beada75cdfea44c37c1962ee408896582b27f0bd400fc35a73e25bcee8d14bc17d447e2eed7fcd9f800ab220101df770a45c2d9699e451dd225e650418c1bd3849960f965551be548eaf21d51928281ebbb761aeec3620bdcf2a58c461c611478e033254ad3cb3a1351b121f9dfa505a687e712a02f53d2d02d638bac0b3578a5e23f9fdaf699e32d58790b16e0397719a2e44505699e7dbba8e040b17a880f73d0aeeba704cbd5c15603c1dcee81e33633310b859c124a1c3c09bd063b5efb8e220c37583cc40dc155b0e30339572da533b70d8f084119e20b2f504f375a0e0076518afd45f70f61f893d65b14088c5a597e13deb62b6d0f0f64df8149522f1e5e7156b682aa8d639097e18fff4b2d8c57dc60d8625da2cecc8042490337199a41ba03f080582b97d39be52551ffacb3c2fb7c5606da03a13886c69d303864d35430398a00eecac17c7b5717f06dd40d5ab1a73f0465d54332570eb748cbb97afd416422b5b2f3bd679a080b9cc94199d8e90ee83d2b85ffa93528e020c93e5cfbc93875fc96ed4277efcf4d747686ef84f784204f1dec6588c829002c6919354b5cf23beb81b81b4ba5e9033d81bd5d1443cdb999f55c0996e9d02db7a7c25bc2ecf7f2cef76bd2c964a9934db64580e072eab8f721027d5ec8fb66aa9fec34f2f3b190cdccde6603f11c0f85f2e92f83f4082cd378982b2b4a742cb760a4137f33a9bb2da5f4a450eb5d05392221eed47c59399ed95b514557f3fb468293b94ac388d4119a167dca4b4d90dfef7310fa4c69d1b945d28f4322685a6708a142d355cfb6a5dfcf0819b8bbedb88a886828dfb0ef0919bfda0ab3a12381f980cd4738b6245d2960713d6f531563bc42af3589ce9fa03f1a8ca8f4b10b138ef17d6e3ae7a0e5c529ddf83432ec32c5d838bce16c4e10806956318e4b4f5e85c6af9aa2648d595e6a3155d6250d721f172a7cff78aac9a6b69b364d3aace867e838f95c5731f6a8c1d2faf055f8bca28ac6f80ac18f0061d41e8757bbcdcd29393a521c68fada0ef5c23c5a898792ddf530072b98ab37a519e76be5318ee82b88566a41f54cc929afc6c6c1887fb7323f8ef4d9773824b7d32b48a551ba4f2080e9517fe665260c20f1756351b43c77eced10722a926ef5ecdd3379acd3577b3e7fac6e38fb611d6f5465c809c7ec9015dd013f74e8039e30e138919f9f2d7b0d084a8c41bfe3322d87a0aeb6d40c902e473b91336a439dfac7e0e817a3978ad95b6583f07d9176f9e520a4fd11ac158a8f51d1012cbe8344ecb5bf4e81a8a5e00ee4e3edf3d66652e61fc56b1e8d71765486de4b7f802db8f10bf074fd207b5e933f4d02091ccd16fefe8ccf2e2e6e4feb487c9c43e311a33ec49adafe05da42685bbe4aa9e578e34b54dcfd1c795d6d3a04cc88085504aafb3d624fa7845a7fdb2d940b8370cfec5f6ee8c6604ada6ec88bba256584f049076476224a7777b67d04f09bfbe7366d5703382ce66642f94fd4cd5a6b3ddf66245514e1b976b1d4168361ab42f1bc5a103467e4225716042556a1d128e0c87ec1370df9e7f10e23b99c0a203ad9f35a8299e1d365fe3c35dc0e639aabbe5e3a06581dbad5be30e4d591ff16a74a4b29a066fe6d26adce8caec90688063fc3f21ef8ff09e8de081bc9528b39c7779107bfe0c52326c1d913e9c9a3cc9bde78e475944bd927923e9d3c70a48b608c95d3e6293e14d6378429de2051171bd75974afb3fe63f59d988e4e3592f473cd186b864fce54e8ebe7212dc12a630ac0fdbd4d416e4064549fd1683cfa3e43330b717de74222a5dc20affda36e381f36f7a4ba90d82425a22a179f19f400417d5daf3072ddcde25f25f429e13550608229a01fbd0b0d549168374f0518e0bfca4919a9b52c7b39f5ea57bdea3447a683891624bdb619459913c6b6ebf4827ee4ade374f83ea6d82127edcdbbda1885a238e0bcac36b70b61e6a5496cc726942c540e01ba3954e297939eb0f9d80c4abb968f6d9ddd92a5110863eac74a47d11dec7d99332c39b4c76678f859</script>
   <div class="hbe hbe-content">
     <div class="hbe hbe-input hbe-input-wave">
       <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
@@ -7738,7 +7738,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
     <url>/%E8%8F%9C%E8%B0%B1/b2113df8.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>河南大多地方以面食为主，炝锅面又是最经典的面食之一。</p>
 <span id="more"></span>
-<h1 id="食材"><a class="markdownIt-Anchor" href="#食材"></a> 食材</h1>
+<h2 id="食材"><a class="markdownIt-Anchor" href="#食材"></a> 食材</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>干面条</p>
@@ -7765,7 +7765,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>花椒</p>
 </li>
 </ul>
-<h1 id="调味料"><a class="markdownIt-Anchor" href="#调味料"></a> 调味料</h1>
+<h2 id="调味料"><a class="markdownIt-Anchor" href="#调味料"></a> 调味料</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>花生油 15ml</p>
@@ -7789,7 +7789,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>香油 5ml</p>
 </li>
 </ul>
-<h1 id="操作"><a class="markdownIt-Anchor" href="#操作"></a> 操作</h1>
+<h2 id="操作"><a class="markdownIt-Anchor" href="#操作"></a> 操作</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>大葱切碎；番茄开水烫后去皮切块；白菜手撕小块备用；（个人喜欢可以放一些黄豆芽）</p>
@@ -7864,7 +7864,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
     <url>/%E8%8F%9C%E8%B0%B1/1d180e51.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>芝麻叶面条是河南的家常面食，喜不喜欢面食，吃上一次就会想第二次。</p>
 <span id="more"></span>
-<h1 id="食料"><a class="markdownIt-Anchor" href="#食料"></a> 食料</h1>
+<h2 id="食料"><a class="markdownIt-Anchor" href="#食料"></a> 食料</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>芝麻叶</p>
@@ -7891,7 +7891,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>干辣椒</p>
 </li>
 </ul>
-<h1 id="调味料"><a class="markdownIt-Anchor" href="#调味料"></a> 调味料</h1>
+<h2 id="调味料"><a class="markdownIt-Anchor" href="#调味料"></a> 调味料</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>花生油 25ml</p>
@@ -7912,7 +7912,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>香油 5ml</p>
 </li>
 </ul>
-<h1 id="操作"><a class="markdownIt-Anchor" href="#操作"></a> 操作</h1>
+<h2 id="操作"><a class="markdownIt-Anchor" href="#操作"></a> 操作</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>开水后放入芝麻叶，煮至软化即可，沥干水分备用；</p>
@@ -7982,12 +7982,12 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
     <title>路</title>
     <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-        <div id="aplayer-eYJjJkES" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-EIOUMwOB" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-eYJjJkES"),
+            element: document.getElementById("aplayer-EIOUMwOB"),
             narrow: false,
             autoplay: true,
             showlrc: false,
@@ -8509,7 +8509,7 @@ ExcelUtil --> RecordHandler</pre>
     <url>/%E8%8F%9C%E8%B0%B1/9ddcf808.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>我媳妇、儿子最喜欢的菜之一</p>
 <span id="more"></span>
-<h1 id="食材"><a class="markdownIt-Anchor" href="#食材"></a> 食材</h1>
+<h2 id="食材"><a class="markdownIt-Anchor" href="#食材"></a> 食材</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>小龙虾（冻虾尾）</p>
@@ -8536,7 +8536,7 @@ ExcelUtil --> RecordHandler</pre>
 <p>啤酒</p>
 </li>
 </ul>
-<h1 id="调味料"><a class="markdownIt-Anchor" href="#调味料"></a> 调味料</h1>
+<h2 id="调味料"><a class="markdownIt-Anchor" href="#调味料"></a> 调味料</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>花生油 30ml</p>
@@ -8560,7 +8560,7 @@ ExcelUtil --> RecordHandler</pre>
 <p>蚝油 5ml</p>
 </li>
 </ul>
-<h1 id="操作"><a class="markdownIt-Anchor" href="#操作"></a> 操作</h1>
+<h2 id="操作"><a class="markdownIt-Anchor" href="#操作"></a> 操作</h2>
 <ul class="lvl-0">
 <li class="lvl-2">
 <p>清水清洗小龙虾（冻虾尾），起锅烧油炸4分钟；</p>

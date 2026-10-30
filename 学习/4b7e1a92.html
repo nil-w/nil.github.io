@@ -1,601 +1,69 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
+<!DOCTYPE html><html lang="zh-CN"><head>
   <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https:; frame-src 'self' https://www.slideshare.net https://player.bilibili.com; media-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'">
-  <meta name="referrer" content="strict-origin-when-cross-origin">
-  <meta charset="utf-8">
-  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-  <link rel="dns-prefetch" href="https://github.com" />
-  <link rel="dns-prefetch" href="https://unpkg.com" />
-  
-  <title>rust-所有权与借用 | Nil W</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  
-  
-    <link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
-  
-
-  
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
-    
-
-  
-    <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
-    
-
-  
-    <link rel="mask-icon" href="{{ url_for(theme.favicon.safari_pinned_tab) }}" color="{{ theme.android_chrome_color }}">
-    
-
-  
-<link rel="stylesheet" href="/css/style.css">
-
-  
-<link rel="stylesheet" href="/css/search.css">
-
-  
-<link rel="stylesheet" href="/css/katex.min.css">
-
-  
-<link rel="stylesheet" href="/css/googleapis.css">
-
-  
-    
-<link rel="stylesheet" href="/css/highlight.css">
-
-  
-  <meta name="description" content="所有权与借用 所有权（ownership）是一组规则，用于管理 Rust 程序如何管理内存。 所有权规则 Rust 用第三种方式管理内存：有的语言有垃圾回收器定期回收不再使用的内存，有的语言要求程序员显式分配和释放。Rust 通过所有权系统来管理，编译器会检查这些规则 —— 违反任何一条，程序都编译不过。">
-<meta property="og:type" content="article">
-<meta property="og:title" content="rust-所有权与借用">
-<meta property="og:url" content="https://nilw.rm-rf.ink/%E5%AD%A6%E4%B9%A0/4b7e1a92.html">
-<meta property="og:site_name" content="Nil W">
-<meta property="og:description" content="所有权与借用 所有权（ownership）是一组规则，用于管理 Rust 程序如何管理内存。 所有权规则 Rust 用第三种方式管理内存：有的语言有垃圾回收器定期回收不再使用的内存，有的语言要求程序员显式分配和释放。Rust 通过所有权系统来管理，编译器会检查这些规则 —— 违反任何一条，程序都编译不过。">
-  <meta property="og:image" content="https://nilw.rm-rf.ink/images/og-default.png">
-  <meta property="og:image:width" content="1200">
-  <meta property="og:image:height" content="630">
-<meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-03-15T01:20:15.000Z">
-<meta property="article:modified_time" content="2026-10-29T07:57:22.604Z">
-<meta property="article:author" content="Nil W">
-<meta property="article:tag" content="rust">
-<meta property="article:tag" content="ownership">
-<meta property="article:tag" content="borrowing">
-<meta name="twitter:card" content="summary">  
-  
-  <meta name="twitter:site" content="@nil-w" />
-  <meta name="twitter:creator" content="@nil-w" />
-  
-  <link rel="canonical" href="https://nilw.rm-rf.ink/学习/4b7e1a92.html" />
-  
-  
-  <script type="application/ld+json">
+  <meta name="referrer" content="strict-origin-when-cross-origin"><meta charset="utf-8"><link rel="dns-prefetch" href="https://cdn.jsdelivr.net"><link rel="dns-prefetch" href="https://fonts.googleapis.com"><link rel="dns-prefetch" href="https://github.com"><link rel="dns-prefetch" href="https://unpkg.com"><title>rust-所有权与借用 - Nil W</title><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="keywords" content="rust,ownership,borrowing,学习"><meta name="author" content="Nil W"><meta name="theme-color" content="#212121"><link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico"><link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico"><link rel="mask-icon" href="/images/favicon.ico" color="#212121"><link rel="stylesheet" href="/css/katex.min.css"><meta name="description" content="所有权与借用 所有权（ownership）是一组规则，用于管理 Rust 程序如何管理内存。 所有权规则 Rust 用第三种方式管理内存：有的语言有垃圾回收器定期回收不再使用的内存，有的语言要求程序员显式分配和释放。Rust 通过所有权系统来管理，编译器会检查这些规则 —— 违反任何一条，程序都编译不过。"><meta property="og:type" content="article"><meta property="og:title" content="rust-所有权与借用"><meta property="og:url" content="https://nilw.rm-rf.ink/%E5%AD%A6%E4%B9%A0/4b7e1a92.html"><meta property="og:site_name" content="Nil W"><meta property="og:description" content="所有权与借用 所有权（ownership）是一组规则，用于管理 Rust 程序如何管理内存。 所有权规则 Rust 用第三种方式管理内存：有的语言有垃圾回收器定期回收不再使用的内存，有的语言要求程序员显式分配和释放。Rust 通过所有权系统来管理，编译器会检查这些规则 —— 违反任何一条，程序都编译不过。"><meta property="og:locale" content="zh_CN"><meta property="og:image" content="https://nilw.rm-rf.ink/images/og-default.png"><meta property="article:published_time" content="2024-03-15T01:20:15.000Z"><meta property="article:modified_time" content="2024-03-15T01:20:15.000Z"><meta property="article:author" content="Nil W"><meta property="article:tag" content="rust"><meta property="article:tag" content="ownership"><meta property="article:tag" content="borrowing"><meta name="twitter:image" content="https://nilw.rm-rf.ink/images/og-default.png"><meta name="twitter:creator" content="@nil-w"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@nil-w"><meta name="twitter:creator" content="@nil-w"><meta name="twitter:title" content="rust-所有权与借用 - Nil W"><meta name="twitter:description" content="所有权与借用 所有权（ownership）是一组规则，用于管理 Rust 程序如何管理内存。 所有权规则 Rust 用第三种方式管理内存：有的语言有垃圾回收器定期回收不再使用的内存，有的语言要求程序员显式分配和释放。Rust 通过所有权系统来管理，编译器会检查这些规则 —— 违反任何一条，程序都编译不过。"><meta name="twitter:image" content="https://nilw.rm-rf.ink/images/og-default.png"><link rel="canonical" href="https://nilw.rm-rf.ink/%E5%AD%A6%E4%B9%A0/4b7e1a92.html"><script type="application/ld+json">
   {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": "rust-所有权与借用",
     "datePublished": "2024-03-15T01:20:15.000Z",
-    "dateModified": "2026-10-29T07:57:22.604Z",
+    "dateModified": "2024-03-15T01:20:15.000Z",
     "author": {
       "@type": "Person",
       "name": "Nil W",
-      "url": "https://nilw.rm-rf.ink"
+      "url": "https://nilw.rm-rf.ink/"
     },
     "publisher": {
       "@type": "Organization",
       "name": "Nil W",
-      "url": "https://nilw.rm-rf.ink"
+      "url": "https://nilw.rm-rf.ink/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://nilw.rm-rf.ink/images/og-default.png",
+        "width": 1200,
+        "height": 630
+      }
     },
     "description": "所有权与借用 所有权（ownership）是一组规则，用于管理 Rust 程序如何管理内存。 所有权规则 Rust 用第三种方式管理内存：有的语言有垃圾回收器定期回收不再使用的内存，有的语言要求程序员显式分配和释放。Rust 通过所有权系统来管理，编译器会检查这些规则 —— 违反任何一条，程序都编译不过。",
-    "url": "https://nilw.rm-rf.ink/学习/4b7e1a92.html",
-    "image": "https://nilw.rm-rf.ink/images/og-default.png",
-    "inLanguage": "zh-CN",
+    "image": [
+      "https://nilw.rm-rf.ink/images/og-default.png"
+    ],
+    "url": "https://nilw.rm-rf.ink/%E5%AD%A6%E4%B9%A0/4b7e1a92.html",
     "mainEntityOfPage": {
       "@type": "WebPage",
-      "@id": "https://nilw.rm-rf.ink/学习/4b7e1a92.html"
-    }
-  }
-  </script>
-  
-  
-<link rel="stylesheet" href="/css/reveal.css">
-
-<meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Nil W" type="application/atom+xml">
-</head>
-
-
-  <body>
-    <div id="wrapper">
-        <div id="content">
-          <article id="post-rust-所有权与借用" class="article article-type-post" itemprop="blogPost" itemscope>
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h3 class="article-title" itemprop="headline name">
-      rust-所有权与借用&nbsp;&nbsp;
-    </h3>
-  
-
-
-        <div class="article-meta">
-          <time class="article-date" datetime="2024-03-15T01:20:15.000Z" itemprop="datePublished">2024.03.15 09:20 上午</time>
-
-          
-        </div>
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-      
-        <h1 id="所有权与借用"><a class="markdownIt-Anchor" href="#所有权与借用"></a> 所有权与借用</h1>
-<blockquote>
-<p><em>所有权</em>（<em>ownership</em>）是一组规则，用于管理 Rust 程序如何管理内存。</p>
-</blockquote>
-<h2 id="所有权规则"><a class="markdownIt-Anchor" href="#所有权规则"></a> 所有权规则</h2>
-<p>Rust 用第三种方式管理内存：有的语言有垃圾回收器定期回收不再使用的内存，有的语言要求程序员显式分配和释放。Rust 通过所有权系统来管理，编译器会检查这些规则 —— 违反任何一条，程序都编译不过。而且所有权的特性<strong>不会拖慢程序运行</strong>。</p>
-<p>三条规则：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>Rust 中每个值都有一个<strong>所有者</strong>（owner）</p>
-</li>
-<li class="lvl-2">
-<p>同一时刻只能有一个所有者</p>
-</li>
-<li class="lvl-2">
-<p>当所有者离开作用域，值被丢弃（dropped）</p>
-</li>
-</ul>
-<h2 id="变量与数据的交互move"><a class="markdownIt-Anchor" href="#变量与数据的交互move"></a> 变量与数据的交互：move</h2>
-<p>栈与堆：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>栈：后进先出</p>
-</li>
-<li class="lvl-2">
-<p>堆：先进先出</p>
-</li>
-</ul>
-<p><code>String</code> 的数据在堆上，变量本身（指针、长度、容量）在栈上。赋值时如果只复制指针、长度、容量而不复制堆上的数据，听起来像「浅拷贝」—— 但因为 Rust 同时让原变量失效，这被称为 <strong>move</strong>（移动）。</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s1</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s2</span> = s1;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;s1&#125;, &#123;s2&#125;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编译报错：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">error[E0382]: borrow of moved value: `s1`</span><br><span class="line"> --&gt; main.rs:5:16</span><br><span class="line">  |</span><br><span class="line">3 |     let s1 = String::from(&quot;hello&quot;);</span><br><span class="line">  |         -- move occurs because `s1` has type `String`, which does not implement the `Copy` trait</span><br><span class="line">4 |     let s2 = s1;</span><br><span class="line">  |              -- value moved here</span><br><span class="line">5 |     println!(&quot;&#123;s1&#125;, &#123;s2&#125;&quot;);</span><br><span class="line">  |                ^^ value borrowed here after move</span><br><span class="line">  |</span><br><span class="line">help: consider cloning the value if the performance cost is acceptable</span><br><span class="line">  |</span><br><span class="line">4 |     let s2 = s1.clone();</span><br><span class="line">  |                ++++++++</span><br></pre></td></tr></table></figure>
-<p><code>String</code> 不实现 <code>Copy</code> trait，所以赋值就是移动所有权。<code>s1</code> 之后不能再用。</p>
-<p>如果确实需要一份副本，用 <code>clone()</code>：</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s1</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s2</span> = s1.<span class="title function_ invoke__">clone</span>();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;s1&#125;, &#123;s2&#125;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>所有权跟着值走这个规律每次都一样：给另一个变量赋值就是移动它；一个变量（其数据在堆上）离开作用域时，除非所有权已经移交给别的变量，否则值会被 <code>drop</code> 清理掉。</p>
-<h2 id="引用与借用"><a class="markdownIt-Anchor" href="#引用与借用"></a> 引用与借用</h2>
-<p>问题在于：每次都移交所有权再要回来太啰嗦。传参进去用完还得原样传回来，再加上函数体里可能想返回的数据。</p>
-<p>引用（reference）跟指针类似 —— 是一个可以跟随的地址，指向存储在某处的数据，那份数据由别的变量拥有。但跟指针不同，<strong>引用保证在它存活的期间指向一个特定类型的有效值</strong>。</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s1</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">len</span> = <span class="title function_ invoke__">calculate_length</span>(&amp;s1);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;The length of &#x27;&#123;s1&#125;&#x27; is &#123;len&#125;.&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">calculate_length</span>(s: &amp;<span class="type">String</span>) <span class="punctuation">-&gt;</span> <span class="type">usize</span> &#123; <span class="comment">// s 是对 String 的引用</span></span><br><span class="line">    s.<span class="title function_ invoke__">len</span>()</span><br><span class="line">&#125; <span class="comment">// 这里 s 离开作用域，但因为 s 不拥有它指向的值，String 不会被 drop</span></span><br></pre></td></tr></table></figure>
-<p><code>&amp;s1</code> 创建了一个<strong>引用</strong>指向 <code>s1</code> 的值但不拥有它。因为不拥有，引用停止使用时，被指向的值不会被 drop。</p>
-<p>与引用相对的是<strong>解引用</strong>（dereferencing），用解引用运算符 <code>*</code> 完成。</p>
-<p>创建引用这个动作叫<strong>借用</strong>（borrowing）。就像现实生活：如果一个人拥有某样东西，你可以借走，用完要还，你不拥有它。</p>
-<h3 id="可变引用"><a class="markdownIt-Anchor" href="#可变引用"></a> 可变引用</h3>
-<p>变量默认不可变，引用也一样 —— 不允许修改借来的值：</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">change</span>(&amp;s);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">change</span>(some_string: &amp;<span class="type">String</span>) &#123;</span><br><span class="line">    some_string.<span class="title function_ invoke__">push_str</span>(<span class="string">&quot;, world&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>报错：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">error[E0596]: cannot borrow `*some_string` as mutable, as it is behind a `&amp;` reference</span><br><span class="line"> --&gt; main.rs:7:5</span><br><span class="line">  |</span><br><span class="line">7 |     some_string.push_str(&quot;, world&quot;);</span><br><span class="line">  |     ^^^^^^^^^^^ `some_string` is a `&amp;` reference, so it cannot be borrowed as mutable</span><br><span class="line">  |</span><br><span class="line">help: consider changing this to be a mutable reference</span><br><span class="line">  |</span><br><span class="line">6 | fn change(some_string: &amp;mut String) &#123;</span><br><span class="line">  |                         +++</span><br></pre></td></tr></table></figure>
-<p>改用<strong>可变引用</strong>（mutable reference）：</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">change</span>(&amp;<span class="keyword">mut</span> s);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">change</span>(some_string: &amp;<span class="keyword">mut</span> <span class="type">String</span>) &#123;</span><br><span class="line">    some_string.<span class="title function_ invoke__">push_str</span>(<span class="string">&quot;, world&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="可变引用的限制"><a class="markdownIt-Anchor" href="#可变引用的限制"></a> 可变引用的限制</h3>
-<p>可变引用有个大限制：有了对一个值的可变引用，就不能再有其他指向该值的引用。</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">r1</span> = &amp;<span class="keyword">mut</span> s;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">r2</span> = &amp;<span class="keyword">mut</span> s;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;r1&#125;, &#123;r2&#125;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>报错：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">error[E0499]: cannot borrow `s` as mutable more than once at a time</span><br><span class="line"> --&gt; main.rs:5:14</span><br><span class="line">  |</span><br><span class="line">4 |     let r1 = &amp;mut s;</span><br><span class="line">  |              ------ first mutable borrow occurs here</span><br><span class="line">5 |     let r2 = &amp;mut s;</span><br><span class="line">  |              ^^^^^^ second mutable borrow occurs here</span><br><span class="line">6 |     println!(&quot;&#123;r1&#125;, &#123;r2&#125;&quot;);</span><br><span class="line">  |                -- first borrow later used here</span><br></pre></td></tr></table></figure>
-<p>可变引用和不可变引用混用也不行：</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">r1</span> = &amp;s; <span class="comment">// no problem</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">r2</span> = &amp;s; <span class="comment">// no problem</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">r3</span> = &amp;<span class="keyword">mut</span> s; <span class="comment">// BIG PROBLEM</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;r1&#125;, &#123;r2&#125;, and &#123;r3&#125;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>报错：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">error[E0502]: cannot borrow `s` as mutable because it is also borrowed as immutable</span><br><span class="line"> --&gt; main.rs:6:14</span><br><span class="line">  |</span><br><span class="line">4 |     let r1 = &amp;s; // no problem</span><br><span class="line">  |              -- immutable borrow occurs here</span><br><span class="line">5 |     let r2 = &amp;s; // no problem</span><br><span class="line">6 |     let r3 = &amp;mut s; // BIG PROBLEM</span><br><span class="line">  |              ^^^^^^ mutable borrow occurs here</span><br><span class="line">7 |</span><br><span class="line">8 |     println!(&quot;&#123;r1&#125;, &#123;r2&#125;, and &#123;r3&#125;&quot;);</span><br><span class="line">  |                -- immutable borrow later used here</span><br></pre></td></tr></table></figure>
-<p>用不可变引用的人不希望值在脚下突然变了。但多个不可变引用是允许的 —— 单纯读数据的人没法影响别人读到的数据。</p>
-<p>引用的作用域从它被引入开始，到<strong>最后一次使用</strong>为止。所以这样能编译：</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">r1</span> = &amp;s; <span class="comment">// no problem</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">r2</span> = &amp;s; <span class="comment">// no problem</span></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;r1&#125; and &#123;r2&#125;&quot;</span>);</span><br><span class="line">    <span class="comment">// r1 和 r2 之后不会再被使用</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">r3</span> = &amp;<span class="keyword">mut</span> s; <span class="comment">// no problem</span></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;r3&#125;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><code>r1</code>、<code>r2</code> 的作用域在 <code>println!</code> 之后结束，早于可变引用 <code>r3</code> 的创建。两个作用域不重叠。</p>
-<p>用花括号开新作用域可以造出多个可变引用，只是不能<strong>同时</strong>存在：</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">r1</span> = &amp;<span class="keyword">mut</span> s;</span><br><span class="line">    &#125; <span class="comment">// r1 在这里离开作用域，所以可以再建一个引用</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">r2</span> = &amp;<span class="keyword">mut</span> s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="悬垂引用"><a class="markdownIt-Anchor" href="#悬垂引用"></a> 悬垂引用</h3>
-<p>在有指针的语言里，很容易不小心造出<strong>悬垂引用</strong>（dangling reference）—— 指向的内存可能已经给了别人。Rust 里编译器保证引用永远不会悬垂：有引用的数据，编译器确保数据的生命周期不会比引用短。</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">reference_to_nothing</span> = <span class="title function_ invoke__">dangle</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">dangle</span>() <span class="punctuation">-&gt;</span> &amp;<span class="type">String</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">    &amp;s</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>报错：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">error[E0106]: missing lifetime specifier</span><br><span class="line"> --&gt; main.rs:5:16</span><br><span class="line">  |</span><br><span class="line">5 | fn dangle() -&gt; &amp;String &#123;</span><br><span class="line">  |                ^ expected named lifetime parameter</span><br><span class="line">  |</span><br><span class="line">  = help: this function&#x27;s return type contains a borrowed value, but there is no value for it to be borrowed from</span><br><span class="line">help: consider using the `&#x27;static` lifetime, but this is uncommon unless you&#x27;re returning a borrowed value from a `const` or a `static`</span><br><span class="line">  |</span><br><span class="line">5 | fn dangle() -&gt; &amp;&#x27;static String &#123;</span><br><span class="line">  |                 +++++++</span><br><span class="line">help: instead, you are more likely to want to return an owned value</span><br><span class="line">  |</span><br><span class="line">5 - fn dangle() -&gt; &amp;String &#123;</span><br><span class="line">5 + fn dangle() -&gt; String &#123;</span><br><span class="line">  |</span><br></pre></td></tr></table></figure>
-<p><code>s</code> 在 <code>dangle</code> 内部创建，函数结束时被释放，而我们却返回了指向它的引用 —— 这个引用会指向无效的 <code>String</code>。Rust 不让这么写。</p>
-<p>解法是直接返回 <code>String</code>：</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">string</span> = <span class="title function_ invoke__">no_dangle</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">no_dangle</span>() <span class="punctuation">-&gt;</span> <span class="type">String</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">    s</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>所有权被移出，没有任何东西被释放。</p>
-<h2 id="小结"><a class="markdownIt-Anchor" href="#小结"></a> 小结</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>任意时刻，要么有一个可变引用，要么有任意多个不可变引用</p>
-</li>
-<li class="lvl-2">
-<p>引用必须始终有效</p>
-</li>
-</ul>
-
-      
-    </div>
-    
-    
-    <div class="article-category">
-      
-        <a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a>
-
-        <b>&nbsp;:分类 </b>
-      
-      
-        <br/>
-      
-      
-        <a class="article-tag-none-link" href="/tags/borrowing/" rel="tag">borrowing</a>, <a class="article-tag-none-link" href="/tags/ownership/" rel="tag">ownership</a>, <a class="article-tag-none-link" href="/tags/rust/" rel="tag">rust</a>
-
-        <b>
-          &nbsp;:标签
-        </b>
-      
-    </div>
-    
-    
-  </div>
-</article>
-
-  
-<nav id="article-nav" class="article-nav">
-  
-    <a href="/%E5%AD%A6%E4%B9%A0/6d3c8f51.html" id="article-nav-newer" class="article-nav-link-wrap newer">
-      <strong class="article-nav-caption">上一篇</strong>
-      <div class="article-nav-title">
-        
-          rust-生命周期
-        
-      </div>
-    </a>
-  
-  
-    <a href="/%E5%AD%A6%E4%B9%A0/eec35d0e.html" id="article-nav-older" class="article-nav-link-wrap older">
-      <strong class="article-nav-caption">下一篇</strong>
-      <div class="article-nav-title">
-        
-          rust-if-let简洁控制流
-        
-      </div>
-    </a>
-  
-</nav>
-
-
-  
-
-
-
-
-        </div>
-        <header id="header">
-  <nav>
-    <div class="header-nav-links">
-      <a class="nav-link-first" href="/">Nil W</a>
-      <span class="nav-spacer"></span>
-      
-      
-        
-        <a class="nav-link" href="/archives">文章</a>
-      
-        
-          <span class="nav-spacer"> </span>
-        
-        <a class="nav-link" href="/categories">分类</a>
-      
-        
-          <span class="nav-spacer"> </span>
-        
-        <a class="nav-link" href="/about">关于我</a>
-      
-      
-    </div>
-    <div class="poem-wrap">
-      <p id="poem">加载中...</p>
-      <p id="info"/>
-    </div>
-  </nav>
-</header>
-
-    </div>
-    
-
-
-
-
-<div id="settings-container">
-  <div id="dark-mode"></div>
-  <div id="sans-font"></div>
-</div>
-
-
-<span class="post-count">77.5k</span>
-
-<script type="text/javascript">
-
-
-  let d = document,
-    r = d.documentElement.style,
-    f = r.setProperty.bind(r),
-    l = localStorage,
-    rawS = l.getItem('s'),
-    s = (rawS === '1' || rawS === '2') ? Number(rawS) : 0,
-    sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches,
-    m = d.getElementById("dark-mode"),
-    b = () => {
-      f('--bg-color', '#fafafa');
-      f('--code-bg-color', '#f4f4f4');
-      f('--text-color', '#212121');
-      f('--secondary-color', '#808080');
-      f('--tertiary-color', '#b0b0b0');
-      f('--link-color', '#b5c8cf');
-      f('--link-hover-color', '#618794');
-      f('--link-bg-color', '#dae4e7');
-      f('--selection-color', '#dae4e7');
+      "@id": "https://nilw.rm-rf.ink/%E5%AD%A6%E4%B9%A0/4b7e1a92.html"
     },
-    c = () => {
-      f('--bg-color', '#212121');
-      f('--code-bg-color', '#292929');
-      f('--text-color', '#fff');
-      f('--secondary-color', '#c0c0c0');
-      f('--tertiary-color', '#6e6e6e');
-      f('--link-color', '#4d6b75');
-      f('--link-hover-color', '#96b1bb');
-      f('--link-bg-color', '#5d828e');
-      f('--selection-color', '#acc1c9');
-    },
-    o = d.getElementById("sans-font"),
-    e = () => {
-      f('--body-stack', '"Lora", "Georgia", "Times New Roman", serif');
-    },
-    g = () => {
-      f('--body-stack', '"Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');
-    },
-    applyTheme = () => {
-      if (s === 1) b();
-      else if (s === 2) c();
-      else (sysDark ? c() : b());
-    };
-  m.onclick = function(){
-    s = s === 2 ? 0 : s + 1;
-    l.setItem('s', s);
-    applyTheme();
-  };
-  o.onclick =function(){
-    if (n == 2) {
-      n = 1;
-      l.setItem('n', n);
-      g()
-    } else {
-      n = 2;
-      l.setItem('n', n);
-      e()
-    }
-  };
-  applyTheme();
-  if (!n) {
-    n = 2;
-    l.setItem('n', 2)
-  };
-  if (n == '1') {
-    g();
-  };
-  if (n == '2') {
-    e();
-  };
-</script>
-
-
-<script type="module">
-  // mermaid 9.4.3 → 12.2.0（9.x 有 7 个已知 CVE，且 9 已停止维护）
-  // 注意：v10 起废弃 mermaid.init()，改用 mermaid.run()
-  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@12.2.0/+esm";
-  let theme = localStorage.getItem("s");
-  mermaid.initialize({
-      startOnLoad: true,
-      logLevel: 'error',
-      securityLevel: 'strict',
-      theme: theme === '2' ? 'forest' : 'dark',
-    });
-  let mode = document.getElementById("dark-mode");
-   let arrayGraphs =  [];
-  let nodes = document.getElementsByClassName('mermaid')
-  for(let n of nodes){
-    arrayGraphs.push(n.innerHTML);
+    "inLanguage": "zh-CN",
+    "wordCount": 1777,
+    "articleSection": "学习",
+    "keywords": "rust,ownership,borrowing"
   }
-
-  if (mode) mode.addEventListener("click",async ()=>{
-    theme = localStorage.getItem("s");
-    mermaid.initialize({
-      startOnLoad: true,
-      logLevel: 'error',
-      securityLevel: 'strict',
-      theme: theme === '2' ? 'forest' : 'dark',
-    });
-  for(let i = 0;i< nodes.length;i++){
-      let n =  nodes[i]
-      let id = `mermaid-${i}`
-      n.removeAttribute("data-processed");
-      n.setAttribute("id",`mermaid-${i}`)
-      n.replaceChildren();
-      n.innerHTML = arrayGraphs[i]
-      mermaid.run({ nodes: [n] })
-    }
-  },false);
-
-  // 加密文章解密后，hexo-blog-encrypt 把明文注入 DOM，
-  // 此时新出现的 .mermaid 不在初始 nodes 快照里 → 需补渲染一次。
-  // 注意：该插件用 window.dispatchEvent(new CustomEvent('hexo-blog-decrypt'))
-  // 派发（实测 v4.1.0），故必须监听 window；document 上冗余保留以兼容旧版。
-  const rerenderMermaid = () => {
-    const pending = Array.from(document.querySelectorAll('.mermaid:not([data-processed])'));
-    if (pending.length) {
-      mermaid.run({ nodes: pending }).catch(() => {});
-    }
-  };
-  window.addEventListener('hexo-blog-decrypt', rerenderMermaid);
-  document.addEventListener('hexo-blog-decrypt', rerenderMermaid);
-
-</script>
-
-
-
-<script src="/js/jquery.min.js" defer ></script>
-<script src="/js/jquery.qrcode.min.js" defer ></script>
-
-<script src="https://unpkg.com/reveal.js@5.2.1/dist/reveal.js" onerror="this.onerror=null;this.src='/js/reveal.js/js/reveal.js'" defer></script>
-<script src="https://unpkg.com/reveal.js-mermaid-plugin@11.15.0/plugin/mermaid/mermaid.js" onerror="this.onerror=null;this.src='/js/reveal.js-mermaid-plugin/plugin/mermaid/mermaid.js'" defer></script>
-
-<script type="module">
-  import qrcodeInit from '/js/qrcode.js'
-  qrcodeInit();
-</script>
-<script type="module">
-/***
- * 兼容不支持requestAnimationFrame的浏览器
- ***/
-window.requestAnimationFrame = (function () {
-  return window.requestAnimationFrame ||
-    window.webkitRequestAnimationFrame ||/* Safari 和 Chrome */
-    window.mozRequestAnimationFrame ||/* Firefox */
-    window.oRequestAnimationFrame      ||/* Opera */
-    window.msRequestAnimationFrame     ||/* IE 9 */
-    function (callback) {
-      window.setTimeout(callback, 6000 / 60)
-    }
-})();
-window.cancelAnimationFrame = (function () {
-  return window.cancelAnimationFrame ||
-    window.webkitCancelAnimationFrame ||
-    window.mozCancelAnimationFrame ||
-    window.oCancelAnimationFrame ||
-    window.msCancelAnimationFrame || clearTimeout
-})();
-</script>
-<script type="module">
-  /*诗*/
-if ($("div").hasClass("poem-wrap")) {
-            get_poem('#poem', '#info')
-}
-function get_poem(poem_ele, info_ele) {
-    var poem = document.querySelector(poem_ele);
-    var info = document.querySelector(info_ele);
-    var xhr = new XMLHttpRequest();
-    xhr.open('get', 'https://v2.jinrishici.com/one.json?client=browser-sdk/1.2');
-    xhr.withCredentials = true;
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState === 4) {
-            var data = JSON.parse(xhr.responseText);
-            poem.innerHTML = data.data.content;
-            info.innerHTML = '[' + data.data.origin.dynasty + '] ' + data.data.origin.author + '《' + data.data.origin.title + '》';
-        }
-    };
-    xhr.send();
-}
-
-function modifySubmitBtn(){
-  var btn = $('.hbe-button');
-  var password = $('#hbePass');
-  if(btn.length > 0){
-    btn.text('重新输入密码')
-  }
-  if(password.length > 0){
-    password.attr('autocomplete','false')
-  }
-}
-modifySubmitBtn();
-
-function layoutTagCloud(){
-  // var list = $('.tagcloud a');
-  // var size = Math.round(Math.random() * 20);
-
-  // for(let i = 0;i< list.length;i++){
-  //       if(i % even == 0 ){
-  //         list[i].classList = `${list[i].classList} deg_90`
-  //       }
-  // }
-}
-
-function loopHover(){
-  var list = $('.tagcloud a');
-  var hover = $('.tagcloud a[class="tag-hover"]')
-  var next = Math.round(Math.random() * (list.length  - 1))
-
-  if(next < 0){
-    next = 0
-  }
-
-  if(next > list.length){
-    next = list.length - 1
-  }
-  if(list.length){
-    if(hover.length){
-      for(let i = 0;i< hover.length;i++){
-        hover[i].classList = ''
+  </script><script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "首页",
+        "item": "https://nilw.rm-rf.ink/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "学习",
+        "item": "https://nilw.rm-rf.ink/categories/%E5%AD%A6%E4%B9%A0/"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "rust-所有权与借用",
+        "item": "https://nilw.rm-rf.ink/%E5%AD%A6%E4%B9%A0/4b7e1a92.html"
       }
-    }
-    list[next].classList = 'tag-hover'
+    ]
   }
-}
-// layoutTagCloud();
-
-
-/**
- * 设置精度定时器
- * @param {function} 回调函数
- * @param {number}   延迟时间
- * @return {number}  定时器ID
- */
- function setIntervalPrecision(callback, delay) {
-  // 生成并记录定时器ID
-  let obj = window.interValPrecisionObj || (window.interValPrecisionObj = { num: 0 })
-  obj.num++
-  obj['n' + obj.num] = true
-  var intervalId = obj.num
-  // 开始时间
-  var startTime = +new Date()
-  // 已执行次数
-  var count = 0
-  // 延迟时间
-  delay = delay || 0
-
-
-  ;(function loop() {
-    // 定时器被清除，则终止
-    if (!obj['n' + intervalId]) return
-
-    // 满足条件执行回调
-    if (+new Date() > startTime + delay * (count + 1)) {
-      count++
-      callback(count)
-    }
-
-    window.requestAnimationFrame(loop)
-  })()
-
-  return intervalId
-}
-
-/**
- * 清除精度定时器
- * @param {number} 定时器ID
- */
-function clearIntervalPrecision(intervalId) {
-  if (window.interValPrecisionObj) {
-    window.cancelAnimationFrame('n' + intervalId)
-    delete window.interValPrecisionObj['n' + intervalId]
-  }
-}
-
-setIntervalPrecision(loopHover, 250)
-
-</script>
-
-  
-  
+  </script><meta name="generator" content="Hexo 7.3.0"><link rel="alternate" href="/atom.xml" title="Nil W" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/bundle.css">
+</head><body><div id="wrapper"><div id="content"><article id="post-rust-所有权与借用" class="article article-type-post" itemprop="blogPost" itemscope><div class="article-inner"><header class="article-header"><h1 class="article-title" itemprop="headline name">rust-所有权与借用&nbsp;&nbsp;</h1><div class="article-meta"><time class="article-date" datetime="2024-03-15T01:20:15.000Z" itemprop="datePublished">2024.03.15 09:20 上午</time></div></header><div class="article-entry" itemprop="articleBody"><h2 id="所有权与借用"><a class="markdownIt-Anchor" href="#所有权与借用"></a> 所有权与借用</h2><blockquote><p><em>所有权</em>（<em>ownership</em>）是一组规则，用于管理 Rust 程序如何管理内存。</p></blockquote><h2 id="所有权规则"><a class="markdownIt-Anchor" href="#所有权规则"></a> 所有权规则</h2><p>Rust 用第三种方式管理内存：有的语言有垃圾回收器定期回收不再使用的内存，有的语言要求程序员显式分配和释放。Rust 通过所有权系统来管理，编译器会检查这些规则 —— 违反任何一条，程序都编译不过。而且所有权的特性<strong>不会拖慢程序运行</strong>。</p><p>三条规则：</p><ul class="lvl-0"><li class="lvl-2"><p>Rust 中每个值都有一个<strong>所有者</strong>（owner）</p></li><li class="lvl-2"><p>同一时刻只能有一个所有者</p></li><li class="lvl-2"><p>当所有者离开作用域，值被丢弃（dropped）</p></li></ul><h2 id="变量与数据的交互move"><a class="markdownIt-Anchor" href="#变量与数据的交互move"></a> 变量与数据的交互：move</h2><p>栈与堆：</p><ul class="lvl-0"><li class="lvl-2"><p>栈：后进先出</p></li><li class="lvl-2"><p>堆：先进先出</p></li></ul><p><code>String</code> 的数据在堆上，变量本身（指针、长度、容量）在栈上。赋值时如果只复制指针、长度、容量而不复制堆上的数据，听起来像「浅拷贝」—— 但因为 Rust 同时让原变量失效，这被称为 <strong>move</strong>（移动）。</p><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s1</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s2</span> = s1;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;s1&#125;, &#123;s2&#125;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>编译报错：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">error[E0382]: borrow of moved value: `s1`</span><br><span class="line"> --&gt; main.rs:5:16</span><br><span class="line">  |</span><br><span class="line">3 |     let s1 = String::from(&quot;hello&quot;);</span><br><span class="line">  |         -- move occurs because `s1` has type `String`, which does not implement the `Copy` trait</span><br><span class="line">4 |     let s2 = s1;</span><br><span class="line">  |              -- value moved here</span><br><span class="line">5 |     println!(&quot;&#123;s1&#125;, &#123;s2&#125;&quot;);</span><br><span class="line">  |                ^^ value borrowed here after move</span><br><span class="line">  |</span><br><span class="line">help: consider cloning the value if the performance cost is acceptable</span><br><span class="line">  |</span><br><span class="line">4 |     let s2 = s1.clone();</span><br><span class="line">  |                ++++++++</span><br></pre></td></tr></table></figure><p><code>String</code> 不实现 <code>Copy</code> trait，所以赋值就是移动所有权。<code>s1</code> 之后不能再用。</p><p>如果确实需要一份副本，用 <code>clone()</code>：</p><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s1</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s2</span> = s1.<span class="title function_ invoke__">clone</span>();</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;s1&#125;, &#123;s2&#125;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>所有权跟着值走这个规律每次都一样：给另一个变量赋值就是移动它；一个变量（其数据在堆上）离开作用域时，除非所有权已经移交给别的变量，否则值会被 <code>drop</code> 清理掉。</p><h2 id="引用与借用"><a class="markdownIt-Anchor" href="#引用与借用"></a> 引用与借用</h2><p>问题在于：每次都移交所有权再要回来太啰嗦。传参进去用完还得原样传回来，再加上函数体里可能想返回的数据。</p><p>引用（reference）跟指针类似 —— 是一个可以跟随的地址，指向存储在某处的数据，那份数据由别的变量拥有。但跟指针不同，<strong>引用保证在它存活的期间指向一个特定类型的有效值</strong>。</p><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s1</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">len</span> = <span class="title function_ invoke__">calculate_length</span>(&amp;s1);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;The length of &#x27;&#123;s1&#125;&#x27; is &#123;len&#125;.&quot;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">calculate_length</span>(s: &amp;<span class="type">String</span>) <span class="punctuation">-&gt;</span> <span class="type">usize</span> &#123; <span class="comment">// s 是对 String 的引用</span></span><br><span class="line">    s.<span class="title function_ invoke__">len</span>()</span><br><span class="line">&#125; <span class="comment">// 这里 s 离开作用域，但因为 s 不拥有它指向的值，String 不会被 drop</span></span><br></pre></td></tr></table></figure><p><code>&amp;s1</code> 创建了一个<strong>引用</strong>指向 <code>s1</code> 的值但不拥有它。因为不拥有，引用停止使用时，被指向的值不会被 drop。</p><p>与引用相对的是<strong>解引用</strong>（dereferencing），用解引用运算符 <code>*</code> 完成。</p><p>创建引用这个动作叫<strong>借用</strong>（borrowing）。就像现实生活：如果一个人拥有某样东西，你可以借走，用完要还，你不拥有它。</p><h3 id="可变引用"><a class="markdownIt-Anchor" href="#可变引用"></a> 可变引用</h3><p>变量默认不可变，引用也一样 —— 不允许修改借来的值：</p><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">change</span>(&amp;s);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">change</span>(some_string: &amp;<span class="type">String</span>) &#123;</span><br><span class="line">    some_string.<span class="title function_ invoke__">push_str</span>(<span class="string">&quot;, world&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>报错：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">error[E0596]: cannot borrow `*some_string` as mutable, as it is behind a `&amp;` reference</span><br><span class="line"> --&gt; main.rs:7:5</span><br><span class="line">  |</span><br><span class="line">7 |     some_string.push_str(&quot;, world&quot;);</span><br><span class="line">  |     ^^^^^^^^^^^ `some_string` is a `&amp;` reference, so it cannot be borrowed as mutable</span><br><span class="line">  |</span><br><span class="line">help: consider changing this to be a mutable reference</span><br><span class="line">  |</span><br><span class="line">6 | fn change(some_string: &amp;mut String) &#123;</span><br><span class="line">  |                         +++</span><br></pre></td></tr></table></figure><p>改用<strong>可变引用</strong>（mutable reference）：</p><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="title function_ invoke__">change</span>(&amp;<span class="keyword">mut</span> s);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">change</span>(some_string: &amp;<span class="keyword">mut</span> <span class="type">String</span>) &#123;</span><br><span class="line">    some_string.<span class="title function_ invoke__">push_str</span>(<span class="string">&quot;, world&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="可变引用的限制"><a class="markdownIt-Anchor" href="#可变引用的限制"></a> 可变引用的限制</h3><p>可变引用有个大限制：有了对一个值的可变引用，就不能再有其他指向该值的引用。</p><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">r1</span> = &amp;<span class="keyword">mut</span> s;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">r2</span> = &amp;<span class="keyword">mut</span> s;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;r1&#125;, &#123;r2&#125;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>报错：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">error[E0499]: cannot borrow `s` as mutable more than once at a time</span><br><span class="line"> --&gt; main.rs:5:14</span><br><span class="line">  |</span><br><span class="line">4 |     let r1 = &amp;mut s;</span><br><span class="line">  |              ------ first mutable borrow occurs here</span><br><span class="line">5 |     let r2 = &amp;mut s;</span><br><span class="line">  |              ^^^^^^ second mutable borrow occurs here</span><br><span class="line">6 |     println!(&quot;&#123;r1&#125;, &#123;r2&#125;&quot;);</span><br><span class="line">  |                -- first borrow later used here</span><br></pre></td></tr></table></figure><p>可变引用和不可变引用混用也不行：</p><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">r1</span> = &amp;s; <span class="comment">// no problem</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">r2</span> = &amp;s; <span class="comment">// no problem</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">r3</span> = &amp;<span class="keyword">mut</span> s; <span class="comment">// BIG PROBLEM</span></span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;r1&#125;, &#123;r2&#125;, and &#123;r3&#125;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>报错：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">error[E0502]: cannot borrow `s` as mutable because it is also borrowed as immutable</span><br><span class="line"> --&gt; main.rs:6:14</span><br><span class="line">  |</span><br><span class="line">4 |     let r1 = &amp;s; // no problem</span><br><span class="line">  |              -- immutable borrow occurs here</span><br><span class="line">5 |     let r2 = &amp;s; // no problem</span><br><span class="line">6 |     let r3 = &amp;mut s; // BIG PROBLEM</span><br><span class="line">  |              ^^^^^^ mutable borrow occurs here</span><br><span class="line">7 |</span><br><span class="line">8 |     println!(&quot;&#123;r1&#125;, &#123;r2&#125;, and &#123;r3&#125;&quot;);</span><br><span class="line">  |                -- immutable borrow later used here</span><br></pre></td></tr></table></figure><p>用不可变引用的人不希望值在脚下突然变了。但多个不可变引用是允许的 —— 单纯读数据的人没法影响别人读到的数据。</p><p>引用的作用域从它被引入开始，到<strong>最后一次使用</strong>为止。所以这样能编译：</p><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">r1</span> = &amp;s; <span class="comment">// no problem</span></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">r2</span> = &amp;s; <span class="comment">// no problem</span></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;r1&#125; and &#123;r2&#125;&quot;</span>);</span><br><span class="line">    <span class="comment">// r1 和 r2 之后不会再被使用</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">r3</span> = &amp;<span class="keyword">mut</span> s; <span class="comment">// no problem</span></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;r3&#125;&quot;</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p><code>r1</code>、<code>r2</code> 的作用域在 <code>println!</code> 之后结束，早于可变引用 <code>r3</code> 的创建。两个作用域不重叠。</p><p>用花括号开新作用域可以造出多个可变引用，只是不能<strong>同时</strong>存在：</p><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">let</span> <span class="variable">r1</span> = &amp;<span class="keyword">mut</span> s;</span><br><span class="line">    &#125; <span class="comment">// r1 在这里离开作用域，所以可以再建一个引用</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">r2</span> = &amp;<span class="keyword">mut</span> s;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><h3 id="悬垂引用"><a class="markdownIt-Anchor" href="#悬垂引用"></a> 悬垂引用</h3><p>在有指针的语言里，很容易不小心造出<strong>悬垂引用</strong>（dangling reference）—— 指向的内存可能已经给了别人。Rust 里编译器保证引用永远不会悬垂：有引用的数据，编译器确保数据的生命周期不会比引用短。</p><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">reference_to_nothing</span> = <span class="title function_ invoke__">dangle</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">dangle</span>() <span class="punctuation">-&gt;</span> &amp;<span class="type">String</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">    &amp;s</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>报错：</p><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">error[E0106]: missing lifetime specifier</span><br><span class="line"> --&gt; main.rs:5:16</span><br><span class="line">  |</span><br><span class="line">5 | fn dangle() -&gt; &amp;String &#123;</span><br><span class="line">  |                ^ expected named lifetime parameter</span><br><span class="line">  |</span><br><span class="line">  = help: this function&#x27;s return type contains a borrowed value, but there is no value for it to be borrowed from</span><br><span class="line">help: consider using the `&#x27;static` lifetime, but this is uncommon unless you&#x27;re returning a borrowed value from a `const` or a `static`</span><br><span class="line">  |</span><br><span class="line">5 | fn dangle() -&gt; &amp;&#x27;static String &#123;</span><br><span class="line">  |                 +++++++</span><br><span class="line">help: instead, you are more likely to want to return an owned value</span><br><span class="line">  |</span><br><span class="line">5 - fn dangle() -&gt; &amp;String &#123;</span><br><span class="line">5 + fn dangle() -&gt; String &#123;</span><br><span class="line">  |</span><br></pre></td></tr></table></figure><p><code>s</code> 在 <code>dangle</code> 内部创建，函数结束时被释放，而我们却返回了指向它的引用 —— 这个引用会指向无效的 <code>String</code>。Rust 不让这么写。</p><p>解法是直接返回 <code>String</code>：</p><figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">string</span> = <span class="title function_ invoke__">no_dangle</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">no_dangle</span>() <span class="punctuation">-&gt;</span> <span class="type">String</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">s</span> = <span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;hello&quot;</span>);</span><br><span class="line"></span><br><span class="line">    s</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><p>所有权被移出，没有任何东西被释放。</p><h2 id="小结"><a class="markdownIt-Anchor" href="#小结"></a> 小结</h2><ul class="lvl-0"><li class="lvl-2"><p>任意时刻，要么有一个可变引用，要么有任意多个不可变引用</p></li><li class="lvl-2"><p>引用必须始终有效</p></li></ul></div><div class="article-category"><a class="article-category-link" href="/categories/%E5%AD%A6%E4%B9%A0/">学习</a> <b>&nbsp;:分类</b><br><a class="article-tag-none-link" href="/tags/borrowing/" rel="tag">borrowing</a>, <a class="article-tag-none-link" href="/tags/ownership/" rel="tag">ownership</a>, <a class="article-tag-none-link" href="/tags/rust/" rel="tag">rust</a> <b>&nbsp;:标签</b></div></div></article><nav id="article-nav" class="article-nav"><a href="/%E5%AD%A6%E4%B9%A0/6d3c8f51.html" id="article-nav-newer" class="article-nav-link-wrap newer"><strong class="article-nav-caption">上一篇</strong><div class="article-nav-title">rust-生命周期</div></a><a href="/%E5%AD%A6%E4%B9%A0/eec35d0e.html" id="article-nav-older" class="article-nav-link-wrap older"><strong class="article-nav-caption">下一篇</strong><div class="article-nav-title">rust-if-let简洁控制流</div></a></nav></div><header id="header"><nav><div class="header-nav-links"><a class="nav-link-first" href="/">Nil W</a> <span class="nav-spacer"></span> <a class="nav-link" href="/archives">文章</a> <span class="nav-spacer"></span> <a class="nav-link" href="/categories">分类</a> <span class="nav-spacer"></span> <a class="nav-link" href="/about">关于我</a></div><div class="poem-wrap"><p id="poem">加载中...</p><p id="info"></div></nav></header></div><div id="settings-container"><div id="dark-mode"></div><div id="sans-font"></div></div><span class="post-count">77.5k</span><script type="text/javascript">let d=document,r=d.documentElement.style,f=r.setProperty.bind(r),l=localStorage,rawS=l.getItem("s"),s="1"===rawS||"2"===rawS?Number(rawS):0,sysDark=window.matchMedia&&window.matchMedia("(prefers-color-scheme: dark)").matches,m=d.getElementById("dark-mode"),b=()=>{f("--bg-color","#fafafa"),f("--code-bg-color","#f4f4f4"),f("--text-color","#212121"),f("--secondary-color","#808080"),f("--tertiary-color","#b0b0b0"),f("--link-color","#b5c8cf"),f("--link-hover-color","#618794"),f("--link-bg-color","#dae4e7"),f("--selection-color","#dae4e7")},c=()=>{f("--bg-color","#212121"),f("--code-bg-color","#292929"),f("--text-color","#fff"),f("--secondary-color","#c0c0c0"),f("--tertiary-color","#6e6e6e"),f("--link-color","#4d6b75"),f("--link-hover-color","#96b1bb"),f("--link-bg-color","#5d828e"),f("--selection-color","#acc1c9")},o=d.getElementById("sans-font"),e=()=>{f("--body-stack",'"Lora", "Georgia", "Times New Roman", serif')},g=()=>{f("--body-stack",'"Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif')},applyTheme=()=>{1===s?b():2===s||sysDark?c():b()};m.onclick=function(){s=2===s?0:s+1,l.setItem("s",s),applyTheme()},o.onclick=function(){2==n?(n=1,l.setItem("n",n),g()):(n=2,l.setItem("n",n),e())},applyTheme(),n||(n=2,l.setItem("n",2)),"1"==n&&g(),"2"==n&&e()</script><script src="/js/jquery.min.js" defer></script><script src="/js/jquery.qrcode.min.js" defer></script><script type="module">import qrcodeInit from"/js/qrcode.js";qrcodeInit()</script><script type="module">window.requestAnimationFrame=window.requestAnimationFrame||window.webkitRequestAnimationFrame||window.mozRequestAnimationFrame||window.oRequestAnimationFrame||window.msRequestAnimationFrame||function(n){window.setTimeout(n,100)},window.cancelAnimationFrame=window.cancelAnimationFrame||window.webkitCancelAnimationFrame||window.mozCancelAnimationFrame||window.oCancelAnimationFrame||window.msCancelAnimationFrame||clearTimeout</script><script type="module">function get_poem(n,e){var t=document.querySelector(n),o=document.querySelector(e),i=new XMLHttpRequest;i.open("get","https://v2.jinrishici.com/one.json?client=browser-sdk/1.2"),i.withCredentials=!0,i.onreadystatechange=function(){if(4===i.readyState){var n=JSON.parse(i.responseText);t.innerHTML=n.data.content,o.innerHTML="["+n.data.origin.dynasty+"] "+n.data.origin.author+"《"+n.data.origin.title+"》"}},i.send()}function modifySubmitBtn(){var n=$(".hbe-button"),e=$("#hbePass");n.length>0&&n.text("重新输入密码"),e.length>0&&e.attr("autocomplete","false")}function layoutTagCloud(){}function loopHover(){var n=$(".tagcloud a"),e=$('.tagcloud a[class="tag-hover"]'),t=Math.round(Math.random()*(n.length-1));if(t<0&&(t=0),t>n.length&&(t=n.length-1),n.length){if(e.length)for(let n=0;n<e.length;n++)e[n].classList="";n[t].classList="tag-hover"}}function setIntervalPrecision(n,e){let t=window.interValPrecisionObj||(window.interValPrecisionObj={num:0});t.num++,t["n"+t.num]=!0;var o=t.num,i=+new Date,a=0;return e=e||0,function r(){t["n"+o]&&(+new Date>i+e*(a+1)&&(a++,n(a)),window.requestAnimationFrame(r))}(),o}function clearIntervalPrecision(n){window.interValPrecisionObj&&(window.cancelAnimationFrame("n"+n),delete window.interValPrecisionObj["n"+n])}$("div").hasClass("poem-wrap")&&get_poem("#poem","#info"),modifySubmitBtn(),setIntervalPrecision(loopHover,250)</script>
   <div id="beian-info" style="text-align:center;font-size:12px;line-height:1.9;color:#808080;padding:14px 12px 22px;opacity:.85;"><a href="https://beian.miit.gov.cn" target="_blank" rel="noopener nofollow nofollow">豫ICP备2023032045号-1</a></div>
-</body>
-
-</html>
+</body></html>
