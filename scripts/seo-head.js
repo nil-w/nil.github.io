@@ -101,16 +101,16 @@ hexo.extend.filter.register('before_post_render', function (data) {
 });
 
 /**
- * after_generate：合并 4 个 render-blocking CSS 为单文件。
+ * after_generate：合并全站公共 CSS 为单文件。
  *
- * 原页面在 <head> 里串行请求 style / search / googleapis / highlight
- * 四个样式表，移动端首屏多付 3 个 RTT。合并为一个顺序等价的 bundle。
+ * 列表页：style / search / googleapis（highlight 仅文章页单独引入，
+ * 避免把代码高亮打进每一页）。
  */
 function applyCssBundle() {
   const fs = require('fs');
   const path = require('path');
   const cssDir = path.join(hexo.public_dir, 'css');
-  const names = ['style.css', 'search.css', 'googleapis.css', 'highlight.css'];
+  const names = ['style.css', 'search.css', 'googleapis.css'];
 
   const missing = names.filter(n => !fs.existsSync(path.join(cssDir, n)));
   if (missing.length) {
@@ -123,7 +123,7 @@ function applyCssBundle() {
     .join('\n');
   fs.writeFileSync(path.join(cssDir, 'bundle.css'), bundle, 'utf8');
 
-  const re = /[ \t]*<link[^>]*href="\/css\/(?:style|search|googleapis|highlight)\.css"[^>]*>[ \t]*\r?\n?/g;
+  const re = /[ \t]*<link[^>]*href="\/css\/(?:style|search|googleapis)\.css"[^>]*>[ \t]*\r?\n?/g;
   let touched = 0;
 
   (function walk(dir) {
@@ -134,11 +134,31 @@ function applyCssBundle() {
       if (!name.endsWith('.html')) continue;
 
       let html = fs.readFileSync(fp, 'utf8');
-      if (!re.test(html)) { re.lastIndex = 0; continue; }
+      const hasSources = re.test(html);
       re.lastIndex = 0;
+      const hasBundle = /href="\/css\/bundle\.css"/.test(html);
+      if (!hasSources && !hasBundle) continue;
 
-      html = html.replace(re, '');
-      html = html.replace('</head>', '  <link rel="stylesheet" href="/css/bundle.css">\n</head>');
+      // highlight 必须在 bundle（含 style）之后，否则代码块主题会被盖掉
+      const hlRe = /[ \t]*<link[^>]*href="\/css\/highlight\.css"[^>]*>[ \t]*\r?\n?/g;
+      const hadHighlight = hlRe.test(html);
+      hlRe.lastIndex = 0;
+      if (hadHighlight) html = html.replace(hlRe, '');
+
+      if (hasSources) {
+        let placed = false;
+        html = html.replace(re, () => {
+          if (placed) return '';
+          placed = true;
+          return '  <link rel="stylesheet" href="/css/bundle.css">\n';
+        });
+      }
+      if (hadHighlight) {
+        html = html.replace(
+          /(<link[^>]*href="\/css\/bundle\.css"[^>]*>)/,
+          '$1\n  <link rel="stylesheet" href="/css/highlight.css">'
+        );
+      }
       fs.writeFileSync(fp, html, 'utf8');
       touched++;
     }

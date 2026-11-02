@@ -1,9 +1,13 @@
 <head>
   <meta charset="utf-8">
   <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
-  <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
   <link rel="dns-prefetch" href="https://github.com" />
   <link rel="dns-prefetch" href="https://unpkg.com" />
+  <%# 首屏三款字体同源预加载：与 css/googleapis.css 的本地 first 顺序对齐，
+      让字体请求与关键 CSS 并行，把字体阻塞期压到 100ms 以内（font-display: optional）。 %>
+  <link rel="preload" href="/fonts/0QIvMX1D_JOuMwr7I_FMl_E.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/S6uyw4BMUTPHjx4wXiWtFCc.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/ke80OhoaMkR6-hSn7kbHVoFf7ZfgMPr_nTorBcwXLqAXIyA.woff2" as="font" type="font/woff2" crossorigin>
   <%
   // ── SEO 变量 ──────────────────────────────────────────────
   var SITE = String(config.url || '').replace(/\/+$/, '');
@@ -99,7 +103,8 @@
 
   <%- css('css/style') %>
   <%- css('css/search') %>
-  <% if (page.layout === 'post'){ %>
+  <%# KaTeX 仅在正文真的渲染出公式时才加载：无公式的文章不再背 23KB CSS %>
+  <% if (page.layout === 'post' && /class="katex/.test(bodyHtml)){ %>
     <%- css('css/katex.min') %>
   <% } %>
   <%- css('css/googleapis') %>

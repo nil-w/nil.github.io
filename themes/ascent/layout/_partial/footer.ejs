@@ -35,10 +35,11 @@
       f('--bg-color', '#fafafa');
       f('--code-bg-color', '#f4f4f4');
       f('--text-color', '#212121');
-      f('--secondary-color', '#808080');
-      f('--tertiary-color', '#b0b0b0');
-      f('--link-color', '#b5c8cf');
-      f('--link-hover-color', '#618794');
+      f('--secondary-color', '#6e6e6e');
+      f('--tertiary-color', '#767676');
+      f('--link-color', '#7d9aa3');
+      f('--link-hover-color', '#3f6673');
+      f('--link-text-color', '#3f6673');
       f('--link-bg-color', '#dae4e7');
       f('--selection-color', '#dae4e7');
     },
@@ -47,18 +48,20 @@
       f('--code-bg-color', '#292929');
       f('--text-color', '#fff');
       f('--secondary-color', '#c0c0c0');
-      f('--tertiary-color', '#6e6e6e');
-      f('--link-color', '#4d6b75');
-      f('--link-hover-color', '#96b1bb');
+      f('--tertiary-color', '#8f8f8f');
+      f('--link-color', '#5c8089');
+      f('--link-hover-color', '#a9c6d0');
+      f('--link-text-color', '#a9c6d0');
       f('--link-bg-color', '#5d828e');
       f('--selection-color', '#acc1c9');
     },
+    n = Number(l.getItem('n')) || 0,
     o = d.getElementById("sans-font"),
     e = () => {
-      f('--body-stack', '"Lora", "Georgia", "Times New Roman", serif');
+      f('--body-stack', '"Lora", "Lora Fallback", "Georgia", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Times New Roman", serif');
     },
     g = () => {
-      f('--body-stack', '"Lato", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", sans-serif');
+      f('--body-stack', '"Lato", "Lato Fallback", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif');
     },
     applyTheme = () => {
       if (s === 1) b();

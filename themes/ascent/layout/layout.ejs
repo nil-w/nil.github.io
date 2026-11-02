@@ -2,7 +2,7 @@
 <html>
 <%- partial('_partial/head') %>
 
-  <body>
+  <body<%- is_home() ? ' class="home"' : '' %>>
     <div id="wrapper">
         <div id="content">
           <%- body %>

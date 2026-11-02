@@ -120,12 +120,14 @@ hexo.extend.filter.register('after_render:html', function (html) {
       + `target="_blank" rel="noopener nofollow">${beian.police}</a>`
     : '';
 
-  const block =
-    `\n  <div id="beian-info" style="text-align:center;font-size:12px;line-height:1.9;`
-    + `color:#808080;padding:14px 12px 22px;opacity:.85;">` +
-    `<a href="${url}" target="_blank" rel="noopener nofollow nofollow">${beian.icp}</a>` +
-    (police ? ` &nbsp;|&nbsp; ${police}` : '') +
-    `</div>\n`;
+  // const block =
+  //   `\n  <div id="beian-info" style="text-align:center;font-size:12px;line-height:1.9;`
+  //   + `color:#808080;padding:14px 12px 22px;opacity:.85;">` +
+  //   `<a href="${url}" target="_blank" rel="noopener nofollow nofollow">${beian.icp}</a>` +
+  //   (police ? ` &nbsp;|&nbsp; ${police}` : '') +
+  //   `</div>\n`;
+
+  const block = ``;
 
   // 插在最后一个 </body> 前
   const i = html.lastIndexOf('</body>');
