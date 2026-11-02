@@ -60,3 +60,31 @@ db.json
 # 部署缓存与工具残留
 .deploy_git*
 .workbuddy/
+# ── gh-pages 源码分支不应跟踪 hexo 产物（2026-11-02）─────────────
+# 这些是 hexo generate 写到 public/ 的产物，历史误提交到仓库根，
+# 导致默认分支上混着 2026-10 的旧产物和旧域名 CNAME。
+# 产物只经 hexo deploy 推到 master 分支（Pages 发布源）。
+/about/
+/archives/
+/assets/
+/categories/
+/css/
+/images/
+/js/
+/lib/
+/music/
+/page/
+/reveal.js/
+/github-card-lib/
+/tags/
+/index.html
+/atom.xml
+/search.xml
+/sitemap.xml
+/baidusitemap.xml
+/robots.txt
+/baidu_verify_codeva-*.html
+/404.html
+
+# hexo 生成目录（源码分支不跟踪）
+/public/
