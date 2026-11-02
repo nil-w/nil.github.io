@@ -1479,7 +1479,8 @@ body.home #header a:focus-visible {
 
 /* ---------- ② 首页锁在一屏内，分页、列表、页眉作为一组垂直居中 ----------
    结构不变：分页在上，年份 + 标题/日期列表在中，诗句与导航在下。
-   三者高度够放进视口时整组居中；放不下时列表在页眉上方滚动，不盖住导航。
+   列表区高度固定，少文章的分页不再把分页和页眉一起上下挪。
+   放不下时只在列表内部滚动，不盖住导航。
    只作用于 body.home，文章页仍按正文高度滚动。 */
 html:has(body.home) {
   height: 100%;
@@ -1525,8 +1526,10 @@ body.home .page-nav {
 }
 
 body.home .archive-body {
-  flex: 0 1 auto;
-  min-height: 0;
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  min-height: clamp(16rem, calc(100dvh - 15.25rem), 44rem);
+  max-height: clamp(16rem, calc(100dvh - 15.25rem), 44rem);
   display: flex;
   flex-direction: column;
   overflow-y: auto;
