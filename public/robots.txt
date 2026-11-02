@@ -1,4 +1,5 @@
 User-agent: *
+Crawl-delay: 1
 Allow: /
 Allow: /about/
 Allow: /archives/
