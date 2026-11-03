@@ -489,6 +489,30 @@
       </tags>
   </entry>
   <entry>
+    <title>阿里云mysql外网访问</title>
+    <url>/%E6%9C%8D%E5%8A%A1%E5%99%A8/b4b628e2.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>转载原文评论: <a href="https://segmentfault.com/q/1010000009603559?sort=created">阿里云 ecs 上安装了 mysql 但是外网访问不了</a></p>
+<span id="more"></span>
+<p>1.阿里云 ECS 有安全组防火墙.默认只开了 ICMP,22,3389. 在服务器控制台找到 安全组-配置规则-添加安全组规则</p>
+<p><img src="/images/1950746143-596a46107163e_articlex.png" alt="1950746143-596a46107163e_articlex" /></p>
+<p>2.如果是用 root 登录 MySQL,在登陆后 use mysql, user 表 root 对应的 localhost 改为%</p>
+<p>3.mysql 默认只能自本机访问</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line">#bind-address = 127.0.0.1</span><br><span class="line"></span><br><span class="line">service mysql restart</span><br></pre></td></tr></table></figure>
+<p>4.检查是不是在监听状态</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netstat -ntpl |grep 3306</span><br></pre></td></tr></table></figure>
+<p>5.防火墙是否对 mysql 端口限制,设置防火墙</p>
+]]></content>
+      <categories>
+        <category>服务器</category>
+      </categories>
+      <tags>
+        <tag>aliyun</tag>
+        <tag>阿里云</tag>
+        <tag>ubuntu 14.04</tag>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>nginx支持ssl+acme.sh定时更新证书</title>
     <url>/nginx/41a22a4b.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>不废话，直接进入实战。</p>
@@ -522,30 +546,6 @@
         <tag>nginx</tag>
         <tag>ssl</tag>
         <tag>acme.sh</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>阿里云mysql外网访问</title>
-    <url>/%E6%9C%8D%E5%8A%A1%E5%99%A8/b4b628e2.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>转载原文评论: <a href="https://segmentfault.com/q/1010000009603559?sort=created">阿里云 ecs 上安装了 mysql 但是外网访问不了</a></p>
-<span id="more"></span>
-<p>1.阿里云 ECS 有安全组防火墙.默认只开了 ICMP,22,3389. 在服务器控制台找到 安全组-配置规则-添加安全组规则</p>
-<p><img src="/images/1950746143-596a46107163e_articlex.png" alt="1950746143-596a46107163e_articlex" /></p>
-<p>2.如果是用 root 登录 MySQL,在登陆后 use mysql, user 表 root 对应的 localhost 改为%</p>
-<p>3.mysql 默认只能自本机访问</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line">#bind-address = 127.0.0.1</span><br><span class="line"></span><br><span class="line">service mysql restart</span><br></pre></td></tr></table></figure>
-<p>4.检查是不是在监听状态</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netstat -ntpl |grep 3306</span><br></pre></td></tr></table></figure>
-<p>5.防火墙是否对 mysql 端口限制,设置防火墙</p>
-]]></content>
-      <categories>
-        <category>服务器</category>
-      </categories>
-      <tags>
-        <tag>aliyun</tag>
-        <tag>阿里云</tag>
-        <tag>ubuntu 14.04</tag>
-        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
@@ -2758,12 +2758,49 @@
       </tags>
   </entry>
   <entry>
+    <title>333个Tor出口被劫持暴露匿名网络信任危机</title>
+    <url>/%E4%BA%92%E8%81%94%E7%BD%91/ec1b5ba5.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="链路加密保护路径出口节点仍能读取明文"><a class="markdownIt-Anchor" href="#链路加密保护路径出口节点仍能读取明文"></a> 链路加密保护路径，出口节点仍能读取明文</h2>
+<p><span class="hl">333 个 Tor 出口节点被劫持</span>，暴露了匿名网络最脆弱的一环。攻击者控制了出口节点，就能看到经过该节点的流量。若访问的是 HTTPS，网站内容仍受传输加密保护；若用户连接普通协议或明文服务，敏感信息就会直接暴露。</p>
+<p>我以前理解 Tor，主要盯着浏览器地址栏和线路选择。用户流量经过多台中继，来源地址不会轻易落到目标网站。链路加密也覆盖了节点之间的传输过程。后来我才意识到，这条链路只保护数据在路上如何移动，不负责判断数据本身是否安全。</p>
+<p>出口节点掌握最终连接。攻击者控制它以后，不需要破解层层中继，只需等待用户提交未加密的信息。登录口令、私信内容，甚至明文 SSH 凭据，都可能在这个位置被截取。</p>
+<blockquote>
+<p>HTTPS 会保护网页内容，普通协议和明文服务却可能直接暴露敏感数据。</p>
+</blockquote>
+<p>这正是本次事件最值得警惕的地方。攻击者想偷的是数据，便把目标放在能够读取明文的位置。规模化的节点劫持，让这种风险从个别失陷扩散到更多出口。Tor 的匿名性依赖整个网络共同维护，任何一环被控制，边界都会随之松动。</p>
+<h2 id="恶意出口动摇了匿名网络的信任基础"><a class="markdownIt-Anchor" href="#恶意出口动摇了匿名网络的信任基础"></a> 恶意出口动摇了匿名网络的信任基础</h2>
+<p><span class="hl">本月有 3 天发生出口节点遭入侵</span>，说明风险已经形成现实压力。我的判断很直接：Tor 的安全不能建立在用户记得给每个服务加一层加密这个前提上。链路加密解决传输隐蔽性，应用层加密决定最终内容是否安全，两者承担的任务并不相同。</p>
+<p>我第一次认真使用 Tor，是在网络审查突然收紧的时期。那时我把匿名理解成一个开关，连上就能把真实身份藏起来。用了几年以后，我才看清匿名依赖很多条件共同成立：客户端配置正确，节点运营者可信，目标网站没有反向识别，用户也没有在明文协议里交出秘密。</p>
+<p>昨天，我在《Tor出口节点大规模劫持暴露匿名网络信任危机》里写过，大规模劫持出口节点说明 Tor 的匿名性依赖整个网络的共同维护。这个判断今天仍然成立。本次报道补上的细节是，攻击持续了 3 天，受影响范围涉及 <span class="hl">333 个出口节点</span>，目标明确指向敏感数据窃取。</p>
+<p>我也在 10 月 29 日的《Tor出口节点大规模劫持暴露匿名网络信任危机》中讨论过出口节点的安全边界。当时我强调路径选择隐藏来源、链路加密保护传输，却无法替应用层内容加密。连续几篇写同一件事，也让我意识到一个问题：把责任反复推给用户，并不能让网络变得更安全。</p>
+<blockquote>
+<p>出口节点一旦被控制，路径隐藏做得再好，也可能挡不住最终连接中的明文数据。</p>
+</blockquote>
+<p>我不同意“用了 Tor 就能避免数据泄露”的简单说法。匿名和内容保密需要分别处理。只关注地址隐藏的人，可能忽略登录协议；只追求速度的人，也可能直接关闭本来存在的加密选项。安全选择必须落在具体应用里。</p>
+<h2 id="用户需要给数据再加一道锁"><a class="markdownIt-Anchor" href="#用户需要给数据再加一道锁"></a> 用户需要给数据再加一道锁</h2>
+<p>链路加密保护节点之间的数据，应用层加密保护最终内容。用户访问 HTTPS 网站时，出口节点通常看不到网页正文。但只要协议本身没有加密，链路中的层层保护就无法补上最后一道缺口。</p>
+<p>我不会把全部责任归给用户。Tor 的设计有意减少中心化控制，让分散节点共同组成网络。代价也很清楚：网络规模越大，运营质量越难统一，恶意节点和被劫持节点带来的风险越难彻底消除。</p>
+<p>因此，我更愿意把出口劫持视为一项系统性提醒。节点运营者需要提高防护能力，用户需要检查协议和证书，客户端也需要减少不可信出口带来的暴露。单独修补任何一端，都不能代替其余环节。</p>
+<blockquote>
+<p>链路加密管“数据怎么走”，应用层加密管“内容写什么”，两者缺一不可。</p>
+</blockquote>
+<p>到今天，我仍未找到一个既保持 Tor 分散结构，又不让用户承担全部安全负担的答案。333 个出口节点遭劫持，暴露了这种信任结构中的薄弱处。它至少提醒我们，匿名网络真正保护的对象从来不只是地址，还包括途中出现的数据。</p>
+<p>如果出口节点能够看到更多未加密流量，我们究竟该继续信任分散网络，还是接受更多中心化控制？这道选择题，可能比讨论某一种协议更泄露用户的安全需求。</p>
+]]></content>
+      <categories>
+        <category>互联网</category>
+      </categories>
+      <tags>
+        <tag>互联网</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>波士顿证明，创始人无需硅谷地址也能做成大事</title>
     <url>/%E4%BA%92%E8%81%94%E7%BD%91/db9ca79b.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="波士顿证明创始人无需硅谷地址也能做成大事"><a class="markdownIt-Anchor" href="#波士顿证明创始人无需硅谷地址也能做成大事"></a> 波士顿证明，创始人无需硅谷地址也能做成大事</h2>
 <p>波士顿更适合独立开发者建立长期关系。硅谷拥有更密集的融资新闻，波士顿的大学、人才和资本网络却更贴近技术工作的日常。迁移过去，不必追逐某个热门标签。</p>
 <p>TechCrunch Founder Summit 将于 11 月 4 日在波士顿举行，议程围绕创始人展开，也强调有价值的连接。活动页面还写着一句有些截断的原文：<code>ections. Save up to $100 or get discoun</code>。</p>
-<p>我对“离开硅谷”这件事曾经有很具体的想象。搬到另一个城市，换办公室，找投资人，改公司简介。现在看，这些大多是结果。真正能迁移的是关系结构，以及找到合作对象的方式。</p>
+<p>我对“离开硅谷”这件事曾经有很具体的想象。搬到另一个城市，换办公室，找投资人，改公司简介。现在看，这些大多是结果。<span class="hl">能跟着你搬走的只有关系结构和找人的方式。</span></p>
 <blockquote>
 <p>11 月 4 日、$100，这两个数字都指向同一件事：地点可以改变，创始人交流的成本也可以被压低。</p>
 </blockquote>
@@ -2789,7 +2826,7 @@
 <p><strong>生活成本</strong>：能否用更低的固定支出支撑一段较长的技术开发周期。</p>
 </li>
 </ul>
-<p>这 4 项不需要一次全部满足。独立开发者通常先靠产品收入或外部服务维持开发，因此不必为了想象中的融资机会承担高额迁移成本。先去参加活动，再建立关系，最后判断是否值得长期待下去。</p>
+<p>这 4 项不需要一次全部满足。<span class="hl">独立开发者通常先靠产品收入或外部服务维持开发</span>，因此不必为了想象中的融资机会承担高额迁移成本。先去参加活动，再建立关系，最后判断是否值得长期待下去。</p>
 <blockquote>
 <p>11 月 4 日的波士顿活动给出 $100 的优惠信息。节省下来的钱有限，获得一次面对面连接的机会更实际。</p>
 </blockquote>
@@ -2799,43 +2836,6 @@
 <h2 id="结尾"><a class="markdownIt-Anchor" href="#结尾"></a> 结尾</h2>
 <p>波士顿给出的启发很简单：创始人不必拥有硅谷地址，工具也不必围绕硅谷运行。大学、技术社群、产业活动和资本之间存在连接，连接需要时间经营。</p>
 <p>我下一步会整理波士顿的公开活动、大学研究项目和开发者聚会，按月安排访问顺序。选出一座城市可以靠清单，选出值得留下的城市，需要连续几次到场之后才有答案。</p>
-]]></content>
-      <categories>
-        <category>互联网</category>
-      </categories>
-      <tags>
-        <tag>互联网</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>333个Tor出口被劫持暴露匿名网络信任危机</title>
-    <url>/%E4%BA%92%E8%81%94%E7%BD%91/ec1b5ba5.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="链路加密保护路径出口节点仍能读取明文"><a class="markdownIt-Anchor" href="#链路加密保护路径出口节点仍能读取明文"></a> 链路加密保护路径，出口节点仍能读取明文</h2>
-<p><span class="hl">333 个 Tor 出口节点被劫持</span>，暴露了匿名网络最脆弱的一环。攻击者控制了出口节点，就能看到经过该节点的流量。若访问的是 HTTPS，网站内容仍受传输加密保护；若用户连接普通协议或明文服务，敏感信息就会直接暴露。</p>
-<p>我以前理解 Tor，主要盯着浏览器地址栏和线路选择。用户流量经过多台中继，来源地址不会轻易落到目标网站。链路加密也覆盖了节点之间的传输过程。后来我才意识到，这条链路只保护数据在路上如何移动，不负责判断数据本身是否安全。</p>
-<p>出口节点掌握最终连接。攻击者控制它以后，不需要破解层层中继，只需等待用户提交未加密的信息。登录口令、私信内容，甚至明文 SSH 凭据，都可能在这个位置被截取。</p>
-<blockquote>
-<p>HTTPS 会保护网页内容，普通协议和明文服务却可能直接暴露敏感数据。</p>
-</blockquote>
-<p>这正是本次事件最值得警惕的地方。攻击者想偷的是数据，便把目标放在能够读取明文的位置。规模化的节点劫持，让这种风险从个别失陷扩散到更多出口。Tor 的匿名性依赖整个网络共同维护，任何一环被控制，边界都会随之松动。</p>
-<h2 id="恶意出口动摇了匿名网络的信任基础"><a class="markdownIt-Anchor" href="#恶意出口动摇了匿名网络的信任基础"></a> 恶意出口动摇了匿名网络的信任基础</h2>
-<p><span class="hl">本月有 3 天发生出口节点遭入侵</span>，说明风险已经形成现实压力。我的判断很直接：Tor 的安全不能建立在用户记得给每个服务加一层加密这个前提上。链路加密解决传输隐蔽性，应用层加密决定最终内容是否安全，两者承担的任务并不相同。</p>
-<p>我第一次认真使用 Tor，是在网络审查突然收紧的时期。那时我把匿名理解成一个开关，连上就能把真实身份藏起来。用了几年以后，我才看清匿名依赖很多条件共同成立：客户端配置正确，节点运营者可信，目标网站没有反向识别，用户也没有在明文协议里交出秘密。</p>
-<p>4 天前，我在《Tor出口节点大规模劫持暴露匿名网络信任危机》里写过，大规模劫持出口节点说明 Tor 的匿名性依赖整个网络的共同维护。这个判断今天仍然成立。本次报道补上的细节是，攻击持续了 3 天，受影响范围涉及 <span class="hl">333 个出口节点</span>，目标明确指向敏感数据窃取。</p>
-<p>我也在 10 月 29 日的《Tor出口节点大规模劫持暴露匿名网络信任危机》中讨论过出口节点的安全边界。当时我强调路径选择隐藏来源、链路加密保护传输，却无法替应用层内容加密。连续几篇写同一件事，也让我意识到一个问题：把责任反复推给用户，并不能让网络变得更安全。</p>
-<blockquote>
-<p>出口节点一旦被控制，路径隐藏做得再好，也可能挡不住最终连接中的明文数据。</p>
-</blockquote>
-<p>我不同意“用了 Tor 就能避免数据泄露”的简单说法。匿名和内容保密需要分别处理。只关注地址隐藏的人，可能忽略登录协议；只追求速度的人，也可能直接关闭本来存在的加密选项。安全选择必须落在具体应用里。</p>
-<h2 id="用户需要给数据再加一道锁"><a class="markdownIt-Anchor" href="#用户需要给数据再加一道锁"></a> 用户需要给数据再加一道锁</h2>
-<p>链路加密保护节点之间的数据，应用层加密保护最终内容。用户访问 HTTPS 网站时，出口节点通常看不到网页正文。但只要协议本身没有加密，链路中的层层保护就无法补上最后一道缺口。</p>
-<p>我不会把全部责任归给用户。Tor 的设计有意减少中心化控制，让分散节点共同组成网络。代价也很清楚：网络规模越大，运营质量越难统一，恶意节点和被劫持节点带来的风险越难彻底消除。</p>
-<p>因此，我更愿意把出口劫持视为一项系统性提醒。节点运营者需要提高防护能力，用户需要检查协议和证书，客户端也需要减少不可信出口带来的暴露。单独修补任何一端，都不能代替其余环节。</p>
-<blockquote>
-<p>链路加密管“数据怎么走”，应用层加密管“内容写什么”，两者缺一不可。</p>
-</blockquote>
-<p>到今天，我仍未找到一个既保持 Tor 分散结构，又不让用户承担全部安全负担的答案。333 个出口节点遭劫持，暴露了这种信任结构中的薄弱处。它至少提醒我们，匿名网络真正保护的对象从来不只是地址，还包括途中出现的数据。</p>
-<p>如果出口节点能够看到更多未加密流量，我们究竟该继续信任分散网络，还是接受更多中心化控制？这道选择题，可能比讨论某一种协议更泄露用户的安全需求。</p>
 ]]></content>
       <categories>
         <category>互联网</category>
@@ -6192,6 +6192,35 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
+    <title>笔记0-《程序员的数学》进制与指数法则</title>
+    <url>/%E5%AD%A6%E4%B9%A0/752254673.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="学习列表"><a class="markdownIt-Anchor" href="#学习列表"></a> 学习列表:</h2>
+<span id="more"></span>
+<h3 id="2-进制"><a class="markdownIt-Anchor" href="#2-进制"></a> 2 进制:</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2503</span><br><span class="line">1251  余  1  ==&gt; 1</span><br><span class="line">625   余  1  ==&gt; 1</span><br><span class="line">312   余  1  ==&gt; 1</span><br><span class="line"></span><br><span class="line">156   余  0  ==&gt; 0</span><br><span class="line">78    余  0  ==&gt; 0</span><br><span class="line">39    余  0  ==&gt; 0</span><br><span class="line"></span><br><span class="line">19    余  1  ==&gt; 1</span><br><span class="line">9     余  1  ==&gt; 1</span><br><span class="line">4     余  1  ==&gt; 1</span><br><span class="line"></span><br><span class="line">2     余  0  ==&gt; 0</span><br><span class="line">1     余  0  ==&gt; 0</span><br><span class="line">0     余  1  ==&gt; 1</span><br><span class="line"></span><br><span class="line">111 000 111 001</span><br></pre></td></tr></table></figure>
+<h3 id="指数"><a class="markdownIt-Anchor" href="#指数"></a> 指数:</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">10 ** 3 = 1000</span><br><span class="line">10 ** 2 = 100 	 (1000 * 1/10)</span><br><span class="line">10 ** 1 = 10  	 (100 * 1/10)</span><br><span class="line">10 ** 0 = ？ 	 (10 * 1/10)</span><br><span class="line">10 ** -1 = (1/10)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>指数每减 1，数字就变为原来的十分之一。</p>
+</blockquote>
+<h2 id="指数法则"><a class="markdownIt-Anchor" href="#指数法则"></a> 指数法则:</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">N ** a + N ** b = N ** (a + b)      N &gt; 0</span><br></pre></td></tr></table></figure>
+<h2 id="0-所起的作用"><a class="markdownIt-Anchor" href="#0-所起的作用"></a> 0 所起的作用:</h2>
+<h3 id="0-的作用-占位"><a class="markdownIt-Anchor" href="#0-的作用-占位"></a> 0 的作用: 占位</h3>
+<blockquote>
+<p>2503 中 0 如果省略，那就变成 253.数值放生了变化，所以 0 不能省略。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>进制</tag>
+        <tag>指数</tag>
+        <tag>指数法则</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记9-《程序员的数学3：线性代数》不可对角化的情况与Jordan标准型</title>
     <url>/%E5%AD%A6%E4%B9%A0/7a3d92e6.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="不可对角化的情况与-jordan-标准型"><a class="markdownIt-Anchor" href="#不可对角化的情况与-jordan-标准型"></a> 不可对角化的情况与 Jordan 标准型</h2>
@@ -6316,35 +6345,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       <tags>
         <tag>线性代数</tag>
         <tag>Jordan标准型</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记0-《程序员的数学》进制与指数法则</title>
-    <url>/%E5%AD%A6%E4%B9%A0/752254673.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="学习列表"><a class="markdownIt-Anchor" href="#学习列表"></a> 学习列表:</h2>
-<span id="more"></span>
-<h3 id="2-进制"><a class="markdownIt-Anchor" href="#2-进制"></a> 2 进制:</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2503</span><br><span class="line">1251  余  1  ==&gt; 1</span><br><span class="line">625   余  1  ==&gt; 1</span><br><span class="line">312   余  1  ==&gt; 1</span><br><span class="line"></span><br><span class="line">156   余  0  ==&gt; 0</span><br><span class="line">78    余  0  ==&gt; 0</span><br><span class="line">39    余  0  ==&gt; 0</span><br><span class="line"></span><br><span class="line">19    余  1  ==&gt; 1</span><br><span class="line">9     余  1  ==&gt; 1</span><br><span class="line">4     余  1  ==&gt; 1</span><br><span class="line"></span><br><span class="line">2     余  0  ==&gt; 0</span><br><span class="line">1     余  0  ==&gt; 0</span><br><span class="line">0     余  1  ==&gt; 1</span><br><span class="line"></span><br><span class="line">111 000 111 001</span><br></pre></td></tr></table></figure>
-<h3 id="指数"><a class="markdownIt-Anchor" href="#指数"></a> 指数:</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">10 ** 3 = 1000</span><br><span class="line">10 ** 2 = 100 	 (1000 * 1/10)</span><br><span class="line">10 ** 1 = 10  	 (100 * 1/10)</span><br><span class="line">10 ** 0 = ？ 	 (10 * 1/10)</span><br><span class="line">10 ** -1 = (1/10)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>指数每减 1，数字就变为原来的十分之一。</p>
-</blockquote>
-<h2 id="指数法则"><a class="markdownIt-Anchor" href="#指数法则"></a> 指数法则:</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">N ** a + N ** b = N ** (a + b)      N &gt; 0</span><br></pre></td></tr></table></figure>
-<h2 id="0-所起的作用"><a class="markdownIt-Anchor" href="#0-所起的作用"></a> 0 所起的作用:</h2>
-<h3 id="0-的作用-占位"><a class="markdownIt-Anchor" href="#0-的作用-占位"></a> 0 的作用: 占位</h3>
-<blockquote>
-<p>2503 中 0 如果省略，那就变成 253.数值放生了变化，所以 0 不能省略。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>进制</tag>
-        <tag>指数</tag>
-        <tag>指数法则</tag>
       </tags>
   </entry>
   <entry>
@@ -10767,32 +10767,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
-    <title>奇怪的梦</title>
-    <url>/%E7%94%9F%E6%B4%BB/2afb063d.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="0a751ab2cab789f89ab563c1df7773ac753b4ac0f92147c2c3b943ed66d2bbde">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d01101c2c8c781e0b1cd8c2268fc4efcf73eca9ec52ed737c3e4b1fc88ab5677a7f6b2a62a2e14f94a5baf9c3196a1aa8cb0da095c4d0a4032935d7df8bfad0a2f3b9b456191eff772b024a0d4a32d85d8f8524dec24a9148950127e2adbd9a26578ed16c252bf25c35426dd6517a40c5926e1c6cb8e8294e15ca5801107d94b580ec386c3f00be8540f1b49668ebacc077b6f3336c569dec0e085e833399f37688fd7b3c47f3e1e8de882e4b6d5cd64ac86338f967fc35d1d4eea06035b826eabe2263698ba13b225d97d2c771bb4de617fbafd3c0ffdae4e1e5d3ac1b8ff8491459ea01b954978e52bb44a32630d794663cfc88878f79a6bacc313b01a3e51978bf4e192b35648c90677ab09dfb00fc6d631338b2548542f4858da83e9228d11046a4a1c7726c45eb62eae142e6cb91a36b39470de9bdf2b4e3cd34c2bb3877418d5917305a89b60398ec3dc1e825a69c38ea2a836766665c449052b4c1a682e0f73f068cfbfc28df6cc44b83779e372403309ebbf7ed049e5737817025d9a295ffa9c27673cf2ecc30a20288465b51963d3d0a46d1142ae2a039664f06c2d95e9624899b2987d27754d20a494f7d36c0</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-wave">
-      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>奇怪</tag>
-        <tag>梦</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>安全风险评估</title>
     <url>/%E5%B7%A5%E4%BD%9C/2576489939.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="评估"><a class="markdownIt-Anchor" href="#评估"></a> 评估</h2>
@@ -10848,6 +10822,32 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
         <tag>检测</tag>
         <tag>策略</tag>
         <tag>预测</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>奇怪的梦</title>
+    <url>/%E7%94%9F%E6%B4%BB/2afb063d.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="0a751ab2cab789f89ab563c1df7773ac753b4ac0f92147c2c3b943ed66d2bbde">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d01101c2c8c781e0b1cd8c2268fc4efcf73eca9ec52ed737c3e4b1fc88ab5677a7f6b2a62a2e14f94a5baf9c3196a1aa8cb0da095c4d0a4032935d7df8bfad0a2f3b9b456191eff772b024a0d4a32d85d8f8524dec24a9148950127e2adbd9a26578ed16c252bf25c35426dd6517a40c5926e1c6cb8e8294e15ca5801107d94b580ec386c3f00be8540f1b49668ebacc077b6f3336c569dec0e085e833399f37688fd7b3c47f3e1e8de882e4b6d5cd64ac86338f967fc35d1d4eea06035b826eabe2263698ba13b225d97d2c771bb4de617fbafd3c0ffdae4e1e5d3ac1b8ff8491459ea01b954978e52bb44a32630d794663cfc88878f79a6bacc313b01a3e51978bf4e192b35648c90677ab09dfb00fc6d631338b2548542f4858da83e9228d11046a4a1c7726c45eb62eae142e6cb91a36b39470de9bdf2b4e3cd34c2bb3877418d5917305a89b60398ec3dc1e825a69c38ea2a836766665c449052b4c1a682e0f73f068cfbfc28df6cc44b83779e372403309ebbf7ed049e5737817025d9a295ffa9c27673cf2ecc30a20288465b51963d3d0a46d1142ae2a039664f06c2d95e9624899b2987d27754d20a494f7d36c0</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-wave">
+      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>奇怪</tag>
+        <tag>梦</tag>
       </tags>
   </entry>
   <entry>
@@ -11273,6 +11273,84 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 ]]></content>
   </entry>
   <entry>
+    <title>表单中心功能清单</title>
+    <url>/%E5%B7%A5%E4%BD%9C/74a10861.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="d4fdaf5f778ad2b7f7839b20408f063600471c71adaf758c95e523234574a9d6">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d0184c4df4adb62aec6770ccb2861933b80362d81b2e5010a91d2c8f139b9eb004455057809151ad7f7ca7b6b37b48037dfaf87a9f1e3fd2e3e9fbcddefded0a9ffe4050860aaf8120a12909a51025f739ff300c37edce140a5b599c11a069c8d6716e7a198692712ae072cb0833533e07f38919c92312fb2f264239dc7ee606385a6f34772835d1e53de7cab5f35053a3c24486db2f6f061efb91dd54dbb6f7b7acb00bb2002d390eee61b94c5e4bcc9b0317177adb53e6fc797830898cc53c48bbcce3f80100cbcd489454ce64ecdd98984531a7dc6f0ef02d73406eda7728fd6</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-wave">
+      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>工作</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+        <tag>表单</tag>
+        <tag>formily</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>路</title>
+    <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
+        <div id="aplayer-ZaDnZoNY" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+            <pre class="aplayer-lrc-content"></pre>
+        </div>
+        <script>
+          var ap = new APlayer({
+            element: document.getElementById("aplayer-ZaDnZoNY"),
+            narrow: false,
+            autoplay: true,
+            showlrc: false,
+            music: {
+              title: "The Lion Sleeps Tonight",
+              author: "The Tokens",
+              url: "/music/The Lion Sleeps Tonight.mp3",
+              pic: "",
+              lrc: ""
+            }
+          });
+          window.aplayers || (window.aplayers = []);
+          window.aplayers.push(ap);
+        </script>
+<span id="more"></span>
+<blockquote>
+<p>如果你能在下午四点来，那么在三点的时候，我就会开始感到幸福了。<br />
+                       --《小王子》</p>
+</blockquote>
+<p>  大多时候无法静下心来做好一件事，比如这篇拖了很多天的日志。还有每天早晨起床锻炼身体、按时喝水…</p>
+<!--more-->
+<p>  写这篇日志的想法来自于上周六，早饭后，和老婆商量着带孩子出去感受一下春暖花开，疫情持续了两个月的时间，也让小家伙待在家里两个月，不能见小朋友、不能去游乐场。以至于最近出门以后，小家伙变的很拘束、对外面的世界也很陌生。<br />
+​<br />
+  小家伙已经两岁三个月了，会背很多首唐诗。如果你剩饭剩菜的话，小家伙会说:“谁知盘中餐，粒粒皆辛苦。”。有次晚上和老婆带着小家伙出门散步，刮起一阵风，树上的叶子沙沙响，“夜来风雨声，花落知多少。”</p>
+<p>  一个周六的上午，坐在马桶上，熟练的掏出手机，开始搜索适合踏青的地方，<s>如意湖</s>、<s>森林公园</s>、<s>郑州之林</s>、最后我选了特别冷门的<a href="https://map.baidu.com/poi/%E9%BE%99%E6%B3%89%E6%B9%BF%E5%9C%B0%E5%85%AC%E5%9B%AD/@1264607135.35301,408408639.5094941,21z,87t#panoid=c3596d067083c715f90cad67&amp;panotype=inter&amp;heading=355&amp;pitch=0&amp;l=21&amp;tn=B_NORMAL_MAP&amp;sc=0&amp;newmap=1&amp;shareurl=1&amp;pid=1002890000150427124704361IN&amp;iid=c3596d067083c715f90cad67&amp;psp=%7B%22PanoIndoorPoiModule%22%3A%7B%22uid%22%3A%225b8c96862988758e2fb90853%22%7D%7D">龙泉湿地公园</a> ，然而这并没有结束，跑了将近 30 公里，去到的是一个荒废了的公园。也或者是因为长时间封闭状态，看起来很旧，基本没什么人来。让我满怀期待的出发，最终又满怀失望的回了家。</p>
+<p>  现在是周二的晚上08:20，小家伙下午没睡觉，早早的已经睡下了。我和老婆吃着火锅喝着啤酒，大聊人生。是这三年多以来，为数不多的能够静下心来一起吃饭畅谈人生，我们依然会充满希望.</p>
+<p>  人生难免会走上曲曲折折的道路，但是不要担心，这些路的那头一定会有美丽的风景。</p>
+<p>  路，是人走出来的。</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>生活</tag>
+        <tag>书</tag>
+        <tag>路</tag>
+        <tag>有趣</tag>
+        <tag>人生</tag>
+        <tag>春天</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>芝麻叶糊涂面</title>
     <url>/%E8%8F%9C%E8%B0%B1/1d180e51.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>芝麻叶面条是河南的家常面食，喜不喜欢面食，吃上一次就会想第二次。</p>
@@ -11362,84 +11440,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
         <tag>芝麻叶</tag>
         <tag>面条</tag>
         <tag>糊涂</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>表单中心功能清单</title>
-    <url>/%E5%B7%A5%E4%BD%9C/74a10861.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="d4fdaf5f778ad2b7f7839b20408f063600471c71adaf758c95e523234574a9d6">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d0184c4df4adb62aec6770ccb2861933b80362d81b2e5010a91d2c8f139b9eb004455057809151ad7f7ca7b6b37b48037dfaf87a9f1e3fd2e3e9fbcddefded0a9ffe4050860aaf8120a12909a51025f739ff300c37edce140a5b599c11a069c8d6716e7a198692712ae072cb0833533e07f38919c92312fb2f264239dc7ee606385a6f34772835d1e53de7cab5f35053a3c24486db2f6f061efb91dd54dbb6f7b7acb00bb2002d390eee61b94c5e4bcc9b0317177adb53e6fc797830898cc53c48bbcce3f80100cbcd489454ce64ecdd98984531a7dc6f0ef02d73406eda7728fd6</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-wave">
-      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-        <tag>表单</tag>
-        <tag>formily</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>路</title>
-    <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-        <div id="aplayer-UrkGyybS" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
-            <pre class="aplayer-lrc-content"></pre>
-        </div>
-        <script>
-          var ap = new APlayer({
-            element: document.getElementById("aplayer-UrkGyybS"),
-            narrow: false,
-            autoplay: true,
-            showlrc: false,
-            music: {
-              title: "The Lion Sleeps Tonight",
-              author: "The Tokens",
-              url: "/music/The Lion Sleeps Tonight.mp3",
-              pic: "",
-              lrc: ""
-            }
-          });
-          window.aplayers || (window.aplayers = []);
-          window.aplayers.push(ap);
-        </script>
-<span id="more"></span>
-<blockquote>
-<p>如果你能在下午四点来，那么在三点的时候，我就会开始感到幸福了。<br />
-                       --《小王子》</p>
-</blockquote>
-<p>  大多时候无法静下心来做好一件事，比如这篇拖了很多天的日志。还有每天早晨起床锻炼身体、按时喝水…</p>
-<!--more-->
-<p>  写这篇日志的想法来自于上周六，早饭后，和老婆商量着带孩子出去感受一下春暖花开，疫情持续了两个月的时间，也让小家伙待在家里两个月，不能见小朋友、不能去游乐场。以至于最近出门以后，小家伙变的很拘束、对外面的世界也很陌生。<br />
-​<br />
-  小家伙已经两岁三个月了，会背很多首唐诗。如果你剩饭剩菜的话，小家伙会说:“谁知盘中餐，粒粒皆辛苦。”。有次晚上和老婆带着小家伙出门散步，刮起一阵风，树上的叶子沙沙响，“夜来风雨声，花落知多少。”</p>
-<p>  一个周六的上午，坐在马桶上，熟练的掏出手机，开始搜索适合踏青的地方，<s>如意湖</s>、<s>森林公园</s>、<s>郑州之林</s>、最后我选了特别冷门的<a href="https://map.baidu.com/poi/%E9%BE%99%E6%B3%89%E6%B9%BF%E5%9C%B0%E5%85%AC%E5%9B%AD/@1264607135.35301,408408639.5094941,21z,87t#panoid=c3596d067083c715f90cad67&amp;panotype=inter&amp;heading=355&amp;pitch=0&amp;l=21&amp;tn=B_NORMAL_MAP&amp;sc=0&amp;newmap=1&amp;shareurl=1&amp;pid=1002890000150427124704361IN&amp;iid=c3596d067083c715f90cad67&amp;psp=%7B%22PanoIndoorPoiModule%22%3A%7B%22uid%22%3A%225b8c96862988758e2fb90853%22%7D%7D">龙泉湿地公园</a> ，然而这并没有结束，跑了将近 30 公里，去到的是一个荒废了的公园。也或者是因为长时间封闭状态，看起来很旧，基本没什么人来。让我满怀期待的出发，最终又满怀失望的回了家。</p>
-<p>  现在是周二的晚上08:20，小家伙下午没睡觉，早早的已经睡下了。我和老婆吃着火锅喝着啤酒，大聊人生。是这三年多以来，为数不多的能够静下心来一起吃饭畅谈人生，我们依然会充满希望.</p>
-<p>  人生难免会走上曲曲折折的道路，但是不要担心，这些路的那头一定会有美丽的风景。</p>
-<p>  路，是人走出来的。</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>生活</tag>
-        <tag>书</tag>
-        <tag>路</tag>
-        <tag>有趣</tag>
-        <tag>人生</tag>
-        <tag>春天</tag>
       </tags>
   </entry>
   <entry>
