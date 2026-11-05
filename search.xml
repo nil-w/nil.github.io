@@ -342,6 +342,42 @@
       </tags>
   </entry>
   <entry>
+    <title>给博客增加评论功能</title>
+    <url>/Jekyll/2d764bfc.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="首先感谢imsun大神的插件gitment"><a class="markdownIt-Anchor" href="#首先感谢imsun大神的插件gitment"></a> 首先感谢<a href="https://github.com/imsun">@imsun</a>大神的插件<a href="https://imsun.github.io/gitment/">Gitment</a></h3>
+<span id="more"></span>
+<p>插件本身默认支持英文，所以我下载了源码进行一部分改造。以下是源码：<a href="yqwoe.space/yqwoe.github.io/static/js/gitment.js">giment.js</a> 、 <a href="yqwoe.space/yqwoe.github.io/static/css/gitment.css">giement.css</a></p>
+<p>下边是操作步骤，不是技术同学先参考一下<a href="https://imsun.github.io/gitment/">Gitment Demo Page</a> 再进行操作。</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><a href="https://www.jekyll.com.cn/docs/home/">Jekyll 教程</a></p>
+</li>
+<li class="lvl-2">
+<p><a href="https://github.com/imsun/gitment">Gitment Readme</a></p>
+</li>
+</ul>
+<h3 id="基本使用"><a class="markdownIt-Anchor" href="#基本使用"></a> 基本使用</h3>
+<h4 id="1-注册-oauth-application"><a class="markdownIt-Anchor" href="#1-注册-oauth-application"></a> 1. 注册 OAuth Application</h4>
+<p><a href="https://github.com/settings/applications/new">New OAuth</a> ，填写内容时候确保 callback URL 与你的博客地址域名一致。</p>
+<h4 id="2引入-js-css-到文章页面"><a class="markdownIt-Anchor" href="#2引入-js-css-到文章页面"></a> 2.引入 js、css 到文章页面</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;container&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://yqwoe.space/yqwoe.github.io/static/css/gitment.css&quot;&gt;</span><br><span class="line">&lt;script src=&quot;https://yqwoe.space/yqwoe.github.io/static/js/gitment.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">/**</span><br><span class="line">*第一个坑，默认id是填入完整的url，而issue的label长度限制为50，所以url必然会超长。</span><br><span class="line">*/</span><br><span class="line">var paths = location.pathname.split(&#x27;/&#x27;)</span><br><span class="line">var id = decodeURI(paths[paths.length - 1 ]))</span><br><span class="line">var gitment = new Gitment(&#123;</span><br><span class="line">  id: id, // 必填，不然评论信息不会加载成功！</span><br><span class="line">  owner: &#x27;你的 GitHub ID&#x27;,</span><br><span class="line">  repo: &#x27;存储评论的 repo&#x27;,</span><br><span class="line">  oauth: &#123;</span><br><span class="line">    client_id: &#x27;你注册 OAuth 的 client ID&#x27;,</span><br><span class="line">    client_secret: &#x27;你注册 OAuth 的 client secret&#x27;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line">gitment.render(&#x27;container&#x27;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="3-初始化评论"><a class="markdownIt-Anchor" href="#3-初始化评论"></a> 3. 初始化评论</h4>
+<p>页面发布后，你需要访问页面并使用你的 GitHub 账号登录（请确保你的账号是第二步所填 repo 的 owner），点击初始化按钮。</p>
+<h4 id="敲黑板下一篇博客会介绍-jekyll-admin-插件的使用方法和一些填坑技巧"><a class="markdownIt-Anchor" href="#敲黑板下一篇博客会介绍-jekyll-admin-插件的使用方法和一些填坑技巧"></a> 敲黑板，下一篇博客会介绍 《<strong>Jekyll-Admin 插件的使用方法</strong>》和一些填坑技巧。</h4>
+<p>我的博客评论功能目前只支持全球最大<s>同性</s>交友网站<a href="github.com/nil-w">Github</a>的账号，以后会慢慢扩展。<br />
+以上是我的分享，谢谢！！</p>
+]]></content>
+      <categories>
+        <category>Jekyll</category>
+      </categories>
+      <tags>
+        <tag>技巧</tag>
+        <tag>gitment</tag>
+        <tag>git</tag>
+        <tag>Jekyll</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>过六一的&quot;儿童&quot;们</title>
     <url>/%E7%94%9F%E6%B4%BB/1bc5f237.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
@@ -376,42 +412,6 @@
         <tag>六一</tag>
         <tag>巨婴</tag>
         <tag>孩子</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>给博客增加评论功能</title>
-    <url>/Jekyll/2d764bfc.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="首先感谢imsun大神的插件gitment"><a class="markdownIt-Anchor" href="#首先感谢imsun大神的插件gitment"></a> 首先感谢<a href="https://github.com/imsun">@imsun</a>大神的插件<a href="https://imsun.github.io/gitment/">Gitment</a></h3>
-<span id="more"></span>
-<p>插件本身默认支持英文，所以我下载了源码进行一部分改造。以下是源码：<a href="yqwoe.space/yqwoe.github.io/static/js/gitment.js">giment.js</a> 、 <a href="yqwoe.space/yqwoe.github.io/static/css/gitment.css">giement.css</a></p>
-<p>下边是操作步骤，不是技术同学先参考一下<a href="https://imsun.github.io/gitment/">Gitment Demo Page</a> 再进行操作。</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><a href="https://www.jekyll.com.cn/docs/home/">Jekyll 教程</a></p>
-</li>
-<li class="lvl-2">
-<p><a href="https://github.com/imsun/gitment">Gitment Readme</a></p>
-</li>
-</ul>
-<h3 id="基本使用"><a class="markdownIt-Anchor" href="#基本使用"></a> 基本使用</h3>
-<h4 id="1-注册-oauth-application"><a class="markdownIt-Anchor" href="#1-注册-oauth-application"></a> 1. 注册 OAuth Application</h4>
-<p><a href="https://github.com/settings/applications/new">New OAuth</a> ，填写内容时候确保 callback URL 与你的博客地址域名一致。</p>
-<h4 id="2引入-js-css-到文章页面"><a class="markdownIt-Anchor" href="#2引入-js-css-到文章页面"></a> 2.引入 js、css 到文章页面</h4>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;container&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://yqwoe.space/yqwoe.github.io/static/css/gitment.css&quot;&gt;</span><br><span class="line">&lt;script src=&quot;https://yqwoe.space/yqwoe.github.io/static/js/gitment.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">/**</span><br><span class="line">*第一个坑，默认id是填入完整的url，而issue的label长度限制为50，所以url必然会超长。</span><br><span class="line">*/</span><br><span class="line">var paths = location.pathname.split(&#x27;/&#x27;)</span><br><span class="line">var id = decodeURI(paths[paths.length - 1 ]))</span><br><span class="line">var gitment = new Gitment(&#123;</span><br><span class="line">  id: id, // 必填，不然评论信息不会加载成功！</span><br><span class="line">  owner: &#x27;你的 GitHub ID&#x27;,</span><br><span class="line">  repo: &#x27;存储评论的 repo&#x27;,</span><br><span class="line">  oauth: &#123;</span><br><span class="line">    client_id: &#x27;你注册 OAuth 的 client ID&#x27;,</span><br><span class="line">    client_secret: &#x27;你注册 OAuth 的 client secret&#x27;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line">gitment.render(&#x27;container&#x27;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="3-初始化评论"><a class="markdownIt-Anchor" href="#3-初始化评论"></a> 3. 初始化评论</h4>
-<p>页面发布后，你需要访问页面并使用你的 GitHub 账号登录（请确保你的账号是第二步所填 repo 的 owner），点击初始化按钮。</p>
-<h4 id="敲黑板下一篇博客会介绍-jekyll-admin-插件的使用方法和一些填坑技巧"><a class="markdownIt-Anchor" href="#敲黑板下一篇博客会介绍-jekyll-admin-插件的使用方法和一些填坑技巧"></a> 敲黑板，下一篇博客会介绍 《<strong>Jekyll-Admin 插件的使用方法</strong>》和一些填坑技巧。</h4>
-<p>我的博客评论功能目前只支持全球最大<s>同性</s>交友网站<a href="github.com/nil-w">Github</a>的账号，以后会慢慢扩展。<br />
-以上是我的分享，谢谢！！</p>
-]]></content>
-      <categories>
-        <category>Jekyll</category>
-      </categories>
-      <tags>
-        <tag>技巧</tag>
-        <tag>gitment</tag>
-        <tag>git</tag>
-        <tag>Jekyll</tag>
       </tags>
   </entry>
   <entry>
@@ -2854,13 +2854,13 @@
 <p>后来菜上到第三轮，周明推门进来，笑着说堵车。王姐看了他两秒，说：“你给老陈发消息的时候，也在堵车吗？”</p>
 <p>桌上没人笑。我那杯水停在嘴边，很久没喝。</p>
 <p>饭局结束后，小李在电梯口跟我说：“谢谢你替我圆场。”我说没事，大家都是同事。小李很快走了。周明也没再联系我。</p>
-<p>我第一次发现，我所谓的圆场，其实把两个人的难堪叠在了一起。小李需要为迟到找理由，周明需要这个理由被大家接受。我维护的不是他们，是一个 smoother 的表面。可我没意识到，沉默并不中立。有人被推出去承担解释，有人借着沉默免于解释。</p>
+<p>我第一次发现，我所谓的圆场，其实把两个人的难堪叠在了一起。小李需要为迟到找理由，周明需要这个理由被大家接受。我维护的不是他们，是一个圆滑的表面。可我没意识到，沉默并不中立。有人被推出去承担解释，有人借着沉默免于解释。</p>
 <h2 id="边界一旦让开成本就会转移"><a class="markdownIt-Anchor" href="#边界一旦让开成本就会转移"></a> 边界一旦让开，成本就会转移</h2>
 <p>我慢慢觉得，饭桌上的体面，核心是边界问题。</p>
 <p>边界可以很具体。谁迟到，谁解释。谁说了不准确的话，谁补充。谁替别人承担了不该承担的责任，谁能拒绝。</p>
 <p>我以前把“拒绝”理解成伤感情。拒绝会扫兴，会让气氛冷掉，会让被拒绝的人难堪。于是我抢先替别人把话说完，好像只要我反应够快，所有人都不必面对难堪。</p>
 <p>后来我发现，关系里最容易出问题的，不是冲突本身，而是含混的善意。</p>
-<p>2019 年，我写过一篇《我的经验不能自动推广给别人》。当时讨论的是工作方法。我说自己吃过亏的东西，别人未必适用。那篇文章让我意识到，人喜欢把自己的经历变成通用原则。可这次我碰到的另一层问题更直接：连自己的原则，也不能靠替别人付出来维持。</p>
+<p>2026 年，我写过一篇《我的经验不能自动推广给别人》。当时讨论的是工作方法。我说自己吃过亏的东西，别人未必适用。那篇文章让我意识到，人喜欢把自己的经历变成通用原则。可这次我碰到的另一层问题更直接：连自己的原则，也不能靠替别人付出来维持。</p>
 <p>我妈有一次问我：“你总替别人说话，别人会不会觉得你虚伪？”我说不会，我只是缓和气氛。她没接话。</p>
 <p>这句话我记了很久。因为我没有告诉她实情。我并非只在缓和气氛，我也想避免被卷进麻烦。帮人圆场，也能让自己躲在一个安全位置。</p>
 <p><span class="hl">替别人圆谎看起来是在维护面子，其实是在替谎言分担后果。</span></p>
@@ -11564,6 +11564,71 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
+    <title>读书与账 03：先想清楚，谈崩了我会怎么样</title>
+    <url>/%E8%AF%BB%E4%B9%A6/8c1d5a30.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>《策略思维》是 1991 年的书，迪克西特和奈尔伯夫合著，整本讲一件事：结果取决于两件事，你怎么做，以及对方怎么回应。</p>
+<p>书里有一个词我以前用过但没真懂，BATNA，谈判破裂之后的最佳替代方案。</p>
+<p>它给你的是一把尺子，<strong>你手里的替代方案越好，你能接受的报价区间就越宽</strong>；反过来，替代方案越差，你能忍的就越少。</p>
+<h2 id="我报价的时候一直在干什么"><a class="markdownIt-Anchor" href="#我报价的时候一直在干什么"></a> 我报价的时候一直在干什么</h2>
+<p>独立接活，报价这件事上我做过很多次。</p>
+<p>大多数时候我的报价来自一个模糊的感觉：这个活大概值这么多。感觉的来源是上一次差不多这种活收了多少钱，以及客户看起来多大方。按书里的说法，我从来没算过自己的 BATNA。</p>
+<p>如果客户说贵，我转身走。下一个客户在哪、上一个要等多久、手上有没有别的活在跑，这些我心里其实有底，但从来没把它们摆到台面上跟报价放在一起算。结果就是报价锚在感觉上，谈判的时候靠临场反应硬扛，硬扛的意思是对方一压我就往后退。</p>
+<h2 id="一句话的问题"><a class="markdownIt-Anchor" href="#一句话的问题"></a> 一句话的问题</h2>
+<p>书里给的动作很简单，谈判之前先回答一句话：<strong>这个交易谈不成，我会怎么样？</strong></p>
+<p>答案有三种，对应三种完全不同的策略。第一种，替代方案很好，手上有别的活在跑，或者这个客户明天还会来找我，这种情况下你几乎不需要压价，因为对方也知道你随时能走，这时候压价反而是信号，会让对方觉得你对这活不认真。第二种，替代方案一般，有别的活但要等一段时间，或者这活本身对客户更重要，这是最常见的情况，谈的就是这个中间地带，要算的是等待成本和时间成本谁更大。第三种，替代方案几乎没有，不接这活下个月就没收入，这种情况下你不是在谈判，你是在接受一个价格。</p>
+<p>我大部分时候在第三种里。</p>
+<h2 id="我书上的价格我自己的价"><a class="markdownIt-Anchor" href="#我书上的价格我自己的价"></a> 我书上的价格，我自己的价</h2>
+<p>书里举的例子是航空公司，乘客预期票价会涨，航空公司于是提前把价格抬高，乘客发现票价一直不降，预期就被改写了。</p>
+<p>这个招我叫不出来，我做的是反过来：报一个自己心里发虚的价，然后等着被压。差别在哪儿，差别在我从一开始就把「等」当成了我的策略，等客户先出价，等客户先压，等一个我不敢开口要的位置。按书里的话讲，这叫可预测性，对方能预测我不会主动提要求，那么价格就由他的预算决定，不由我的价值决定。</p>
+<h2 id="换位思考这一步我跳过了"><a class="markdownIt-Anchor" href="#换位思考这一步我跳过了"></a> 换位思考这一步我跳过了</h2>
+<p>书里还有一条更基础的，做决策之前先想对方会怎么反应。</p>
+<p>我做报价的时候想的是客户会不会接受，很少想客户拿到这个价格之后会怎么安排。一个东西报价三千，客户的第一反应大概率是「是不是被坑了」，他要去比价，要去跟人商量，要说服自己或者说服老板。这些动作每多一个，成交的概率就低一截。</p>
+<p>我以前把这些当成销售的阻力，现在看这部分属于产品定价，<strong>价格必须低到不需要对方做决定</strong>。</p>
+<h2 id="落到我自己的账上"><a class="markdownIt-Anchor" href="#落到我自己的账上"></a> 落到我自己的账上</h2>
+<p>读书与账这个系列写到第三篇，我想说的其实是这个。前两篇谈的是钱的来和去，这篇谈的是我把自己放在什么位置上。</p>
+<p>报价低不一定是因为我不懂价值，也可能是因为我的 BATNA 太薄，手上没有在跑的活、没有等得起的时间、没有第二个客户在问，我在这个位置上只能接受一个价格。</p>
+<p>所以下次报价之前，除了列固定支出，我还要列另外一张表：</p>
+<table>
+<thead>
+<tr>
+<th>我现在有什么</th>
+<th>状态</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>在跑的活</td>
+<td>？</td>
+</tr>
+<tr>
+<td>在谈的客户</td>
+<td>？</td>
+</tr>
+<tr>
+<td>别的客户在问我吗</td>
+<td>？</td>
+</tr>
+<tr>
+<td>如果这个谈崩，我多久能接到下一个</td>
+<td>？</td>
+</tr>
+</tbody>
+</table>
+<p>这张表填不满的时候，报价不该往上抬，该往别的地方使劲。</p>
+<h2 id="下一步"><a class="markdownIt-Anchor" href="#下一步"></a> 下一步</h2>
+<p><strong>给手上每一个在谈的客户，写一行他的替代方案是什么。</strong></p>
+<p>写不出来的那个，就是我真正要解决的问题。</p>
+]]></content>
+      <categories>
+        <category>读书</category>
+      </categories>
+      <tags>
+        <tag>读书与账</tag>
+        <tag>策略思维</tag>
+        <tag>定价</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>读书与账 04：一万小时，和我那 670 本没用的书</title>
     <url>/%E8%AF%BB%E4%B9%A6/e4b17c39.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>有段时间我在数自己到底读过多少书。实体书库 12 个分类目录里 573 个电子书文件，按书名去重 555 本；<code>~/iBook</code> 另存 137 本，129 个 epub，8 个 pdf；两边重叠 5 本，加起来 <strong>687 本</strong>。</p>
@@ -11644,71 +11709,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
-    <title>读书与账 03：先想清楚，谈崩了我会怎么样</title>
-    <url>/%E8%AF%BB%E4%B9%A6/8c1d5a30.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>《策略思维》是 1991 年的书，迪克西特和奈尔伯夫合著，整本讲一件事：结果取决于两件事，你怎么做，以及对方怎么回应。</p>
-<p>书里有一个词我以前用过但没真懂，BATNA，谈判破裂之后的最佳替代方案。</p>
-<p>它给你的是一把尺子，<strong>你手里的替代方案越好，你能接受的报价区间就越宽</strong>；反过来，替代方案越差，你能忍的就越少。</p>
-<h2 id="我报价的时候一直在干什么"><a class="markdownIt-Anchor" href="#我报价的时候一直在干什么"></a> 我报价的时候一直在干什么</h2>
-<p>独立接活，报价这件事上我做过很多次。</p>
-<p>大多数时候我的报价来自一个模糊的感觉：这个活大概值这么多。感觉的来源是上一次差不多这种活收了多少钱，以及客户看起来多大方。按书里的说法，我从来没算过自己的 BATNA。</p>
-<p>如果客户说贵，我转身走。下一个客户在哪、上一个要等多久、手上有没有别的活在跑，这些我心里其实有底，但从来没把它们摆到台面上跟报价放在一起算。结果就是报价锚在感觉上，谈判的时候靠临场反应硬扛，硬扛的意思是对方一压我就往后退。</p>
-<h2 id="一句话的问题"><a class="markdownIt-Anchor" href="#一句话的问题"></a> 一句话的问题</h2>
-<p>书里给的动作很简单，谈判之前先回答一句话：<strong>这个交易谈不成，我会怎么样？</strong></p>
-<p>答案有三种，对应三种完全不同的策略。第一种，替代方案很好，手上有别的活在跑，或者这个客户明天还会来找我，这种情况下你几乎不需要压价，因为对方也知道你随时能走，这时候压价反而是信号，会让对方觉得你对这活不认真。第二种，替代方案一般，有别的活但要等一段时间，或者这活本身对客户更重要，这是最常见的情况，谈的就是这个中间地带，要算的是等待成本和时间成本谁更大。第三种，替代方案几乎没有，不接这活下个月就没收入，这种情况下你不是在谈判，你是在接受一个价格。</p>
-<p>我大部分时候在第三种里。</p>
-<h2 id="我书上的价格我自己的价"><a class="markdownIt-Anchor" href="#我书上的价格我自己的价"></a> 我书上的价格，我自己的价</h2>
-<p>书里举的例子是航空公司，乘客预期票价会涨，航空公司于是提前把价格抬高，乘客发现票价一直不降，预期就被改写了。</p>
-<p>这个招我叫不出来，我做的是反过来：报一个自己心里发虚的价，然后等着被压。差别在哪儿，差别在我从一开始就把「等」当成了我的策略，等客户先出价，等客户先压，等一个我不敢开口要的位置。按书里的话讲，这叫可预测性，对方能预测我不会主动提要求，那么价格就由他的预算决定，不由我的价值决定。</p>
-<h2 id="换位思考这一步我跳过了"><a class="markdownIt-Anchor" href="#换位思考这一步我跳过了"></a> 换位思考这一步我跳过了</h2>
-<p>书里还有一条更基础的，做决策之前先想对方会怎么反应。</p>
-<p>我做报价的时候想的是客户会不会接受，很少想客户拿到这个价格之后会怎么安排。一个东西报价三千，客户的第一反应大概率是「是不是被坑了」，他要去比价，要去跟人商量，要说服自己或者说服老板。这些动作每多一个，成交的概率就低一截。</p>
-<p>我以前把这些当成销售的阻力，现在看这部分属于产品定价，<strong>价格必须低到不需要对方做决定</strong>。</p>
-<h2 id="落到我自己的账上"><a class="markdownIt-Anchor" href="#落到我自己的账上"></a> 落到我自己的账上</h2>
-<p>读书与账这个系列写到第三篇，我想说的其实是这个。前两篇谈的是钱的来和去，这篇谈的是我把自己放在什么位置上。</p>
-<p>报价低不一定是因为我不懂价值，也可能是因为我的 BATNA 太薄，手上没有在跑的活、没有等得起的时间、没有第二个客户在问，我在这个位置上只能接受一个价格。</p>
-<p>所以下次报价之前，除了列固定支出，我还要列另外一张表：</p>
-<table>
-<thead>
-<tr>
-<th>我现在有什么</th>
-<th>状态</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>在跑的活</td>
-<td>？</td>
-</tr>
-<tr>
-<td>在谈的客户</td>
-<td>？</td>
-</tr>
-<tr>
-<td>别的客户在问我吗</td>
-<td>？</td>
-</tr>
-<tr>
-<td>如果这个谈崩，我多久能接到下一个</td>
-<td>？</td>
-</tr>
-</tbody>
-</table>
-<p>这张表填不满的时候，报价不该往上抬，该往别的地方使劲。</p>
-<h2 id="下一步"><a class="markdownIt-Anchor" href="#下一步"></a> 下一步</h2>
-<p><strong>给手上每一个在谈的客户，写一行他的替代方案是什么。</strong></p>
-<p>写不出来的那个，就是我真正要解决的问题。</p>
-]]></content>
-      <categories>
-        <category>读书</category>
-      </categories>
-      <tags>
-        <tag>读书与账</tag>
-        <tag>策略思维</tag>
-        <tag>定价</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>读书与账 05：我的第二天提前到了</title>
     <url>/%E8%AF%BB%E4%B9%A6/832a34a2.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>最近在读一本新书，方言的《第二天：金钱进化论》，中信出版集团 2026 年 4 月出的，294 页，定价 78 块。</p>
@@ -11781,12 +11781,12 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
     <title>路</title>
     <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-        <div id="aplayer-kLsPqVXA" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-fELhaxHk" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-kLsPqVXA"),
+            element: document.getElementById("aplayer-fELhaxHk"),
             narrow: false,
             autoplay: true,
             showlrc: false,
