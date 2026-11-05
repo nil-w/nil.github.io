@@ -729,6 +729,37 @@
       </tags>
   </entry>
   <entry>
+    <title>mybatis动态查询实现</title>
+    <url>/mybatis/b6474c33.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>model Product，我们希望通过实现 service 的一个方法，并支持所有类型的查询，如 &gt;、&gt;=、&lt;、&lt;=、like 、order by 等常用的查询、排序。</p>
+<span id="more"></span>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Product</span> &#123;</span><br><span class="line">    <span class="type">long</span> id;</span><br><span class="line">    String name;</span><br><span class="line">    String category;</span><br><span class="line">    String price;</span><br><span class="line">    String ...;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="分析"><a class="markdownIt-Anchor" href="#分析"></a> 分析:</h2>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> product</span><br><span class="line"><span class="keyword">where</span> id <span class="operator">&gt;</span> <span class="number">1</span> <span class="keyword">or</span> price <span class="operator">&gt;</span> <span class="string">&#x27;100.00&#x27;</span> ...;</span><br></pre></td></tr></table></figure>
+<p>Where 条件中包含 字段名称、运算符、值。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 查询类型</span></span><br><span class="line"><span class="comment">* lt 小于</span></span><br><span class="line"><span class="comment">* lte 小于等于</span></span><br><span class="line"><span class="comment">* gt 大于</span></span><br><span class="line"><span class="comment">* gte 大于等于</span></span><br><span class="line"><span class="comment">* slike &#x27;value%&#x27; start_with</span></span><br><span class="line"><span class="comment">* elike &#x27;%value&#x27; end_with</span></span><br><span class="line"><span class="comment">* like &#x27;%value%&#x27;</span></span><br><span class="line"><span class="comment">* in 1,2,3,4,5</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Item</span> &#123;</span><br><span class="line">    String name; <span class="comment">//字段名称</span></span><br><span class="line">    String value; <span class="comment">//值</span></span><br><span class="line">    String itemType; <span class="comment">//查询类型</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">type</span> <span class="operator">=</span> <span class="string">&quot;and&quot;</span>; <span class="comment">// 逻辑运算 and or</span></span><br><span class="line">    String[] values; <span class="comment">//如果是in查询转换为字符串数组</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上是对查询条件的简单封装,如果我们需要满足多个条件的话。</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">QueryParam</span>&#123;</span><br><span class="line">    List&lt;Item&gt; items = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>mybatis 公共 xml 文件配置</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span> <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span> <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;BaseMapper&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;BaseQuery&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;items != null &quot;</span>&gt;</span></span><br><span class="line">            where 1 = 1</span><br><span class="line">            <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;items&quot;</span> <span class="attr">item</span>=<span class="string">&quot;item&quot;</span> <span class="attr">index</span>=<span class="string">&quot;index&quot;</span></span></span><br><span class="line"><span class="tag">                     <span class="attr">separator</span>=<span class="string">&quot; &quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;eq&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    $&#123;item.type&#125; $&#123;item.fieldName&#125; = #&#123;item.value&#125;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;lt&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[  $&#123;item.type&#125;  $&#123;item.name&#125; &lt; #&#123;item.value&#125; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;lte&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[ $&#123;item.type&#125;  $&#123;item.name&#125; &lt;= #&#123;item.value&#125; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;gt&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[  $&#123;item.type&#125;  $&#123;item.name&#125; &gt; #&#123;item.value&#125; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;gte&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[  $&#123;item.type&#125;  $&#123;item.name&#125; &gt;= #&#123;item.value&#125; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;slike&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[  $&#123;item.type&#125;  $&#123;item.name&#125; like &#x27;$&#123;item.value&#125;%&#x27; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.typeitemType == &#x27;elike&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[  $&#123;item.type&#125;  $&#123;item.name&#125; like &#x27;%$&#123;item.value&#125;&#x27; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;like&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[  AND $&#123;item.name&#125; like &#x27;%$&#123;item.value&#125;%&#x27; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;in&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    $&#123;item.type&#125;</span><br><span class="line">                    <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;item.values&quot;</span> <span class="attr">item</span>=<span class="string">&quot;value&quot;</span> <span class="attr">index</span>=<span class="string">&quot;index&quot;</span> <span class="attr">open</span>=<span class="string">&quot;(&quot;</span> <span class="attr">close</span>=<span class="string">&quot;)&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;OR&quot;</span>&gt;</span></span><br><span class="line">                        $&#123;item.name&#125; =  #&#123;value&#125;</span><br><span class="line">                    <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>Product mapper.xml</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span> <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span> <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.yqwoe.codegenerator.dao.ProductMapper&quot;</span> &gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;BaseResultMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;com.yqwoe.codegenerator.model.Product&quot;</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">&quot;u_id&quot;</span> <span class="attr">property</span>=<span class="string">&quot;uId&quot;</span> <span class="attr">jdbcType</span>=<span class="string">&quot;VARCHAR&quot;</span> /&gt;</span></span><br><span class="line">      <span class="comment">&lt;!--省略 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;Base_Column_List&quot;</span> &gt;</span></span><br><span class="line">    id, name, category, price ,.....</span><br><span class="line">  <span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAll&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;BaseResultMap&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;com.yqwoe.model.param.QueryParam&quot;</span>&gt;</span></span><br><span class="line">    select</span><br><span class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;Base_Column_List&quot;</span> /&gt;</span></span><br><span class="line">    from s_user</span><br><span class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;BaseMapper.BaseQuery&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;BaseMapper.BaseOrder&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p>ProductController</p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ProductController</span>&#123;</span><br><span class="line">    ProductService productService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/products&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Pageinfo <span class="title function_">index</span><span class="params">(QueryParam param)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> productService.selectAll(param);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="演示"><a class="markdownIt-Anchor" href="#演示"></a> 演示</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">api: http://localhost:8000/products?items[0].name=name&amp;items[0].value=nil?,超级管理员&amp;items[0].itemType=in</span><br><span class="line"></span><br><span class="line">sql: select * from product where 1 = 1 and (name = &#x27;nil?&#x27; OR name = &#x27;超级管理员&#x27;)</span><br><span class="line"></span><br><span class="line">//type 默认为 and</span><br><span class="line">response:</span><br><span class="line">&#123;</span><br><span class="line">    data:[</span><br><span class="line">        ....</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>以上为动态查询，照这样的思路，可以继续围绕 mapper 扩展排序或者更复杂的查询。</p>
+]]></content>
+      <categories>
+        <category>mybatis</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>mybatis</tag>
+        <tag>api</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Cas Server 本地部署</title>
     <url>/Cas/6e8cb24c.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="cas"><a class="markdownIt-Anchor" href="#cas"></a> Cas</h2>
@@ -761,37 +792,6 @@
         <tag>cas client</tag>
         <tag>cas server</tag>
         <tag>sso</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mybatis动态查询实现</title>
-    <url>/mybatis/b6474c33.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>model Product，我们希望通过实现 service 的一个方法，并支持所有类型的查询，如 &gt;、&gt;=、&lt;、&lt;=、like 、order by 等常用的查询、排序。</p>
-<span id="more"></span>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Product</span> &#123;</span><br><span class="line">    <span class="type">long</span> id;</span><br><span class="line">    String name;</span><br><span class="line">    String category;</span><br><span class="line">    String price;</span><br><span class="line">    String ...;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="分析"><a class="markdownIt-Anchor" href="#分析"></a> 分析:</h2>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> product</span><br><span class="line"><span class="keyword">where</span> id <span class="operator">&gt;</span> <span class="number">1</span> <span class="keyword">or</span> price <span class="operator">&gt;</span> <span class="string">&#x27;100.00&#x27;</span> ...;</span><br></pre></td></tr></table></figure>
-<p>Where 条件中包含 字段名称、运算符、值。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment">* 查询类型</span></span><br><span class="line"><span class="comment">* lt 小于</span></span><br><span class="line"><span class="comment">* lte 小于等于</span></span><br><span class="line"><span class="comment">* gt 大于</span></span><br><span class="line"><span class="comment">* gte 大于等于</span></span><br><span class="line"><span class="comment">* slike &#x27;value%&#x27; start_with</span></span><br><span class="line"><span class="comment">* elike &#x27;%value&#x27; end_with</span></span><br><span class="line"><span class="comment">* like &#x27;%value%&#x27;</span></span><br><span class="line"><span class="comment">* in 1,2,3,4,5</span></span><br><span class="line"><span class="comment">*/</span></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Item</span> &#123;</span><br><span class="line">    String name; <span class="comment">//字段名称</span></span><br><span class="line">    String value; <span class="comment">//值</span></span><br><span class="line">    String itemType; <span class="comment">//查询类型</span></span><br><span class="line">    <span class="type">String</span> <span class="variable">type</span> <span class="operator">=</span> <span class="string">&quot;and&quot;</span>; <span class="comment">// 逻辑运算 and or</span></span><br><span class="line">    String[] values; <span class="comment">//如果是in查询转换为字符串数组</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以上是对查询条件的简单封装,如果我们需要满足多个条件的话。</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">QueryParam</span>&#123;</span><br><span class="line">    List&lt;Item&gt; items = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>mybatis 公共 xml 文件配置</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span> <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span> <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;BaseMapper&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;BaseQuery&quot;</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;items != null &quot;</span>&gt;</span></span><br><span class="line">            where 1 = 1</span><br><span class="line">            <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;items&quot;</span> <span class="attr">item</span>=<span class="string">&quot;item&quot;</span> <span class="attr">index</span>=<span class="string">&quot;index&quot;</span></span></span><br><span class="line"><span class="tag">                     <span class="attr">separator</span>=<span class="string">&quot; &quot;</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;eq&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    $&#123;item.type&#125; $&#123;item.fieldName&#125; = #&#123;item.value&#125;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;lt&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[  $&#123;item.type&#125;  $&#123;item.name&#125; &lt; #&#123;item.value&#125; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;lte&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[ $&#123;item.type&#125;  $&#123;item.name&#125; &lt;= #&#123;item.value&#125; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;gt&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[  $&#123;item.type&#125;  $&#123;item.name&#125; &gt; #&#123;item.value&#125; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;gte&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[  $&#123;item.type&#125;  $&#123;item.name&#125; &gt;= #&#123;item.value&#125; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;slike&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[  $&#123;item.type&#125;  $&#123;item.name&#125; like &#x27;$&#123;item.value&#125;%&#x27; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.typeitemType == &#x27;elike&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[  $&#123;item.type&#125;  $&#123;item.name&#125; like &#x27;%$&#123;item.value&#125;&#x27; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;like&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    &lt;![CDATA[  AND $&#123;item.name&#125; like &#x27;%$&#123;item.value&#125;%&#x27; ]]&gt;</span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;<span class="name">if</span> <span class="attr">test</span>=<span class="string">&quot;item.itemType == &#x27;in&#x27; &quot;</span>&gt;</span></span><br><span class="line">                    $&#123;item.type&#125;</span><br><span class="line">                    <span class="tag">&lt;<span class="name">foreach</span> <span class="attr">collection</span>=<span class="string">&quot;item.values&quot;</span> <span class="attr">item</span>=<span class="string">&quot;value&quot;</span> <span class="attr">index</span>=<span class="string">&quot;index&quot;</span> <span class="attr">open</span>=<span class="string">&quot;(&quot;</span> <span class="attr">close</span>=<span class="string">&quot;)&quot;</span> <span class="attr">separator</span>=<span class="string">&quot;OR&quot;</span>&gt;</span></span><br><span class="line">                        $&#123;item.name&#125; =  #&#123;value&#125;</span><br><span class="line">                    <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">                <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">            <span class="tag">&lt;/<span class="name">foreach</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;/<span class="name">if</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>Product mapper.xml</p>
-<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="meta">&lt;?xml version=<span class="string">&quot;1.0&quot;</span> encoding=<span class="string">&quot;UTF-8&quot;</span> ?&gt;</span></span><br><span class="line"><span class="meta">&lt;!DOCTYPE <span class="keyword">mapper</span> <span class="keyword">PUBLIC</span> <span class="string">&quot;-//mybatis.org//DTD Mapper 3.0//EN&quot;</span> <span class="string">&quot;http://mybatis.org/dtd/mybatis-3-mapper.dtd&quot;</span> &gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">mapper</span> <span class="attr">namespace</span>=<span class="string">&quot;com.yqwoe.codegenerator.dao.ProductMapper&quot;</span> &gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">resultMap</span> <span class="attr">id</span>=<span class="string">&quot;BaseResultMap&quot;</span> <span class="attr">type</span>=<span class="string">&quot;com.yqwoe.codegenerator.model.Product&quot;</span> &gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span> <span class="attr">column</span>=<span class="string">&quot;u_id&quot;</span> <span class="attr">property</span>=<span class="string">&quot;uId&quot;</span> <span class="attr">jdbcType</span>=<span class="string">&quot;VARCHAR&quot;</span> /&gt;</span></span><br><span class="line">      <span class="comment">&lt;!--省略 --&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">resultMap</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">sql</span> <span class="attr">id</span>=<span class="string">&quot;Base_Column_List&quot;</span> &gt;</span></span><br><span class="line">    id, name, category, price ,.....</span><br><span class="line">  <span class="tag">&lt;/<span class="name">sql</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">select</span> <span class="attr">id</span>=<span class="string">&quot;selectAll&quot;</span> <span class="attr">resultMap</span>=<span class="string">&quot;BaseResultMap&quot;</span> <span class="attr">parameterType</span>=<span class="string">&quot;com.yqwoe.model.param.QueryParam&quot;</span>&gt;</span></span><br><span class="line">    select</span><br><span class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;Base_Column_List&quot;</span> /&gt;</span></span><br><span class="line">    from s_user</span><br><span class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;BaseMapper.BaseQuery&quot;</span>/&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">include</span> <span class="attr">refid</span>=<span class="string">&quot;BaseMapper.BaseOrder&quot;</span> /&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">select</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mapper</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p>ProductController</p>
-<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">ProductController</span>&#123;</span><br><span class="line">    ProductService productService;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@GetMapping(&quot;/products&quot;)</span></span><br><span class="line">    <span class="keyword">public</span> Pageinfo <span class="title function_">index</span><span class="params">(QueryParam param)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> productService.selectAll(param);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h3 id="演示"><a class="markdownIt-Anchor" href="#演示"></a> 演示</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">api: http://localhost:8000/products?items[0].name=name&amp;items[0].value=nil?,超级管理员&amp;items[0].itemType=in</span><br><span class="line"></span><br><span class="line">sql: select * from product where 1 = 1 and (name = &#x27;nil?&#x27; OR name = &#x27;超级管理员&#x27;)</span><br><span class="line"></span><br><span class="line">//type 默认为 and</span><br><span class="line">response:</span><br><span class="line">&#123;</span><br><span class="line">    data:[</span><br><span class="line">        ....</span><br><span class="line">    ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>以上为动态查询，照这样的思路，可以继续围绕 mapper 扩展排序或者更复杂的查询。</p>
-]]></content>
-      <categories>
-        <category>mybatis</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-        <tag>mybatis</tag>
-        <tag>api</tag>
       </tags>
   </entry>
   <entry>
@@ -3318,22 +3318,6 @@ section 运维阶段
       </tags>
   </entry>
   <entry>
-    <title>mysql &#39;No DataSource Set&#39;解决办法</title>
-    <url>/%E5%B7%A5%E4%BD%9C/202678719.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>mysql 8.0.13开始，使用sslMode属性代替了原来的useSSL属性， 所以把<code>useSSL=true</code>改成<code>sslMode=DISABLED</code> 或者添加<code>allowPublicKeyRetrieval=true</code></p>
-]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-        <tag>java</tag>
-        <tag>error</tag>
-        <tag>jdbc</tag>
-        <tag>springboot</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mysql count函数正确使用姿势</title>
     <url>/%E5%B7%A5%E4%BD%9C/9f600c63.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>  <code>count()</code> 是<code>mysql</code>聚合函数，返回指定匹配条件的行数。开发中常用来统计表中数据，全部数据，不为null数据，或者去重数据。</p>
@@ -3390,6 +3374,22 @@ section 运维阶段
         <tag>聚合函数</tag>
         <tag>InnoDB</tag>
         <tag>MyISAM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql &#39;No DataSource Set&#39;解决办法</title>
+    <url>/%E5%B7%A5%E4%BD%9C/202678719.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>mysql 8.0.13开始，使用sslMode属性代替了原来的useSSL属性， 所以把<code>useSSL=true</code>改成<code>sslMode=DISABLED</code> 或者添加<code>allowPublicKeyRetrieval=true</code></p>
+]]></content>
+      <categories>
+        <category>工作</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>java</tag>
+        <tag>error</tag>
+        <tag>jdbc</tag>
+        <tag>springboot</tag>
       </tags>
   </entry>
   <entry>
@@ -5414,137 +5414,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
-    <title>笔记3-《程序员的数学3：线性代数》行列式与扩大率</title>
-    <url>/%E5%AD%A6%E4%B9%A0/15c4300a.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="行列式与扩大率"><a class="markdownIt-Anchor" href="#行列式与扩大率"></a> 行列式与扩大率</h2>
-<span id="more"></span>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>1.3 行列式与扩大率</p>
-<ul class="lvl-2">
-<li class="lvl-4">
-<p>行列式的几何意义：面积扩大率</p>
-<ul class="lvl-4">
-<li class="lvl-6">矩阵 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><mrow><mo fence="true">(</mo><mtable rowspacing="0.15999999999999992em" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0.5</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0.5</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0.5</mn></mstyle></mtd></mtr></mtable><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">A = \begin{pmatrix} 0.5 &amp; 0.5 \\ 0 &amp; 0.5 \end{pmatrix}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.40003em;vertical-align:-0.95003em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span></span></span><span style="top:-2.4099999999999997em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9500000000000004em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span></span></span><span style="top:-2.4099999999999997em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9500000000000004em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span></span></span></span> 对应的变换让面积变成原来的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0.5</mn><mo>×</mo><mn>0.5</mn><mo>=</mo><mn>0.25</mn></mrow><annotation encoding="application/x-tex">0.5 \times 0.5 = 0.25</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">2</span><span class="mord">5</span></span></span></span> 倍</li>
-<li class="lvl-6">矩阵 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>B</mi><mo>=</mo><mrow><mo fence="true">(</mo><mtable rowspacing="0.15999999999999992em" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0.3</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0.5</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0.5</mn></mstyle></mtd></mtr></mtable><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">B = \begin{pmatrix} 0.3 &amp; 0 \\ 0.5 &amp; 0.5 \end{pmatrix}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.40003em;vertical-align:-0.95003em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span><span class="mord">.</span><span class="mord">3</span></span></span><span style="top:-2.4099999999999997em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9500000000000004em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-2.4099999999999997em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9500000000000004em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span></span></span></span> 对应的变换让面积变成原来的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0.3</mn><mo>×</mo><mn>0.5</mn><mo>=</mo><mn>0.39</mn></mrow><annotation encoding="application/x-tex">0.3 \times 0.5 = 0.39</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">3</span><span class="mord">9</span></span></span></span> 倍</li>
-<li class="lvl-6"><strong>面积扩大率与原图形的位置和形状都无关</strong></li>
-<li class="lvl-6">这样的面积扩大率就称为该矩阵的<strong>行列式</strong>（determinant），记为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>det</mi><mo>⁡</mo><mi>A</mi><mo>=</mo><mn>0.75</mn></mrow><annotation encoding="application/x-tex">\det A = 0.75</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mop">det</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">7</span><span class="mord">5</span></span></span></span> 或 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">∣</mi><mi>A</mi><mi mathvariant="normal">∣</mi><mo>=</mo><mn>0.75</mn></mrow><annotation encoding="application/x-tex">|A| = 0.75</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathdefault">A</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">7</span><span class="mord">5</span></span></span></span></li>
-<li class="lvl-6">对于 3 阶方阵，行列式表示<strong>体积扩大率</strong></li>
-<li class="lvl-6">图形被压扁的情况下，体积扩大率为 0</li>
-</ul>
-</li>
-<li class="lvl-4">
-<p>体积扩大率这个说法有什么用</p>
-<ul class="lvl-4">
-<li class="lvl-6">多重积分的换元法中行列式起关键作用，关键词是雅可比矩阵（Jacobian）</li>
-<li class="lvl-6">「密度」问题：概率密度函数随随机变量变化而变化时也依靠行列式
-<ul class="lvl-6">
-<li class="lvl-8">空间的延伸会带来密度的下降</li>
-</ul>
-</li>
-<li class="lvl-6">行列式可以用来检测是否产生了退化
-<ul class="lvl-6">
-<li class="lvl-8">压扁对应行列式为 0</li>
-<li class="lvl-8"><strong>求出行列式就能判断对应的线性变换是否压扁</strong></li>
-<li class="lvl-8">而压扁意味着不存在逆矩阵 —— 第 2 章会重点谈这件事</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="lvl-4">
-<p>「压缩扁平化」的严格说法</p>
-<ul class="lvl-4">
-<li class="lvl-6">指把不同的点映射到同一点，即存在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi mathvariant="bold">a</mi><mo mathvariant="normal">′</mo></msup><mi mathvariant="normal">≠</mi><mi mathvariant="bold">a</mi></mrow><annotation encoding="application/x-tex">\mathbf{a}&#x27; \neq \mathbf{a}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.946332em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord"><span class="mord mathbf">a</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel"><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.44444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathbf">a</span></span></span></span></span> 使得 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><msup><mi mathvariant="bold">a</mi><mo mathvariant="normal">′</mo></msup><mo>=</mo><mi>A</mi><mi mathvariant="bold">a</mi></mrow><annotation encoding="application/x-tex">A\mathbf{a}&#x27; = A\mathbf{a}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord"><span class="mord"><span class="mord mathbf">a</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord"><span class="mord mathbf">a</span></span></span></span></span></li>
-</ul>
-</li>
-<li class="lvl-4">
-<p>复矩阵与方阵</p>
-<ul class="lvl-4">
-<li class="lvl-6">复矩阵的行列式一般是复数，「体积扩大率」的直观解释变得勉强
-<ul class="lvl-6">
-<li class="lvl-8">复平面上可以绕过行列式为 0 的点到达其镜像点（行列式为负）</li>
-</ul>
-</li>
-<li class="lvl-6"><strong>非方阵没有行列式的定义</strong></li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="lvl-2">
-<p>行列式的性质</p>
-<ul class="lvl-2">
-<li class="lvl-4">
-<p>简单性质</p>
-<ul class="lvl-4">
-<li class="lvl-6"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>det</mi><mo>⁡</mo><mi>I</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\det I = 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mop">det</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>：保持不变，变化率当然是 1</li>
-<li class="lvl-6"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>det</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>A</mi><mi>B</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mi>det</mi><mo>⁡</mo><mi>A</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>det</mi><mo>⁡</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\det(AB) = (\det A)(\det B)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">det</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mop">det</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">A</span><span class="mclose">)</span><span class="mopen">(</span><span class="mop">det</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mclose">)</span></span></span></span>：先做映射 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span> 造成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>det</mi><mo>⁡</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">\det B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mop">det</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span> 的变化，再做映射 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span> 造成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>det</mi><mo>⁡</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">\det A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mop">det</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">A</span></span></span></span> 的变化</li>
-</ul>
-</li>
-<li class="lvl-4">
-<p>行列式的展开式</p>
-<ul class="lvl-4">
-<li class="lvl-6">2 阶：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mi>d</mi><mo>−</mo><mi>b</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">ad - bc</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span><span class="mord mathdefault">c</span></span></span></span></li>
-<li class="lvl-6">3 阶：按第一行展开，三项两正一负交替</li>
-<li class="lvl-6">4 阶以上：按第一行（或任意一行）展开，每一项是一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n-1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 阶行列式</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="lvl-2">
-<p>计算方法</p>
-<ul class="lvl-2">
-<li class="lvl-4">用「某行的倍数加到另一行」的初等变换，行列式不变
-<ul class="lvl-4">
-<li class="lvl-6">把某一行乘以 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>−</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">-4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">4</span></span></span></span> 加到第 2 列上，行列式不变</li>
-<li class="lvl-6">用这个方法可以把矩阵变成上三角或对角矩阵</li>
-</ul>
-</li>
-<li class="lvl-4">交换两行，行列式变号</li>
-<li class="lvl-4">某一行乘以 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>，行列式也乘以 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span></li>
-<li class="lvl-4">对角矩阵的行列式就是对角线元素的乘积</li>
-<li class="lvl-4">若对角线上有 0 元素，展开时那一列全变 0，可直接判断行列式为 0</li>
-</ul>
-</li>
-</ul>
-<h2 id="用-ruby-验证"><a class="markdownIt-Anchor" href="#用-ruby-验证"></a> 用 Ruby 验证</h2>
-<p>行列式的定义式和这些性质都可以直接算：</p>
-<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 2 阶行列式：ad - bc</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">det2</span>(<span class="params">m</span>)</span><br><span class="line">  m[<span class="number">0</span>][<span class="number">0</span>] * m[<span class="number">1</span>][<span class="number">1</span>] - m[<span class="number">0</span>][<span class="number">1</span>] * m[<span class="number">1</span>][<span class="number">0</span>]</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3 阶行列式：按第一行展开</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">det3</span>(<span class="params">m</span>)</span><br><span class="line">  m[<span class="number">0</span>][<span class="number">0</span>] * (m[<span class="number">1</span>][<span class="number">1</span>] * m[<span class="number">2</span>][<span class="number">2</span>] - m[<span class="number">1</span>][<span class="number">2</span>] * m[<span class="number">2</span>][<span class="number">1</span>]) \</span><br><span class="line">    - m[<span class="number">0</span>][<span class="number">1</span>] * (m[<span class="number">1</span>][<span class="number">0</span>] * m[<span class="number">2</span>][<span class="number">2</span>] - m[<span class="number">1</span>][<span class="number">2</span>] * m[<span class="number">2</span>][<span class="number">0</span>]) \</span><br><span class="line">    + m[<span class="number">0</span>][<span class="number">2</span>] * (m[<span class="number">1</span>][<span class="number">0</span>] * m[<span class="number">2</span>][<span class="number">1</span>] - m[<span class="number">1</span>][<span class="number">1</span>] * m[<span class="number">2</span>][<span class="number">0</span>])</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证 det(AB) = det(A) * det(B)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">mul</span>(<span class="params">x, y</span>)</span><br><span class="line">  n = x.size</span><br><span class="line">  n.times.map &#123; |<span class="params">i</span>| n.times.map &#123; |<span class="params">j</span>| n.times.sum &#123; |<span class="params">k</span>| x[i][k] * y[k][j] &#125; &#125; &#125;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">a = [[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]]</span><br><span class="line">b = [[<span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>]]</span><br><span class="line"></span><br><span class="line">puts <span class="string">&quot;det(A)   = <span class="subst">#&#123;det2(a)&#125;</span>&quot;</span>                 <span class="comment"># det(A)   = -2</span></span><br><span class="line">puts <span class="string">&quot;det(B)   = <span class="subst">#&#123;det2(b)&#125;</span>&quot;</span>                 <span class="comment"># det(B)   = -2</span></span><br><span class="line">puts <span class="string">&quot;det(AB)  = <span class="subst">#&#123;det2(mul(a, b))&#125;</span>&quot;</span>         <span class="comment"># det(AB)  = 4</span></span><br><span class="line">puts <span class="string">&quot;det(A)*det(B) = <span class="subst">#&#123;det2(a) * det2(b)&#125;</span>&quot;</span>  <span class="comment"># det(A)*det(B) = 4</span></span><br><span class="line"></span><br><span class="line">m3 = [[<span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>], [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>]]</span><br><span class="line">puts <span class="string">&quot;det3 = <span class="subst">#&#123;det3(m3)&#125;</span>&quot;</span>                    <span class="comment"># det3 = -6</span></span><br></pre></td></tr></table></figure>
-<h2 id="行列式为零意味着什么"><a class="markdownIt-Anchor" href="#行列式为零意味着什么"></a> 行列式为零意味着什么</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>det</mi><mo>⁡</mo><mi>A</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\det A = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mop">det</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 对应「压扁」，也就是<strong>把不同的点映射到同一点</strong></p>
-</li>
-<li class="lvl-2">
-<p>存在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi mathvariant="bold">a</mi><mo mathvariant="normal">′</mo></msup><mi mathvariant="normal">≠</mi><mi mathvariant="bold">a</mi></mrow><annotation encoding="application/x-tex">\mathbf{a}&#x27; \neq \mathbf{a}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.946332em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord"><span class="mord mathbf">a</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel"><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.44444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathbf">a</span></span></span></span></span> 使 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><msup><mi mathvariant="bold">a</mi><mo mathvariant="normal">′</mo></msup><mo>=</mo><mi>A</mi><mi mathvariant="bold">a</mi></mrow><annotation encoding="application/x-tex">A\mathbf{a}&#x27; = A\mathbf{a}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord"><span class="mord"><span class="mord mathbf">a</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord"><span class="mord mathbf">a</span></span></span></span></span></p>
-</li>
-<li class="lvl-2">
-<p>换个说法：存在非零向量 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="bold">v</mi></mrow><annotation encoding="application/x-tex">\mathbf{v}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.44444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">v</span></span></span></span></span> 使 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mi mathvariant="bold">v</mi><mo>=</mo><mn mathvariant="bold">0</mn></mrow><annotation encoding="application/x-tex">A\mathbf{v} = \mathbf{0}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">v</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathbf">0</span></span></span></span></span></p>
-<ul class="lvl-2">
-<li class="lvl-4">这个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="bold">v</mi></mrow><annotation encoding="application/x-tex">\mathbf{v}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.44444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">v</span></span></span></span></span> 组成的集合叫 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">r</mi></mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathrm{Ker} A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">K</span><span class="mord mathrm">e</span><span class="mord mathrm">r</span></span><span class="mord mathdefault">A</span></span></span></span>，叫<strong>核</strong></li>
-</ul>
-</li>
-<li class="lvl-2">
-<p>后果是：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mi mathvariant="bold">x</mi><mo>=</mo><mi mathvariant="bold">y</mi></mrow><annotation encoding="application/x-tex">A\mathbf{x} = \mathbf{y}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord"><span class="mord mathbf">x</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.63888em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">y</span></span></span></span></span> 要么无解，要么有无穷多解，<strong>不可能有唯一解</strong></p>
-</li>
-<li class="lvl-2">
-<p>所以「有没有逆矩阵」这件事，完全由行列式决定：</p>
-<ul class="lvl-2">
-<li class="lvl-4"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>det</mi><mo>⁡</mo><mi>A</mi><mi mathvariant="normal">≠</mi><mn>0</mn></mrow><annotation encoding="application/x-tex">\det A \neq 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mop">det</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel"><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> → 可逆，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>A</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">A^{-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span> 存在，解唯一</li>
-<li class="lvl-4"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>det</mi><mo>⁡</mo><mi>A</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\det A = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mop">det</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> → 不可逆（奇异矩阵），解不唯一或不存在</li>
-</ul>
-</li>
-</ul>
-<p>这就是为什么行列式值得单独讲一节：它是判断「这个问题有没有唯一答案」的最快方式。</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>线性代数</tag>
-        <tag>行列式</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>笔记4-《程序员的数学3：线性代数》良性问题与可逆矩阵</title>
     <url>/%E5%AD%A6%E4%B9%A0/e678a73e.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="良性问题与可逆矩阵"><a class="markdownIt-Anchor" href="#良性问题与可逆矩阵"></a> 良性问题与可逆矩阵</h2>
@@ -5695,6 +5564,137 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       <tags>
         <tag>线性代数</tag>
         <tag>逆矩阵</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记3-《程序员的数学3：线性代数》行列式与扩大率</title>
+    <url>/%E5%AD%A6%E4%B9%A0/15c4300a.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="行列式与扩大率"><a class="markdownIt-Anchor" href="#行列式与扩大率"></a> 行列式与扩大率</h2>
+<span id="more"></span>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>1.3 行列式与扩大率</p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>行列式的几何意义：面积扩大率</p>
+<ul class="lvl-4">
+<li class="lvl-6">矩阵 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><mrow><mo fence="true">(</mo><mtable rowspacing="0.15999999999999992em" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0.5</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0.5</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0.5</mn></mstyle></mtd></mtr></mtable><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">A = \begin{pmatrix} 0.5 &amp; 0.5 \\ 0 &amp; 0.5 \end{pmatrix}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.40003em;vertical-align:-0.95003em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span></span></span><span style="top:-2.4099999999999997em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9500000000000004em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span></span></span><span style="top:-2.4099999999999997em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9500000000000004em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span></span></span></span> 对应的变换让面积变成原来的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0.5</mn><mo>×</mo><mn>0.5</mn><mo>=</mo><mn>0.25</mn></mrow><annotation encoding="application/x-tex">0.5 \times 0.5 = 0.25</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">2</span><span class="mord">5</span></span></span></span> 倍</li>
+<li class="lvl-6">矩阵 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>B</mi><mo>=</mo><mrow><mo fence="true">(</mo><mtable rowspacing="0.15999999999999992em" columnspacing="1em"><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0.3</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0</mn></mstyle></mtd></mtr><mtr><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0.5</mn></mstyle></mtd><mtd><mstyle scriptlevel="0" displaystyle="false"><mn>0.5</mn></mstyle></mtd></mtr></mtable><mo fence="true">)</mo></mrow></mrow><annotation encoding="application/x-tex">B = \begin{pmatrix} 0.3 &amp; 0 \\ 0.5 &amp; 0.5 \end{pmatrix}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.40003em;vertical-align:-0.95003em;"></span><span class="minner"><span class="mopen delimcenter" style="top:0em;"><span class="delimsizing size3">(</span></span><span class="mord"><span class="mtable"><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span><span class="mord">.</span><span class="mord">3</span></span></span><span style="top:-2.4099999999999997em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9500000000000004em;"><span></span></span></span></span></span><span class="arraycolsep" style="width:0.5em;"></span><span class="arraycolsep" style="width:0.5em;"></span><span class="col-align-c"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.45em;"><span style="top:-3.61em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span></span></span><span style="top:-2.4099999999999997em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.9500000000000004em;"><span></span></span></span></span></span></span></span><span class="mclose delimcenter" style="top:0em;"><span class="delimsizing size3">)</span></span></span></span></span></span> 对应的变换让面积变成原来的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mn>0.3</mn><mo>×</mo><mn>0.5</mn><mo>=</mo><mn>0.39</mn></mrow><annotation encoding="application/x-tex">0.3 \times 0.5 = 0.39</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">3</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">×</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">5</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">3</span><span class="mord">9</span></span></span></span> 倍</li>
+<li class="lvl-6"><strong>面积扩大率与原图形的位置和形状都无关</strong></li>
+<li class="lvl-6">这样的面积扩大率就称为该矩阵的<strong>行列式</strong>（determinant），记为 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>det</mi><mo>⁡</mo><mi>A</mi><mo>=</mo><mn>0.75</mn></mrow><annotation encoding="application/x-tex">\det A = 0.75</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mop">det</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">7</span><span class="mord">5</span></span></span></span> 或 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">∣</mi><mi>A</mi><mi mathvariant="normal">∣</mi><mo>=</mo><mn>0.75</mn></mrow><annotation encoding="application/x-tex">|A| = 0.75</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathdefault">A</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span><span class="mord">.</span><span class="mord">7</span><span class="mord">5</span></span></span></span></li>
+<li class="lvl-6">对于 3 阶方阵，行列式表示<strong>体积扩大率</strong></li>
+<li class="lvl-6">图形被压扁的情况下，体积扩大率为 0</li>
+</ul>
+</li>
+<li class="lvl-4">
+<p>体积扩大率这个说法有什么用</p>
+<ul class="lvl-4">
+<li class="lvl-6">多重积分的换元法中行列式起关键作用，关键词是雅可比矩阵（Jacobian）</li>
+<li class="lvl-6">「密度」问题：概率密度函数随随机变量变化而变化时也依靠行列式
+<ul class="lvl-6">
+<li class="lvl-8">空间的延伸会带来密度的下降</li>
+</ul>
+</li>
+<li class="lvl-6">行列式可以用来检测是否产生了退化
+<ul class="lvl-6">
+<li class="lvl-8">压扁对应行列式为 0</li>
+<li class="lvl-8"><strong>求出行列式就能判断对应的线性变换是否压扁</strong></li>
+<li class="lvl-8">而压扁意味着不存在逆矩阵 —— 第 2 章会重点谈这件事</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="lvl-4">
+<p>「压缩扁平化」的严格说法</p>
+<ul class="lvl-4">
+<li class="lvl-6">指把不同的点映射到同一点，即存在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi mathvariant="bold">a</mi><mo mathvariant="normal">′</mo></msup><mi mathvariant="normal">≠</mi><mi mathvariant="bold">a</mi></mrow><annotation encoding="application/x-tex">\mathbf{a}&#x27; \neq \mathbf{a}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.946332em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord"><span class="mord mathbf">a</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel"><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.44444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathbf">a</span></span></span></span></span> 使得 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><msup><mi mathvariant="bold">a</mi><mo mathvariant="normal">′</mo></msup><mo>=</mo><mi>A</mi><mi mathvariant="bold">a</mi></mrow><annotation encoding="application/x-tex">A\mathbf{a}&#x27; = A\mathbf{a}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord"><span class="mord"><span class="mord mathbf">a</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord"><span class="mord mathbf">a</span></span></span></span></span></li>
+</ul>
+</li>
+<li class="lvl-4">
+<p>复矩阵与方阵</p>
+<ul class="lvl-4">
+<li class="lvl-6">复矩阵的行列式一般是复数，「体积扩大率」的直观解释变得勉强
+<ul class="lvl-6">
+<li class="lvl-8">复平面上可以绕过行列式为 0 的点到达其镜像点（行列式为负）</li>
+</ul>
+</li>
+<li class="lvl-6"><strong>非方阵没有行列式的定义</strong></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>行列式的性质</p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>简单性质</p>
+<ul class="lvl-4">
+<li class="lvl-6"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>det</mi><mo>⁡</mo><mi>I</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">\det I = 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mop">det</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.07847em;">I</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span>：保持不变，变化率当然是 1</li>
+<li class="lvl-6"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>det</mi><mo>⁡</mo><mo stretchy="false">(</mo><mi>A</mi><mi>B</mi><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mi>det</mi><mo>⁡</mo><mi>A</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>det</mi><mo>⁡</mo><mi>B</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">\det(AB) = (\det A)(\det B)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mop">det</span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mop">det</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">A</span><span class="mclose">)</span><span class="mopen">(</span><span class="mop">det</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mclose">)</span></span></span></span>：先做映射 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>B</mi></mrow><annotation encoding="application/x-tex">B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span> 造成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>det</mi><mo>⁡</mo><mi>B</mi></mrow><annotation encoding="application/x-tex">\det B</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mop">det</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span></span></span></span> 的变化，再做映射 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span> 造成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>det</mi><mo>⁡</mo><mi>A</mi></mrow><annotation encoding="application/x-tex">\det A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mop">det</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">A</span></span></span></span> 的变化</li>
+</ul>
+</li>
+<li class="lvl-4">
+<p>行列式的展开式</p>
+<ul class="lvl-4">
+<li class="lvl-6">2 阶：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>a</mi><mi>d</mi><mo>−</mo><mi>b</mi><mi>c</mi></mrow><annotation encoding="application/x-tex">ad - bc</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">a</span><span class="mord mathdefault">d</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">b</span><span class="mord mathdefault">c</span></span></span></span></li>
+<li class="lvl-6">3 阶：按第一行展开，三项两正一负交替</li>
+<li class="lvl-6">4 阶以上：按第一行（或任意一行）展开，每一项是一个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo stretchy="false">(</mo><mi>n</mi><mo>−</mo><mn>1</mn><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">(n-1)</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">(</span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">1</span><span class="mclose">)</span></span></span></span> 阶行列式</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>计算方法</p>
+<ul class="lvl-2">
+<li class="lvl-4">用「某行的倍数加到另一行」的初等变换，行列式不变
+<ul class="lvl-4">
+<li class="lvl-6">把某一行乘以 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mo>−</mo><mn>4</mn></mrow><annotation encoding="application/x-tex">-4</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.72777em;vertical-align:-0.08333em;"></span><span class="mord">−</span><span class="mord">4</span></span></span></span> 加到第 2 列上，行列式不变</li>
+<li class="lvl-6">用这个方法可以把矩阵变成上三角或对角矩阵</li>
+</ul>
+</li>
+<li class="lvl-4">交换两行，行列式变号</li>
+<li class="lvl-4">某一行乘以 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span>，行列式也乘以 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>k</mi></mrow><annotation encoding="application/x-tex">k</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.03148em;">k</span></span></span></span></li>
+<li class="lvl-4">对角矩阵的行列式就是对角线元素的乘积</li>
+<li class="lvl-4">若对角线上有 0 元素，展开时那一列全变 0，可直接判断行列式为 0</li>
+</ul>
+</li>
+</ul>
+<h2 id="用-ruby-验证"><a class="markdownIt-Anchor" href="#用-ruby-验证"></a> 用 Ruby 验证</h2>
+<p>行列式的定义式和这些性质都可以直接算：</p>
+<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 2 阶行列式：ad - bc</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">det2</span>(<span class="params">m</span>)</span><br><span class="line">  m[<span class="number">0</span>][<span class="number">0</span>] * m[<span class="number">1</span>][<span class="number">1</span>] - m[<span class="number">0</span>][<span class="number">1</span>] * m[<span class="number">1</span>][<span class="number">0</span>]</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3 阶行列式：按第一行展开</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">det3</span>(<span class="params">m</span>)</span><br><span class="line">  m[<span class="number">0</span>][<span class="number">0</span>] * (m[<span class="number">1</span>][<span class="number">1</span>] * m[<span class="number">2</span>][<span class="number">2</span>] - m[<span class="number">1</span>][<span class="number">2</span>] * m[<span class="number">2</span>][<span class="number">1</span>]) \</span><br><span class="line">    - m[<span class="number">0</span>][<span class="number">1</span>] * (m[<span class="number">1</span>][<span class="number">0</span>] * m[<span class="number">2</span>][<span class="number">2</span>] - m[<span class="number">1</span>][<span class="number">2</span>] * m[<span class="number">2</span>][<span class="number">0</span>]) \</span><br><span class="line">    + m[<span class="number">0</span>][<span class="number">2</span>] * (m[<span class="number">1</span>][<span class="number">0</span>] * m[<span class="number">2</span>][<span class="number">1</span>] - m[<span class="number">1</span>][<span class="number">1</span>] * m[<span class="number">2</span>][<span class="number">0</span>])</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 验证 det(AB) = det(A) * det(B)</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">mul</span>(<span class="params">x, y</span>)</span><br><span class="line">  n = x.size</span><br><span class="line">  n.times.map &#123; |<span class="params">i</span>| n.times.map &#123; |<span class="params">j</span>| n.times.sum &#123; |<span class="params">k</span>| x[i][k] * y[k][j] &#125; &#125; &#125;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"></span><br><span class="line">a = [[<span class="number">1</span>, <span class="number">2</span>], [<span class="number">3</span>, <span class="number">4</span>]]</span><br><span class="line">b = [[<span class="number">5</span>, <span class="number">6</span>], [<span class="number">7</span>, <span class="number">8</span>]]</span><br><span class="line"></span><br><span class="line">puts <span class="string">&quot;det(A)   = <span class="subst">#&#123;det2(a)&#125;</span>&quot;</span>                 <span class="comment"># det(A)   = -2</span></span><br><span class="line">puts <span class="string">&quot;det(B)   = <span class="subst">#&#123;det2(b)&#125;</span>&quot;</span>                 <span class="comment"># det(B)   = -2</span></span><br><span class="line">puts <span class="string">&quot;det(AB)  = <span class="subst">#&#123;det2(mul(a, b))&#125;</span>&quot;</span>         <span class="comment"># det(AB)  = 4</span></span><br><span class="line">puts <span class="string">&quot;det(A)*det(B) = <span class="subst">#&#123;det2(a) * det2(b)&#125;</span>&quot;</span>  <span class="comment"># det(A)*det(B) = 4</span></span><br><span class="line"></span><br><span class="line">m3 = [[<span class="number">2</span>, <span class="number">0</span>, <span class="number">1</span>], [<span class="number">1</span>, <span class="number">3</span>, <span class="number">2</span>], [<span class="number">1</span>, <span class="number">1</span>, <span class="number">0</span>]]</span><br><span class="line">puts <span class="string">&quot;det3 = <span class="subst">#&#123;det3(m3)&#125;</span>&quot;</span>                    <span class="comment"># det3 = -6</span></span><br></pre></td></tr></table></figure>
+<h2 id="行列式为零意味着什么"><a class="markdownIt-Anchor" href="#行列式为零意味着什么"></a> 行列式为零意味着什么</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>det</mi><mo>⁡</mo><mi>A</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\det A = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mop">det</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> 对应「压扁」，也就是<strong>把不同的点映射到同一点</strong></p>
+</li>
+<li class="lvl-2">
+<p>存在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi mathvariant="bold">a</mi><mo mathvariant="normal">′</mo></msup><mi mathvariant="normal">≠</mi><mi mathvariant="bold">a</mi></mrow><annotation encoding="application/x-tex">\mathbf{a}&#x27; \neq \mathbf{a}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.946332em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord"><span class="mord mathbf">a</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel"><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.44444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathbf">a</span></span></span></span></span> 使 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><msup><mi mathvariant="bold">a</mi><mo mathvariant="normal">′</mo></msup><mo>=</mo><mi>A</mi><mi mathvariant="bold">a</mi></mrow><annotation encoding="application/x-tex">A\mathbf{a}&#x27; = A\mathbf{a}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.751892em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord"><span class="mord"><span class="mord mathbf">a</span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.751892em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">′</span></span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord"><span class="mord mathbf">a</span></span></span></span></span></p>
+</li>
+<li class="lvl-2">
+<p>换个说法：存在非零向量 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="bold">v</mi></mrow><annotation encoding="application/x-tex">\mathbf{v}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.44444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">v</span></span></span></span></span> 使 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mi mathvariant="bold">v</mi><mo>=</mo><mn mathvariant="bold">0</mn></mrow><annotation encoding="application/x-tex">A\mathbf{v} = \mathbf{0}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">v</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathbf">0</span></span></span></span></span></p>
+<ul class="lvl-2">
+<li class="lvl-4">这个 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="bold">v</mi></mrow><annotation encoding="application/x-tex">\mathbf{v}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.44444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">v</span></span></span></span></span> 组成的集合叫 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">r</mi></mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathrm{Ker} A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">K</span><span class="mord mathrm">e</span><span class="mord mathrm">r</span></span><span class="mord mathdefault">A</span></span></span></span>，叫<strong>核</strong></li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>后果是：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mi mathvariant="bold">x</mi><mo>=</mo><mi mathvariant="bold">y</mi></mrow><annotation encoding="application/x-tex">A\mathbf{x} = \mathbf{y}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord"><span class="mord mathbf">x</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.63888em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">y</span></span></span></span></span> 要么无解，要么有无穷多解，<strong>不可能有唯一解</strong></p>
+</li>
+<li class="lvl-2">
+<p>所以「有没有逆矩阵」这件事，完全由行列式决定：</p>
+<ul class="lvl-2">
+<li class="lvl-4"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>det</mi><mo>⁡</mo><mi>A</mi><mi mathvariant="normal">≠</mi><mn>0</mn></mrow><annotation encoding="application/x-tex">\det A \neq 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mop">det</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel"><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> → 可逆，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>A</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">A^{-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span> 存在，解唯一</li>
+<li class="lvl-4"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>det</mi><mo>⁡</mo><mi>A</mi><mo>=</mo><mn>0</mn></mrow><annotation encoding="application/x-tex">\det A = 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mop">det</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span> → 不可逆（奇异矩阵），解不唯一或不存在</li>
+</ul>
+</li>
+</ul>
+<p>这就是为什么行列式值得单独讲一节：它是判断「这个问题有没有唯一答案」的最快方式。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>线性代数</tag>
+        <tag>行列式</tag>
       </tags>
   </entry>
   <entry>
@@ -11841,195 +11841,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
-    <title>第800小时 05：账本</title>
-    <url>/%E5%B0%8F%E8%AF%B4/6821e4a.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>0.11。</p>
-<p>这个数不该出现在这张纸上。</p>
-<p>苏芮把打印好的那页纸摊在财务室的桌子上，用计算器压住左上角。计算器是旧的，按键上的数字磨掉了一半，「7」已经按不出来。她量过那个键的行程，比别的键短两毫米。</p>
-<p>财务室只有一张桌子，两把椅子。桌面有一道很深的刻痕，从左上角斜着划到右下角，划痕里嵌着黑色墨。桌子是从旧档案室搬来的，档案室那边嫌它占地方。</p>
-<p>她看了一眼墙上的钟。八点五十一。</p>
-<p>她做这份表用了三周。第一周拉数据，第二周清数据，第三周改口径。改口径花的时间最长，因为前两版算出来是 0.19 和 0.23，她把它们都扔了。0.19 的那版按教练分组，0.23 的那版把长跑和射击拆开算。两版都比 0.11 好看，好看的两版她都没用。</p>
-<p>那两版她也打印过，压在抽屉最底下。0.19 那版她临时加了一栏，加在教练名字后面：同一个教练底下，同一个学员出现了两次，跨了两年。0.23 那版干净些，可它是从六个项目里挑出来的样本，挑剩的项目里一个人都没有。</p>
-<p>两版都进了碎纸机。碎纸机的开关在桌子底下，她伸脚踩了两次才着地。</p>
-<p>因为那两版里，有些教练的名字在同一格出现过。</p>
-<p>她做了五年合规。五年里她学会一件事：一个数如果只能用一种口径算出来，它就不是数，是立场。</p>
-<p>陶砚敲门。敲两下，间隔均匀。</p>
-<p>「请进。」</p>
-<p>陶砚进来的时候手里拿着一个文件夹，没脱外套。他在桌子对面坐下，把文件夹放在膝盖上，没有放桌面。</p>
-<p>「苏主管。」</p>
-<p>「陶教练。」</p>
-<p>「你要给我看一页数。」陶砚说，「你让人传话说有东西要给我看，我以为是什么事。」</p>
-<p>「是一页数。」</p>
-<p>「那就看。」</p>
-<p>苏芮把打印纸推过去。</p>
-<p>纸上是一张表，表头是三年三列，列名是年份。下面两行：一个是「认证时数前十名学员」，一个是「比赛成绩提升幅度」。两行后面跟着一串小数，每列一个。</p>
-<p>「相关系数。」陶砚说。</p>
-<p>「是。」</p>
-<p>「n 等于多少。」</p>
-<p>「每年十名，三年三十个样本。」</p>
-<p>「你把三十个人排成十行，是按什么排的。」</p>
-<p>「按认证时数。」苏芮说，「前十年里最高的十个人。」</p>
-<p>「时数是累计的。人练了十二年和一个练了三年的放在一起排？」</p>
-<p>「是。」</p>
-<p>陶砚的手指在 0.11 上敲了一下。</p>
-<p>「为什么不分开排。」</p>
-<p>「如果分开排，样本就剩不下十行了。」苏芮说，「我试过。练满八年的只有九个人，练满十年的只有四个。四个样本算不出能用的相关系数。」</p>
-<p>「所以你把三年的数据混在一起算。」</p>
-<p>「对。」</p>
-<p>「三年混在一起算的是一个数，不代表任何一年。」</p>
-<p>「不代表任何一年。」苏芮说。</p>
-<p>陶砚把纸放回桌上，纸的一角对着一角，摆正。</p>
-<p>「你要说什么。」</p>
-<p>苏芮没有立刻回答。她从文件夹里抽出一张表，横着对折过，折痕磨得发白。她把表展开，推到桌子中间。</p>
-<p>「时数包结算明细。」她说，「去年，1 月到 12 月。」</p>
-<p>表很密。竖着十二列，横着六十多行。最左边一列是日期，最右边两列是数字。</p>
-<p>「这一列。」苏芮指着其中一列，「认证时数。这一列是结算时数。」</p>
-<p>「两列不一样。」</p>
-<p>「逐人差，差得最多的一位在十一月，差 46%。」苏芮说，「平均差 11.3%。」</p>
-<p>陶砚看那一列。</p>
-<p>「为什么差。」</p>
-<p>「结算的时候不按认证时数算。」</p>
-<p>「按什么算。」</p>
-<p>「按在册时间。」苏芮说，「从学员刷卡进基地到刷出基地，中间不管做什么，都算。」</p>
-<p>陶砚没有说话。</p>
-<p>「包括在走廊里站着。」苏芮说，「包括在更衣室换衣服。包括等教练有空。包括教练在给别的学员上课，学员在旁边看着。」</p>
-<p>「看着也是训练。」陶砚说。</p>
-<p>「看着是训练。」苏芮说，「问题是我没有第二个数可以对照。」</p>
-<p>「你有比赛成绩。」</p>
-<p>「我有。」苏芮说，「所以我做了上面那三行。」</p>
-<p>她把那三行相关系数又往陶砚那边推了一寸。</p>
-<p>「三十个人。三年。认证时数最高的十个人，和他们的成绩提升幅度。0.11。」</p>
-<p>「0.11 是没有关系。」</p>
-<p>「是几乎没有关系。」苏芮说。</p>
-<p>「几乎。」</p>
-<p>「如果时数是决定成绩的因素，0.11 应该接近 1。」苏芮说，「如果时数完全无关，应该是 0。现在是 0.11。」</p>
-<p>「样本问题。」陶砚说，「三十个人里有二十几个是我基地出来的。他们的时数和成绩当然没关系，因为他们本来就是同一批人。」</p>
-<p>「那您告诉我，我该拿谁比。」</p>
-<p>「……」</p>
-<p>「陶教练，我拿谁比？」</p>
-<p>苏芮说这句话的时候声音没有升高。她也不需要升高。这句话她练过，练的方式是把两个方案放在桌上——一个是「按教练分组」，一个是「只算金牌项目」——然后问对方这两个方案里她该选哪个。她本来准备了两个数字，0.19 和 0.23，都是按这两个方案算的。她没说出来。</p>
-<p>陶砚把计算器拿过来。他按了几下，屏幕上出现一个数。他看了一秒，把它按掉。</p>
-<p>「你的意思是，我教出来的人，练得越多，成绩涨得越少。」</p>
-<p>「我没说您的学员。」苏芮说，「我说的是认证时数和成绩提升幅度。这两列数据，我都拿不到第二份。」</p>
-<p>「你的意思是整个基地的学员。」</p>
-<p>「我拿不到您单独的学员表。」苏芮说，「认证系统的权限我只有结算这一层。」</p>
-<p>陶砚笑了一声，很短。</p>
-<p>「你可以申请。」</p>
-<p>「我申请过两次。」苏芮说，「第一次被驳回，理由是时数明细属于教练个人教学档案。第二次批了，给的是汇总表。」</p>
-<p>「那你拿这张表来做什么。」</p>
-<p>「因为三次算出来都是 0.11 附近。」苏芮说，「如果只算一年，是 0.14 或者 0.09。三次都在 0.11 上下。三次是三批不同的学员，不同的教练，不同的项目。」</p>
-<p>「所以你认为时数没有用。」</p>
-<p>苏芮看着陶砚。</p>
-<p>如果是五年前的她，她会先说「如果时数真的没用，我们就可以重新设计认证口径」。她还在等一个能落地的方案。她进来的时候心里准备了三句话，第一句是「数据是死的，口径是活的」，第二句是「如果我们能拿到教练个人的训练分级，这一层就清楚了」。</p>
-<p>她没有说这两句。</p>
-<p>「陶教练，」她说，「如果您今天告诉我，我这一年不发时数包了，改成发别的，您会同意吗。」</p>
-<p>「不会。」</p>
-<p>「那您希望我做什么。」</p>
-<p>「把数据做干净。」陶砚说，「样本太小，混年算，冠军集中在金牌项目，长跑和射击根本不能放一起。这三点不改，0.11 就是 0.11。」</p>
-<p>「好。」苏芮说，「那我把您这三点的每一项都做成对照表，一项一项给您看：分年算一次，分年龄算一次，分项目算一次。每一次都写清楚样本量。」</p>
-<p>「做。」</p>
-<p>「那三十个人的名字，我要看。」</p>
-<p>苏芮把文件夹往自己这边收了半寸。</p>
-<p>「结算表上只有年度累计。」</p>
-<p>「年度累计我要不了。」陶砚说，「我要知道这三十个人里，有几个是从同一个教练名下出来的。」</p>
-<p>苏芮没有立刻回答。她的手指在文件夹的塑料封边上压了一下。</p>
-<p>「陶教练，这句话如果写在纸上，我明天就得交一份东西出去。」她说，「我不能只交一张相关系数。」</p>
-<p>「那你交什么。」</p>
-<p>「三张对照表，加上三十个编码。编码是我自己编的，不是系统里的编号。谁要看，得来找我对。」</p>
-<p>陶砚看了她一会儿。</p>
-<p>「你给自己留了一手。」</p>
-<p>「我给自己留了一份能查到出处的。」苏芮说。</p>
-<p>「我需要您同意一件事。」</p>
-<p>「说。」</p>
-<p>「算完之后，如果结论还是 0.11，您不能再要求我改口径。」</p>
-<p>陶砚没有回答。</p>
-<p>「这不是我为难您。」苏芮说，「改口径这件事本身是您教我的——您说过，数据不会骗人，数据只是不会说话。」</p>
-<p>她停了一下。</p>
-<p>「我今天来说这句话，是因为我想知道下一个十年该怎么记账。」</p>
-<p>桌上那张相关系数的纸还摊在中间。陶砚把它拿起来，折了一次，折的方向不是原来的折痕。</p>
-<p>「苏主管。」</p>
-<p>「嗯。」</p>
-<p>「这张纸我带走。」</p>
-<p>「原件不行。」苏芮说，「我做一份复印件给您，原件留在这儿。」</p>
-<p>「为什么。」</p>
-<p>「因为您带走原件，明天卢总问我这份数是谁做的，我拿不出出处。」苏芮说，「复印件上会有我的编号。您拿着它去问，谁都能查到。」</p>
-<p>陶砚看着她。</p>
-<p>「你在防我。」</p>
-<p>「我在保护这份数据。」苏芮说，「如果它是我一个人的，它明天就会消失。如果它有编号，它会一直在。」</p>
-<p>陶砚没有说话。他把折过的那张纸放回桌面，摊开，又折了一次，折回原来的方向。</p>
-<p>「复印。」</p>
-<p>苏芮把纸收过去，走到门口的复印机前。机器是那台老式的，按键要按到底才动。她按了两次，机器吐纸的声音在财务室里很响。</p>
-<p>第二张吐出来的时候卡了一下，纸边皱出一道折。她把那张扔进回收盘，重来。</p>
-<p>她回到桌边，把复印件推给陶砚。</p>
-<p>「陶教练。」</p>
-<p>「嗯。」</p>
-<p>「还有一件事。」</p>
-<p>「说。」</p>
-<p>「时数包的退款。」</p>
-<p>陶砚抬起眼。</p>
-<p>「官方口径是零退款。」苏芮说，「对外这么说，招生页面、学员手册、认证公告，三处都这么写。写了六年。」</p>
-<p>「六年都是零退款。」</p>
-<p>「六年账面上的退款率是 0。」苏芮说，「因为退款不进这张表。」</p>
-<p>「退款走哪儿。」</p>
-<p>「走个人账户。」苏芮说，「学员找班主任，班主任找片区主管，主管签个字，钱从另一个科目走。不进结算，不进时数包余额，不进任何一张我能拿到的表。」</p>
-<p>「去年退了多少。」</p>
-<p>苏芮从文件夹里抽出最后一张纸。这张纸和前面几张不一样，是从笔记本上手抄的，字迹是她的。</p>
-<p>「去年，」她说，「时数包退款率是 14%。」</p>
-<p>她把这张纸放在桌上，正对着陶砚。</p>
-<p>「14% 是多少人。」</p>
-<p>「卖出 1,180 份，退掉 165 份。」</p>
-<p>「这些人找的是谁。」</p>
-<p>「班主任。班主任找片区主管。主管签字，钱从别的科目走。」</p>
-<p>「招生页面上写的什么。」</p>
-<p>「时数包一经售出，概不退款。」苏芮说，「写在第三页，字体比正文大一号。」</p>
-<p>「那他们为什么还来退。」</p>
-<p>「因为能退的口径写在教练手册里。」苏芮说，「手册不发学员，只在教练群里发过电子版，去年三月停发。」</p>
-<p>「卢总知道吗。」</p>
-<p>苏芮没有答。</p>
-<p>「苏主管。」</p>
-<p>「报表一共六张。」她说，「没有一张叫退款率。」</p>
-<p>陶砚没有再问。</p>
-<p>「如果六年前就开始退，退款在结算表里，那么这六年一共退出去的钱，按现在的量算，相当于」</p>
-<p>她停了一下。</p>
-<p>「相当于基地第一年的全部时数包收入。」</p>
-<p>她把那张手抄的纸留在桌上，没有收回文件夹。</p>
-<p>「退款走的是别的科目。」陶砚说，「别的科目是谁的。」</p>
-<p>「我的权限到结算那一层为止。」</p>
-<p>「那您怎么知道是 14%。」</p>
-<p>苏芮把那张手抄的纸往他那边又推了半寸。</p>
-<p>「我说过了。」她说，「我在这一层能拿到的，比您以为的多一点。」</p>
-<p>「多多少。」</p>
-<p>「多到能算出来。」</p>
-<p>陶砚看着她，没有再往下问。</p>
-<p>他问了另一句。</p>
-<p>「您把这份数给我，代价是什么。」</p>
-<p>「三个月之内我手上多一张不该有的表。」苏芮说，「如果卢总要查这张表的出处，我得拿出第三份东西来解释。」</p>
-<p>「第三份是什么。」</p>
-<p>「您的那份复印件。」她说，「我留着编号，您留着纸。两边对得上，这件事就存在。谁想说它不存在，两边都得一起消失。」</p>
-<p>「那我拿着它去问别人，我也就得罪他们了。」</p>
-<p>「您拿着它去问，这份数据就有出处了。」苏芮说，「您要拿去告状，先想想第一个签名的人是谁。这两件事我分得清。」</p>
-<p>陶砚把复印件折成三折，放进外套内袋。放的时候他按了一下，确认纸没有滑出来。</p>
-<p>「我要走了。」苏芮说，「明天早上您要是想看分年、分年龄、分项目的对照表，九点前我可以做完。原件和手抄件都在这儿。」</p>
-<p>她走到门口，手放在门把上。</p>
-<p>财务室外面走廊的灯是声控的，她一走上去，那盏就亮了。她没有立刻推门。</p>
-<p>如果她现在回头说「这六年的退款总额，账上查不到」，她知道陶砚会怎么答——他会说「把科目理清楚」，然后她会去理科目，理到第三个月，发现那笔账不是科目不清，是当初就没有进过科目。这件事她已经在抽屉里那本原始账上看过一次了。那本账不能交出去，交出去第一个签名的人是她。</p>
-<p>所以她只说了一半。</p>
-<p>「陶教练。」</p>
-<p>「嗯。」</p>
-<p>「这六年的退款总额，」她说，「账上查不到。因为它从来没进过账。」</p>
-<p>她把门带上。</p>
-<p>财务室里剩下陶砚一个人。那张手抄的纸摊在桌面上，14% 那一行正对着他。刻痕里嵌着的黑墨在台灯下泛着光。</p>
-<p>九点整，走廊的声控灯灭了。</p>
-]]></content>
-      <categories>
-        <category>小说</category>
-      </categories>
-      <tags>
-        <tag>第800小时</tag>
-        <tag>小说</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>第800小时 04：我不知道我在练什么</title>
     <url>/%E5%B0%8F%E8%AF%B4/8a3858c7.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>「师父，我这些年练的到底是什么？」</p>
@@ -12290,6 +12101,195 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>他写完时数和环数，笔尖停在纸上。十二年来的格式是三栏：日期、时数、环数。他在这一行下面另起一行，写了今天多出来的三个字。</p>
 <p>七类。</p>
 <p>他合上本子。</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>第800小时</tag>
+        <tag>小说</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第800小时 05：账本</title>
+    <url>/%E5%B0%8F%E8%AF%B4/6821e4a.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>0.11。</p>
+<p>这个数不该出现在这张纸上。</p>
+<p>苏芮把打印好的那页纸摊在财务室的桌子上，用计算器压住左上角。计算器是旧的，按键上的数字磨掉了一半，「7」已经按不出来。她量过那个键的行程，比别的键短两毫米。</p>
+<p>财务室只有一张桌子，两把椅子。桌面有一道很深的刻痕，从左上角斜着划到右下角，划痕里嵌着黑色墨。桌子是从旧档案室搬来的，档案室那边嫌它占地方。</p>
+<p>她看了一眼墙上的钟。八点五十一。</p>
+<p>她做这份表用了三周。第一周拉数据，第二周清数据，第三周改口径。改口径花的时间最长，因为前两版算出来是 0.19 和 0.23，她把它们都扔了。0.19 的那版按教练分组，0.23 的那版把长跑和射击拆开算。两版都比 0.11 好看，好看的两版她都没用。</p>
+<p>那两版她也打印过，压在抽屉最底下。0.19 那版她临时加了一栏，加在教练名字后面：同一个教练底下，同一个学员出现了两次，跨了两年。0.23 那版干净些，可它是从六个项目里挑出来的样本，挑剩的项目里一个人都没有。</p>
+<p>两版都进了碎纸机。碎纸机的开关在桌子底下，她伸脚踩了两次才着地。</p>
+<p>因为那两版里，有些教练的名字在同一格出现过。</p>
+<p>她做了五年合规。五年里她学会一件事：一个数如果只能用一种口径算出来，它就不是数，是立场。</p>
+<p>陶砚敲门。敲两下，间隔均匀。</p>
+<p>「请进。」</p>
+<p>陶砚进来的时候手里拿着一个文件夹，没脱外套。他在桌子对面坐下，把文件夹放在膝盖上，没有放桌面。</p>
+<p>「苏主管。」</p>
+<p>「陶教练。」</p>
+<p>「你要给我看一页数。」陶砚说，「你让人传话说有东西要给我看，我以为是什么事。」</p>
+<p>「是一页数。」</p>
+<p>「那就看。」</p>
+<p>苏芮把打印纸推过去。</p>
+<p>纸上是一张表，表头是三年三列，列名是年份。下面两行：一个是「认证时数前十名学员」，一个是「比赛成绩提升幅度」。两行后面跟着一串小数，每列一个。</p>
+<p>「相关系数。」陶砚说。</p>
+<p>「是。」</p>
+<p>「n 等于多少。」</p>
+<p>「每年十名，三年三十个样本。」</p>
+<p>「你把三十个人排成十行，是按什么排的。」</p>
+<p>「按认证时数。」苏芮说，「前十年里最高的十个人。」</p>
+<p>「时数是累计的。人练了十二年和一个练了三年的放在一起排？」</p>
+<p>「是。」</p>
+<p>陶砚的手指在 0.11 上敲了一下。</p>
+<p>「为什么不分开排。」</p>
+<p>「如果分开排，样本就剩不下十行了。」苏芮说，「我试过。练满八年的只有九个人，练满十年的只有四个。四个样本算不出能用的相关系数。」</p>
+<p>「所以你把三年的数据混在一起算。」</p>
+<p>「对。」</p>
+<p>「三年混在一起算的是一个数，不代表任何一年。」</p>
+<p>「不代表任何一年。」苏芮说。</p>
+<p>陶砚把纸放回桌上，纸的一角对着一角，摆正。</p>
+<p>「你要说什么。」</p>
+<p>苏芮没有立刻回答。她从文件夹里抽出一张表，横着对折过，折痕磨得发白。她把表展开，推到桌子中间。</p>
+<p>「时数包结算明细。」她说，「去年，1 月到 12 月。」</p>
+<p>表很密。竖着十二列，横着六十多行。最左边一列是日期，最右边两列是数字。</p>
+<p>「这一列。」苏芮指着其中一列，「认证时数。这一列是结算时数。」</p>
+<p>「两列不一样。」</p>
+<p>「逐人差，差得最多的一位在十一月，差 46%。」苏芮说，「平均差 11.3%。」</p>
+<p>陶砚看那一列。</p>
+<p>「为什么差。」</p>
+<p>「结算的时候不按认证时数算。」</p>
+<p>「按什么算。」</p>
+<p>「按在册时间。」苏芮说，「从学员刷卡进基地到刷出基地，中间不管做什么，都算。」</p>
+<p>陶砚没有说话。</p>
+<p>「包括在走廊里站着。」苏芮说，「包括在更衣室换衣服。包括等教练有空。包括教练在给别的学员上课，学员在旁边看着。」</p>
+<p>「看着也是训练。」陶砚说。</p>
+<p>「看着是训练。」苏芮说，「问题是我没有第二个数可以对照。」</p>
+<p>「你有比赛成绩。」</p>
+<p>「我有。」苏芮说，「所以我做了上面那三行。」</p>
+<p>她把那三行相关系数又往陶砚那边推了一寸。</p>
+<p>「三十个人。三年。认证时数最高的十个人，和他们的成绩提升幅度。0.11。」</p>
+<p>「0.11 是没有关系。」</p>
+<p>「是几乎没有关系。」苏芮说。</p>
+<p>「几乎。」</p>
+<p>「如果时数是决定成绩的因素，0.11 应该接近 1。」苏芮说，「如果时数完全无关，应该是 0。现在是 0.11。」</p>
+<p>「样本问题。」陶砚说，「三十个人里有二十几个是我基地出来的。他们的时数和成绩当然没关系，因为他们本来就是同一批人。」</p>
+<p>「那您告诉我，我该拿谁比。」</p>
+<p>「……」</p>
+<p>「陶教练，我拿谁比？」</p>
+<p>苏芮说这句话的时候声音没有升高。她也不需要升高。这句话她练过，练的方式是把两个方案放在桌上——一个是「按教练分组」，一个是「只算金牌项目」——然后问对方这两个方案里她该选哪个。她本来准备了两个数字，0.19 和 0.23，都是按这两个方案算的。她没说出来。</p>
+<p>陶砚把计算器拿过来。他按了几下，屏幕上出现一个数。他看了一秒，把它按掉。</p>
+<p>「你的意思是，我教出来的人，练得越多，成绩涨得越少。」</p>
+<p>「我没说您的学员。」苏芮说，「我说的是认证时数和成绩提升幅度。这两列数据，我都拿不到第二份。」</p>
+<p>「你的意思是整个基地的学员。」</p>
+<p>「我拿不到您单独的学员表。」苏芮说，「认证系统的权限我只有结算这一层。」</p>
+<p>陶砚笑了一声，很短。</p>
+<p>「你可以申请。」</p>
+<p>「我申请过两次。」苏芮说，「第一次被驳回，理由是时数明细属于教练个人教学档案。第二次批了，给的是汇总表。」</p>
+<p>「那你拿这张表来做什么。」</p>
+<p>「因为三次算出来都是 0.11 附近。」苏芮说，「如果只算一年，是 0.14 或者 0.09。三次都在 0.11 上下。三次是三批不同的学员，不同的教练，不同的项目。」</p>
+<p>「所以你认为时数没有用。」</p>
+<p>苏芮看着陶砚。</p>
+<p>如果是五年前的她，她会先说「如果时数真的没用，我们就可以重新设计认证口径」。她还在等一个能落地的方案。她进来的时候心里准备了三句话，第一句是「数据是死的，口径是活的」，第二句是「如果我们能拿到教练个人的训练分级，这一层就清楚了」。</p>
+<p>她没有说这两句。</p>
+<p>「陶教练，」她说，「如果您今天告诉我，我这一年不发时数包了，改成发别的，您会同意吗。」</p>
+<p>「不会。」</p>
+<p>「那您希望我做什么。」</p>
+<p>「把数据做干净。」陶砚说，「样本太小，混年算，冠军集中在金牌项目，长跑和射击根本不能放一起。这三点不改，0.11 就是 0.11。」</p>
+<p>「好。」苏芮说，「那我把您这三点的每一项都做成对照表，一项一项给您看：分年算一次，分年龄算一次，分项目算一次。每一次都写清楚样本量。」</p>
+<p>「做。」</p>
+<p>「那三十个人的名字，我要看。」</p>
+<p>苏芮把文件夹往自己这边收了半寸。</p>
+<p>「结算表上只有年度累计。」</p>
+<p>「年度累计我要不了。」陶砚说，「我要知道这三十个人里，有几个是从同一个教练名下出来的。」</p>
+<p>苏芮没有立刻回答。她的手指在文件夹的塑料封边上压了一下。</p>
+<p>「陶教练，这句话如果写在纸上，我明天就得交一份东西出去。」她说，「我不能只交一张相关系数。」</p>
+<p>「那你交什么。」</p>
+<p>「三张对照表，加上三十个编码。编码是我自己编的，不是系统里的编号。谁要看，得来找我对。」</p>
+<p>陶砚看了她一会儿。</p>
+<p>「你给自己留了一手。」</p>
+<p>「我给自己留了一份能查到出处的。」苏芮说。</p>
+<p>「我需要您同意一件事。」</p>
+<p>「说。」</p>
+<p>「算完之后，如果结论还是 0.11，您不能再要求我改口径。」</p>
+<p>陶砚没有回答。</p>
+<p>「这不是我为难您。」苏芮说，「改口径这件事本身是您教我的——您说过，数据不会骗人，数据只是不会说话。」</p>
+<p>她停了一下。</p>
+<p>「我今天来说这句话，是因为我想知道下一个十年该怎么记账。」</p>
+<p>桌上那张相关系数的纸还摊在中间。陶砚把它拿起来，折了一次，折的方向不是原来的折痕。</p>
+<p>「苏主管。」</p>
+<p>「嗯。」</p>
+<p>「这张纸我带走。」</p>
+<p>「原件不行。」苏芮说，「我做一份复印件给您，原件留在这儿。」</p>
+<p>「为什么。」</p>
+<p>「因为您带走原件，明天卢总问我这份数是谁做的，我拿不出出处。」苏芮说，「复印件上会有我的编号。您拿着它去问，谁都能查到。」</p>
+<p>陶砚看着她。</p>
+<p>「你在防我。」</p>
+<p>「我在保护这份数据。」苏芮说，「如果它是我一个人的，它明天就会消失。如果它有编号，它会一直在。」</p>
+<p>陶砚没有说话。他把折过的那张纸放回桌面，摊开，又折了一次，折回原来的方向。</p>
+<p>「复印。」</p>
+<p>苏芮把纸收过去，走到门口的复印机前。机器是那台老式的，按键要按到底才动。她按了两次，机器吐纸的声音在财务室里很响。</p>
+<p>第二张吐出来的时候卡了一下，纸边皱出一道折。她把那张扔进回收盘，重来。</p>
+<p>她回到桌边，把复印件推给陶砚。</p>
+<p>「陶教练。」</p>
+<p>「嗯。」</p>
+<p>「还有一件事。」</p>
+<p>「说。」</p>
+<p>「时数包的退款。」</p>
+<p>陶砚抬起眼。</p>
+<p>「官方口径是零退款。」苏芮说，「对外这么说，招生页面、学员手册、认证公告，三处都这么写。写了六年。」</p>
+<p>「六年都是零退款。」</p>
+<p>「六年账面上的退款率是 0。」苏芮说，「因为退款不进这张表。」</p>
+<p>「退款走哪儿。」</p>
+<p>「走个人账户。」苏芮说，「学员找班主任，班主任找片区主管，主管签个字，钱从另一个科目走。不进结算，不进时数包余额，不进任何一张我能拿到的表。」</p>
+<p>「去年退了多少。」</p>
+<p>苏芮从文件夹里抽出最后一张纸。这张纸和前面几张不一样，是从笔记本上手抄的，字迹是她的。</p>
+<p>「去年，」她说，「时数包退款率是 14%。」</p>
+<p>她把这张纸放在桌上，正对着陶砚。</p>
+<p>「14% 是多少人。」</p>
+<p>「卖出 1,180 份，退掉 165 份。」</p>
+<p>「这些人找的是谁。」</p>
+<p>「班主任。班主任找片区主管。主管签字，钱从别的科目走。」</p>
+<p>「招生页面上写的什么。」</p>
+<p>「时数包一经售出，概不退款。」苏芮说，「写在第三页，字体比正文大一号。」</p>
+<p>「那他们为什么还来退。」</p>
+<p>「因为能退的口径写在教练手册里。」苏芮说，「手册不发学员，只在教练群里发过电子版，去年三月停发。」</p>
+<p>「卢总知道吗。」</p>
+<p>苏芮没有答。</p>
+<p>「苏主管。」</p>
+<p>「报表一共六张。」她说，「没有一张叫退款率。」</p>
+<p>陶砚没有再问。</p>
+<p>「如果六年前就开始退，退款在结算表里，那么这六年一共退出去的钱，按现在的量算，相当于」</p>
+<p>她停了一下。</p>
+<p>「相当于基地第一年的全部时数包收入。」</p>
+<p>她把那张手抄的纸留在桌上，没有收回文件夹。</p>
+<p>「退款走的是别的科目。」陶砚说，「别的科目是谁的。」</p>
+<p>「我的权限到结算那一层为止。」</p>
+<p>「那您怎么知道是 14%。」</p>
+<p>苏芮把那张手抄的纸往他那边又推了半寸。</p>
+<p>「我说过了。」她说，「我在这一层能拿到的，比您以为的多一点。」</p>
+<p>「多多少。」</p>
+<p>「多到能算出来。」</p>
+<p>陶砚看着她，没有再往下问。</p>
+<p>他问了另一句。</p>
+<p>「您把这份数给我，代价是什么。」</p>
+<p>「三个月之内我手上多一张不该有的表。」苏芮说，「如果卢总要查这张表的出处，我得拿出第三份东西来解释。」</p>
+<p>「第三份是什么。」</p>
+<p>「您的那份复印件。」她说，「我留着编号，您留着纸。两边对得上，这件事就存在。谁想说它不存在，两边都得一起消失。」</p>
+<p>「那我拿着它去问别人，我也就得罪他们了。」</p>
+<p>「您拿着它去问，这份数据就有出处了。」苏芮说，「您要拿去告状，先想想第一个签名的人是谁。这两件事我分得清。」</p>
+<p>陶砚把复印件折成三折，放进外套内袋。放的时候他按了一下，确认纸没有滑出来。</p>
+<p>「我要走了。」苏芮说，「明天早上您要是想看分年、分年龄、分项目的对照表，九点前我可以做完。原件和手抄件都在这儿。」</p>
+<p>她走到门口，手放在门把上。</p>
+<p>财务室外面走廊的灯是声控的，她一走上去，那盏就亮了。她没有立刻推门。</p>
+<p>如果她现在回头说「这六年的退款总额，账上查不到」，她知道陶砚会怎么答——他会说「把科目理清楚」，然后她会去理科目，理到第三个月，发现那笔账不是科目不清，是当初就没有进过科目。这件事她已经在抽屉里那本原始账上看过一次了。那本账不能交出去，交出去第一个签名的人是她。</p>
+<p>所以她只说了一半。</p>
+<p>「陶教练。」</p>
+<p>「嗯。」</p>
+<p>「这六年的退款总额，」她说，「账上查不到。因为它从来没进过账。」</p>
+<p>她把门带上。</p>
+<p>财务室里剩下陶砚一个人。那张手抄的纸摊在桌面上，14% 那一行正对着他。刻痕里嵌着的黑墨在台灯下泛着光。</p>
+<p>九点整，走廊的声控灯灭了。</p>
 ]]></content>
       <categories>
         <category>小说</category>
@@ -13651,6 +13651,296 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>他把本子重新打开，翻到今天那一页。</p>
 <p>横线下面，他写了一个字。</p>
 <p>挖。</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>第800小时</tag>
+        <tag>小说</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第800小时 14：我教砸了一个人</title>
+    <url>/%E5%B0%8F%E8%AF%B4/12525e4d.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>铁盒的盖子锈成一块壳。陶砚用螺丝刀撬到第七下，锈皮整起来，底下的漆是绿的。</p>
+<p>盒里只有一本本子。布面，线装，边角磨白，盖着一层土。</p>
+<p>守墓人把盒子递给他的时候，在登记簿上添了一行名字。填回去的土比原来平。</p>
+<p>盒底还压着一层报纸。报纸是 2011 年 4 月 13 日的，日期那一格被人用圆珠笔描过一遍，描得太重，背面凸出来一个「13」。盒盖内侧贴着一张白胶布，胶布上有人用铅笔写了一个「拆」字，笔迹和守墓人登记本上的不一样。</p>
+<p>「这盒是谁的。」陶砚问。</p>
+<p>「不知道。」守墓人说，「挖的时候就在坑边上，压着报纸。报纸上什么也没有，就这个日期。」</p>
+<p>「你为什么不说。」</p>
+<p>「说了您也拿不出手续。」</p>
+<p>手续是两个月前办的。公墓管理处要一份亲属关系证明和一个继承人签字。陶砚手里只有一张 1998 年的体校队徽照片，照片背面有钢印编号。管理处的人拿放大镜看了十分钟，最后在纸上写：暂按学员关系受理。</p>
+<p>「暂按是什么意思。」</p>
+<p>「意思是您不是家属，但也不是无关的人。」</p>
+<p>「那我算什么。」</p>
+<p>「算有交情的人。」</p>
+<p>「有交情的人能挖师父的坟。」</p>
+<p>「有交情的人能挖有手续的坑。」</p>
+<p>「坑要挖多深。」</p>
+<p>「一米二。」</p>
+<p>「为什么一米二。」</p>
+<p>「2011 年那年埋东西就是这么挖的。守墓人记着。」</p>
+<p>「谁埋的。」</p>
+<p>「登记簿上就一个字。」</p>
+<p>「姓林。」</p>
+<p>「姓林。」</p>
+<p>「他埋了什么。」</p>
+<p>「报纸包着，油布裹着。机油味。」</p>
+<p>挖是前一天下午的事。守墓人带着铁锹，尖头上磨掉一块。他自己带了一把小铲。挖到一米二，铲子碰到一个硬东西，金属声。守墓人用手抹掉周围的土，露出一块锈住的铁皮。</p>
+<p>「再往下就是墓了。」守墓人说。</p>
+<p>「够了。」</p>
+<p>「装。」</p>
+<p>「装。」</p>
+<p>铁盒出来的时候带着一层报纸，报纸已经烂成三片。他用档案袋把盒子装进去，袋子上写日期。那天晚上他没有回家，在车里坐到十一点半。</p>
+<p>车里没有灯，他把盒子的布面朝上放在副驾，用手掌盖着，一只手压在盖子上，另一只手扶着车门。压了两个多小时，手心出汗，纸吸了潮，摸上去是软的。</p>
+<p>凌晨两点十分，客厅地板上摊满本子。他自己的，从 1998 到 2026，一年一本，码成三排。落地灯只开一盏，灯罩压得低。</p>
+<p>他坐在三排中间，手里是师父那本。</p>
+<p>布面上有钢笔字，撇都往左倒。</p>
+<p>「训练日志　1988—1998」</p>
+<p>翻到第一页，一行字写在纸中间，比正文大一号。</p>
+<p>「我教砸了一个人，也教出了一个人。」</p>
+<p>他用拇指压住那行字，压到纸起皱。</p>
+<p>「谁。」</p>
+<p>「一个。」他把手指从纸上抬起来，「砸的那个。」</p>
+<p>「另一个呢。」</p>
+<p>「教出来的那个。」</p>
+<p>他停了一会儿，把本子放到膝盖上。</p>
+<p>「师父从来不写这种话。」</p>
+<p>「他写的。」</p>
+<p>「他写的都是数字。」</p>
+<p>「第一页不是数字。」</p>
+<p>第二页起是正文。一页一个月，页眉是月份，下面按日子排。每行一个人，一个数字。</p>
+<p>「1988.3.1　韩　42」<br />
+「1988.4.16　韩　61」<br />
+「1988.9.2　林崇　30」</p>
+<p>「一个人，一个数字。」他说。「韩，四十二个小时。」</p>
+<p>数字是那个人那一个月练了多少小时。十一年，一百三十二页。</p>
+<p>名字换得很快。一页上的人，隔十年再翻，一个也认不出。有的三月在，五月就没了。</p>
+<p>「1988.5　韩　停」<br />
+「1994.9.30　曹　1810　走」</p>
+<p>「停。」</p>
+<p>「走。」</p>
+<p>他把这两个字各念了一遍，念得很轻。</p>
+<p>「韩是 1988 年春天走的。四十二小时，四月还在，六月没来。」</p>
+<p>「曹是 1994 年的。1810 小时。」</p>
+<p>「一万八千一百。」</p>
+<p>「青铜。」</p>
+<p>「白。」</p>
+<p>「白银。」</p>
+<p>「六千。」</p>
+<p>「一千八百一十，是黄金线的三分之一。」</p>
+<p>他把本子举到灯下，看纸的背面。每一页的背面都透出一层墨，像一片被压过的叶子。</p>
+<p>「师父记了十一年，一百三十二页。」</p>
+<p>「名字有四十几个？」</p>
+<p>「四十几个。有的一页两行。」</p>
+<p>「一年换一个。」</p>
+<p>「为什么换。」</p>
+<p>「站着的走了。趴着的起来。」</p>
+<p>「站着的是练不下去的。」</p>
+<p>「趴着的是有别的路走的。」</p>
+<p>「有别的路走的也记？」</p>
+<p>「记。」</p>
+<p>他翻到 1991 年那一段。同一页上有四个名字，头一个韩，第二个曹，第三个是一个他不认得的字，第四个是林崇。</p>
+<p>「林崇每个月都在。」</p>
+<p>「林崇每个月都在。」</p>
+<p>「1991 到 1998，八年。」</p>
+<p>「八年。」</p>
+<p>「一次都没停。」</p>
+<p>「一次都没停。」</p>
+<p>1995 年之后的字换了手。撇不再往左倒，写字的人换了姿势，也换了年纪。</p>
+<p>「1995 年换了笔。」</p>
+<p>「换了笔。」</p>
+<p>「1998 年换的是人。」</p>
+<p>「1998 年换的是我。」</p>
+<p>他翻到 1997 年那一段。同一页上有四个名字，头一个韩，第二个曹，第三个是一个他不认得的字，第四个是林崇。</p>
+<p>1998 年 9 月，名字第一次出现在师父的字里。</p>
+<p>「1998.9.3　陶砚　0」<br />
+「1998.10.1　陶砚　31」<br />
+「1998.11.20　陶砚　96」</p>
+<p>「0。」他说。「进队第一天，师父记我零小时。」</p>
+<p>「零小时也记。」</p>
+<p>「零也要记。」</p>
+<p>「第一次有人给你记零。」</p>
+<p>「第一次有人给我记零。」</p>
+<p>他翻到 12 月。陶砚那一栏的数在往上跳，跳得比林崇快。</p>
+<p>「1998.11　林崇　2900」<br />
+「1998.11.20　陶砚　96」<br />
+「1998.12.19　陶砚　190」</p>
+<p>「九十到一百九十，一个半月。」</p>
+<p>「四十三天。」</p>
+<p>「四十三天，九十四个小时。」</p>
+<p>「一个半月，一百九十个小时。」</p>
+<p>「一天四个多小时。」</p>
+<p>「跟林崇那页放在一起看。」</p>
+<p>「放在一起看。」</p>
+<p>「同一个月。一个 2900，一个 96。」</p>
+<p>「同一个月。」</p>
+<p>「我那时候不知道他练到 2900。」</p>
+<p>「他那时候也没告诉你。」</p>
+<p>「为什么不告诉。」</p>
+<p>「因为一告诉就要比。」</p>
+<p>本子后面松了两页。他把手指伸进去，抽出两张对折的纸。</p>
+<p>第一张，钢笔，字比本子里的新。</p>
+<p>「1999.3.6　林崇　3100」<br />
+「第 41 次以后，格子里数字一样。」<br />
+「问。林崇：抄错了。」<br />
+「不报。」<br />
+「送走。」<br />
+「走的时候说：你不是坏人，你是撑不住了。」</p>
+<p>「3100。」</p>
+<p>「从 2900 开始改。」</p>
+<p>他把本子往回翻，1998 年 11 月那一页，林崇在最后一行。</p>
+<p>「2900。」他说。「从这一栏起，他开始把失败的算成成功。」</p>
+<p>「抄错了。」</p>
+<p>他把这三个字念了一遍，念得很慢。</p>
+<p>「他抄得倒是不难看。」</p>
+<p>「不报。送走。」</p>
+<p>「师父放了他一次。」</p>
+<p>「放了他一次。」</p>
+<p>「一次。」</p>
+<p>他把那张纸对着灯照。纸背面有印子，是本子里某页的字透过来的，糊成一团。</p>
+<p>「1999 年 3 月 6 号。」他说。「他在 3100 小时上被问了一次。问的人不是教练。」</p>
+<p>「那是谁。」</p>
+<p>「是我师父。」</p>
+<p>「他为什么记在这里。」</p>
+<p>「因为只有他记。」</p>
+<p>「只有他记。」</p>
+<p>「没有别人记。」</p>
+<p>他把纸放在地上，两张并排，一张纸的边角压着另一张的边角。</p>
+<p>「他抄了四十一发。」</p>
+<p>「四十一发。」</p>
+<p>「四十一发以后，格子里的数字一样。」</p>
+<p>「一样是什么意思。」</p>
+<p>「每发十环。」</p>
+<p>陶砚没有说话。他伸手把 1998 年 11 月那一页翻回来看，又翻到 1999 年 3 月。</p>
+<p>「所以从 2900 开始，他每一次都写十环。」</p>
+<p>「所以他每一次都写十环。」</p>
+<p>「3100 是真的还是假的。」</p>
+<p>「3100 是他实际练的。」</p>
+<p>「那师父为什么放他走。」</p>
+<p>「因为再报一次，委员会要查原始记录。」</p>
+<p>「查出来呢。」</p>
+<p>「查出来林崇要退赛。退赛就没有下一次了。」</p>
+<p>「所以放他走。」</p>
+<p>「所以放他走。」</p>
+<p>「他后来怎么样了。」</p>
+<p>「开了间修理铺。」</p>
+<p>「修表。」</p>
+<p>「修表。」</p>
+<p>第二张纸更薄，折成四折。</p>
+<p>「2002.12.19」<br />
+「陶砚：800 小时，错的。我该早两年拆他。」<br />
+「本子摔在地上。他走了。」</p>
+<p>陶砚读了两遍，然后把纸放平。</p>
+<p>「800。」</p>
+<p>他把自己那本摊在膝盖上，翻到 2002 年的最后一行。</p>
+<p>「2002.12.19　陶砚　812」</p>
+<p>考核 9.4 环。备注那一栏空着。扉页上有师父的字，没有落款。他没有抄。</p>
+<p>往前翻四个月。</p>
+<p>「1998.12.19　陶砚　190」</p>
+<p>他到体校第一百零七天。</p>
+<p>「早两年是 2000 年。」他说。「那年我十八。」</p>
+<p>「他记到 800，我记到 812。中间十二个小时，他没记。」</p>
+<p>「十二个小时。」</p>
+<p>「一天半。」</p>
+<p>「一天半做什么。」</p>
+<p>「吃饭，睡觉，换弹匣。」</p>
+<p>「不算训练。」</p>
+<p>「不算。」</p>
+<p>桌上有一张基地的《时数认证登记表》，空的，背面印着门槛：三千青铜，六千白银，一万黄金。他的认证卡在钱包里，T-07，黄金，10,340 小时，其中 1,860 小时是示范。</p>
+<p>他伸手把自己那三排本子拉过来，从头一排拉到第三排，每一本都翻到最后一行。</p>
+<p>二十四本，二十四行。日期，时数，动作，偏差，备注。前四栏没有一格空着。备注栏二十四本全空。</p>
+<p>「我这本到今天也没记过一行备注。」</p>
+<p>「一行都没有。」</p>
+<p>「因为没失败过。」</p>
+<p>「因为你没记过失败。」</p>
+<p>他抽出 1998 年那本，和师父的并排放在地上。两本同样大小，师父的是布面，他的是硬壳。</p>
+<p>「1998.12.19　陶砚　190」</p>
+<p>「师父那本同一页写的是林崇 2900。」</p>
+<p>「同一天。」</p>
+<p>「同一天。」</p>
+<p>他再抽 2002 年那本，翻到最后一页。</p>
+<p>「2002.12.19　陶砚　812」</p>
+<p>「备注栏。」</p>
+<p>「空。」</p>
+<p>「师父那本上，这一页被撕了。」</p>
+<p>「被撕了。」</p>
+<p>「撕的人是我师父。」</p>
+<p>「你怎么知道。」</p>
+<p>「那一页的备注栏是我写的。」</p>
+<p>他停了一下。</p>
+<p>「我写的是：考核 9.4 环，偏差：后坐左。」</p>
+<p>「师父看到了。」</p>
+<p>「师父看到了，然后那一页就没有了。」</p>
+<p>他翻到 1994 年。师父那本上写着「1994.9.30　曹　1810　走」。</p>
+<p>「曹后来我见过一次。」</p>
+<p>「1998 年，在南方一个训练营当教练。」</p>
+<p>「他知道师父的日志里有他。」</p>
+<p>「他知道。」</p>
+<p>「他没问我要看。」</p>
+<p>「他不敢问。」</p>
+<p>「还是不想问。」</p>
+<p>「他给我带了半袋荔枝。」</p>
+<p>他把 1999 年那本翻开。这本的第一页是空白的，第二页起才是表格。</p>
+<p>「我 1999 年 1 月离开省体校，去南方一个训练营。房东按月收钱，不问用途。」</p>
+<p>「那本是你自己买的。」</p>
+<p>「队里的本子 1998 年发了一本，那本是队里的。这本是我在番禺买的，跟队里一个格式。」</p>
+<p>「格式一样。」</p>
+<p>「格式是队里的，字是我自己的。」</p>
+<p>他再往后抽一本。2003 年那一本，封面是硬壳，右下角贴了一条白胶带。</p>
+<p>「这本起，我开始记动作栏。」</p>
+<p>「队里那本也有动作栏。」</p>
+<p>「队里那本我抄的是七类。这本我抄到九类。」</p>
+<p>「多两类。」</p>
+<p>「多两类是我自己加的。」</p>
+<p>「加的是什么。」</p>
+<p>「射击我不练。我加的是讲评。」</p>
+<p>「讲评算训练时数？」</p>
+<p>「当时算。」</p>
+<p>他把那本翻到中间。有一页的动作栏写着两个字：讲评。后面跟着一个数字，8。</p>
+<p>「一节课讲评八十分钟。」</p>
+<p>「这个也算。」</p>
+<p>「这个也算。」</p>
+<p>「所以你的时数里有讲评。」</p>
+<p>「我的时数里有讲评，有换靶，有等裁判，还有我自己在办公室写表格的时间。」</p>
+<p>他停了一下。</p>
+<p>「这些都不该算。」</p>
+<p>「那十年里没人说不该算。」</p>
+<p>「十年里没人看。」</p>
+<p>他把两本并在一起，用手掌压住封面。</p>
+<p>「我练的是他的方法。我记的是他的格式。我从来没有记过一行他记的东西。」</p>
+<p>「他记的是失败。」</p>
+<p>「他记的是失败。」</p>
+<p>「你记的是时数。」</p>
+<p>「我记的是时数。」</p>
+<p>他停了一会儿。</p>
+<p>「我这一本从头到尾，都是时数。」</p>
+<p>他伸手把盒盖内侧那张白胶布撕下来，胶布已经脆了，边上翘起一层。</p>
+<p>「拆。」</p>
+<p>他念了一遍。</p>
+<p>「师父写的是『拆他』。」</p>
+<p>「拆他。」</p>
+<p>「一个意思。」</p>
+<p>他把胶布放进那只牛皮纸档案袋，跟师父的日志和两张散纸放在一起。</p>
+<p>「这个不能进档案室。」他说。「表里没有这一栏。」</p>
+<p>「哪一栏。」</p>
+<p>「没有栏放师父的日志。」</p>
+<p>「有栏放失败吗。」</p>
+<p>他停了停。</p>
+<p>「也没有。」</p>
+<p>「你打算怎么处理。」</p>
+<p>「带回去。」</p>
+<p>「带去基地？」</p>
+<p>「带回家。」</p>
+<p>他回到最后一页。</p>
+<p>最后一页是钢笔写的，字比前面大。前面那些是记，最后这一页是写。</p>
+<p>「2002 年 12 月 20 日。」他说。「那天我 190 个小时。」</p>
+<p>「他写 812。」</p>
+<p>「812 是 2002 年 12 月 19 日的数。」</p>
+<p>最后一行是圆珠笔，蓝黑色，笔画压进纸里。</p>
+<p>「812。我去挖他。」</p>
 ]]></content>
       <categories>
         <category>小说</category>
@@ -15063,12 +15353,12 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
     <title>路</title>
     <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-        <div id="aplayer-NPmeisNg" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-AruvBLLK" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-NPmeisNg"),
+            element: document.getElementById("aplayer-AruvBLLK"),
             narrow: false,
             autoplay: true,
             showlrc: false,
@@ -15570,22 +15860,6 @@ ExcelUtil --> RecordHandler</pre>
       </tags>
   </entry>
   <entry>
-    <title>鲁迅先生写道: 父母存在的意义</title>
-    <url>/%E7%94%9F%E6%B4%BB/2375039249.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
-<p><strong>鲁迅先生写父母存在的意义是：</strong><br />
-父母存在的意义不是给予孩子舒适和富裕的生活，而是当你想到你的父母时你的内心就会充满力量，会感受到温暖，从而拥有克服困难的勇气和能力，因此获得人生真正的乐趣和自由。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>鲁迅先生</tag>
-        <tag>父母</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>麻辣炒虾尾 🦞</title>
     <url>/%E8%8F%9C%E8%B0%B1/9ddcf808.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>我媳妇、儿子最喜欢的菜之一</p>
@@ -15670,6 +15944,22 @@ ExcelUtil --> RecordHandler</pre>
         <tag>美食</tag>
         <tag>虾尾</tag>
         <tag>麻辣</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>鲁迅先生写道: 父母存在的意义</title>
+    <url>/%E7%94%9F%E6%B4%BB/2375039249.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
+<p><strong>鲁迅先生写父母存在的意义是：</strong><br />
+父母存在的意义不是给予孩子舒适和富裕的生活，而是当你想到你的父母时你的内心就会充满力量，会感受到温暖，从而拥有克服困难的勇气和能力，因此获得人生真正的乐趣和自由。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>鲁迅先生</tag>
+        <tag>父母</tag>
       </tags>
   </entry>
 </search>
