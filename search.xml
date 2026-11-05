@@ -3874,29 +3874,6 @@ section 运维阶段
       </tags>
   </entry>
   <entry>
-    <title>rust-枚举与模式匹配</title>
-    <url>/%E5%AD%A6%E4%B9%A0/7d69317e.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="枚举"><a class="markdownIt-Anchor" href="#枚举"></a> 枚举</h2>
-<blockquote>
-<p>结构体给予你将字段和数据聚合在一起的方法，像 <code>Rectangle</code> 结构体有 <code>width</code> 和 <code>height</code> 两个字段。而枚举给予你一个途径去声明某个值是一个集合中的一员。比如，我们想让 <code>Rectangle</code> 是一些形状的集合，包含 <code>Circle</code> 和 <code>Triangle</code> 。为了做到这个，Rust 提供了枚举类型。</p>
-</blockquote>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">IpAddrKind</span> &#123;</span><br><span class="line">    <span class="title function_ invoke__">V4</span>(<span class="type">u8</span>,<span class="type">u8</span>,<span class="type">u8</span>,<span class="type">u8</span>),</span><br><span class="line">    <span class="title function_ invoke__">V6</span>(<span class="type">String</span>),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Message</span>&#123;</span><br><span class="line">    Quit,</span><br><span class="line">    Move&#123;x: <span class="type">i32</span>,y:<span class="type">i32</span>&#125;,</span><br><span class="line">    <span class="title function_ invoke__">Write</span>(<span class="type">String</span>),</span><br><span class="line">    <span class="title function_ invoke__">ChangeColor</span>(<span class="type">i32</span>,<span class="type">i32</span>,<span class="type">i32</span>),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Message</span>&#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">call</span>(&amp;<span class="keyword">self</span>)&#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;self is &#123;:?&#125;&quot;</span>,&amp;<span class="keyword">self</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Hello, world!&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">four</span> = IpAddrKind::<span class="title function_ invoke__">V4</span>(<span class="number">127</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">six</span> = IpAddrKind::<span class="title function_ invoke__">V6</span>(<span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;::1&quot;</span>));</span><br><span class="line"></span><br><span class="line">    dbg!(&amp;four);</span><br><span class="line">    dbg!(&amp;six);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">m</span> = Message::Move &#123; x: <span class="number">1</span>, y: <span class="number">2</span> &#125;;</span><br><span class="line">    m.<span class="title function_ invoke__">call</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="match匹配模式"><a class="markdownIt-Anchor" href="#match匹配模式"></a> match匹配模式</h2>
-<h2 id="option枚举"><a class="markdownIt-Anchor" href="#option枚举"></a> Option枚举</h2>
-<blockquote>
-<p><code>Option</code> 是标准库定义的另一个枚举。<code>Option</code> 类型应用广泛因为它编码了一个非常普遍的场景，即一个值要么有值要么没值。</p>
-</blockquote>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Coin</span>&#123;</span><br><span class="line">    Penny,</span><br><span class="line">    Nickel,</span><br><span class="line">    Dime,</span><br><span class="line">    Quarter,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Hello, world!&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">v</span> = <span class="title function_ invoke__">value_in_cents</span>(Coin::Quarter);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;value_in_cents(coin) = &#123;&#125;&quot;</span>, v);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">value_in_cents</span>(coin: Coin) <span class="punctuation">-&gt;</span> <span class="type">u32</span> &#123;</span><br><span class="line">    <span class="keyword">match</span> coin &#123;</span><br><span class="line">        Coin::Penny =&gt; <span class="number">1</span>,</span><br><span class="line">        Coin::Nickel =&gt; <span class="number">5</span>,</span><br><span class="line">        Coin::Dime =&gt; <span class="number">10</span>,</span><br><span class="line">        Coin::Quarter =&gt; <span class="number">25</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>rust</tag>
-        <tag>enum</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>rust-模块与测试</title>
     <url>/%E5%AD%A6%E4%B9%A0/2d9a7d08.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="模块与测试"><a class="markdownIt-Anchor" href="#模块与测试"></a> 模块与测试</h2>
@@ -4082,6 +4059,29 @@ section 运维阶段
         <tag>rust</tag>
         <tag>trait</tag>
         <tag>generic</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>rust-枚举与模式匹配</title>
+    <url>/%E5%AD%A6%E4%B9%A0/7d69317e.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="枚举"><a class="markdownIt-Anchor" href="#枚举"></a> 枚举</h2>
+<blockquote>
+<p>结构体给予你将字段和数据聚合在一起的方法，像 <code>Rectangle</code> 结构体有 <code>width</code> 和 <code>height</code> 两个字段。而枚举给予你一个途径去声明某个值是一个集合中的一员。比如，我们想让 <code>Rectangle</code> 是一些形状的集合，包含 <code>Circle</code> 和 <code>Triangle</code> 。为了做到这个，Rust 提供了枚举类型。</p>
+</blockquote>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">IpAddrKind</span> &#123;</span><br><span class="line">    <span class="title function_ invoke__">V4</span>(<span class="type">u8</span>,<span class="type">u8</span>,<span class="type">u8</span>,<span class="type">u8</span>),</span><br><span class="line">    <span class="title function_ invoke__">V6</span>(<span class="type">String</span>),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Message</span>&#123;</span><br><span class="line">    Quit,</span><br><span class="line">    Move&#123;x: <span class="type">i32</span>,y:<span class="type">i32</span>&#125;,</span><br><span class="line">    <span class="title function_ invoke__">Write</span>(<span class="type">String</span>),</span><br><span class="line">    <span class="title function_ invoke__">ChangeColor</span>(<span class="type">i32</span>,<span class="type">i32</span>,<span class="type">i32</span>),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Message</span>&#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">call</span>(&amp;<span class="keyword">self</span>)&#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;self is &#123;:?&#125;&quot;</span>,&amp;<span class="keyword">self</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Hello, world!&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">four</span> = IpAddrKind::<span class="title function_ invoke__">V4</span>(<span class="number">127</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">six</span> = IpAddrKind::<span class="title function_ invoke__">V6</span>(<span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;::1&quot;</span>));</span><br><span class="line"></span><br><span class="line">    dbg!(&amp;four);</span><br><span class="line">    dbg!(&amp;six);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">m</span> = Message::Move &#123; x: <span class="number">1</span>, y: <span class="number">2</span> &#125;;</span><br><span class="line">    m.<span class="title function_ invoke__">call</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="match匹配模式"><a class="markdownIt-Anchor" href="#match匹配模式"></a> match匹配模式</h2>
+<h2 id="option枚举"><a class="markdownIt-Anchor" href="#option枚举"></a> Option枚举</h2>
+<blockquote>
+<p><code>Option</code> 是标准库定义的另一个枚举。<code>Option</code> 类型应用广泛因为它编码了一个非常普遍的场景，即一个值要么有值要么没值。</p>
+</blockquote>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Coin</span>&#123;</span><br><span class="line">    Penny,</span><br><span class="line">    Nickel,</span><br><span class="line">    Dime,</span><br><span class="line">    Quarter,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Hello, world!&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">v</span> = <span class="title function_ invoke__">value_in_cents</span>(Coin::Quarter);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;value_in_cents(coin) = &#123;&#125;&quot;</span>, v);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">value_in_cents</span>(coin: Coin) <span class="punctuation">-&gt;</span> <span class="type">u32</span> &#123;</span><br><span class="line">    <span class="keyword">match</span> coin &#123;</span><br><span class="line">        Coin::Penny =&gt; <span class="number">1</span>,</span><br><span class="line">        Coin::Nickel =&gt; <span class="number">5</span>,</span><br><span class="line">        Coin::Dime =&gt; <span class="number">10</span>,</span><br><span class="line">        Coin::Quarter =&gt; <span class="number">25</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>rust</tag>
+        <tag>enum</tag>
       </tags>
   </entry>
   <entry>
@@ -13077,6 +13077,145 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
+    <title>第800小时 12：第2900小时</title>
+    <url>/%E5%B0%8F%E8%AF%B4/d01198d7.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>3,100 这个数字，林野在四个地方见过。</p>
+<p>第四个是省体校旧档案室地下一层的《训练成绩复核簿》。牛皮纸封面，硬得像块砖，翻的时候要用两只手托着，不然书脊从中间裂开。每页一个队员，登记四栏：日期、登记环数、复核环数、经办人签名。</p>
+<p>父亲那一页的日期是 1999 年 3 月 11 日。登记环数 9.9，复核环数 7.2。</p>
+<p>2.7 环。</p>
+<p>林野没有往下翻。他把随身的本子摊在阅览桌上，笔尖压在第一行上：</p>
+<p>1999.3.11　登记 9.9　复核 7.2　差 2.7</p>
+<p>写完，他在下面留了三行空格。</p>
+<p>省体校的旧档案室在训练楼地下。除湿机在墙角嗡嗡地响，压缩机每隔十几分钟停一次，湿度计的指针在 52 上下抖。阅览桌是旧的，桌角包着一层铁皮。管理员老聂腰上挂着一串钥匙，走一步响一下。他把桌上的放大镜架往边上挪了半寸，架子上那张褪色标签露出来两个字：靶纸。</p>
+<p>「再往下翻，就是队史办要的东西了。」老聂说，「两年没人借。」</p>
+<p>「我借前面几本。」</p>
+<p>「本子不认人。」老聂把登记本推过来，「今天第二次来。」</p>
+<p>「嗯。」</p>
+<p>林野在登记本上填姓名、单位、用途三栏。用途那一栏他停了三四秒，写的是「查阅训练成绩记录」。</p>
+<p>老聂转身从抽屉里摸出一支铅笔，笔杆上贴着一圈白胶布，胶布上写着「借出」。</p>
+<p>「用这个。」他说，「钢笔不带进来。墨水洇，纸脆了看不清。」</p>
+<p>「纸脆了算谁的。」</p>
+<p>「算登记人的。」老聂说，「阅览用铅笔，复印要馆长批条。纸一张也不许带出去。」</p>
+<p>林野接过铅笔。笔尖写钝了，他在放大镜底下的玻璃片上蹭了两下。</p>
+<p>「九点关门。」</p>
+<p>墙上的钟指到八点十七。</p>
+<p>林野从登记本上抬起眼。那本登记簿他见过，上个月他在这上面签过一次名。往上是几行，一个名字他见过很多次：陶砚。日期 2002 年 12 月 20 日。</p>
+<p>2002 年 12 月 20 日。那是陶砚把训练日志摔在教练办公室门口的第二天。</p>
+<p>老聂没看他表情。「1999 年那本台账你也要？」</p>
+<p>「都要。」</p>
+<p>「台账在铁架第三层，一年的量一摞六本，你自己搬。」</p>
+<p>复核簿一共四十一个队员。林野从 1988 年往后翻，翻得很慢，一页一页核。列的宽度不匀，1991 年以前的「登记环数」一栏写得挤，后面写得松。填表的笔也不是一支，1988 到 1994 是蓝黑墨水，1995 年以后换成碳素笔。</p>
+<p>他把四十一个队员的差值按年份抄到自己的本子上，一行一个人，抄完是一列数。多数在 0.1 到 0.2 之间。除去后来对不上的那几处，四十一个人、十年的均值在 0.14 左右。</p>
+<p>他把这个 0.14 圈起来，在旁边写了两个字：底噪。</p>
+<p>登记那一栏是队员自己写的，复核那一栏是教练量的。同一张靶纸，队员先写，教练再数。</p>
+<p>十六岁那年他打开过这本复核簿，一次。那年他手上只有一本日志和一支笔，没有第二列数可比。他把父亲的行找出来，看了一眼，合上。</p>
+<p>今天他有第二列了。</p>
+<p>前 300 页，对不上的地方只有三处：一处 1992 年 5 月，一处 1996 年 9 月，一处 1997 年 1 月，全是登记比复核高 0.4 到 0.6。0.4 环是人为能犯的错——登记的时候把十发里最好的一发当平均抄了。</p>
+<p>林野把这三处记下来，在旁边标了「不可解释」。0.5 环以上的差距需要有人动过手。</p>
+<p>1998 年 12 月 28 日，第四处。</p>
+<p>那一页的登记环数是 9.6，复核环数是 7.3。</p>
+<p>林野的笔停住了。</p>
+<p>他往前翻一页。1998 年 9 月 15 日，同一个队员，登记 7.1，复核 7.0。</p>
+<p>再往前，1998 年 6 月 18 日，登记 7.4，复核 7.6。</p>
+<p>登记和复核之间那道 0.1 到 0.2 的缝，从 1988 年起就没断过。到 1998 年 12 月，缝变成了 2.3。</p>
+<p>他把两页并排摊开。</p>
+<p>六月，复核 7.6。九月，复核 7.0。十二月，复核 7.3。</p>
+<p>教练量的那个数，一年里在 7 上下走，最高 7.6，最低 7.0。他没有长进，也没有退步。</p>
+<p>队员写上去的那个数：六月 7.4，九月 7.1，十二月 9.6。</p>
+<p>折断的地方不在他的手上，在纸上。</p>
+<p>林野用指甲盖压住 9.6 那个数字的边。纸是脆的，指腹不敢落上去。</p>
+<p>2.3 是底噪的十六倍。</p>
+<p>他把这页拍下来，放在台灯边上，继续往后。</p>
+<p>1999 年 3 月 11 日，林崇，登记 9.9，复核 7.2。</p>
+<p>后面还有两页同一年的记录。1999 年 3 月 11 日，登记 9.4，复核 7.5。1999 年 3 月 12 日，登记 9.7，复核 7.1。</p>
+<p>一个季度，三次复核，登记环数一次比一次高，复核环数一次比一次低。三次都是同一个人，经办人签名栏里都是同一支笔写的两个字：守拙。</p>
+<p>「登记环数是谁报的。」林野问。</p>
+<p>「本人报一次。」老聂坐在门口的椅子上，手里捏着一只搪瓷缸子，「每季度一次，教练带着靶纸来，我们照着填。登记那一栏是队员自己写的，复核那一栏是教练量的。差值大于 0.5 环的要另附说明。」</p>
+<p>「说明在哪。」</p>
+<p>老聂从铁架底层抽出一个硬纸箱，箱盖上贴着标签，标签的字褪成了浅灰：「1998—1999 复核说明」。</p>
+<p>箱子里有七张纸。</p>
+<p>「1998 年 12 月那张。」老聂翻出来，递给他，「另外那几张是别的队。你自己看，看完放回原位，顺序别弄乱。」</p>
+<p>林野没有立刻接。</p>
+<p>「复核环数是谁量的。」</p>
+<p>「教练。」老聂说，「各队自己的教练量。有一年总教练自己下来量。」</p>
+<p>「哪一年。」</p>
+<p>「九九年。」老聂说，「开春那阵，队长不管了，他自己拿着放大镜，一张一张量，量完签字。」</p>
+<p>林野把手里的说明纸接过来，放在台灯下。</p>
+<p>纸上只有三行字，是队里统一印的表格，填得很满：</p>
+<p>「1998.12.28　三队林崇　登记 9.6　复核 7.3　差 2.3　队员自述：靶纸受潮，散布偏左，已按重打三次计。已核对。」</p>
+<p>「已核对」三个字下面压着一个签名：守拙。</p>
+<p>「重打三次计。」林野重复了一遍。</p>
+<p>「队里的规矩。」老聂说，「打坏的不算成绩，重打，打成什么算什么，打到三次为止。登记的时候写清楚就行。」</p>
+<p>「那这一栏该写什么。」</p>
+<p>「写实际情况。复核人签字。」</p>
+<p>「签了。」</p>
+<p>「签了。」老聂喝了口水，「我不管对不对，我管齐不齐。」</p>
+<p>林野把说明纸举高了一点。签名是钢笔连笔，两笔下来，中间不断。</p>
+<p>「表格是队里印的。」</p>
+<p>「是。」老聂说，「一式两份。」</p>
+<p>「队员自述那一栏，队员自己填。」</p>
+<p>「本人填。」老聂说，「他写完，教练签个字，纸就交上来。」</p>
+<p>「九九年三月那三次复核，说明上也是这个签名。」</p>
+<p>「一样的字。」老聂说。</p>
+<p>「他量出来多少，他签多少。」</p>
+<p>「量出来多少签多少。」老聂说，「这是规矩。」</p>
+<p>林野把说明纸放回箱子里，按原来的顺序压好。</p>
+<p>他坐回阅览桌，把《训练成绩复核簿》翻回 1998 年那一页，又把台历翻到 12 月。3,100、2,900、800、10,340、12,400，这些数字在他脑子里的位置是分开的，每隔几页纸，互相不认识。</p>
+<p>现在有两个开始互相认识了。</p>
+<p>3,100 后面是父亲。800 后面是录音里那个声音。10,340 和 12,400 后面是那面墙。2,900 后面原先什么都没有。</p>
+<p>现在它后面有了一张纸，纸上是 1998 年 12 月 28 日。</p>
+<p>2,900 和 3,100 之间隔着 200 个小时，200 个小时里出了三次复核，登记环数往上走了 0.1、0.3、0.3，复核环数往下走了 0.2、0.1、0.1。斜率不大，但方向是拧着的。</p>
+<p>他把《训练成绩复核簿》合上，去铁架第三层。</p>
+<p>台账按年份摞着，每本封面写着年份和队名，最上面那本是 1999 年的，封皮上有一块深色的水渍。林野把它抱下来放在桌上，翻到最后一页。1999 年 3 月 11 日那一行：</p>
+<p>「林崇　3,100　十发　9.9　离队。评语：因个人原因中途离队。」</p>
+<p>3,100。</p>
+<p>台账上的 9.9 和复核簿上的登记环数 9.9 是同一个数。这个数从队员手里出来，经过教练的手，最后盖进了台账。中间那一栏量出来的 7.2 留在复核簿里，没有抄进任何一张对外的表。</p>
+<p>和父亲说的一样。和父亲留给他那十四本日志最后一页写的一样——他十七岁那年翻父亲的书包，翻到最后一页，看见那个数字的时候，以为自己看错了，因为十四本日志加起来只有 2,640 小时。</p>
+<p>他当时以为那 460 小时是父亲自己编的。</p>
+<p>他当时把 2,640 和 3,100 放在一起，算出 460，把这 460 当成父亲编的证据。他把父亲的十四本日志从第一本翻到第十四本，翻了两天，翻完还在页眉上标了来源。</p>
+<p>后来他改过一次口径。他把这 460 小时摊到 1996 年往后那几年里，算出一天多出半个多小时。这个算法他用了半年。</p>
+<p>他抬起头，问老聂：「评语这一栏，谁写的。」</p>
+<p>「教练。」</p>
+<p>「三行字，签名呢。」</p>
+<p>老聂从椅子上站起来，走了两步，看了一眼那一行。「签名在下一栏，被折过去了。」</p>
+<p>林野把台账往自己这边挪了半尺，翻开折过去的那一角。签名栏里两个字，钢笔连笔，写得很轻：守拙。</p>
+<p>「省体校射击队的总教练。」老聂说，「那时候是他签字。」</p>
+<p>1999 年 3 月，父亲的离队手续上，签的是一个总教练的名字。总教练叫陈守拙。2002 年冬天，陈守拙当着全队把陶砚 812 小时的训练录像拆成一段一段，指着一个动作说，那个动作练了 800 小时，是错的。林野在基地的多功能厅听过这段课的录音，录音里那个声音不像是会替一个队员说半句好话的人。</p>
+<p>同一个名字签在三处。1998 年 12 月 28 日那张说明的复核人一栏，1999 年 3 月的三次复核的经办人一栏，1999 年 3 月 11 日那行离队评语的签名栏。</p>
+<p>林野把说明纸上的签名和台账上的签名并排记下来。两处写法一样，连笔的地方断在同一个位置。</p>
+<p>父亲最后一页写着 3,100。体校的台账上写着 3,100，评语是「因个人原因中途离队」，签字的是陈守拙。</p>
+<p>也就是说，这 460 小时不是父亲编的。编的是成绩，不是时数。</p>
+<p>时数是真的。3,100 个小时是父亲真的坐在训练馆里坐出来的。</p>
+<p>成绩不是。</p>
+<p>他从包里掏出自己那本随身的小本子，胶带补过两次，封面磨得起了毛。他翻到中间那一叠——1998 年，他照着父亲的日志格式抄过一遍记录格式，抄完还在页眉上标了来源：十四本，第二册。</p>
+<p>他把「成绩不是」这四个字抄在最上面一行，抄完又加了一行：签名的人，看过两个数。</p>
+<p>然后他停了一下，在这一行后面添了半句：看过两个数的人，还是签了字。</p>
+<p>他看着自己的字迹：日期、时数、动作、偏差、备注。五个格子，横平竖直。</p>
+<p>林崇的日志也是这五个格子。</p>
+<p>这五个格子他抄了很多年。他自己记的东西也记在这五格里，记法一样，字不一样。他的字小，笔画的收尾往左压一点，是十七岁那年的习惯，改不掉。</p>
+<p>他把小本子合上，塞回包里。</p>
+<p>然后他回到那本台账前，从后往前，一页一页地数。1999 年 3 月 11 日那一行的前一行是 2,900，日期 1998 年 12 月 28 日。那天之后的三次复核，登记环数都在 9 以上。</p>
+<p>3,100 减去 2,900 是 200。200 个小时，六周零三天。</p>
+<p>六周零三天，三次复核，三张说明，三次「已核对」。这 200 个小时里他坐在训练馆里的时间是真的，被写上去的环数是假的。</p>
+<p>他又把包里的本子拿出来摊开，在第一行下面那三行空格上落笔：</p>
+<p>1998.12.28　累计 2,900　第一次</p>
+<p>1999.3.11　离队　评语：因个人原因中途离队</p>
+<p>第三行他没写。他把笔尖压在纸上，顿了一下，在纸上留了一个墨点。</p>
+<p>复核人　守拙。</p>
+<p>墨点留在「守拙」两个字的下面。</p>
+<p>他把本子合上，装进包的夹层，拉链拉到底。老聂在门口拧钥匙，金属碰撞的声音在楼梯间里滚了两下。</p>
+<p>八点五十六。</p>
+<p>林野站起来，把《训练成绩复核簿》放回铁架第三层，位置和原来一样。他没有带走任何一页纸，只有三张手机拍的照片，一张是 1998 年 12 月 28 日那一页，一张是说明纸，一张是台账上那个签名。</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>第800小时</tag>
+        <tag>小说</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>航空港区-兴港-沟通</title>
     <url>/uncategorized/ae0adc94.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><ol>
@@ -13528,12 +13667,12 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
     <title>路</title>
     <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-        <div id="aplayer-EyAXvqge" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-EegTyqSv" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-EyAXvqge"),
+            element: document.getElementById("aplayer-EegTyqSv"),
             narrow: false,
             autoplay: true,
             showlrc: false,
