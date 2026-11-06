@@ -456,6 +456,39 @@
       </tags>
   </entry>
   <entry>
+    <title>一次gogs采坑之旅</title>
+    <url>/%E6%9C%8D%E5%8A%A1%E5%99%A8/53577de6.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>一定要按照操作步骤走</p>
+<span id="more"></span>
+<p>1.创建用户，一定要记住密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo adduser git</span><br><span class="line">su git</span><br><span class="line">cd ~</span><br></pre></td></tr></table></figure>
+<p>2.下载并解压安装包</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget https://dl.gogs.io/0.11.43/gogs_0.11.43_linux_amd64.zip</span><br><span class="line">unzip gogs_0.11.43_linux_amd64.zip</span><br></pre></td></tr></table></figure>
+<p>3.拷贝启动项到系统下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp /home/xx/gogs/scripts/init/debian/gogs /etc/init.d/</span><br><span class="line">chmod +x /etc/init.d/gogs</span><br></pre></td></tr></table></figure>
+<p>4.安装 mysql</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt install mysql-server</span><br><span class="line">mysql -u root -p &lt; /home/xx/gogs/scripts/mysql.sql</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mysql -u root -p</span><br><span class="line">&gt; # （输入密码）</span><br><span class="line">&gt; create user &#x27;gogs&#x27;@&#x27;localhost&#x27; identified by &#x27;密码&#x27;;</span><br><span class="line">&gt; grant all privileges on gogs.* to &#x27;gogs&#x27;@&#x27;localhost&#x27;;</span><br><span class="line">&gt; flush privileges;</span><br><span class="line">&gt; exit;</span><br></pre></td></tr></table></figure>
+<p>5.启动 gogs</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">service gogs start</span><br><span class="line">curl -I http://localhost:3000  =&gt; HTTP OK 200</span><br></pre></td></tr></table></figure>
+<p>6.nginx 配置</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">      listen       80;</span><br><span class="line">      server_name  www.example.com;</span><br><span class="line">      location / &#123;</span><br><span class="line">          proxy_pass http://localhost:3000/;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>7.访问 <a href="http://www.example.com/install">www.example.com/install</a> 进行初始化</p>
+<p>8.你可能遇到的问题</p>
+<p><a href="https://blog.csdn.net/u013710784/article/details/78778044">Gogs 与 Linux 主机共享 SSH22 端口</a></p>
+<p><a href="https://blog.csdn.net/bigsea622/article/details/53956786">装 Gogs 后 ssh 无法和远程登录同时使用的解决方案</a></p>
+]]></content>
+      <categories>
+        <category>服务器</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>aliyun</tag>
+        <tag>阿里云</tag>
+        <tag>gogs</tag>
+        <tag>ubuntu 14.04</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>nginx支持ssl+acme.sh定时更新证书</title>
     <url>/nginx/41a22a4b.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>不废话，直接进入实战。</p>
@@ -485,43 +518,10 @@
       <tags>
         <tag>aliyun</tag>
         <tag>阿里云</tag>
+        <tag>ubuntu 14.04</tag>
         <tag>nginx</tag>
         <tag>ssl</tag>
         <tag>acme.sh</tag>
-        <tag>ubuntu 14.04</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一次gogs采坑之旅</title>
-    <url>/%E6%9C%8D%E5%8A%A1%E5%99%A8/53577de6.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>一定要按照操作步骤走</p>
-<span id="more"></span>
-<p>1.创建用户，一定要记住密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo adduser git</span><br><span class="line">su git</span><br><span class="line">cd ~</span><br></pre></td></tr></table></figure>
-<p>2.下载并解压安装包</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget https://dl.gogs.io/0.11.43/gogs_0.11.43_linux_amd64.zip</span><br><span class="line">unzip gogs_0.11.43_linux_amd64.zip</span><br></pre></td></tr></table></figure>
-<p>3.拷贝启动项到系统下</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp /home/xx/gogs/scripts/init/debian/gogs /etc/init.d/</span><br><span class="line">chmod +x /etc/init.d/gogs</span><br></pre></td></tr></table></figure>
-<p>4.安装 mysql</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt install mysql-server</span><br><span class="line">mysql -u root -p &lt; /home/xx/gogs/scripts/mysql.sql</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mysql -u root -p</span><br><span class="line">&gt; # （输入密码）</span><br><span class="line">&gt; create user &#x27;gogs&#x27;@&#x27;localhost&#x27; identified by &#x27;密码&#x27;;</span><br><span class="line">&gt; grant all privileges on gogs.* to &#x27;gogs&#x27;@&#x27;localhost&#x27;;</span><br><span class="line">&gt; flush privileges;</span><br><span class="line">&gt; exit;</span><br></pre></td></tr></table></figure>
-<p>5.启动 gogs</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">service gogs start</span><br><span class="line">curl -I http://localhost:3000  =&gt; HTTP OK 200</span><br></pre></td></tr></table></figure>
-<p>6.nginx 配置</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">      listen       80;</span><br><span class="line">      server_name  www.example.com;</span><br><span class="line">      location / &#123;</span><br><span class="line">          proxy_pass http://localhost:3000/;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>7.访问 <a href="http://www.example.com/install">www.example.com/install</a> 进行初始化</p>
-<p>8.你可能遇到的问题</p>
-<p><a href="https://blog.csdn.net/u013710784/article/details/78778044">Gogs 与 Linux 主机共享 SSH22 端口</a></p>
-<p><a href="https://blog.csdn.net/bigsea622/article/details/53956786">装 Gogs 后 ssh 无法和远程登录同时使用的解决方案</a></p>
-]]></content>
-      <categories>
-        <category>服务器</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>aliyun</tag>
-        <tag>阿里云</tag>
-        <tag>ubuntu 14.04</tag>
-        <tag>gogs</tag>
       </tags>
   </entry>
   <entry>
@@ -3094,8 +3094,8 @@
         <tag>git</tag>
         <tag>aliyun</tag>
         <tag>阿里云</tag>
-        <tag>ubuntu 14.04</tag>
         <tag>gogs</tag>
+        <tag>ubuntu 14.04</tag>
       </tags>
   </entry>
   <entry>
@@ -4944,6 +4944,153 @@ section 运维阶段
       </tags>
   </entry>
   <entry>
+    <title>笔记10-《程序员的数学3：线性代数》线性代数的整体图景</title>
+    <url>/%E5%AD%A6%E4%B9%A0/c4e81f35.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="线性代数的整体图景"><a class="markdownIt-Anchor" href="#线性代数的整体图景"></a> 线性代数的整体图景</h2>
+<span id="more"></span>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>全书的一条主线</p>
+<ul class="lvl-2">
+<li class="lvl-4"><strong>矩阵 = 映射</strong>，矩阵乘法 = 映射复合
+<ul class="lvl-4">
+<li class="lvl-6">第 1 章的核心：打破「矩阵就是数字排列」的印象</li>
+<li class="lvl-6">线性映射 = 「平直」的关系：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi mathvariant="bold">a</mi><mo>+</mo><mi mathvariant="bold">b</mi><mo stretchy="false">)</mo><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi mathvariant="bold">a</mi><mo stretchy="false">)</mo><mo>+</mo><mi>f</mi><mo stretchy="false">(</mo><mi mathvariant="bold">b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(\mathbf{a} + \mathbf{b}) = f(\mathbf{a}) + f(\mathbf{b})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathbf">a</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathbf">b</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathbf">a</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathbf">b</span></span><span class="mclose">)</span></span></span></span>、<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>c</mi><mi mathvariant="bold">a</mi><mo stretchy="false">)</mo><mo>=</mo><mi>c</mi><mi>f</mi><mo stretchy="false">(</mo><mi mathvariant="bold">a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(c\mathbf{a}) = cf(\mathbf{a})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">c</span><span class="mord"><span class="mord mathbf">a</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathbf">a</span></span><span class="mclose">)</span></span></span></span></li>
+</ul>
+</li>
+<li class="lvl-4"><strong>问题从「顺问题」转向「逆问题」</strong>
+<ul class="lvl-4">
+<li class="lvl-6">第 2 章：已知结果 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="bold">y</mi><mo>=</mo><mi>A</mi><mi mathvariant="bold">x</mi></mrow><annotation encoding="application/x-tex">\mathbf{y} = A\mathbf{x}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.63888em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">y</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord"><span class="mord mathbf">x</span></span></span></span></span> 推测原因 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="bold">x</mi></mrow><annotation encoding="application/x-tex">\mathbf{x}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.44444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathbf">x</span></span></span></span></span></li>
+<li class="lvl-6">现实中的逆问题大多带噪声</li>
+</ul>
+</li>
+<li class="lvl-4"><strong>可逆与否决定解的数量</strong>
+<ul class="lvl-4">
+<li class="lvl-6">良性：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>det</mi><mo>⁡</mo><mi>A</mi><mi mathvariant="normal">≠</mi><mn>0</mn></mrow><annotation encoding="application/x-tex">\det A \ne 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mop">det</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel"><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>，解唯一</li>
+<li class="lvl-6">恶性：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="bold">y</mi><mi mathvariant="normal">∉</mi><mrow><mi mathvariant="normal">I</mi><mi mathvariant="normal">m</mi></mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathbf{y} \notin \mathrm{Im} A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">y</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mord"><span class="mrel">∈</span></span><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.75em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="llap"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="inner"><span class="mord"><span class="mord">/</span><span class="mspace" style="margin-right:0.05555555555555555em;"></span></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.25em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">I</span><span class="mord mathrm">m</span></span><span class="mord mathdefault">A</span></span></span></span> 无解；在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="normal">I</mi><mi mathvariant="normal">m</mi></mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathrm{Im} A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">I</span><span class="mord mathrm">m</span></span><span class="mord mathdefault">A</span></span></span></span> 里则无穷多解</li>
+</ul>
+</li>
+<li class="lvl-4"><strong>秩-零化度定理</strong>：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="normal">r</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">k</mi></mrow><mi>A</mi><mo>+</mo><mrow><mi mathvariant="normal">n</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">y</mi></mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>=</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">\mathrm{rank} A + \mathrm{nullity}(A) = n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathrm">r</span><span class="mord mathrm">a</span><span class="mord mathrm">n</span><span class="mord mathrm">k</span></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathrm">n</span><span class="mord mathrm">u</span><span class="mord mathrm">l</span><span class="mord mathrm">l</span><span class="mord mathrm">i</span><span class="mord mathrm">t</span><span class="mord mathrm" style="margin-right:0.01389em;">y</span></span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>
+<ul class="lvl-4">
+<li class="lvl-6">信息损失和信息保留是同一件事的两面</li>
+</ul>
+</li>
+<li class="lvl-4"><strong>分解是把昂贵计算前置</strong>
+<ul class="lvl-4">
+<li class="lvl-6">第 3 章：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><mi>L</mi><mi>U</mi></mrow><annotation encoding="application/x-tex">A = LU</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span></span></span></span>（或 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><mi>P</mi><mi>L</mi><mi>U</mi></mrow><annotation encoding="application/x-tex">A = PLU</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span></span></span></span>）</li>
+<li class="lvl-6">一次分解，多次使用：解多个方程组、求行列式、求逆矩阵</li>
+</ul>
+</li>
+<li class="lvl-4"><strong>特征值决定长期行为</strong>
+<ul class="lvl-4">
+<li class="lvl-6">第 4 章：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>A</mi><mi>t</mi></msup></mrow><annotation encoding="application/x-tex">A^t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7935559999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7935559999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span></span></span></span></span></span></span></span> 会不会爆炸，取决于特征值</li>
+<li class="lvl-6">可对角化时 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>A</mi><mi>t</mi></msup><mo>=</mo><mi>P</mi><msup><mi>D</mi><mi>t</mi></msup><msup><mi>P</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">A^t = PD^tP^{-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7935559999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7935559999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7935559999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span>，完全由 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span></span></span></span> 的对角元素决定</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="各章的因果关系"><a class="markdownIt-Anchor" href="#各章的因果关系"></a> 各章的因果关系</h2>
+<p>把全书串成一条链：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">第 1 章  矩阵 = 映射</span><br><span class="line">         ↓  那么映射能不能倒过来？</span><br><span class="line">第 2 章  逆问题</span><br><span class="line">         ↓  能倒过来需要什么条件？</span><br><span class="line">         可逆矩阵（det ≠ 0）→ 解唯一</span><br><span class="line">         不可逆 → 无解或无穷多解，靠秩和零化度刻画</span><br><span class="line">         ↓  就算可逆，怎么才算得出来？</span><br><span class="line">第 3 章  LU 分解</span><br><span class="line">         一次消元，多次使用</span><br><span class="line">         顺带得到 det A = U 的对角乘积</span><br><span class="line">         ↓  但如果系统是随时间演化的呢？</span><br><span class="line">第 4 章  幂矩阵 A^t</span><br><span class="line">         ↓  什么时候 A^t 会爆炸？</span><br><span class="line">         特征值 λ：|λ| &gt; 1 失控</span><br><span class="line">         ↓  可对角化时特征值就够了</span><br><span class="line">         不可对角化时 → Jordan 标准型补边界情况</span><br></pre></td></tr></table></figure>
+<h2 id="三个反复出现的判据"><a class="markdownIt-Anchor" href="#三个反复出现的判据"></a> 三个反复出现的判据</h2>
+<p><strong>判据一：解的数量，由 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="normal">I</mi><mi mathvariant="normal">m</mi></mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathrm{Im} A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">I</span><span class="mord mathrm">m</span></span><span class="mord mathdefault">A</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">r</mi></mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathrm{Ker} A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">K</span><span class="mord mathrm">e</span><span class="mord mathrm">r</span></span><span class="mord mathdefault">A</span></span></span></span> 决定。</strong></p>
+<table>
+<thead>
+<tr>
+<th>情况</th>
+<th>解</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">r</mi></mrow><mi>A</mi><mo>=</mo><mo stretchy="false">{</mo><mi>o</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\mathrm{Ker} A = \{o\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">K</span><span class="mord mathrm">e</span><span class="mord mathrm">r</span></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathdefault">o</span><span class="mclose">}</span></span></span></span> 且 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="normal">I</mi><mi mathvariant="normal">m</mi></mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathrm{Im} A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">I</span><span class="mord mathrm">m</span></span><span class="mord mathdefault">A</span></span></span></span> = 全空间</td>
+<td>唯一解</td>
+</tr>
+<tr>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">r</mi></mrow><mi>A</mi><mi mathvariant="normal">≠</mi><mo stretchy="false">{</mo><mi>o</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\mathrm{Ker} A \ne \{o\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">K</span><span class="mord mathrm">e</span><span class="mord mathrm">r</span></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel"><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathdefault">o</span><span class="mclose">}</span></span></span></span> 且 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="bold">y</mi><mi mathvariant="normal">∉</mi><mrow><mi mathvariant="normal">I</mi><mi mathvariant="normal">m</mi></mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathbf{y} \notin \mathrm{Im} A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">y</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mord"><span class="mrel">∈</span></span><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.75em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="llap"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="inner"><span class="mord"><span class="mord">/</span><span class="mspace" style="margin-right:0.05555555555555555em;"></span></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.25em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">I</span><span class="mord mathrm">m</span></span><span class="mord mathdefault">A</span></span></span></span></td>
+<td>无解</td>
+</tr>
+<tr>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">r</mi></mrow><mi>A</mi><mi mathvariant="normal">≠</mi><mo stretchy="false">{</mo><mi>o</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\mathrm{Ker} A \ne \{o\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">K</span><span class="mord mathrm">e</span><span class="mord mathrm">r</span></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel"><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathdefault">o</span><span class="mclose">}</span></span></span></span> 且 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="bold">y</mi><mo>∈</mo><mrow><mi mathvariant="normal">I</mi><mi mathvariant="normal">m</mi></mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathbf{y} \in \mathrm{Im} A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7335400000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">y</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">I</span><span class="mord mathrm">m</span></span><span class="mord mathdefault">A</span></span></span></span></td>
+<td>无穷多解</td>
+</tr>
+</tbody>
+</table>
+<p><strong>判据二：信息损失，由秩决定。</strong></p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><mi>B</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">A = BC</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span></span></span></span> 的瓶颈型分解把 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 维压成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span> 维再扩张。压掉的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>−</mo><mi>r</mi></mrow><annotation encoding="application/x-tex">n - r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span> 维就是永久丢失的信息。</p>
+<p><strong>判据三：长期行为，由特征值决定。</strong></p>
+<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">∣</mi><mi>λ</mi><mi mathvariant="normal">∣</mi><mo>&gt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">|\lambda| &gt; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathdefault">λ</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 失控，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">∣</mi><mi>λ</mi><mi mathvariant="normal">∣</mi><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">|\lambda| &lt; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathdefault">λ</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 收敛，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">∣</mi><mi>λ</mi><mi mathvariant="normal">∣</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">|\lambda| = 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathdefault">λ</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 需要看 Jordan 块。</p>
+<h2 id="概念之间的对应关系"><a class="markdownIt-Anchor" href="#概念之间的对应关系"></a> 概念之间的对应关系</h2>
+<p>书里反复出现的几组对应，整理在一起：</p>
+<table>
+<thead>
+<tr>
+<th>线性代数</th>
+<th>几何/映射</th>
+<th>数值计算</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>矩阵 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span></td>
+<td>线性映射</td>
+<td>系数矩阵</td>
+</tr>
+<tr>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="normal">I</mi><mi mathvariant="normal">m</mi></mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathrm{Im} A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">I</span><span class="mord mathrm">m</span></span><span class="mord mathdefault">A</span></span></span></span></td>
+<td>映射覆盖到的区域</td>
+<td>拟合的可达集合</td>
+</tr>
+<tr>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">r</mi></mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathrm{Ker} A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">K</span><span class="mord mathrm">e</span><span class="mord mathrm">r</span></span><span class="mord mathdefault">A</span></span></span></span></td>
+<td>被压扁的方向</td>
+<td>约束的冗余方向</td>
+</tr>
+<tr>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="normal">r</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">k</mi></mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathrm{rank} A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">r</span><span class="mord mathrm">a</span><span class="mord mathrm">n</span><span class="mord mathrm">k</span></span><span class="mord mathdefault">A</span></span></span></span></td>
+<td>幸存的信息维数</td>
+<td>有效参数个数</td>
+</tr>
+<tr>
+<td>特征值 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span></span></span></span></td>
+<td>方向上的伸缩倍率</td>
+<td>系统增益</td>
+</tr>
+<tr>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><mi>L</mi><mi>U</mi></mrow><annotation encoding="application/x-tex">A = LU</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span></span></span></span></td>
+<td>映射的分解</td>
+<td>一次分解多次用</td>
+</tr>
+<tr>
+<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><mi>P</mi><mi>D</mi><msup><mi>P</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">A = PDP^{-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span></td>
+<td>换到好的基底</td>
+<td>谱分解</td>
+</tr>
+</tbody>
+</table>
+<h2 id="三个容易踩的坑"><a class="markdownIt-Anchor" href="#三个容易踩的坑"></a> 三个容易踩的坑</h2>
+<p><strong>第一，把「不可逆」当成「无解」。</strong></p>
+<p>「方程的解」的最原始定义是「代入之后使方程成立的值」。「<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span> 可逆则解是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>A</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mi mathvariant="bold">y</mi></mrow><annotation encoding="application/x-tex">A^{-1}\mathbf{y}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.008548em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">y</span></span></span></span></span>」只是从定义推导出的<strong>性质</strong>。<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span> 奇异时这条性质不能用，但不能因此说无解 —— 可能只是有无穷多个解。书里专门为这个写了一节，因为这个错误很常见。</p>
+<p><strong>第二，混淆「秩」和「秩-零化度」。</strong></p>
+<p>秩是保留的信息维数，零化度是丢失的维数。求解问题时关心零化度（解的自由度），分析信息损失时关心秩。</p>
+<p><strong>第三，用初等变换代替变量替换。</strong></p>
+<p>第 2 章里初等变换几乎无所不能，但第 4 章不行。原因是变量替换要求递推式<strong>两边经过同一个变换</strong>，而初等变换是在矩阵左右两边分别乘不同的可逆矩阵。</p>
+<h2 id="落到实处"><a class="markdownIt-Anchor" href="#落到实处"></a> 落到实处</h2>
+<p>学线性代数最容易犯的错，是把它当成一堆计算技巧。书里那句「知其所以然」其实点明了意图：计算方法可以查书，但「为什么是这么算」必须自己建立。</p>
+<p>这本书建立的其实是一条判断链：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">拿到一个矩阵 A 和一个目标 y</span><br><span class="line">  → A 可逆吗？（算 det 或看秩）</span><br><span class="line">    → 可逆：解唯一，用 LU 分解算</span><br><span class="line">    → 不可逆：y 在 Im A 里吗？</span><br><span class="line">      → 不在：无解，退而求其次找最接近的解（最小二乘）</span><br><span class="line">      → 在：无穷多解，选一个最合理的</span><br><span class="line">  → 如果是随时间演化的系统：算特征值，看会不会失控</span><br></pre></td></tr></table></figure>
+<p>每一步都有明确的判据，没有一步需要猜。这就是这本书想给的东西。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>线性代数</tag>
+        <tag>总结</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记1-《程序员的数学3：线性代数》向量与空间</title>
     <url>/%E5%AD%A6%E4%B9%A0/8c4d2f17.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="向量与空间"><a class="markdownIt-Anchor" href="#向量与空间"></a> 向量与空间</h2>
@@ -5104,153 +5251,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       <tags>
         <tag>线性代数</tag>
         <tag>向量</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记10-《程序员的数学3：线性代数》线性代数的整体图景</title>
-    <url>/%E5%AD%A6%E4%B9%A0/c4e81f35.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="线性代数的整体图景"><a class="markdownIt-Anchor" href="#线性代数的整体图景"></a> 线性代数的整体图景</h2>
-<span id="more"></span>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>全书的一条主线</p>
-<ul class="lvl-2">
-<li class="lvl-4"><strong>矩阵 = 映射</strong>，矩阵乘法 = 映射复合
-<ul class="lvl-4">
-<li class="lvl-6">第 1 章的核心：打破「矩阵就是数字排列」的印象</li>
-<li class="lvl-6">线性映射 = 「平直」的关系：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi mathvariant="bold">a</mi><mo>+</mo><mi mathvariant="bold">b</mi><mo stretchy="false">)</mo><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><mi mathvariant="bold">a</mi><mo stretchy="false">)</mo><mo>+</mo><mi>f</mi><mo stretchy="false">(</mo><mi mathvariant="bold">b</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(\mathbf{a} + \mathbf{b}) = f(\mathbf{a}) + f(\mathbf{b})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathbf">a</span></span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathbf">b</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathbf">a</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathbf">b</span></span><span class="mclose">)</span></span></span></span>、<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>f</mi><mo stretchy="false">(</mo><mi>c</mi><mi mathvariant="bold">a</mi><mo stretchy="false">)</mo><mo>=</mo><mi>c</mi><mi>f</mi><mo stretchy="false">(</mo><mi mathvariant="bold">a</mi><mo stretchy="false">)</mo></mrow><annotation encoding="application/x-tex">f(c\mathbf{a}) = cf(\mathbf{a})</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord mathdefault">c</span><span class="mord"><span class="mord mathbf">a</span></span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord mathdefault">c</span><span class="mord mathdefault" style="margin-right:0.10764em;">f</span><span class="mopen">(</span><span class="mord"><span class="mord mathbf">a</span></span><span class="mclose">)</span></span></span></span></li>
-</ul>
-</li>
-<li class="lvl-4"><strong>问题从「顺问题」转向「逆问题」</strong>
-<ul class="lvl-4">
-<li class="lvl-6">第 2 章：已知结果 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="bold">y</mi><mo>=</mo><mi>A</mi><mi mathvariant="bold">x</mi></mrow><annotation encoding="application/x-tex">\mathbf{y} = A\mathbf{x}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.63888em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">y</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mord"><span class="mord mathbf">x</span></span></span></span></span> 推测原因 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="bold">x</mi></mrow><annotation encoding="application/x-tex">\mathbf{x}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.44444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathbf">x</span></span></span></span></span></li>
-<li class="lvl-6">现实中的逆问题大多带噪声</li>
-</ul>
-</li>
-<li class="lvl-4"><strong>可逆与否决定解的数量</strong>
-<ul class="lvl-4">
-<li class="lvl-6">良性：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>det</mi><mo>⁡</mo><mi>A</mi><mi mathvariant="normal">≠</mi><mn>0</mn></mrow><annotation encoding="application/x-tex">\det A \ne 0</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mop">det</span><span class="mspace" style="margin-right:0.16666666666666666em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel"><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">0</span></span></span></span>，解唯一</li>
-<li class="lvl-6">恶性：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="bold">y</mi><mi mathvariant="normal">∉</mi><mrow><mi mathvariant="normal">I</mi><mi mathvariant="normal">m</mi></mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathbf{y} \notin \mathrm{Im} A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">y</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mord"><span class="mrel">∈</span></span><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.75em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="llap"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="inner"><span class="mord"><span class="mord">/</span><span class="mspace" style="margin-right:0.05555555555555555em;"></span></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.25em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">I</span><span class="mord mathrm">m</span></span><span class="mord mathdefault">A</span></span></span></span> 无解；在 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="normal">I</mi><mi mathvariant="normal">m</mi></mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathrm{Im} A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">I</span><span class="mord mathrm">m</span></span><span class="mord mathdefault">A</span></span></span></span> 里则无穷多解</li>
-</ul>
-</li>
-<li class="lvl-4"><strong>秩-零化度定理</strong>：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="normal">r</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">k</mi></mrow><mi>A</mi><mo>+</mo><mrow><mi mathvariant="normal">n</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">y</mi></mrow><mo stretchy="false">(</mo><mi>A</mi><mo stretchy="false">)</mo><mo>=</mo><mi>n</mi></mrow><annotation encoding="application/x-tex">\mathrm{rank} A + \mathrm{nullity}(A) = n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.77777em;vertical-align:-0.08333em;"></span><span class="mord"><span class="mord mathrm">r</span><span class="mord mathrm">a</span><span class="mord mathrm">n</span><span class="mord mathrm">k</span></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">+</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathrm">n</span><span class="mord mathrm">u</span><span class="mord mathrm">l</span><span class="mord mathrm">l</span><span class="mord mathrm">i</span><span class="mord mathrm">t</span><span class="mord mathrm" style="margin-right:0.01389em;">y</span></span><span class="mopen">(</span><span class="mord mathdefault">A</span><span class="mclose">)</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span>
-<ul class="lvl-4">
-<li class="lvl-6">信息损失和信息保留是同一件事的两面</li>
-</ul>
-</li>
-<li class="lvl-4"><strong>分解是把昂贵计算前置</strong>
-<ul class="lvl-4">
-<li class="lvl-6">第 3 章：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><mi>L</mi><mi>U</mi></mrow><annotation encoding="application/x-tex">A = LU</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span></span></span></span>（或 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><mi>P</mi><mi>L</mi><mi>U</mi></mrow><annotation encoding="application/x-tex">A = PLU</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span></span></span></span>）</li>
-<li class="lvl-6">一次分解，多次使用：解多个方程组、求行列式、求逆矩阵</li>
-</ul>
-</li>
-<li class="lvl-4"><strong>特征值决定长期行为</strong>
-<ul class="lvl-4">
-<li class="lvl-6">第 4 章：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>A</mi><mi>t</mi></msup></mrow><annotation encoding="application/x-tex">A^t</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7935559999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7935559999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span></span></span></span></span></span></span></span> 会不会爆炸，取决于特征值</li>
-<li class="lvl-6">可对角化时 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>A</mi><mi>t</mi></msup><mo>=</mo><mi>P</mi><msup><mi>D</mi><mi>t</mi></msup><msup><mi>P</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">A^t = PD^tP^{-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7935559999999999em;vertical-align:0em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7935559999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.7935559999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight">t</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span>，完全由 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>D</mi></mrow><annotation encoding="application/x-tex">D</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span></span></span></span> 的对角元素决定</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="各章的因果关系"><a class="markdownIt-Anchor" href="#各章的因果关系"></a> 各章的因果关系</h2>
-<p>把全书串成一条链：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">第 1 章  矩阵 = 映射</span><br><span class="line">         ↓  那么映射能不能倒过来？</span><br><span class="line">第 2 章  逆问题</span><br><span class="line">         ↓  能倒过来需要什么条件？</span><br><span class="line">         可逆矩阵（det ≠ 0）→ 解唯一</span><br><span class="line">         不可逆 → 无解或无穷多解，靠秩和零化度刻画</span><br><span class="line">         ↓  就算可逆，怎么才算得出来？</span><br><span class="line">第 3 章  LU 分解</span><br><span class="line">         一次消元，多次使用</span><br><span class="line">         顺带得到 det A = U 的对角乘积</span><br><span class="line">         ↓  但如果系统是随时间演化的呢？</span><br><span class="line">第 4 章  幂矩阵 A^t</span><br><span class="line">         ↓  什么时候 A^t 会爆炸？</span><br><span class="line">         特征值 λ：|λ| &gt; 1 失控</span><br><span class="line">         ↓  可对角化时特征值就够了</span><br><span class="line">         不可对角化时 → Jordan 标准型补边界情况</span><br></pre></td></tr></table></figure>
-<h2 id="三个反复出现的判据"><a class="markdownIt-Anchor" href="#三个反复出现的判据"></a> 三个反复出现的判据</h2>
-<p><strong>判据一：解的数量，由 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="normal">I</mi><mi mathvariant="normal">m</mi></mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathrm{Im} A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">I</span><span class="mord mathrm">m</span></span><span class="mord mathdefault">A</span></span></span></span> 和 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">r</mi></mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathrm{Ker} A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">K</span><span class="mord mathrm">e</span><span class="mord mathrm">r</span></span><span class="mord mathdefault">A</span></span></span></span> 决定。</strong></p>
-<table>
-<thead>
-<tr>
-<th>情况</th>
-<th>解</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">r</mi></mrow><mi>A</mi><mo>=</mo><mo stretchy="false">{</mo><mi>o</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\mathrm{Ker} A = \{o\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">K</span><span class="mord mathrm">e</span><span class="mord mathrm">r</span></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathdefault">o</span><span class="mclose">}</span></span></span></span> 且 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="normal">I</mi><mi mathvariant="normal">m</mi></mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathrm{Im} A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">I</span><span class="mord mathrm">m</span></span><span class="mord mathdefault">A</span></span></span></span> = 全空间</td>
-<td>唯一解</td>
-</tr>
-<tr>
-<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">r</mi></mrow><mi>A</mi><mi mathvariant="normal">≠</mi><mo stretchy="false">{</mo><mi>o</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\mathrm{Ker} A \ne \{o\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">K</span><span class="mord mathrm">e</span><span class="mord mathrm">r</span></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel"><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathdefault">o</span><span class="mclose">}</span></span></span></span> 且 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="bold">y</mi><mi mathvariant="normal">∉</mi><mrow><mi mathvariant="normal">I</mi><mi mathvariant="normal">m</mi></mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathbf{y} \notin \mathrm{Im} A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">y</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mord"><span class="mrel">∈</span></span><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.75em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="llap"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="inner"><span class="mord"><span class="mord">/</span><span class="mspace" style="margin-right:0.05555555555555555em;"></span></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.25em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">I</span><span class="mord mathrm">m</span></span><span class="mord mathdefault">A</span></span></span></span></td>
-<td>无解</td>
-</tr>
-<tr>
-<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">r</mi></mrow><mi>A</mi><mi mathvariant="normal">≠</mi><mo stretchy="false">{</mo><mi>o</mi><mo stretchy="false">}</mo></mrow><annotation encoding="application/x-tex">\mathrm{Ker} A \ne \{o\}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathrm">K</span><span class="mord mathrm">e</span><span class="mord mathrm">r</span></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel"><span class="mrel"><span class="mord"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.69444em;"><span style="top:-3em;"><span class="pstrut" style="height:3em;"></span><span class="rlap"><span class="strut" style="height:0.8888799999999999em;vertical-align:-0.19444em;"></span><span class="inner"><span class="mrel"></span></span><span class="fix"></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.19444em;"><span></span></span></span></span></span></span><span class="mrel">=</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mopen">{</span><span class="mord mathdefault">o</span><span class="mclose">}</span></span></span></span> 且 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="bold">y</mi><mo>∈</mo><mrow><mi mathvariant="normal">I</mi><mi mathvariant="normal">m</mi></mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathbf{y} \in \mathrm{Im} A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.7335400000000001em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">y</span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">∈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">I</span><span class="mord mathrm">m</span></span><span class="mord mathdefault">A</span></span></span></span></td>
-<td>无穷多解</td>
-</tr>
-</tbody>
-</table>
-<p><strong>判据二：信息损失，由秩决定。</strong></p>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><mi>B</mi><mi>C</mi></mrow><annotation encoding="application/x-tex">A = BC</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05017em;">B</span><span class="mord mathdefault" style="margin-right:0.07153em;">C</span></span></span></span> 的瓶颈型分解把 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi></mrow><annotation encoding="application/x-tex">n</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault">n</span></span></span></span> 维压成 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>r</mi></mrow><annotation encoding="application/x-tex">r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span> 维再扩张。压掉的 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>n</mi><mo>−</mo><mi>r</mi></mrow><annotation encoding="application/x-tex">n - r</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.66666em;vertical-align:-0.08333em;"></span><span class="mord mathdefault">n</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span><span class="mbin">−</span><span class="mspace" style="margin-right:0.2222222222222222em;"></span></span><span class="base"><span class="strut" style="height:0.43056em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.02778em;">r</span></span></span></span> 维就是永久丢失的信息。</p>
-<p><strong>判据三：长期行为，由特征值决定。</strong></p>
-<p><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">∣</mi><mi>λ</mi><mi mathvariant="normal">∣</mi><mo>&gt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">|\lambda| &gt; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathdefault">λ</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&gt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 失控，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">∣</mi><mi>λ</mi><mi mathvariant="normal">∣</mi><mo>&lt;</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">|\lambda| &lt; 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathdefault">λ</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">&lt;</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 收敛，<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi mathvariant="normal">∣</mi><mi>λ</mi><mi mathvariant="normal">∣</mi><mo>=</mo><mn>1</mn></mrow><annotation encoding="application/x-tex">|\lambda| = 1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1em;vertical-align:-0.25em;"></span><span class="mord">∣</span><span class="mord mathdefault">λ</span><span class="mord">∣</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.64444em;vertical-align:0em;"></span><span class="mord">1</span></span></span></span> 需要看 Jordan 块。</p>
-<h2 id="概念之间的对应关系"><a class="markdownIt-Anchor" href="#概念之间的对应关系"></a> 概念之间的对应关系</h2>
-<p>书里反复出现的几组对应，整理在一起：</p>
-<table>
-<thead>
-<tr>
-<th>线性代数</th>
-<th>几何/映射</th>
-<th>数值计算</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>矩阵 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span></td>
-<td>线性映射</td>
-<td>系数矩阵</td>
-</tr>
-<tr>
-<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="normal">I</mi><mi mathvariant="normal">m</mi></mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathrm{Im} A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">I</span><span class="mord mathrm">m</span></span><span class="mord mathdefault">A</span></span></span></span></td>
-<td>映射覆盖到的区域</td>
-<td>拟合的可达集合</td>
-</tr>
-<tr>
-<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="normal">K</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">r</mi></mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathrm{Ker} A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">K</span><span class="mord mathrm">e</span><span class="mord mathrm">r</span></span><span class="mord mathdefault">A</span></span></span></span></td>
-<td>被压扁的方向</td>
-<td>约束的冗余方向</td>
-</tr>
-<tr>
-<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mrow><mi mathvariant="normal">r</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">k</mi></mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">\mathrm{rank} A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord"><span class="mord mathrm">r</span><span class="mord mathrm">a</span><span class="mord mathrm">n</span><span class="mord mathrm">k</span></span><span class="mord mathdefault">A</span></span></span></span></td>
-<td>幸存的信息维数</td>
-<td>有效参数个数</td>
-</tr>
-<tr>
-<td>特征值 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>λ</mi></mrow><annotation encoding="application/x-tex">\lambda</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.69444em;vertical-align:0em;"></span><span class="mord mathdefault">λ</span></span></span></span></td>
-<td>方向上的伸缩倍率</td>
-<td>系统增益</td>
-</tr>
-<tr>
-<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><mi>L</mi><mi>U</mi></mrow><annotation encoding="application/x-tex">A = LU</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">L</span><span class="mord mathdefault" style="margin-right:0.10903em;">U</span></span></span></span></td>
-<td>映射的分解</td>
-<td>一次分解多次用</td>
-</tr>
-<tr>
-<td><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi><mo>=</mo><mi>P</mi><mi>D</mi><msup><mi>P</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup></mrow><annotation encoding="application/x-tex">A = PDP^{-1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.8141079999999999em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="mord mathdefault" style="margin-right:0.02778em;">D</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">P</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span></span></span></span></td>
-<td>换到好的基底</td>
-<td>谱分解</td>
-</tr>
-</tbody>
-</table>
-<h2 id="三个容易踩的坑"><a class="markdownIt-Anchor" href="#三个容易踩的坑"></a> 三个容易踩的坑</h2>
-<p><strong>第一，把「不可逆」当成「无解」。</strong></p>
-<p>「方程的解」的最原始定义是「代入之后使方程成立的值」。「<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span> 可逆则解是 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><msup><mi>A</mi><mrow><mo>−</mo><mn>1</mn></mrow></msup><mi mathvariant="bold">y</mi></mrow><annotation encoding="application/x-tex">A^{-1}\mathbf{y}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.008548em;vertical-align:-0.19444em;"></span><span class="mord"><span class="mord mathdefault">A</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">−</span><span class="mord mtight">1</span></span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathbf" style="margin-right:0.01597em;">y</span></span></span></span></span>」只是从定义推导出的<strong>性质</strong>。<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>A</mi></mrow><annotation encoding="application/x-tex">A</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault">A</span></span></span></span> 奇异时这条性质不能用，但不能因此说无解 —— 可能只是有无穷多个解。书里专门为这个写了一节，因为这个错误很常见。</p>
-<p><strong>第二，混淆「秩」和「秩-零化度」。</strong></p>
-<p>秩是保留的信息维数，零化度是丢失的维数。求解问题时关心零化度（解的自由度），分析信息损失时关心秩。</p>
-<p><strong>第三，用初等变换代替变量替换。</strong></p>
-<p>第 2 章里初等变换几乎无所不能，但第 4 章不行。原因是变量替换要求递推式<strong>两边经过同一个变换</strong>，而初等变换是在矩阵左右两边分别乘不同的可逆矩阵。</p>
-<h2 id="落到实处"><a class="markdownIt-Anchor" href="#落到实处"></a> 落到实处</h2>
-<p>学线性代数最容易犯的错，是把它当成一堆计算技巧。书里那句「知其所以然」其实点明了意图：计算方法可以查书，但「为什么是这么算」必须自己建立。</p>
-<p>这本书建立的其实是一条判断链：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">拿到一个矩阵 A 和一个目标 y</span><br><span class="line">  → A 可逆吗？（算 det 或看秩）</span><br><span class="line">    → 可逆：解唯一，用 LU 分解算</span><br><span class="line">    → 不可逆：y 在 Im A 里吗？</span><br><span class="line">      → 不在：无解，退而求其次找最接近的解（最小二乘）</span><br><span class="line">      → 在：无穷多解，选一个最合理的</span><br><span class="line">  → 如果是随时间演化的系统：算特征值，看会不会失控</span><br></pre></td></tr></table></figure>
-<p>每一步都有明确的判据，没有一步需要猜。这就是这本书想给的东西。</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>线性代数</tag>
-        <tag>总结</tag>
       </tags>
   </entry>
   <entry>
@@ -23697,416 +23697,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
-    <title>慢车 25：婚礼</title>
-    <url>/%E5%B0%8F%E8%AF%B4/c9c828fa.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>宴会厅的落地灯亮着，灯罩边缘垂下一圈金穗，正对陈渡的贝斯。</p>
-<p>司仪把卡片翻到背面，扫了一眼，抬起话筒：「下面有请双方父母。新郎父亲先来。」</p>
-<p>那把琴靠在音箱边，电线盘在地上。他俯身插好插头，拨了一下 E 弦。音箱里传出一声闷响，低频震得地毯边缘发颤。</p>
-<p>新郎父亲坐在第一排。他穿一件深灰夹克，袖口磨得发亮。他先看了看儿子，再看新娘。司仪把话筒递给他，他没接，手在桌下摸了一下裤袋。</p>
-<p>林岫站在舞台侧面，怀里抱着两轨录音机。机身用胶带缠着防风毛衣，话筒朝下，线缠在手腕上。</p>
-<p>「我不太会说。」</p>
-<p>「先别录。」陈渡说。</p>
-<p>「您准备了一句话。」司仪说。</p>
-<p>「还没开。」</p>
-<p>「准备了。」</p>
-<p>「等司仪喊交换戒指。」</p>
-<p>台下有人笑。他也笑，仍没接话筒。</p>
-<p>「为什么？」</p>
-<p>「话筒给您。」司仪把话筒往前递。</p>
-<p>「太早。」</p>
-<p>新郎父亲这才接过来。他握住话筒，又像握不住似的换了只手。金属网罩里的底噪轻轻响着。</p>
-<p>林岫把话筒放低，录音机的红灯没亮。她看了一眼前厅，电子屏上放着新郎新娘的名字，字每隔十几秒变一次颜色。</p>
-<p>「今天……」</p>
-<p>「你紧张？」</p>
-<p>他停了三秒。</p>
-<p>「贝斯比这个准。」</p>
-<p>「你们两个，以后有事情就互相说。别等对方猜。」</p>
-<p>陈渡拍了拍琴身。三个旋钮拧到同样的位置，弦距比标准低了半毫米。这把琴上周才换过弦，声音偏亮。</p>
-<p>掌声起来。他把话筒交还，走回座位。</p>
-<p>「你以前在婚礼上弹过？」林岫问。</p>
-<p>新娘母亲坐在第五排。她上台时把一只红包递给司仪。司仪摆手。</p>
-<p>「十九岁。」</p>
-<p>「今天不收这个。」</p>
-<p>「十九岁以后呢？」</p>
-<p>「不是给您的。」新娘母亲说，「是给孩子的。」</p>
-<p>「婚礼不常来。」</p>
-<p>她把红包放到司仪手里，转身便往台下走。司仪低头看了一眼，没有拆。</p>
-<p>前厅传来椅腿拖地的声音。服务员推门，门轴响了两声。宴会厅里的人开始落座。</p>
-<p>「这位妈妈有准备。」</p>
-<p>林岫把录音机塞进帆布包。她今天穿一件灰外套，鞋底沾着宴会厅门口的红地毯毛屑。</p>
-<p>「准备什么？」有人问。</p>
-<p>「三句话在什么位置？」陈渡问。</p>
-<p>「红包。」</p>
-<p>「交换戒指前。」</p>
-<p>笑声起来。司仪把红包交给舞台边的工作人员，拉链响过一声，袋口封上了。</p>
-<p>「前多久？」</p>
-<p>陈渡重新拨了一下低音弦。刚才闷住的四根弦松开，震动从琴桥传到地板。他把手掌贴在音箱边框，震停了。</p>
-<p>「四分钟，也可能七分钟。」</p>
-<p>舞台右侧的落地扇转过来。叶片擦过防护罩，发出规律的沙沙声。它吹动了新娘垂在肩后的头纱。头纱越过她肩膀，碰到新郎的袖口。</p>
-<p>「音乐停了以后？」</p>
-<p>新郎抬了抬胳膊。头纱停住。</p>
-<p>「不全是。新郎试过两次话筒，第一回没插好。」</p>
-<p>司仪说：「请双方父母到台前合照。」</p>
-<p>「第二回呢？」</p>
-<p>两边的椅子挪动。第一排有人把手机举过肩膀。摄影师蹲在花门下面，引导他们把手放在新人肩上。</p>
-<p>「第二回有底噪。十二赫兹的交流声。附近日光灯管没换。」</p>
-<p>「都看镜头。」摄影师说。</p>
-<p>陈渡抬头看了看天花板。宴会厅右边有六组暖光灯，左边三组。靠后门的两排灯管亮度不匀，其中一根闪了两下。</p>
-<p>新郎母亲站得稍远。她把外套领子往上拉了拉。司仪走过去，替她扶正肩上的披巾。</p>
-<p>「那根会跟着话筒底噪走。」</p>
-<p>「您站近一点，不然拍不到。」</p>
-<p>「我知道。」林岫说，「这段我要留着。」</p>
-<p>「拍不到就拍。」她说。</p>
-<p>「可以。」</p>
-<p>摄影师按下快门。机顶的小灯闪了两次。</p>
-<p>主持人在前厅试音。话筒撞到杯壁，碰出三声短响。陈渡把贝斯音量压低两格。</p>
-<p>司仪看了看台上的六个人，拍了拍手：「好，家人先别下去。我们趁这个时间，问两位一个问题。」</p>
-<p>门又开了。几个男人走进来，领口别着花。新郎穿深色西装，胸前的手花占了半个衣襟。他拿起话筒，先看屏幕，再看新娘。</p>
-<p>他从卡片后面抽出一张纸。</p>
-<p>「能听见吗？」</p>
-<p>「不是刚才那些情话。很简单。」</p>
-<p>宴会厅里有人答：「能听见。」</p>
-<p>台下安静下来。</p>
-<p>「再试一次。」</p>
-<p>「你们第一次见对方，觉得对方哪里不像自己想的那样？」</p>
-<p>「能——」</p>
-<p>新娘看着新郎。新郎低头整理袖扣。</p>
-<p>话筒突然啸叫起来。声音从两米高的音箱压下来，刺得人耳朵发疼。新郎把话筒拿远，宴会厅安静了两秒。</p>
-<p>「我以为他话很多。」新娘说。</p>
-<p>陈渡按了贝斯的弦。</p>
-<p>新郎抬头：「我以为她不会喝白酒。」</p>
-<p>音箱里的啸叫停了。</p>
-<p>「谁说的？」司仪问。</p>
-<p>司仪从侧门进来，手里拿着卡片。卡片上贴着两列名字，他走到台边，用指甲压住其中一行。</p>
-<p>「她前两次相亲，都喝白酒。」</p>
-<p>「新郎今天带了十八位伴郎，十八位伴娘。新娘那边二十位。都坐好了吗？」</p>
-<p>台下有人叫：「白酒也有假的。」</p>
-<p>有人喊：「好了。」</p>
-<p>新娘接过话：「第三次见面，他给我倒了一杯水。」</p>
-<p>「好。我们先不急着让两位说情话。」司仪看了看表，「有些话放在嘴上轻，放进日子里就重。」</p>
-<p>「我当时以为他嫌我不会喝。」</p>
-<p>陈渡盯着林岫的包。</p>
-<p>「不是。」新郎说，「我以为你不能喝酒。」</p>
-<p>包上的拉链没合严，录音机露出一角红灯。还没亮。</p>
-<p>司仪看着他们：「那到底为什么倒水？」</p>
-<p>司仪让司仪先退到一边，乐队开始演奏。钢琴在前面，架子鼓在右侧，陈渡坐在阴影里。他把拇指搭在品格上，等鼓手给出四拍。</p>
-<p>新郎说：「服务员倒了酒，她端起来又放下。我以为她不想喝。」</p>
-<p>前奏很俗。</p>
-<p>「所以你换成了水。」</p>
-<p>四小节后，主唱走到话筒前。男声从音箱里出来，唱的是《婚礼进行曲》的改编版。有人在桌边鼓掌，掌声被音乐切碎。</p>
-<p>「嗯。」</p>
-<p>林岫打开包，录音机仍在她手里。她没有开机。</p>
-<p>台下又有人笑。司仪低头看卡片。</p>
-<p>「你不录？」陈渡问。</p>
-<p>「还有一个。」</p>
-<p>「没到。」</p>
-<p>新娘的视线落到舞台边。</p>
-<p>「已经开始了。」</p>
-<p>陈渡顺着她的目光看过去。伴娘站在音箱后面，粉色裙摆被落地扇吹得贴住小腿。她一只手扶着音箱，另一只手放在裙袋上。</p>
-<p>「我问的是你。」</p>
-<p>司仪说：「伴娘今天也辛苦了。戒指交到你手里的时候，你在想什么？」</p>
-<p>「我也不录。」</p>
-<p>伴娘抬起头。</p>
-<p>「为什么？」</p>
-<p>「我在想它沉不沉。」</p>
-<p>「太早。」</p>
-<p>「沉吗？」</p>
-<p>司仪拿着卡片走到台中央。新郎新娘站在花门下面。新娘手里拿着一束白花，花茎缠着白绸。</p>
-<p>「有一点。」伴娘说，「比我想的沉。」</p>
-<p>「接下来，我们请新郎和新娘，走到大家中间。」</p>
-<p>司仪问：「为什么？」</p>
-<p>鼓点停了。</p>
-<p>「因为它一直在我手里。」</p>
-<p>陈渡的右手还搭在弦上，掌根出了汗。他用衣角擦了一下，食指压下去，琴弦只发出极轻的颤音。</p>
-<p>台下没人立刻接话。落地扇转过一圈，防护罩里的风擦出一声细响。</p>
-<p>新郎先走了两步。他右手伸向新娘，伸到一半，改为替她扶了一下衣领。</p>
-<p>伴娘又说：「不对。可能不是重。是我怕掉了，一直攥着。」</p>
-<p>「谢谢你。」新娘说。</p>
-<p>司仪把卡片往桌上一放：「这个答案留着。」</p>
-<p>「不用。」</p>
-<p>陈渡用拇指拨了一下 E 弦。毛刺刮过指腹，留下一道浅白的痕。</p>
-<p>司仪说：「新郎，你今天准备了什么？」</p>
-<p>伴娘从音箱后面走出来。她走到台边，把手从裙袋里抽出来。掌心里有一道红色压痕。</p>
-<p>「戒指。」</p>
-<p>「给你。」司仪把首饰盒推给她。</p>
-<p>「戒指不一定要现在说。还有别的吗？」</p>
-<p>伴娘拿起戒指。黑色绒布凹下去一块。她没有立刻交出去，先用拇指擦了擦钻石边缘。</p>
-<p>新郎看了看桌上的人。二十八桌，坐得很满。靠门口有人把手机竖起来。</p>
-<p>「有一粒灰。」她说。</p>
-<p>「我不太会说。」</p>
-<p>台下有人凑近看。</p>
-<p>「今天很多人都不太会说。说得少，不是没有。说一句就行。」</p>
-<p>伴娘擦完，把戒指放回盒子中央。戒托仍有点歪。她调了两次，才让它立稳。</p>
-<p>新郎拿起话筒。话筒暂时没接稳，碰到胸前的花，发出一下闷响。</p>
-<p>「刚才不是说要还吗？」司仪说。</p>
-<p>「我今天……」</p>
-<p>「还了才算。」</p>
-<p>台下有人笑。</p>
-<p>司仪笑了一声：「现在算还了。」</p>
-<p>他停住，把话筒往下压了两厘米。</p>
-<p>林岫把录音机的电平旋钮拨回去一格。屏幕上原本跳动的数字停在四十七。她看了一眼时间，按下暂停键。</p>
-<p>「我今天很高兴。」</p>
-<p>「录到多少？」陈渡问。</p>
-<p>掌声起来。</p>
-<p>「两分十九秒。」</p>
-<p>林岫的拇指停在录音键上，没有按。</p>
-<p>「中间停过？」</p>
-<p>司仪接过话：「新娘呢？新娘今天准备了什么？」</p>
-<p>「没有。」</p>
-<p>新娘把花交给旁边的伴娘。</p>
-<p>「刚才鼓手掉拍。」</p>
-<p>伴娘接得很稳。她穿浅粉色裙子，胸前别着白花，手里多了一只透明的首饰盒。</p>
-<p>「也录了。」</p>
-<p>「一句真心话。」新娘说。</p>
-<p>「观众笑声呢？」</p>
-<p>「那就等婚戒交换完再说。」司仪说，「这是今天的规矩。先把戒指交到该去的地方。」</p>
-<p>「都在。」</p>
-<p>陈渡听见自己的贝斯线里有一丝杂音。</p>
-<p>陈渡看了眼她怀里的机器：「不剪？」</p>
-<p>不是音箱的底噪。</p>
-<p>「不剪。」</p>
-<p>他把音量旋钮向左转了半格，杂音还在。右手食指在品格上滑了一下，碰到一根细小的毛刺。</p>
-<p>鼓手从侧幕探出半张脸。他朝陈渡招手。</p>
-<p>林岫看向他的手。</p>
-<p>「陈哥，借个扳手。」</p>
-<p>「弦毛了？」</p>
-<p>「做什么？」</p>
-<p>「琴的。」</p>
-<p>「固定话筒杆。刚才晃了。」</p>
-<p>「要不要换？」</p>
-<p>「螺丝松了？」</p>
-<p>「来不及。」</p>
-<p>「底座松。刚才第二遍压下来，杆子往左偏了半厘米。」</p>
-<p>司仪招手，伴娘走到新娘身边。</p>
-<p>陈渡从琴盒侧袋取出一把六角扳手，起身过去。话筒杆的底座压在舞台边沿，下面垫着一块折叠毛巾。他蹲下，用扳手顺时针拧了一圈。</p>
-<p>首饰盒打开。灯光照到里面，一枚钻戒竖在黑色绒布上。戒托很窄，钻石不高，转动时闪出断续的白点。</p>
-<p>「这颗不用动。」鼓手指着另一颗，「那颗动了会滑牙。」</p>
-<p>陈渡看了一眼。</p>
-<p>陈渡松开手，摸了一下顶部的螺帽。螺纹里卡着一小片黑色胶屑。</p>
-<p>只一眼。</p>
-<p>「这里卡住了。」</p>
-<p>他的左手按在品格上，拇指压住了 E 弦。指腹停了不到半秒，又松开。</p>
-<p>「什么？」</p>
-<p>贝斯发出一个错音。</p>
-<p>「胶。」</p>
-<p>不是跑调。</p>
-<p>他用指甲挑出来，扔进垃圾桶。话筒杆不再往左偏。鼓手伸手推了一下，杆身回正。</p>
-<p>那个音比该落的位置高了半拍，短促地撞在宴会厅后墙上，又被音箱推回来。</p>
-<p>「行。」</p>
-<p>第二排有人抬头。</p>
-<p>陈渡把扳手收回去。鼓手看了一眼他琴盒里的备用弦。</p>
-<p>林岫也听见了。她看陈渡的手，没有问。</p>
-<p>「你真不换？」</p>
-<p>司仪说：「新娘有话要说。」</p>
-<p>「弹完换。」</p>
-<p>新娘从伴娘手里拿起话筒。</p>
-<p>「那根再断呢？」</p>
-<p>「我今天……」</p>
-<p>「断了再换。」</p>
-<p>她低头看花门上的绸带。</p>
-<p>鼓手笑了一声，转身回架子后面。陈渡听见他用节拍器敲了两下。摆臂还是往左偏。他又敲了三下，停住。</p>
-<p>「我有话，但怕说不好。」</p>
-<p>陈渡在贝斯旁坐下，把琴架上的旋钮松开一点。刚才为了压住话筒啸叫，他把高音切得太狠。现在再拧回去，舞台音量会高一截。</p>
-<p>「说不好也没关系。今天的人都不打分。」</p>
-<p>他没动。</p>
-<p>台下有人笑。</p>
-<p>司仪开始请伴郎和伴娘说话。十八个人排成一排，话筒只够递给最前面的四个。第一个说新郎大学时打呼。第二个说新娘吃辣能吃第三层。第三个还没说完，司仪就把话筒收了。</p>
-<p>新娘笑了一下，把话筒举高。</p>
-<p>「到时间。」司仪说，「我们还有最后一项。」</p>
-<p>「这枚戒指，是我的外婆给我的。」</p>
-<p>他翻开卡片后面。</p>
-<p>司仪说：「她刚才说，戒指是她外婆给她的。」</p>
-<p>「请今天到场的所有工作人员，到台上来。」</p>
-<p>新娘说：「她让我自己决定什么时候戴。」</p>
-<p>乐队这边有人停下了手里的动作。陈渡身旁，钢琴手抬起头。</p>
-<p>「很好。那你今天决定了吗？」</p>
-<p>「工作人员？」鼓手问。</p>
-<p>「还没有。」</p>
-<p>司仪说：「摄影师、灯光、音响，还有乐队老师。都上来合张影。」</p>
-<p>「新郎，你现在有什么想说的吗？」</p>
-<p>钢琴手没动。陈渡也没动。</p>
-<p>新郎站在那里，手里的话筒垂在身侧。他盯着首饰盒。</p>
-<p>司仪看下来：「音响老师呢？」</p>
-<p>「我第一次见它的时候，她说这是她算命得来的。」</p>
-<p>鼓手指了指陈渡，又指了指自己。</p>
-<p>台下更静了。</p>
-<p>「他管贝斯，我管鼓。」</p>
-<p>「她说是算命先生给的。让她一直戴着，碰到对的人就摘下来。」</p>
-<p>「那都算。」</p>
-<p>司仪看向新娘：「今天摘吗？」</p>
-<p>鼓手把鼓槌放下。陈渡把 E 弦上的手移开，没从琴凳上起身。</p>
-<p>新娘没有回答。</p>
-<p>司仪又说：「新郎也要有伴郎。新娘那边二十位都到了？」</p>
-<p>新郎把手伸向首饰盒。伴娘把盒子递给他。戒指从黑色绒布上被拿起，灯光沿戒托滑过去。</p>
-<p>台下有人喊：「到了！」</p>
-<p>他的手指夹住戒指。</p>
-<p>「那新郎这边十八位，少一个啊。」</p>
-<p>「我不太信算命。」新郎说。</p>
-<p>没人接话。</p>
-<p>「那你现在信什么？」司仪问。</p>
-<p>司仪朝第一排看：「你们这边谁还没上台？」</p>
-<p>「我信她今天愿意站在这里。」</p>
-<p>有人指向靠通道的位置：「老周在那儿。」</p>
-<p>掌声起来。</p>
-<p>一个五十多岁的男人从桌边站起来。他穿着深色夹克，头发贴在额头上，手里拿着一把拆开的万用表。</p>
-<p>陈渡没有看他。他盯着贝斯的弦。E 弦毛刺在灯下发白，像一根停住的针。</p>
-<p>「老周是修音响的？」司仪问。</p>
-<p>他用指甲刮了一下。</p>
-<p>「不是。他修东西的。」</p>
-<p>毛刺没有断。</p>
-<p>男人走到台边，把万用表合上。</p>
-<p>婚礼进行曲重新响起来。</p>
-<p>「我的表坏了。」</p>
-<p>钢琴先起，鼓手跟进。陈渡在第四拍落下。E 弦响过以后，他用中指和无名指压住它，声音变闷。</p>
-<p>司仪说：「今天不修东西。」</p>
-<p>乐队演奏到一半，新娘忽然侧过身，对伴娘说：「这个你先帮我拿着。」</p>
-<p>「我知道。」男人说，「我来合照。」</p>
-<p>伴娘摊开手。</p>
-<p>陈渡认得他。几个月前，这人在县城里找过他，手里拿着一只从婚庆车队拿回来的无线麦。接收机主板上有一道焊裂。</p>
-<p>新郎把戒指放进她掌心。</p>
-<p>男人站到最后一排。司仪数人数，数到四十八，抬手让摄影师拍。</p>
-<p>「等会儿再给你。」他说。</p>
-<p>快门闪了三次。</p>
-<p>「好。」伴娘合拢手指，「我先拿着。」</p>
-<p>拍完，男人没有马上走。他弯腰拾起舞台边一只掉落的电池，放到桌上。</p>
-<p>林岫按下了录音键。</p>
-<p>「你哪个队的？」他问陈渡。</p>
-<p>红灯亮着。</p>
-<p>「临时。」</p>
-<p>陈渡看见林岫的嘴唇动了一下。</p>
-<p>「今天多少钱？」</p>
-<p>「多少？」她低声问。</p>
-<p>「半天。」</p>
-<p>「不到四十秒。」</p>
-<p>「给不给盒饭？」</p>
-<p>「后面还有多少？」</p>
-<p>「给。」</p>
-<p>「三句。」</p>
-<p>男人点点头，把万用表塞进夹克内侧。他又问鼓手：「刚才那个底座，你用了多少垫的？」</p>
-<p>「三句什么？」</p>
-<p>「一条毛巾。」</p>
-<p>「不知道。」</p>
-<p>「不够。明天会滑。」</p>
-<p>「林岫把话筒朝台前移了半尺。录音电平在机器的小屏上跳到六十一，又落回五十三。</p>
-<p>他从口袋里摸出一小块灰色橡胶片，递过去。</p>
-<p>「她不会剪。」陈渡说。</p>
-<p>「垫这个。三角孔朝里。」</p>
-<p>「当然。」</p>
-<p>鼓手接过来，捏了一下厚度。</p>
-<p>「你也不许剪。」</p>
-<p>「行。」</p>
-<p>「原声。」</p>
-<p>司仪在台中央重新拿起话筒：「好，下面是新人交换誓言。新郎先——」</p>
-<p>伴娘把首饰盒合上，夹在臂弯里。戒指还在她手里。她站得离陈渡不远，手背上的筋随着音乐动。</p>
-<p>音响控制台旁忽然响了一下短促的电流声。</p>
-<p>新郎在另一边说话。司仪让他讲第一次见新娘的事。</p>
-<p>不是啸叫。也不是底噪。</p>
-<p>「在一家修手机的店。」新郎说。</p>
-<p>那声音从话筒线插头与插座之间挤出来，脆得像薄铁片被折了一次。</p>
-<p>台下有人起哄。</p>
-<p>陈渡回头看控制台。</p>
-<p>「她来修手机，我修不了。手机拿走了，人没走。」</p>
-<p>插头松了半圈。负责调音的人正弯腰捡手机，没扶住。</p>
-<p>笑声更大。</p>
-<p>陈渡走过去，把插头重新压紧，再用另一只手扳住话筒杆。电流声停了。</p>
-<p>陈渡把贝斯音量又压低一格。</p>
-<p>他回到琴边时，司仪已经念完誓词。</p>
-<p>他看着伴娘的手。</p>
-<p>「我是否愿意……」</p>
-<p>那枚戒指被她握在掌心。戒托抵着生命线，钻石朝外。她每跟着音乐晃一下，钻石就在指缝间闪一次。</p>
-<p>新娘握着话筒，没有立刻重复。</p>
-<p>他想起林岫在火车上说过的那三句话。</p>
-<p>话筒里传出很轻的一声呼吸。</p>
-<p>第一句是新娘说的。</p>
-<p>林岫的手停在机器上方。她没有按录音。屏幕上的时间仍停在两分十九秒。</p>
-<p>第二句是伴娘说的。</p>
-<p>司仪等着。</p>
-<p>第三句来自算命先生。</p>
-<p>台下有人挪动椅子。椅脚在地毯上磨出一声短响。</p>
-<p>林岫没有告诉他原话。她只说三句都短。她还说，录下的时候，宴会厅里没人注意她。</p>
-<p>新娘把话筒抬高了一点。</p>
-<p>当时陈渡问她，戒指在哪一句。</p>
-<p>「我愿意。」</p>
-<p>林岫说：「不在三句里。」</p>
-<p>他没再问。</p>
-<p>现在那枚戒指就在十几米外。</p>
-<p>陈渡的右手在品格上滑了一下。E 弦发出闷响，音高又偏了。</p>
-<p>鼓手从侧面看他。</p>
-<p>「你弦有问题。」</p>
-<p>「有点毛。」</p>
-<p>「换一根？」</p>
-<p>「下首换。」</p>
-<p>「再偏就真难听了。」</p>
-<p>「能用就行。」</p>
-<p>林岫举起录音机看了一眼时间。她没有笑。</p>
-<p>司仪让伴娘也说两句。伴娘把首饰盒放到旁边的桌上，手掌合着戒指。</p>
-<p>「你说两句。」司仪说。</p>
-<p>「说什么？」</p>
-<p>「说新郎新娘。」</p>
-<p>伴娘想了几秒。</p>
-<p>「他们两个都是慢热的人。」</p>
-<p>台下有人问：「有多慢？」</p>
-<p>「认识一年才吃饭。」</p>
-<p>笑声响起。</p>
-<p>「吃了几次？」</p>
-<p>「三次。」</p>
-<p>伴娘说完，低头看了一眼手心。她把手收回去，放到裙袋上。</p>
-<p>司仪看着她：「你手里还有东西吧？」</p>
-<p>伴娘没动。</p>
-<p>「刚才新郎把戒指给你了。」司仪说，「你是不是该还回去了？」</p>
-<p>「马上。」</p>
-<p>「现在吧。仪式还没结束。」</p>
-<p>伴娘走到新郎面前。首饰盒重新打开，她把手伸进去。</p>
-<p>戒指落在黑色绒布上，发出很轻的一声。</p>
-<p>全场的人都听见了。</p>
-<p>只有陈渡的位置离舞台近。</p>
-<p>那声音只有指甲盖大小，碰在盒壁上，却被贝斯的低频托住，送到他耳朵里。</p>
-<p>他想起林岫说过，三句话之后，戒指换了一个人保管。</p>
-<p>不是戒指说了话。</p>
-<p>是人把它交出去。</p>
-<p>司仪开始让新人宣读誓言。</p>
-<p>陈渡重新看向琴弦。毛刺还在。E 弦每振一次，亮点便在灯下抖一下。</p>
-<p>「戒指交换完毕。」司仪说，「现在请新郎说几句。」</p>
-<p>新郎拿起话筒。</p>
-<p>这一次话筒接得很稳。没有碰花，没有底噪。</p>
-<p>「我这辈子最不会的事——」</p>
-<p>台下有人低声聊天。杯子碰到碟子，盘子边缘响了两声。</p>
-<p>「就是说‘我以后会怎样’。」</p>
-<p>陈渡的左手压住了四根弦。</p>
-<p>琴弦全部闷住。</p>
-<p>宴会厅里的音乐还在继续。鼓手抬手落下，脚踩得踏板一沉。陈渡的右手悬在弦上，没有再拨。</p>
-]]></content>
-      <categories>
-        <category>小说</category>
-      </categories>
-      <tags>
-        <tag>慢车</tag>
-        <tag>小说</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>成本核算</title>
-    <url>/%E5%B7%A5%E4%BD%9C/fb428c48.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="403034e3763252e0a1d875383418dced566fe36d7f58183614979363551524dd">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d01b15f88bbf2f997a33ad0e4769faa2f3731a35f9c12d7a5ad97247c985de51ed62c20bb6ba6113954fea16ed76707f8571dfaa584b4e3826985032b10288f7e13b93b331fc92e4ebc21cf2f3989f25ee250dd18448f86303d9d929567d54c0a64b2443cfcf3f54aaead2719e45509f355f0caa4661d7651db96a887b5ef79aae101fb73978cce5fa93b24287b98f2639e871f614db934381ee4e241a12fd224faedd825390e487d9287e6e7e03f0f00f6d33956db5549ab690eaa4bb73d57207b7847ceb796384c2d90aa03b08f9b7e3ba9a9a6c7120e569cfed730553994f200ff398b4a63e437ef87626081679e9d7691c9f8e574971d814fc42fa4c170c044f0bcc2d5227ab77afa36e2413a79cc9bf8212fbd04d467345d1da089614c3541e6a0e5e09c42f977cf917b15799600e6b55dfc9e445c2f9dd638939b32bad9f629832be56693f9f509d3cc0be74cc147cd44bc6700722b45b4a11e2ad51071ae0ce795058801497056bc30e1461d624e3ef86c45e64a651b1559f1031fec9ae6443177a5ba67cbe961cc2ee7bcb59a3cb88af0ba1c243d1a9549addf257a8fd8e64d179401465d805f41a2e032f4d5da29b43777ae9d1116ecc9094f9e86b387ece6c26fc4d30c9eaf9739da84f69da0b4ea41e78627adedac8bea9396bbb6806b40612b5c1bbe434a7b618df8245da6fadf861fcd1fe52c022ff5d00bebff5e77aaeb566e6771ee0c72ec95fba73eeda6035933d452127a7eb41d143e35c090114ecb95da3cd9e20fc000491f57605434acdc82a821345325b6fe27933402f57f3bfebbc23ae6d83578dea596364ce1d2de5344a20bc8185ddd344defea04ac49210125785b24cb993cbbd61e9d5c92b2e20c482ae4a367fe05eb0ea7756beada75cdfea44c37c1962ee408896582b27f0bd400fc35a73e25bcee8d14bc17d447e2eed7fcd9f800ab220101df770a45c2d9699e451dd225e650418c1bd3849960f965551be548eaf21d51928281ebbb761aeec3620bdcf2a58c461c611478e033254ad3cb3a1351b121f9dfa505a687e712a02f53d2d02d638bac0b3578a5e23f9fdaf699e32d58790b16e0397719a2e44505699e7dbba8e040b17a880f73d0aeeba704cbd5c15603c1dcee81e33633310b859c124a1c3c09bd063b5efb8e220c37583cc40dc155b0e30339572da533b70d8f084119e20b2f504f375a0e0076518afd45f70f61f893d65b14088c5a597e13deb62b6d0f0f64df8149522f1e5e7156b682aa8d639097e18fff4b2d8c57dc60d8625da2cecc8042490337199a41ba03f080582b97d39be52551ffacb3c2fb7c5606da03a13886c69d303864d35430398a00eecac17c7b5717f06dd40d5ab1a73f0465d54332570eb748cbb97afd416422b5b2f3bd679a080b9cc94199d8e90ee83d2b85ffa93528e020c93e5cfbc93875fc96ed4277efcf4d747686ef84f784204f1dec6588c829002c6919354b5cf23beb81b81b4ba5e9033d81bd5d1443cdb999f55c0996e9d02db7a7c25bc2ecf7f2cef76bd2c964a9934db64580e072eab8f721027d5ec8fb66aa9fec34f2f3b190cdccde6603f11c0f85f2e92f83f4082cd378982b2b4a742cb760a4137f33a9bb2da5f4a450eb5d05392221eed47c59399ed95b514557f3fb468293b94ac388d4119a167dca4b4d90dfef7310fa4c69d1b945d28f4322685a6708a142d355cfb6a5dfcf0819b8bbedb88a886828dfb0ef0919bfda0ab3a12381f980cd4738b6245d2960713d6f531563bc42af3589ce9fa03f1a8ca8f4b10b138ef17d6e3ae7a0e5c529ddf83432ec32c5d838bce16c4e10806956318e4b4f5e85c6af9aa2648d595e6a3155d6250d721f172a7cff78aac9a6b69b364d3aace867e838f95c5731f6a8c1d2faf055f8bca28ac6f80ac18f0061d41e8757bbcdcd29393a521c68fada0ef5c23c5a898792ddf530072b98ab37a519e76be5318ee82b88566a41f54cc929afc6c6c1887fb7323f8ef4d9773824b7d32b48a551ba4f2080e9517fe665260c20f1756351b43c77eced10722a926ef5ecdd3379acd3577b3e7fac6e38fb611d6f5465c809c7ec9015dd013f74e8039e30e138919f9f2d7b0d084a8c41bfe3322d87a0aeb6d40c902e473b91336a439dfac7e0e817a3978ad95b6583f07d9176f9e520a4fd11ac158a8f51d1012cbe8344ecb5bf4e81a8a5e00ee4e3edf3d66652e61fc56b1e8d71765486de4b7f802db8f10bf074fd207b5e933f4d02091ccd16fefe8ccf2e2e6e4feb487c9c43e311a33ec49adafe05da42685bbe4aa9e578e34b54dcfd1c795d6d3a04cc88085504aafb3d624fa7845a7fdb2d940b8370cfec5f6ee8c6604ada6ec88bba256584f049076476224a7777b67d04f09bfbe7366d5703382ce66642f94fd4cd5a6b3ddf66245514e1b976b1d4168361ab42f1bc5a103467e4225716042556a1d128e0c87ec1370df9e7f10e23b99c0a203ad9f35a8299e1d365fe3c35dc0e639aabbe5e3a06581dbad5be30e4d591ff16a74a4b29a066fe6d26adce8caec90688063fc3f21ef8ff09e8de081bc9528b39c7779107bfe0c52326c1d913e9c9a3cc9bde78e475944bd927923e9d3c70a48b608c95d3e6293e14d6378429de2051171bd75974afb3fe63f59d988e4e3592f473cd186b864fce54e8ebe7212dc12a630ac0fdbd4d416e4064549fd1683cfa3e43330b717de74222a5dc20affda36e381f36f7a4ba90d82425a22a179f19f400417d5daf3072ddcde25f25f429e13550608229a01fbd0b0d549168374f0518e0bfca4919a9b52c7b39f5ea57bdea3447a683891624bdb619459913c6b6ebf4827ee4ade374f83ea6d82127edcdbbda1885a238e0bcac36b70b61e6a5496cc726942c540e01ba3954e297939eb0f9d80c4abb968f6d9ddd92a5110863eac74a47d11dec7d99332c39b4c76678f859</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-wave">
-      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-  </entry>
-  <entry>
     <title>慢车 24：不是没有，是被盖住</title>
     <url>/%E5%B0%8F%E8%AF%B4/8848aace.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>林岫把监听音量拧到七。</p>
@@ -24729,6 +24319,1427 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
         <tag>慢车</tag>
         <tag>小说</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>慢车 25：婚礼</title>
+    <url>/%E5%B0%8F%E8%AF%B4/c9c828fa.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>宴会厅的落地灯亮着，灯罩边缘垂下一圈金穗，正对陈渡的贝斯。</p>
+<p>司仪把卡片翻到背面，扫了一眼，抬起话筒：「下面有请双方父母。新郎父亲先来。」</p>
+<p>那把琴靠在音箱边，电线盘在地上。他俯身插好插头，拨了一下 E 弦。音箱里传出一声闷响，低频震得地毯边缘发颤。</p>
+<p>新郎父亲坐在第一排。他穿一件深灰夹克，袖口磨得发亮。他先看了看儿子，再看新娘。司仪把话筒递给他，他没接，手在桌下摸了一下裤袋。</p>
+<p>林岫站在舞台侧面，怀里抱着两轨录音机。机身用胶带缠着防风毛衣，话筒朝下，线缠在手腕上。</p>
+<p>「我不太会说。」</p>
+<p>「先别录。」陈渡说。</p>
+<p>「您准备了一句话。」司仪说。</p>
+<p>「还没开。」</p>
+<p>「准备了。」</p>
+<p>「等司仪喊交换戒指。」</p>
+<p>台下有人笑。他也笑，仍没接话筒。</p>
+<p>「为什么？」</p>
+<p>「话筒给您。」司仪把话筒往前递。</p>
+<p>「太早。」</p>
+<p>新郎父亲这才接过来。他握住话筒，又像握不住似的换了只手。金属网罩里的底噪轻轻响着。</p>
+<p>林岫把话筒放低，录音机的红灯没亮。她看了一眼前厅，电子屏上放着新郎新娘的名字，字每隔十几秒变一次颜色。</p>
+<p>「今天……」</p>
+<p>「你紧张？」</p>
+<p>他停了三秒。</p>
+<p>「贝斯比这个准。」</p>
+<p>「你们两个，以后有事情就互相说。别等对方猜。」</p>
+<p>陈渡拍了拍琴身。三个旋钮拧到同样的位置，弦距比标准低了半毫米。这把琴上周才换过弦，声音偏亮。</p>
+<p>掌声起来。他把话筒交还，走回座位。</p>
+<p>「你以前在婚礼上弹过？」林岫问。</p>
+<p>新娘母亲坐在第五排。她上台时把一只红包递给司仪。司仪摆手。</p>
+<p>「十九岁。」</p>
+<p>「今天不收这个。」</p>
+<p>「十九岁以后呢？」</p>
+<p>「不是给您的。」新娘母亲说，「是给孩子的。」</p>
+<p>「婚礼不常来。」</p>
+<p>她把红包放到司仪手里，转身便往台下走。司仪低头看了一眼，没有拆。</p>
+<p>前厅传来椅腿拖地的声音。服务员推门，门轴响了两声。宴会厅里的人开始落座。</p>
+<p>「这位妈妈有准备。」</p>
+<p>林岫把录音机塞进帆布包。她今天穿一件灰外套，鞋底沾着宴会厅门口的红地毯毛屑。</p>
+<p>「准备什么？」有人问。</p>
+<p>「三句话在什么位置？」陈渡问。</p>
+<p>「红包。」</p>
+<p>「交换戒指前。」</p>
+<p>笑声起来。司仪把红包交给舞台边的工作人员，拉链响过一声，袋口封上了。</p>
+<p>「前多久？」</p>
+<p>陈渡重新拨了一下低音弦。刚才闷住的四根弦松开，震动从琴桥传到地板。他把手掌贴在音箱边框，震停了。</p>
+<p>「四分钟，也可能七分钟。」</p>
+<p>舞台右侧的落地扇转过来。叶片擦过防护罩，发出规律的沙沙声。它吹动了新娘垂在肩后的头纱。头纱越过她肩膀，碰到新郎的袖口。</p>
+<p>「音乐停了以后？」</p>
+<p>新郎抬了抬胳膊。头纱停住。</p>
+<p>「不全是。新郎试过两次话筒，第一回没插好。」</p>
+<p>司仪说：「请双方父母到台前合照。」</p>
+<p>「第二回呢？」</p>
+<p>两边的椅子挪动。第一排有人把手机举过肩膀。摄影师蹲在花门下面，引导他们把手放在新人肩上。</p>
+<p>「第二回有底噪。十二赫兹的交流声。附近日光灯管没换。」</p>
+<p>「都看镜头。」摄影师说。</p>
+<p>陈渡抬头看了看天花板。宴会厅右边有六组暖光灯，左边三组。靠后门的两排灯管亮度不匀，其中一根闪了两下。</p>
+<p>新郎母亲站得稍远。她把外套领子往上拉了拉。司仪走过去，替她扶正肩上的披巾。</p>
+<p>「那根会跟着话筒底噪走。」</p>
+<p>「您站近一点，不然拍不到。」</p>
+<p>「我知道。」林岫说，「这段我要留着。」</p>
+<p>「拍不到就拍。」她说。</p>
+<p>「可以。」</p>
+<p>摄影师按下快门。机顶的小灯闪了两次。</p>
+<p>主持人在前厅试音。话筒撞到杯壁，碰出三声短响。陈渡把贝斯音量压低两格。</p>
+<p>司仪看了看台上的六个人，拍了拍手：「好，家人先别下去。我们趁这个时间，问两位一个问题。」</p>
+<p>门又开了。几个男人走进来，领口别着花。新郎穿深色西装，胸前的手花占了半个衣襟。他拿起话筒，先看屏幕，再看新娘。</p>
+<p>他从卡片后面抽出一张纸。</p>
+<p>「能听见吗？」</p>
+<p>「不是刚才那些情话。很简单。」</p>
+<p>宴会厅里有人答：「能听见。」</p>
+<p>台下安静下来。</p>
+<p>「再试一次。」</p>
+<p>「你们第一次见对方，觉得对方哪里不像自己想的那样？」</p>
+<p>「能——」</p>
+<p>新娘看着新郎。新郎低头整理袖扣。</p>
+<p>话筒突然啸叫起来。声音从两米高的音箱压下来，刺得人耳朵发疼。新郎把话筒拿远，宴会厅安静了两秒。</p>
+<p>「我以为他话很多。」新娘说。</p>
+<p>陈渡按了贝斯的弦。</p>
+<p>新郎抬头：「我以为她不会喝白酒。」</p>
+<p>音箱里的啸叫停了。</p>
+<p>「谁说的？」司仪问。</p>
+<p>司仪从侧门进来，手里拿着卡片。卡片上贴着两列名字，他走到台边，用指甲压住其中一行。</p>
+<p>「她前两次相亲，都喝白酒。」</p>
+<p>「新郎今天带了十八位伴郎，十八位伴娘。新娘那边二十位。都坐好了吗？」</p>
+<p>台下有人叫：「白酒也有假的。」</p>
+<p>有人喊：「好了。」</p>
+<p>新娘接过话：「第三次见面，他给我倒了一杯水。」</p>
+<p>「好。我们先不急着让两位说情话。」司仪看了看表，「有些话放在嘴上轻，放进日子里就重。」</p>
+<p>「我当时以为他嫌我不会喝。」</p>
+<p>陈渡盯着林岫的包。</p>
+<p>「不是。」新郎说，「我以为你不能喝酒。」</p>
+<p>包上的拉链没合严，录音机露出一角红灯。还没亮。</p>
+<p>司仪看着他们：「那到底为什么倒水？」</p>
+<p>司仪让司仪先退到一边，乐队开始演奏。钢琴在前面，架子鼓在右侧，陈渡坐在阴影里。他把拇指搭在品格上，等鼓手给出四拍。</p>
+<p>新郎说：「服务员倒了酒，她端起来又放下。我以为她不想喝。」</p>
+<p>前奏很俗。</p>
+<p>「所以你换成了水。」</p>
+<p>四小节后，主唱走到话筒前。男声从音箱里出来，唱的是《婚礼进行曲》的改编版。有人在桌边鼓掌，掌声被音乐切碎。</p>
+<p>「嗯。」</p>
+<p>林岫打开包，录音机仍在她手里。她没有开机。</p>
+<p>台下又有人笑。司仪低头看卡片。</p>
+<p>「你不录？」陈渡问。</p>
+<p>「还有一个。」</p>
+<p>「没到。」</p>
+<p>新娘的视线落到舞台边。</p>
+<p>「已经开始了。」</p>
+<p>陈渡顺着她的目光看过去。伴娘站在音箱后面，粉色裙摆被落地扇吹得贴住小腿。她一只手扶着音箱，另一只手放在裙袋上。</p>
+<p>「我问的是你。」</p>
+<p>司仪说：「伴娘今天也辛苦了。戒指交到你手里的时候，你在想什么？」</p>
+<p>「我也不录。」</p>
+<p>伴娘抬起头。</p>
+<p>「为什么？」</p>
+<p>「我在想它沉不沉。」</p>
+<p>「太早。」</p>
+<p>「沉吗？」</p>
+<p>司仪拿着卡片走到台中央。新郎新娘站在花门下面。新娘手里拿着一束白花，花茎缠着白绸。</p>
+<p>「有一点。」伴娘说，「比我想的沉。」</p>
+<p>「接下来，我们请新郎和新娘，走到大家中间。」</p>
+<p>司仪问：「为什么？」</p>
+<p>鼓点停了。</p>
+<p>「因为它一直在我手里。」</p>
+<p>陈渡的右手还搭在弦上，掌根出了汗。他用衣角擦了一下，食指压下去，琴弦只发出极轻的颤音。</p>
+<p>台下没人立刻接话。落地扇转过一圈，防护罩里的风擦出一声细响。</p>
+<p>新郎先走了两步。他右手伸向新娘，伸到一半，改为替她扶了一下衣领。</p>
+<p>伴娘又说：「不对。可能不是重。是我怕掉了，一直攥着。」</p>
+<p>「谢谢你。」新娘说。</p>
+<p>司仪把卡片往桌上一放：「这个答案留着。」</p>
+<p>「不用。」</p>
+<p>陈渡用拇指拨了一下 E 弦。毛刺刮过指腹，留下一道浅白的痕。</p>
+<p>司仪说：「新郎，你今天准备了什么？」</p>
+<p>伴娘从音箱后面走出来。她走到台边，把手从裙袋里抽出来。掌心里有一道红色压痕。</p>
+<p>「戒指。」</p>
+<p>「给你。」司仪把首饰盒推给她。</p>
+<p>「戒指不一定要现在说。还有别的吗？」</p>
+<p>伴娘拿起戒指。黑色绒布凹下去一块。她没有立刻交出去，先用拇指擦了擦钻石边缘。</p>
+<p>新郎看了看桌上的人。二十八桌，坐得很满。靠门口有人把手机竖起来。</p>
+<p>「有一粒灰。」她说。</p>
+<p>「我不太会说。」</p>
+<p>台下有人凑近看。</p>
+<p>「今天很多人都不太会说。说得少，不是没有。说一句就行。」</p>
+<p>伴娘擦完，把戒指放回盒子中央。戒托仍有点歪。她调了两次，才让它立稳。</p>
+<p>新郎拿起话筒。话筒暂时没接稳，碰到胸前的花，发出一下闷响。</p>
+<p>「刚才不是说要还吗？」司仪说。</p>
+<p>「我今天……」</p>
+<p>「还了才算。」</p>
+<p>台下有人笑。</p>
+<p>司仪笑了一声：「现在算还了。」</p>
+<p>他停住，把话筒往下压了两厘米。</p>
+<p>林岫把录音机的电平旋钮拨回去一格。屏幕上原本跳动的数字停在四十七。她看了一眼时间，按下暂停键。</p>
+<p>「我今天很高兴。」</p>
+<p>「录到多少？」陈渡问。</p>
+<p>掌声起来。</p>
+<p>「两分十九秒。」</p>
+<p>林岫的拇指停在录音键上，没有按。</p>
+<p>「中间停过？」</p>
+<p>司仪接过话：「新娘呢？新娘今天准备了什么？」</p>
+<p>「没有。」</p>
+<p>新娘把花交给旁边的伴娘。</p>
+<p>「刚才鼓手掉拍。」</p>
+<p>伴娘接得很稳。她穿浅粉色裙子，胸前别着白花，手里多了一只透明的首饰盒。</p>
+<p>「也录了。」</p>
+<p>「一句真心话。」新娘说。</p>
+<p>「观众笑声呢？」</p>
+<p>「那就等婚戒交换完再说。」司仪说，「这是今天的规矩。先把戒指交到该去的地方。」</p>
+<p>「都在。」</p>
+<p>陈渡听见自己的贝斯线里有一丝杂音。</p>
+<p>陈渡看了眼她怀里的机器：「不剪？」</p>
+<p>不是音箱的底噪。</p>
+<p>「不剪。」</p>
+<p>他把音量旋钮向左转了半格，杂音还在。右手食指在品格上滑了一下，碰到一根细小的毛刺。</p>
+<p>鼓手从侧幕探出半张脸。他朝陈渡招手。</p>
+<p>林岫看向他的手。</p>
+<p>「陈哥，借个扳手。」</p>
+<p>「弦毛了？」</p>
+<p>「做什么？」</p>
+<p>「琴的。」</p>
+<p>「固定话筒杆。刚才晃了。」</p>
+<p>「要不要换？」</p>
+<p>「螺丝松了？」</p>
+<p>「来不及。」</p>
+<p>「底座松。刚才第二遍压下来，杆子往左偏了半厘米。」</p>
+<p>司仪招手，伴娘走到新娘身边。</p>
+<p>陈渡从琴盒侧袋取出一把六角扳手，起身过去。话筒杆的底座压在舞台边沿，下面垫着一块折叠毛巾。他蹲下，用扳手顺时针拧了一圈。</p>
+<p>首饰盒打开。灯光照到里面，一枚钻戒竖在黑色绒布上。戒托很窄，钻石不高，转动时闪出断续的白点。</p>
+<p>「这颗不用动。」鼓手指着另一颗，「那颗动了会滑牙。」</p>
+<p>陈渡看了一眼。</p>
+<p>陈渡松开手，摸了一下顶部的螺帽。螺纹里卡着一小片黑色胶屑。</p>
+<p>只一眼。</p>
+<p>「这里卡住了。」</p>
+<p>他的左手按在品格上，拇指压住了 E 弦。指腹停了不到半秒，又松开。</p>
+<p>「什么？」</p>
+<p>贝斯发出一个错音。</p>
+<p>「胶。」</p>
+<p>不是跑调。</p>
+<p>他用指甲挑出来，扔进垃圾桶。话筒杆不再往左偏。鼓手伸手推了一下，杆身回正。</p>
+<p>那个音比该落的位置高了半拍，短促地撞在宴会厅后墙上，又被音箱推回来。</p>
+<p>「行。」</p>
+<p>第二排有人抬头。</p>
+<p>陈渡把扳手收回去。鼓手看了一眼他琴盒里的备用弦。</p>
+<p>林岫也听见了。她看陈渡的手，没有问。</p>
+<p>「你真不换？」</p>
+<p>司仪说：「新娘有话要说。」</p>
+<p>「弹完换。」</p>
+<p>新娘从伴娘手里拿起话筒。</p>
+<p>「那根再断呢？」</p>
+<p>「我今天……」</p>
+<p>「断了再换。」</p>
+<p>她低头看花门上的绸带。</p>
+<p>鼓手笑了一声，转身回架子后面。陈渡听见他用节拍器敲了两下。摆臂还是往左偏。他又敲了三下，停住。</p>
+<p>「我有话，但怕说不好。」</p>
+<p>陈渡在贝斯旁坐下，把琴架上的旋钮松开一点。刚才为了压住话筒啸叫，他把高音切得太狠。现在再拧回去，舞台音量会高一截。</p>
+<p>「说不好也没关系。今天的人都不打分。」</p>
+<p>他没动。</p>
+<p>台下有人笑。</p>
+<p>司仪开始请伴郎和伴娘说话。十八个人排成一排，话筒只够递给最前面的四个。第一个说新郎大学时打呼。第二个说新娘吃辣能吃第三层。第三个还没说完，司仪就把话筒收了。</p>
+<p>新娘笑了一下，把话筒举高。</p>
+<p>「到时间。」司仪说，「我们还有最后一项。」</p>
+<p>「这枚戒指，是我的外婆给我的。」</p>
+<p>他翻开卡片后面。</p>
+<p>司仪说：「她刚才说，戒指是她外婆给她的。」</p>
+<p>「请今天到场的所有工作人员，到台上来。」</p>
+<p>新娘说：「她让我自己决定什么时候戴。」</p>
+<p>乐队这边有人停下了手里的动作。陈渡身旁，钢琴手抬起头。</p>
+<p>「很好。那你今天决定了吗？」</p>
+<p>「工作人员？」鼓手问。</p>
+<p>「还没有。」</p>
+<p>司仪说：「摄影师、灯光、音响，还有乐队老师。都上来合张影。」</p>
+<p>「新郎，你现在有什么想说的吗？」</p>
+<p>钢琴手没动。陈渡也没动。</p>
+<p>新郎站在那里，手里的话筒垂在身侧。他盯着首饰盒。</p>
+<p>司仪看下来：「音响老师呢？」</p>
+<p>「我第一次见它的时候，她说这是她算命得来的。」</p>
+<p>鼓手指了指陈渡，又指了指自己。</p>
+<p>台下更静了。</p>
+<p>「他管贝斯，我管鼓。」</p>
+<p>「她说是算命先生给的。让她一直戴着，碰到对的人就摘下来。」</p>
+<p>「那都算。」</p>
+<p>司仪看向新娘：「今天摘吗？」</p>
+<p>鼓手把鼓槌放下。陈渡把 E 弦上的手移开，没从琴凳上起身。</p>
+<p>新娘没有回答。</p>
+<p>司仪又说：「新郎也要有伴郎。新娘那边二十位都到了？」</p>
+<p>新郎把手伸向首饰盒。伴娘把盒子递给他。戒指从黑色绒布上被拿起，灯光沿戒托滑过去。</p>
+<p>台下有人喊：「到了！」</p>
+<p>他的手指夹住戒指。</p>
+<p>「那新郎这边十八位，少一个啊。」</p>
+<p>「我不太信算命。」新郎说。</p>
+<p>没人接话。</p>
+<p>「那你现在信什么？」司仪问。</p>
+<p>司仪朝第一排看：「你们这边谁还没上台？」</p>
+<p>「我信她今天愿意站在这里。」</p>
+<p>有人指向靠通道的位置：「老周在那儿。」</p>
+<p>掌声起来。</p>
+<p>一个五十多岁的男人从桌边站起来。他穿着深色夹克，头发贴在额头上，手里拿着一把拆开的万用表。</p>
+<p>陈渡没有看他。他盯着贝斯的弦。E 弦毛刺在灯下发白，像一根停住的针。</p>
+<p>「老周是修音响的？」司仪问。</p>
+<p>他用指甲刮了一下。</p>
+<p>「不是。他修东西的。」</p>
+<p>毛刺没有断。</p>
+<p>男人走到台边，把万用表合上。</p>
+<p>婚礼进行曲重新响起来。</p>
+<p>「我的表坏了。」</p>
+<p>钢琴先起，鼓手跟进。陈渡在第四拍落下。E 弦响过以后，他用中指和无名指压住它，声音变闷。</p>
+<p>司仪说：「今天不修东西。」</p>
+<p>乐队演奏到一半，新娘忽然侧过身，对伴娘说：「这个你先帮我拿着。」</p>
+<p>「我知道。」男人说，「我来合照。」</p>
+<p>伴娘摊开手。</p>
+<p>陈渡认得他。几个月前，这人在县城里找过他，手里拿着一只从婚庆车队拿回来的无线麦。接收机主板上有一道焊裂。</p>
+<p>新郎把戒指放进她掌心。</p>
+<p>男人站到最后一排。司仪数人数，数到四十八，抬手让摄影师拍。</p>
+<p>「等会儿再给你。」他说。</p>
+<p>快门闪了三次。</p>
+<p>「好。」伴娘合拢手指，「我先拿着。」</p>
+<p>拍完，男人没有马上走。他弯腰拾起舞台边一只掉落的电池，放到桌上。</p>
+<p>林岫按下了录音键。</p>
+<p>「你哪个队的？」他问陈渡。</p>
+<p>红灯亮着。</p>
+<p>「临时。」</p>
+<p>陈渡看见林岫的嘴唇动了一下。</p>
+<p>「今天多少钱？」</p>
+<p>「多少？」她低声问。</p>
+<p>「半天。」</p>
+<p>「不到四十秒。」</p>
+<p>「给不给盒饭？」</p>
+<p>「后面还有多少？」</p>
+<p>「给。」</p>
+<p>「三句。」</p>
+<p>男人点点头，把万用表塞进夹克内侧。他又问鼓手：「刚才那个底座，你用了多少垫的？」</p>
+<p>「三句什么？」</p>
+<p>「一条毛巾。」</p>
+<p>「不知道。」</p>
+<p>「不够。明天会滑。」</p>
+<p>「林岫把话筒朝台前移了半尺。录音电平在机器的小屏上跳到六十一，又落回五十三。</p>
+<p>他从口袋里摸出一小块灰色橡胶片，递过去。</p>
+<p>「她不会剪。」陈渡说。</p>
+<p>「垫这个。三角孔朝里。」</p>
+<p>「当然。」</p>
+<p>鼓手接过来，捏了一下厚度。</p>
+<p>「你也不许剪。」</p>
+<p>「行。」</p>
+<p>「原声。」</p>
+<p>司仪在台中央重新拿起话筒：「好，下面是新人交换誓言。新郎先——」</p>
+<p>伴娘把首饰盒合上，夹在臂弯里。戒指还在她手里。她站得离陈渡不远，手背上的筋随着音乐动。</p>
+<p>音响控制台旁忽然响了一下短促的电流声。</p>
+<p>新郎在另一边说话。司仪让他讲第一次见新娘的事。</p>
+<p>不是啸叫。也不是底噪。</p>
+<p>「在一家修手机的店。」新郎说。</p>
+<p>那声音从话筒线插头与插座之间挤出来，脆得像薄铁片被折了一次。</p>
+<p>台下有人起哄。</p>
+<p>陈渡回头看控制台。</p>
+<p>「她来修手机，我修不了。手机拿走了，人没走。」</p>
+<p>插头松了半圈。负责调音的人正弯腰捡手机，没扶住。</p>
+<p>笑声更大。</p>
+<p>陈渡走过去，把插头重新压紧，再用另一只手扳住话筒杆。电流声停了。</p>
+<p>陈渡把贝斯音量又压低一格。</p>
+<p>他回到琴边时，司仪已经念完誓词。</p>
+<p>他看着伴娘的手。</p>
+<p>「我是否愿意……」</p>
+<p>那枚戒指被她握在掌心。戒托抵着生命线，钻石朝外。她每跟着音乐晃一下，钻石就在指缝间闪一次。</p>
+<p>新娘握着话筒，没有立刻重复。</p>
+<p>他想起林岫在火车上说过的那三句话。</p>
+<p>话筒里传出很轻的一声呼吸。</p>
+<p>第一句是新娘说的。</p>
+<p>林岫的手停在机器上方。她没有按录音。屏幕上的时间仍停在两分十九秒。</p>
+<p>第二句是伴娘说的。</p>
+<p>司仪等着。</p>
+<p>第三句来自算命先生。</p>
+<p>台下有人挪动椅子。椅脚在地毯上磨出一声短响。</p>
+<p>林岫没有告诉他原话。她只说三句都短。她还说，录下的时候，宴会厅里没人注意她。</p>
+<p>新娘把话筒抬高了一点。</p>
+<p>当时陈渡问她，戒指在哪一句。</p>
+<p>「我愿意。」</p>
+<p>林岫说：「不在三句里。」</p>
+<p>他没再问。</p>
+<p>现在那枚戒指就在十几米外。</p>
+<p>陈渡的右手在品格上滑了一下。E 弦发出闷响，音高又偏了。</p>
+<p>鼓手从侧面看他。</p>
+<p>「你弦有问题。」</p>
+<p>「有点毛。」</p>
+<p>「换一根？」</p>
+<p>「下首换。」</p>
+<p>「再偏就真难听了。」</p>
+<p>「能用就行。」</p>
+<p>林岫举起录音机看了一眼时间。她没有笑。</p>
+<p>司仪让伴娘也说两句。伴娘把首饰盒放到旁边的桌上，手掌合着戒指。</p>
+<p>「你说两句。」司仪说。</p>
+<p>「说什么？」</p>
+<p>「说新郎新娘。」</p>
+<p>伴娘想了几秒。</p>
+<p>「他们两个都是慢热的人。」</p>
+<p>台下有人问：「有多慢？」</p>
+<p>「认识一年才吃饭。」</p>
+<p>笑声响起。</p>
+<p>「吃了几次？」</p>
+<p>「三次。」</p>
+<p>伴娘说完，低头看了一眼手心。她把手收回去，放到裙袋上。</p>
+<p>司仪看着她：「你手里还有东西吧？」</p>
+<p>伴娘没动。</p>
+<p>「刚才新郎把戒指给你了。」司仪说，「你是不是该还回去了？」</p>
+<p>「马上。」</p>
+<p>「现在吧。仪式还没结束。」</p>
+<p>伴娘走到新郎面前。首饰盒重新打开，她把手伸进去。</p>
+<p>戒指落在黑色绒布上，发出很轻的一声。</p>
+<p>全场的人都听见了。</p>
+<p>只有陈渡的位置离舞台近。</p>
+<p>那声音只有指甲盖大小，碰在盒壁上，却被贝斯的低频托住，送到他耳朵里。</p>
+<p>他想起林岫说过，三句话之后，戒指换了一个人保管。</p>
+<p>不是戒指说了话。</p>
+<p>是人把它交出去。</p>
+<p>司仪开始让新人宣读誓言。</p>
+<p>陈渡重新看向琴弦。毛刺还在。E 弦每振一次，亮点便在灯下抖一下。</p>
+<p>「戒指交换完毕。」司仪说，「现在请新郎说几句。」</p>
+<p>新郎拿起话筒。</p>
+<p>这一次话筒接得很稳。没有碰花，没有底噪。</p>
+<p>「我这辈子最不会的事——」</p>
+<p>台下有人低声聊天。杯子碰到碟子，盘子边缘响了两声。</p>
+<p>「就是说‘我以后会怎样’。」</p>
+<p>陈渡的左手压住了四根弦。</p>
+<p>琴弦全部闷住。</p>
+<p>宴会厅里的音乐还在继续。鼓手抬手落下，脚踩得踏板一沉。陈渡的右手悬在弦上，没有再拨。</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>慢车</tag>
+        <tag>小说</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>慢车 26：算命</title>
+    <url>/%E5%B0%8F%E8%AF%B4/f9cf1071.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>酒店门口的彩灯还在闪。</p>
+<p>两块灯布搭在三轮车篷上，一边亮红，一边亮绿。婚宴散席后，客人从玻璃门里出来，手里攥着空杯和打包盒。门童站在台阶上收空瓶，每收一个，就往铁筐里扔一下。</p>
+<p>陈渡站在门厅边，把吉他背带从肩上取下来。</p>
+<p>琴颈上有一道新裂痕。刚才返场时，架子鼓的落地镲架歪了，撞在琴身上。声音不重，漆掉了一小块，摸上去发涩。</p>
+<p>酒店经理从里面追出来。</p>
+<p>「陈老师，今天辛苦了。」</p>
+<p>「琴借你三天。」陈渡把背带缠到手腕上，「第三天还的时候，琴身不能有新的凹痕。」</p>
+<p>「刚才那个不是凹痕。」</p>
+<p>「三毫米以内。」</p>
+<p>经理低头看了一眼，没看清，又把烟叼回嘴里。</p>
+<p>门口台阶下有一道排水沟，沟盖缺了两块。酒水从门里端出来时，杯底会漏下几滴，落到沟盖上，颜色很快看不清。</p>
+<p>「尾款已经转了。二百八十。」</p>
+<p>「三百。」</p>
+<p>「合同上写的是二百八。」</p>
+<p>「合同写的是一台能用三个月的琴。」陈渡把裂痕对着灯看了看，「刚才返场加了三首，琴颈受力变了。」</p>
+<p>经理还想说什么，手机响了。他低头看屏幕，转身往门里走，走了两步又回头。</p>
+<p>「明晚还有一场，临时缺贝斯。」</p>
+<p>「几点。」</p>
+<p>「七点半开席，八点上台。」</p>
+<p>「我去。」</p>
+<p>经理点了下头，走了。</p>
+<p>算命先生从桌下摸出一块抹布，压了压桌面。</p>
+<p>陈渡把琴装进软袋，拉上拉链。袋口的金属扣碰在门框上，声音很脆。</p>
+<p>台阶下面摆着一个算命摊。</p>
+<p>一张折叠桌，两张塑料凳。桌上铺着红布，红布正中压着一块硬纸板。纸板用黑色记号笔写着三行字。</p>
+<p>「学业」。</p>
+<p>「婚姻」。</p>
+<p>「财运」。</p>
+<p>字写得很大，占满纸板。纸板边上裂了一道口，用透明胶粘过，胶带已经发黄。</p>
+<p>摊主六十多岁，穿一件洗褪色的灰夹克。头发梳得整齐，面前摆着铜钱、签筒和一只旧铝杯。他正低头整理签纸，听见脚步声，抬起眼。</p>
+<p>「小伙子，抽个签。」</p>
+<p>陈渡把琴袋往肩上提了提。</p>
+<p>「结婚三十七桌，少两桌。」他说，「红包收了六千八。」</p>
+<p>「我不是来算命的。」</p>
+<p>算命先生的手停在签筒上。</p>
+<p>他看了陈渡两秒，又看了看他肩上的琴袋。</p>
+<p>「坐。」</p>
+<p>陈渡没动。</p>
+<p>「十块钱一签。」算命先生把一枚铜钱放到桌上，「不准不要钱。」</p>
+<p>婚宴的人还在往外走。有人把喜糖盒碰掉，塑料盖在台阶上滚了两圈。门童弯腰去捡，里面有人喊车。</p>
+<p>陈渡在旁边的塑料凳上坐下了。</p>
+<p>琴袋搁在膝前。他把拉链往上拉了半寸，遮住那道新裂的边缘。</p>
+<p>算命先生把铜钱推过来。</p>
+<p>陈渡没接话。</p>
+<p>「三个字。」</p>
+<p>陈渡低头看那枚铜钱。字口磨平了，边缘发黑。</p>
+<p>「什么字。」</p>
+<p>「你心里先想一件事。」</p>
+<p>「想什么。」</p>
+<p>「你写过的字。」</p>
+<p>陈渡抬起眼。</p>
+<p>算命先生没看他。他从红布下面抽出一支黑色签字笔，在一张白纸上画了一条横线。</p>
+<p>「唱不出来。」</p>
+<p>陈渡的右手滑了一下。</p>
+<p>「新郎原先在服装厂，厂子前年关了。新娘开药店，店是租的。」算命先生把签纸按日期排开，「来问的人，十个里有七个不说自己的事。」</p>
+<p>铜钱从桌沿掉下去。他伸手去接，没接住。铜钱碰到折叠桌腿，又落到地上，滚进一辆电动车底下。</p>
+<p>算命先生弯腰去够，没够着。他用鞋尖拨了拨，铜钱仍卡在轮架里面。</p>
+<p>「学过唱歌吗。」他问。</p>
+<p>「不会。」</p>
+<p>「写词吗。」</p>
+<p>陈渡看着那块硬纸板。</p>
+<p>「婚庆乐队都写？」</p>
+<p>「今天。」算命先生说，「我给三个乐队写过。收二百。词不保证有人唱。」</p>
+<p>「你不会唱。」</p>
+<p>「我不会唱。」陈渡说。</p>
+<p>酒店经理隔着玻璃门喊：「师傅，停车场那边留个位置，明天还摆。」</p>
+<p>算命先生直起腰，从签筒里抽出一根竹签。</p>
+<p>「你不是不会唱。」</p>
+<p>他把竹签平放在红布上，签面朝下。</p>
+<p>「唱给了别人听。」</p>
+<p>门里传出一声碰杯。</p>
+<p>玻璃门上的反光晃了一下。陈渡看见自己的琴袋，也看见塑料桌上那块硬纸板。纸板上的「财运」两个字，正好压在铜钱留下的圆印上。</p>
+<p>算命先生把签筒盖上。</p>
+<p>「婚姻怎么样。」旁边有人问。</p>
+<p>「八字。」算命先生转头，「婚事可以定。八月十二，宜动土。」</p>
+<p>那人从手提袋里拿出钱。算命先生接过去，夹在红布下面，另取了一张纸。</p>
+<p>「留了。」算命先生扬了扬手里的铜钱，「正对着女厕。」</p>
+<p>陈渡仍坐在那里。</p>
+<p>「刚才那句。」他说，「你怎么知道。」</p>
+<p>算命先生低头写字，没抬头。</p>
+<p>「你坐下来说的第一句话，是什么。」</p>
+<p>陈渡没答。</p>
+<p>算命先生把写好的纸递给新来的人。那人看完，折好，放进西装内袋。</p>
+<p>「你说的是『我不是来算命的』。」算命先生说。</p>
+<p>陈渡看着他的嘴。</p>
+<p>「你坐下先说不信，后面才容易信。」算命先生把铜钱从桌下捡起来，擦掉泥，放回红布中央，「人拿钱来，不说自己想什么。可你不一样。你先把自己的来路堵住。」</p>
+<p>「所以你说我唱给别人听。」</p>
+<p>「女的问得多。」</p>
+<p>「我说了吗。」</p>
+<p>「说了。」</p>
+<p>算命先生把签筒往旁边挪了挪。</p>
+<p>「我说的是，唱给别人听。你听见的是另一句。」</p>
+<p>陈渡的手还压在琴袋上。塑料布被掌心的汗浸出一小块深色。</p>
+<p>「我确实不会唱。」</p>
+<p>「我没说你不会。」</p>
+<p>「我没学过。」</p>
+<p>「我也没说你学过。」</p>
+<p>算命先生低头去收白纸。桌上摊着的不是签纸，是几张旧广告纸，背面印着楼盘和门诊电话。</p>
+<p>「男的也问。想知道自己是不是被瞒了。」</p>
+<p>「你今晚唱了。」</p>
+<p>「我弹吉他。」</p>
+<p>「谁弹的。」</p>
+<p>「我。」</p>
+<p>「弹的时候，嘴动没动。」</p>
+<p>陈渡没说话。</p>
+<p>算命先生等了一会儿，伸手指了指门厅。</p>
+<p>「刚才第二首，台上那个唱歌的，每唱一句，旁边弹琴的嘴都跟着动。」</p>
+<p>「那是默唱。」</p>
+<p>「默唱也算。」</p>
+<p>陈渡把侧袋里的名片抽出来。酒店名下面印着后台电话，号码后两位被油墨盖住了一半。他用拇指擦了一下，没擦掉。</p>
+<p>「不算。」</p>
+<p>「怎么不算。」</p>
+<p>「没有声音。」</p>
+<p>算命先生抬起手，敲了一下硬纸板。</p>
+<p>「财运」两个字跟着颤了颤。</p>
+<p>「你写的字，唱不出来。」</p>
+<p>这一次，他的语速慢下来。</p>
+<p>「字是你写的。人唱了。歌有了。你站在旁边，嘴动。你不占那一句。」</p>
+<p>陈渡看着桌上的红布。</p>
+<p>红布边角缝着一道黑线，针脚不匀。桌腿一长一短，垫着一张折叠的硬纸板。</p>
+<p>「明晚几点到。」</p>
+<p>算命先生把铜钱弹起来。铜钱立了半秒，倒下去。</p>
+<p>「三个字。」</p>
+<p>「什么。」</p>
+<p>「闭嘴。听完。」</p>
+<p>陈渡靠回塑料凳。</p>
+<p>酒店门口又有人出来。女孩抱着没吃完的蛋糕，母亲给她擦嘴。一个男人站在台阶下打电话，说新车停在西边，导航还剩十二分钟。</p>
+<p>算命先生把签筒往他面前推了推。</p>
+<p>「抽。」</p>
+<p>「不信。」</p>
+<p>「我也没让你信。」</p>
+<p>「七点。」</p>
+<p>「十块一签？」</p>
+<p>「十块。」算命先生说，「十块买我坐在这儿陪你说话。你要是不坐，刚才那句话我收回去。」</p>
+<p>陈渡摸出手机。</p>
+<p>屏幕上有三个未接来电，都是陌生号码。还有一条运营商短信，提醒本月套餐剩余流量一点二 GB。</p>
+<p>他点开支付页面，转了十块。</p>
+<p>算命先生听见提示音，从红布下面拿出收款码。</p>
+<p>「不用给我。」陈渡说，「转你了。」</p>
+<p>「那就再转十块。」</p>
+<p>「为什么。」</p>
+<p>「刚才那句是十块。这十块是你不信。」</p>
+<p>「六点五十。」</p>
+<p>陈渡又转了十块。</p>
+<p>算命先生把两张小票压在铜钱下面。</p>
+<p>「你想问什么。」</p>
+<p>「我想问歌。」</p>
+<p>「谁的歌。」</p>
+<p>「我的。」</p>
+<p>「唱红的那首？」</p>
+<p>陈渡抬起眼。</p>
+<p>算命先生把签筒抱在怀里。</p>
+<p>「你说的是二十二岁那首。」</p>
+<p>算命先生把红布角折起来。</p>
+<p>酒店门口有辆电动三轮倒车警报响了三声。门童跑过去扶车，车上的空酒箱倒下来，玻璃碎在水泥地上。</p>
+<p>陈渡站起一半，又坐了回去。</p>
+<p>「你听过？」</p>
+<p>「没听过。」</p>
+<p>「你怎么知道二十二岁。」</p>
+<p>「你写的字，唱不出来。」算命先生指了指桌上的硬纸板，「能在台上唱出来的歌，不算唱不出来。你写它的时候，它就没打算从你嘴里出来。」</p>
+<p>「我没让它唱。」</p>
+<p>「给别人唱。」</p>
+<p>「别人愿意唱。」</p>
+<p>「你写一句，等一个人唱。」</p>
+<p>「你问的是明晚，还是刚才那首。」</p>
+<p>陈渡没说话。</p>
+<p>算命先生用指甲刮了刮签筒边缘。</p>
+<p>「唱歌的人一开口，你就觉得事情成了。词是你的，声音是别人的。别人拿走以后，你就剩一个空壳。」</p>
+<p>「磁带里也是。」</p>
+<p>算命先生抬起头。</p>
+<p>「什么磁带。」</p>
+<p>「录不进我的声音。」陈渡说，「能录别的。设备改过七年。」</p>
+<p>算命先生把签筒放下。</p>
+<p>「所以你改的不是磁带。」</p>
+<p>「是拾音线路。」</p>
+<p>「明晚。」</p>
+<p>「线路不让你唱。」</p>
+<p>「有个元件。」</p>
+<p>「哪个。」</p>
+<p>「不能每次都换。」</p>
+<p>「每次换好了吗。」</p>
+<p>陈渡看着那张十块钱的小票。</p>
+<p>「没有。」</p>
+<p>算命先生点了点头，像是听见一个早就量过的尺寸。</p>
+<p>「你试了多少次。」</p>
+<p>「几百次。」</p>
+<p>「那就六点五十。」</p>
+<p>「有用吗。」</p>
+<p>「有。」陈渡说，「每次都能录到别人。」</p>
+<p>算命先生没笑。</p>
+<p>「你是修机器的。」</p>
+<p>「嗯。」</p>
+<p>「东西坏了，你会修到什么程度。」</p>
+<p>「能出声。」</p>
+<p>「出声以后呢。」</p>
+<p>陈渡抬手碰了碰琴袋的拉链。</p>
+<p>金属扣在指腹上压出一道白印。</p>
+<p>门童抱着一捆空杯从桌边经过，杯口朝下，雨水似的滴了几滴在红布上。算命先生把抹布推过去，先擦了铜钱，再擦桌面。</p>
+<p>「能出声就行。」</p>
+<p>算命先生靠回椅背。</p>
+<p>「人也一样。」</p>
+<p>陈渡把琴袋重新放到地上。</p>
+<p>「我不是来找这个答案的。」</p>
+<p>「那你来干什么。」</p>
+<p>「你刚才说错了一句。」</p>
+<p>「哪句。」</p>
+<p>「我不知道哪句。」</p>
+<p>算命先生看着他，随后把桌上的铜钱收进签筒。</p>
+<p>「你手洗过没有。」陈渡问。</p>
+<p>「你会知道的。」</p>
+<p>酒店经理又从门里出来。他看见陈渡，先看琴袋，再看算命摊。</p>
+<p>「还没走？」</p>
+<p>「结了。」</p>
+<p>「车在哪儿？」</p>
+<p>「我走路。」</p>
+<p>经理皱了下眉，从口袋里掏出一张名片。</p>
+<p>「明晚七点来后台。贝斯手腰伤，别让他抬音箱。」</p>
+<p>陈渡接过名片，放进琴袋侧袋。</p>
+<p>「知道了。」</p>
+<p>「洗了。」</p>
+<p>经理转身去拦一辆出租车。算命先生朝他背影喊了一声。</p>
+<p>「老板，你今天结婚还是离婚？」</p>
+<p>「结。」</p>
+<p>「几桌？」</p>
+<p>「二十四。」</p>
+<p>「新郎多大？」</p>
+<p>「二十七。」</p>
+<p>「你晚婚。三十以后再办一次。」</p>
+<p>经理摆手让他闭嘴，拉开车门钻进去。</p>
+<p>算命先生望着出租车尾灯。</p>
+<p>「用什么。」</p>
+<p>「算错的。」他说。</p>
+<p>陈渡看他。</p>
+<p>「新郎没晚婚。」</p>
+<p>「我也没说全对。」</p>
+<p>陈渡背上琴袋。</p>
+<p>硬纸板上的「学业、婚姻、财运」仍朝着街边。纸板裂口上的透明胶被风吹起一角。</p>
+<p>「你刚才说二十二岁。」陈渡说。</p>
+<p>「嗯。」</p>
+<p>「你怎么知道。」</p>
+<p>「我不知道。」</p>
+<p>「洗手间那盆。水龙头开左边有热水，右边只有冷水。」算命先生把手翻过来给他看，「指甲缝里还有泡沫。」</p>
+<p>「刚才你说了。」</p>
+<p>「你听见的。」</p>
+<p>算命先生把折叠桌往门廊下推了推，避开门口来往的人。</p>
+<p>「你今天说了三句话。第一句是不信。第二句是不会唱。第三句是磁带录不进去。」他竖起三根手指，「二十二岁不在里面。」</p>
+<p>「你猜的。」</p>
+<p>「猜对了。」</p>
+<p>「我今年三十四。」</p>
+<p>「我知道。」</p>
+<p>「那你猜二十二岁。」</p>
+<p>「二十二岁的人，第一次把字交出去，最怕别人问是谁写的。」</p>
+<p>陈渡看了一眼。</p>
+<p>陈渡的手指收紧了琴袋带子。</p>
+<p>算命先生没看他。他弯腰从桌下拿出一只铁皮盒，打开，里面全是折过的纸条。</p>
+<p>「有个人把戒指落在这里。」</p>
+<p>「跟我没关系。」</p>
+<p>「钻戒。男款。六号。」</p>
+<p>陈渡站着没动。</p>
+<p>算命先生用两根手指捻起那枚戒指，放在硬纸板边缘。</p>
+<p>「内圈有字。」</p>
+<p>「什么字。」</p>
+<p>「看不清。」</p>
+<p>「酒席上的杯子别用冷水冲。热水管在热水器下面第二个阀。」</p>
+<p>「你刚才说六号。」</p>
+<p>「大小是六号。」</p>
+<p>「内圈刻了什么。」</p>
+<p>「你拿去看看。」</p>
+<p>陈渡伸手拿起戒指。</p>
+<p>戒指很轻。托住它时，钻石边缘在灯下闪了一下。内圈刻着两个字，不是名字。</p>
+<p>「慢车」。</p>
+<p>陈渡把戒指放回硬纸板。</p>
+<p>算命先生用红布盖住它。</p>
+<p>「这四个字是谁写的。」</p>
+<p>算命先生把手收回去。</p>
+<p>「不知道。」</p>
+<p>「你看，别人唱你的歌，戒指上刻别人的字。你分不清很正常。」</p>
+<p>陈渡盯着红布下面凸起的轮廓。</p>
+<p>「你不是算命的。」</p>
+<p>「我当然是。」算命先生拍了拍硬纸板，「学业、婚姻、财运。都算不准，但都有人买。」</p>
+<p>「你怎么知道那句话。」</p>
+<p>「我说过，你坐下先说自己不信。」</p>
+<p>「我问的是『你写的字，唱不出来』。」</p>
+<p>算命先生把签筒抱起来。</p>
+<p>「因为你的字都朝外，手却压在下面。」</p>
+<p>「你还管这个。」</p>
+<p>陈渡低头。</p>
+<p>他的左手按在琴袋上。右手放在桌边，五指收得很紧。</p>
+<p>「我写的字？」</p>
+<p>「你身上有墨水味。」</p>
+<p>「吉他音箱上也有。」</p>
+<p>「墨水会进袖口。」</p>
+<p>陈渡的左袖口上沾着一小块蓝黑墨迹。婚礼签到台用的是蓝黑色墨水，签字笔漏过一次，他拿纸巾擦过，没擦净。</p>
+<p>算命先生抬起下巴。</p>
+<p>「还有铅灰。旧谱用的铅笔。」</p>
+<p>陈渡的琴袋侧袋里确实插着一张折过的旧谱纸。纸角磨白，上面有他前几天改的词。</p>
+<p>「杯子裂了，割手。」</p>
+<p>「这也能看出来？」</p>
+<p>「你走路时不让纸掉出来。弹琴时也不让。」算命先生说，「字写完了，还要带着。」</p>
+<p>陈渡把手从琴袋上拿开。</p>
+<p>「算命也看这些？」</p>
+<p>「算人。」</p>
+<p>「我不是来算命的。」</p>
+<p>算命先生笑了。</p>
+<p>「这是你今天第二次说。」</p>
+<p>「你记得倒清楚。」</p>
+<p>「十块钱两句，第二次那句算加的。」</p>
+<p>酒店经理又出来，手里多了一沓单子。他把单子压在硬纸板旁边，纸角顶住「财运」两个字。</p>
+<p>陈渡没掏手机。</p>
+<p>算命先生也没催。</p>
+<p>街边的霓虹灯闪到第三下，红色灯布上的光从陈渡脸上移开。门厅里传来拆桌椅的碰撞声，有人在报数量。</p>
+<p>「二十三，二十四。」</p>
+<p>算命先生朝门里看了一眼。</p>
+<p>「拆完了，摊也该收了。」</p>
+<p>「等等。」</p>
+<p>「你还有问题。」</p>
+<p>陈渡从琴袋侧袋抽出那张旧谱纸。纸已经折成四折，展开时，折痕处会裂开。</p>
+<p>最下面是他昨晚加的一句。</p>
+<p>「明天贝斯音箱要两个。」</p>
+<p>「替我把歌唱完，别问是谁。」</p>
+<p>算命先生伸手指了指。</p>
+<p>「这句是写给谁的。」</p>
+<p>「没写给谁。」</p>
+<p>「你改了十七遍。」</p>
+<p>「八遍。」</p>
+<p>算命先生不争。他用签字笔在自己的白纸上写了一个数字。</p>
+<p>「十七。」</p>
+<p>「你查过。」</p>
+<p>「我听人唱过。」</p>
+<p>「一个低频，一个中高频。」陈渡说，「低频放左边，朝观众，别贴墙。」</p>
+<p>陈渡抬头。</p>
+<p>「谁唱。」</p>
+<p>「今天婚宴上那个主唱。」</p>
+<p>陈渡记得那个人。嗓子偏亮，第一首唱快歌，第二首把高音拖长了。返场时唱过一首慢歌，歌词不是他的。</p>
+<p>「他还唱了什么。」</p>
+<p>算命先生把白纸折起来。</p>
+<p>「一句没写完的。」</p>
+<p>「什么。」</p>
+<p>陈渡的手停在纸面上。</p>
+<p>「用哪两个。」</p>
+<p>算命先生从铁皮盒里取出一张旧磁带标签。没有磁带，只剩半张标签，边缘发黄。</p>
+<p>「七年前，有人在殡仪馆录过一段。」</p>
+<p>陈渡抬起头。</p>
+<p>「你怎么知道殡仪馆。」</p>
+<p>「来算命的人提过。」</p>
+<p>「谁。」</p>
+<p>「不收钱。」</p>
+<p>「你刚才说十块一签，不准不要钱。」</p>
+<p>「这种不算命。」</p>
+<p>「那算什么。」</p>
+<p>「先通电。坏的那个不接。」</p>
+<p>算命先生把旧标签放在桌角。</p>
+<p>标签上有一行铅笔字，数字是「117」。</p>
+<p>陈渡看着最后三位。</p>
+<p>「机器编号。」</p>
+<p>「嗯。」</p>
+<p>「谁给你的。」</p>
+<p>「说了不收钱。」</p>
+<p>「你见过那段录音？」</p>
+<p>「没见过。」</p>
+<p>「那你怎么知道有人录过。」</p>
+<p>经理在单子上画了一道，抬头看他。</p>
+<p>算命先生把铁皮盒合上。</p>
+<p>「你问得太多了。」</p>
+<p>「标签可以造假。」</p>
+<p>「编号也可以。」</p>
+<p>「笔迹呢。」</p>
+<p>「没看。」</p>
+<p>「那你拿它出来做什么。」</p>
+<p>算命先生用铜钱压住标签。</p>
+<p>「让你知道，我知道。」</p>
+<p>陈渡没碰标签。</p>
+<p>「你修过？」</p>
+<p>他低头看自己的旧谱纸。纸背透出几行写反的字，是改词时留下的压痕。最下面那行恰好压着另一组数字。</p>
+<p>「09.17」。</p>
+<p>陈渡的拇指在那两个数字上停住。</p>
+<p>「你到底是谁。」</p>
+<p>「算命的。」</p>
+<p>「周隼让你来的？」</p>
+<p>算命先生收铁皮盒的手停了一下。</p>
+<p>只有一下。</p>
+<p>「不认识。」</p>
+<p>陈渡看着那只手。</p>
+<p>「不用修。线不响，是我不响。」</p>
+<p>周隼说话慢。这个人也不快，却会在不该停的地方停。</p>
+<p>「你见过他。」</p>
+<p>「县城里开修琴铺的，见过。」</p>
+<p>「他让你盯着我？」</p>
+<p>「没人盯着你。」算命先生说，「你自己走到我面前，说了十次不信。」</p>
+<p>陈渡这才发现，手机付款记录里多了三笔十元。</p>
+<p>他只记得两笔。</p>
+<p>「第三次什么时候付的。」</p>
+<p>「你问我『怎么知道』的时候。」</p>
+<p>「我问过两遍。」</p>
+<p>算命先生手里的铜钱停住。</p>
+<p>「第三遍在心里。」</p>
+<p>算命先生抬起那块硬纸板，给他看背面。</p>
+<p>纸板背面贴着几张旧磁带纸盒的封条。封条上印着型号、磁带长度和产地年份，最早一张是 1986 年。</p>
+<p>「你到底卖的是什么。」陈渡问。</p>
+<p>「算命。」</p>
+<p>「我不信。」</p>
+<p>「那就当听故事。」</p>
+<p>算命先生把纸板放回桌上。</p>
+<p>「故事里，有个人写了一首歌。别人唱了。别人拿着那首歌，写自己的东西。他不敢问歌是谁的。歌上的人也不敢问。」</p>
+<p>「然后呢。」</p>
+<p>陈渡把名片收回侧袋，拉链拉到一半又停下。里面那张旧谱纸露出一个角，纸背的「09.17」正对着门里的灯。</p>
+<p>「然后他开始录别人。」</p>
+<p>「为什么。」</p>
+<p>「因为他只敢听别人唱。」</p>
+<p>酒店里最后一张桌子被抬出来。桌脚擦过门槛，声音很尖。</p>
+<p>陈渡站起。</p>
+<p>算命先生把十元小票从桌下扫进铁皮盒。</p>
+<p>「我明天还摆这里。」</p>
+<p>「不用。」</p>
+<p>「你不问第二回？」</p>
+<p>陈渡背上琴袋。</p>
+<p>他重新拉上拉链。</p>
+<p>「你刚才说，来算命的人提过殡仪馆。」</p>
+<p>「说过。」</p>
+<p>「什么样的人。」</p>
+<p>「一个女大夫。」</p>
+<p>「沈未？」</p>
+<p>算命先生把铁皮盒的扣子按紧。</p>
+<p>「你认识，就不用我说了。」</p>
+<p>陈渡盯着他。</p>
+<p>沈未很少去酒店门口。她下班后换掉工装，不会在红布摊前停。算命先生却说她来过，还谈殡仪馆。</p>
+<p>「她问什么。」</p>
+<p>算命先生把铜钱放在桌沿，起身收凳子。折叠桌往上一提，少了一条腿的桌角磕在砖面上，红布下面的硬纸板移了半寸。</p>
+<p>「不问就走了。」</p>
+<p>「付钱了吗。」</p>
+<p>「没有。」</p>
+<p>「你跟过去？」</p>
+<p>「我跟到路口。」</p>
+<p>「她住哪。」</p>
+<p>算命先生没回答。</p>
+<p>陈渡的手压在琴袋带上。</p>
+<p>「你认识她。」</p>
+<p>「县城就这么大。」</p>
+<p>「她没来过这儿。」</p>
+<p>「那就是没来过。」算命先生说。</p>
+<p>他伸手去收铜钱，捏住其中一枚，递给陈渡。</p>
+<p>「拿着。」</p>
+<p>「做什么。」</p>
+<p>「回去听。」</p>
+<p>「这里没有磁带。」</p>
+<p>「硬币也有正反。」</p>
+<p>陈渡没接。</p>
+<p>算命先生把铜钱放在桌边，拿起一只黑色塑料夹，夹住硬纸板上的裂口。</p>
+<p>「明天别带琴。」</p>
+<p>「为什么。」</p>
+<p>「你坐在那儿像个来修东西的。」</p>
+<p>「我本来就是。」</p>
+<p>「那就带螺丝刀。」</p>
+<p>「我不会再来。」</p>
+<p>「你会。」</p>
+<p>算命先生把折叠桌一折，桌腿碰在一起，发出一声脆响。</p>
+<p>陈渡走到台阶下，停住。</p>
+<p>夜里的车从街口拐进来，车灯扫过纸板。那块写着「学业、婚姻、财运」的硬纸板被压在桌布下面，只露出一个角。</p>
+<p>算命先生的声音从桌后传出来。</p>
+<p>「陈渡。」</p>
+<p>他没有回头。</p>
+<p>「今天婚宴上，你一共唱了四个和弦。」</p>
+<p>陈渡停下。</p>
+<p>「不是歌。」算命先生说，「只是试音。「</p>
+<p>」试「字从风里送过来，带着一点街边摊贩特有的拖长尾音。</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>慢车</tag>
+        <tag>小说</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>慢车 27：周隼的一小时（视角例外 2/3）</title>
+    <url>/%E5%B0%8F%E8%AF%B4/9cb49c5d.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>铁盒在柜台下面。</p>
+<p>盒盖是生铁压出来的，边角磨得发白。陈渡蹲下身时，膝盖撞到木柜，柜门里的零件跟着响了一下。</p>
+<p>周隼没有拦他。</p>
+<p>他把那盘磁带放在柜台上。透明塑料壳裂了一道缝，磁带盘心贴着一小片白标签。标签上的字是沈未的笔迹。</p>
+<p>2009.4.17。</p>
+<p>周隼拿起磁带，拇指擦过裂口。</p>
+<p>「坐。」</p>
+<p>陈渡没有坐。</p>
+<p>「听完再说。」</p>
+<p>「还有多少。」</p>
+<p>「四十三分钟。」</p>
+<p>「你怎么知道。」</p>
+<p>周隼从抽屉里取出一只旧读带机。机器外壳发黄，播放键按下去时会卡住。他用螺丝刀顶住键杆，又把音量旋钮拧到七点钟方向。</p>
+<p>「她说是这个型号。」陈渡说。</p>
+<p>「苏式。编号最后三位一 seventeen。」</p>
+<p>「一百一十七。」</p>
+<p>周隼把带子装进去。透明壳没有拆，裂口正好卡在仓门边。</p>
+<p>「先通电。」</p>
+<p>磁带转起来。</p>
+<p>先是一声金属碰响。周隼伸手扶住机身，左掌压住变压器的外壳。底噪从喇叭里出来，像一层细砂铺在桌面上。</p>
+<p>陈渡站在柜台前。</p>
+<p>前四十秒没有人说话。</p>
+<p>录音里先是一间空屋子的底噪。屋里有钟，秒针每跳一次，响一下。钟表走得不稳，间隔相差半拍。</p>
+<p>周隼看了他一眼。</p>
+<p>「听这个。」</p>
+<p>陈渡没应。</p>
+<p>录音进行到一分十二秒，远处有人推门。门轴干涩，响了两声。脚步声从右边进来，在第三秒停住。</p>
+<p>周隼的手从变压器上移开。</p>
+<p>「这里。」</p>
+<p>录音里没有立刻出现人声。</p>
+<p>只有呼吸。</p>
+<p>吸气短，呼气长。呼吸之间夹着布摩擦的声音。有人把外套脱下来，布料擦过话筒。距离话筒很远，吸气像从一堵墙后面传来。</p>
+<p>周隼将音量往下调了两格。</p>
+<p>「别加东西。」陈渡说。</p>
+<p>周隼的手停在旋钮上。</p>
+<p>「没加。」</p>
+<p>「底噪压下去了。」</p>
+<p>「那是机器的。」</p>
+<p>「还是你的。」</p>
+<p>周隼没有回答。他把音量重新拧回去，底噪升高，屋里的钟声被托起来。每一下都像贴着桌面走。</p>
+<p>录音进行到两分四十秒，一个男人的声音出现了。</p>
+<p>「行了。」</p>
+<p>很轻。离话筒有两米以上。</p>
+<p>「再试一次。」</p>
+<p>另一个声音，远，像隔着一扇门。</p>
+<p>「录不进。」</p>
+<p>「你离近点。」</p>
+<p>「近了点。」</p>
+<p>「再唱。」</p>
+<p>「唱什么。」</p>
+<p>「随你。」</p>
+<p>一阵椅子拖动声。话筒支架碰到桌面，发出短促的刮响。有人清了清嗓子。</p>
+<p>然后有四个音。</p>
+<p>没有歌词。音高不准，第一个低，第二个高了半阶，后面两个落回去。哼声拖得不长，像一个人在试着确认录音机还开没开。</p>
+<p>周隼的手停在音量旋钮上。</p>
+<p>陈渡的手撑住柜台边缘。</p>
+<p>那四个音又来了一遍。</p>
+<p>第二遍比第一遍低。唱的人离话筒近了一些，呼气擦过拾音孔，带着一点细碎的湿声。</p>
+<p>周隼把机器停了。</p>
+<p>磁带仍在空转，透明壳里发出细小的摩擦声。</p>
+<p>「还有四十分钟。」陈渡说。</p>
+<p>「不用听。」</p>
+<p>「你怎么知道不用。」</p>
+<p>「后面都是这个。」</p>
+<p>周隼伸手按出仓门，把磁带取下来。透明壳裂开的地方又宽了一点。</p>
+<p>陈渡接过来。磁带没有回卷，左边那盘带子已经放出了大半。</p>
+<p>「当年给我机器的人，说它能录进想听的。」</p>
+<p>周隼走到卷帘门边。门只落下一半，外面的街灯从缝里切进来，照在门槛上。</p>
+<p>「你那时候十九。」</p>
+<p>「是。」</p>
+<p>「这台机器不是部队原装的。」</p>
+<p>陈渡看着他。</p>
+<p>「电容不是？」</p>
+<p>「电容是。」</p>
+<p>「变压器呢。」</p>
+<p>「变压器是。」</p>
+<p>「拾音线路。」</p>
+<p>周隼弯腰拔掉电源。读带机上的指示灯灭了。</p>
+<p>「拾音线路是我改的。」</p>
+<p>铺子里只剩街灯从门缝里照进来的一点亮。陈渡没有去开灯。他把磁带放回柜台，塑料壳朝上。</p>
+<p>「改了哪个元件。」</p>
+<p>「你不问为什么？」</p>
+<p>「问了你会说？」</p>
+<p>周隼拧开台灯。灯罩里有一圈黑线，亮起后发出轻微的电流声。</p>
+<p>「会。」</p>
+<p>「那就问。」</p>
+<p>陈渡把磁带往前推了两寸。</p>
+<p>「改了哪个元件。」</p>
+<p>周隼从抽屉里拿出一只旧示波器。示波器没有接电，他把探头放在磁带机旁边。</p>
+<p>「你先看。」</p>
+<p>屏幕上没有信号。</p>
+<p>陈渡走过去，掀开示波器底盖。里面有三只电容，两只已经换了，型号不同。他拿起万用表，拨到电阻档。</p>
+<p>「这里。」</p>
+<p>周隼的手停在一只螺丝刀上。</p>
+<p>「你测。」</p>
+<p>陈渡把表笔夹在两个焊点上。数值从无穷大降到一千多，又升回去。</p>
+<p>「虚接。」</p>
+<p>「不是。」</p>
+<p>「那换线。」</p>
+<p>「也不是。」</p>
+<p>陈渡放下表笔。</p>
+<p>周隼把示波器底盖彻底拆开。里面那只电容只有小拇指第一节长，陶瓷外壳，编号已经磨掉。旁边焊着两根线，一根进前置放大器，一根接一个可调电阻。</p>
+<p>周隼没有碰它。</p>
+<p>「这个元件不在原机上。」</p>
+<p>「可调电阻是做什么的。」</p>
+<p>「控制输入。」</p>
+<p>「控制人声轨？」</p>
+<p>「控制拾音输入。」</p>
+<p>陈渡拿过一把小螺丝刀，指向那只电容。</p>
+<p>「绕开它呢。」</p>
+<p>「可以。」</p>
+<p>「结果。」</p>
+<p>「你录不进自己的声音。」</p>
+<p>周隼说完，把那只电容旁边的焊点用指甲刮了一下。锡屑落到桌面上。</p>
+<p>「它把这个信号分成两路。一路进录音放大器，另一路回去，在它前面抵消掉。频率要调准，差两赫兹，就会有一点漏进来。」</p>
+<p>陈渡没有说话。</p>
+<p>他看向柜台上的磁带。</p>
+<p>「谁调的。」</p>
+<p>「我。」</p>
+<p>「调到多少。」</p>
+<p>「一千零四十赫兹。」</p>
+<p>「现在呢。」</p>
+<p>周隼拿起螺丝刀，指向电容旁的刻线。</p>
+<p>「六百二十。」</p>
+<p>陈渡把手伸进工具箱，拿出一只电容尺。尺子夹住元件，刻度停在中间。</p>
+<p>「能调回去。」</p>
+<p>「能。」</p>
+<p>「那就能修。」</p>
+<p>「不一定。」</p>
+<p>「你刚才说可以。」</p>
+<p>周隼把螺丝刀放回工具槽。动作很慢，螺丝刀尖碰着铁皮，响了三下。</p>
+<p>「这个数值是我当时按你的声音调的。」</p>
+<p>陈渡的手停在电容尺上。</p>
+<p>「你听过？」</p>
+<p>「听过。」</p>
+<p>「我唱过。」</p>
+<p>「在店里。」</p>
+<p>「我没唱。」</p>
+<p>周隼抬眼看他。</p>
+<p>陈渡把电容尺放回工具箱。尺子没放平，滑到箱边，他伸手压住。</p>
+<p>「你说能录进想听的。」</p>
+<p>「是。」</p>
+<p>「我唱了什么。」</p>
+<p>「你唱了一首。」</p>
+<p>「什么歌。」</p>
+<p>「没有歌。」</p>
+<p>「我唱了什么。」</p>
+<p>「几个字。」</p>
+<p>周隼拉开抽屉，拿出一卷细麻绳。他把麻绳绕在左手虎口上，一圈，两圈。</p>
+<p>「你唱的是自己的声音。」</p>
+<p>这句话说得不快。</p>
+<p>陈渡低头看着桌面的划痕。那些划痕是许多年用电烙铁留下的，黑色一条一条，从柜台左边延伸到收音机底下。</p>
+<p>「我现在没有。」</p>
+<p>「有。」</p>
+<p>「带子里没有。」</p>
+<p>「那是线路。」</p>
+<p>「我唱了，线路自己改。」</p>
+<p>周隼把麻绳咬断，放回抽屉。</p>
+<p>「后来呢。」</p>
+<p>「后来我换磁带，换话筒，换电源，换机器。」</p>
+<p>「换了几台。」</p>
+<p>「三台。」</p>
+<p>「哪一台录进过。」</p>
+<p>陈渡抬起眼。</p>
+<p>「十一岁那台。」</p>
+<p>「原装的。」</p>
+<p>「原装的。」</p>
+<p>「后来呢。」</p>
+<p>「后来我改了。」</p>
+<p>周隼拧开一盏台灯的底座，里面两颗螺丝松了一颗。他把螺丝放在掌心掂了掂。</p>
+<p>「你自己改的。」</p>
+<p>「你改了拾音线路。」</p>
+<p>「我改了一处。」</p>
+<p>「一处就够。」</p>
+<p>「够什么。」</p>
+<p>「够我听不见自己。」</p>
+<p>周隼的手停住。台灯在他掌下晃了一下。</p>
+<p>陈渡伸手把灯罩扶正。</p>
+<p>「你为什么不告诉我。」</p>
+<p>周隼把螺丝放回底座，没拧紧。</p>
+<p>「你问了，我告诉你。」</p>
+<p>「我没问。」</p>
+<p>「所以我没说。」</p>
+<p>「我们只见过几次。」</p>
+<p>「七次。」</p>
+<p>陈渡看着他。</p>
+<p>周隼低头数台灯底座里的螺丝。</p>
+<p>「第一次，你拿一盒磁带来。」</p>
+<p>「第二次，我送坏机器来。」</p>
+<p>「第三次，你修吉他。」</p>
+<p>「第四次，你拿现金。」</p>
+<p>「第五次，你问电容器。」</p>
+<p>「第六次，你带着机器来。」</p>
+<p>「第七次，是今天。」</p>
+<p>陈渡从柜台下面拖出一只矮凳。他坐下去。凳脚不平，晃了一下。</p>
+<p>「你什么时候改的。」</p>
+<p>「你十九岁那年。」</p>
+<p>「哪个月。」</p>
+<p>「四月。」</p>
+<p>「我来的那天。」</p>
+<p>周隼没说话。</p>
+<p>他从工作台下面拿出一个铁盒。</p>
+<p>铁盒有鞋盒大，盖子是生铁压出来的，边角磨得发白。侧面有两道凹痕，一道长，一道短。盒盖上没有锁，搭扣却装着。</p>
+<p>周隼把它放到柜台上，放在那盘 2009 年的磁带旁边。</p>
+<p>铁盒比磁带大，也比磁带重。放下时，柜台里的抽屉晃了一下。</p>
+<p>「这里面是什么。」</p>
+<p>「别人寄放的东西。」</p>
+<p>「寄放多久了。」</p>
+<p>「有的二十多年。」</p>
+<p>「谁的。」</p>
+<p>「这条街上的人。」</p>
+<p>陈渡看着铁盒。</p>
+<p>「十一盘带子是什么。」</p>
+<p>「他们留下的录音。」</p>
+<p>「三张信是谁的。」</p>
+<p>「写信的人。」</p>
+<p>「钥匙开什么。」</p>
+<p>周隼把搭扣拨开。</p>
+<p>「你自己看。」</p>
+<p>盒盖掀起，里面先露出一层旧报纸。报纸上的日期是 1998 年。报纸下面是十一盘磁带，按大小排开。最上面三盘是标准盒带，下面几盘是旧式录音盘。最底下那盘没有标签，透明壳上有一道旧划痕。</p>
+<p>再下面是三张折过的信。纸张已经发黄，折痕处起了毛。</p>
+<p>一把黄铜钥匙压着信角。钥匙齿磨掉了一半。</p>
+<p>周隼把铁盒往陈渡那边推了两寸。</p>
+<p>「你的在最底下。」</p>
+<p>陈渡没有动。</p>
+<p>「我的什么。」</p>
+<p>「你放在我这里的东西。」</p>
+<p>「我什么时候放过。」</p>
+<p>「你二十三岁。」</p>
+<p>「什么东西。」</p>
+<p>「一盘带子。」</p>
+<p>「我不记得。」</p>
+<p>周隼把那把黄铜钥匙放在盒盖上。</p>
+<p>「那就看。」</p>
+<p>陈渡伸手，把最底下那盘磁带取出来。塑料壳上没有字，边缘贴着一小段白胶布。胶布已经发黄，撕开后留下胶痕。</p>
+<p>他看了一眼周隼。</p>
+<p>周隼点了一下头。</p>
+<p>磁带放进读带机。周隼拆掉透明壳，把带盘直接卡上去，按下播放键。</p>
+<p>沙沙声先出来。</p>
+<p>这次没有钟声。</p>
+<p>有水声。很远，像雨水落在铁皮上。中间夹着机器运转的低频震动。远处有人喊了一句，听不清内容。</p>
+<p>陈渡站在柜台边。</p>
+<p>录音里出现一段电流声。刺啦一声，断了。又恢复。</p>
+<p>然后是周隼的声音。</p>
+<p>「这个先放着。」</p>
+<p>另一个声音很年轻。</p>
+<p>「为什么。」</p>
+<p>「里面有底噪。」</p>
+<p>「录的是机器？」</p>
+<p>「不是。」</p>
+<p>「那是什么。」</p>
+<p>周隼没有马上回答。</p>
+<p>带子继续转。</p>
+<p>「你二十三岁那年，把机器拿来过。」周隼说，「你唱了一首。」</p>
+<p>「我不记得。」</p>
+<p>「你唱完就走了。带子留在我这里。」</p>
+<p>「为什么不给我。」</p>
+<p>「你说，先放着。」</p>
+<p>陈渡看着旋转的带盘。</p>
+<p>「录进我的声音了吗。」</p>
+<p>周隼没有回答。他把音量往上推了一格。</p>
+<p>电流声底下，露出一小段人声。</p>
+<p>很模糊。</p>
+<p>只听得出一个音。</p>
+<p>像是有人在试音时，先张了张嘴，却没有唱。</p>
+<p>周隼伸手停掉机器。</p>
+<p>「这就是你放下的那盘。」</p>
+<p>陈渡伸手去拿磁带。</p>
+<p>周隼按住了盒盖。</p>
+<p>「先听这个。」</p>
+<p>他指向铁盒里的十一盘带子。</p>
+<p>「十一盘里面，有九盘是客人留下的。两盘不是。」</p>
+<p>「谁的。」</p>
+<p>「带子不记名字。」</p>
+<p>「你记。」</p>
+<p>周隼拿起最上面那盘。</p>
+<p>「这条街过去的人，修过东西就走。东西留下，人不回来。」</p>
+<p>他拧开外壳，取出磁带，换到读带机上。</p>
+<p>第一盘是一段粤剧。</p>
+<p>唱到一半，有人喊：「停！收音机不要开这么大声！」</p>
+<p>周隼按了停止。</p>
+<p>「这条街以前有个裁缝。」</p>
+<p>「他为什么留下带子。」</p>
+<p>「他说，忘了带回去。」</p>
+<p>「信呢。」</p>
+<p>「他没写信。」</p>
+<p>周隼换第二盘。</p>
+<p>里面先是一阵敲门声。</p>
+<p>有人开门。女人说：「你找谁？」</p>
+<p>男人说：「我找老周。」</p>
+<p>「不在。」</p>
+<p>「他在哪？」</p>
+<p>「不知道。」</p>
+<p>「你不是他妹吗？」</p>
+<p>「我是他姐。」</p>
+<p>停顿。</p>
+<p>女人又说：「你到底找谁？」</p>
+<p>陈渡看着周隼。</p>
+<p>周隼没有解释，按了停止。</p>
+<p>「第三个。」</p>
+<p>这盘没有声音。只有电流。</p>
+<p>一分钟以后，有个孩子在很远的地方哭。哭声持续了二十几秒，被一扇门隔住，接着没了。</p>
+<p>「这个不是留下的人带的。」周隼说，「是他孩子落下的。」</p>
+<p>「你留着。」</p>
+<p>「放在这里。」</p>
+<p>「多久了。」</p>
+<p>「十九年。」</p>
+<p>陈渡看了一眼铁盒。</p>
+<p>「一共十一个。」</p>
+<p>「嗯。」</p>
+<p>「有些是什么。」</p>
+<p>「修鼓的、修电视的、修缝纫机的。」</p>
+<p>「都托你保管？」</p>
+<p>「有的直接放下。有的写信。」</p>
+<p>「信都没寄？」</p>
+<p>「地址写错。人不找了。」</p>
+<p>周隼把三张信拿出来。</p>
+<p>第一张没有封口。</p>
+<p>「找我的。写信的人不识字，邮递员念了，他不肯收。」</p>
+<p>第二张折得很整齐。</p>
+<p>「地址是旧街。旧街拆了。」</p>
+<p>第三张只写了半句。</p>
+<p>「周师傅，我那台……」</p>
+<p>后面没有下文。</p>
+<p>陈渡看着那半句话。</p>
+<p>「为什么没寄。」</p>
+<p>「寄过。退了。」</p>
+<p>「退回来为什么不烧掉。」</p>
+<p>「东西都有它来的地方。」</p>
+<p>周隼把信放回盒里，位置和刚才一样。</p>
+<p>陈渡没再问。</p>
+<p>周隼重新拿起那盘 2009 年的带子，放进机器。卷轴转动，左边那盘已经快放完。</p>
+<p>磁带里的底噪比刚才细。</p>
+<p>电流声隔几秒出现一次。陈渡盯着那两个转轴，手指在柜台边敲了一下。</p>
+<p>周隼说：「这台机器后来你改过几次？」</p>
+<p>「七次。」</p>
+<p>「拾音线路没动？」</p>
+<p>「动过一次。」</p>
+<p>「什么时候？」</p>
+<p>「二十五岁。」</p>
+<p>「改了什么？」</p>
+<p>「加了一个电容。」</p>
+<p>「为了什么？」</p>
+<p>「把底噪降一点。」</p>
+<p>「有用？」</p>
+<p>「没有。」</p>
+<p>「为什么不停？」</p>
+<p>「可能有影响。」</p>
+<p>周隼按了停止。</p>
+<p>「你那时候也开始修别人的设备了。」</p>
+<p>「二十七岁。」</p>
+<p>「不一样。」</p>
+<p>「什么不一样。」</p>
+<p>「二十七岁以后，你接活都先问能不能学会。」</p>
+<p>「不能学会的不修。」</p>
+<p>「今天这个呢。」</p>
+<p>「今天这个我能修。」</p>
+<p>「你不知道声音去了哪里。」</p>
+<p>「我知道线路在哪。」</p>
+<p>周隼把磁带取出来，放在盒盖上。</p>
+<p>「你二十二岁写过一首歌。」</p>
+<p>陈渡的手停在柜台边。</p>
+<p>「什么歌。」</p>
+<p>「歌名我不知道。」</p>
+<p>「词呢。」</p>
+<p>「一句。」</p>
+<p>「哪一句。」</p>
+<p>「‘我把灯留在门里，等一个不认路的人。’」</p>
+<p>陈渡没有抬头。</p>
+<p>周隼从铁盒旁边拿起一张折过的纸。纸边有油渍，中间折成四折。他打开纸，里面是一张复写纸，黑色字迹已经淡了。</p>
+<p>「这句我听过。」</p>
+<p>陈渡接过纸。</p>
+<p>字迹不是他的。</p>
+<p>「不是我的。」</p>
+<p>「你确定？」</p>
+<p>「确定。」</p>
+<p>「你二十二岁在县城。乐队第一次散。」</p>
+<p>「散了以后，我在饭店端盘子。」</p>
+<p>「一个女歌手来买酒。她唱了副歌。」</p>
+<p>「哪个饭店？」</p>
+<p>「老车站后面那个。」</p>
+<p>陈渡抬起眼。</p>
+<p>「她唱了几遍。」</p>
+<p>「七遍。」</p>
+<p>「谁写的。」</p>
+<p>「她说是她写的。」</p>
+<p>「你问过？」</p>
+<p>「没有。」</p>
+<p>「为什么不问。」</p>
+<p>周隼把复写纸折回去。</p>
+<p>「你那时候写了十几首。」</p>
+<p>「后来呢。」</p>
+<p>「后来她唱的那首，火了。」</p>
+<p>「火多久。」</p>
+<p>「三个月。」</p>
+<p>「电台放过吗。」</p>
+<p>「放过。」</p>
+<p>「谁唱的。」</p>
+<p>「她唱。」</p>
+<p>陈渡把纸放在柜台上。</p>
+<p>「你为什么留着。」</p>
+<p>「因为那是你写的。」</p>
+<p>「你没有证据。」</p>
+<p>「有。」</p>
+<p>周隼从铁盒最底下抽出一张纸。</p>
+<p>不是复写纸。</p>
+<p>是一沓从练习本上撕下来的草稿。每一张纸角都编了号。纸上的字有横有竖，有几处被划掉，最后一行改成一句。</p>
+<p>「我把灯留在门里，等一个不认路的人。」</p>
+<p>陈渡伸手去拿。</p>
+<p>周隼没有松开。</p>
+<p>「你改了十七遍。」</p>
+<p>「我写过。」</p>
+<p>「这句也是你写的。」</p>
+<p>「我没唱。」</p>
+<p>「我知道。」</p>
+<p>「她唱了。」</p>
+<p>「所以火的是她。」</p>
+<p>周隼把草稿放到陈渡面前。</p>
+<p>柜台上的读带机还通着电。空带轮转了一会儿，声音渐渐变成均匀的摩擦。指示灯是红的。</p>
+<p>陈渡看着那张草稿。</p>
+<p>编号是二十二。</p>
+<p>「我当时为什么不唱。」</p>
+<p>「你唱了。」</p>
+<p>「录音里没有。」</p>
+<p>「不在这盘带子里。」</p>
+<p>「在哪儿。」</p>
+<p>周隼没有回答。</p>
+<p>他拉开柜台最下面的抽屉，从一摞旧纸里找出一张复印件。上面是郑霖直播间的截图。</p>
+<p>截图里，郑霖坐在六张摄像头前，屏幕上写着「原创歌曲演唱」。</p>
+<p>画面下方有一行滚动歌词。</p>
+<p>那一句正是：</p>
+<p>周隼用指甲点了点屏幕。</p>
+<p>「前天直播。三万一千人。」</p>
+<p>陈渡看着那行字。</p>
+<p>「这是他写的。」</p>
+<p>「词是你的。」</p>
+<p>「他唱了三年。」</p>
+<p>「你的带子也是他一直唱。」</p>
+<p>「我不是来问这个。」</p>
+<p>「我知道。」</p>
+<p>周隼把读带机电源关掉。</p>
+<p>「郑霖不知道词是你写的。别人告诉他，他问过。」</p>
+<p>「你怎么知道。」</p>
+<p>「他在这里修过一次鼓。」</p>
+<p>「你告诉他了。」</p>
+<p>「他问这是不是你的歌。」</p>
+<p>「你怎么答。」</p>
+<p>「我说是。」</p>
+<p>「然后呢。」</p>
+<p>「他说，歌给人唱，就该算能唱的人的。」</p>
+<p>陈渡没有说话。</p>
+<p>周隼拿起那盘 2009 年的磁带，装进透明壳。裂口没法合上，他用一条透明胶带贴住边缘。</p>
+<p>「听完再走。」</p>
+<p>「还有四十分钟。」</p>
+<p>「现在不一样了。」</p>
+<p>周隼把机器重新装好，按下播放。</p>
+<p>磁带转了几秒。陈渡刚才听见的空房间又出现了。钟声，脚步，布料摩擦。</p>
+<p>那个年轻一点的声音说：「再试一次。」</p>
+<p>陈渡低下头。</p>
+<p>他伸手转了转那只可调电阻。</p>
+<p>周隼没有阻止。</p>
+<p>刻度从六百二十慢慢退到六百。</p>
+<p>磁带里的声音没有变化。</p>
+<p>陈渡继续退。</p>
+<p>五百。</p>
+<p>四百。</p>
+<p>三百。</p>
+<p>录音里，年轻人的呼吸清楚了一点。门外的钟声被削薄。有人在远处敲了三下墙。</p>
+<p>周隼按下暂停。</p>
+<p>「再回。」</p>
+<p>他倒带。磁带卷轴快速转动，左边那盘一点点收紧。倒到呼吸出现的位置，他松开按键。</p>
+<p>磁带重新向前走。</p>
+<p>呼吸先来。吸气短，呼气长。布料擦过话筒。年轻的陈渡说：「再试一次。」</p>
+<p>「近了点。」</p>
+<p>「近了点。」</p>
+<p>「再唱。」</p>
+<p>周隼看着他。</p>
+<p>「你二十二岁以后，只写过这句？」</p>
+<p>「后面写过很多。」</p>
+<p>「哪一首？」</p>
+<p>「郑霖唱过的那些。」</p>
+<p>「你呢？」</p>
+<p>「我不唱。」</p>
+<p>「为什么？」</p>
+<p>「线路录不进。」</p>
+<p>周隼把音量拧到底。</p>
+<p>底噪没有盖住那个年轻的声音。四个音从喇叭里出来，跟刚才一样。</p>
+<p>第一个低。第二个高半阶。</p>
+<p>后面的音落回去。</p>
+<p>周隼伸手抓住陈渡的手腕，把他的手指从可调电阻上移开。</p>
+<p>「先听这个。」</p>
+<p>他没有再说别的。</p>
+<p>陈渡站在柜台前。读带机的透明仓门合不上，半开的盖子随着磁带转动轻轻颤动。里面那盘旧带慢慢向左收缩。</p>
+<p>他没有看陈渡，只看那两个转轴。</p>
+<p>磁带走到空白处时，喇叭里只剩底噪。</p>
+<p>一下。</p>
+<p>一下。</p>
+<p>周隼按了停止。</p>
+<p>陈渡把磁带从机器里取出。透明壳上的胶带翘起一角，他用拇指压回去。</p>
+<p>铁盒还在柜台上。</p>
+<p>十一盘带子，三张信，一把钥匙。</p>
+<p>周隼把盒盖合上，搭扣扣回去。</p>
+<p>「这个铺子，替这条街上的人存东西。」</p>
+<p>「存进去的人都不来取。」</p>
+<p>陈渡看着铁盒。</p>
+<p>他伸手把盒盖掀开。</p>
+<p>最底下那盘磁带已经被他拿在手里。带壳背面粘着一枚钻戒。</p>
+<p>戒指卡在塑料和胶布之间，边缘有一道划痕。</p>
+<p>陈渡用指尖把它抠出来。</p>
+<p>金属很凉，内圈刻着一行小字。</p>
+<p>他没有看那行字。</p>
+<p>他看着周隼。</p>
+<p>周隼的手还在搭扣上。</p>
+<p>「那不是我的。」</p>
+<p>「我知道。」</p>
+<p>「谁的。」</p>
+<p>「寄放的。」</p>
+<p>「谁寄的。」</p>
+<p>「算命的。」</p>
+<p>陈渡把钻戒攥在掌心。</p>
+<p>铁盒里的十一盘带子一动不动。三张信压在最下面，黄铜钥匙横在信角。</p>
+<p>他伸手进去，把自己的带子拿出来，放了回去。</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>慢车</tag>
+        <tag>小说</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>成本核算</title>
+    <url>/%E5%B7%A5%E4%BD%9C/fb428c48.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="403034e3763252e0a1d875383418dced566fe36d7f58183614979363551524dd">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d01b15f88bbf2f997a33ad0e4769faa2f3731a35f9c12d7a5ad97247c985de51ed62c20bb6ba6113954fea16ed76707f8571dfaa584b4e3826985032b10288f7e13b93b331fc92e4ebc21cf2f3989f25ee250dd18448f86303d9d929567d54c0a64b2443cfcf3f54aaead2719e45509f355f0caa4661d7651db96a887b5ef79aae101fb73978cce5fa93b24287b98f2639e871f614db934381ee4e241a12fd224faedd825390e487d9287e6e7e03f0f00f6d33956db5549ab690eaa4bb73d57207b7847ceb796384c2d90aa03b08f9b7e3ba9a9a6c7120e569cfed730553994f200ff398b4a63e437ef87626081679e9d7691c9f8e574971d814fc42fa4c170c044f0bcc2d5227ab77afa36e2413a79cc9bf8212fbd04d467345d1da089614c3541e6a0e5e09c42f977cf917b15799600e6b55dfc9e445c2f9dd638939b32bad9f629832be56693f9f509d3cc0be74cc147cd44bc6700722b45b4a11e2ad51071ae0ce795058801497056bc30e1461d624e3ef86c45e64a651b1559f1031fec9ae6443177a5ba67cbe961cc2ee7bcb59a3cb88af0ba1c243d1a9549addf257a8fd8e64d179401465d805f41a2e032f4d5da29b43777ae9d1116ecc9094f9e86b387ece6c26fc4d30c9eaf9739da84f69da0b4ea41e78627adedac8bea9396bbb6806b40612b5c1bbe434a7b618df8245da6fadf861fcd1fe52c022ff5d00bebff5e77aaeb566e6771ee0c72ec95fba73eeda6035933d452127a7eb41d143e35c090114ecb95da3cd9e20fc000491f57605434acdc82a821345325b6fe27933402f57f3bfebbc23ae6d83578dea596364ce1d2de5344a20bc8185ddd344defea04ac49210125785b24cb993cbbd61e9d5c92b2e20c482ae4a367fe05eb0ea7756beada75cdfea44c37c1962ee408896582b27f0bd400fc35a73e25bcee8d14bc17d447e2eed7fcd9f800ab220101df770a45c2d9699e451dd225e650418c1bd3849960f965551be548eaf21d51928281ebbb761aeec3620bdcf2a58c461c611478e033254ad3cb3a1351b121f9dfa505a687e712a02f53d2d02d638bac0b3578a5e23f9fdaf699e32d58790b16e0397719a2e44505699e7dbba8e040b17a880f73d0aeeba704cbd5c15603c1dcee81e33633310b859c124a1c3c09bd063b5efb8e220c37583cc40dc155b0e30339572da533b70d8f084119e20b2f504f375a0e0076518afd45f70f61f893d65b14088c5a597e13deb62b6d0f0f64df8149522f1e5e7156b682aa8d639097e18fff4b2d8c57dc60d8625da2cecc8042490337199a41ba03f080582b97d39be52551ffacb3c2fb7c5606da03a13886c69d303864d35430398a00eecac17c7b5717f06dd40d5ab1a73f0465d54332570eb748cbb97afd416422b5b2f3bd679a080b9cc94199d8e90ee83d2b85ffa93528e020c93e5cfbc93875fc96ed4277efcf4d747686ef84f784204f1dec6588c829002c6919354b5cf23beb81b81b4ba5e9033d81bd5d1443cdb999f55c0996e9d02db7a7c25bc2ecf7f2cef76bd2c964a9934db64580e072eab8f721027d5ec8fb66aa9fec34f2f3b190cdccde6603f11c0f85f2e92f83f4082cd378982b2b4a742cb760a4137f33a9bb2da5f4a450eb5d05392221eed47c59399ed95b514557f3fb468293b94ac388d4119a167dca4b4d90dfef7310fa4c69d1b945d28f4322685a6708a142d355cfb6a5dfcf0819b8bbedb88a886828dfb0ef0919bfda0ab3a12381f980cd4738b6245d2960713d6f531563bc42af3589ce9fa03f1a8ca8f4b10b138ef17d6e3ae7a0e5c529ddf83432ec32c5d838bce16c4e10806956318e4b4f5e85c6af9aa2648d595e6a3155d6250d721f172a7cff78aac9a6b69b364d3aace867e838f95c5731f6a8c1d2faf055f8bca28ac6f80ac18f0061d41e8757bbcdcd29393a521c68fada0ef5c23c5a898792ddf530072b98ab37a519e76be5318ee82b88566a41f54cc929afc6c6c1887fb7323f8ef4d9773824b7d32b48a551ba4f2080e9517fe665260c20f1756351b43c77eced10722a926ef5ecdd3379acd3577b3e7fac6e38fb611d6f5465c809c7ec9015dd013f74e8039e30e138919f9f2d7b0d084a8c41bfe3322d87a0aeb6d40c902e473b91336a439dfac7e0e817a3978ad95b6583f07d9176f9e520a4fd11ac158a8f51d1012cbe8344ecb5bf4e81a8a5e00ee4e3edf3d66652e61fc56b1e8d71765486de4b7f802db8f10bf074fd207b5e933f4d02091ccd16fefe8ccf2e2e6e4feb487c9c43e311a33ec49adafe05da42685bbe4aa9e578e34b54dcfd1c795d6d3a04cc88085504aafb3d624fa7845a7fdb2d940b8370cfec5f6ee8c6604ada6ec88bba256584f049076476224a7777b67d04f09bfbe7366d5703382ce66642f94fd4cd5a6b3ddf66245514e1b976b1d4168361ab42f1bc5a103467e4225716042556a1d128e0c87ec1370df9e7f10e23b99c0a203ad9f35a8299e1d365fe3c35dc0e639aabbe5e3a06581dbad5be30e4d591ff16a74a4b29a066fe6d26adce8caec90688063fc3f21ef8ff09e8de081bc9528b39c7779107bfe0c52326c1d913e9c9a3cc9bde78e475944bd927923e9d3c70a48b608c95d3e6293e14d6378429de2051171bd75974afb3fe63f59d988e4e3592f473cd186b864fce54e8ebe7212dc12a630ac0fdbd4d416e4064549fd1683cfa3e43330b717de74222a5dc20affda36e381f36f7a4ba90d82425a22a179f19f400417d5daf3072ddcde25f25f429e13550608229a01fbd0b0d549168374f0518e0bfca4919a9b52c7b39f5ea57bdea3447a683891624bdb619459913c6b6ebf4827ee4ade374f83ea6d82127edcdbbda1885a238e0bcac36b70b61e6a5496cc726942c540e01ba3954e297939eb0f9d80c4abb968f6d9ddd92a5110863eac74a47d11dec7d99332c39b4c76678f859</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-wave">
+      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>工作</category>
+      </categories>
   </entry>
   <entry>
     <title>我们不像诗歌</title>
@@ -29315,12 +30326,12 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
     <title>路</title>
     <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-        <div id="aplayer-BxooGBDT" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-ScqmLPOv" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-BxooGBDT"),
+            element: document.getElementById("aplayer-ScqmLPOv"),
             narrow: false,
             autoplay: true,
             showlrc: false,
@@ -29481,22 +30492,6 @@ ExcelUtil --> RecordHandler</pre>
         <tag>replace</tag>
         <tag>ignore</tag>
         <tag>insert</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>鲁迅先生写道: 父母存在的意义</title>
-    <url>/%E7%94%9F%E6%B4%BB/2375039249.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
-<p><strong>鲁迅先生写父母存在的意义是：</strong><br />
-父母存在的意义不是给予孩子舒适和富裕的生活，而是当你想到你的父母时你的内心就会充满力量，会感受到温暖，从而拥有克服困难的勇气和能力，因此获得人生真正的乐趣和自由。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>鲁迅先生</tag>
-        <tag>父母</tag>
       </tags>
   </entry>
   <entry>
@@ -29835,6 +30830,22 @@ ExcelUtil --> RecordHandler</pre>
         <tag>机器学习</tag>
         <tag>ocr</tag>
         <tag>人工智能</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>鲁迅先生写道: 父母存在的意义</title>
+    <url>/%E7%94%9F%E6%B4%BB/2375039249.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
+<p><strong>鲁迅先生写父母存在的意义是：</strong><br />
+父母存在的意义不是给予孩子舒适和富裕的生活，而是当你想到你的父母时你的内心就会充满力量，会感受到温暖，从而拥有克服困难的勇气和能力，因此获得人生真正的乐趣和自由。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>鲁迅先生</tag>
+        <tag>父母</tag>
       </tags>
   </entry>
   <entry>
