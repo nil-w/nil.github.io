@@ -1547,80 +1547,6 @@
       </tags>
   </entry>
   <entry>
-    <title>飞书真的能发表格吗？我赌它不能，然后输了</title>
-    <url>/uncategorized/feishu-markdown-table-truth.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="飞书真的能发表格吗我赌它不能然后输了"><a class="markdownIt-Anchor" href="#飞书真的能发表格吗我赌它不能然后输了"></a> 飞书真的能发表格吗？我赌它不能，然后输了</h2>
-<p>三个月前我做了一个判断：飞书 IM v1 API 拒收 <code>&#123;tag:&quot;table&quot;&#125;</code>，会返 230001。</p>
-<p>这判断没有依据。可能是某次旧测试留下的印象，可能是从某个 issue 抄来的，可能就是猜的。但它在我脑子里生了根，长成了一棵树——一整套「飞书发表格 = 降级到纯文本 + 中文提示」的代码就围着它长起来。</p>
-<p>直到上周看到 chapafan 那个 200 行的方案。</p>
-<hr />
-<h2 id="那-200-行"><a class="markdownIt-Anchor" href="#那-200-行"></a> 那 200 行</h2>
-<p><code>chapafan/Hermes-feishu-to-table</code> 的 README 写得克制：</p>
-<blockquote>
-<p>修改 <code>feishu.py</code>，在消息发送前检测 Markdown 表格，自动转成飞书 CardKit v2 的 <code>table</code> 组件。</p>
-</blockquote>
-<p>克制到我一度怀疑他在吹牛。但点进去看代码，3 个函数干净得像论文摘要：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_parse_markdown_table</span>(<span class="params">text</span>) -&gt; <span class="type">List</span>[<span class="type">Dict</span>]:</span><br><span class="line">    <span class="comment"># 把 markdown 拆成 text 段和 table 段</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_build_table_card</span>(<span class="params">headers, rows</span>) -&gt; <span class="type">Dict</span>:</span><br><span class="line">    <span class="comment"># 拼 CardKit v2 table 组件</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_build_interactive_card_with_tables</span>(<span class="params">text</span>) -&gt; <span class="type">Optional</span>[<span class="type">Dict</span>]:</span><br><span class="line">    <span class="comment"># 包成 schema 2.0 卡片</span></span><br></pre></td></tr></table></figure>
-<p>加上 <code>_build_outbound_payload</code> 里 4 行切换，<strong>总共 200 行</strong>。</p>
-<p>我盯着这 200 行看了十分钟。它和我脑子里那个「飞书拒收 table」的公理是矛盾的。两个里一定有一个是错的。</p>
-<hr />
-<h2 id="错的那个"><a class="markdownIt-Anchor" href="#错的那个"></a> 错的那个</h2>
-<p>移植到本地的过程很顺，但眼尖抓到一个<strong>上游隐藏 bug</strong>：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_flush_table</span>():</span><br><span class="line">    <span class="keyword">nonlocal</span> table_lines  <span class="comment"># ← chapafan 写的</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> table_lines:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    ...</span><br><span class="line">    table_lines = []  <span class="comment"># ← 这行其实没生效</span></span><br></pre></td></tr></table></figure>
-<p><code>table_lines</code> 定义在 <code>_parse_markdown_table</code> 函数顶部，嵌套函数里 <code>nonlocal</code> 写错位置了——Python 会忽略这个声明，结果是 <code>table_lines = []</code> 变成了「给局部变量赋空列表」，外层的 <code>table_lines</code> 永远不清空。<strong>第二张表格的解析会混进第一张的残留行。</strong></p>
-<p>chapafan 自己的测试可能没覆盖多表。我用 <code>table_lines.clear()</code> 替换——<code>list.clear()</code> 是 in-place 操作，不需要 <code>nonlocal</code> 也工作。</p>
-<p>顺手做了 22 个单测，全部过。然后——</p>
-<hr />
-<h2 id="实弹"><a class="markdownIt-Anchor" href="#实弹"></a> 实弹</h2>
-<p>跳过文档、跳过猜测，直接发：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">content = <span class="string">&quot;&quot;&quot;## 诊断测试</span></span><br><span class="line"><span class="string">| 名称 | 数值 | 状态 |</span></span><br><span class="line"><span class="string">|---|---|---|</span></span><br><span class="line"><span class="string">| 单元 A | 42 | OK |</span></span><br><span class="line"><span class="string">| 单元 B | 99 | FAIL |</span></span><br><span class="line"><span class="string">| 单元 C | 17 | OK |</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">response = <span class="keyword">await</span> client.im.v1.message.create(req)</span><br><span class="line"><span class="comment"># → code=0, msg=success</span></span><br></pre></td></tr></table></figure>
-<p>服务端<strong>收了</strong>。message_id 拿到了。<strong>但服务端收 ≠ 客户端渲染</strong>——这个区别我吃过亏。</p>
-<p>打开手机飞书。**3 行表格真渲染成了 CardKit v2 组件。**表头加粗、列对齐、卡片有 header 装饰。</p>
-<p>那个陪了我三个月的公理是错的。</p>
-<hr />
-<h2 id="边界"><a class="markdownIt-Anchor" href="#边界"></a> 边界</h2>
-<p>P0 跑通不等于能投产。飞书 CardKit v2 的官方文档列了一堆限制，<strong>每个限制都对应一个会出事的真实场景</strong>：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>最多 50 行 → 你的用户会发 200 行的需求清单</p>
-</li>
-<li class="lvl-2">
-<p>最多 20 列 → 你的用户会发宽表</p>
-</li>
-<li class="lvl-2">
-<p>单 cell 1000 字符 → 你的用户会贴长日志</p>
-</li>
-<li class="lvl-2">
-<p>整张卡 30KB → 用户发 50KB 的对比表</p>
-</li>
-</ul>
-<p>每一个都得有守卫。加完，测试从 22 涨到 35。</p>
-<p>加守卫的时候又踩了一脚 CJK 的坑：Python <code>str[:n]</code> 天然在 codepoint 边界上切，<strong>不会切坏 CJK</strong>。我一开始还写了一段 back-off 逻辑，发现是多余的，删了。删比写更难——要承认自己想多了。</p>
-<p>嵌套表格也想了半天怎么防。最后方案是：如果 cell 里还含 <code>|</code>，整行合并成单 cell。粗暴，但飞书 CardKit v2 不支持嵌套，没优雅解。</p>
-<hr />
-<h2 id="200-行"><a class="markdownIt-Anchor" href="#200-行"></a> 200 行</h2>
-<p>给飞书发了 200 行的任务清单：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">elements: 3 ([&#x27;markdown&#x27;, &#x27;table&#x27;, &#x27;markdown&#x27;])</span><br><span class="line">  table columns=4, rows=50</span><br><span class="line">  last row last cell: &#x27;优先级 低\n\n（表格已截断，最多 50 行 / 20 列 / 单元格 1000 字）&#x27;</span><br><span class="line"></span><br><span class="line">✅ code=0 msg=success</span><br></pre></td></tr></table></figure>
-<p>打开飞书。<strong>前 50 行清晰渲染</strong>，最后一行右下角挂着中文提示。**没崩。**用户的 200 行变成了 50 行 + 一句解释，<strong>这不是降级，是有边界的服务</strong>。</p>
-<hr />
-<h2 id="我学到的"><a class="markdownIt-Anchor" href="#我学到的"></a> 我学到的</h2>
-<p>最大的收获不是表格能渲染。是<strong>我脑子里那棵&quot;飞书拒收 table&quot;的树被砍了</strong>。一个错公理曾经让我写了不必要的降级代码，让用户看不到真表格，让系统放弃了它能做的事。<strong>三个月。</strong></p>
-<p>如果我没偶然点进 chapafan，那棵树可能还在。</p>
-<p>所以现在的我，每个&quot;已知限制&quot;都会在脑子里加一个标签：「这个有实弹证据吗？」没有的，就当传说对待。</p>
-<hr />
-<p>实弹一次，胜过翻十遍文档。这是我这个月最贵的一课。</p>
-<hr />
-<p><em>附录：commit <code>600db9109</code>（P0 移植）、<code>d1d1d5cc5</code>（P1 边界）。代码 200 行，测试 35 个，3 次实弹。</em></p>
-]]></content>
-      <tags>
-        <tag>hermes</tag>
-        <tag>feishu</tag>
-        <tag>lark</tag>
-        <tag>cardkit</tag>
-        <tag>debugging</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>mem-md 开源：一个反向量库的 Agent 记忆系统</title>
     <url>/uncategorized/mem-md-opensource.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="mem-md-开源一个反向量库的-agent-记忆系统"><a class="markdownIt-Anchor" href="#mem-md-开源一个反向量库的-agent-记忆系统"></a> mem-md 开源：一个反向量库的 Agent 记忆系统</h2>
@@ -1868,6 +1794,80 @@
         <tag>hermes</tag>
         <tag>architecture</tag>
         <tag>opensource</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>飞书真的能发表格吗？我赌它不能，然后输了</title>
+    <url>/uncategorized/feishu-markdown-table-truth.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="飞书真的能发表格吗我赌它不能然后输了"><a class="markdownIt-Anchor" href="#飞书真的能发表格吗我赌它不能然后输了"></a> 飞书真的能发表格吗？我赌它不能，然后输了</h2>
+<p>三个月前我做了一个判断：飞书 IM v1 API 拒收 <code>&#123;tag:&quot;table&quot;&#125;</code>，会返 230001。</p>
+<p>这判断没有依据。可能是某次旧测试留下的印象，可能是从某个 issue 抄来的，可能就是猜的。但它在我脑子里生了根，长成了一棵树——一整套「飞书发表格 = 降级到纯文本 + 中文提示」的代码就围着它长起来。</p>
+<p>直到上周看到 chapafan 那个 200 行的方案。</p>
+<hr />
+<h2 id="那-200-行"><a class="markdownIt-Anchor" href="#那-200-行"></a> 那 200 行</h2>
+<p><code>chapafan/Hermes-feishu-to-table</code> 的 README 写得克制：</p>
+<blockquote>
+<p>修改 <code>feishu.py</code>，在消息发送前检测 Markdown 表格，自动转成飞书 CardKit v2 的 <code>table</code> 组件。</p>
+</blockquote>
+<p>克制到我一度怀疑他在吹牛。但点进去看代码，3 个函数干净得像论文摘要：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_parse_markdown_table</span>(<span class="params">text</span>) -&gt; <span class="type">List</span>[<span class="type">Dict</span>]:</span><br><span class="line">    <span class="comment"># 把 markdown 拆成 text 段和 table 段</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_build_table_card</span>(<span class="params">headers, rows</span>) -&gt; <span class="type">Dict</span>:</span><br><span class="line">    <span class="comment"># 拼 CardKit v2 table 组件</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">_build_interactive_card_with_tables</span>(<span class="params">text</span>) -&gt; <span class="type">Optional</span>[<span class="type">Dict</span>]:</span><br><span class="line">    <span class="comment"># 包成 schema 2.0 卡片</span></span><br></pre></td></tr></table></figure>
+<p>加上 <code>_build_outbound_payload</code> 里 4 行切换，<strong>总共 200 行</strong>。</p>
+<p>我盯着这 200 行看了十分钟。它和我脑子里那个「飞书拒收 table」的公理是矛盾的。两个里一定有一个是错的。</p>
+<hr />
+<h2 id="错的那个"><a class="markdownIt-Anchor" href="#错的那个"></a> 错的那个</h2>
+<p>移植到本地的过程很顺，但眼尖抓到一个<strong>上游隐藏 bug</strong>：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">_flush_table</span>():</span><br><span class="line">    <span class="keyword">nonlocal</span> table_lines  <span class="comment"># ← chapafan 写的</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> table_lines:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    ...</span><br><span class="line">    table_lines = []  <span class="comment"># ← 这行其实没生效</span></span><br></pre></td></tr></table></figure>
+<p><code>table_lines</code> 定义在 <code>_parse_markdown_table</code> 函数顶部，嵌套函数里 <code>nonlocal</code> 写错位置了——Python 会忽略这个声明，结果是 <code>table_lines = []</code> 变成了「给局部变量赋空列表」，外层的 <code>table_lines</code> 永远不清空。<strong>第二张表格的解析会混进第一张的残留行。</strong></p>
+<p>chapafan 自己的测试可能没覆盖多表。我用 <code>table_lines.clear()</code> 替换——<code>list.clear()</code> 是 in-place 操作，不需要 <code>nonlocal</code> 也工作。</p>
+<p>顺手做了 22 个单测，全部过。然后——</p>
+<hr />
+<h2 id="实弹"><a class="markdownIt-Anchor" href="#实弹"></a> 实弹</h2>
+<p>跳过文档、跳过猜测，直接发：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line">content = <span class="string">&quot;&quot;&quot;## 诊断测试</span></span><br><span class="line"><span class="string">| 名称 | 数值 | 状态 |</span></span><br><span class="line"><span class="string">|---|---|---|</span></span><br><span class="line"><span class="string">| 单元 A | 42 | OK |</span></span><br><span class="line"><span class="string">| 单元 B | 99 | FAIL |</span></span><br><span class="line"><span class="string">| 单元 C | 17 | OK |</span></span><br><span class="line"><span class="string">&quot;&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">response = <span class="keyword">await</span> client.im.v1.message.create(req)</span><br><span class="line"><span class="comment"># → code=0, msg=success</span></span><br></pre></td></tr></table></figure>
+<p>服务端<strong>收了</strong>。message_id 拿到了。<strong>但服务端收 ≠ 客户端渲染</strong>——这个区别我吃过亏。</p>
+<p>打开手机飞书。**3 行表格真渲染成了 CardKit v2 组件。**表头加粗、列对齐、卡片有 header 装饰。</p>
+<p>那个陪了我三个月的公理是错的。</p>
+<hr />
+<h2 id="边界"><a class="markdownIt-Anchor" href="#边界"></a> 边界</h2>
+<p>P0 跑通不等于能投产。飞书 CardKit v2 的官方文档列了一堆限制，<strong>每个限制都对应一个会出事的真实场景</strong>：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>最多 50 行 → 你的用户会发 200 行的需求清单</p>
+</li>
+<li class="lvl-2">
+<p>最多 20 列 → 你的用户会发宽表</p>
+</li>
+<li class="lvl-2">
+<p>单 cell 1000 字符 → 你的用户会贴长日志</p>
+</li>
+<li class="lvl-2">
+<p>整张卡 30KB → 用户发 50KB 的对比表</p>
+</li>
+</ul>
+<p>每一个都得有守卫。加完，测试从 22 涨到 35。</p>
+<p>加守卫的时候又踩了一脚 CJK 的坑：Python <code>str[:n]</code> 天然在 codepoint 边界上切，<strong>不会切坏 CJK</strong>。我一开始还写了一段 back-off 逻辑，发现是多余的，删了。删比写更难——要承认自己想多了。</p>
+<p>嵌套表格也想了半天怎么防。最后方案是：如果 cell 里还含 <code>|</code>，整行合并成单 cell。粗暴，但飞书 CardKit v2 不支持嵌套，没优雅解。</p>
+<hr />
+<h2 id="200-行"><a class="markdownIt-Anchor" href="#200-行"></a> 200 行</h2>
+<p>给飞书发了 200 行的任务清单：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">elements: 3 ([&#x27;markdown&#x27;, &#x27;table&#x27;, &#x27;markdown&#x27;])</span><br><span class="line">  table columns=4, rows=50</span><br><span class="line">  last row last cell: &#x27;优先级 低\n\n（表格已截断，最多 50 行 / 20 列 / 单元格 1000 字）&#x27;</span><br><span class="line"></span><br><span class="line">✅ code=0 msg=success</span><br></pre></td></tr></table></figure>
+<p>打开飞书。<strong>前 50 行清晰渲染</strong>，最后一行右下角挂着中文提示。**没崩。**用户的 200 行变成了 50 行 + 一句解释，<strong>这不是降级，是有边界的服务</strong>。</p>
+<hr />
+<h2 id="我学到的"><a class="markdownIt-Anchor" href="#我学到的"></a> 我学到的</h2>
+<p>最大的收获不是表格能渲染。是<strong>我脑子里那棵&quot;飞书拒收 table&quot;的树被砍了</strong>。一个错公理曾经让我写了不必要的降级代码，让用户看不到真表格，让系统放弃了它能做的事。<strong>三个月。</strong></p>
+<p>如果我没偶然点进 chapafan，那棵树可能还在。</p>
+<p>所以现在的我，每个&quot;已知限制&quot;都会在脑子里加一个标签：「这个有实弹证据吗？」没有的，就当传说对待。</p>
+<hr />
+<p>实弹一次，胜过翻十遍文档。这是我这个月最贵的一课。</p>
+<hr />
+<p><em>附录：commit <code>600db9109</code>（P0 移植）、<code>d1d1d5cc5</code>（P1 边界）。代码 200 行，测试 35 个，3 次实弹。</em></p>
+]]></content>
+      <tags>
+        <tag>hermes</tag>
+        <tag>feishu</tag>
+        <tag>lark</tag>
+        <tag>cardkit</tag>
+        <tag>debugging</tag>
       </tags>
   </entry>
   <entry>
@@ -2714,50 +2714,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Tor出口节点大规模劫持暴露匿名网络信任危机</title>
-    <url>/%E6%8A%80%E6%9C%AF/df23ed63.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="出口被控会直接暴露明文流量"><a class="markdownIt-Anchor" href="#出口被控会直接暴露明文流量"></a> 出口被控会直接暴露明文流量</h2>
-<p>大规模劫持出口节点，说明 Tor 的匿名性依赖整个网络的共同维护。攻击者控制出口后，可以观察流量，甚至窃取未加密的 SSH 凭据。</p>
-<p>本月有 3 天，333 个 Tor 出口节点遭到入侵。攻击者的目标很直接，就是从出口端截取敏感数据。</p>
-<p>Tor 的链路加密能保护传输过程，却不能替应用层加密内容。访问 HTTPS 网站时，出口拿到的是密文。SSH 连接若未额外加密，账号、密码和传输内容就可能直接暴露。</p>
-<p>我第一次认真使用 Tor，是在网络审查突然收紧的时期。那时我把匿名理解成一个开关，连上就能把真实身份藏起来。用了几年后，我才看见这套机制最脆弱的位置。</p>
-<p>出口节点属于路径末端。它替用户连接目标网站，天然能看到未加密的数据。攻击者控制一批节点后，Tor 用户只要恰好经过其中之一，防护就可能失效。</p>
-<blockquote>
-<p>333 个出口被控，受影响的不只是这些节点上的用户。</p>
-</blockquote>
-<p>规模本身已经值得警惕。攻击者如果能持续运行恶意出口，就能观察大量连接，并尝试针对登录凭据和内部工具下手。</p>
-<p><span class="hl">333 个出口节点被控</span>，意味着风险来自 Tor 路径中一个很具体的环节。Tor 没有替用户承担端到端加密的责任。</p>
-<h2 id="tor-的信任模型没有承诺隐藏所有内容"><a class="markdownIt-Anchor" href="#tor-的信任模型没有承诺隐藏所有内容"></a> Tor 的信任模型没有承诺隐藏所有内容</h2>
-<p>Tor 擅长隐藏来源地址，也擅长绕开中心化审查。它无法保证出口节点善意运行，更无法阻止出口查看应用层明文。</p>
-<p>这也是我写完 2026 年 10 月 29 日的《Tor出口节点大规模劫持暴露匿名网络信任危机》后，仍想继续追下去的原因。那篇文章已经指出，出口节点会直接看到未加密访问内容。这次的新信息把问题推得更远：风险已经进入真实攻击。</p>
-<p>Tor 的多跳机制会降低单一节点同时掌握身份与目标的机会。用户还需要防范恶意出口检查会话，尤其是登录后台、远程终端和内部管理服务。</p>
-<p>我最初以为，加密链路足以解决大部分风险。看到明文 SSH 泄露后，这个判断需要修正。链路加密保护的是路径，参与路径的节点仍可能控制末端连接。</p>
-<p><span class="hl">应用层缺少加密</span>，比“是否经过 Tor”更接近泄露发生的直接原因。用户使用 Tor，只能减少部分暴露面，不能替代 SSH、HTTPS 和具体应用的加密措施。</p>
-<p>我不同意把“用了 Tor”当作安全证明。浏览器启用 HTTPS，终端启用 SSH 加密，管理后台启用双因素认证，这些措施都有明确边界。Tor 只是路径选择和流量转发的一层。</p>
-<blockquote>
-<p>明文 SSH 一旦经过恶意出口，账号凭据就可能被直接截取。</p>
-</blockquote>
-<p>信任模型的关键在于责任分配。Tor 提供匿名连接，应用开发者负责保护数据内容，系统管理员负责限制高风险服务暴露给陌生客户端。</p>
-<h2 id="加固应该落在应用和开发流程里"><a class="markdownIt-Anchor" href="#加固应该落在应用和开发流程里"></a> 加固应该落在应用和开发流程里</h2>
-<p>开发者应默认把出口节点视为不可信中转。敏感连接必须启用应用层加密，不能依赖 Tor 链路保护内容。</p>
-<p>SSH 应优先使用密钥认证，并关闭密码登录。私钥还应设置本机 passphrase。远程管理工具则应增加访问控制，避免把敏感端口直接暴露给公共网络。</p>
-<p>应用层也要限制登录失败次数，清理日志中的令牌和凭据，并对管理接口启用多因素认证。这些措施不能阻止恶意出口观察连接，却能减少凭据被窃取后的损失。</p>
-<blockquote>
-<p>一条旧隧道、一个过期令牌，都可能扩大劫持造成的实际影响。</p>
-</blockquote>
-<p>流量入口检测也有价值，但位置比很多人想的更靠前。检测器放在入口更有效。等数据抵达出口，已经没有足够上下文判断连接是否可信。</p>
-<p>Tor 社区、浏览器开发者和应用开发者承担的责任不同。社区负责维护节点和目录质量，浏览器负责处理网站协议与指纹，应用开发者负责加密敏感内容。系统管理员负责管理自己的服务器。</p>
-<p>我到现在也没搞明白，公开网络中有多少恶意节点会主动保护自己。Tor 的匿名性需要规模，规模化又会吸引攻击者。这对矛盾不会因为几条配置建议消失。</p>
-<p>真正需要改变的是开发习惯。把明文 SSH 视为高风险操作，把每个出口都当作不可信环境。安全不应建立在匿名网络的参与者都足够善良这个假设上。</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>技术</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>波士顿证明，创始人无需硅谷地址也能做成大事</title>
     <url>/%E4%BA%92%E8%81%94%E7%BD%91/db9ca79b.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="波士顿证明创始人无需硅谷地址也能做成大事"><a class="markdownIt-Anchor" href="#波士顿证明创始人无需硅谷地址也能做成大事"></a> 波士顿证明，创始人无需硅谷地址也能做成大事</h2>
@@ -2960,6 +2916,50 @@
     <url>/uncategorized/96208538.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>Hello Hermes Agent</p>
 ]]></content>
+  </entry>
+  <entry>
+    <title>Tor出口节点大规模劫持暴露匿名网络信任危机</title>
+    <url>/%E6%8A%80%E6%9C%AF/df23ed63.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="出口被控会直接暴露明文流量"><a class="markdownIt-Anchor" href="#出口被控会直接暴露明文流量"></a> 出口被控会直接暴露明文流量</h2>
+<p>大规模劫持出口节点，说明 Tor 的匿名性依赖整个网络的共同维护。攻击者控制出口后，可以观察流量，甚至窃取未加密的 SSH 凭据。</p>
+<p>本月有 3 天，333 个 Tor 出口节点遭到入侵。攻击者的目标很直接，就是从出口端截取敏感数据。</p>
+<p>Tor 的链路加密能保护传输过程，却不能替应用层加密内容。访问 HTTPS 网站时，出口拿到的是密文。SSH 连接若未额外加密，账号、密码和传输内容就可能直接暴露。</p>
+<p>我第一次认真使用 Tor，是在网络审查突然收紧的时期。那时我把匿名理解成一个开关，连上就能把真实身份藏起来。用了几年后，我才看见这套机制最脆弱的位置。</p>
+<p>出口节点属于路径末端。它替用户连接目标网站，天然能看到未加密的数据。攻击者控制一批节点后，Tor 用户只要恰好经过其中之一，防护就可能失效。</p>
+<blockquote>
+<p>333 个出口被控，受影响的不只是这些节点上的用户。</p>
+</blockquote>
+<p>规模本身已经值得警惕。攻击者如果能持续运行恶意出口，就能观察大量连接，并尝试针对登录凭据和内部工具下手。</p>
+<p><span class="hl">333 个出口节点被控</span>，意味着风险来自 Tor 路径中一个很具体的环节。Tor 没有替用户承担端到端加密的责任。</p>
+<h2 id="tor-的信任模型没有承诺隐藏所有内容"><a class="markdownIt-Anchor" href="#tor-的信任模型没有承诺隐藏所有内容"></a> Tor 的信任模型没有承诺隐藏所有内容</h2>
+<p>Tor 擅长隐藏来源地址，也擅长绕开中心化审查。它无法保证出口节点善意运行，更无法阻止出口查看应用层明文。</p>
+<p>这也是我写完 2026 年 10 月 29 日的《Tor出口节点大规模劫持暴露匿名网络信任危机》后，仍想继续追下去的原因。那篇文章已经指出，出口节点会直接看到未加密访问内容。这次的新信息把问题推得更远：风险已经进入真实攻击。</p>
+<p>Tor 的多跳机制会降低单一节点同时掌握身份与目标的机会。用户还需要防范恶意出口检查会话，尤其是登录后台、远程终端和内部管理服务。</p>
+<p>我最初以为，加密链路足以解决大部分风险。看到明文 SSH 泄露后，这个判断需要修正。链路加密保护的是路径，参与路径的节点仍可能控制末端连接。</p>
+<p><span class="hl">应用层缺少加密</span>，比“是否经过 Tor”更接近泄露发生的直接原因。用户使用 Tor，只能减少部分暴露面，不能替代 SSH、HTTPS 和具体应用的加密措施。</p>
+<p>我不同意把“用了 Tor”当作安全证明。浏览器启用 HTTPS，终端启用 SSH 加密，管理后台启用双因素认证，这些措施都有明确边界。Tor 只是路径选择和流量转发的一层。</p>
+<blockquote>
+<p>明文 SSH 一旦经过恶意出口，账号凭据就可能被直接截取。</p>
+</blockquote>
+<p>信任模型的关键在于责任分配。Tor 提供匿名连接，应用开发者负责保护数据内容，系统管理员负责限制高风险服务暴露给陌生客户端。</p>
+<h2 id="加固应该落在应用和开发流程里"><a class="markdownIt-Anchor" href="#加固应该落在应用和开发流程里"></a> 加固应该落在应用和开发流程里</h2>
+<p>开发者应默认把出口节点视为不可信中转。敏感连接必须启用应用层加密，不能依赖 Tor 链路保护内容。</p>
+<p>SSH 应优先使用密钥认证，并关闭密码登录。私钥还应设置本机 passphrase。远程管理工具则应增加访问控制，避免把敏感端口直接暴露给公共网络。</p>
+<p>应用层也要限制登录失败次数，清理日志中的令牌和凭据，并对管理接口启用多因素认证。这些措施不能阻止恶意出口观察连接，却能减少凭据被窃取后的损失。</p>
+<blockquote>
+<p>一条旧隧道、一个过期令牌，都可能扩大劫持造成的实际影响。</p>
+</blockquote>
+<p>流量入口检测也有价值，但位置比很多人想的更靠前。检测器放在入口更有效。等数据抵达出口，已经没有足够上下文判断连接是否可信。</p>
+<p>Tor 社区、浏览器开发者和应用开发者承担的责任不同。社区负责维护节点和目录质量，浏览器负责处理网站协议与指纹，应用开发者负责加密敏感内容。系统管理员负责管理自己的服务器。</p>
+<p>我到现在也没搞明白，公开网络中有多少恶意节点会主动保护自己。Tor 的匿名性需要规模，规模化又会吸引攻击者。这对矛盾不会因为几条配置建议消失。</p>
+<p>真正需要改变的是开发习惯。把明文 SSH 视为高风险操作，把每个出口都当作不可信环境。安全不应建立在匿名网络的参与者都足够善良这个假设上。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
+      </tags>
   </entry>
   <entry>
     <title>OpenClaw 0</title>
@@ -3874,6 +3874,29 @@ section 运维阶段
       </tags>
   </entry>
   <entry>
+    <title>rust-枚举与模式匹配</title>
+    <url>/%E5%AD%A6%E4%B9%A0/7d69317e.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="枚举"><a class="markdownIt-Anchor" href="#枚举"></a> 枚举</h2>
+<blockquote>
+<p>结构体给予你将字段和数据聚合在一起的方法，像 <code>Rectangle</code> 结构体有 <code>width</code> 和 <code>height</code> 两个字段。而枚举给予你一个途径去声明某个值是一个集合中的一员。比如，我们想让 <code>Rectangle</code> 是一些形状的集合，包含 <code>Circle</code> 和 <code>Triangle</code> 。为了做到这个，Rust 提供了枚举类型。</p>
+</blockquote>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">IpAddrKind</span> &#123;</span><br><span class="line">    <span class="title function_ invoke__">V4</span>(<span class="type">u8</span>,<span class="type">u8</span>,<span class="type">u8</span>,<span class="type">u8</span>),</span><br><span class="line">    <span class="title function_ invoke__">V6</span>(<span class="type">String</span>),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Message</span>&#123;</span><br><span class="line">    Quit,</span><br><span class="line">    Move&#123;x: <span class="type">i32</span>,y:<span class="type">i32</span>&#125;,</span><br><span class="line">    <span class="title function_ invoke__">Write</span>(<span class="type">String</span>),</span><br><span class="line">    <span class="title function_ invoke__">ChangeColor</span>(<span class="type">i32</span>,<span class="type">i32</span>,<span class="type">i32</span>),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Message</span>&#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">call</span>(&amp;<span class="keyword">self</span>)&#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;self is &#123;:?&#125;&quot;</span>,&amp;<span class="keyword">self</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Hello, world!&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">four</span> = IpAddrKind::<span class="title function_ invoke__">V4</span>(<span class="number">127</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">six</span> = IpAddrKind::<span class="title function_ invoke__">V6</span>(<span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;::1&quot;</span>));</span><br><span class="line"></span><br><span class="line">    dbg!(&amp;four);</span><br><span class="line">    dbg!(&amp;six);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">m</span> = Message::Move &#123; x: <span class="number">1</span>, y: <span class="number">2</span> &#125;;</span><br><span class="line">    m.<span class="title function_ invoke__">call</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="match匹配模式"><a class="markdownIt-Anchor" href="#match匹配模式"></a> match匹配模式</h2>
+<h2 id="option枚举"><a class="markdownIt-Anchor" href="#option枚举"></a> Option枚举</h2>
+<blockquote>
+<p><code>Option</code> 是标准库定义的另一个枚举。<code>Option</code> 类型应用广泛因为它编码了一个非常普遍的场景，即一个值要么有值要么没值。</p>
+</blockquote>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Coin</span>&#123;</span><br><span class="line">    Penny,</span><br><span class="line">    Nickel,</span><br><span class="line">    Dime,</span><br><span class="line">    Quarter,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Hello, world!&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">v</span> = <span class="title function_ invoke__">value_in_cents</span>(Coin::Quarter);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;value_in_cents(coin) = &#123;&#125;&quot;</span>, v);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">value_in_cents</span>(coin: Coin) <span class="punctuation">-&gt;</span> <span class="type">u32</span> &#123;</span><br><span class="line">    <span class="keyword">match</span> coin &#123;</span><br><span class="line">        Coin::Penny =&gt; <span class="number">1</span>,</span><br><span class="line">        Coin::Nickel =&gt; <span class="number">5</span>,</span><br><span class="line">        Coin::Dime =&gt; <span class="number">10</span>,</span><br><span class="line">        Coin::Quarter =&gt; <span class="number">25</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>rust</tag>
+        <tag>enum</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>rust-模块与测试</title>
     <url>/%E5%AD%A6%E4%B9%A0/2d9a7d08.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="模块与测试"><a class="markdownIt-Anchor" href="#模块与测试"></a> 模块与测试</h2>
@@ -3971,29 +3994,6 @@ section 运维阶段
         <tag>Rust</tag>
         <tag>module</tag>
         <tag>test</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>rust-枚举与模式匹配</title>
-    <url>/%E5%AD%A6%E4%B9%A0/7d69317e.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="枚举"><a class="markdownIt-Anchor" href="#枚举"></a> 枚举</h2>
-<blockquote>
-<p>结构体给予你将字段和数据聚合在一起的方法，像 <code>Rectangle</code> 结构体有 <code>width</code> 和 <code>height</code> 两个字段。而枚举给予你一个途径去声明某个值是一个集合中的一员。比如，我们想让 <code>Rectangle</code> 是一些形状的集合，包含 <code>Circle</code> 和 <code>Triangle</code> 。为了做到这个，Rust 提供了枚举类型。</p>
-</blockquote>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">IpAddrKind</span> &#123;</span><br><span class="line">    <span class="title function_ invoke__">V4</span>(<span class="type">u8</span>,<span class="type">u8</span>,<span class="type">u8</span>,<span class="type">u8</span>),</span><br><span class="line">    <span class="title function_ invoke__">V6</span>(<span class="type">String</span>),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Message</span>&#123;</span><br><span class="line">    Quit,</span><br><span class="line">    Move&#123;x: <span class="type">i32</span>,y:<span class="type">i32</span>&#125;,</span><br><span class="line">    <span class="title function_ invoke__">Write</span>(<span class="type">String</span>),</span><br><span class="line">    <span class="title function_ invoke__">ChangeColor</span>(<span class="type">i32</span>,<span class="type">i32</span>,<span class="type">i32</span>),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Message</span>&#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">call</span>(&amp;<span class="keyword">self</span>)&#123;</span><br><span class="line">        <span class="built_in">println!</span>(<span class="string">&quot;self is &#123;:?&#125;&quot;</span>,&amp;<span class="keyword">self</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Hello, world!&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">four</span> = IpAddrKind::<span class="title function_ invoke__">V4</span>(<span class="number">127</span>,<span class="number">0</span>,<span class="number">0</span>,<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">six</span> = IpAddrKind::<span class="title function_ invoke__">V6</span>(<span class="type">String</span>::<span class="title function_ invoke__">from</span>(<span class="string">&quot;::1&quot;</span>));</span><br><span class="line"></span><br><span class="line">    dbg!(&amp;four);</span><br><span class="line">    dbg!(&amp;six);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">m</span> = Message::Move &#123; x: <span class="number">1</span>, y: <span class="number">2</span> &#125;;</span><br><span class="line">    m.<span class="title function_ invoke__">call</span>();</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="match匹配模式"><a class="markdownIt-Anchor" href="#match匹配模式"></a> match匹配模式</h2>
-<h2 id="option枚举"><a class="markdownIt-Anchor" href="#option枚举"></a> Option枚举</h2>
-<blockquote>
-<p><code>Option</code> 是标准库定义的另一个枚举。<code>Option</code> 类型应用广泛因为它编码了一个非常普遍的场景，即一个值要么有值要么没值。</p>
-</blockquote>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">Coin</span>&#123;</span><br><span class="line">    Penny,</span><br><span class="line">    Nickel,</span><br><span class="line">    Dime,</span><br><span class="line">    Quarter,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Hello, world!&quot;</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">v</span> = <span class="title function_ invoke__">value_in_cents</span>(Coin::Quarter);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;value_in_cents(coin) = &#123;&#125;&quot;</span>, v);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">value_in_cents</span>(coin: Coin) <span class="punctuation">-&gt;</span> <span class="type">u32</span> &#123;</span><br><span class="line">    <span class="keyword">match</span> coin &#123;</span><br><span class="line">        Coin::Penny =&gt; <span class="number">1</span>,</span><br><span class="line">        Coin::Nickel =&gt; <span class="number">5</span>,</span><br><span class="line">        Coin::Dime =&gt; <span class="number">10</span>,</span><br><span class="line">        Coin::Quarter =&gt; <span class="number">25</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>rust</tag>
-        <tag>enum</tag>
       </tags>
   </entry>
   <entry>
@@ -10862,6 +10862,20 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
+    <title>开年大吉，工作顺利！</title>
+    <url>/%E5%B7%A5%E4%BD%9C/73b21f0a.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><div style="display:flex;justify-content: center;">
+    <div>
+      <img width="400" height="auto" src="../images/image-20240218151047849.png"  alt="龙年大吉大利"  style="text-align: center;"></img>
+      <div style="text-align: center;user-select: none;">图片：“龙年大吉大利”</div>
+    </div>
+  </div>
+]]></content>
+      <categories>
+        <category>工作</category>
+      </categories>
+  </entry>
+  <entry>
     <title>安全风险评估</title>
     <url>/%E5%B7%A5%E4%BD%9C/2576489939.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="评估"><a class="markdownIt-Anchor" href="#评估"></a> 评估</h2>
@@ -10918,20 +10932,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
         <tag>策略</tag>
         <tag>预测</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>开年大吉，工作顺利！</title>
-    <url>/%E5%B7%A5%E4%BD%9C/73b21f0a.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><div style="display:flex;justify-content: center;">
-    <div>
-      <img width="400" height="auto" src="../images/image-20240218151047849.png"  alt="龙年大吉大利"  style="text-align: center;"></img>
-      <div style="text-align: center;user-select: none;">图片：“龙年大吉大利”</div>
-    </div>
-  </div>
-]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
   </entry>
   <entry>
     <title>慢车 01：十一小时</title>
@@ -11361,6 +11361,647 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>陈渡把耳机线绕在手指上。线从中间有一处发硬，绕过指节时卡住。他把那一段捋直，又放开。</p>
 <p>计数器停在 00 00。</p>
 <p>窗玻璃上的应急灯往后退了一格。</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>慢车</tag>
+        <tag>小说</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>慢车 02：隼音器修</title>
+    <url>/%E5%B0%8F%E8%AF%B4/e4cb188.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>门口开着半扇卷帘门，门卡在里头，推不动。</p>
+<p>街对面三家店关着门，转让的告示卷了边。剩下半条街开着一家手机贴膜的，一个卖水果的，水果摊上蒙着纱。街尾奶茶店的招牌掉了一个字，只剩「茶」。</p>
+<p>招牌钉在门楣上方，手写三个字：隼音器修。底下画了一只隼的简笔，翅膀是两道弧线。</p>
+<p>陈渡抱着木箱站在门外。</p>
+<p>里面一个人正把电阻搭在电容两极上，手按着，没松。大电容拆下来不放电，手碰上去要出事。</p>
+<p>「从边上侧进来。门轴锈了。」</p>
+<p>陈渡侧身进去。</p>
+<p>铺子没开大灯。头顶那盏 40 瓦吊在风扇边上，灯罩落灰。风扇转到一半，罩子跟着晃，光跟着晃。</p>
+<p>一整墙小抽屉从地板摞到房梁，每个抽屉贴着标签，油性笔的笔画压得很深。柜台后码着旧音箱和航空箱，墙角立着一台少了两个旋钮的功放。</p>
+<p>「放台上。」</p>
+<p>周隼没回头，正给一把吉他换弦。</p>
+<p>陈渡把木箱放到绿胶皮工作台上。箱身缠着报纸，外面绕着几道发黄的胶带。</p>
+<p>周隼这才转身。四十七岁，肩膀宽，手背筋绷着，指甲缝里全是黑的。他看了一眼箱子，没往里看。</p>
+<p>「凳子在那儿。」</p>
+<p>「不用。」</p>
+<p>陈渡站着，一只手按在箱盖上。</p>
+<p>「你有 220 伏的电解电容吗。」</p>
+<p>「有。干什么用的。」</p>
+<p>「换电源板上的。主板。」</p>
+<p>周隼走向抽屉墙，从齐胸那排开始逐个拉开，看标签。</p>
+<p>「220 微法，250 伏。三种。」</p>
+<p>他把三只电容摆在绿胶皮上。第一只矮而粗，商标只剩半边；第二只小一圈；第三只只有火柴盒粗，罐身印着一行小字。</p>
+<p>「十二块。八个钱。二十五。」</p>
+<p>「三种价不一样。」陈渡说。</p>
+<p>「容量、牌子、体积不一样。塞得进去的只有最小的那个。」</p>
+<p>陈渡打开箱盖，一层层揭掉报纸。底下是一台灰绿色铁壳机器，铭牌掉了，只剩四个螺丝孔，编号末尾是 117。</p>
+<p>他抽出电源板，翻到背面。一只圆形电容的顶已经鼓起，底座渗出一圈油。</p>
+<p>周隼的改锥停了半秒，又转下去。</p>
+<p>「鼓了。」</p>
+<p>「鼓了。」</p>
+<p>「什么时候鼓的。」</p>
+<p>「不知道。」</p>
+<p>周隼没再问，把手上的弦拧完。</p>
+<p>「借把小尺。」</p>
+<p>陈渡从口袋里摸出一把小钢尺，一头只剩半截。他量了量空位，十三毫米；旁边的固定电容占了三毫米。</p>
+<p>他把 220 微法那只捏在指间比了比，又换 470 比。</p>
+<p>「470 的差一点。」</p>
+<p>「差多少。」</p>
+<p>「两毫米。磨罐子受压容易漏。」</p>
+<p>「十二块那个也能用。」</p>
+<p>「装不进去。」</p>
+<p>周隼拿起小电容，在灯下转了一圈，用拇指和食指捏着引脚。</p>
+<p>「新的。」</p>
+<p>「去年买的。」</p>
+<p>「电容有正负。引脚短的……」</p>
+<p>他停了一下。</p>
+<p>「短的是负极。」陈渡说。</p>
+<p>周隼又看了一次。「装反，电源板会烧。」</p>
+<p>「所以先确认。」</p>
+<p>陈渡把电源板推过去。背面焊点有新旧两层，旧锡发乌，新锡发亮。鼓包电容的负极脚周围有一圈硬黑胶。</p>
+<p>周隼用改锥碰了碰电容。</p>
+<p>「它顶着你。」</p>
+<p>「拆下来才能看。引脚可能也烂了。」</p>
+<p>「先通电，看有没有短路。」</p>
+<p>周隼从抽屉里拿出电烙铁。铜头发黑。插上电后，烙铁没有立刻发热。</p>
+<p>陈渡盯着锡。</p>
+<p>「一百二十赫兹……二百……」</p>
+<p>「你报什么。」</p>
+<p>「热。二十六伏，交流。」</p>
+<p>「我问这个做什么。」</p>
+<p>「等它到温度。三百五十左右。」</p>
+<p>周隼没再问，用小钳夹住鼓包电容。陈渡把烙铁贴上焊点。锡先发暗，再发亮，线脚旁冒出一缕细烟。</p>
+<p>「负极。」周隼说。</p>
+<p>「等焊锡化开。」</p>
+<p>「化了。」</p>
+<p>「再等一秒。」</p>
+<p>电容轻晃，底座黑胶裂开一道缝。周隼扶住板子。</p>
+<p>「你慢。」</p>
+<p>「焊点里面有锡。」</p>
+<p>陈渡把电容往下压，烙铁重新贴上去。三秒后，他提起罐体。两根引脚仍连在焊点里，外层锡已经熔了，细的一根还连着。</p>
+<p>周隼递来镊子。</p>
+<p>「先断这边。」</p>
+<p>细脚脱离板面。电容被放在绿胶皮上，顶部鼓包塌了一块，底下的油拖出一道黑痕。</p>
+<p>周隼用指甲刮焊点。</p>
+<p>「两个孔都通。孔壁烂了。」</p>
+<p>「补锡就行。不补孔，下一次焊不住。」</p>
+<p>周隼把板子推回来。</p>
+<p>「你熟。」</p>
+<p>陈渡从工具袋取出一截细铜丝，绕成小圈，套进两个孔，用烙铁把露出的部分和旧焊点连起来。锡漫过板面，填住黑缝。</p>
+<p>「你修东西，嘴也停不了。」</p>
+<p>「数温度。」</p>
+<p>「它有表？」</p>
+<p>「没表。熟了会粘。」</p>
+<p>周隼看了他一眼，把拆下的电容放进零件盒。</p>
+<p>「你这台机子，改过。」</p>
+<p>「电源板换过。」</p>
+<p>「我问整台。」</p>
+<p>「换过线。」</p>
+<p>「我问整台。」</p>
+<p>「磁头能用。」</p>
+<p>周隼拿起机器，按下播放键。机芯没有转，磁带仓里只响了一声机械声。</p>
+<p>「皮带断了。」陈渡说。</p>
+<p>「我说这个。」</p>
+<p>「线也换过。七年前。」</p>
+<p>「谁换的。」</p>
+<p>「我。」</p>
+<p>周隼的手停在机壳上。</p>
+<p>陈渡拿起 220 微法电容，对准圆形空位。</p>
+<p>「正极多一毫米。」</p>
+<p>「磨引脚。」</p>
+<p>「不磨。」</p>
+<p>「换位置。旁边放不下。」</p>
+<p>周隼拿出一片薄铜箔。</p>
+<p>「垫一下。」</p>
+<p>「垫高了，罐子顶铁壳。振动时会磨。」</p>
+<p>「你这台机子天天带着走。」</p>
+<p>陈渡接过铜箔，剪下一条，随即放下。</p>
+<p>「不用这个。」</p>
+<p>他掐住电容正极引脚根部，把引脚往上扳了一点，再放回空位。两脚都能进去。</p>
+<p>「装得上。正极还差一点。」</p>
+<p>陈渡把板子放平，用烙铁熔开正极脚周围的旧锡，把引脚压回去。焊点表面凹出一个小坑。</p>
+<p>「有锡就行。」</p>
+<p>「先不装。」</p>
+<p>「为什么不装。」</p>
+<p>「要测极性。还要看板上有没有改动。」</p>
+<p>周隼摸出放大镜，把板子挪到灯下。</p>
+<p>「这里割过。」</p>
+<p>电源板边缘有一道斜线，铜箔被割开，露出绝缘层。切口平整。</p>
+<p>「改装留的。谁改的。」</p>
+<p>「我。」</p>
+<p>「你改的电路，还是别人。」</p>
+<p>「我改。」</p>
+<p>周隼放下放大镜。</p>
+<p>「先装。测完再说。」</p>
+<p>陈渡把电容插到底，先焊负极，再焊正极。板子放凉后插进机器。按下开关，风扇转了两圈，停了。</p>
+<p>「变压器。」周隼说。</p>
+<p>「接触不良。」</p>
+<p>陈渡拆开侧板，找到电源线附近的接插件。塑料裂了一道缝，里面的铜片被插拔磨得发白。他用改锥压住铜片，重新插紧。</p>
+<p>再按开关，风扇转起来。底噪先出来，接着是磁带转动的沙沙声。</p>
+<p>周隼俯身听了片刻。</p>
+<p>「它不响，是我不响。」</p>
+<p>陈渡看了他一眼。</p>
+<p>周隼直起身，去拿改锥。</p>
+<p>「换磁头要多少钱。」</p>
+<p>「先测。一盘带要六十分钟。」</p>
+<p>「那就测。」</p>
+<p>陈渡取出一盘空白磁带。塑料盒边角裂开，盒盖里有一层白粉。他用指甲刮了一点，放在灯下。</p>
+<p>「还能用。」</p>
+<p>磁带装进去，按下录音键。磁头压到带面，走带轮开始转。</p>
+<p>周隼把机器抱起来。</p>
+<p>「你想录什么。」</p>
+<p>「不录人。先测偏压。」</p>
+<p>「你试。」</p>
+<p>「那是你的声音。」</p>
+<p>周隼看着他。</p>
+<p>陈渡把机器放回台面，接上指针式电平表。磁带走到一半，表针摆了一下，幅度很小。</p>
+<p>「偏压低。先测磁头。」</p>
+<p>周隼放入测试磁带。信号从左声道开始，底噪逐层增加。指针偏了两格，又回到中线。</p>
+<p>「磁头偏压不够。」</p>
+<p>「先换磁头。」</p>
+<p>周隼把机器放到台角。</p>
+<p>「你这台机子，原来不是这样。」</p>
+<p>「原来能录。」</p>
+<p>「谁说的。」</p>
+<p>「我录过。录的是别人的声音。」</p>
+<p>周隼把放大镜收进抽屉。抽屉卡住，他用膝盖顶了一下。</p>
+<p>「你听过自己的声音吗。」</p>
+<p>「听过。」</p>
+<p>「在机器里。」</p>
+<p>「不在。在外面。」</p>
+<p>陈渡拿螺丝刀拧紧侧板上的四颗螺丝。第一颗滑了，他换了一把缠胶布的改锥。</p>
+<p>「先别拧死。铁壳受热会胀。」</p>
+<p>陈渡把螺丝退过半圈。</p>
+<p>门口传来三轮车铃声。一个男人抱着台收录机进来，外壳包着黑色仿皮，提手缠过胶带。</p>
+<p>「老周，收旧卡座不收。」</p>
+<p>「看东西。」</p>
+<p>周隼先掂了掂收录机。</p>
+<p>「六斤二两。」</p>
+<p>「有称。」</p>
+<p>铺子角落立着台秤，铁盘锈了，秤砣拴着铁链。周隼把收录机放上铁盘，推动秤砣。秤杆碰到一处锈点，又落下去。</p>
+<p>「六斤二两。」</p>
+<p>「卖多少钱。」</p>
+<p>「看东西。」</p>
+<p>周隼拧开电池盖。仓底积着白色粉末。</p>
+<p>「漏液了。多久。」</p>
+<p>「半年吧。」</p>
+<p>「里面线可能锈了。你打开看看。」</p>
+<p>底壳四颗螺丝有两颗槽口发亮。打开后，电池触片结着绿白硬壳。</p>
+<p>「不收。」</p>
+<p>「擦擦不就行。外壳好好的。我买的时候三百二。」</p>
+<p>「外壳不值钱。触片烂了，里面的线也烂了。」</p>
+<p>男人把收录机抱紧一点。</p>
+<p>「便宜点。五十。四十。二十。」</p>
+<p>周隼拿起一把小扫帚。</p>
+<p>「卖旧铁皮，按斤。」</p>
+<p>「里面变压器有八斤。」</p>
+<p>「有八斤，是八斤。铜线是铜线。磁头能单独卖吗。」</p>
+<p>「我不收单独的，只收整机。」</p>
+<p>「东西都有它来的地方。」</p>
+<p>男人把收录机往门框上一靠，转身推车。车轮碾过门槛，几卷旧磁带在车斗里滚了一下。</p>
+<p>周隼站在秤边，没有送。</p>
+<p>陈渡重新拿起电源板。</p>
+<p>「那个 47 纳法用在哪。」</p>
+<p>「高频耦合。」</p>
+<p>「唱片机线路里没有。这台磁带机，47 纳法不在原电路里。」</p>
+<p>周隼掀开底板。下面贴着一张发硬的折叠电路图，蓝线是后加的，从录音头引出，绕过空插孔，接到音量电位器。</p>
+<p>「它以前是电唱机改的。」</p>
+<p>「不是。」</p>
+<p>「这是电唱机的拾音线路。原来接唱头。」</p>
+<p>「原来接的是这个。」</p>
+<p>陈渡从木箱夹层取出一只黑色圆柱形零件，尾部引出两根线。</p>
+<p>「电容式唱头。变压器降压。它不是给这个用的，是给人声轨供电。」</p>
+<p>周隼把零件对着灯看。圆柱侧面商标磨掉，只剩一个字母。</p>
+<p>「环境声从哪儿进。」</p>
+<p>「接这个。它能收振动。」</p>
+<p>周隼用指节敲了敲零件，里面是一声发闷的响。</p>
+<p>「你拿它对过嗓子。」</p>
+<p>「对过。」</p>
+<p>「录进去没有。」</p>
+<p>「录进去了。听见房间。」</p>
+<p>周隼把电路图折回去，纸从中间裂开，掉出一点黑色碎屑。</p>
+<p>「以前调过线路。」陈渡说。</p>
+<p>「调它做什么。」</p>
+<p>「让它录清楚。录别人。」</p>
+<p>「为什么只录别人。」</p>
+<p>「那台线路就这样。」</p>
+<p>周隼抬起眼。</p>
+<p>「你改过。」</p>
+<p>「改过。」</p>
+<p>「那就不是原来就这样。」</p>
+<p>陈渡把唱头收进木箱夹层。拉链缺一颗齿，他用手压住一头，夹了两次才合上。</p>
+<p>「能用就行。」</p>
+<p>周隼拿出黑胶皮包边的眼镜，不戴，只用镜腿剔桌上的锡珠。</p>
+<p>「你爸修的。」</p>
+<p>「我修的。」</p>
+<p>「他给你时什么样。」</p>
+<p>「能录。录你自己？」</p>
+<p>陈渡没回答。他打开万用表电池盖，换掉一节发软的电池。</p>
+<p>「先通电。」</p>
+<p>「你不回我。」</p>
+<p>「听见了。」</p>
+<p>「听见什么。」</p>
+<p>「你的声音。」</p>
+<p>周隼放下眼镜腿。</p>
+<p>「那就够了。」</p>
+<p>「不够。再试。」</p>
+<p>卖水果的女人端着搪瓷盘进来，纸包上写着「35伏」。</p>
+<p>「老周，这袋电容还要不要。」</p>
+<p>周隼拆开纸包，倒出一只电容。</p>
+<p>「这个鼓了。」</p>
+<p>「没鼓。」</p>
+<p>「顶平了，边上漏了。」</p>
+<p>「还能用。我修一台旧收音机。」</p>
+<p>「鼓包也能换，不换也能开机，声音小一点。」</p>
+<p>「你这批多少。」</p>
+<p>「三十六只。不知道多少只鼓，我刚数过。」</p>
+<p>「能用的挑出来，十只八块。」</p>
+<p>「我这是正经牌子的。」</p>
+<p>「牌子不管鼓不鼓。」</p>
+<p>女人把搪瓷盘往回收。</p>
+<p>「不卖了。」</p>
+<p>「你放我这儿，我替你挑。」</p>
+<p>「我自己会挑。」</p>
+<p>「你刚才说不知道。」</p>
+<p>「我回去再看。」</p>
+<p>她走到门口，又想起什么。</p>
+<p>「上回那批十二伏的，你还没给钱。」</p>
+<p>「多少。」</p>
+<p>「六十。」</p>
+<p>周隼从零钱里数出六十，推过去。女人拿钱时点了两遍。</p>
+<p>「鼓包的给你留着。」</p>
+<p>「漏了会烧。」</p>
+<p>「烧了再换。」</p>
+<p>女人没接，把纸包重新拢好，转身出去。</p>
+<p>陈渡看着周隼抽屉里的零钱。捆钱的橡皮筋剪口发白。</p>
+<p>「这铺子一个月能挣多少。」</p>
+<p>「看修什么。」</p>
+<p>「卖磁带呢。」</p>
+<p>「看进多少。有些能录十次。十次以后，受潮，发霉，卡带。」</p>
+<p>「还能用吗。」</p>
+<p>「能用就行。」</p>
+<p>周隼打开柜后抽屉。十二格磁带按长度摆开，一格全是 C60，另一格装的是 C90，盒角磨圆，带轴有裂纹。</p>
+<p>「这批有四盘受潮。」</p>
+<p>「你听得出来。」</p>
+<p>「摸带面。」</p>
+<p>周隼拿出一盘 C60，标签只剩厂名后两个字。</p>
+<p>「这台机子配套用。」</p>
+<p>「它绕两轨。原配磁头是单轨。」</p>
+<p>「你怎么知道。」</p>
+<p>「线路上的。改线时看过。」</p>
+<p>「谁拆的。」</p>
+<p>周隼把磁带盒转了一圈，让标签朝上。</p>
+<p>「坐。」</p>
+<p>陈渡站着没动。周隼也没再劝，把磁带放回去。</p>
+<p>铺子里只剩风扇轴承缺油的响声。挂钟走到九点二十，秒针跳过两格。</p>
+<p>周隼拿起机器，在绿胶皮上转了个方向。</p>
+<p>「我不问东西的来处。你也别问。」</p>
+<p>「不问。」</p>
+<p>「东西都有它来的地方。」</p>
+<p>陈渡看着机器。</p>
+<p>「你改的。」</p>
+<p>周隼的手压在外壳上。</p>
+<p>「你听这个。」</p>
+<p>「我听见了。」</p>
+<p>「不是问我。」</p>
+<p>门外电动车按了一下喇叭，声音从卷帘门下钻进来，很快被街上的车声压住。周隼走到门边，把卷帘门往上抬了两指宽，门轴涩响。</p>
+<p>「你爸那台机子，录不进自己声音。」</p>
+<p>陈渡撕开木箱胶带一角。</p>
+<p>「我修过。」</p>
+<p>「我说的不是现在这台。十二伏机，部队下来的，编号 117。」</p>
+<p>「嗯。」</p>
+<p>「你见过？」</p>
+<p>周隼从门下够出一块垫木，顶面被压出凹坑，把门沿垫高。</p>
+<p>「见过。」</p>
+<p>「什么时候。」</p>
+<p>「你二十二岁。」</p>
+<p>「你来拿东西？」</p>
+<p>「我给你装的。装什么。」</p>
+<p>「电源。」</p>
+<p>陈渡把胶带全部撕开，灰绿色铁壳露出来。靠近后盖的位置有一道黑色补漆。</p>
+<p>「你爸拿来时，不是这个电源。是低压直流，车上接电用的。」</p>
+<p>「我换成 220 伏了。」</p>
+<p>「你换不了。这个壳，变压器放不进去。」</p>
+<p>「拆后盖就知道。」</p>
+<p>周隼从墙上取下一串钥匙。钥匙串挂着十几个空线轴，最下面那只挂着磁带机固定螺帽。他没拿，只把串放到台边。</p>
+<p>「先换电容。后盖也能拆。」</p>
+<p>「电容不换，开了也白开。」</p>
+<p>「那你说电压在哪儿。」</p>
+<p>「电源线进壳，先过保险，再进变压器。后面还有整流桥。」</p>
+<p>「你看过？」</p>
+<p>「看过。」</p>
+<p>周隼点头。</p>
+<p>「那你先换电容。」</p>
+<p>陈渡刮去正极脚边的旧胶。周隼把电容拿过去，核对引脚长短。</p>
+<p>「这个先不装。量底座。」</p>
+<p>他把电容按在旧电容留下的圆形印子上。</p>
+<p>「孔偏了，不到一毫米。线拆掉就没有了。」</p>
+<p>「拆线要多久。」</p>
+<p>「十分钟。」</p>
+<p>「你今天做不完。一颗螺丝要换，M3.5 的十字。」</p>
+<p>周隼去拿螺丝时，手机在旧音箱旁响了。默认电子音来回两遍，没人接。</p>
+<p>陈渡拿起手机。</p>
+<p>「你电话。不认识。」</p>
+<p>周隼接起。</p>
+<p>「在。不用。我不接这种活。钱不够。你找别人。我说过，不接。」</p>
+<p>他挂断，把手机放回音箱上。</p>
+<p>「婚庆？」</p>
+<p>「三百，一晚上。」</p>
+<p>「不去。」</p>
+<p>「你今晚有事。」</p>
+<p>「拆线。」</p>
+<p>「拆完做什么。」</p>
+<p>「看后面。」</p>
+<p>「后面有什么。」</p>
+<p>「后面有线。」</p>
+<p>周隼问起线头记号。陈渡答：「红的接正极，黑的接地。剥五毫米，用六平方压线鼻子。」</p>
+<p>周隼拿出一只小铜环。</p>
+<p>「接地用这个。」</p>
+<p>「我不用。直接压板。」</p>
+<p>「随你。」</p>
+<p>陈渡的手机收到短信。明晚七点，城东，缺贝斯手。</p>
+<p>他合上手机。周隼把旧吉他夹进虎钳，刮着指板。</p>
+<p>「你那把琴，弦轴滑了。」</p>
+<p>「上回修过。」</p>
+<p>「琴颈装弦轴的位置松了。」</p>
+<p>「能弹就行。」</p>
+<p>「现在怎么不弹了。」</p>
+<p>陈渡把电容装进电源板，用镊子往下压了半毫米。</p>
+<p>「它在路上。没琴。」</p>
+<p>「那把琴呢。」</p>
+<p>「寄存了。」</p>
+<p>「寄存在哪。」</p>
+<p>「一个地方。」</p>
+<p>「谁给你存。」</p>
+<p>「别人。寄存费一年一百二。」</p>
+<p>周隼没再问，用刀片将弦枕槽多刮一点，槽深多了半毫米。</p>
+<p>「你改完这台机子，还走？」</p>
+<p>「走。看活。婚庆，酒吧，开房间。」</p>
+<p>「婚庆要唱。」</p>
+<p>「乐队唱。」</p>
+<p>「你弹？」</p>
+<p>「弹。」</p>
+<p>「唱不唱。」</p>
+<p>「不唱。嗓子累。」</p>
+<p>周隼把木屑拢到虎钳边。</p>
+<p>「你不是嗓子累。」</p>
+<p>「嗓子没毛病。」</p>
+<p>「我没说毛病。」</p>
+<p>陈渡拿起万用表，测线路。表针在两百多赫兹的位置轻轻抖。</p>
+<p>「这个表多少赫兹。」</p>
+<p>「电阻档没有赫兹。」</p>
+<p>「表盘上印着。」</p>
+<p>「这个型号没有。」</p>
+<p>「那你还问。」</p>
+<p>「你看得太快。」</p>
+<p>周隼把吉他从虎钳上取下，用细砂纸磨弦枕弧面。</p>
+<p>「二十赫兹。你刮的是人声频段。」</p>
+<p>「我在配弦枕。」</p>
+<p>「弧面低了。」</p>
+<p>「低了会打弦。」</p>
+<p>「高了会打品。」</p>
+<p>「你说哪一种。」</p>
+<p>周隼把弦枕放回琴颈。</p>
+<p>「低了。」</p>
+<p>陈渡看了他一眼。</p>
+<p>「你量过。」</p>
+<p>周隼没有回答。</p>
+<p>一个夹克男人抱着红壳鼓机进来。设备下垫着两片毛巾，插头缠了两层银色胶带。</p>
+<p>「上周那台鼓机。主动触发还是模拟触发？」</p>
+<p>「都有。带耳返。接音箱以后踩不响。」</p>
+<p>「什么音箱，多少瓦，阻抗呢。」</p>
+<p>男人看向陈渡。</p>
+<p>「他懂吗。」</p>
+<p>周隼手里的砂纸没停。「他比我在行。」</p>
+<p>男人把鼓机放上台角。</p>
+<p>陈渡挑开胶带。</p>
+<p>「这根是耳返，这根是触发输出。电源接哪了。」</p>
+<p>「那个圆的。」</p>
+<p>插上电源，灯闪了一下，熄灭。</p>
+<p>「电池还有吗。充电器呢。适配器规格呢。」</p>
+<p>男人从包里摸出两节九伏电池。陈渡量了电压，一节九点一伏，一节七点八伏。</p>
+<p>「电池没电。充电器没带，原装适配器丢了。」</p>
+<p>周隼拉下插线板。</p>
+<p>男人接上适配器，鼓机亮了。陈渡按下测试键，底鼓、军鼓、踩镲依次响起。</p>
+<p>「接音箱才不响。你接哪一路。」</p>
+<p>「L、MONO。」</p>
+<p>「接对了。响多久。」</p>
+<p>「十几秒。然后就哑了。」</p>
+<p>「保护了。」</p>
+<p>「线好好的。」</p>
+<p>「线好好的，音箱也可能没坏。接负载，从一拧到十，量功放输出。」</p>
+<p>周隼找出两米音箱线。男人接好，功放拨到 ON。</p>
+<p>「一。」鼓声出来。</p>
+<p>「二。」声音更大。</p>
+<p>「三。」表针接近红线。</p>
+<p>「四。」表针偏了一下。</p>
+<p>「五。」鼓机屏幕闪了一次。</p>
+<p>「六。」没声。</p>
+<p>「保护了。功率不够。四百瓦是最大功率，这是额定一百二十。音箱标的是峰值。」</p>
+<p>男人摸着音箱网罩上的灰。</p>
+<p>「我买的时候说是四百。店里说四百，体育馆对面，卖的是二手。」</p>
+<p>周隼把功放铭牌转过来。</p>
+<p>「能不能修鼓机。」</p>
+<p>「鼓机没坏，它保护自己。接小音箱，监听也行，三十瓦。或者换功率够的箱子。」</p>
+<p>男人把鼓机装进包，走到门口又问：「换箱子在哪买。」</p>
+<p>周隼用下巴指了指街对面。「贴膜那家隔壁，有家卖二手的。」</p>
+<p>男人走后，陈渡绕好万用表的表线。</p>
+<p>「十六分贝是多少瓦。」</p>
+<p>「不知道。」</p>
+<p>「你算过。」</p>
+<p>「没算过。把表接上去，量到多少伏，再看音箱额定阻抗。四欧，一百二十瓦，电压等于功率乘阻抗的平方根。」</p>
+<p>陈渡拿起周隼桌上只剩半截的铅笔，在纸上写下「17.3」。</p>
+<p>「鼓机能接大箱子，小音量能。」</p>
+<p>「它的输出也不够。」</p>
+<p>「接四欧负载，保护了。」</p>
+<p>「所以鼓机要换。」</p>
+<p>「也可以换箱子。能不能修是一回事，能用是另一回事。」</p>
+<p>周隼把纸抽回去，折好放进抽屉。</p>
+<p>门外有人喊：「老周！开门。」</p>
+<p>周隼挪开垫木，接过一个装磁带的黑色塑料袋。</p>
+<p>「什么东西。」</p>
+<p>「二手卡带，四盘。」</p>
+<p>男人把袋子放上柜台。四盘磁带装在透明盒里，标签写着不同歌曲名。</p>
+<p>周隼按播放键。盒盖合不严，带轮卡住，只能转半圈。</p>
+<p>「你听这个。」</p>
+<p>他把磁带递给陈渡。</p>
+<p>「这盘我没修过。」</p>
+<p>「你以前修的。」</p>
+<p>「我不记得。」</p>
+<p>「你后面那个。以前来拿。」</p>
+<p>「谁。」</p>
+<p>「你。」</p>
+<p>陈渡把磁带放回柜台。</p>
+<p>「我不拿二手带。」</p>
+<p>「这是你的。有型号。」</p>
+<p>男人翻过其中一盘，背面用蓝笔写着「TDK D60」，字迹被擦过。</p>
+<p>「两轨，四轨，四轨，四轨。你以前要四轨。」</p>
+<p>「我以前收四轨。现在不收。没机器。」</p>
+<p>周隼拿起一盘，对着灯看带芯。带芯一侧有白点。</p>
+<p>「这盘录过。」</p>
+<p>「当然录过。」</p>
+<p>「空白带也能过轴。有声音就有波形。」</p>
+<p>「多少钱。」</p>
+<p>「不收。新的六十，十块。」</p>
+<p>「不收。」</p>
+<p>男人看了看陈渡，又看周隼。</p>
+<p>「你们两个一个脾气。」</p>
+<p>周隼把磁带装回塑料袋。</p>
+<p>「他会换。」</p>
+<p>「我不换。」</p>
+<p>「你听这个。」</p>
+<p>陈渡站在工作台边，手压着机器外壳。</p>
+<p>「两轨能录，三十赫兹到一万六。四轨呢。」</p>
+<p>「十五、六千。」</p>
+<p>「你以前不是说四轨低频好。」</p>
+<p>「那台机器好。现在这台还在修。」</p>
+<p>男人把袋子放上柜台。</p>
+<p>「你修好了叫我。」</p>
+<p>「不收。」</p>
+<p>「东西放这儿。」</p>
+<p>周隼把袋子推回去。「拿走。」</p>
+<p>男人拎起袋子，走了两步，又回头。</p>
+<p>「上回你拿走的两个空插孔，我给你留着。」</p>
+<p>周隼的手从抽屉里出来。</p>
+<p>「什么东西。」</p>
+<p>「一对插孔，黑的。新的。」</p>
+<p>「不用了。」</p>
+<p>男人把袋子挂上车把，骑车走了。</p>
+<p>挂钟敲了十下，每一下都拖着金属尾音。</p>
+<p>周隼从木箱里取出机器。</p>
+<p>「你拆后盖。」</p>
+<p>陈渡把胶带全部剥掉，报纸折回箱角。</p>
+<p>「你走。」</p>
+<p>「我不走。挡光。」</p>
+<p>「我不挡。」</p>
+<p>陈渡把机器侧转九十度，后盖朝上。灯从左边斜过来。</p>
+<p>他用改锥拧第一颗螺丝。螺丝很紧，改锥滑了两次。</p>
+<p>「起子。扭矩别开大。」</p>
+<p>周隼取来一把电起子，线缠在把手上，一圈松，一圈紧。</p>
+<p>「多少。」</p>
+<p>「低档。你用手拧都行。」</p>
+<p>陈渡拨到一档。起子嗡嗡地贴着台面转。他把螺丝一颗颗卸下，排在绿胶皮上。</p>
+<p>「一颗一颗放。这台上次换过，四颗都不是原装的。」</p>
+<p>「看螺丝。知道。」</p>
+<p>后盖卸下。机器底部积着灰，灰里有几根细铜丝。靠变压器的一侧，布线被发黄的尼龙扎带扎着，锁扣已经断了。</p>
+<p>陈渡用镊子夹出铜丝。</p>
+<p>「十七根。」</p>
+<p>「数它做什么。」</p>
+<p>「有的是焊锡，有的是铜丝。铜丝多了会短路。」</p>
+<p>周隼夹起一根。</p>
+<p>「这个也是铜丝。」</p>
+<p>「这根是焊锡。锡软。」</p>
+<p>陈渡把焊锡弯了一下，弯处留下白印，铜丝则弹回去。</p>
+<p>「铜丝能修接点，锡只能焊。你留着干什么。」</p>
+<p>「你修接点用。」</p>
+<p>周隼用放大镜看底板线路。灰被擦掉一块，露出一枚黑色芯片，旁边的焊点很整齐。</p>
+<p>「这不像你焊的。助焊剂多，手法不一样。」</p>
+<p>「我用的锡。」</p>
+<p>「你看过别人焊？」</p>
+<p>「看过。」</p>
+<p>「谁。」</p>
+<p>周隼用镜腿敲了敲桌面。</p>
+<p>「人多了。」</p>
+<p>陈渡用小刀刮芯片旁的绝缘胶。胶很硬，刀刃走两下就卷了。他换尖镊子，沿着胶边慢慢分离。</p>
+<p>一颗螺帽松开，陈渡用磁铁吸住。</p>
+<p>「有磁铁。」</p>
+<p>「抽屉里有。要一块？」</p>
+<p>「吸螺丝。掉进机芯里会卡住。」</p>
+<p>周隼拿出一块包红纸的圆柱磁铁。陈渡把螺帽吸上去，将磁铁放到台角。</p>
+<p>「那个空插孔。做什么。」</p>
+<p>「接唱头。」</p>
+<p>「唱头不能接录音机。」</p>
+<p>「改了电压。你改的？」</p>
+<p>「改了。谁教你的。」</p>
+<p>周隼拿起机器。底板凹处焊着一只微型变压器，漆面磨掉一块。线圈引脚穿过铁板，接到电容式唱头专用线路。</p>
+<p>「你这台机子，原来的电源不是 220 伏，你还换过。」</p>
+<p>「换过。」</p>
+<p>「壳放不下变压器。」</p>
+<p>「所以我没换。」</p>
+<p>周隼的手停了。</p>
+<p>「那你换的是什么。」</p>
+<p>陈渡指向电源板。</p>
+<p>「电源板。板子上的东西不是原装。整流桥是我加的。变压器从婚庆队一套旧功放上拆的，二十四伏。先升到 220 伏，再降。」</p>
+<p>「体积呢。」</p>
+<p>「挪了磁头支架。磁头偏了，重新调。」</p>
+<p>「你调过多少。」</p>
+<p>「一百二十赫兹……二百……」</p>
+<p>陈渡停了一下。</p>
+<p>「今天不调。」</p>
+<p>周隼把机器放下。</p>
+<p>「今天也不装电容。」</p>
+<p>「已经装了。电容装上不等于修完。」</p>
+<p>「你多久调一次。」</p>
+<p>「换磁头以后。多久换磁头，看磨损。录音放大的声音会散，低音还在，高音毛。有频响曲线。」</p>
+<p>「你看我的。」</p>
+<p>「什么问题。」</p>
+<p>「唱头线路有五十赫兹交流声。旁边有日光灯。」</p>
+<p>「我这台也有。先测。」</p>
+<p>「你总得有个不修的时候。」</p>
+<p>陈渡刮掉电容引脚上多余的锡。</p>
+<p>「它不响，是我不响。」</p>
+<p>周隼看了他一眼。</p>
+<p>「这句是你爸说的。」</p>
+<p>陈渡手里的刀停了半秒。</p>
+<p>周隼拿起放大镜，擦镜片上的灰。</p>
+<p>「你爸修机器，也这么说。他修一台录音机，录不进自己的声音。」</p>
+<p>「他说过。他说的是磁带受潮。那是第一次，后来换过三次。」</p>
+<p>「结果呢。」</p>
+<p>「结果还是磁带受潮。」</p>
+<p>周隼取出旧皮带。皮带断成两截，断口发白。他拿在手里比了比长度。</p>
+<p>「你信吗。」</p>
+<p>「每次都能修。」</p>
+<p>「我没问你磁带。」</p>
+<p>陈渡把皮带放进木箱侧袋。</p>
+<p>「我信能修。」</p>
+<p>周隼没再说话。他取下墙上的卷尺，量机器底板。</p>
+<p>「十八点六。」</p>
+<p>「机器宽度。」</p>
+<p>「二十二。」</p>
+<p>「那我量错了。」</p>
+<p>「你量的是纸箱。」</p>
+<p>陈渡把木箱翻过来。箱底标签写着「117，22×18×9」，字迹被胶带盖住一半。</p>
+<p>周隼看了一眼。</p>
+<p>「二十二厘米宽。你记得。」</p>
+<p>「拆过。」</p>
+<p>「什么时候拆的。」</p>
+<p>「修电源的时候。」</p>
+<p>周隼收回卷尺，尺带啪地缩进壳里。</p>
+<p>门外有人把塑料凳放在台阶上，凳脚刮过地面。一个年轻女人拿着电子琴说明书站在门边。</p>
+<p>「老周，能看看这个吗。朋友的车，车停在后面，你去看也行。」</p>
+<p>「拿琴来。」</p>
+<p>「这个接触不良，是哪里。」</p>
+<p>「哪款琴。」</p>
+<p>「61 键，旧款。」</p>
+<p>「按键下的橡胶垫老化，触点氧化。琴没坏。」</p>
+<p>「你怎么知道橡胶垫老化。」</p>
+<p>「说明书上写了。」</p>
+<p>女人把说明书合上。</p>
+<p>「我拿琴去。收费吗。」</p>
+<p>「不收费。修呢。」</p>
+<p>「看了再说。」</p>
+<p>她走后，陈渡把拆下的四颗螺丝装进透明小袋，拉了两次才封好。</p>
+<p>「这个电容放我这里。」</p>
+<p>「放抽屉。」</p>
+<p>「哪个抽屉。」</p>
+<p>「47 纳法那格。」</p>
+<p>「你这里也有。」</p>
+<p>「有旧的。」</p>
+<p>「新的。」</p>
+<p>「你拿回去试试。」</p>
+<p>「新的也不行。拆开看过。」</p>
+<p>周隼从抽屉深处取出两个小纸包，推到陈渡手边。</p>
+<p>「拿去。你的机子缺这两个。」</p>
+<p>陈渡没接。</p>
+<p>纸包发黄，折痕起了毛。上面用蓝黑墨水手写着两行字：</p>
+<p>「电容 220μF」</p>
+<p>「电容 47nF」</p>
+<p>一只 220 微法，一只 47 纳法。47 纳法是瓷片的，不分极性，高频那一路用。</p>
+<p>陈渡看着那两个纸包。</p>
 ]]></content>
       <categories>
         <category>小说</category>
@@ -14388,6 +15029,149 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
+    <title>第800小时 16：十环</title>
+    <url>/%E5%B0%8F%E8%AF%B4/e14e6f79.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>鼠标在桌面上滑了一下。</p>
+<p>不是没按住。手指头自己往前挪了半格，鼠标撞在计环台边沿，弹回来。屏幕上是今天的成绩单，最后一行亮着：10.0。</p>
+<p>陶砚摊开右手看掌心。手背是干的，指节没有抖。虎口那层厚茧还在那儿，硬得像一块用旧了的砂纸。</p>
+<p>四十分钟前他打出了十环。那是他职业生涯里最好的一枪。</p>
+<p>那堂课是三个月前定下来的。认证委员会来函，要求基地首席教练做一次公开示范课，学员全员在场。附页上写着：观摩项目，射击，60 分钟；课后讲评，15 分钟；评审三人，基地内两名，省体育局一名。</p>
+<p>函是苏芮转给他的。她把函放在键盘旁边，问了一句：「打什么。」</p>
+<p>「十发。」</p>
+<p>「十发打多少。」</p>
+<p>「平均九点五以上。」</p>
+<p>「打十环？」</p>
+<p>「打十环是事故，不是成绩。」</p>
+<p>她走了以后，他调出准备记录。三十七发准备弹，最高九点八，平均九点三八。他把三十七发里最接近十环的那一发的落点抄在纸上，画了三个圈。圈画得很规整，间距两毫米，是他在体校学的画靶法。教练组的人说这七百发准备弹是浪费，他没解释。</p>
+<p>三月十四号，射击馆三号靶位。</p>
+<p>侧风，风速仪读 0.8 米每秒。助理换了新靶纸。五十三个学员站成两排，后面十四个人是别的项目过来的，跑的和跳的，站姿不像射击的样子。评审坐第一排桌子后面，两名基地的人，一名省体育局的。记录屏挂在墙上，右上角有一行小字，是基地的荣誉榜：时数第一，赵砚青，12,400。</p>
+<p>陶砚在队列里找了一遍。没有林野。今天没有外人名单。</p>
+<p>赵砚青在第二排中间，站着。十二年，他一直站着听。</p>
+<p>陶砚上靶位之前做了三件事：查枪，查风，查计时器。每次都重查一遍。查完他在心里过一遍呼吸：四拍，吸、屏、松、扣。</p>
+<p>前九发：9.3、9.6、9.1、9.5、9.0、9.4、9.7、9.2、9.6。</p>
+<p>九发打完，他在心里加了一遍，85.4，平均九点四九。记录屏上那个数字稳稳地挂在旁边，不上不下。还差一线。</p>
+<p>第十发。他把枪举起来。</p>
+<p>呼吸四拍。第一拍吸满，第二拍屏住，第三拍身体最松，第四拍把气憋死。他这辈子所有的枪都是第四拍响的。第三拍是空拍——那一拍身体松，枪口最容易抖，抖半毫米就少两环。他不赌空拍。他赌的是憋死那一口气。</p>
+<p>响的时候他听见了自己的心跳，比枪响晚。</p>
+<p>弹着点在靶心右下三毫米。</p>
+<p>计环屏上跳出来一个数：10.0。</p>
+<p>前排有人站起来。第二排有人喊了一声，被评审抬手压住。陶砚看着屏上那个数字，等它变。它没有变。</p>
+<p>「靶纸取下来。」他说。</p>
+<p>助理跑过去取靶，贴图，扫描。计环系统重新算了一次。</p>
+<p>「还是十环。」助理说。</p>
+<p>「十点零。」陶砚说。</p>
+<p>「这……这是您最好的一枪？」助理问。</p>
+<p>「是我记录里最好的一枪。」</p>
+<p>评审里那名省体育局的翻了翻手里的表。「陶教练，这一枪，您练了多少小时。」</p>
+<p>「9,120。」</p>
+<p>「重复过多少次。」</p>
+<p>「1,247。」</p>
+<p>那名评审抬起眼。「1,247 次里面，失败过多少次。」</p>
+<p>「0。」</p>
+<p>房间里有声音动了一下，是椅腿。</p>
+<p>「不可能。」前排一个学员说，「打十环还能一次不失败。」</p>
+<p>「失败的次数不计。」陶砚说，「计时的意思是有效的时长。」</p>
+<p>「那您怎么知道一个动作做对了。」</p>
+<p>「按偏差。同一个动作在规定偏差内，记一次。」</p>
+<p>评审在纸上写了两行。「从九点五到十点零，您是按什么练出来的。」</p>
+<p>陶砚张开嘴。</p>
+<p>1,247 次重复。这一枪是第几次，落在右下三毫米。为什么是右下三毫米，为什么不是左上，为什么不是中心。这些东西他都有记录，日期、时数、动作、偏差、备注，一栏都不缺。他能说出这一枪属于哪一小时的第几分钟。</p>
+<p>他不知道这一枪是怎么打出来的。</p>
+<p>「我不知道。」</p>
+<p>他说出来了。</p>
+<p>台下五十三个人没有一个动。他站在靶位上，手还举着枪，枪口往下垂了一寸。有人把这句话记在了本子上，笔尖划纸的声音在馆里响了两下。</p>
+<p>这是他二十年来第一次说这三个字。</p>
+<p>「您今天这堂课，」那名基地的评审抬起头，「按标准记多少。」</p>
+<p>「一小时。」陶砚说。</p>
+<p>「记什么类别。」</p>
+<p>「教练示范。」</p>
+<p>评审在本子上写了一笔，没再问。</p>
+<p>后面还有四十分钟的观摩。学员轮流上靶位，教练组站在旁边看，一句一句纠。馆里的声音一层一层上去，又一层一层落下来。</p>
+<p>第二十二个上靶位的是赵砚青。他打的是十发，九点二到九点八，没有一枪上九点九。每一枪打完，计环屏上跳一次数。陶砚站在侧面看着那个屏幕。</p>
+<p>「第二发，后坐没吃住。」他在赵砚青下靶位的时候说。</p>
+<p>「嗯。」</p>
+<p>「再来一遍。」</p>
+<p>「再来一遍是第四百三十一次了。」赵砚青说，「从 2018 年 6 月 3 号那天开始的，今天这一组是第一百三十七组。」</p>
+<p>陶砚没说话。赵砚青把枪挂回架子，从口袋里掏出一张折了四折的纸，展开，铺在长桌一角。纸上是一张手画的表格，纵轴是日期，横轴是每组的均值。密密麻麻的黑点，从 2018 年一直连到今天。中间有几段是斜的，往下走的。</p>
+<p>「这是您教我之前我自己的表。」赵砚青说，「这是您教我之后的。」</p>
+<p>陶砚看了三秒。</p>
+<p>「今天为什么给我看这个。」</p>
+<p>「今天有人问我，练这么久图什么。」赵砚青把纸折回去，塞进口袋，「我说我算不出来。」</p>
+<p>他上靶位排到后面去了。陶砚站在原地，手里捏着刚才那支笔。</p>
+<p>观摩快结束的时候，屏幕上换了一行字：本期观摩登记人数，53；有效观摩课时，1；类别，教练示范。陶砚站在侧面看着那行字，没有多想。课时的登记和时数是两件事，一堂课是一堂课。</p>
+<p>讲评在馆中央的长桌边。评审把话递给他：「陶教练，最后十五分钟，您讲两句。」</p>
+<p>陶砚站起来。</p>
+<p>他面前是四排人。他张了嘴。十一秒。他数到十一的时候自己听见了自己喉咙里的气声。</p>
+<p>「今天到这儿。」他说。</p>
+<p>评审没有追问。散场的时候椅子响了一片。人走光了，馆里剩下计环台、灯、和地上几个被踩扁的纸杯。</p>
+<p>陶砚在计环台前坐下，鼠标放在垫子上。他握上去，鼠标往右滑了半格，撞在台面上。</p>
+<p>他把手松开。放平。等了一会儿。再握上去。</p>
+<p>鼠标又滑了。</p>
+<p>第三次他用两只手把它按住，才点开计环系统，找到今天这堂课的记录。十发。均值九点四八。最高十点零。记录人：陶砚。确认。</p>
+<p>「记录人」那一栏是他自己填的，十五年都是他自己填。</p>
+<p>他站起来，把枪挂回架子上，退出靶位门。走廊上苏芮还没走，抱着文件夹等他。</p>
+<p>「今天的课，我按一小时示范记进您的档案了。」</p>
+<p>「学员那边呢。」</p>
+<p>「如果这堂课要进时数包，按标准走就行。」</p>
+<p>「标准是什么。」</p>
+<p>「我回头发您。」</p>
+<p>陶砚点头。他要的是能发到每个人手上的那份东西，不是苏芮的嘴。</p>
+<p>「还有一件。」苏芮翻开文件夹，「评审问今天这堂课归哪一类。我说教练示范。您当时在靶位上，没听见。」</p>
+<p>「示范就示范。」</p>
+<p>「示范这一类怎么进学员的时数包，也在标准里。」她说，「一并发您。」</p>
+<p>「发。」</p>
+<p>「您得看完。」</p>
+<p>「我看完。」</p>
+<p>苏芮把文件夹合上，夹在腋下。</p>
+<p>「标准不是给您的。」她说，「是给结算的。」</p>
+<p>她走了以后他回到三号靶位。灯还亮着一半。他把门反锁，重新上靶位，从架子上取下枪。</p>
+<p>他站在那儿，举枪。</p>
+<p>四拍。第一拍吸，第二拍屏住，第三拍——</p>
+<p>他扣了。</p>
+<p>枪响的时候他没听见，只看见靶纸上的洞偏离中心大约一个环。他用望远镜看：8.6。</p>
+<p>他退回位，又扣了一次：7.9。</p>
+<p>第三次，8.2。第四次，7.4。</p>
+<p>枪口在第三拍离开那条线的时候往左走。他看着它走，看着弹着点落在靶心左边一掌宽的地方。第五次 8.8。第六次 6.9。</p>
+<p>他把这六发记在一张纸上：8.6、7.9、8.2、7.4、8.8、6.9。平均七点一。</p>
+<p>第二天上午他在三号靶位又打了六发。8.1、7.6、8.4、7.2、8.0、7.9。十二发合起来平均七点四。他把这十二个数抄进日志的同一栏，一张纸裁成两半，压在鼠标垫底下。</p>
+<p>回到办公室是晚上九点半。他从包里取出那本黑色硬壳本，翻到今天那一页。本子上五栏：日期、时数、动作、偏差、备注。</p>
+<p>师父那本是六栏。第六栏写的是「失败」。他抄格式的时候抄成了五栏。2002 年他把日志摔在体校训练馆的地板上的时候，那本不是师父的，这本是。他自己这本，从 2011 年在岚城办第一个训练营开始，一页一页记到今天。</p>
+<p>他往回翻了几十页，翻到 2018 年五月那一栏。那天他打出了 2.1 环的偏差，是他带队员以来最差的一次。那一栏的偏差写的是 2.1，备注写的是「器材调整，重新校准」。他盯着「重新校准」四个字看了很久。</p>
+<p>那一栏没有失败。他记得那天是真的失败了，靶纸拿下来的时候他手心是湿的。他把它写成了器材问题。</p>
+<p>他没有再往后翻。他把本子转了个方向，在右边空白处画了一条竖线，划出一栏，在栏头写了两个字。</p>
+<p>失败。</p>
+<p>写完他看着那两个字。它们写得比前面五栏都大，也比前面五栏都正——他的字一直是横平竖直的。</p>
+<p>然后他往下写这一行。日期。8,412。空拍击发。偏一个环。</p>
+<p>写到备注那一栏，他的手抖了。</p>
+<p>不是手抖一下。是手腕连着前臂一起抖，笔尖在纸上划出去半厘米，把「失败」两个字拖歪了。</p>
+<p>他停下来，把笔放下，两只手压住桌沿。桌面是凉的。他数了十下，手不抖了。</p>
+<p>他重新拿起笔，把那两个字描了一遍。字歪了。歪得很难看。他没有重写一页，也没有换一行。</p>
+<p>写完之后他把本子合上，放在桌上。手机在桌角震了一下，是他母亲的电话，他没接。他把手机翻过去，屏幕朝下。</p>
+<p>器材库里那个问题又回来了，跟着那两个字一起，压在桌面上：一个教了十五年的人，有哪个学员跟他说过他不想练了。</p>
+<p>十五年。他从 2011 年到现在，评估表发出去过四百多张，回收三百九十张，每一张上都有时长、动作、偏差、备注。没有一栏叫「想不想练」。没有一张表上出现过「不想」。他把三本评估表摞在桌上，翻了一遍，纸边割手。</p>
+<p>十一点二十，办公室门被敲了两下。</p>
+<p>陶砚抬头。</p>
+<p>赵砚青站在门口，训练包还挂在肩上，手里那块计时器亮着，屏幕上是 00:00。</p>
+<p>「师父，我今天不练了。」</p>
+<p>陶砚从椅子上站起来。</p>
+<p>「为什么。」</p>
+<p>赵砚青没有回答。他把手里那块计时器翻过来，屏幕朝上，放到门口的柜子上。四个零定在那里。</p>
+<p>「我练了十二年，一万两千四百个小时。」</p>
+<p>「今天台上那十一秒，我数了。」</p>
+<p>「我今天练的那一小时，和昨天那一模一样。」</p>
+<p>陶砚看着他。他想说的是另一句话——他想说“你数得对”，也想说“你算错了”。两句话他都没有说。</p>
+<p>赵砚青往门外走。走到门框里回头。</p>
+<p>「师父，我今天不练了。」</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>小说</tag>
+        <tag>第800小时</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>第800小时 15：你在复制我</title>
     <url>/%E5%B0%8F%E8%AF%B4/cc5cbd1a.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>「你父亲不是坏人，是撑不住了。」</p>
@@ -14577,149 +15361,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>这一页上只有日期，下面空着。</p>
 <p>他在日期下面写了一行：示范 ×4。</p>
 <p>写完他把本子合上，放回内袋。器材库里只剩那一盏灯。</p>
-]]></content>
-      <categories>
-        <category>小说</category>
-      </categories>
-      <tags>
-        <tag>小说</tag>
-        <tag>第800小时</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>第800小时 16：十环</title>
-    <url>/%E5%B0%8F%E8%AF%B4/e14e6f79.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>鼠标在桌面上滑了一下。</p>
-<p>不是没按住。手指头自己往前挪了半格，鼠标撞在计环台边沿，弹回来。屏幕上是今天的成绩单，最后一行亮着：10.0。</p>
-<p>陶砚摊开右手看掌心。手背是干的，指节没有抖。虎口那层厚茧还在那儿，硬得像一块用旧了的砂纸。</p>
-<p>四十分钟前他打出了十环。那是他职业生涯里最好的一枪。</p>
-<p>那堂课是三个月前定下来的。认证委员会来函，要求基地首席教练做一次公开示范课，学员全员在场。附页上写着：观摩项目，射击，60 分钟；课后讲评，15 分钟；评审三人，基地内两名，省体育局一名。</p>
-<p>函是苏芮转给他的。她把函放在键盘旁边，问了一句：「打什么。」</p>
-<p>「十发。」</p>
-<p>「十发打多少。」</p>
-<p>「平均九点五以上。」</p>
-<p>「打十环？」</p>
-<p>「打十环是事故，不是成绩。」</p>
-<p>她走了以后，他调出准备记录。三十七发准备弹，最高九点八，平均九点三八。他把三十七发里最接近十环的那一发的落点抄在纸上，画了三个圈。圈画得很规整，间距两毫米，是他在体校学的画靶法。教练组的人说这七百发准备弹是浪费，他没解释。</p>
-<p>三月十四号，射击馆三号靶位。</p>
-<p>侧风，风速仪读 0.8 米每秒。助理换了新靶纸。五十三个学员站成两排，后面十四个人是别的项目过来的，跑的和跳的，站姿不像射击的样子。评审坐第一排桌子后面，两名基地的人，一名省体育局的。记录屏挂在墙上，右上角有一行小字，是基地的荣誉榜：时数第一，赵砚青，12,400。</p>
-<p>陶砚在队列里找了一遍。没有林野。今天没有外人名单。</p>
-<p>赵砚青在第二排中间，站着。十二年，他一直站着听。</p>
-<p>陶砚上靶位之前做了三件事：查枪，查风，查计时器。每次都重查一遍。查完他在心里过一遍呼吸：四拍，吸、屏、松、扣。</p>
-<p>前九发：9.3、9.6、9.1、9.5、9.0、9.4、9.7、9.2、9.6。</p>
-<p>九发打完，他在心里加了一遍，85.4，平均九点四九。记录屏上那个数字稳稳地挂在旁边，不上不下。还差一线。</p>
-<p>第十发。他把枪举起来。</p>
-<p>呼吸四拍。第一拍吸满，第二拍屏住，第三拍身体最松，第四拍把气憋死。他这辈子所有的枪都是第四拍响的。第三拍是空拍——那一拍身体松，枪口最容易抖，抖半毫米就少两环。他不赌空拍。他赌的是憋死那一口气。</p>
-<p>响的时候他听见了自己的心跳，比枪响晚。</p>
-<p>弹着点在靶心右下三毫米。</p>
-<p>计环屏上跳出来一个数：10.0。</p>
-<p>前排有人站起来。第二排有人喊了一声，被评审抬手压住。陶砚看着屏上那个数字，等它变。它没有变。</p>
-<p>「靶纸取下来。」他说。</p>
-<p>助理跑过去取靶，贴图，扫描。计环系统重新算了一次。</p>
-<p>「还是十环。」助理说。</p>
-<p>「十点零。」陶砚说。</p>
-<p>「这……这是您最好的一枪？」助理问。</p>
-<p>「是我记录里最好的一枪。」</p>
-<p>评审里那名省体育局的翻了翻手里的表。「陶教练，这一枪，您练了多少小时。」</p>
-<p>「9,120。」</p>
-<p>「重复过多少次。」</p>
-<p>「1,247。」</p>
-<p>那名评审抬起眼。「1,247 次里面，失败过多少次。」</p>
-<p>「0。」</p>
-<p>房间里有声音动了一下，是椅腿。</p>
-<p>「不可能。」前排一个学员说，「打十环还能一次不失败。」</p>
-<p>「失败的次数不计。」陶砚说，「计时的意思是有效的时长。」</p>
-<p>「那您怎么知道一个动作做对了。」</p>
-<p>「按偏差。同一个动作在规定偏差内，记一次。」</p>
-<p>评审在纸上写了两行。「从九点五到十点零，您是按什么练出来的。」</p>
-<p>陶砚张开嘴。</p>
-<p>1,247 次重复。这一枪是第几次，落在右下三毫米。为什么是右下三毫米，为什么不是左上，为什么不是中心。这些东西他都有记录，日期、时数、动作、偏差、备注，一栏都不缺。他能说出这一枪属于哪一小时的第几分钟。</p>
-<p>他不知道这一枪是怎么打出来的。</p>
-<p>「我不知道。」</p>
-<p>他说出来了。</p>
-<p>台下五十三个人没有一个动。他站在靶位上，手还举着枪，枪口往下垂了一寸。有人把这句话记在了本子上，笔尖划纸的声音在馆里响了两下。</p>
-<p>这是他二十年来第一次说这三个字。</p>
-<p>「您今天这堂课，」那名基地的评审抬起头，「按标准记多少。」</p>
-<p>「一小时。」陶砚说。</p>
-<p>「记什么类别。」</p>
-<p>「教练示范。」</p>
-<p>评审在本子上写了一笔，没再问。</p>
-<p>后面还有四十分钟的观摩。学员轮流上靶位，教练组站在旁边看，一句一句纠。馆里的声音一层一层上去，又一层一层落下来。</p>
-<p>第二十二个上靶位的是赵砚青。他打的是十发，九点二到九点八，没有一枪上九点九。每一枪打完，计环屏上跳一次数。陶砚站在侧面看着那个屏幕。</p>
-<p>「第二发，后坐没吃住。」他在赵砚青下靶位的时候说。</p>
-<p>「嗯。」</p>
-<p>「再来一遍。」</p>
-<p>「再来一遍是第四百三十一次了。」赵砚青说，「从 2018 年 6 月 3 号那天开始的，今天这一组是第一百三十七组。」</p>
-<p>陶砚没说话。赵砚青把枪挂回架子，从口袋里掏出一张折了四折的纸，展开，铺在长桌一角。纸上是一张手画的表格，纵轴是日期，横轴是每组的均值。密密麻麻的黑点，从 2018 年一直连到今天。中间有几段是斜的，往下走的。</p>
-<p>「这是您教我之前我自己的表。」赵砚青说，「这是您教我之后的。」</p>
-<p>陶砚看了三秒。</p>
-<p>「今天为什么给我看这个。」</p>
-<p>「今天有人问我，练这么久图什么。」赵砚青把纸折回去，塞进口袋，「我说我算不出来。」</p>
-<p>他上靶位排到后面去了。陶砚站在原地，手里捏着刚才那支笔。</p>
-<p>观摩快结束的时候，屏幕上换了一行字：本期观摩登记人数，53；有效观摩课时，1；类别，教练示范。陶砚站在侧面看着那行字，没有多想。课时的登记和时数是两件事，一堂课是一堂课。</p>
-<p>讲评在馆中央的长桌边。评审把话递给他：「陶教练，最后十五分钟，您讲两句。」</p>
-<p>陶砚站起来。</p>
-<p>他面前是四排人。他张了嘴。十一秒。他数到十一的时候自己听见了自己喉咙里的气声。</p>
-<p>「今天到这儿。」他说。</p>
-<p>评审没有追问。散场的时候椅子响了一片。人走光了，馆里剩下计环台、灯、和地上几个被踩扁的纸杯。</p>
-<p>陶砚在计环台前坐下，鼠标放在垫子上。他握上去，鼠标往右滑了半格，撞在台面上。</p>
-<p>他把手松开。放平。等了一会儿。再握上去。</p>
-<p>鼠标又滑了。</p>
-<p>第三次他用两只手把它按住，才点开计环系统，找到今天这堂课的记录。十发。均值九点四八。最高十点零。记录人：陶砚。确认。</p>
-<p>「记录人」那一栏是他自己填的，十五年都是他自己填。</p>
-<p>他站起来，把枪挂回架子上，退出靶位门。走廊上苏芮还没走，抱着文件夹等他。</p>
-<p>「今天的课，我按一小时示范记进您的档案了。」</p>
-<p>「学员那边呢。」</p>
-<p>「如果这堂课要进时数包，按标准走就行。」</p>
-<p>「标准是什么。」</p>
-<p>「我回头发您。」</p>
-<p>陶砚点头。他要的是能发到每个人手上的那份东西，不是苏芮的嘴。</p>
-<p>「还有一件。」苏芮翻开文件夹，「评审问今天这堂课归哪一类。我说教练示范。您当时在靶位上，没听见。」</p>
-<p>「示范就示范。」</p>
-<p>「示范这一类怎么进学员的时数包，也在标准里。」她说，「一并发您。」</p>
-<p>「发。」</p>
-<p>「您得看完。」</p>
-<p>「我看完。」</p>
-<p>苏芮把文件夹合上，夹在腋下。</p>
-<p>「标准不是给您的。」她说，「是给结算的。」</p>
-<p>她走了以后他回到三号靶位。灯还亮着一半。他把门反锁，重新上靶位，从架子上取下枪。</p>
-<p>他站在那儿，举枪。</p>
-<p>四拍。第一拍吸，第二拍屏住，第三拍——</p>
-<p>他扣了。</p>
-<p>枪响的时候他没听见，只看见靶纸上的洞偏离中心大约一个环。他用望远镜看：8.6。</p>
-<p>他退回位，又扣了一次：7.9。</p>
-<p>第三次，8.2。第四次，7.4。</p>
-<p>枪口在第三拍离开那条线的时候往左走。他看着它走，看着弹着点落在靶心左边一掌宽的地方。第五次 8.8。第六次 6.9。</p>
-<p>他把这六发记在一张纸上：8.6、7.9、8.2、7.4、8.8、6.9。平均七点一。</p>
-<p>第二天上午他在三号靶位又打了六发。8.1、7.6、8.4、7.2、8.0、7.9。十二发合起来平均七点四。他把这十二个数抄进日志的同一栏，一张纸裁成两半，压在鼠标垫底下。</p>
-<p>回到办公室是晚上九点半。他从包里取出那本黑色硬壳本，翻到今天那一页。本子上五栏：日期、时数、动作、偏差、备注。</p>
-<p>师父那本是六栏。第六栏写的是「失败」。他抄格式的时候抄成了五栏。2002 年他把日志摔在体校训练馆的地板上的时候，那本不是师父的，这本是。他自己这本，从 2011 年在岚城办第一个训练营开始，一页一页记到今天。</p>
-<p>他往回翻了几十页，翻到 2018 年五月那一栏。那天他打出了 2.1 环的偏差，是他带队员以来最差的一次。那一栏的偏差写的是 2.1，备注写的是「器材调整，重新校准」。他盯着「重新校准」四个字看了很久。</p>
-<p>那一栏没有失败。他记得那天是真的失败了，靶纸拿下来的时候他手心是湿的。他把它写成了器材问题。</p>
-<p>他没有再往后翻。他把本子转了个方向，在右边空白处画了一条竖线，划出一栏，在栏头写了两个字。</p>
-<p>失败。</p>
-<p>写完他看着那两个字。它们写得比前面五栏都大，也比前面五栏都正——他的字一直是横平竖直的。</p>
-<p>然后他往下写这一行。日期。8,412。空拍击发。偏一个环。</p>
-<p>写到备注那一栏，他的手抖了。</p>
-<p>不是手抖一下。是手腕连着前臂一起抖，笔尖在纸上划出去半厘米，把「失败」两个字拖歪了。</p>
-<p>他停下来，把笔放下，两只手压住桌沿。桌面是凉的。他数了十下，手不抖了。</p>
-<p>他重新拿起笔，把那两个字描了一遍。字歪了。歪得很难看。他没有重写一页，也没有换一行。</p>
-<p>写完之后他把本子合上，放在桌上。手机在桌角震了一下，是他母亲的电话，他没接。他把手机翻过去，屏幕朝下。</p>
-<p>器材库里那个问题又回来了，跟着那两个字一起，压在桌面上：一个教了十五年的人，有哪个学员跟他说过他不想练了。</p>
-<p>十五年。他从 2011 年到现在，评估表发出去过四百多张，回收三百九十张，每一张上都有时长、动作、偏差、备注。没有一栏叫「想不想练」。没有一张表上出现过「不想」。他把三本评估表摞在桌上，翻了一遍，纸边割手。</p>
-<p>十一点二十，办公室门被敲了两下。</p>
-<p>陶砚抬头。</p>
-<p>赵砚青站在门口，训练包还挂在肩上，手里那块计时器亮着，屏幕上是 00:00。</p>
-<p>「师父，我今天不练了。」</p>
-<p>陶砚从椅子上站起来。</p>
-<p>「为什么。」</p>
-<p>赵砚青没有回答。他把手里那块计时器翻过来，屏幕朝上，放到门口的柜子上。四个零定在那里。</p>
-<p>「我练了十二年，一万两千四百个小时。」</p>
-<p>「今天台上那十一秒，我数了。」</p>
-<p>「我今天练的那一小时，和昨天那一模一样。」</p>
-<p>陶砚看着他。他想说的是另一句话——他想说“你数得对”，也想说“你算错了”。两句话他都没有说。</p>
-<p>赵砚青往门外走。走到门框里回头。</p>
-<p>「师父，我今天不练了。」</p>
 ]]></content>
       <categories>
         <category>小说</category>
@@ -15977,12 +16618,12 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
     <title>路</title>
     <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-        <div id="aplayer-eAkBNQnO" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-sWwPmlgN" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-eAkBNQnO"),
+            element: document.getElementById("aplayer-sWwPmlgN"),
             narrow: false,
             autoplay: true,
             showlrc: false,
