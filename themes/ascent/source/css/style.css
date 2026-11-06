@@ -500,6 +500,20 @@ blockquote {
   /* border-left: 1px solid var(--tertiary-color); */
 }
 
+/* 2026-11-06 新增：正文高亮 <span class="hl">…</span>
+   博客管线把「至少 2 处 class="hl"」当成硬性格式闸门（validate() 的
+   "hl < 2"），但 ascent 主题**从来没有 .hl 的样式**——于是这些高亮
+   在线上渲染出来跟普通正文一模一样，读者根本看不出来。
+   闸门在拦一个不存在的视觉元素。实测 public/css/bundle.css 里 .hl 命中数为 0。
+   处方：给 .hl 一个可见样式（沿用主题已有的 --link-text-color / --link-bg-color
+   变量，亮暗两套主题都跟着走）。 */
+.hl {
+  color: var(--link-text-color);
+  background: var(--link-bg-color);
+  padding: 0 0.15em;
+  border-radius: 2px;
+}
+
 
 
 .article .article-entry blockquote footer,
