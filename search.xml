@@ -2154,46 +2154,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Tor出口节点大规模劫持暴露匿名网络信任危机</title>
-    <url>/%E6%8A%80%E6%9C%AF/277d0d7d.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="恶意出口指向了匿名网络的安全边界"><a class="markdownIt-Anchor" href="#恶意出口指向了匿名网络的安全边界"></a> 恶意出口指向了匿名网络的安全边界</h2>
-<p>333 个出口节点被劫持，足以让 Tor 的信任模型露出裂缝。问题出在 Tor 把大量安全责任交给了用户：链路加密保护传输，路径选择隐藏来源，出口节点却可能直接看到未加密的访问内容。</p>
-<p>我第一次认真使用 Tor，是在一个网络审查突然收紧的时期。那时我把匿名理解成一个开关，连上就能把真实身份藏起来。用了几年之后才看清一件事：出口节点站在链路终点，它看得见内容。</p>
-<p>这次事件让我重新审视了自己的习惯。我一直更在意登录、支付和发布内容时使用的身份隔离，却很少检查最终访问的网站是否可信。恶意出口出现后，这种偏向很危险。</p>
-<blockquote>
-<p>恶意出口掌握的是出口位置，攻击者还需要主动观察流量或篡改连接。</p>
-</blockquote>
-<p>Tor 本身不会替用户识别恶意出口。普通用户也不会逐一核验每个出口的信誉。这组落差决定了风险会从网络层泄漏到应用层。</p>
-<h2 id="信任从来不是一次确认"><a class="markdownIt-Anchor" href="#信任从来不是一次确认"></a> 信任从来不是一次确认</h2>
-<p>网络匿名社区常用信任来概括节点选择。这个词容易让人放松警惕。节点信誉会变化，运营者也会更换，单次验证无法覆盖长期使用。</p>
-<p>这次事件里，攻击者先用了一个被复用的密码登上 Tor 管理服务器，又从管理服务器经 SSH 连到另一台叫 Switzerland2 的中继，用的 RSA 密钥不在对方的授权列表里。调查者至今没弄清全部 333 台机器是怎么被拿到手的。</p>
-<p>研究者 Kaba 写脚本轮询了 Tor 大约 3000 个出口节点，靠 SSH 指纹辨认哪些流量被转到了攻击者控制的 12 台拦截服务器。劫持发生在 10 月 2 日到 5 日。</p>
-<p><span class="hl">3000 个出口节点里被劫持 333 个，比例看着不高，但被劫持的那些正好在链路的终点。</span></p>
-<p>我过去写过《nginx支持ssl+acme.sh定时更新证书》（2018 年），那篇只关心证书怎么自动续签，把传输层当成一个已经解决的前提。现在看，这个前提站不住：TLS 能保护传输过程，恶意出口仍有机会接触未加密请求、注入内容，并记录用户访问了哪些地址。</p>
-<blockquote>
-<p>证书再新，链路终点被人换掉也没用。</p>
-</blockquote>
-<h2 id="用户仍然承担了过多安全责任"><a class="markdownIt-Anchor" href="#用户仍然承担了过多安全责任"></a> 用户仍然承担了过多安全责任</h2>
-<p>Tor 的匿名性有明确目标，但它无法自动保证用户访问的内容真实。HTTPS、证书验证、扩展安全和操作习惯仍然重要。</p>
-<p>我不同意只要经过 Tor 就已经安全的看法。出口节点处在用户与目标网站之间，它能看到部分连接元数据，也能影响某些未加密通信。匿名路径保护了来源，站点安全决定了内容能否被可靠接收。</p>
-<p>这不意味着 Tor 失效。多层中继和路径隔离仍然有作用。我的疑问在于，社区是否应该把更多异常检测与处置能力交给客户端，而不是要求每个用户理解节点之间的关系。</p>
-<p>检测放在入口更有效。入口节点直接影响用户的第一跳，也更容易在路径形成前阻断已知恶意节点。出口节点承担最终转发，恶意行为出现得更晚，用户往往已经完成访问。</p>
-<blockquote>
-<p>路径上的节点越早发现异常，越可能在用户接触恶意内容前采取行动。</p>
-</blockquote>
-<p>攻击者的最后一步是往服务器里植入 Ebury 木马。入口同样可能被攻陷或冒充，信誉机制可能误判，持续监测还会增加资源负担。把检测前移，只是重新分配风险，不会消灭风险。</p>
-<p>我至今也没搞明白，Tor 社区应怎样平衡去中心化与自动处置。自动拦截可能误伤正常出口，也容易让少数审查者获得新的控制权。完全依赖用户判断，又会让攻击成本变得很低。</p>
-<p><span class="hl">这次事件至少确认了一件事：匿名网络的安全边界，由整套系统中最薄弱的环节决定。</span></p>
-<p>下一步该怎样处理？</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>技术</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>维基百科清理AI生成文本，标志内容信任机制重建</title>
     <url>/AI/37793209.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="清理流程可以复制信任机制不能照搬"><a class="markdownIt-Anchor" href="#清理流程可以复制信任机制不能照搬"></a> 清理流程可以复制，信任机制不能照搬</h2>
@@ -2231,6 +2191,46 @@
       <tags>
         <tag>AI</tag>
         <tag>内容治理</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Tor出口节点大规模劫持暴露匿名网络信任危机</title>
+    <url>/%E6%8A%80%E6%9C%AF/277d0d7d.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="恶意出口指向了匿名网络的安全边界"><a class="markdownIt-Anchor" href="#恶意出口指向了匿名网络的安全边界"></a> 恶意出口指向了匿名网络的安全边界</h2>
+<p>333 个出口节点被劫持，足以让 Tor 的信任模型露出裂缝。问题出在 Tor 把大量安全责任交给了用户：链路加密保护传输，路径选择隐藏来源，出口节点却可能直接看到未加密的访问内容。</p>
+<p>我第一次认真使用 Tor，是在一个网络审查突然收紧的时期。那时我把匿名理解成一个开关，连上就能把真实身份藏起来。用了几年之后才看清一件事：出口节点站在链路终点，它看得见内容。</p>
+<p>这次事件让我重新审视了自己的习惯。我一直更在意登录、支付和发布内容时使用的身份隔离，却很少检查最终访问的网站是否可信。恶意出口出现后，这种偏向很危险。</p>
+<blockquote>
+<p>恶意出口掌握的是出口位置，攻击者还需要主动观察流量或篡改连接。</p>
+</blockquote>
+<p>Tor 本身不会替用户识别恶意出口。普通用户也不会逐一核验每个出口的信誉。这组落差决定了风险会从网络层泄漏到应用层。</p>
+<h2 id="信任从来不是一次确认"><a class="markdownIt-Anchor" href="#信任从来不是一次确认"></a> 信任从来不是一次确认</h2>
+<p>网络匿名社区常用信任来概括节点选择。这个词容易让人放松警惕。节点信誉会变化，运营者也会更换，单次验证无法覆盖长期使用。</p>
+<p>这次事件里，攻击者先用了一个被复用的密码登上 Tor 管理服务器，又从管理服务器经 SSH 连到另一台叫 Switzerland2 的中继，用的 RSA 密钥不在对方的授权列表里。调查者至今没弄清全部 333 台机器是怎么被拿到手的。</p>
+<p>研究者 Kaba 写脚本轮询了 Tor 大约 3000 个出口节点，靠 SSH 指纹辨认哪些流量被转到了攻击者控制的 12 台拦截服务器。劫持发生在 10 月 2 日到 5 日。</p>
+<p><span class="hl">3000 个出口节点里被劫持 333 个，比例看着不高，但被劫持的那些正好在链路的终点。</span></p>
+<p>我过去写过《nginx支持ssl+acme.sh定时更新证书》（2018 年），那篇只关心证书怎么自动续签，把传输层当成一个已经解决的前提。现在看，这个前提站不住：TLS 能保护传输过程，恶意出口仍有机会接触未加密请求、注入内容，并记录用户访问了哪些地址。</p>
+<blockquote>
+<p>证书再新，链路终点被人换掉也没用。</p>
+</blockquote>
+<h2 id="用户仍然承担了过多安全责任"><a class="markdownIt-Anchor" href="#用户仍然承担了过多安全责任"></a> 用户仍然承担了过多安全责任</h2>
+<p>Tor 的匿名性有明确目标，但它无法自动保证用户访问的内容真实。HTTPS、证书验证、扩展安全和操作习惯仍然重要。</p>
+<p>我不同意只要经过 Tor 就已经安全的看法。出口节点处在用户与目标网站之间，它能看到部分连接元数据，也能影响某些未加密通信。匿名路径保护了来源，站点安全决定了内容能否被可靠接收。</p>
+<p>这不意味着 Tor 失效。多层中继和路径隔离仍然有作用。我的疑问在于，社区是否应该把更多异常检测与处置能力交给客户端，而不是要求每个用户理解节点之间的关系。</p>
+<p>检测放在入口更有效。入口节点直接影响用户的第一跳，也更容易在路径形成前阻断已知恶意节点。出口节点承担最终转发，恶意行为出现得更晚，用户往往已经完成访问。</p>
+<blockquote>
+<p>路径上的节点越早发现异常，越可能在用户接触恶意内容前采取行动。</p>
+</blockquote>
+<p>攻击者的最后一步是往服务器里植入 Ebury 木马。入口同样可能被攻陷或冒充，信誉机制可能误判，持续监测还会增加资源负担。把检测前移，只是重新分配风险，不会消灭风险。</p>
+<p>我至今也没搞明白，Tor 社区应怎样平衡去中心化与自动处置。自动拦截可能误伤正常出口，也容易让少数审查者获得新的控制权。完全依赖用户判断，又会让攻击成本变得很低。</p>
+<p><span class="hl">这次事件至少确认了一件事：匿名网络的安全边界，由整套系统中最薄弱的环节决定。</span></p>
+<p>下一步该怎样处理？</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
       </tags>
   </entry>
   <entry>
@@ -9232,6 +9232,136 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
+    <title>笔记7-《程序员的数学》0 的作用与历史进程</title>
+    <url>/%E5%AD%A6%E4%B9%A0/5f26a8d3.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="第一章-0-的故事无即是有"><a class="markdownIt-Anchor" href="#第一章-0-的故事无即是有"></a> 第一章 0 的故事–无即是有</h2>
+<span id="more"></span>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>0 所起的作用</p>
+<ul class="lvl-2">
+<li class="lvl-4">占位、统一标准简化规则、日常生活中的 0</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>人类的极限和构造的发现</p>
+<ul class="lvl-2">
+<li class="lvl-4">重温历史进程、为了超越人类的极限</li>
+</ul>
+</li>
+</ul>
+<h2 id="0-的作用占位"><a class="markdownIt-Anchor" href="#0-的作用占位"></a> 0 的作用：占位</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>2503 里十位的 0 表示「没有」，可这个 0 不能省，省掉写成 253 就成了另一个数</p>
+<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="comment">#ruby</span></span><br><span class="line"><span class="comment"># 各位按 10 的幂展开, 0 那项贡献 0, 但位置不能省</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">expand</span>(<span class="params">n</span>)</span><br><span class="line">  n.to_s.chars.reverse.each_with_index.map &#123; |<span class="params">d, i</span>| d.to_i * <span class="number">10</span> ** i &#125;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">puts expand(<span class="number">2503</span>).join(<span class="string">&quot; + &quot;</span>)   <span class="comment"># 3 + 0 + 500 + 2000</span></span><br><span class="line">puts expand(<span class="number">2503</span>).sum           <span class="comment"># 2503</span></span><br><span class="line">puts expand(<span class="number">253</span>).join(<span class="string">&quot; + &quot;</span>)    <span class="comment"># 3 + 50 + 200</span></span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p>0 占着一个位置，保证高位的数字不错位</p>
+</li>
+</ul>
+<h2 id="0-的作用统一标准简化规则"><a class="markdownIt-Anchor" href="#0-的作用统一标准简化规则"></a> 0 的作用：统一标准，简化规则</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>把 1 特意写成 10^0，各个数位就能统一成 a_i x 10^i</p>
+</li>
+<li class="lvl-2">
+<p>少了 0，就得给「1」单开一条规则</p>
+<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="comment">#ruby</span></span><br><span class="line"><span class="comment"># 指数每减 1, 数值变为原来的 10 分之 1, 于是 10^0 = 1</span></span><br><span class="line">puts <span class="number">10</span> ** <span class="number">0</span>     <span class="comment"># 1</span></span><br><span class="line">puts <span class="number">2</span> ** <span class="number">0</span>      <span class="comment"># 1</span></span><br><span class="line">puts <span class="number">10</span> ** -<span class="number">1</span>    <span class="comment"># 0.1</span></span><br><span class="line">puts <span class="number">2</span> ** -<span class="number">1</span>     <span class="comment"># 0.5</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="日常生活中的-0"><a class="markdownIt-Anchor" href="#日常生活中的-0"></a> 日常生活中的 0</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>没有计划的计划：日程表里把「预计不安排计划」当成 0 先占位</p>
+</li>
+<li class="lvl-2">
+<p>没有药效的药：每 4 天停 1 次服药，换成每天 1 粒，其中 1 粒是假胶囊</p>
+<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="comment">#ruby</span></span><br><span class="line"><span class="comment"># 用假胶囊占位, 就不用判断今天是服药日还是停药日</span></span><br><span class="line">(<span class="number">1</span>..<span class="number">4</span>).each &#123; |<span class="params">d</span>| puts <span class="string">&quot;第<span class="subst">#&#123;d&#125;</span>天:<span class="subst">#&#123;d % <span class="number">4</span> == <span class="number">0</span> ? <span class="string">&#x27;假胶囊&#x27;</span> : <span class="string">&#x27;真胶囊&#x27;</span>&#125;</span>&quot;</span> &#125;</span><br><span class="line"><span class="comment"># 第1天:真胶囊</span></span><br><span class="line"><span class="comment"># 第2天:真胶囊</span></span><br><span class="line"><span class="comment"># 第3天:真胶囊</span></span><br><span class="line"><span class="comment"># 第4天:假胶囊</span></span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p>口服避孕药同理：28 粒一组，7 粒是安慰剂</p>
+</li>
+</ul>
+<h2 id="人类的极限和构造的发现"><a class="markdownIt-Anchor" href="#人类的极限和构造的发现"></a> 人类的极限和构造的发现</h2>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>重温历史进程</p>
+<table>
+<thead>
+<tr>
+<th>文明</th>
+<th>计数法</th>
+<th>要点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>古埃及</td>
+<td>5 进制 + 10 进制混合</td>
+<td>记在纸莎草纸上，没有 0</td>
+</tr>
+<tr>
+<td>巴比伦</td>
+<td>10 进制 + 60 进制混合</td>
+<td>棱形记号表示 1~59，靠位置表示 60 的数位</td>
+</tr>
+<tr>
+<td>古希腊</td>
+<td>无</td>
+<td>数字里注入哲学真理</td>
+</tr>
+<tr>
+<td>玛雅</td>
+<td>20 进制</td>
+<td>数数从 0 开始</td>
+</tr>
+<tr>
+<td>罗马</td>
+<td>5 进制 + 10 进制混用</td>
+<td>V、X、L、C、D、M</td>
+</tr>
+<tr>
+<td>印度</td>
+<td>10 进制</td>
+<td>引进按位计数法，认定 0 也是数字</td>
+</tr>
+</tbody>
+</table>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>现在的 1 小时 60 分钟来自巴比伦的 60 进制</p>
+</li>
+<li class="lvl-4">
+<p>粘土板不好写多种记号，这个限制催生了按位计数法</p>
+</li>
+<li class="lvl-4">
+<p>我们用的 0~9 叫阿拉伯数字，不叫印度数字</p>
+</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>为了超越人类的极限</p>
+<ul class="lvl-2">
+<li class="lvl-4">只用 1 排成一排，数越大越难处理，1111111111 和 11111111111 谁大看得出</li>
+<li class="lvl-4">先贤造出「单元」：V 比 IIIII 好比，XII 比 111111111111 好比</li>
+</ul>
+<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="comment">#ruby</span></span><br><span class="line"><span class="comment"># 排一排 1 长度就失控, 按位计数法位数很少</span></span><br><span class="line">[<span class="number">11</span>, <span class="number">111</span>, <span class="number">1111</span>].each <span class="keyword">do</span> |<span class="params">n</span>|</span><br><span class="line">  puts <span class="string">&quot;<span class="subst">#&#123;n&#125;</span>: 排一排要 <span class="subst">#&#123;n&#125;</span> 个字符, 按位计数法只要 <span class="subst">#&#123;n.to_s.size&#125;</span> 个字符&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment"># 再往上得靠指数: 1000000000000 = 10^12, 10000000000000 = 10^13</span></span><br></pre></td></tr></table></figure>
+</li>
+<li class="lvl-2">
+<p>本书的主旨：把大问题分解成小「单元」，大程序拆成模块也是同一招</p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>0</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记6-《程序员的数学》按位计数法与指数法则</title>
     <url>/%E5%AD%A6%E4%B9%A0/d47b2e95.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="第一章-0-的故事按位计数法"><a class="markdownIt-Anchor" href="#第一章-0-的故事按位计数法"></a> 第一章 0 的故事–按位计数法</h2>
@@ -9393,136 +9523,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       <tags>
         <tag>数学</tag>
         <tag>进制</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记7-《程序员的数学》0 的作用与历史进程</title>
-    <url>/%E5%AD%A6%E4%B9%A0/5f26a8d3.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="第一章-0-的故事无即是有"><a class="markdownIt-Anchor" href="#第一章-0-的故事无即是有"></a> 第一章 0 的故事–无即是有</h2>
-<span id="more"></span>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>0 所起的作用</p>
-<ul class="lvl-2">
-<li class="lvl-4">占位、统一标准简化规则、日常生活中的 0</li>
-</ul>
-</li>
-<li class="lvl-2">
-<p>人类的极限和构造的发现</p>
-<ul class="lvl-2">
-<li class="lvl-4">重温历史进程、为了超越人类的极限</li>
-</ul>
-</li>
-</ul>
-<h2 id="0-的作用占位"><a class="markdownIt-Anchor" href="#0-的作用占位"></a> 0 的作用：占位</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>2503 里十位的 0 表示「没有」，可这个 0 不能省，省掉写成 253 就成了另一个数</p>
-<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="comment">#ruby</span></span><br><span class="line"><span class="comment"># 各位按 10 的幂展开, 0 那项贡献 0, 但位置不能省</span></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">expand</span>(<span class="params">n</span>)</span><br><span class="line">  n.to_s.chars.reverse.each_with_index.map &#123; |<span class="params">d, i</span>| d.to_i * <span class="number">10</span> ** i &#125;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">puts expand(<span class="number">2503</span>).join(<span class="string">&quot; + &quot;</span>)   <span class="comment"># 3 + 0 + 500 + 2000</span></span><br><span class="line">puts expand(<span class="number">2503</span>).sum           <span class="comment"># 2503</span></span><br><span class="line">puts expand(<span class="number">253</span>).join(<span class="string">&quot; + &quot;</span>)    <span class="comment"># 3 + 50 + 200</span></span><br></pre></td></tr></table></figure>
-</li>
-<li class="lvl-2">
-<p>0 占着一个位置，保证高位的数字不错位</p>
-</li>
-</ul>
-<h2 id="0-的作用统一标准简化规则"><a class="markdownIt-Anchor" href="#0-的作用统一标准简化规则"></a> 0 的作用：统一标准，简化规则</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>把 1 特意写成 10^0，各个数位就能统一成 a_i x 10^i</p>
-</li>
-<li class="lvl-2">
-<p>少了 0，就得给「1」单开一条规则</p>
-<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="comment">#ruby</span></span><br><span class="line"><span class="comment"># 指数每减 1, 数值变为原来的 10 分之 1, 于是 10^0 = 1</span></span><br><span class="line">puts <span class="number">10</span> ** <span class="number">0</span>     <span class="comment"># 1</span></span><br><span class="line">puts <span class="number">2</span> ** <span class="number">0</span>      <span class="comment"># 1</span></span><br><span class="line">puts <span class="number">10</span> ** -<span class="number">1</span>    <span class="comment"># 0.1</span></span><br><span class="line">puts <span class="number">2</span> ** -<span class="number">1</span>     <span class="comment"># 0.5</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h2 id="日常生活中的-0"><a class="markdownIt-Anchor" href="#日常生活中的-0"></a> 日常生活中的 0</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>没有计划的计划：日程表里把「预计不安排计划」当成 0 先占位</p>
-</li>
-<li class="lvl-2">
-<p>没有药效的药：每 4 天停 1 次服药，换成每天 1 粒，其中 1 粒是假胶囊</p>
-<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="comment">#ruby</span></span><br><span class="line"><span class="comment"># 用假胶囊占位, 就不用判断今天是服药日还是停药日</span></span><br><span class="line">(<span class="number">1</span>..<span class="number">4</span>).each &#123; |<span class="params">d</span>| puts <span class="string">&quot;第<span class="subst">#&#123;d&#125;</span>天:<span class="subst">#&#123;d % <span class="number">4</span> == <span class="number">0</span> ? <span class="string">&#x27;假胶囊&#x27;</span> : <span class="string">&#x27;真胶囊&#x27;</span>&#125;</span>&quot;</span> &#125;</span><br><span class="line"><span class="comment"># 第1天:真胶囊</span></span><br><span class="line"><span class="comment"># 第2天:真胶囊</span></span><br><span class="line"><span class="comment"># 第3天:真胶囊</span></span><br><span class="line"><span class="comment"># 第4天:假胶囊</span></span><br></pre></td></tr></table></figure>
-</li>
-<li class="lvl-2">
-<p>口服避孕药同理：28 粒一组，7 粒是安慰剂</p>
-</li>
-</ul>
-<h2 id="人类的极限和构造的发现"><a class="markdownIt-Anchor" href="#人类的极限和构造的发现"></a> 人类的极限和构造的发现</h2>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>重温历史进程</p>
-<table>
-<thead>
-<tr>
-<th>文明</th>
-<th>计数法</th>
-<th>要点</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>古埃及</td>
-<td>5 进制 + 10 进制混合</td>
-<td>记在纸莎草纸上，没有 0</td>
-</tr>
-<tr>
-<td>巴比伦</td>
-<td>10 进制 + 60 进制混合</td>
-<td>棱形记号表示 1~59，靠位置表示 60 的数位</td>
-</tr>
-<tr>
-<td>古希腊</td>
-<td>无</td>
-<td>数字里注入哲学真理</td>
-</tr>
-<tr>
-<td>玛雅</td>
-<td>20 进制</td>
-<td>数数从 0 开始</td>
-</tr>
-<tr>
-<td>罗马</td>
-<td>5 进制 + 10 进制混用</td>
-<td>V、X、L、C、D、M</td>
-</tr>
-<tr>
-<td>印度</td>
-<td>10 进制</td>
-<td>引进按位计数法，认定 0 也是数字</td>
-</tr>
-</tbody>
-</table>
-<ul class="lvl-2">
-<li class="lvl-4">
-<p>现在的 1 小时 60 分钟来自巴比伦的 60 进制</p>
-</li>
-<li class="lvl-4">
-<p>粘土板不好写多种记号，这个限制催生了按位计数法</p>
-</li>
-<li class="lvl-4">
-<p>我们用的 0~9 叫阿拉伯数字，不叫印度数字</p>
-</li>
-</ul>
-</li>
-<li class="lvl-2">
-<p>为了超越人类的极限</p>
-<ul class="lvl-2">
-<li class="lvl-4">只用 1 排成一排，数越大越难处理，1111111111 和 11111111111 谁大看得出</li>
-<li class="lvl-4">先贤造出「单元」：V 比 IIIII 好比，XII 比 111111111111 好比</li>
-</ul>
-<figure class="highlight ruby"><table><tr><td class="code"><pre><span class="line"><span class="comment">#ruby</span></span><br><span class="line"><span class="comment"># 排一排 1 长度就失控, 按位计数法位数很少</span></span><br><span class="line">[<span class="number">11</span>, <span class="number">111</span>, <span class="number">1111</span>].each <span class="keyword">do</span> |<span class="params">n</span>|</span><br><span class="line">  puts <span class="string">&quot;<span class="subst">#&#123;n&#125;</span>: 排一排要 <span class="subst">#&#123;n&#125;</span> 个字符, 按位计数法只要 <span class="subst">#&#123;n.to_s.size&#125;</span> 个字符&quot;</span></span><br><span class="line"><span class="keyword">end</span></span><br><span class="line"><span class="comment"># 再往上得靠指数: 1000000000000 = 10^12, 10000000000000 = 10^13</span></span><br></pre></td></tr></table></figure>
-</li>
-<li class="lvl-2">
-<p>本书的主旨：把大问题分解成小「单元」，大程序拆成模块也是同一招</p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>数学</tag>
-        <tag>0</tag>
       </tags>
   </entry>
   <entry>
@@ -12012,578 +12012,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
-    <title>慢车 04：她的编号</title>
-    <url>/%E5%B0%8F%E8%AF%B4/678d5b0.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>走廊里的日光灯管一盏接一盏亮着。</p>
-<p>陈渡抱着设备箱，箱角磕在门框上，发出一声闷响。门上的编号是071，里面有人调试话筒，红色指示灯一闪一闪。</p>
-<p>陈渡没有立刻走。他把纸箱翻过来，箱底压着一层薄灰，四只泡沫垫块缺了一角。缺角处露出胶合板，边缘起毛。</p>
-<p>箱子里装着三台调音台、一只无线话筒、两块功放板。省台后勤处叫他来送设备，没说谁接。他问了三个人，得到的回答都是往里走。</p>
-<p>走廊很长，电缆从墙边的插孔里垂下来。有人推着音响车经过，车轮压过门槛，卡了一下。陈渡站到墙边，等车过去。</p>
-<p>周隼拿旧手机时，柜台上的收音机正播着一档路况节目。女声报完收费站，前面堵了十一公里，随后是一段广告，音乐响得比人声大。</p>
-<p>配电箱旁边蹲着一个人。</p>
-<p>她穿灰色工装裤，鞋底沾着灰。头发扎在脑后，几缕落在耳边。她一只手扶着打开的箱门，另一只手举起一支细长的话筒，话筒前端有黑色海绵，指向墙顶的日光灯管。</p>
-<p>陈渡把数字写在纸箱侧面：24，60，03391—03416。</p>
-<p>「先别过来。」她说。</p>
-<p>陈渡没有停。</p>
-<p>「盘数不对。」他说。</p>
-<p>她按下录音键。日光灯发出一阵稳定的嗡声。</p>
-<p>「你们后勤的人？」</p>
-<p>周隼抬起头。</p>
-<p>「修设备的。」</p>
-<p>「那更别过来。」</p>
-<p>「箱里二十四盘。」</p>
-<p>陈渡把设备箱放到墙边。</p>
-<p>她戴上一只耳机，慢慢转动录音机的旋钮。回放声从耳机里漏出一点，像远处有人在磨铁。</p>
-<p>「清单五百零九。」</p>
-<p>「你听。」</p>
-<p>她摘下一边耳机，递给陈渡。</p>
-<p>「这是最后一批。」</p>
-<p>他蹲下，把耳机戴好。</p>
-<p>一段底噪铺在下面。中间有十二赫兹的嗡声，持续、整齐。每次底噪起伏，它都压在下面，不消失。</p>
-<p>「以前的呢？」</p>
-<p>陈渡把音量转高一格。</p>
-<p>嗡声立刻清楚起来。灯管里的镇流器在震动，声音通过空气，再被话筒收进去。</p>
-<p>「柜里。」</p>
-<p>「十二赫兹。」他说。</p>
-<p>「你也听得出？」</p>
-<p>「哪一批放进去的？」</p>
-<p>「差两赫兹就是二十四。」</p>
-<p>她按下停止键。</p>
-<p>周隼没有回答。他拉开身后的木柜，玻璃门上的锁扣已经氧化，拧了两下才开。柜里塞着七层旧报纸，报纸日期从两年前到去年不等。最上层放着三只没有标签的空磁带盒。</p>
-<p>「这段有十二赫兹的交流声，来源是旁边的日光灯管。」她说，「我录了二十七分钟。」</p>
-<p>「做什么用？」</p>
-<p>「每一批都报数？」陈渡问。</p>
-<p>「存档。」</p>
-<p>陈渡又听了一遍，手指搭在耳罩边缘。</p>
-<p>「她报。」</p>
-<p>「这台机子的底噪偏高。」</p>
-<p>「我没问机器。」</p>
-<p>「你不记？」</p>
-<p>他摘下耳机。</p>
-<p>她把耳机和录音机收回箱中。录音机是两轨的，外壳包着黑色胶带。右侧进线口接着那支话筒，线长三米左右，绕在手上。</p>
-<p>「柜子记。」</p>
-<p>「你是来修这个的？」</p>
-<p>「不修这个。」</p>
-<p>陈渡把箱盖上的胶带撕开。胶带下面压着三根扎带，其中一根断了。他拿在手里掂了掂，塑料芯已经发白。</p>
-<p>「为什么？」</p>
-<p>「它没坏。」</p>
-<p>周隼伸手拿过去。</p>
-<p>「你怎么知道？」</p>
-<p>「能录。声音也稳。」</p>
-<p>「她拿来的。」</p>
-<p>她把话筒收回来。</p>
-<p>「这台日光灯也是。」她说，「它没坏。」</p>
-<p>「扎带也在箱里？」</p>
-<p>陈渡看了一眼灯架。接线处缠着两圈旧胶布。</p>
-<p>「这种灯管会响。」他说，「换掉电源线，或者并一个抑制电容，能小很多。」</p>
-<p>「装东西顺手放的。」</p>
-<p>「我没说要小。」</p>
-<p>「十二赫兹一直压着底噪，后面录什么都叠一层。」</p>
-<p>「我以为她只录声音。」</p>
-<p>「原声。」</p>
-<p>「什么？」</p>
-<p>「东西都要捆。」</p>
-<p>「这段我要留着。」</p>
-<p>她把录音机放回箱子，关上箱门。</p>
-<p>周隼把断带扔进墙边铁皮桶。桶里塞满螺丝头和剪下的线头。</p>
-<p>陈渡的手还搭在设备箱提手上。提手缠着黑胶布，边缘已经翻起来。</p>
-<p>「这种交流声没人要。」她说，「我听过七盘旧带。没人要。」</p>
-<p>陈渡看着那只桶。</p>
-<p>「那是他们不懂。」</p>
-<p>「不是。」</p>
-<p>「117的皮带在哪儿？」</p>
-<p>她看着陈渡。</p>
-<p>「他们不是不懂，是不需要。」</p>
-<p>「抽屉。」</p>
-<p>陈渡重新抱起设备箱。里面的金属件互相碰着，响了几声。</p>
-<p>「十二赫兹能修掉。」他说。</p>
-<p>「哪一格？」</p>
-<p>「它没坏。」</p>
-<p>「修掉不代表坏。」</p>
-<p>周隼用螺丝刀柄敲了敲柜门。</p>
-<p>「我没说坏。」</p>
-<p>她提起录音箱，站起身，另一只手拿着话筒。</p>
-<p>「你自己找。」</p>
-<p>日光灯又嗡了一声。</p>
-<p>陈渡没有走。</p>
-<p>陈渡拉开最下面一格。里面放着六只旧皮带，长度不一。最上面那只包着一层透明塑料，塑料上贴着一小片白纸，写着：117，备用，2019。</p>
-<p>她也没有立刻走。</p>
-<p>「你刚才说十二赫兹。」</p>
-<p>他捏住白纸角，没有揭。</p>
-<p>「嗯。」</p>
-<p>「你怎么判断的？」</p>
-<p>「还是原来的？」</p>
-<p>「耳朵。」</p>
-<p>「用什么耳朵？」</p>
-<p>「她送来的。」</p>
-<p>「两只。」</p>
-<p>她点了一下头，像在记录某个参数。</p>
-<p>「什么时候？」</p>
-<p>「那只能做初判。」</p>
-<p>陈渡看见她胸前口袋里的记录本。本子露出半截，边角磨白，内页夹着不同颜色的标签。</p>
-<p>「去年。」</p>
-<p>「你不是后勤的人。」</p>
-<p>「也不是。」</p>
-<p>「她说为什么留？」</p>
-<p>「哪个部门？」</p>
-<p>「不归哪个部门。」</p>
-<p>周隼拿万用表去够音箱背面的接线柱，线不够长，他蹲下去换了个位置。</p>
-<p>她拉开箱子侧袋，掏出一张工作证。</p>
-<p>「外聘。田野录音。」</p>
-<p>「她没说什么。」</p>
-<p>陈渡看了一眼。证件上的照片很小，头发比现在长。工作单位那一栏印着省广播台，下面没有部门名，只有栏目组。</p>
-<p>「栏目组一年播几期？」</p>
-<p>陈渡把皮带放回原处。塑料袋被压在两只电容下面，他只抽出一点，底下露出一张折过的收据。日期是2019年11月3日。品名：原配传动带，数量一根。收款人一栏空着。</p>
-<p>「四期。」</p>
-<p>「每期多久？」</p>
-<p>「她买这个做什么？」</p>
-<p>「七分钟。」</p>
-<p>「你剪吗？」</p>
-<p>「她说是你让留的。」</p>
-<p>「剪。」</p>
-<p>「会改声音吗？」</p>
-<p>「我没让。」</p>
-<p>「不改。」</p>
-<p>「留瑕疵？」</p>
-<p>周隼用表笔碰了一下接线柱。</p>
-<p>「留。」</p>
-<p>她收起工作证。</p>
-<p>「那就不是我说的。」</p>
-<p>走廊尽头有人推门出来，抱着一只泡沫箱。那人看见她，停下脚步。</p>
-<p>「林老师，东西放哪儿？」</p>
-<p>「东西有来的地方。」</p>
-<p>「三号库。」</p>
-<p>「临时用那批也送过去？」</p>
-<p>周隼手里的表笔停了一下。他把数值记在纸角，写得很慢。</p>
-<p>「送。」</p>
-<p>那人抬脚就走，泡沫箱挡住了半边走廊。</p>
-<p>「一百八十赫兹……一百八十七……」</p>
-<p>林岫没有马上走。她蹲下去，重新打开录音箱。</p>
-<p>陈渡提起自己的箱子。</p>
-<p>陈渡把收据放回塑料袋底下，压平折痕。</p>
-<p>「十二赫兹可以做个参考。」她说，「但不能凭耳朵写报告。」</p>
-<p>「没人让你写报告。」</p>
-<p>「她还说别的了吗？」</p>
-<p>「你刚才说能修。」</p>
-<p>「能。」</p>
-<p>「说你是来拿的。」</p>
-<p>「为什么修？」</p>
-<p>「因为它影响后面的声音。」</p>
-<p>「什么时候？」</p>
-<p>「后面的声音本来就有。」</p>
-<p>陈渡看着她。</p>
-<p>「送东西的时候。」</p>
-<p>她把话筒插回侧袋，拉链拉到一半，又停住。</p>
-<p>「你修过很多东西？」</p>
-<p>「你怎么说？」</p>
-<p>「够用。」</p>
-<p>「修完呢？」</p>
-<p>「我问你什么时候来。」</p>
-<p>「给别人用。」</p>
-<p>「你不听？」</p>
-<p>「你怎么答？」</p>
-<p>「有时听。」</p>
-<p>「听完呢？」</p>
-<p>周隼把表笔从接线柱上拿开。屏幕上的数值停在183。</p>
-<p>「没坏就行。」</p>
-<p>她把拉链拉好。</p>
-<p>「我说不知道。」</p>
-<p>走廊墙上的挂钟走了一格。秒针掠过十二的位置，响得比刚才清楚。</p>
-<p>「你叫什么？」她问。</p>
-<p>走廊的收音机换了节目。男声念完一串电话号码，背景里有一辆车按喇叭，按了三次，每次长短一样。</p>
-<p>「陈渡。」</p>
-<p>「做什么的？」</p>
-<p>陈渡把设备箱的扣锁重新按紧。扣锁有一颗歪了，他用指甲扳了一下，没扳动，便从口袋里摸出刀片，沿缝刮下一层黑漆。</p>
-<p>「修设备。」</p>
-<p>「修什么？」</p>
-<p>「这个要换。「周隼说。</p>
-<p>「录音机、功放、调音台。」</p>
-<p>「磁带机？」</p>
-<p>「能用就行。」</p>
-<p>「也修。」</p>
-<p>「老式的？」</p>
-<p>「卡壳会掉零件。」</p>
-<p>「苏式的较多。」</p>
-<p>「编号最后三位是117？」</p>
-<p>「先通电。」</p>
-<p>陈渡看了她一眼。</p>
-<p>「你知道那台？」</p>
-<p>「通了再修？」</p>
-<p>「不知道那台。」她说，「我知道编号。」</p>
-<p>「什么意思？」</p>
-<p>「现在修。」</p>
-<p>「东西都有它来的地方。」</p>
-<p>这句话说得很慢。陈渡听过有人修不好东西，也这么说。话一出来，事情就不归追问的人管了。</p>
-<p>陈渡蹲下，拆开扣锁底部的盖板。里面两枚螺钉，一枚十字，一枚一字。他把刀片压在螺丝头上刮了三次。</p>
-<p>林岫提起箱子。</p>
-<p>「你耳朵不错。」她说，「但你只听见需要修的部分。」</p>
-<p>周隼放下万用表，走过来看了一眼。</p>
-<p>「能修就行。」</p>
-<p>「原声。别的别加。」</p>
-<p>「你父亲教你的？」</p>
-<p>她往走廊另一头走。</p>
-<p>陈渡站在原地。设备箱垂在腿边，里面那台旧录音机的皮带松了，晃一下就响。</p>
-<p>「账本上这么写。「</p>
-<p>她走了几步，又停下。</p>
-<p>「你的设备还没交。」陈渡说。</p>
-<p>「他还记什么？」</p>
-<p>「我知道。」</p>
-<p>她没有回头。</p>
-<p>「修设备。」</p>
-<p>「三号库往左。」</p>
-<p>「门上有编号。」</p>
-<p>陈渡刮到第五下，螺丝槽露出亮色。</p>
-<p>「071。」</p>
-<p>陈渡看了一眼刚才差点撞上的那扇门。</p>
-<p>「哪台机器？」</p>
-<p>门牌确实是071。</p>
-<p>她继续往前走。</p>
-<p>「什么都记。」</p>
-<p>陈渡提起箱子，向右转了十几步，看见一扇写着072的门。门旁贴着一张褪色的纸。</p>
-<p>纸上写着：三号库，左转，直走，第二个路口。</p>
-<p>「机器还记名字？」</p>
-<p>他把纸揭下来，折成两折，塞进裤袋。</p>
-<p>三号库在第二个路口。门开着，里面堆着旧调音台和黑色设备箱。负责收货的人核对清单，又打开箱子看了一遍。</p>
-<p>「不记。」</p>
-<p>「坏了两个。」那人指着一块功放板。</p>
-<p>「这个烧了。」陈渡说，「那个只是接插件松了。」</p>
-<p>「不记名字怎么找？」</p>
-<p>「你先说能不能用。」</p>
-<p>「能用就行。」</p>
-<p>「按日期。」</p>
-<p>「到底能不能用？」</p>
-<p>「通电能响。接上输入再看。」</p>
-<p>周隼伸手，把工作灯往陈渡那边推了十厘米。灯杆底座压住一张旧电路图，只露出一个线圈符号。</p>
-<p>收货的人把清单推过来。</p>
-<p>陈渡签了字。日期写到八月十七日。</p>
-<p>「他修东西不问你为什么坏。」周隼说。</p>
-<p>他把设备箱放回车后座，关门时看见副驾驶脚垫上放着一只防风毛衣罩。黑色的，套在话筒外面，只露出前端一小截。</p>
-<p>他看了两秒。</p>
-<p>「问了也不能修。」</p>
-<p>那东西不是他的。</p>
-<p>车开回县城用了四个小时。陈渡把货款放进副驾驶储物格，又去城南找了间便宜的旅馆。房间窗户正对后巷。隔壁有人打电话，反复说今晚不能过去。</p>
-<p>「你也不问。」</p>
-<p>他洗完脸，坐在床边修那台皮带松的录音机。机壳是深灰色，按键磨白。拆开后盖，里面少了原配的压带轮。</p>
-<p>他拿出零件盒，找到一只直径相近的换上。皮带没有换，先调了一下张紧。</p>
-<p>陈渡把螺丝拧下来。扣锁里的弹簧弹到地上，在水泥地上滚了两圈，停在电烙铁插头旁。</p>
-<p>通电。</p>
-<p>一百二十赫兹……二百……</p>
-<p>他用刀尖把弹簧拨进零件盒。</p>
-<p>磁带转起来。底噪从喇叭里出来，断断续续。</p>
-<p>陈渡把音量拧小，取出磁带。</p>
-<p>「问不问都一样。」</p>
-<p>标签空白。他拿记号笔在角上写：0817-01。</p>
-<p>第二天他没接活。</p>
-<p>「那台117怎么坏的？」</p>
-<p>旅馆前台的电话响了三声。他接起来，对方说省台那边有东西要送回县城，姓林。</p>
-<p>「什么东西？」</p>
-<p>「没人坏。」</p>
-<p>「一箱磁带。」</p>
-<p>「坏了？」</p>
-<p>「那你为什么换电容？」</p>
-<p>「没坏。」</p>
-<p>「那让我送什么？」</p>
-<p>「鼓包了。」</p>
-<p>「你送到周隼那儿。」</p>
-<p>陈渡握着听筒。</p>
-<p>周隼点了一下头。他拿起那根断了的扎带，用剪钳剪掉坏结，剩下的一段留在手里。</p>
-<p>「周隼？」</p>
-<p>「隼音器修。步行街那家。」</p>
-<p>「三个电容鼓包，还是六个？」</p>
-<p>「谁让你们送的？」</p>
-<p>电话那头停了两秒。</p>
-<p>「换过三个。」</p>
-<p>「林岫说的。」</p>
-<p>「她认识周隼？」</p>
-<p>「还剩三个？」</p>
-<p>「你认识吗？」</p>
-<p>陈渡看着窗台上的磁带机。</p>
-<p>「还剩三个。」</p>
-<p>「认识。」</p>
-<p>「那就送过去。」</p>
-<p>「鼓了没有？」</p>
-<p>挂断电话后，他先退了旅馆房间。</p>
-<p>租的车一天一百八十，押金另算。他把设备箱搬上车，又去城北买了一只新的压带轮。</p>
-<p>「没鼓。」</p>
-<p>「四十五。」</p>
-<p>「三十五。」</p>
-<p>「那你换什么？」</p>
-<p>「你要旧的？」</p>
-<p>「新的。」</p>
-<p>陈渡把新扣锁的螺丝穿回去。</p>
-<p>「四十二。」</p>
-<p>「四十。包邮。」</p>
-<p>「到年限了。「</p>
-<p>老板把零钱塞进抽屉。陈渡多拿了两个五孔插座。</p>
-<p>下午五点二十，他进了步行街。</p>
-<p>周隼把剪钳放回桌面。</p>
-<p>隼音器修的门半开着。周隼坐在门口换吉他弦。桌上摊着一把旧吉他，琴颈伸到街上。弦轴旁放着一只小磁铁。</p>
-<p>陈渡抱着纸箱下车。</p>
-<p>「那就到了。」</p>
-<p>周隼没抬头。</p>
-<p>「你听这个。」</p>
-<p>街口有人推着铁皮车经过，车上压着成捆的纸箱。轮子卡进地砖缝里，倾斜了十几度。骑车的人用脚撑住地面，弯腰扶车。纸箱最上面一只开了封，里面露出一排白瓷碗。</p>
-<p>他捏住最细的弦，轻轻拨了一下。弦音发闷，底部带着一点抖。</p>
-<p>「哪一根？」陈渡问。</p>
-<p>周隼走到门口，把半块卷帘门往上抬了半尺，又放下。</p>
-<p>「三弦。」</p>
-<p>「卷弦器偏了。」</p>
-<p>「今天晚了。」他说。</p>
-<p>周隼抬起眼。</p>
-<p>「你听得出来。」</p>
-<p>「箱放哪儿？」</p>
-<p>「偏不到多少。」</p>
-<p>「三赫兹。」</p>
-<p>」里面。「</p>
-<p>陈渡把纸箱放到工作台边。</p>
-<p>「省台有东西。」他说，「一箱磁带。林岫让我送过来。」</p>
-<p>」磁带怕挤。「</p>
-<p>周隼的手停了。</p>
-<p>「她跟你说了？」</p>
-<p>」木柜有地方。「</p>
-<p>「说了名字。」</p>
-<p>「别的呢？」</p>
-<p>陈渡把纸箱搬到木柜前。周隼挪开两卷旧报纸，腾出一层空格。二十九盘不到了，柜顶只够放十八盘。他量了一遍宽窄，把箱子平放在下层，又将二十四盘分成两叠。</p>
-<p>「没别的。」</p>
-<p>周隼放下卷弦器，擦了一下掌心的锈。</p>
-<p>「三排在里，两排在外。」他说。</p>
-<p>「东西呢？」</p>
-<p>「箱子。」</p>
-<p>「别横放。」</p>
-<p>「打开。」</p>
-<p>陈渡拆开胶带。箱里平码着二十四盘磁带，每盘都用白标签标了编号。最上面一盘是03391。</p>
-<p>「竖放带边会磨。」</p>
-<p>「她以前送过？」</p>
-<p>「送过。」</p>
-<p>「她不让你横放？「</p>
-<p>「多久一次？」</p>
-<p>「看录到什么。」</p>
-<p>」她贴的签。「</p>
-<p>周隼从箱底抽出一盘。标签上的数字是02908，日期写着两年前。</p>
-<p>「这盘在我这里放过三年。」</p>
-<p>周隼从抽屉里取出一张裁好的报纸，铺在两叠之间。</p>
-<p>「她知道吗？」</p>
-<p>「知道。」</p>
-<p>」03291到03308。「</p>
-<p>陈渡又看了看箱里的编号。</p>
-<p>「一共多少？」</p>
-<p>」外面是前面八盘。「</p>
-<p>「她有多少？」</p>
-<p>「我不问这个。」</p>
-<p>」剩下十六盘在里。「</p>
-<p>「箱底有单子。」</p>
-<p>陈渡拆开夹层，抽出一张打印纸。上面只有三行。</p>
-<p>陈渡将编号念了一遍，按数字顺序摆好。最上面那盘03391的标签边缘翘起，他用指腹压了一遍，压不平，便从纸箱里撕下一小段胶带，贴在标签背面。</p>
-<p>编号范围：02908—03416。</p>
-<p>本批数量：509。</p>
-<p>周隼看着那道胶带。</p>
-<p>备用编号：03417。</p>
-<p>陈渡看着最后一行。</p>
-<p>「她不让贴。」</p>
-<p>「备用？」</p>
-<p>周隼把吉他挪到墙边。</p>
-<p>「怕掉就撕掉。」</p>
-<p>「她一直这么写。」</p>
-<p>「留一盘空号？」</p>
-<p>」那你还贴？「</p>
-<p>「不是留。是下一个还没录到。」</p>
-<p>陈渡翻到03416。磁带外壳磨损，卷轴上有指甲划出的白痕。</p>
-<p>」标签掉了就找错。「</p>
-<p>「03417呢？」</p>
-<p>「空的。」</p>
-<p>」她有单子。「</p>
-<p>「什么时候空？」</p>
-<p>「从上个月开始。」</p>
-<p>」单子也会掉。「</p>
-<p>「为什么？」</p>
-<p>周隼拿起桌上的小磁铁，在指间翻了一下。</p>
-<p>周隼从柜底抽出一本硬壳登记簿。封皮上写着」隼音器修「，下面用圆珠笔添了一行：磁带借用。</p>
-<p>「她去录什么了？」</p>
-<p>「你问她。」</p>
-<p>第一页夹着几张车票。最上面一张是去湛江的长途汽车票，日期1990年8月16日。</p>
-<p>「你碰见她了。」</p>
-<p>「她来拿东西。」</p>
-<p>周隼翻到后面。每一行只有日期、编号、取走和归还。</p>
-<p>周隼看着他。</p>
-<p>「她让你送来的。」</p>
-<p>「要登记？」陈渡问。</p>
-<p>「嗯。」</p>
-<p>「没说别的？」</p>
-<p>「要。」</p>
-<p>「没有。」</p>
-<p>陈渡把清单折回去。纸角在手里发出脆响。</p>
-<p>「她签不签？」</p>
-<p>周隼伸出手。</p>
-<p>「给我。」</p>
-<p>「她不签。」</p>
-<p>陈渡把清单递过去。</p>
-<p>周隼没有接纸。他先拿起最上面的03391，对着光看了看带边。</p>
-<p>「那你替她签？」</p>
-<p>「你最近还在改那台117。」</p>
-<p>「还能用。」</p>
-<p>周隼把笔递给他。</p>
-<p>「电容换了几个？」</p>
-<p>「三个。」</p>
-<p>「你送来的。你签。」</p>
-<p>「还有几个？」</p>
-<p>「三个。」</p>
-<p>陈渡翻到最后一页。登记簿上最近一行停在四月十二日，编号03277。后面六个空格都空着。</p>
-<p>周隼点了一下头，把磁带放进柜子。</p>
-<p>「那三个是什么规格？」</p>
-<p>他写下日期：八月十七日。</p>
-<p>「一万微法。」</p>
-<p>「耐压？」</p>
-<p>然后在」取走「一栏停住。</p>
-<p>「五十伏。」</p>
-<p>「别用二十五伏的。」</p>
-<p>「写谁？」</p>
-<p>「我知道。」</p>
-<p>陈渡站在工作台前，手还搭在纸箱边缘。</p>
-<p>」写她的。「</p>
-<p>街上的卷帘门一家接一家拉下。修鞋摊收了摊，卖旧书的卷帘门卡在半截。周隼抬手，把店里的灯打开。</p>
-<p>「她录到过灯管吗？」陈渡问。</p>
-<p>「她没来。」</p>
-<p>「录过。」</p>
-<p>「十二赫兹？」</p>
-<p>」东西到了就算取走。「</p>
-<p>「你怎么知道？」</p>
-<p>「听见了。」</p>
-<p>陈渡写下」林岫「。笔画不重。写完，他又在」归还「栏画了一道横线。</p>
-<p>周隼把磁带一盘盘放进木柜。每盘之间隔着两层旧报纸。</p>
-<p>「她说给省台，没人要。」</p>
-<p>周隼接过本子，看了一眼。</p>
-<p>「她跟我说没人要。」</p>
-<p>「她对谁都说。」</p>
-<p>「你不写自己？」</p>
-<p>「她还要了？」</p>
-<p>「她一直要。」</p>
-<p>」送的不算拿。「</p>
-<p>陈渡看向木柜。03417的位置空着，柜底露出一块深色木板。</p>
-<p>「为什么要编号？」</p>
-<p>」你也没问她。「</p>
-<p>「好找。」</p>
-<p>「只是为了好找？」</p>
-<p>」她没问。「</p>
-<p>周隼没回答。他从抽屉里取出一只万用表，表笔夹在指间，转身去测一只落地的旧音箱。</p>
-<p>「频率稳定吗？」陈渡问。</p>
-<p>周隼把登记簿合上，压在磁带柜的钥匙下面。</p>
-<p>「哪一段？」</p>
-<p>「她录的。」</p>
-<p>柜台收音机里的路况节目结束了。主持人报时：下午六点十二分。接着是一首老歌，吉他扫弦从喇叭左边过来。</p>
-<p>「十二赫兹一直有。」</p>
-<p>「别的呢？」</p>
-<p>陈渡只听到前奏。唱声进来时，他把扣锁装回设备箱，按了两次，扣住。</p>
-<p>「现场都有。」</p>
-<p>「她不修？」</p>
-<p>周隼在抽屉里翻找了一阵，拿出一卷黑色绝缘胶带。</p>
-<p>「她说不加东西。」</p>
-<p>陈渡摸出记号笔，在清单背面写下一行：灯管，12Hz。</p>
-<p>」这个给你。「</p>
-<p>周隼看了他一眼。</p>
-<p>「你要改？」</p>
-<p>陈渡看了看胶带。外圈已经被剪得只剩半卷，边缘沾着细灰。</p>
-<p>「先测。」</p>
-<p>「她不会用。」</p>
-<p>「剩多少？」</p>
-<p>「她说什么时候用？」</p>
-<p>「她没说。」</p>
-<p>「十二米左右。」</p>
-<p>「那就还是可能用。」</p>
-<p>周隼把万用表夹在腋下，手没有停。</p>
-<p>」够用。「</p>
-<p>「你怕它坏。」</p>
-<p>「东西会坏。」</p>
-<p>」你拿回去。「</p>
-<p>「她怕它原样。」</p>
-<p>陈渡抬起头。</p>
-<p>陈渡没有接。</p>
-<p>周隼已经在测第二只喇叭。他把表笔换到另一个孔，嘴里念着数字。</p>
-<p>「一百二十赫兹……二百……一百八十……」</p>
-<p>「先通电。」</p>
-<p>外面一辆送餐车按了两声喇叭。磁带柜的玻璃门跟着震了一下。</p>
-<p>陈渡把记号笔盖上。</p>
-<p>」线头要包。「</p>
-<p>「03417录什么？」他问。</p>
-<p>周隼没有停手。</p>
-<p>」我有。「</p>
-<p>「你问她。」</p>
-<p>「她什么时候来拿？」</p>
-<p>他拉开设备箱侧袋，里面有一卷灰色胶带。边角受潮翘起，摸上去发黏。</p>
-<p>「你问她。」</p>
-<p>「她留了电话吗？」</p>
-<p>周隼把那卷黑色胶带放到工具台上。</p>
-<p>周隼从工作台边拿起一只旧手机。屏幕右上角缺了一角，按键磨得发亮。</p>
-<p>他翻了两次，递过来。</p>
-<p>「117也缺胶带？」</p>
-<p>「省台栏目组。这个号打不通，就发短信。」</p>
-<p>陈渡没有接。</p>
-<p>」磁带机不用这个。「</p>
-<p>「你存一下。」周隼说，「她不是每次都带东西来。」</p>
-<p>「我送到了。」</p>
-<p>「那你要多少？」</p>
-<p>「送到不算。」</p>
-<p>「什么才算？」</p>
-<p>」十二米太多。」</p>
-<p>周隼把万用表收回来，卷好表笔。</p>
-<p>「她问你叫什么。」</p>
-<p>陈渡抽出自己的胶带，撕下二十厘米。胶带粘在指腹上，他用牙咬住一端，撕开。</p>
-<p>陈渡想起走廊里那个问题。</p>
-<p>「她问了。」</p>
-<p>周隼看着他把露出的线头缠了三圈，再用刀片割断。</p>
-<p>「你怎么答的？」</p>
-<p>「陈渡。」</p>
-<p>「不是没坏么？」陈渡问。</p>
-<p>周隼把手机放在桌上。</p>
-<p>「她记不记，跟你说不说，不一样。」</p>
-<p>「电容快到年限了。」</p>
-<p>陈渡拿过手机，在通讯录里输入林岫的号码。</p>
-<p>他只输入了号码，没有姓名。</p>
-<p>周隼说。</p>
-<p>周隼看着他按完最后一个数字。</p>
-<p>「你会打？」</p>
-<p>「鼓过几个？」</p>
-<p>「东西坏了会打。」</p>
-<p>「她那里没有坏东西。」</p>
-<p>「还在箱子里。」</p>
-<p>陈渡收起手机。</p>
-<p>「那就等她先打。」</p>
-<p>周隼低头继续量电阻。数值从表屏上跳出来，一个一个变过去。</p>
-<p>陈渡把纸箱折好。箱盖内侧粘着一张便签，是林岫的字迹。</p>
-<p>上面只有一行：</p>
-<p>03417，空号。不要让任何人占用。</p>
-<p>陈渡把便签撕下来，折好，放进上衣口袋。</p>
-]]></content>
-      <categories>
-        <category>小说</category>
-      </categories>
-      <tags>
-        <tag>慢车</tag>
-        <tag>小说</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>成本核算</title>
-    <url>/%E5%B7%A5%E4%BD%9C/fb428c48.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="403034e3763252e0a1d875383418dced566fe36d7f58183614979363551524dd">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d01b15f88bbf2f997a33ad0e4769faa2f3731a35f9c12d7a5ad97247c985de51ed62c20bb6ba6113954fea16ed76707f8571dfaa584b4e3826985032b10288f7e13b93b331fc92e4ebc21cf2f3989f25ee250dd18448f86303d9d929567d54c0a64b2443cfcf3f54aaead2719e45509f355f0caa4661d7651db96a887b5ef79aae101fb73978cce5fa93b24287b98f2639e871f614db934381ee4e241a12fd224faedd825390e487d9287e6e7e03f0f00f6d33956db5549ab690eaa4bb73d57207b7847ceb796384c2d90aa03b08f9b7e3ba9a9a6c7120e569cfed730553994f200ff398b4a63e437ef87626081679e9d7691c9f8e574971d814fc42fa4c170c044f0bcc2d5227ab77afa36e2413a79cc9bf8212fbd04d467345d1da089614c3541e6a0e5e09c42f977cf917b15799600e6b55dfc9e445c2f9dd638939b32bad9f629832be56693f9f509d3cc0be74cc147cd44bc6700722b45b4a11e2ad51071ae0ce795058801497056bc30e1461d624e3ef86c45e64a651b1559f1031fec9ae6443177a5ba67cbe961cc2ee7bcb59a3cb88af0ba1c243d1a9549addf257a8fd8e64d179401465d805f41a2e032f4d5da29b43777ae9d1116ecc9094f9e86b387ece6c26fc4d30c9eaf9739da84f69da0b4ea41e78627adedac8bea9396bbb6806b40612b5c1bbe434a7b618df8245da6fadf861fcd1fe52c022ff5d00bebff5e77aaeb566e6771ee0c72ec95fba73eeda6035933d452127a7eb41d143e35c090114ecb95da3cd9e20fc000491f57605434acdc82a821345325b6fe27933402f57f3bfebbc23ae6d83578dea596364ce1d2de5344a20bc8185ddd344defea04ac49210125785b24cb993cbbd61e9d5c92b2e20c482ae4a367fe05eb0ea7756beada75cdfea44c37c1962ee408896582b27f0bd400fc35a73e25bcee8d14bc17d447e2eed7fcd9f800ab220101df770a45c2d9699e451dd225e650418c1bd3849960f965551be548eaf21d51928281ebbb761aeec3620bdcf2a58c461c611478e033254ad3cb3a1351b121f9dfa505a687e712a02f53d2d02d638bac0b3578a5e23f9fdaf699e32d58790b16e0397719a2e44505699e7dbba8e040b17a880f73d0aeeba704cbd5c15603c1dcee81e33633310b859c124a1c3c09bd063b5efb8e220c37583cc40dc155b0e30339572da533b70d8f084119e20b2f504f375a0e0076518afd45f70f61f893d65b14088c5a597e13deb62b6d0f0f64df8149522f1e5e7156b682aa8d639097e18fff4b2d8c57dc60d8625da2cecc8042490337199a41ba03f080582b97d39be52551ffacb3c2fb7c5606da03a13886c69d303864d35430398a00eecac17c7b5717f06dd40d5ab1a73f0465d54332570eb748cbb97afd416422b5b2f3bd679a080b9cc94199d8e90ee83d2b85ffa93528e020c93e5cfbc93875fc96ed4277efcf4d747686ef84f784204f1dec6588c829002c6919354b5cf23beb81b81b4ba5e9033d81bd5d1443cdb999f55c0996e9d02db7a7c25bc2ecf7f2cef76bd2c964a9934db64580e072eab8f721027d5ec8fb66aa9fec34f2f3b190cdccde6603f11c0f85f2e92f83f4082cd378982b2b4a742cb760a4137f33a9bb2da5f4a450eb5d05392221eed47c59399ed95b514557f3fb468293b94ac388d4119a167dca4b4d90dfef7310fa4c69d1b945d28f4322685a6708a142d355cfb6a5dfcf0819b8bbedb88a886828dfb0ef0919bfda0ab3a12381f980cd4738b6245d2960713d6f531563bc42af3589ce9fa03f1a8ca8f4b10b138ef17d6e3ae7a0e5c529ddf83432ec32c5d838bce16c4e10806956318e4b4f5e85c6af9aa2648d595e6a3155d6250d721f172a7cff78aac9a6b69b364d3aace867e838f95c5731f6a8c1d2faf055f8bca28ac6f80ac18f0061d41e8757bbcdcd29393a521c68fada0ef5c23c5a898792ddf530072b98ab37a519e76be5318ee82b88566a41f54cc929afc6c6c1887fb7323f8ef4d9773824b7d32b48a551ba4f2080e9517fe665260c20f1756351b43c77eced10722a926ef5ecdd3379acd3577b3e7fac6e38fb611d6f5465c809c7ec9015dd013f74e8039e30e138919f9f2d7b0d084a8c41bfe3322d87a0aeb6d40c902e473b91336a439dfac7e0e817a3978ad95b6583f07d9176f9e520a4fd11ac158a8f51d1012cbe8344ecb5bf4e81a8a5e00ee4e3edf3d66652e61fc56b1e8d71765486de4b7f802db8f10bf074fd207b5e933f4d02091ccd16fefe8ccf2e2e6e4feb487c9c43e311a33ec49adafe05da42685bbe4aa9e578e34b54dcfd1c795d6d3a04cc88085504aafb3d624fa7845a7fdb2d940b8370cfec5f6ee8c6604ada6ec88bba256584f049076476224a7777b67d04f09bfbe7366d5703382ce66642f94fd4cd5a6b3ddf66245514e1b976b1d4168361ab42f1bc5a103467e4225716042556a1d128e0c87ec1370df9e7f10e23b99c0a203ad9f35a8299e1d365fe3c35dc0e639aabbe5e3a06581dbad5be30e4d591ff16a74a4b29a066fe6d26adce8caec90688063fc3f21ef8ff09e8de081bc9528b39c7779107bfe0c52326c1d913e9c9a3cc9bde78e475944bd927923e9d3c70a48b608c95d3e6293e14d6378429de2051171bd75974afb3fe63f59d988e4e3592f473cd186b864fce54e8ebe7212dc12a630ac0fdbd4d416e4064549fd1683cfa3e43330b717de74222a5dc20affda36e381f36f7a4ba90d82425a22a179f19f400417d5daf3072ddcde25f25f429e13550608229a01fbd0b0d549168374f0518e0bfca4919a9b52c7b39f5ea57bdea3447a683891624bdb619459913c6b6ebf4827ee4ade374f83ea6d82127edcdbbda1885a238e0bcac36b70b61e6a5496cc726942c540e01ba3954e297939eb0f9d80c4abb968f6d9ddd92a5110863eac74a47d11dec7d99332c39b4c76678f859</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-wave">
-      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-  </entry>
-  <entry>
     <title>慢车 03：那台机器</title>
     <url>/%E5%B0%8F%E8%AF%B4/56c829bc.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>螺丝刀在第三颗螺丝上打了两次滑。</p>
@@ -13368,6 +12796,1017 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
         <tag>慢车</tag>
         <tag>小说</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>慢车 04：她的编号</title>
+    <url>/%E5%B0%8F%E8%AF%B4/678d5b0.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>走廊里的日光灯管一盏接一盏亮着。</p>
+<p>陈渡抱着设备箱，箱角磕在门框上，发出一声闷响。门上的编号是071，里面有人调试话筒，红色指示灯一闪一闪。</p>
+<p>陈渡没有立刻走。他把纸箱翻过来，箱底压着一层薄灰，四只泡沫垫块缺了一角。缺角处露出胶合板，边缘起毛。</p>
+<p>箱子里装着三台调音台、一只无线话筒、两块功放板。省台后勤处叫他来送设备，没说谁接。他问了三个人，得到的回答都是往里走。</p>
+<p>走廊很长，电缆从墙边的插孔里垂下来。有人推着音响车经过，车轮压过门槛，卡了一下。陈渡站到墙边，等车过去。</p>
+<p>周隼拿旧手机时，柜台上的收音机正播着一档路况节目。女声报完收费站，前面堵了十一公里，随后是一段广告，音乐响得比人声大。</p>
+<p>配电箱旁边蹲着一个人。</p>
+<p>她穿灰色工装裤，鞋底沾着灰。头发扎在脑后，几缕落在耳边。她一只手扶着打开的箱门，另一只手举起一支细长的话筒，话筒前端有黑色海绵，指向墙顶的日光灯管。</p>
+<p>陈渡把数字写在纸箱侧面：24，60，03391—03416。</p>
+<p>「先别过来。」她说。</p>
+<p>陈渡没有停。</p>
+<p>「盘数不对。」他说。</p>
+<p>她按下录音键。日光灯发出一阵稳定的嗡声。</p>
+<p>「你们后勤的人？」</p>
+<p>周隼抬起头。</p>
+<p>「修设备的。」</p>
+<p>「那更别过来。」</p>
+<p>「箱里二十四盘。」</p>
+<p>陈渡把设备箱放到墙边。</p>
+<p>她戴上一只耳机，慢慢转动录音机的旋钮。回放声从耳机里漏出一点，像远处有人在磨铁。</p>
+<p>「清单五百零九。」</p>
+<p>「你听。」</p>
+<p>她摘下一边耳机，递给陈渡。</p>
+<p>「这是最后一批。」</p>
+<p>他蹲下，把耳机戴好。</p>
+<p>一段底噪铺在下面。中间有十二赫兹的嗡声，持续、整齐。每次底噪起伏，它都压在下面，不消失。</p>
+<p>「以前的呢？」</p>
+<p>陈渡把音量转高一格。</p>
+<p>嗡声立刻清楚起来。灯管里的镇流器在震动，声音通过空气，再被话筒收进去。</p>
+<p>「柜里。」</p>
+<p>「十二赫兹。」他说。</p>
+<p>「你也听得出？」</p>
+<p>「哪一批放进去的？」</p>
+<p>「差两赫兹就是二十四。」</p>
+<p>她按下停止键。</p>
+<p>周隼没有回答。他拉开身后的木柜，玻璃门上的锁扣已经氧化，拧了两下才开。柜里塞着七层旧报纸，报纸日期从两年前到去年不等。最上层放着三只没有标签的空磁带盒。</p>
+<p>「这段有十二赫兹的交流声，来源是旁边的日光灯管。」她说，「我录了二十七分钟。」</p>
+<p>「做什么用？」</p>
+<p>「每一批都报数？」陈渡问。</p>
+<p>「存档。」</p>
+<p>陈渡又听了一遍，手指搭在耳罩边缘。</p>
+<p>「她报。」</p>
+<p>「这台机子的底噪偏高。」</p>
+<p>「我没问机器。」</p>
+<p>「你不记？」</p>
+<p>他摘下耳机。</p>
+<p>她把耳机和录音机收回箱中。录音机是两轨的，外壳包着黑色胶带。右侧进线口接着那支话筒，线长三米左右，绕在手上。</p>
+<p>「柜子记。」</p>
+<p>「你是来修这个的？」</p>
+<p>「不修这个。」</p>
+<p>陈渡把箱盖上的胶带撕开。胶带下面压着三根扎带，其中一根断了。他拿在手里掂了掂，塑料芯已经发白。</p>
+<p>「为什么？」</p>
+<p>「它没坏。」</p>
+<p>周隼伸手拿过去。</p>
+<p>「你怎么知道？」</p>
+<p>「能录。声音也稳。」</p>
+<p>「她拿来的。」</p>
+<p>她把话筒收回来。</p>
+<p>「这台日光灯也是。」她说，「它没坏。」</p>
+<p>「扎带也在箱里？」</p>
+<p>陈渡看了一眼灯架。接线处缠着两圈旧胶布。</p>
+<p>「这种灯管会响。」他说，「换掉电源线，或者并一个抑制电容，能小很多。」</p>
+<p>「装东西顺手放的。」</p>
+<p>「我没说要小。」</p>
+<p>「十二赫兹一直压着底噪，后面录什么都叠一层。」</p>
+<p>「我以为她只录声音。」</p>
+<p>「原声。」</p>
+<p>「什么？」</p>
+<p>「东西都要捆。」</p>
+<p>「这段我要留着。」</p>
+<p>她把录音机放回箱子，关上箱门。</p>
+<p>周隼把断带扔进墙边铁皮桶。桶里塞满螺丝头和剪下的线头。</p>
+<p>陈渡的手还搭在设备箱提手上。提手缠着黑胶布，边缘已经翻起来。</p>
+<p>「这种交流声没人要。」她说，「我听过七盘旧带。没人要。」</p>
+<p>陈渡看着那只桶。</p>
+<p>「那是他们不懂。」</p>
+<p>「不是。」</p>
+<p>「117的皮带在哪儿？」</p>
+<p>她看着陈渡。</p>
+<p>「他们不是不懂，是不需要。」</p>
+<p>「抽屉。」</p>
+<p>陈渡重新抱起设备箱。里面的金属件互相碰着，响了几声。</p>
+<p>「十二赫兹能修掉。」他说。</p>
+<p>「哪一格？」</p>
+<p>「它没坏。」</p>
+<p>「修掉不代表坏。」</p>
+<p>周隼用螺丝刀柄敲了敲柜门。</p>
+<p>「我没说坏。」</p>
+<p>她提起录音箱，站起身，另一只手拿着话筒。</p>
+<p>「你自己找。」</p>
+<p>日光灯又嗡了一声。</p>
+<p>陈渡没有走。</p>
+<p>陈渡拉开最下面一格。里面放着六只旧皮带，长度不一。最上面那只包着一层透明塑料，塑料上贴着一小片白纸，写着：117，备用，2019。</p>
+<p>她也没有立刻走。</p>
+<p>「你刚才说十二赫兹。」</p>
+<p>他捏住白纸角，没有揭。</p>
+<p>「嗯。」</p>
+<p>「你怎么判断的？」</p>
+<p>「还是原来的？」</p>
+<p>「耳朵。」</p>
+<p>「用什么耳朵？」</p>
+<p>「她送来的。」</p>
+<p>「两只。」</p>
+<p>她点了一下头，像在记录某个参数。</p>
+<p>「什么时候？」</p>
+<p>「那只能做初判。」</p>
+<p>陈渡看见她胸前口袋里的记录本。本子露出半截，边角磨白，内页夹着不同颜色的标签。</p>
+<p>「去年。」</p>
+<p>「你不是后勤的人。」</p>
+<p>「也不是。」</p>
+<p>「她说为什么留？」</p>
+<p>「哪个部门？」</p>
+<p>「不归哪个部门。」</p>
+<p>周隼拿万用表去够音箱背面的接线柱，线不够长，他蹲下去换了个位置。</p>
+<p>她拉开箱子侧袋，掏出一张工作证。</p>
+<p>「外聘。田野录音。」</p>
+<p>「她没说什么。」</p>
+<p>陈渡看了一眼。证件上的照片很小，头发比现在长。工作单位那一栏印着省广播台，下面没有部门名，只有栏目组。</p>
+<p>「栏目组一年播几期？」</p>
+<p>陈渡把皮带放回原处。塑料袋被压在两只电容下面，他只抽出一点，底下露出一张折过的收据。日期是2019年11月3日。品名：原配传动带，数量一根。收款人一栏空着。</p>
+<p>「四期。」</p>
+<p>「每期多久？」</p>
+<p>「她买这个做什么？」</p>
+<p>「七分钟。」</p>
+<p>「你剪吗？」</p>
+<p>「她说是你让留的。」</p>
+<p>「剪。」</p>
+<p>「会改声音吗？」</p>
+<p>「我没让。」</p>
+<p>「不改。」</p>
+<p>「留瑕疵？」</p>
+<p>周隼用表笔碰了一下接线柱。</p>
+<p>「留。」</p>
+<p>她收起工作证。</p>
+<p>「那就不是我说的。」</p>
+<p>走廊尽头有人推门出来，抱着一只泡沫箱。那人看见她，停下脚步。</p>
+<p>「林老师，东西放哪儿？」</p>
+<p>「东西有来的地方。」</p>
+<p>「三号库。」</p>
+<p>「临时用那批也送过去？」</p>
+<p>周隼手里的表笔停了一下。他把数值记在纸角，写得很慢。</p>
+<p>「送。」</p>
+<p>那人抬脚就走，泡沫箱挡住了半边走廊。</p>
+<p>「一百八十赫兹……一百八十七……」</p>
+<p>林岫没有马上走。她蹲下去，重新打开录音箱。</p>
+<p>陈渡提起自己的箱子。</p>
+<p>陈渡把收据放回塑料袋底下，压平折痕。</p>
+<p>「十二赫兹可以做个参考。」她说，「但不能凭耳朵写报告。」</p>
+<p>「没人让你写报告。」</p>
+<p>「她还说别的了吗？」</p>
+<p>「你刚才说能修。」</p>
+<p>「能。」</p>
+<p>「说你是来拿的。」</p>
+<p>「为什么修？」</p>
+<p>「因为它影响后面的声音。」</p>
+<p>「什么时候？」</p>
+<p>「后面的声音本来就有。」</p>
+<p>陈渡看着她。</p>
+<p>「送东西的时候。」</p>
+<p>她把话筒插回侧袋，拉链拉到一半，又停住。</p>
+<p>「你修过很多东西？」</p>
+<p>「你怎么说？」</p>
+<p>「够用。」</p>
+<p>「修完呢？」</p>
+<p>「我问你什么时候来。」</p>
+<p>「给别人用。」</p>
+<p>「你不听？」</p>
+<p>「你怎么答？」</p>
+<p>「有时听。」</p>
+<p>「听完呢？」</p>
+<p>周隼把表笔从接线柱上拿开。屏幕上的数值停在183。</p>
+<p>「没坏就行。」</p>
+<p>她把拉链拉好。</p>
+<p>「我说不知道。」</p>
+<p>走廊墙上的挂钟走了一格。秒针掠过十二的位置，响得比刚才清楚。</p>
+<p>「你叫什么？」她问。</p>
+<p>走廊的收音机换了节目。男声念完一串电话号码，背景里有一辆车按喇叭，按了三次，每次长短一样。</p>
+<p>「陈渡。」</p>
+<p>「做什么的？」</p>
+<p>陈渡把设备箱的扣锁重新按紧。扣锁有一颗歪了，他用指甲扳了一下，没扳动，便从口袋里摸出刀片，沿缝刮下一层黑漆。</p>
+<p>「修设备。」</p>
+<p>「修什么？」</p>
+<p>「这个要换。「周隼说。</p>
+<p>「录音机、功放、调音台。」</p>
+<p>「磁带机？」</p>
+<p>「能用就行。」</p>
+<p>「也修。」</p>
+<p>「老式的？」</p>
+<p>「卡壳会掉零件。」</p>
+<p>「苏式的较多。」</p>
+<p>「编号最后三位是117？」</p>
+<p>「先通电。」</p>
+<p>陈渡看了她一眼。</p>
+<p>「你知道那台？」</p>
+<p>「通了再修？」</p>
+<p>「不知道那台。」她说，「我知道编号。」</p>
+<p>「什么意思？」</p>
+<p>「现在修。」</p>
+<p>「东西都有它来的地方。」</p>
+<p>这句话说得很慢。陈渡听过有人修不好东西，也这么说。话一出来，事情就不归追问的人管了。</p>
+<p>陈渡蹲下，拆开扣锁底部的盖板。里面两枚螺钉，一枚十字，一枚一字。他把刀片压在螺丝头上刮了三次。</p>
+<p>林岫提起箱子。</p>
+<p>「你耳朵不错。」她说，「但你只听见需要修的部分。」</p>
+<p>周隼放下万用表，走过来看了一眼。</p>
+<p>「能修就行。」</p>
+<p>「原声。别的别加。」</p>
+<p>「你父亲教你的？」</p>
+<p>她往走廊另一头走。</p>
+<p>陈渡站在原地。设备箱垂在腿边，里面那台旧录音机的皮带松了，晃一下就响。</p>
+<p>「账本上这么写。「</p>
+<p>她走了几步，又停下。</p>
+<p>「你的设备还没交。」陈渡说。</p>
+<p>「他还记什么？」</p>
+<p>「我知道。」</p>
+<p>她没有回头。</p>
+<p>「修设备。」</p>
+<p>「三号库往左。」</p>
+<p>「门上有编号。」</p>
+<p>陈渡刮到第五下，螺丝槽露出亮色。</p>
+<p>「071。」</p>
+<p>陈渡看了一眼刚才差点撞上的那扇门。</p>
+<p>「哪台机器？」</p>
+<p>门牌确实是071。</p>
+<p>她继续往前走。</p>
+<p>「什么都记。」</p>
+<p>陈渡提起箱子，向右转了十几步，看见一扇写着072的门。门旁贴着一张褪色的纸。</p>
+<p>纸上写着：三号库，左转，直走，第二个路口。</p>
+<p>「机器还记名字？」</p>
+<p>他把纸揭下来，折成两折，塞进裤袋。</p>
+<p>三号库在第二个路口。门开着，里面堆着旧调音台和黑色设备箱。负责收货的人核对清单，又打开箱子看了一遍。</p>
+<p>「不记。」</p>
+<p>「坏了两个。」那人指着一块功放板。</p>
+<p>「这个烧了。」陈渡说，「那个只是接插件松了。」</p>
+<p>「不记名字怎么找？」</p>
+<p>「你先说能不能用。」</p>
+<p>「能用就行。」</p>
+<p>「按日期。」</p>
+<p>「到底能不能用？」</p>
+<p>「通电能响。接上输入再看。」</p>
+<p>周隼伸手，把工作灯往陈渡那边推了十厘米。灯杆底座压住一张旧电路图，只露出一个线圈符号。</p>
+<p>收货的人把清单推过来。</p>
+<p>陈渡签了字。日期写到八月十七日。</p>
+<p>「他修东西不问你为什么坏。」周隼说。</p>
+<p>他把设备箱放回车后座，关门时看见副驾驶脚垫上放着一只防风毛衣罩。黑色的，套在话筒外面，只露出前端一小截。</p>
+<p>他看了两秒。</p>
+<p>「问了也不能修。」</p>
+<p>那东西不是他的。</p>
+<p>车开回县城用了四个小时。陈渡把货款放进副驾驶储物格，又去城南找了间便宜的旅馆。房间窗户正对后巷。隔壁有人打电话，反复说今晚不能过去。</p>
+<p>「你也不问。」</p>
+<p>他洗完脸，坐在床边修那台皮带松的录音机。机壳是深灰色，按键磨白。拆开后盖，里面少了原配的压带轮。</p>
+<p>他拿出零件盒，找到一只直径相近的换上。皮带没有换，先调了一下张紧。</p>
+<p>陈渡把螺丝拧下来。扣锁里的弹簧弹到地上，在水泥地上滚了两圈，停在电烙铁插头旁。</p>
+<p>通电。</p>
+<p>一百二十赫兹……二百……</p>
+<p>他用刀尖把弹簧拨进零件盒。</p>
+<p>磁带转起来。底噪从喇叭里出来，断断续续。</p>
+<p>陈渡把音量拧小，取出磁带。</p>
+<p>「问不问都一样。」</p>
+<p>标签空白。他拿记号笔在角上写：0817-01。</p>
+<p>第二天他没接活。</p>
+<p>「那台117怎么坏的？」</p>
+<p>旅馆前台的电话响了三声。他接起来，对方说省台那边有东西要送回县城，姓林。</p>
+<p>「什么东西？」</p>
+<p>「没人坏。」</p>
+<p>「一箱磁带。」</p>
+<p>「坏了？」</p>
+<p>「那你为什么换电容？」</p>
+<p>「没坏。」</p>
+<p>「那让我送什么？」</p>
+<p>「鼓包了。」</p>
+<p>「你送到周隼那儿。」</p>
+<p>陈渡握着听筒。</p>
+<p>周隼点了一下头。他拿起那根断了的扎带，用剪钳剪掉坏结，剩下的一段留在手里。</p>
+<p>「周隼？」</p>
+<p>「隼音器修。步行街那家。」</p>
+<p>「三个电容鼓包，还是六个？」</p>
+<p>「谁让你们送的？」</p>
+<p>电话那头停了两秒。</p>
+<p>「换过三个。」</p>
+<p>「林岫说的。」</p>
+<p>「她认识周隼？」</p>
+<p>「还剩三个？」</p>
+<p>「你认识吗？」</p>
+<p>陈渡看着窗台上的磁带机。</p>
+<p>「还剩三个。」</p>
+<p>「认识。」</p>
+<p>「那就送过去。」</p>
+<p>「鼓了没有？」</p>
+<p>挂断电话后，他先退了旅馆房间。</p>
+<p>租的车一天一百八十，押金另算。他把设备箱搬上车，又去城北买了一只新的压带轮。</p>
+<p>「没鼓。」</p>
+<p>「四十五。」</p>
+<p>「三十五。」</p>
+<p>「那你换什么？」</p>
+<p>「你要旧的？」</p>
+<p>「新的。」</p>
+<p>陈渡把新扣锁的螺丝穿回去。</p>
+<p>「四十二。」</p>
+<p>「四十。包邮。」</p>
+<p>「到年限了。「</p>
+<p>老板把零钱塞进抽屉。陈渡多拿了两个五孔插座。</p>
+<p>下午五点二十，他进了步行街。</p>
+<p>周隼把剪钳放回桌面。</p>
+<p>隼音器修的门半开着。周隼坐在门口换吉他弦。桌上摊着一把旧吉他，琴颈伸到街上。弦轴旁放着一只小磁铁。</p>
+<p>陈渡抱着纸箱下车。</p>
+<p>「那就到了。」</p>
+<p>周隼没抬头。</p>
+<p>「你听这个。」</p>
+<p>街口有人推着铁皮车经过，车上压着成捆的纸箱。轮子卡进地砖缝里，倾斜了十几度。骑车的人用脚撑住地面，弯腰扶车。纸箱最上面一只开了封，里面露出一排白瓷碗。</p>
+<p>他捏住最细的弦，轻轻拨了一下。弦音发闷，底部带着一点抖。</p>
+<p>「哪一根？」陈渡问。</p>
+<p>周隼走到门口，把半块卷帘门往上抬了半尺，又放下。</p>
+<p>「三弦。」</p>
+<p>「卷弦器偏了。」</p>
+<p>「今天晚了。」他说。</p>
+<p>周隼抬起眼。</p>
+<p>「你听得出来。」</p>
+<p>「箱放哪儿？」</p>
+<p>「偏不到多少。」</p>
+<p>「三赫兹。」</p>
+<p>」里面。「</p>
+<p>陈渡把纸箱放到工作台边。</p>
+<p>「省台有东西。」他说，「一箱磁带。林岫让我送过来。」</p>
+<p>」磁带怕挤。「</p>
+<p>周隼的手停了。</p>
+<p>「她跟你说了？」</p>
+<p>」木柜有地方。「</p>
+<p>「说了名字。」</p>
+<p>「别的呢？」</p>
+<p>陈渡把纸箱搬到木柜前。周隼挪开两卷旧报纸，腾出一层空格。二十九盘不到了，柜顶只够放十八盘。他量了一遍宽窄，把箱子平放在下层，又将二十四盘分成两叠。</p>
+<p>「没别的。」</p>
+<p>周隼放下卷弦器，擦了一下掌心的锈。</p>
+<p>「三排在里，两排在外。」他说。</p>
+<p>「东西呢？」</p>
+<p>「箱子。」</p>
+<p>「别横放。」</p>
+<p>「打开。」</p>
+<p>陈渡拆开胶带。箱里平码着二十四盘磁带，每盘都用白标签标了编号。最上面一盘是03391。</p>
+<p>「竖放带边会磨。」</p>
+<p>「她以前送过？」</p>
+<p>「送过。」</p>
+<p>「她不让你横放？「</p>
+<p>「多久一次？」</p>
+<p>「看录到什么。」</p>
+<p>」她贴的签。「</p>
+<p>周隼从箱底抽出一盘。标签上的数字是02908，日期写着两年前。</p>
+<p>「这盘在我这里放过三年。」</p>
+<p>周隼从抽屉里取出一张裁好的报纸，铺在两叠之间。</p>
+<p>「她知道吗？」</p>
+<p>「知道。」</p>
+<p>」03291到03308。「</p>
+<p>陈渡又看了看箱里的编号。</p>
+<p>「一共多少？」</p>
+<p>」外面是前面八盘。「</p>
+<p>「她有多少？」</p>
+<p>「我不问这个。」</p>
+<p>」剩下十六盘在里。「</p>
+<p>「箱底有单子。」</p>
+<p>陈渡拆开夹层，抽出一张打印纸。上面只有三行。</p>
+<p>陈渡将编号念了一遍，按数字顺序摆好。最上面那盘03391的标签边缘翘起，他用指腹压了一遍，压不平，便从纸箱里撕下一小段胶带，贴在标签背面。</p>
+<p>编号范围：02908—03416。</p>
+<p>本批数量：509。</p>
+<p>周隼看着那道胶带。</p>
+<p>备用编号：03417。</p>
+<p>陈渡看着最后一行。</p>
+<p>「她不让贴。」</p>
+<p>「备用？」</p>
+<p>周隼把吉他挪到墙边。</p>
+<p>「怕掉就撕掉。」</p>
+<p>「她一直这么写。」</p>
+<p>「留一盘空号？」</p>
+<p>」那你还贴？「</p>
+<p>「不是留。是下一个还没录到。」</p>
+<p>陈渡翻到03416。磁带外壳磨损，卷轴上有指甲划出的白痕。</p>
+<p>」标签掉了就找错。「</p>
+<p>「03417呢？」</p>
+<p>「空的。」</p>
+<p>」她有单子。「</p>
+<p>「什么时候空？」</p>
+<p>「从上个月开始。」</p>
+<p>」单子也会掉。「</p>
+<p>「为什么？」</p>
+<p>周隼拿起桌上的小磁铁，在指间翻了一下。</p>
+<p>周隼从柜底抽出一本硬壳登记簿。封皮上写着」隼音器修「，下面用圆珠笔添了一行：磁带借用。</p>
+<p>「她去录什么了？」</p>
+<p>「你问她。」</p>
+<p>第一页夹着几张车票。最上面一张是去湛江的长途汽车票，日期1990年8月16日。</p>
+<p>「你碰见她了。」</p>
+<p>「她来拿东西。」</p>
+<p>周隼翻到后面。每一行只有日期、编号、取走和归还。</p>
+<p>周隼看着他。</p>
+<p>「她让你送来的。」</p>
+<p>「要登记？」陈渡问。</p>
+<p>「嗯。」</p>
+<p>「没说别的？」</p>
+<p>「要。」</p>
+<p>「没有。」</p>
+<p>陈渡把清单折回去。纸角在手里发出脆响。</p>
+<p>「她签不签？」</p>
+<p>周隼伸出手。</p>
+<p>「给我。」</p>
+<p>「她不签。」</p>
+<p>陈渡把清单递过去。</p>
+<p>周隼没有接纸。他先拿起最上面的03391，对着光看了看带边。</p>
+<p>「那你替她签？」</p>
+<p>「你最近还在改那台117。」</p>
+<p>「还能用。」</p>
+<p>周隼把笔递给他。</p>
+<p>「电容换了几个？」</p>
+<p>「三个。」</p>
+<p>「你送来的。你签。」</p>
+<p>「还有几个？」</p>
+<p>「三个。」</p>
+<p>陈渡翻到最后一页。登记簿上最近一行停在四月十二日，编号03277。后面六个空格都空着。</p>
+<p>周隼点了一下头，把磁带放进柜子。</p>
+<p>「那三个是什么规格？」</p>
+<p>他写下日期：八月十七日。</p>
+<p>「一万微法。」</p>
+<p>「耐压？」</p>
+<p>然后在」取走「一栏停住。</p>
+<p>「五十伏。」</p>
+<p>「别用二十五伏的。」</p>
+<p>「写谁？」</p>
+<p>「我知道。」</p>
+<p>陈渡站在工作台前，手还搭在纸箱边缘。</p>
+<p>」写她的。「</p>
+<p>街上的卷帘门一家接一家拉下。修鞋摊收了摊，卖旧书的卷帘门卡在半截。周隼抬手，把店里的灯打开。</p>
+<p>「她录到过灯管吗？」陈渡问。</p>
+<p>「她没来。」</p>
+<p>「录过。」</p>
+<p>「十二赫兹？」</p>
+<p>」东西到了就算取走。「</p>
+<p>「你怎么知道？」</p>
+<p>「听见了。」</p>
+<p>陈渡写下」林岫「。笔画不重。写完，他又在」归还「栏画了一道横线。</p>
+<p>周隼把磁带一盘盘放进木柜。每盘之间隔着两层旧报纸。</p>
+<p>「她说给省台，没人要。」</p>
+<p>周隼接过本子，看了一眼。</p>
+<p>「她跟我说没人要。」</p>
+<p>「她对谁都说。」</p>
+<p>「你不写自己？」</p>
+<p>「她还要了？」</p>
+<p>「她一直要。」</p>
+<p>」送的不算拿。「</p>
+<p>陈渡看向木柜。03417的位置空着，柜底露出一块深色木板。</p>
+<p>「为什么要编号？」</p>
+<p>」你也没问她。「</p>
+<p>「好找。」</p>
+<p>「只是为了好找？」</p>
+<p>」她没问。「</p>
+<p>周隼没回答。他从抽屉里取出一只万用表，表笔夹在指间，转身去测一只落地的旧音箱。</p>
+<p>「频率稳定吗？」陈渡问。</p>
+<p>周隼把登记簿合上，压在磁带柜的钥匙下面。</p>
+<p>「哪一段？」</p>
+<p>「她录的。」</p>
+<p>柜台收音机里的路况节目结束了。主持人报时：下午六点十二分。接着是一首老歌，吉他扫弦从喇叭左边过来。</p>
+<p>「十二赫兹一直有。」</p>
+<p>「别的呢？」</p>
+<p>陈渡只听到前奏。唱声进来时，他把扣锁装回设备箱，按了两次，扣住。</p>
+<p>「现场都有。」</p>
+<p>「她不修？」</p>
+<p>周隼在抽屉里翻找了一阵，拿出一卷黑色绝缘胶带。</p>
+<p>「她说不加东西。」</p>
+<p>陈渡摸出记号笔，在清单背面写下一行：灯管，12Hz。</p>
+<p>」这个给你。「</p>
+<p>周隼看了他一眼。</p>
+<p>「你要改？」</p>
+<p>陈渡看了看胶带。外圈已经被剪得只剩半卷，边缘沾着细灰。</p>
+<p>「先测。」</p>
+<p>「她不会用。」</p>
+<p>「剩多少？」</p>
+<p>「她说什么时候用？」</p>
+<p>「她没说。」</p>
+<p>「十二米左右。」</p>
+<p>「那就还是可能用。」</p>
+<p>周隼把万用表夹在腋下，手没有停。</p>
+<p>」够用。「</p>
+<p>「你怕它坏。」</p>
+<p>「东西会坏。」</p>
+<p>」你拿回去。「</p>
+<p>「她怕它原样。」</p>
+<p>陈渡抬起头。</p>
+<p>陈渡没有接。</p>
+<p>周隼已经在测第二只喇叭。他把表笔换到另一个孔，嘴里念着数字。</p>
+<p>「一百二十赫兹……二百……一百八十……」</p>
+<p>「先通电。」</p>
+<p>外面一辆送餐车按了两声喇叭。磁带柜的玻璃门跟着震了一下。</p>
+<p>陈渡把记号笔盖上。</p>
+<p>」线头要包。「</p>
+<p>「03417录什么？」他问。</p>
+<p>周隼没有停手。</p>
+<p>」我有。「</p>
+<p>「你问她。」</p>
+<p>「她什么时候来拿？」</p>
+<p>他拉开设备箱侧袋，里面有一卷灰色胶带。边角受潮翘起，摸上去发黏。</p>
+<p>「你问她。」</p>
+<p>「她留了电话吗？」</p>
+<p>周隼把那卷黑色胶带放到工具台上。</p>
+<p>周隼从工作台边拿起一只旧手机。屏幕右上角缺了一角，按键磨得发亮。</p>
+<p>他翻了两次，递过来。</p>
+<p>「117也缺胶带？」</p>
+<p>「省台栏目组。这个号打不通，就发短信。」</p>
+<p>陈渡没有接。</p>
+<p>」磁带机不用这个。「</p>
+<p>「你存一下。」周隼说，「她不是每次都带东西来。」</p>
+<p>「我送到了。」</p>
+<p>「那你要多少？」</p>
+<p>「送到不算。」</p>
+<p>「什么才算？」</p>
+<p>」十二米太多。」</p>
+<p>周隼把万用表收回来，卷好表笔。</p>
+<p>「她问你叫什么。」</p>
+<p>陈渡抽出自己的胶带，撕下二十厘米。胶带粘在指腹上，他用牙咬住一端，撕开。</p>
+<p>陈渡想起走廊里那个问题。</p>
+<p>「她问了。」</p>
+<p>周隼看着他把露出的线头缠了三圈，再用刀片割断。</p>
+<p>「你怎么答的？」</p>
+<p>「陈渡。」</p>
+<p>「不是没坏么？」陈渡问。</p>
+<p>周隼把手机放在桌上。</p>
+<p>「她记不记，跟你说不说，不一样。」</p>
+<p>「电容快到年限了。」</p>
+<p>陈渡拿过手机，在通讯录里输入林岫的号码。</p>
+<p>他只输入了号码，没有姓名。</p>
+<p>周隼说。</p>
+<p>周隼看着他按完最后一个数字。</p>
+<p>「你会打？」</p>
+<p>「鼓过几个？」</p>
+<p>「东西坏了会打。」</p>
+<p>「她那里没有坏东西。」</p>
+<p>「还在箱子里。」</p>
+<p>陈渡收起手机。</p>
+<p>「那就等她先打。」</p>
+<p>周隼低头继续量电阻。数值从表屏上跳出来，一个一个变过去。</p>
+<p>陈渡把纸箱折好。箱盖内侧粘着一张便签，是林岫的字迹。</p>
+<p>上面只有一行：</p>
+<p>03417，空号。不要让任何人占用。</p>
+<p>陈渡把便签撕下来，折好，放进上衣口袋。</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>慢车</tag>
+        <tag>小说</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>慢车 05：K7</title>
+    <url>/%E5%B0%8F%E8%AF%B4/dd29a9e5.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>检票口上方的电子屏跳了两下。</p>
+<p>列车驶出站台不到十分钟，前排厕所的指示灯亮了。一个穿深色夹克的男人从第十一排起身，扶着头顶行李架，往过道里挤。他个子高，肩上的包卡在椅背和车壁之间，金属扣碰了三下。</p>
+<p>K7，晚点二十六分钟。陈渡把设备箱换到左手，右手捏着车票，站在人流后面。箱子四个角包着黑色胶带，箱扣上缠了两圈电工胶布。</p>
+<p>「让一下。」</p>
+<p>「乐队的人呢？」前面的人回头问。</p>
+<p>陈渡把设备箱往腿边收。男人撞了一下箱子，箱扣里的螺丝转了半圈。</p>
+<p>「不等了。」</p>
+<p>陈渡弯腰按住箱盖。</p>
+<p>「车都晚点了，也不等？」</p>
+<p>「箱子坏了，算谁的？」</p>
+<p>「晚点。」陈渡说，「婚庆那边九点前要摆台。」</p>
+<p>「你的包。」陈渡指着卡住的地方，「往上抬两厘米，再往左转。」</p>
+<p>对方照做。包带松了，人挤过去。他走了两步，又回来。</p>
+<p>「你是修设备的？」</p>
+<p>原定开面包车。司机接到电话，说车在高速上撞了护栏，人没事，车要拖去修理。</p>
+<p>「顺路。」</p>
+<p>「你坐火车吧。」电话里说，「十二点之前到，乐队会给你留门。」</p>
+<p>「婚庆的？」</p>
+<p>陈渡查了车次。K7，十一小时。夜里十一点四十到省城。</p>
+<p>「送东西。」</p>
+<p>还能赶上。</p>
+<p>男人没再问。他站到洗手间门口，掏出一包纸巾，抽了两张。门合上后，里面传出冲水声，接着是水龙头断续滴响。</p>
+<p>候车室的日光灯管闪了两下。镇流器发出六十赫兹的嗡声。陈渡把设备箱放在脚边，数了一遍票根。</p>
+<p>对面的女人把录音机收进包里，又拿出来。她翻到刚才那页记录，笔尖停在半空。</p>
+<p>「刚才那个人。」她说，「呼吸在车门后。」</p>
+<p>列车进站时，广播先响了。站台上的音箱破音，把女声削得只剩字头。陈渡提起箱子，轮子卡在站台缝里。他抬了一下左脚，轮子越过凸起。</p>
+<p>陈渡看了一眼她翻开的纸。</p>
+<p>站台比车厢低半层。</p>
+<p>「你录了？」</p>
+<p>他找到车厢，跨进去，把设备箱放到座位下面。绿色硬塑料椅靠背后面钉着一块白布，写着「7车 12—15」。</p>
+<p>「录了四秒。」</p>
+<p>凌晨两点多，车上只剩十几个人。陈渡的位置在第十四个，靠窗。箱子塞在座位下面，箱角顶着前排椅腿。他调了一下位置，箱扣才没有硌脚。</p>
+<p>「哪里？」</p>
+<p>车轮压过接缝，咔嗒一声。整排椅子跟着震。</p>
+<p>她用笔尖点了点纸面。没有写人名，只画了一道短线。</p>
+<p>「喉咙里有痰。走动时，包上的金属扣撞了六次。」</p>
+<p>毛衣罩套在一支细长的话筒上。罩口朝下，放在窗边，像一只倒过来的厚袜子。</p>
+<p>陈渡看了一眼，没有多看。</p>
+<p>「他不是乘务员。」</p>
+<p>「里面有人吗？」她问。</p>
+<p>陈渡说：「没人。」</p>
+<p>女人把双肩包放到膝上，拉开侧袋，取出一只黑色长方体。前面两个旋钮，侧面一排按键。</p>
+<p>「两轨录音机。」她说，「左边是话筒输入，右边是线路输入。电池在后面。」</p>
+<p>「做什么用？」</p>
+<p>「送档案。」</p>
+<p>「谁的档案？」</p>
+<p>「声音的。」</p>
+<p>她把设备放到窗台上，拉开毛衣罩的拉链，检查里面的防风层。按灭屏幕，将机器扣进包里。拉链拉到一半时，她停住，又拉开。</p>
+<p>「不是每个人都要留。」</p>
+<p>「风大的时候，罩子要套紧。」她说，「不然会有低频噪声。像车开过去的时候，路面那种声音。」</p>
+<p>陈渡等她继续说。</p>
+<p>「K7 这一段跑得快。」陈渡说，「十二公里每小时，接缝一厘米。」</p>
+<p>林岫从侧袋取出一支笔，在记录本上添了一行。</p>
+<p>「货车十二点二十六分到站。」</p>
+<p>她在新的一页上写：</p>
+<p>「K7，23:41。车厢底噪，保留。」</p>
+<p>「你连这个也记？」</p>
+<p>「时间标记在文件里。不用单独写。」</p>
+<p>她把本子合上。</p>
+<p>「接缝会改变轮轨噪声。货车编组不一样，轴重不一样。记下来，回去能对。」</p>
+<p>「对什么？」</p>
+<p>陈渡睁开眼。</p>
+<p>「车厢。」</p>
+<p>她没有再往下说。</p>
+<p>半夜，车厢顶灯灭了一次。乘务员推门进来，喊了一声：「熄灯了，厕所往后面走。」</p>
+<p>没人动。</p>
+<p>过道里有很轻的脚步声。不是乘务员。脚步在第十一排停了一下，又往这边来。</p>
+<p>林岫抬起眼。</p>
+<p>女人站在陈渡座位后面，手里拿着两轨录音机。毛衣罩没有套在话井上，话筒横着，对着座椅靠背的缝隙。</p>
+<p>厕所门开了。男人出来，纸巾攥在手里。经过陈渡座位时，他放慢脚步。</p>
+<p>她录了五秒，走到第十二排，又折回来。</p>
+<p>「婚庆在哪个酒店？」</p>
+<p>陈渡看着她的手。</p>
+<p>「还不知道。」</p>
+<p>「婚庆乐队一晚上多少钱？」</p>
+<p>「设备是他们的。」他说，「我不知道。」</p>
+<p>她把录音键松开，走了。</p>
+<p>男人笑了一声，掏出手机。</p>
+<p>「我只认识一个调音师，一晚上一千二。你这个箱子里是什么？」</p>
+<p>他看着她回到对面座位，把两轨机放进包里，拉好拉链。她坐下后，摘下耳机，盯着窗外看了一会儿。</p>
+<p>「调音台。两支无线麦。还有充电盒。」</p>
+<p>「主机呢？」</p>
+<p>陈渡把手伸到座位下面，指尖碰到设备箱的胶布。他摸出手机，时间是三点十六分。</p>
+<p>「在婚庆那边。」</p>
+<p>「那你怎么混？」</p>
+<p>林岫翻开记录本，在刚才那一页下面添了一行。</p>
+<p>陈渡看不见她写了什么。</p>
+<p>「送到了就走。」</p>
+<p>他重新闭上眼。</p>
+<p>男人收起手机，拎着包往后方车厢走。走到连接处，他停住，拉开门。门缝里的风灌进来，包上的塑料扣连续碰响。</p>
+<p>过了不知多久，车厢里传来一声短促的响动。</p>
+<p>「十二赫兹。」</p>
+<p>陈渡睁开眼。</p>
+<p>「什么？」</p>
+<p>这一次，她站在他的座位旁边。毛衣罩罩在话井上，话筒口朝下，对着地面。她按下录音键，电平灯先跳到一格，再落到两格。</p>
+<p>「连接处有十二赫兹的低频。门一开，钢轨的振动传进车厢。」</p>
+<p>她没有看陈渡。</p>
+<p>「你算出来了？」</p>
+<p>她把话筒放到座位底下，录了十秒，收回话筒，转身回到自己的位置。</p>
+<p>「估的。」</p>
+<p>陈渡看着她的背影。</p>
+<p>「设备能测？」</p>
+<p>林岫坐下去，低头整理毛衣罩的拉链。</p>
+<p>「两轨机不能测。录下来，能在软件里看频谱。」</p>
+<p>天亮前，车厢里的灯重新亮起。日光灯管持续嗡响。窗玻璃被一层水汽糊住，外面的站牌只剩一条灰线。</p>
+<p>男人已经走进下一节车厢。门在他身后缓缓合拢，金属门缝一寸寸收窄。最后剩下两指宽时，夹住了一只衣角。</p>
+<p>陈渡退回来，扯下衣服。</p>
+<p>他睡着过两次。</p>
+<p>第一次是在四点以后。他听见她从过道走过去，鞋底擦过地面。那声音很近。他没有睁眼。</p>
+<p>「这门有毛病。」</p>
+<p>第二次是在五点二十七分。手机闹钟响之前，他先醒了。醒来时，对面座位是空的。</p>
+<p>桌板上放着一个白色纸杯，杯口压着一张便签。</p>
+<p>男人弯腰看底部。陈渡也看见了。闭门器连杆下面空着一颗固定螺丝，门板只能靠弹簧拉回。</p>
+<p>陈渡把便签揭下来。</p>
+<p>「你这箱子里有螺丝吗？」</p>
+<p>「没有。」</p>
+<p>「换个闭门器就行。」</p>
+<p>他把便签折起来，塞进上衣口袋。</p>
+<p>男人拍了一下门框。</p>
+<p>六点十分，车厢尾部的连接门开着。门缝里漏进站台的水泥味。陈渡抱着设备箱走过去，箱轮在铁皮过道上滚出连续的响声。</p>
+<p>林岫站在洗手间旁边。</p>
+<p>她把毛衣罩套在话井上，另一只手拎着两轨机。看见他，她先把设备放到脚边。</p>
+<p>「十二赫兹，二十二点零四分。连接门未闭合。」</p>
+<p>「你醒了。」她说。</p>
+<p>「醒了。」</p>
+<p>「你也修门？」</p>
+<p>「不修。」</p>
+<p>陈渡看着她的录音机。</p>
+<p>「那记它干什么？」</p>
+<p>「第一次是四点十一分。」林岫说，「第二次是五点二十七分。第一次你没有完全醒。」</p>
+<p>她把笔停住。</p>
+<p>「你知道时间？」</p>
+<p>「因为它响了。」</p>
+<p>「录音设备有时间标记。」</p>
+<p>男人把手插进口袋，站在门边等门合上。弹簧把门带到一半，又弹回来。</p>
+<p>她按下回放键，耳机递给他。</p>
+<p>「先听最后一段。」</p>
+<p>他往另一节车厢走。林岫在记录末尾补了一个数字。</p>
+<p>陈渡接过耳机，戴上。</p>
+<p>「四十三秒。」</p>
+<p>底噪先出来。那是车轮压过铁轨的声音，低而连续。中间夹着通风口的气流声，像一根没有完全插紧的管子。</p>
+<p>「你也在数？」</p>
+<p>他听见自己的呼吸。</p>
+<p>「门开的时候看的表。」</p>
+<p>很轻。吸气两秒，停顿，再吐出来。</p>
+<p>林岫把记录本转过来一点。</p>
+<p>「你手机时间是六点二十八，不对。」</p>
+<p>陈渡把耳机摘下来。</p>
+<p>「快了四十秒。」</p>
+<p>「你录了多久？」</p>
+<p>「那就是四十秒。」</p>
+<p>「从第一次到第二次，一共十一分钟。」林岫说。</p>
+<p>陈渡摸出手机。屏幕上显示六点二十八分四十七秒。他把时间拨回四十秒。</p>
+<p>「中间呢？」</p>
+<p>林岫看着那行数字，没有纠正。</p>
+<p>「中间我停了。」</p>
+<p>「你信我？」</p>
+<p>她把录音机转过来，让屏幕对着陈渡。屏幕上是一段波形。波形很细，像贴在纸上的灰线。</p>
+<p>「我信表。」</p>
+<p>「你昨天晚上醒了。」</p>
+<p>「表也会错。」</p>
+<p>「醒了。」</p>
+<p>「那就再对一次。」</p>
+<p>她从包里取出一只小录音笔，放到桌面。按下录制后，她报出日期和时间，又报一遍当前秒数。录完，她回放，声音和车厢里的底噪叠在一起。</p>
+<p>她没有按播放，指着屏幕中间一处。</p>
+<p>「留两份？」陈渡问。</p>
+<p>那里有一小段隆起。</p>
+<p>「一份在录音笔里，一份在两轨机里。」</p>
+<p>「三秒。」她说，「这是第二次。你从睡眠里醒来，停了七秒，然后吸气。」</p>
+<p>「同一个时间？」</p>
+<p>陈渡看着那段波形。</p>
+<p>「同一个时间。」</p>
+<p>「你怎么知道是七秒？」</p>
+<p>「你不是说，不加东西？」</p>
+<p>「波形上有标记。」林岫说，「我按了三次录音键。第一次十秒，第二次十秒，第三次十七秒。第三次里，前七秒是空白，后面三秒是呼吸。」</p>
+<p>「这是两份记录，不是一份改过的记录。」</p>
+<p>她把录音机收回手里。</p>
+<p>列车过弯，杯子里的水沿杯壁晃了晃。对面座位上的纸杯底下压着一圈水印。林岫把杯底挪开，换到桌面干燥的一侧。</p>
+<p>「我没有降噪。」</p>
+<p>陈渡把设备箱的轮子往上抬了一点，避免轮架反复撞击椅脚。</p>
+<p>「嗯。」</p>
+<p>过道里的灯忽然暗了两秒。应急灯亮起，绿色标记贴在门边。林岫打开录音机，红灯亮着，电平显示两格。</p>
+<p>「也没有剪。」</p>
+<p>她没有按停止键。</p>
+<p>「我知道。」</p>
+<p>车厢里响起广播。扩音器先报出车次，再报出下一站。男声压过轮轨声，尾音有些发毛。</p>
+<p>林岫把手放在毛衣罩上，顺着罩口摸了一圈。她的指甲很短，指腹上有一层细灰。</p>
+<p>「这段不要。」林岫说。</p>
+<p>「你不问为什么录你？」</p>
+<p>「为什么？」</p>
+<p>「你说过你在录环境声。」</p>
+<p>「播报里有返送。」</p>
+<p>「环境声里有你。」</p>
+<p>「返送？」</p>
+<p>「嗯。话筒的声又从车厢喇叭里出来。数字信号经过一次延迟，会和原来的声音叠上。」</p>
+<p>「你也没有问，为什么我不把这段留给你。」</p>
+<p>她按下停止键，把刚才那段标成删除，却没有立刻清空。</p>
+<p>陈渡看了一眼她手里的机器。</p>
+<p>「原声不删。」陈渡说。</p>
+<p>「你要用吗？」</p>
+<p>「这段要存档。」</p>
+<p>林岫看着屏幕上的波形。</p>
+<p>「那不是删？」</p>
+<p>「这一段我要留着。」</p>
+<p>「不进档案。」</p>
+<p>「那就留着。」</p>
+<p>「一样。」</p>
+<p>列车进站时，车轮发出两声短响。站台的广播从远处传过来，播报站名和停车时间。</p>
+<p>林岫把播放头拖回开头，又听了一遍。</p>
+<p>「不一样。一个是声音，一个是决定。」</p>
+<p>她按下停止键，把两轨机装进包里。</p>
+<p>「你的箱子。」她指了指陈渡脚边，「底部进线口松了。」</p>
+<p>广播结束，车厢顶灯恢复。她的两轨机回到包里。</p>
+<p>陈渡蹲下，检查箱底。黑色胶布贴住的接口处果然翘起一角。</p>
+<p>对座靠背上方贴着一张安全须知，边角卷起。底下那排座位的椅架上缠着一截透明胶，像以前修设备时留下的绝缘胶布。胶带已经发黄，粘住一小片碎纸。</p>
+<p>「不碍事。」</p>
+<p>陈渡伸手，把碎纸揭下来。上面只剩半行铅字。</p>
+<p>「车开起来会磨断。」</p>
+<p>「请勿向窗外抛……」</p>
+<p>「那就到了再贴。」</p>
+<p>后面的字撕没了。</p>
+<p>林岫从口袋里拿出一小卷黑色胶布，放在设备箱上。</p>
+<p>「不用了。」陈渡说。</p>
+<p>「你收这个做什么？」</p>
+<p>她把胶布收回去，没有再说话。</p>
+<p>「手上有胶。」</p>
+<p>站台上有人推着餐车经过，轮子压过砖缝。陈渡提起设备箱，箱底碰到门框，发出一声闷响。</p>
+<p>她把碎纸看了一眼，没写。</p>
+<p>陈渡又从箱底抠下一点干胶。那块黑色胶布边缘翘起，里面粘着两粒铁屑。他把铁屑弹到过道，再用刀片沿接口割开旧胶。</p>
+<p>「你坐下一站吗？」</p>
+<p>接口没有断，只是松了半圈。</p>
+<p>「不是。」</p>
+<p>他取出工具袋，找到一把尖嘴钳。钳口有旧划痕，握柄上的胶带换过两次。</p>
+<p>「去哪儿？」</p>
+<p>林岫看着他的动作。</p>
+<p>「省城。」</p>
+<p>「现在贴？」</p>
+<p>「做什么？」</p>
+<p>「不贴。」</p>
+<p>「送设备。」</p>
+<p>「为什么？」</p>
+<p>「婚庆？」</p>
+<p>「车还在走。胶要等箱子不抖。」</p>
+<p>「嗯。」</p>
+<p>「箱子的轮子在抖。」</p>
+<p>「那就等它停。」</p>
+<p>陈渡把箱带往上提了提。</p>
+<p>「K7 到省城是六点十一分。」</p>
+<p>「来得及。」</p>
+<p>「婚庆几点开始？」</p>
+<p>「九点。」</p>
+<p>下一节车厢传来铁门关闭的声音。两扇门咬合，随后是乘务员用钥匙逐个检查的金属碰撞声。钥匙从近处移到远处，每一把都带着不同的响声。</p>
+<p>「还有三个小时。」</p>
+<p>林岫侧过头。</p>
+<p>「这一声是十二毫米左右。后面是八毫米。」</p>
+<p>她把双肩包背到肩上，话筒已经收进毛衣罩。两轨机在包里碰了一下，发出一声闷响。</p>
+<p>「你靠听就知道？」</p>
+<p>「录音设备不能托运。」她说，「过安检时，要说清楚。」</p>
+<p>「不准。」</p>
+<p>「不托运。」</p>
+<p>「那你说它做什么？」</p>
+<p>「我也不托运。」</p>
+<p>「用镊子？」</p>
+<p>「你的设备箱里，电源是什么规格？」</p>
+<p>「用游标卡尺。」</p>
+<p>「调音台是 220 伏。无线麦接收器是直流十二伏。」</p>
+<p>「量铁门的厚度？」</p>
+<p>「插头是三脚的？」</p>
+<p>「量敲击间隔。设备不同，间隔不同。声音变了，先排设备，再排人。」</p>
+<p>「两脚。」</p>
+<p>陈渡把工具袋的拉链拉到底。拉链头卡了一下，他往回拨，再拉。</p>
+<p>「那就用转换头。别拿那个黑色适配器。」</p>
+<p>「那是什么？」</p>
+<p>「黑色适配器是给一百二十伏用的。」她说，「插上去不一定烧，能亮就算运气好。」</p>
+<p>「知道了。」</p>
+<p>林岫看着前面那截桌板。</p>
+<p>她点了下头，走到站台边。</p>
+<p>「还没找到对应的位置。」</p>
+<p>陈渡抱着箱子跟出去。站台的灯比车上白，照得设备箱上的胶布发亮。他走了几步，忽然想起口袋里的便签。</p>
+<p>乘务员的脚步声到了陈渡这一排。鞋底有沙粒，每一步都响。男人胸前挂着一串钥匙，走到陈渡座位旁时停下。</p>
+<p>林岫站在一根立柱旁边，打开记录本。</p>
+<p>「K7，06:08。设备箱，黑色胶布，底部进线口松。环境：站台广播，餐车轮，低频。」</p>
+<p>陈渡抬头。</p>
+<p>「设备箱打开一下。」</p>
+<p>「过安检。」</p>
+<p>陈渡站在她身后。</p>
+<p>「安检已经过了。」</p>
+<p>「你每天都记？」</p>
+<p>「不是每天。」</p>
+<p>陈渡按住箱扣。</p>
+<p>「记完听过吗？」</p>
+<p>「婚庆设备，型号和用途都在标签上。里面不能开。刚才过机检时，你让我走了。」</p>
+<p>林岫把笔帽扣上。</p>
+<p>乘务员看了看他的设备箱，又看林岫的双肩包。</p>
+<p>「这段我要留着。」</p>
+<p>「录音设备也要过。」</p>
+<p>她没有说听没听过。</p>
+<p>林岫把包放到膝上，拉开侧袋，取出两轨机。</p>
+<p>陈渡看了看她手里的本子。封面内侧露出一张标签，编号是「03417」。</p>
+<p>「话筒在防风罩里，没有电池弹。」她把机器翻过来，指向后面，「电池装在这里。两轨录音，模拟输入，六节五号电池。」</p>
+<p>「这是最后一页？」</p>
+<p>「前面有多少？」</p>
+<p>「三千四百一十七份档案。」</p>
+<p>「包也打开。」</p>
+<p>「包里有线、鞋垫、备用电池，还有三段磁带。」</p>
+<p>「都听过？」</p>
+<p>林岫从包底拿出三盘磁带。塑料外壳上分别贴着白、蓝、灰三张标签。</p>
+<p>「原始盘。」她说，「没有覆盖。」</p>
+<p>乘务员伸手。</p>
+<p>林岫把其中一盘递过去。他对着灯看透明窗，又放回她手里。</p>
+<p>「磁带里录的是什么？」</p>
+<p>「环境声。」</p>
+<p>「有人的吗？」</p>
+<p>「有。」</p>
+<p>乘务员站起来。</p>
+<p>「那更得查。」</p>
+<p>「检查方式是什么？」</p>
+<p>「听。」</p>
+<p>「现在不能听。」</p>
+<p>「到站跟我走。」</p>
+<p>陈渡把设备箱往乘务员脚边推了半寸。</p>
+<p>「她下车之前，我在省城。」</p>
+<p>乘务员低头看箱子。</p>
+<p>「你箱子也有磁带？」</p>
+<p>「没有。」</p>
+<p>「那你们一起到站。」</p>
+<p>「她只是坐车。」</p>
+<p>「我说一起检查。」</p>
+<p>乘务员在票夹上写了一个数字。陈渡看见，是站务的检查编号。他把票根递过去。</p>
+<p>「设备随车有交接单。你在这里盖一个章，我到省城有人接。出了事，找交接的人。」</p>
+<p>「你在教我办事？」</p>
+<p>「我在报流程。」</p>
+<p>乘务员没有接票。他伸手碰了一下设备箱的锁扣。</p>
+<p>陈渡按住了锁扣。</p>
+<p>「箱子在交接中。开了算我的责任。你写我姓名、车次和箱号。」</p>
+<p>乘务员看了他两秒，从胸前摸出印章。票根上多了一个红章，边缘缺了一小块。</p>
+<p>「到站再检查。」</p>
+<p>他转身继续往前。</p>
+<p>林岫把两轨机重新装进包。</p>
+<p>「你不用替我说话。」</p>
+<p>「没替你说。」</p>
+<p>「你说了三句。」</p>
+<p>「都是流程。」</p>
+<p>「流程救不了我。」</p>
+<p>「磁带在你身上。」</p>
+<p>「磁带在我身上，机器在你手上。」</p>
+<p>陈渡松开设备箱的锁扣。</p>
+<p>「你刚才说过，过安检时要说清楚。」</p>
+<p>「我说的是不能托运。」</p>
+<p>「那你现在跟他说清楚了。」</p>
+<p>林岫低头整理包带。</p>
+<p>「刚才我数了。他从后往前检查，问了四个人，只有两个人被开包。一个人的鞋被翻过来，另一个人的饭盒被打开。」</p>
+<p>「所以你不想开。」</p>
+<p>「我不想让他打开磁带。」</p>
+<p>「他不能强行开。」</p>
+<p>「可以。」</p>
+<p>林岫把三盘磁带重新放回包底。</p>
+<p>「他说到站听。磁带从卷轴上退出来，有声音。退的时候遮住也一样。他可以把外壳打开，拿磁带出来。拿什么擦，他自己定。擦过以后还能不能播，没人能保证。」</p>
+<p>陈渡看着她的手。指尖压着白、蓝、灰三张标签。</p>
+<p>「那就别让他开。」</p>
+<p>「他说可以。」</p>
+<p>「那就让他开。」</p>
+<p>林岫抬起头。</p>
+<p>「你什么意思？」</p>
+<p>「你刚才说，他会拿磁带擦。擦的是磁头。」</p>
+<p>「那会把带上的信号抹掉。」</p>
+<p>「不一定全没。偏磁消磁前后的效果不一样。有些机器磁头形状不对，擦得重，带子会伤。有些只掉高音。」</p>
+<p>林岫看着他的设备箱。</p>
+<p>「你修过这种机器？」</p>
+<p>「修过。」</p>
+<p>「磁头呢？」</p>
+<p>「换过。」</p>
+<p>「什么时候？」</p>
+<p>「二十七岁。」</p>
+<p>「用什么擦？」</p>
+<p>陈渡停了一下。</p>
+<p>「酒精棉。不能用卫生纸。卫生纸掉纤维，会堵磁头。」</p>
+<p>「浓度多少？」</p>
+<p>「七十五。」</p>
+<p>「为什么？」</p>
+<p>「九十会伤磁层。七十五能去掉氧化物，速度也够。」</p>
+<p>林岫拿起笔，在记录本空白处写了「七十五」。</p>
+<p>「这个不录进档案。」陈渡说。</p>
+<p>「不是档案。」</p>
+<p>「那写什么？」</p>
+<p>「我自己的。」</p>
+<p>她把「七十五」圈起来，后面添了两个字：可用。</p>
+<p>乘务员已经走到下一节车厢。钥匙碰撞声越来越远，最后被轮轨声盖住。</p>
+<p>林岫把三盘磁带拿出来，检查外壳边缘。白色标签有卷边，她用指甲压平。蓝色标签写着日期，灰色标签上没有字，只在中间贴了一小段透明胶。</p>
+<p>「这盘没有编号？」陈渡问。</p>
+<p>「没录完。」</p>
+<p>「为什么不写？」</p>
+<p>「写了就不是没录完。」</p>
+<p>「编号是记录。」</p>
+<p>「编号是决定。」</p>
+<p>陈渡把箱盖上的螺丝拧了半圈。刚才松掉的箱扣已经不再晃动。</p>
+<p>过道里的灯又闪了一下。女人的录音包里传出轻微的碰撞声，像是磁带外壳碰到了两轨机。</p>
+<p>陈渡看向她。</p>
+<p>林岫也听见了。她没有立刻打开包，只把手按在拉链上。</p>
+<p>「坏了？」</p>
+<p>「磁带壳。」</p>
+<p>「没坏。」</p>
+<p>「塑料壳会响。」</p>
+<p>「响也能录。」</p>
+<p>「能录。」</p>
+<p>她这才拉开包，把灰色磁带取出来。外壳右下角有一道白痕，长度不到一厘米。标签旁边印着厂名，型号是 C-60。</p>
+<p>「六十分钟盘。」陈渡说。</p>
+<p>「单面三十分钟。」</p>
+<p>「双面是六十分钟。」</p>
+<p>「我录的是六十分钟盘。」</p>
+<p>「那就把两边都用上。」</p>
+<p>「我不把没录完的当完成品。」</p>
+<p>陈渡看了一眼那道白痕。</p>
+<p>「刮到带面了吗？」</p>
+<p>「外壳没开。」</p>
+<p>「里面呢？」</p>
+<p>「没开过。」</p>
+<p>「那就不算伤。」</p>
+<p>林岫把磁带放回去。</p>
+<p>「你怎么知道？」</p>
+<p>「白痕在外壳上。真伤带面，开壳才看得见。」</p>
+<p>「你刚才说开了也不能保证还能播。」</p>
+<p>「那是磁头擦伤。两种不一样。」</p>
+<p>林岫在「可用」两个字下面又写了一行：先分清是哪一种。</p>
+<p>她没有给他看。</p>
+<p>「你是第一个问这个的人。」</p>
+<p>她转身往出站口走。毛衣罩从包里露出一角，罩口随着脚步轻轻碰着两轨机。</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>慢车</tag>
+        <tag>小说</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>成本核算</title>
+    <url>/%E5%B7%A5%E4%BD%9C/fb428c48.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="403034e3763252e0a1d875383418dced566fe36d7f58183614979363551524dd">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d01b15f88bbf2f997a33ad0e4769faa2f3731a35f9c12d7a5ad97247c985de51ed62c20bb6ba6113954fea16ed76707f8571dfaa584b4e3826985032b10288f7e13b93b331fc92e4ebc21cf2f3989f25ee250dd18448f86303d9d929567d54c0a64b2443cfcf3f54aaead2719e45509f355f0caa4661d7651db96a887b5ef79aae101fb73978cce5fa93b24287b98f2639e871f614db934381ee4e241a12fd224faedd825390e487d9287e6e7e03f0f00f6d33956db5549ab690eaa4bb73d57207b7847ceb796384c2d90aa03b08f9b7e3ba9a9a6c7120e569cfed730553994f200ff398b4a63e437ef87626081679e9d7691c9f8e574971d814fc42fa4c170c044f0bcc2d5227ab77afa36e2413a79cc9bf8212fbd04d467345d1da089614c3541e6a0e5e09c42f977cf917b15799600e6b55dfc9e445c2f9dd638939b32bad9f629832be56693f9f509d3cc0be74cc147cd44bc6700722b45b4a11e2ad51071ae0ce795058801497056bc30e1461d624e3ef86c45e64a651b1559f1031fec9ae6443177a5ba67cbe961cc2ee7bcb59a3cb88af0ba1c243d1a9549addf257a8fd8e64d179401465d805f41a2e032f4d5da29b43777ae9d1116ecc9094f9e86b387ece6c26fc4d30c9eaf9739da84f69da0b4ea41e78627adedac8bea9396bbb6806b40612b5c1bbe434a7b618df8245da6fadf861fcd1fe52c022ff5d00bebff5e77aaeb566e6771ee0c72ec95fba73eeda6035933d452127a7eb41d143e35c090114ecb95da3cd9e20fc000491f57605434acdc82a821345325b6fe27933402f57f3bfebbc23ae6d83578dea596364ce1d2de5344a20bc8185ddd344defea04ac49210125785b24cb993cbbd61e9d5c92b2e20c482ae4a367fe05eb0ea7756beada75cdfea44c37c1962ee408896582b27f0bd400fc35a73e25bcee8d14bc17d447e2eed7fcd9f800ab220101df770a45c2d9699e451dd225e650418c1bd3849960f965551be548eaf21d51928281ebbb761aeec3620bdcf2a58c461c611478e033254ad3cb3a1351b121f9dfa505a687e712a02f53d2d02d638bac0b3578a5e23f9fdaf699e32d58790b16e0397719a2e44505699e7dbba8e040b17a880f73d0aeeba704cbd5c15603c1dcee81e33633310b859c124a1c3c09bd063b5efb8e220c37583cc40dc155b0e30339572da533b70d8f084119e20b2f504f375a0e0076518afd45f70f61f893d65b14088c5a597e13deb62b6d0f0f64df8149522f1e5e7156b682aa8d639097e18fff4b2d8c57dc60d8625da2cecc8042490337199a41ba03f080582b97d39be52551ffacb3c2fb7c5606da03a13886c69d303864d35430398a00eecac17c7b5717f06dd40d5ab1a73f0465d54332570eb748cbb97afd416422b5b2f3bd679a080b9cc94199d8e90ee83d2b85ffa93528e020c93e5cfbc93875fc96ed4277efcf4d747686ef84f784204f1dec6588c829002c6919354b5cf23beb81b81b4ba5e9033d81bd5d1443cdb999f55c0996e9d02db7a7c25bc2ecf7f2cef76bd2c964a9934db64580e072eab8f721027d5ec8fb66aa9fec34f2f3b190cdccde6603f11c0f85f2e92f83f4082cd378982b2b4a742cb760a4137f33a9bb2da5f4a450eb5d05392221eed47c59399ed95b514557f3fb468293b94ac388d4119a167dca4b4d90dfef7310fa4c69d1b945d28f4322685a6708a142d355cfb6a5dfcf0819b8bbedb88a886828dfb0ef0919bfda0ab3a12381f980cd4738b6245d2960713d6f531563bc42af3589ce9fa03f1a8ca8f4b10b138ef17d6e3ae7a0e5c529ddf83432ec32c5d838bce16c4e10806956318e4b4f5e85c6af9aa2648d595e6a3155d6250d721f172a7cff78aac9a6b69b364d3aace867e838f95c5731f6a8c1d2faf055f8bca28ac6f80ac18f0061d41e8757bbcdcd29393a521c68fada0ef5c23c5a898792ddf530072b98ab37a519e76be5318ee82b88566a41f54cc929afc6c6c1887fb7323f8ef4d9773824b7d32b48a551ba4f2080e9517fe665260c20f1756351b43c77eced10722a926ef5ecdd3379acd3577b3e7fac6e38fb611d6f5465c809c7ec9015dd013f74e8039e30e138919f9f2d7b0d084a8c41bfe3322d87a0aeb6d40c902e473b91336a439dfac7e0e817a3978ad95b6583f07d9176f9e520a4fd11ac158a8f51d1012cbe8344ecb5bf4e81a8a5e00ee4e3edf3d66652e61fc56b1e8d71765486de4b7f802db8f10bf074fd207b5e933f4d02091ccd16fefe8ccf2e2e6e4feb487c9c43e311a33ec49adafe05da42685bbe4aa9e578e34b54dcfd1c795d6d3a04cc88085504aafb3d624fa7845a7fdb2d940b8370cfec5f6ee8c6604ada6ec88bba256584f049076476224a7777b67d04f09bfbe7366d5703382ce66642f94fd4cd5a6b3ddf66245514e1b976b1d4168361ab42f1bc5a103467e4225716042556a1d128e0c87ec1370df9e7f10e23b99c0a203ad9f35a8299e1d365fe3c35dc0e639aabbe5e3a06581dbad5be30e4d591ff16a74a4b29a066fe6d26adce8caec90688063fc3f21ef8ff09e8de081bc9528b39c7779107bfe0c52326c1d913e9c9a3cc9bde78e475944bd927923e9d3c70a48b608c95d3e6293e14d6378429de2051171bd75974afb3fe63f59d988e4e3592f473cd186b864fce54e8ebe7212dc12a630ac0fdbd4d416e4064549fd1683cfa3e43330b717de74222a5dc20affda36e381f36f7a4ba90d82425a22a179f19f400417d5daf3072ddcde25f25f429e13550608229a01fbd0b0d549168374f0518e0bfca4919a9b52c7b39f5ea57bdea3447a683891624bdb619459913c6b6ebf4827ee4ade374f83ea6d82127edcdbbda1885a238e0bcac36b70b61e6a5496cc726942c540e01ba3954e297939eb0f9d80c4abb968f6d9ddd92a5110863eac74a47d11dec7d99332c39b4c76678f859</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-wave">
+      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>工作</category>
+      </categories>
   </entry>
   <entry>
     <title>我们不像诗歌</title>
@@ -14525,6 +14964,157 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
+    <title>第800小时 06：会失败的动作</title>
+    <url>/%E5%B0%8F%E8%AF%B4/62547a53.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>2026 年 5 月 12 日的这堂课，后来有两个人没法再走进这栋楼。一个人的名字会出现在一张贴出来的纸上，签字的时候笔尖把纸戳破了；另一个人的名字会从一面墙上被取下来。那天他们都还在，坐在同一个屋里。</p>
+<p>5 月 12 日上午九点十分，多功能厅的门开着。通知单贴在门内侧，打印的：</p>
+<p>内部公开课<br />
+《会失败的动作》<br />
+讲师：林野<br />
+5 月 12 日 19:00—21:00<br />
+计入教练示范时数 2.0</p>
+<p>「示范时数」底下画了一道线，线上补写：含讲义整理 0.4。</p>
+<p>陶砚把通知单从头看到尾。这 2.0 小时会进结算表。他没有问。通知单边上还贴了一张旧的，是四月那场体能测试的，日期发黄，纸角翘着。</p>
+<p>他七点四十分到，坐在第三排靠边的位置。</p>
+<p>来的人比他想的多。基地的内部教练到了二十几个，剩下的位置被学员占了一半。多功能厅平时用来开周会，椅子是可折叠的，折叠腿底下的橡胶垫磨掉了一层，踩上去会响。</p>
+<p>小鹿坐在第六排靠过道的位置。她穿着训练服，袖口卷了两圈，手里捏着一支笔，本子摊在膝盖上，没写字。</p>
+<p>陶砚把手机调成静音。</p>
+<p>晚上七点整，林野进来。</p>
+<p>他没有讲台，没有 PPT，也没有发讲义。他手里只拿着一叠 A4 白纸和一把铅笔，走到台前，把纸放在第一排的桌子上。</p>
+<p>「今天不教新动作。」他说，「我先要一张纸。」</p>
+<p>他举起一张白纸，让底下的人看清楚。</p>
+<p>「写两行。第一行：你现在最熟练的一个动作。第二行：上个月你做过多少次。」</p>
+<p>四十三个人低头写。写字的声音在多功能厅里响成一片。</p>
+<p>「写好了往下传。」林野说，「传完收上来。」</p>
+<p>纸在座位之间往后传。陶砚写完自己的两行，传给后面的人。他写的是：卧位举枪，186 次。写完他看了一眼。186 不是一个能说明问题的数。他还是交了上去。</p>
+<p>九分钟，四十三张纸全部收齐。林野抽出一张举起来。</p>
+<p>「力量组的。深蹲，十个一组，上个月 42 次。」他念完，把纸放在讲台上，「你 42 次都在做同一件事。你上一次做深蹲，做出了一个新东西吗？」</p>
+<p>底下没人回答。</p>
+<p>「现在你们做。」林野朝左边一排抬了下手，「力量组的这位，上来做十次。别的组的人看着他。」</p>
+<p>那个学员二十出头，做了十次。第四次膝盖往里扣了一下，第七次又扣了一下。</p>
+<p>林野在讲台上的白纸上画了两道竖线，标上 4 和 7。</p>
+<p>「短跑的，上来做十次单腿跳。」</p>
+<p>一个女学员上去。第五次落地的时候重心往后倒了一下，第九次倒得更大。</p>
+<p>「射击组的，十枪。」</p>
+<p>那个学员端枪上靶。第四枪扣扳机的时候眼皮先合了一下，第九枪又合了一下。</p>
+<p>林野在白纸上写下：4、9。写完把笔放下。</p>
+<p>「十次里，两到四次会失败。」他说，「失败的那几次，位置固定。这不是偶然，也不是状态差。这是你身体的边界。」</p>
+<p>他在白板上画了三个字：会失败。</p>
+<p>「你们写的那两行，是你们已经会的东西。会的东西不用练。你练它一万次，还是那一万次的同一件事。」</p>
+<p>他把笔尖点在「会失败」三个字上。</p>
+<p>「我要讲的是另外一件事。你的身体比你的脑子先知道它在哪儿失败。所以你要给它一个固定的条件——固定的坡度，固定的配速，固定的距离——让失败每一次都落在同一个地方。」</p>
+<p>底下有人举手，是中年男人，声音压得很低。</p>
+<p>「那我练到什么时候？」</p>
+<p>「练到它不再在同一个地方失败。」林野说。</p>
+<p>那个男人把手放下了。</p>
+<p>「今天回去，每组写一张纸。三行。」林野举起一张白纸，「第一行：条件是什么。第二行：测谁。第三行：停在哪儿。」</p>
+<p>「停在哪儿是什么意思？」</p>
+<p>「条件加到什么程度就停。不能加到人受伤。」</p>
+<p>「写下来贴哪儿？」</p>
+<p>「贴在你们组的训练计划上。」林野把白纸放下，「明天我来看。」</p>
+<p>「写不出来呢？」</p>
+<p>「写不出来就说明还没想清楚。」林野说，「没想清楚的条件，不许用。」</p>
+<p>前排有个女教练小声跟旁边的人说了一句什么，旁边的人摇了摇头。</p>
+<p>「我提一个问题。」林野说，「刚才短跑那位，第十一次单腿跳会在哪一下失败？」</p>
+<p>底下的教练们面面相觑。</p>
+<p>「说个地方。」</p>
+<p>「第四下。」有人说。</p>
+<p>「为什么是第四下？」</p>
+<p>「……因为上次是第五下。」</p>
+<p>「上次是第五下。你怎么知道这次不是第八下？」</p>
+<p>没人回答。</p>
+<p>「这就是问题。」林野说，「你们不知道自己的失败在哪儿，所以你们的每一次训练，都是把失败重新掷一次骰子。」</p>
+<p>他把讲台上的白纸收起来，捏成一叠。</p>
+<p>「这套方法不是我写的。」</p>
+<p>他在白板上写了三个字。写得很慢，笔画压得重。</p>
+<p>「陈守拙。省体校的教练。」</p>
+<p>底下有几个人交换了眼神。陶砚没有动。</p>
+<p>「你从哪儿知道他的名字？」一个教练问。</p>
+<p>「从格式上。」林野把讲台上的那叠纸翻过来，抽出最上面一张，反着举起来，「他的日志里没有『成功』这一栏。一栏只有五项。」</p>
+<p>他用手指在纸上点。</p>
+<p>「日期。时数。动作。偏差。备注。」</p>
+<p>多功能厅里没有人说话。</p>
+<p>陶砚的手指在膝盖上收了一下。那五项他太熟了。1998 年 9 月，他第一次拿到那本硬壳本的时候，陈守拙把本子翻到第二页，指着印好的表头说：写下来。一样都不许瞒。</p>
+<p>「2002 年冬天，他用过一次。」林野说。</p>
+<p>他转过身，在白板上又写了一个年份。</p>
+<p>「省体校。一个少年，被他当众拆了一段录像。拆完，那个少年照原样练。第二年，队伍里就没有他了。」</p>
+<p>「拆完照原样练？」底下的教练问。</p>
+<p>「是。」林野说，「那个少年练了四年。练坏的那一个动作，占了他全部训练时间的九成八。」</p>
+<p>「后来呢？」</p>
+<p>「后来没有后来。」林野说，「档案上写的是中途离队。」</p>
+<p>「谁离队？」</p>
+<p>林野没有回答这句话。他把笔放在讲台上。</p>
+<p>「一个动作，错了，你练得越多，错得越深。」他说，「所以要练会失败的动作。不是练你已经很熟练的那个。」</p>
+<p>小鹿这时候开口了。</p>
+<p>「老师，我练 200 米。」她说，「我老在同一个地方崩。要练多久才算够？」</p>
+<p>林野看了她一眼。</p>
+<p>「崩在哪儿？」</p>
+<p>「最后 150 米。」</p>
+<p>「每次都在 150？」</p>
+<p>「每次都在 150。」</p>
+<p>「那你的条件就固定在 150。」林野在白纸上写下 150，又在后面加了一个括号，「你的失败有一个固定的位置，这是你比很多人有福气的地方。大多数人的失败到处跑。」</p>
+<p>小鹿低头在本子上写了一行字，写完把笔盖上。</p>
+<p>「我崩过十九天。」她说。</p>
+<p>林野没有接这句话。他在白板上写下：47。</p>
+<p>「第十九天你停在哪儿？」</p>
+<p>「第四十七次落地。」小鹿说。</p>
+<p>林野把笔帽扣上。</p>
+<p>陶砚坐在第三排。他的右手放在膝盖上，手没有动。他记得那十九天——不是记得小鹿，是记得监控室的回放。他记得自己按下暂停键，然后没有再按播放。</p>
+<p>林野把讲台上的白纸收起来，捏成一叠。</p>
+<p>「我只要求三件事。第一，每次训练加一个你做不成的条件。第二，条件固定，不许换。第三，只记失败的那几次。」</p>
+<p>「成功的那些不记？」</p>
+<p>「你已经会了，记它浪费本子。」</p>
+<p>底下一个教练举手。</p>
+<p>「这个失败，怎么算？我们的认证按时数算。记失败，能换成金牌吗？」</p>
+<p>「不能。」林野说。</p>
+<p>「那它算什么？」</p>
+<p>「算它本来就该算的那部分。」林野把白纸翻过来，「你今天在这个动作上花二十分钟，其中十九分钟是在重复你早就会的东西。你付了二十小时包的钱，拿到的是一小时的东西。这笔账本来就在你那本日志里，只是没人记。」</p>
+<p>「记了会怎样？」</p>
+<p>「记了你才知道自己哪一格是空的。」林野说，「空的那一格才是训练。你现在填满了整张表，每一格都很漂亮，漂亮得像一张假成绩单。」</p>
+<p>陶砚在第三排。他想起一月那节示范课的录像：前二十分钟和后四十分钟做的是同一件事。他看过那段录像。他没有跟任何人说过。</p>
+<p>他手里的笔转了半圈，停住。笔尖那一点墨在纸上洇开一个小圆点。</p>
+<p>「陶教练。」林野忽然叫他。</p>
+<p>四十几双眼睛转过来。</p>
+<p>「您带过多少个班？」</p>
+<p>「记不清。」</p>
+<p>「那您记得您一节课里，同一个动作重复了多少次吗？」</p>
+<p>陶砚没有回答。有几个人笑了，笑得很轻。</p>
+<p>「不怪您。」林野说，「没人给过您这个数。」</p>
+<p>九点二十八分，林野看了一眼手表。</p>
+<p>「今天到这儿。」</p>
+<p>椅子响。四十三个人陆续站起来。有人往前排走，想在白板被擦掉之前看清那三个字。小鹿合上本子，从过道挤出去，走到门口的时候回头看了一眼白板，看完走了。</p>
+<p>陶砚最后一个起身。他走上讲台，拿起讲台上的板擦，把白板擦了一遍。粉笔字吃进板面里，一道要擦两次。他擦到第三遍的时候，只剩一条湿印子。</p>
+<p>林野在收讲义。他的帆布包带子断了一根，用尼龙绳接着。陶砚没有跟他说话。</p>
+<p>行政在走廊那头。陶砚刷工牌进了演播室旁边的小机房，把 5 月 12 日这一段的录像导出到自己的移动硬盘。文件名是自动生成的：20260512_多功能厅_公开课_示范。时长 2 小时 4 分 31 秒。他看着进度条走完，把硬盘收进包里。</p>
+<p>出机房的时候，他走错了方向，走到走廊尽头才发现。回来的路上要经过多功能厅。里面的灯已经关了，只剩讲台上一盏。</p>
+<p>垃圾桶在门后面，是那种脚踏式的铁桶。桶沿上有一道用胶带贴过的裂口。陶砚没有留意，是他的鞋碰到了桶底踏板，桶盖弹开的声音让他停了脚。</p>
+<p>桶里有一张纸。折过，对折两次，边上带着装订孔。</p>
+<p>他弯腰把它捡起来。</p>
+<p>是一页手写的表格，字很方，横平竖直，跟他自己的笔迹不一样。表格上面一行标题：</p>
+<p>陶砚 2002—2003 训练结构分析</p>
+<p>下面三行：</p>
+<p>台账 2002（省体校）：动作 9 类<br />
+录像 2003—2005（教学）：动作 5 类<br />
+2003 年起，最高频的那一类从「练」变成了「示范」</p>
+<p>右下角一行小字，墨色比正文淡：</p>
+<p>来源：省体校旧档案室 · 借阅登记（2002 年 12 月 20 日 · 陶砚）</p>
+<p>陶砚站在走廊里，把纸翻过来又翻回去。</p>
+<p>2002 年 12 月 20 日。那是拆解的第二天。他记得那天。档案室在训练馆后面一栋小楼的地下室，除湿机整夜响着。他在台账架上找了两个小时，把 2002 年 1 月到 12 月的记录一本一本摊在长条桌上，摊完再一本一本码回去。走的时候他把台账放回原位，位置偏了两厘米，他记得自己又推回去。</p>
+<p>台账的封面他摸过很多遍。</p>
+<p>有人用他借阅登记上的名字，把那本台账找了出来；有人看了他 2003 年以后的公开课录像，把两个数字放在一张纸上写成了三行；有人把这一页从本子上撕下来，揉成一团丢进讲台边的铁桶。</p>
+<p>他抬头看了一眼讲台。台面擦得很干净，粉笔灰被擦掉了，只留下湿印子的边缘。</p>
+<p>他把那页纸对折两次，放进上衣内袋。纸很薄，边角硌着胸口。</p>
+<p>最后一行是那个日期：2002 年 12 月 20 日。</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>小说</tag>
+        <tag>第800小时</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>第800小时 05：账本</title>
     <url>/%E5%B0%8F%E8%AF%B4/6821e4a.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>0.11。</p>
@@ -14704,157 +15294,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>她把门带上。</p>
 <p>财务室里剩下陶砚一个人。那张手抄的纸摊在桌面上，14% 那一行正对着他。刻痕里嵌着的黑墨在台灯下泛着光。</p>
 <p>九点整，走廊的声控灯灭了。</p>
-]]></content>
-      <categories>
-        <category>小说</category>
-      </categories>
-      <tags>
-        <tag>小说</tag>
-        <tag>第800小时</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>第800小时 06：会失败的动作</title>
-    <url>/%E5%B0%8F%E8%AF%B4/62547a53.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>2026 年 5 月 12 日的这堂课，后来有两个人没法再走进这栋楼。一个人的名字会出现在一张贴出来的纸上，签字的时候笔尖把纸戳破了；另一个人的名字会从一面墙上被取下来。那天他们都还在，坐在同一个屋里。</p>
-<p>5 月 12 日上午九点十分，多功能厅的门开着。通知单贴在门内侧，打印的：</p>
-<p>内部公开课<br />
-《会失败的动作》<br />
-讲师：林野<br />
-5 月 12 日 19:00—21:00<br />
-计入教练示范时数 2.0</p>
-<p>「示范时数」底下画了一道线，线上补写：含讲义整理 0.4。</p>
-<p>陶砚把通知单从头看到尾。这 2.0 小时会进结算表。他没有问。通知单边上还贴了一张旧的，是四月那场体能测试的，日期发黄，纸角翘着。</p>
-<p>他七点四十分到，坐在第三排靠边的位置。</p>
-<p>来的人比他想的多。基地的内部教练到了二十几个，剩下的位置被学员占了一半。多功能厅平时用来开周会，椅子是可折叠的，折叠腿底下的橡胶垫磨掉了一层，踩上去会响。</p>
-<p>小鹿坐在第六排靠过道的位置。她穿着训练服，袖口卷了两圈，手里捏着一支笔，本子摊在膝盖上，没写字。</p>
-<p>陶砚把手机调成静音。</p>
-<p>晚上七点整，林野进来。</p>
-<p>他没有讲台，没有 PPT，也没有发讲义。他手里只拿着一叠 A4 白纸和一把铅笔，走到台前，把纸放在第一排的桌子上。</p>
-<p>「今天不教新动作。」他说，「我先要一张纸。」</p>
-<p>他举起一张白纸，让底下的人看清楚。</p>
-<p>「写两行。第一行：你现在最熟练的一个动作。第二行：上个月你做过多少次。」</p>
-<p>四十三个人低头写。写字的声音在多功能厅里响成一片。</p>
-<p>「写好了往下传。」林野说，「传完收上来。」</p>
-<p>纸在座位之间往后传。陶砚写完自己的两行，传给后面的人。他写的是：卧位举枪，186 次。写完他看了一眼。186 不是一个能说明问题的数。他还是交了上去。</p>
-<p>九分钟，四十三张纸全部收齐。林野抽出一张举起来。</p>
-<p>「力量组的。深蹲，十个一组，上个月 42 次。」他念完，把纸放在讲台上，「你 42 次都在做同一件事。你上一次做深蹲，做出了一个新东西吗？」</p>
-<p>底下没人回答。</p>
-<p>「现在你们做。」林野朝左边一排抬了下手，「力量组的这位，上来做十次。别的组的人看着他。」</p>
-<p>那个学员二十出头，做了十次。第四次膝盖往里扣了一下，第七次又扣了一下。</p>
-<p>林野在讲台上的白纸上画了两道竖线，标上 4 和 7。</p>
-<p>「短跑的，上来做十次单腿跳。」</p>
-<p>一个女学员上去。第五次落地的时候重心往后倒了一下，第九次倒得更大。</p>
-<p>「射击组的，十枪。」</p>
-<p>那个学员端枪上靶。第四枪扣扳机的时候眼皮先合了一下，第九枪又合了一下。</p>
-<p>林野在白纸上写下：4、9。写完把笔放下。</p>
-<p>「十次里，两到四次会失败。」他说，「失败的那几次，位置固定。这不是偶然，也不是状态差。这是你身体的边界。」</p>
-<p>他在白板上画了三个字：会失败。</p>
-<p>「你们写的那两行，是你们已经会的东西。会的东西不用练。你练它一万次，还是那一万次的同一件事。」</p>
-<p>他把笔尖点在「会失败」三个字上。</p>
-<p>「我要讲的是另外一件事。你的身体比你的脑子先知道它在哪儿失败。所以你要给它一个固定的条件——固定的坡度，固定的配速，固定的距离——让失败每一次都落在同一个地方。」</p>
-<p>底下有人举手，是中年男人，声音压得很低。</p>
-<p>「那我练到什么时候？」</p>
-<p>「练到它不再在同一个地方失败。」林野说。</p>
-<p>那个男人把手放下了。</p>
-<p>「今天回去，每组写一张纸。三行。」林野举起一张白纸，「第一行：条件是什么。第二行：测谁。第三行：停在哪儿。」</p>
-<p>「停在哪儿是什么意思？」</p>
-<p>「条件加到什么程度就停。不能加到人受伤。」</p>
-<p>「写下来贴哪儿？」</p>
-<p>「贴在你们组的训练计划上。」林野把白纸放下，「明天我来看。」</p>
-<p>「写不出来呢？」</p>
-<p>「写不出来就说明还没想清楚。」林野说，「没想清楚的条件，不许用。」</p>
-<p>前排有个女教练小声跟旁边的人说了一句什么，旁边的人摇了摇头。</p>
-<p>「我提一个问题。」林野说，「刚才短跑那位，第十一次单腿跳会在哪一下失败？」</p>
-<p>底下的教练们面面相觑。</p>
-<p>「说个地方。」</p>
-<p>「第四下。」有人说。</p>
-<p>「为什么是第四下？」</p>
-<p>「……因为上次是第五下。」</p>
-<p>「上次是第五下。你怎么知道这次不是第八下？」</p>
-<p>没人回答。</p>
-<p>「这就是问题。」林野说，「你们不知道自己的失败在哪儿，所以你们的每一次训练，都是把失败重新掷一次骰子。」</p>
-<p>他把讲台上的白纸收起来，捏成一叠。</p>
-<p>「这套方法不是我写的。」</p>
-<p>他在白板上写了三个字。写得很慢，笔画压得重。</p>
-<p>「陈守拙。省体校的教练。」</p>
-<p>底下有几个人交换了眼神。陶砚没有动。</p>
-<p>「你从哪儿知道他的名字？」一个教练问。</p>
-<p>「从格式上。」林野把讲台上的那叠纸翻过来，抽出最上面一张，反着举起来，「他的日志里没有『成功』这一栏。一栏只有五项。」</p>
-<p>他用手指在纸上点。</p>
-<p>「日期。时数。动作。偏差。备注。」</p>
-<p>多功能厅里没有人说话。</p>
-<p>陶砚的手指在膝盖上收了一下。那五项他太熟了。1998 年 9 月，他第一次拿到那本硬壳本的时候，陈守拙把本子翻到第二页，指着印好的表头说：写下来。一样都不许瞒。</p>
-<p>「2002 年冬天，他用过一次。」林野说。</p>
-<p>他转过身，在白板上又写了一个年份。</p>
-<p>「省体校。一个少年，被他当众拆了一段录像。拆完，那个少年照原样练。第二年，队伍里就没有他了。」</p>
-<p>「拆完照原样练？」底下的教练问。</p>
-<p>「是。」林野说，「那个少年练了四年。练坏的那一个动作，占了他全部训练时间的九成八。」</p>
-<p>「后来呢？」</p>
-<p>「后来没有后来。」林野说，「档案上写的是中途离队。」</p>
-<p>「谁离队？」</p>
-<p>林野没有回答这句话。他把笔放在讲台上。</p>
-<p>「一个动作，错了，你练得越多，错得越深。」他说，「所以要练会失败的动作。不是练你已经很熟练的那个。」</p>
-<p>小鹿这时候开口了。</p>
-<p>「老师，我练 200 米。」她说，「我老在同一个地方崩。要练多久才算够？」</p>
-<p>林野看了她一眼。</p>
-<p>「崩在哪儿？」</p>
-<p>「最后 150 米。」</p>
-<p>「每次都在 150？」</p>
-<p>「每次都在 150。」</p>
-<p>「那你的条件就固定在 150。」林野在白纸上写下 150，又在后面加了一个括号，「你的失败有一个固定的位置，这是你比很多人有福气的地方。大多数人的失败到处跑。」</p>
-<p>小鹿低头在本子上写了一行字，写完把笔盖上。</p>
-<p>「我崩过十九天。」她说。</p>
-<p>林野没有接这句话。他在白板上写下：47。</p>
-<p>「第十九天你停在哪儿？」</p>
-<p>「第四十七次落地。」小鹿说。</p>
-<p>林野把笔帽扣上。</p>
-<p>陶砚坐在第三排。他的右手放在膝盖上，手没有动。他记得那十九天——不是记得小鹿，是记得监控室的回放。他记得自己按下暂停键，然后没有再按播放。</p>
-<p>林野把讲台上的白纸收起来，捏成一叠。</p>
-<p>「我只要求三件事。第一，每次训练加一个你做不成的条件。第二，条件固定，不许换。第三，只记失败的那几次。」</p>
-<p>「成功的那些不记？」</p>
-<p>「你已经会了，记它浪费本子。」</p>
-<p>底下一个教练举手。</p>
-<p>「这个失败，怎么算？我们的认证按时数算。记失败，能换成金牌吗？」</p>
-<p>「不能。」林野说。</p>
-<p>「那它算什么？」</p>
-<p>「算它本来就该算的那部分。」林野把白纸翻过来，「你今天在这个动作上花二十分钟，其中十九分钟是在重复你早就会的东西。你付了二十小时包的钱，拿到的是一小时的东西。这笔账本来就在你那本日志里，只是没人记。」</p>
-<p>「记了会怎样？」</p>
-<p>「记了你才知道自己哪一格是空的。」林野说，「空的那一格才是训练。你现在填满了整张表，每一格都很漂亮，漂亮得像一张假成绩单。」</p>
-<p>陶砚在第三排。他想起一月那节示范课的录像：前二十分钟和后四十分钟做的是同一件事。他看过那段录像。他没有跟任何人说过。</p>
-<p>他手里的笔转了半圈，停住。笔尖那一点墨在纸上洇开一个小圆点。</p>
-<p>「陶教练。」林野忽然叫他。</p>
-<p>四十几双眼睛转过来。</p>
-<p>「您带过多少个班？」</p>
-<p>「记不清。」</p>
-<p>「那您记得您一节课里，同一个动作重复了多少次吗？」</p>
-<p>陶砚没有回答。有几个人笑了，笑得很轻。</p>
-<p>「不怪您。」林野说，「没人给过您这个数。」</p>
-<p>九点二十八分，林野看了一眼手表。</p>
-<p>「今天到这儿。」</p>
-<p>椅子响。四十三个人陆续站起来。有人往前排走，想在白板被擦掉之前看清那三个字。小鹿合上本子，从过道挤出去，走到门口的时候回头看了一眼白板，看完走了。</p>
-<p>陶砚最后一个起身。他走上讲台，拿起讲台上的板擦，把白板擦了一遍。粉笔字吃进板面里，一道要擦两次。他擦到第三遍的时候，只剩一条湿印子。</p>
-<p>林野在收讲义。他的帆布包带子断了一根，用尼龙绳接着。陶砚没有跟他说话。</p>
-<p>行政在走廊那头。陶砚刷工牌进了演播室旁边的小机房，把 5 月 12 日这一段的录像导出到自己的移动硬盘。文件名是自动生成的：20260512_多功能厅_公开课_示范。时长 2 小时 4 分 31 秒。他看着进度条走完，把硬盘收进包里。</p>
-<p>出机房的时候，他走错了方向，走到走廊尽头才发现。回来的路上要经过多功能厅。里面的灯已经关了，只剩讲台上一盏。</p>
-<p>垃圾桶在门后面，是那种脚踏式的铁桶。桶沿上有一道用胶带贴过的裂口。陶砚没有留意，是他的鞋碰到了桶底踏板，桶盖弹开的声音让他停了脚。</p>
-<p>桶里有一张纸。折过，对折两次，边上带着装订孔。</p>
-<p>他弯腰把它捡起来。</p>
-<p>是一页手写的表格，字很方，横平竖直，跟他自己的笔迹不一样。表格上面一行标题：</p>
-<p>陶砚 2002—2003 训练结构分析</p>
-<p>下面三行：</p>
-<p>台账 2002（省体校）：动作 9 类<br />
-录像 2003—2005（教学）：动作 5 类<br />
-2003 年起，最高频的那一类从「练」变成了「示范」</p>
-<p>右下角一行小字，墨色比正文淡：</p>
-<p>来源：省体校旧档案室 · 借阅登记（2002 年 12 月 20 日 · 陶砚）</p>
-<p>陶砚站在走廊里，把纸翻过来又翻回去。</p>
-<p>2002 年 12 月 20 日。那是拆解的第二天。他记得那天。档案室在训练馆后面一栋小楼的地下室，除湿机整夜响着。他在台账架上找了两个小时，把 2002 年 1 月到 12 月的记录一本一本摊在长条桌上，摊完再一本一本码回去。走的时候他把台账放回原位，位置偏了两厘米，他记得自己又推回去。</p>
-<p>台账的封面他摸过很多遍。</p>
-<p>有人用他借阅登记上的名字，把那本台账找了出来；有人看了他 2003 年以后的公开课录像，把两个数字放在一张纸上写成了三行；有人把这一页从本子上撕下来，揉成一团丢进讲台边的铁桶。</p>
-<p>他抬头看了一眼讲台。台面擦得很干净，粉笔灰被擦掉了，只留下湿印子的边缘。</p>
-<p>他把那页纸对折两次，放进上衣内袋。纸很薄，边角硌着胸口。</p>
-<p>最后一行是那个日期：2002 年 12 月 20 日。</p>
 ]]></content>
       <categories>
         <category>小说</category>
@@ -17954,12 +18393,12 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
     <title>路</title>
     <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-        <div id="aplayer-TPjjqGFH" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-CldxPaHc" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-TPjjqGFH"),
+            element: document.getElementById("aplayer-CldxPaHc"),
             narrow: false,
             autoplay: true,
             showlrc: false,
