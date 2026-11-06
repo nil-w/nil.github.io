@@ -2154,46 +2154,6 @@
       </tags>
   </entry>
   <entry>
-    <title>维基百科清理AI生成文本，标志内容信任机制重建</title>
-    <url>/AI/37793209.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="清理流程可以复制信任机制不能照搬"><a class="markdownIt-Anchor" href="#清理流程可以复制信任机制不能照搬"></a> 清理流程可以复制，信任机制不能照搬</h2>
-<p>维基百科的 AI 清理项目证明了一件事：检测机器污染可以形成流程，但不能把最终判断交给检测器。2023 年 12 月，几位编辑在维基百科 Discord 服务器上发起 WikiProject AI Cleanup，起因是出现了特征完全相同的怪文章。</p>
-<p>我最初以为这套流程可以直接复制。先查套语，再看编辑纪录，最后核对引文，整套规则很清楚。看完官方指南和 IEEE Spectrum 的专访，我发现<span class="hl">关键选择在于处置权限的归属</span>：检测器只作辅助，删修与争议处理仍由人负责。</p>
-<p>早期识别确实容易。AI 文本经常使用奇怪短语，例如 “stands as a testament”“rich cultural heritage”，还会插入 “Why is this important?” 这样的总结性段落。到了 2025 年，Ellia Lebleu 指出，AI 文本特征变得更隐蔽，也更具结构性，偏好三法则、否定式平行等写法。</p>
-<p>引用错误也在变化。RAG 普及后，AI 更容易找到真实来源，却仍会曲解内容。文章附着来源，不代表它理解并正确转述了来源。</p>
-<blockquote>
-<p>2023 年识别怪文章靠套语，2025 年已经要查编辑纪录、引文与主张是否一致。</p>
-</blockquote>
-<h2 id="零误报之后检测器仍然漏掉了真-ai"><a class="markdownIt-Anchor" href="#零误报之后检测器仍然漏掉了真-ai"></a> 零误报之后，检测器仍然漏掉了真 AI</h2>
-<p>我上周刚给自己的博客做了一套 AI 味检测器，用的是同一类思路。我拿自己 16 篇手写的旧文章当基线标定阈值，结论跟维基的志愿者撞上了：检测器调到零误报之后，AI 写的文章一篇都跑不掉。</p>
-<p>但我的基线里本来就有 45% 的短句，句长平均 23 字。这些正是我平时的写法。检测器一旦把这些当噪声滤掉，真 AI 文章也跟着漏了。</p>
-<p>这件事改变了我对检测阈值的看法。<span class="hl">阈值必须按自己的语料标，不能抄别人的。</span>别人的“零误报”只能说明工具适合那批样本。语料构成一变，误报边界也会移动。</p>
-<p>维基志愿者与检测公司 Pangram 合作时得到一个很谨慎的结果：工具在 ChatGPT 之前的内容上没有产生任何误报，因此这是一个非常谨慎的下限估计。Ellia Lebleu 估计，2025 年底约 20% 的新文章和草稿是 AI 生成，2026 年初下降到 15% 到 16%。</p>
-<p>这里必须加上限定词。ChatGPT 之前的内容也有上限。英文维基官方页面给出的判断是，2022 年 11 月 30 日 ChatGPT 发布前就存在的文本几乎不可能是 AI 生成。时间边界帮助缩小调查范围，却不能替代引文核对。</p>
-<blockquote>
-<p>16 篇手写文章足以暴露一个通用问题：检测器最容易删除的，恰好可能是作者最稳定的写作特征。</p>
-</blockquote>
-<h2 id="删除规则解决入口争议机制决定信任"><a class="markdownIt-Anchor" href="#删除规则解决入口争议机制决定信任"></a> 删除规则解决入口，争议机制决定信任</h2>
-<p>英文维基百科在政策上持续收紧。2025 年 8 月，平台采用允许编辑提名疑似 LLM 生成条目快速删除的政策。2026 年 3 月 20 日，志愿者正式投票通过，禁止所有 AI 生成文本进入其 710 万篇条目。2026 年 3 月起的指南 WP:LLM 进一步禁止使用大语言模型生成或改写条目正文，只允许翻译和基础校对。</p>
-<p>自动工具也在补位。Wikipedia Abuse Filter 于 2025 年 12 月 5 日上线疑似 AI 生成文本的自动检测，2026 年 9 月 16 日上线疑似 AI 来源引用的自动检测。</p>
-<p>这些规则主要约束新增内容。2022 年到 2026 年之间插入的大量 LLM 生成文本仍留在维基百科上。官方清理指南因此还提供了一条快速删除路径：任何明显完全由 LLM 生成的页面，不只是条目，都可依据 WP:G15 快速删除。</p>
-<p>政策明确，存量清理仍难。完全相同的模板适合批量处理。结构完整、引用真实、论述却错位的文章，需要逐篇核对。快速删除能控制数量，人工复核才决定内容是否可信。</p>
-<p>这跟我过去讨论工程约束的思路有关。《防御性编程是一种过度设计吗》（2026-10-18）问的是保护层应该放在哪一层。AI 清理也有类似问题。检测器放在入口，可以降低新增污染；检测器放进争议处理，却容易把删改权交给一个概率模型。</p>
-<blockquote>
-<p>2026 年 3 月 20 日，志愿者正式投票通过，禁止所有 AI 生成文本进入其 710 万篇条目</p>
-</blockquote>
-<p>维基百科这次重建的不是一条完美过滤线。它用政策划边界，用检测器缩小范围，再让人承担删修责任。这个机制有成本，也保留了纠错入口。检测公司可能有误报，编辑判断也会出错。只要错误能够被发现、被讨论、被修正，信任机制就有继续运行的基础。</p>
-<p>开放知识接下来还要回答一个问题：审核机器污染时，人应该保留多少裁量权，才能既清理存量，又不让删除决定本身成为新的黑箱？</p>
-]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-        <tag>内容治理</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Tor出口节点大规模劫持暴露匿名网络信任危机</title>
     <url>/%E6%8A%80%E6%9C%AF/277d0d7d.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="恶意出口指向了匿名网络的安全边界"><a class="markdownIt-Anchor" href="#恶意出口指向了匿名网络的安全边界"></a> 恶意出口指向了匿名网络的安全边界</h2>
@@ -2231,6 +2191,46 @@
       </categories>
       <tags>
         <tag>技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>维基百科清理AI生成文本，标志内容信任机制重建</title>
+    <url>/AI/37793209.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="清理流程可以复制信任机制不能照搬"><a class="markdownIt-Anchor" href="#清理流程可以复制信任机制不能照搬"></a> 清理流程可以复制，信任机制不能照搬</h2>
+<p>维基百科的 AI 清理项目证明了一件事：检测机器污染可以形成流程，但不能把最终判断交给检测器。2023 年 12 月，几位编辑在维基百科 Discord 服务器上发起 WikiProject AI Cleanup，起因是出现了特征完全相同的怪文章。</p>
+<p>我最初以为这套流程可以直接复制。先查套语，再看编辑纪录，最后核对引文，整套规则很清楚。看完官方指南和 IEEE Spectrum 的专访，我发现<span class="hl">关键选择在于处置权限的归属</span>：检测器只作辅助，删修与争议处理仍由人负责。</p>
+<p>早期识别确实容易。AI 文本经常使用奇怪短语，例如 “stands as a testament”“rich cultural heritage”，还会插入 “Why is this important?” 这样的总结性段落。到了 2025 年，Ellia Lebleu 指出，AI 文本特征变得更隐蔽，也更具结构性，偏好三法则、否定式平行等写法。</p>
+<p>引用错误也在变化。RAG 普及后，AI 更容易找到真实来源，却仍会曲解内容。文章附着来源，不代表它理解并正确转述了来源。</p>
+<blockquote>
+<p>2023 年识别怪文章靠套语，2025 年已经要查编辑纪录、引文与主张是否一致。</p>
+</blockquote>
+<h2 id="零误报之后检测器仍然漏掉了真-ai"><a class="markdownIt-Anchor" href="#零误报之后检测器仍然漏掉了真-ai"></a> 零误报之后，检测器仍然漏掉了真 AI</h2>
+<p>我上周刚给自己的博客做了一套 AI 味检测器，用的是同一类思路。我拿自己 16 篇手写的旧文章当基线标定阈值，结论跟维基的志愿者撞上了：检测器调到零误报之后，AI 写的文章一篇都跑不掉。</p>
+<p>但我的基线里本来就有 45% 的短句，句长平均 23 字。这些正是我平时的写法。检测器一旦把这些当噪声滤掉，真 AI 文章也跟着漏了。</p>
+<p>这件事改变了我对检测阈值的看法。<span class="hl">阈值必须按自己的语料标，不能抄别人的。</span>别人的“零误报”只能说明工具适合那批样本。语料构成一变，误报边界也会移动。</p>
+<p>维基志愿者与检测公司 Pangram 合作时得到一个很谨慎的结果：工具在 ChatGPT 之前的内容上没有产生任何误报，因此这是一个非常谨慎的下限估计。Ellia Lebleu 估计，2025 年底约 20% 的新文章和草稿是 AI 生成，2026 年初下降到 15% 到 16%。</p>
+<p>这里必须加上限定词。ChatGPT 之前的内容也有上限。英文维基官方页面给出的判断是，2022 年 11 月 30 日 ChatGPT 发布前就存在的文本几乎不可能是 AI 生成。时间边界帮助缩小调查范围，却不能替代引文核对。</p>
+<blockquote>
+<p>16 篇手写文章足以暴露一个通用问题：检测器最容易删除的，恰好可能是作者最稳定的写作特征。</p>
+</blockquote>
+<h2 id="删除规则解决入口争议机制决定信任"><a class="markdownIt-Anchor" href="#删除规则解决入口争议机制决定信任"></a> 删除规则解决入口，争议机制决定信任</h2>
+<p>英文维基百科在政策上持续收紧。2025 年 8 月，平台采用允许编辑提名疑似 LLM 生成条目快速删除的政策。2026 年 3 月 20 日，志愿者正式投票通过，禁止所有 AI 生成文本进入其 710 万篇条目。2026 年 3 月起的指南 WP:LLM 进一步禁止使用大语言模型生成或改写条目正文，只允许翻译和基础校对。</p>
+<p>自动工具也在补位。Wikipedia Abuse Filter 于 2025 年 12 月 5 日上线疑似 AI 生成文本的自动检测，2026 年 9 月 16 日上线疑似 AI 来源引用的自动检测。</p>
+<p>这些规则主要约束新增内容。2022 年到 2026 年之间插入的大量 LLM 生成文本仍留在维基百科上。官方清理指南因此还提供了一条快速删除路径：任何明显完全由 LLM 生成的页面，不只是条目，都可依据 WP:G15 快速删除。</p>
+<p>政策明确，存量清理仍难。完全相同的模板适合批量处理。结构完整、引用真实、论述却错位的文章，需要逐篇核对。快速删除能控制数量，人工复核才决定内容是否可信。</p>
+<p>这跟我过去讨论工程约束的思路有关。《防御性编程是一种过度设计吗》（2026-10-18）问的是保护层应该放在哪一层。AI 清理也有类似问题。检测器放在入口，可以降低新增污染；检测器放进争议处理，却容易把删改权交给一个概率模型。</p>
+<blockquote>
+<p>2026 年 3 月 20 日，志愿者正式投票通过，禁止所有 AI 生成文本进入其 710 万篇条目</p>
+</blockquote>
+<p>维基百科这次重建的不是一条完美过滤线。它用政策划边界，用检测器缩小范围，再让人承担删修责任。这个机制有成本，也保留了纠错入口。检测公司可能有误报，编辑判断也会出错。只要错误能够被发现、被讨论、被修正，信任机制就有继续运行的基础。</p>
+<p>开放知识接下来还要回答一个问题：审核机器污染时，人应该保留多少裁量权，才能既清理存量，又不让删除决定本身成为新的黑箱？</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+        <tag>内容治理</tag>
       </tags>
   </entry>
   <entry>
@@ -10632,6 +10632,94 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
+    <title>前端定时器</title>
+    <url>/%E5%B7%A5%E4%BD%9C/3423146f.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>  前端开发中，会经常接到<code>定时器</code>的需求，<code>倒计时</code>、<code>计时器</code>、<code>动画效果</code>。</p>
+<span id="more"></span>
+<p>  在<code>博客</code>- <a href="/tags">标签</a>页面中使用到了<code>定时器</code>来做<code>::hover</code>动画效果。接下来我会对比一下<code>setTimeout</code>、<code>setInterval</code>、<code>requestAnimationFrame</code>来实现定时器。</p>
+<div style="display:flex;justify-content: center;">
+    <div>
+      <video width="100%" height="auto" src="/images/video/tags-view.mp4"  autoplay muted loop ></video>
+      <div style="text-align: center;user-select: none;">视频：
+博客-标签
+</div>
+    </div>
+  </div>
+<h2 id="1定时器"><a class="markdownIt-Anchor" href="#1定时器"></a> 1.定时器</h2>
+<h2 id="11-settimeout"><a class="markdownIt-Anchor" href="#11-settimeout"></a> 1.1. setTimeout</h2>
+<p>  <strong>setTimeout是JavaScript中的一个函数，用于在指定的延迟时间后执行一段代码或函数。它的工作原理是在指定的延迟时间后，将代码或函数放入JavaScript的事件队列中，等待当前代码执行完毕后再执行。</strong></p>
+<p><strong>setTimeout的语法如下：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>||<span class="string">&#x27;func()&#x27;</span>,delay,[args...])</span><br></pre></td></tr></table></figure>
+<p><strong>参数说明：</strong></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>func|code</code>：要执行的函数或代码。</p>
+</li>
+<li class="lvl-2">
+<p><code>delay</code>：延迟时间，以毫秒为单位。</p>
+</li>
+<li class="lvl-2">
+<p><code>arg1, arg2, ...</code>：可选参数，表示传递给函数的参数。</p>
+</li>
+</ul>
+<p>  当使用setTimeout时，它将在指定的延迟时间后执行一次函数或代码，然后返回一个定时器ID，可以使用<code>clearTimeout()</code>方法来取消定时器的执行。</p>
+<p>  需要注意的是，setTimeout并不会立即执行函数或代码，而是在指定的延迟时间后放入事件队列中等待执行。如果当前的代码执行时间较长，或者存在其他的延迟操作，那么setTimeout中的函数或代码可能会在预期的时间之后才被执行。</p>
+<p><strong>示例:</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">args</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(args)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">setTimeout</span>(test,<span class="number">1000</span>,[<span class="string">&#x27;test&#x27;</span>,<span class="string">&#x27;test1&#x27;</span>]);</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="string">&#x27;test()&#x27;</span>,<span class="number">1000</span>,[<span class="string">&#x27;test&#x27;</span>,<span class="string">&#x27;test1&#x27;</span>]);</span><br><span class="line"><span class="title function_">cleatTimeout</span>();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="12-setinterval"><a class="markdownIt-Anchor" href="#12-setinterval"></a> 1.2. setInterval</h2>
+<p>  <strong>setInterval是JavaScript中的一个函数，用于在指定的时间间隔后重复执行一段代码或函数。它的工作原理是在指定的时间间隔后，将代码或函数放入JavaScript的事件队列中，等待当前代码执行完毕后再执行。</strong></p>
+<p><strong>setInterval的语法如下：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">setInterval</span>(<span class="function">()=&gt;</span>||<span class="string">&#x27;func()&#x27;</span>,delay,[args...])</span><br></pre></td></tr></table></figure>
+<p><strong>参数说明：</strong></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>func|code</code>：要执行的函数或代码。</p>
+</li>
+<li class="lvl-2">
+<p><code>delay</code>：时间间隔，以毫秒为单位。</p>
+</li>
+<li class="lvl-2">
+<p><code>arg1, arg2, ...</code>：可选参数，表示传递给函数的参数。</p>
+</li>
+</ul>
+<p>  当使用setInterval时，它将在指定的时间间隔后重复执行函数或代码，直到调用<code>clearInterval()</code>方法来停止执行。与setTimeout不同的是，setInterval会持续不断地重复执行函数或代码，直到被明确停止。</p>
+<p>  需要注意的是，setInterval并不会立即执行函数或代码，而是在指定的时间间隔后放入事件队列中等待执行。如果当前的代码执行时间较长，或者存在其他的延迟操作，那么setInterval中的函数或代码可能会在预期的时间之后才被执行。</p>
+<p><strong>示例:</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">args</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(args)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">setInterval</span>(test,<span class="number">1000</span>,[<span class="string">&#x27;test&#x27;</span>,<span class="string">&#x27;test1&#x27;</span>]);</span><br><span class="line"><span class="built_in">setInterval</span>(<span class="string">&#x27;test()&#x27;</span>,<span class="number">1000</span>,[<span class="string">&#x27;test&#x27;</span>,<span class="string">&#x27;test1&#x27;</span>]);</span><br><span class="line"><span class="built_in">clearInterval</span>();</span><br></pre></td></tr></table></figure>
+<h2 id="13-requestanimationframe"><a class="markdownIt-Anchor" href="#13-requestanimationframe"></a> 1.3. requestAnimationFrame</h2>
+<p>  <strong>requestAnimationFrame是Web动画API的一部分，用于在浏览器下一次重绘之前调用指定的回调函数，从而实现平滑的动画效果。与setTimeout和setInterval相比，requestAnimationFrame具有更高的性能和更好的用户体验。</strong></p>
+<p><strong>requestAnimationFrame的语法如下：</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">requestAnimationFrame</span>(callback);</span><br></pre></td></tr></table></figure>
+<p><strong>参数说明：</strong></p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><code>callback</code>：要执行的回调函数。</p>
+</li>
+</ul>
+<p>  当使用requestAnimationFrame时，它会返回一个唯一的ID，可以使用这个ID来取消动画帧的调用。与setTimeout和setInterval不同的是，requestAnimationFrame的回调函数将在浏览器下一次重绘之前执行，而不是简单地等待指定的时间后执行。这样可以充分利用浏览器的重绘机制，实现更平滑的动画效果。</p>
+<p>  requestAnimationFrame的优势在于它能够根据浏览器的刷新率来同步动画，避免了由于不同的屏幕刷新率和硬件配置导致的动画卡顿和闪烁。同时，它也避免了在动画过程中不必要的重绘和计算，提高了动画的性能和响应性。</p>
+<p>  使用requestAnimationFrame时需要注意，它只会在浏览器处于激活状态时执行回调函数。如果浏览器处于最小化或隐藏状态，那么回调函数将不会被执行。因此，在使用requestAnimationFrame时，需要确保浏览器处于激活状态，或者在回调函数中添加适当的逻辑来处理浏览器不处于激活状态的情况。</p>
+<p><strong>示例:</strong></p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">frame</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;frame&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">requestAnimationFrame</span>(frame);</span><br></pre></td></tr></table></figure>
+<h2 id="2-标签动画"><a class="markdownIt-Anchor" href="#2-标签动画"></a> 2. 标签动画</h2>
+<p>  使用 <code>requestAnimationFrame</code> 可以替代 <code>setInterval</code> 来实现定时任务，因为 <code>requestAnimationFrame</code> 更加高效，能够根据屏幕刷新率来同步动画，避免了不必要的重绘和计算。</p>
+<p>下面是使用 <code>requestAnimationFrame</code> 实现 <code>setInterval</code> 更新<code>博客</code>- <a href="/tags">标签</a>的示例代码：</p>
+<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/***</span></span><br><span class="line"><span class="comment"> * 兼容不支持requestAnimationFrame的浏览器</span></span><br><span class="line"><span class="comment"> ***/</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">requestAnimationFrame</span> = (<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">window</span>.<span class="property">requestAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">webkitRequestAnimationFrame</span> ||<span class="comment">/* Safari 和 Chrome */</span></span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">mozRequestAnimationFrame</span> ||<span class="comment">/* Firefox */</span></span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">oRequestAnimationFrame</span>      ||<span class="comment">/* Opera */</span></span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">msRequestAnimationFrame</span>     ||<span class="comment">/* IE 9 */</span></span><br><span class="line">    <span class="keyword">function</span> (<span class="params">callback</span>) &#123;</span><br><span class="line">      <span class="variable language_">window</span>.<span class="built_in">setTimeout</span>(callback, <span class="number">6000</span> / <span class="number">60</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">cancelAnimationFrame</span> = (<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">window</span>.<span class="property">cancelAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">webkitCancelAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">mozCancelAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">oCancelAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">msCancelAnimationFrame</span> || <span class="built_in">clearTimeout</span></span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 设置精度定时器</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">function</span>&#125; 回调函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125;   延迟时间</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;  定时器ID</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> <span class="keyword">function</span> <span class="title function_">setIntervalPrecision</span>(<span class="params">callback, delay</span>) &#123;</span><br><span class="line">  <span class="comment">// 生成并记录定时器ID</span></span><br><span class="line">  <span class="keyword">let</span> obj = <span class="variable language_">window</span>.<span class="property">interValPrecisionObj</span> || (<span class="variable language_">window</span>.<span class="property">interValPrecisionObj</span> = &#123; <span class="attr">num</span>: <span class="number">0</span> &#125;)</span><br><span class="line">  obj.<span class="property">num</span>++</span><br><span class="line">  obj[<span class="string">&#x27;n&#x27;</span> + obj.<span class="property">num</span>] = <span class="literal">true</span></span><br><span class="line">  <span class="keyword">var</span> intervalId = obj.<span class="property">num</span></span><br><span class="line">  <span class="comment">// 开始时间</span></span><br><span class="line">  <span class="keyword">var</span> startTime = +<span class="keyword">new</span> <span class="title class_">Date</span>()</span><br><span class="line">  <span class="comment">// 已执行次数</span></span><br><span class="line">  <span class="keyword">var</span> count = <span class="number">0</span></span><br><span class="line">  <span class="comment">// 延迟时间</span></span><br><span class="line">  delay = delay || <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  ;(<span class="keyword">function</span> <span class="title function_">loop</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 定时器被清除，则终止</span></span><br><span class="line">    <span class="keyword">if</span> (!obj[<span class="string">&#x27;n&#x27;</span> + intervalId]) <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 满足条件执行回调</span></span><br><span class="line">    <span class="keyword">if</span> (+<span class="keyword">new</span> <span class="title class_">Date</span>() &gt; startTime + delay * (count + <span class="number">1</span>)) &#123;</span><br><span class="line">      count++</span><br><span class="line">      <span class="title function_">callback</span>(count)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">window</span>.<span class="title function_">requestAnimationFrame</span>(loop)</span><br><span class="line">  &#125;)()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> intervalId</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 清除精度定时器</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; 定时器ID</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">clearIntervalPrecision</span>(<span class="params">intervalId</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">interValPrecisionObj</span>) &#123;</span><br><span class="line">    <span class="variable language_">window</span>.<span class="title function_">cancelAnimationFrame</span>(<span class="string">&#x27;n&#x27;</span> + intervalId)</span><br><span class="line">    <span class="keyword">delete</span> <span class="variable language_">window</span>.<span class="property">interValPrecisionObj</span>[<span class="string">&#x27;n&#x27;</span> + intervalId]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//loopHover 自己的业务实现</span></span><br><span class="line"><span class="title function_">setIntervalPrecision</span>(loopHover, <span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>工作</category>
+      </categories>
+      <tags>
+        <tag>vue</tag>
+        <tag>react</tag>
+        <tag>javascript</tag>
+        <tag>typescript</tag>
+        <tag>setTimeout</tag>
+        <tag>setInterval</tag>
+        <tag>requestAnimationFrame</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>基于k8s、traefik、springboot的微服务实践</title>
     <url>/%E5%B7%A5%E4%BD%9C/3382022550.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>]]></content>
@@ -10745,94 +10833,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       <tags>
         <tag>大盘鸡</tag>
         <tag>美食</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>前端定时器</title>
-    <url>/%E5%B7%A5%E4%BD%9C/3423146f.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>  前端开发中，会经常接到<code>定时器</code>的需求，<code>倒计时</code>、<code>计时器</code>、<code>动画效果</code>。</p>
-<span id="more"></span>
-<p>  在<code>博客</code>- <a href="/tags">标签</a>页面中使用到了<code>定时器</code>来做<code>::hover</code>动画效果。接下来我会对比一下<code>setTimeout</code>、<code>setInterval</code>、<code>requestAnimationFrame</code>来实现定时器。</p>
-<div style="display:flex;justify-content: center;">
-    <div>
-      <video width="100%" height="auto" src="/images/video/tags-view.mp4"  autoplay muted loop ></video>
-      <div style="text-align: center;user-select: none;">视频：
-博客-标签
-</div>
-    </div>
-  </div>
-<h2 id="1定时器"><a class="markdownIt-Anchor" href="#1定时器"></a> 1.定时器</h2>
-<h2 id="11-settimeout"><a class="markdownIt-Anchor" href="#11-settimeout"></a> 1.1. setTimeout</h2>
-<p>  <strong>setTimeout是JavaScript中的一个函数，用于在指定的延迟时间后执行一段代码或函数。它的工作原理是在指定的延迟时间后，将代码或函数放入JavaScript的事件队列中，等待当前代码执行完毕后再执行。</strong></p>
-<p><strong>setTimeout的语法如下：</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="function">()=&gt;</span>||<span class="string">&#x27;func()&#x27;</span>,delay,[args...])</span><br></pre></td></tr></table></figure>
-<p><strong>参数说明：</strong></p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><code>func|code</code>：要执行的函数或代码。</p>
-</li>
-<li class="lvl-2">
-<p><code>delay</code>：延迟时间，以毫秒为单位。</p>
-</li>
-<li class="lvl-2">
-<p><code>arg1, arg2, ...</code>：可选参数，表示传递给函数的参数。</p>
-</li>
-</ul>
-<p>  当使用setTimeout时，它将在指定的延迟时间后执行一次函数或代码，然后返回一个定时器ID，可以使用<code>clearTimeout()</code>方法来取消定时器的执行。</p>
-<p>  需要注意的是，setTimeout并不会立即执行函数或代码，而是在指定的延迟时间后放入事件队列中等待执行。如果当前的代码执行时间较长，或者存在其他的延迟操作，那么setTimeout中的函数或代码可能会在预期的时间之后才被执行。</p>
-<p><strong>示例:</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">args</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(args)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">setTimeout</span>(test,<span class="number">1000</span>,[<span class="string">&#x27;test&#x27;</span>,<span class="string">&#x27;test1&#x27;</span>]);</span><br><span class="line"><span class="built_in">setTimeout</span>(<span class="string">&#x27;test()&#x27;</span>,<span class="number">1000</span>,[<span class="string">&#x27;test&#x27;</span>,<span class="string">&#x27;test1&#x27;</span>]);</span><br><span class="line"><span class="title function_">cleatTimeout</span>();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="12-setinterval"><a class="markdownIt-Anchor" href="#12-setinterval"></a> 1.2. setInterval</h2>
-<p>  <strong>setInterval是JavaScript中的一个函数，用于在指定的时间间隔后重复执行一段代码或函数。它的工作原理是在指定的时间间隔后，将代码或函数放入JavaScript的事件队列中，等待当前代码执行完毕后再执行。</strong></p>
-<p><strong>setInterval的语法如下：</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="built_in">setInterval</span>(<span class="function">()=&gt;</span>||<span class="string">&#x27;func()&#x27;</span>,delay,[args...])</span><br></pre></td></tr></table></figure>
-<p><strong>参数说明：</strong></p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><code>func|code</code>：要执行的函数或代码。</p>
-</li>
-<li class="lvl-2">
-<p><code>delay</code>：时间间隔，以毫秒为单位。</p>
-</li>
-<li class="lvl-2">
-<p><code>arg1, arg2, ...</code>：可选参数，表示传递给函数的参数。</p>
-</li>
-</ul>
-<p>  当使用setInterval时，它将在指定的时间间隔后重复执行函数或代码，直到调用<code>clearInterval()</code>方法来停止执行。与setTimeout不同的是，setInterval会持续不断地重复执行函数或代码，直到被明确停止。</p>
-<p>  需要注意的是，setInterval并不会立即执行函数或代码，而是在指定的时间间隔后放入事件队列中等待执行。如果当前的代码执行时间较长，或者存在其他的延迟操作，那么setInterval中的函数或代码可能会在预期的时间之后才被执行。</p>
-<p><strong>示例:</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">test</span>(<span class="params">args</span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(args)</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">setInterval</span>(test,<span class="number">1000</span>,[<span class="string">&#x27;test&#x27;</span>,<span class="string">&#x27;test1&#x27;</span>]);</span><br><span class="line"><span class="built_in">setInterval</span>(<span class="string">&#x27;test()&#x27;</span>,<span class="number">1000</span>,[<span class="string">&#x27;test&#x27;</span>,<span class="string">&#x27;test1&#x27;</span>]);</span><br><span class="line"><span class="built_in">clearInterval</span>();</span><br></pre></td></tr></table></figure>
-<h2 id="13-requestanimationframe"><a class="markdownIt-Anchor" href="#13-requestanimationframe"></a> 1.3. requestAnimationFrame</h2>
-<p>  <strong>requestAnimationFrame是Web动画API的一部分，用于在浏览器下一次重绘之前调用指定的回调函数，从而实现平滑的动画效果。与setTimeout和setInterval相比，requestAnimationFrame具有更高的性能和更好的用户体验。</strong></p>
-<p><strong>requestAnimationFrame的语法如下：</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="title function_">requestAnimationFrame</span>(callback);</span><br></pre></td></tr></table></figure>
-<p><strong>参数说明：</strong></p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><code>callback</code>：要执行的回调函数。</p>
-</li>
-</ul>
-<p>  当使用requestAnimationFrame时，它会返回一个唯一的ID，可以使用这个ID来取消动画帧的调用。与setTimeout和setInterval不同的是，requestAnimationFrame的回调函数将在浏览器下一次重绘之前执行，而不是简单地等待指定的时间后执行。这样可以充分利用浏览器的重绘机制，实现更平滑的动画效果。</p>
-<p>  requestAnimationFrame的优势在于它能够根据浏览器的刷新率来同步动画，避免了由于不同的屏幕刷新率和硬件配置导致的动画卡顿和闪烁。同时，它也避免了在动画过程中不必要的重绘和计算，提高了动画的性能和响应性。</p>
-<p>  使用requestAnimationFrame时需要注意，它只会在浏览器处于激活状态时执行回调函数。如果浏览器处于最小化或隐藏状态，那么回调函数将不会被执行。因此，在使用requestAnimationFrame时，需要确保浏览器处于激活状态，或者在回调函数中添加适当的逻辑来处理浏览器不处于激活状态的情况。</p>
-<p><strong>示例:</strong></p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="keyword">function</span> <span class="title function_">frame</span>(<span class="params"></span>)&#123;</span><br><span class="line">  <span class="variable language_">console</span>.<span class="title function_">log</span>(<span class="string">&#x27;frame&#x27;</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="title function_">requestAnimationFrame</span>(frame);</span><br></pre></td></tr></table></figure>
-<h2 id="2-标签动画"><a class="markdownIt-Anchor" href="#2-标签动画"></a> 2. 标签动画</h2>
-<p>  使用 <code>requestAnimationFrame</code> 可以替代 <code>setInterval</code> 来实现定时任务，因为 <code>requestAnimationFrame</code> 更加高效，能够根据屏幕刷新率来同步动画，避免了不必要的重绘和计算。</p>
-<p>下面是使用 <code>requestAnimationFrame</code> 实现 <code>setInterval</code> 更新<code>博客</code>- <a href="/tags">标签</a>的示例代码：</p>
-<figure class="highlight javascript"><table><tr><td class="code"><pre><span class="line"><span class="comment">/***</span></span><br><span class="line"><span class="comment"> * 兼容不支持requestAnimationFrame的浏览器</span></span><br><span class="line"><span class="comment"> ***/</span></span><br><span class="line"><span class="variable language_">window</span>.<span class="property">requestAnimationFrame</span> = (<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">window</span>.<span class="property">requestAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">webkitRequestAnimationFrame</span> ||<span class="comment">/* Safari 和 Chrome */</span></span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">mozRequestAnimationFrame</span> ||<span class="comment">/* Firefox */</span></span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">oRequestAnimationFrame</span>      ||<span class="comment">/* Opera */</span></span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">msRequestAnimationFrame</span>     ||<span class="comment">/* IE 9 */</span></span><br><span class="line">    <span class="keyword">function</span> (<span class="params">callback</span>) &#123;</span><br><span class="line">      <span class="variable language_">window</span>.<span class="built_in">setTimeout</span>(callback, <span class="number">6000</span> / <span class="number">60</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="variable language_">window</span>.<span class="property">cancelAnimationFrame</span> = (<span class="keyword">function</span> (<span class="params"></span>) &#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="variable language_">window</span>.<span class="property">cancelAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">webkitCancelAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">mozCancelAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">oCancelAnimationFrame</span> ||</span><br><span class="line">    <span class="variable language_">window</span>.<span class="property">msCancelAnimationFrame</span> || <span class="built_in">clearTimeout</span></span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 设置精度定时器</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">function</span>&#125; 回调函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125;   延迟时间</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="type">number</span>&#125;  定时器ID</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"> <span class="keyword">function</span> <span class="title function_">setIntervalPrecision</span>(<span class="params">callback, delay</span>) &#123;</span><br><span class="line">  <span class="comment">// 生成并记录定时器ID</span></span><br><span class="line">  <span class="keyword">let</span> obj = <span class="variable language_">window</span>.<span class="property">interValPrecisionObj</span> || (<span class="variable language_">window</span>.<span class="property">interValPrecisionObj</span> = &#123; <span class="attr">num</span>: <span class="number">0</span> &#125;)</span><br><span class="line">  obj.<span class="property">num</span>++</span><br><span class="line">  obj[<span class="string">&#x27;n&#x27;</span> + obj.<span class="property">num</span>] = <span class="literal">true</span></span><br><span class="line">  <span class="keyword">var</span> intervalId = obj.<span class="property">num</span></span><br><span class="line">  <span class="comment">// 开始时间</span></span><br><span class="line">  <span class="keyword">var</span> startTime = +<span class="keyword">new</span> <span class="title class_">Date</span>()</span><br><span class="line">  <span class="comment">// 已执行次数</span></span><br><span class="line">  <span class="keyword">var</span> count = <span class="number">0</span></span><br><span class="line">  <span class="comment">// 延迟时间</span></span><br><span class="line">  delay = delay || <span class="number">0</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">  ;(<span class="keyword">function</span> <span class="title function_">loop</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// 定时器被清除，则终止</span></span><br><span class="line">    <span class="keyword">if</span> (!obj[<span class="string">&#x27;n&#x27;</span> + intervalId]) <span class="keyword">return</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 满足条件执行回调</span></span><br><span class="line">    <span class="keyword">if</span> (+<span class="keyword">new</span> <span class="title class_">Date</span>() &gt; startTime + delay * (count + <span class="number">1</span>)) &#123;</span><br><span class="line">      count++</span><br><span class="line">      <span class="title function_">callback</span>(count)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="variable language_">window</span>.<span class="title function_">requestAnimationFrame</span>(loop)</span><br><span class="line">  &#125;)()</span><br><span class="line"></span><br><span class="line">  <span class="keyword">return</span> intervalId</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 清除精度定时器</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &#123;<span class="type">number</span>&#125; 定时器ID</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">function</span> <span class="title function_">clearIntervalPrecision</span>(<span class="params">intervalId</span>) &#123;</span><br><span class="line">  <span class="keyword">if</span> (<span class="variable language_">window</span>.<span class="property">interValPrecisionObj</span>) &#123;</span><br><span class="line">    <span class="variable language_">window</span>.<span class="title function_">cancelAnimationFrame</span>(<span class="string">&#x27;n&#x27;</span> + intervalId)</span><br><span class="line">    <span class="keyword">delete</span> <span class="variable language_">window</span>.<span class="property">interValPrecisionObj</span>[<span class="string">&#x27;n&#x27;</span> + intervalId]</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//loopHover 自己的业务实现</span></span><br><span class="line"><span class="title function_">setIntervalPrecision</span>(loopHover, <span class="number">100</span>)</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-      <tags>
-        <tag>vue</tag>
-        <tag>react</tag>
-        <tag>javascript</tag>
-        <tag>typescript</tag>
-        <tag>setTimeout</tag>
-        <tag>setInterval</tag>
-        <tag>requestAnimationFrame</tag>
       </tags>
   </entry>
   <entry>
@@ -12012,6 +12012,578 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
+    <title>慢车 04：她的编号</title>
+    <url>/%E5%B0%8F%E8%AF%B4/678d5b0.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>走廊里的日光灯管一盏接一盏亮着。</p>
+<p>陈渡抱着设备箱，箱角磕在门框上，发出一声闷响。门上的编号是071，里面有人调试话筒，红色指示灯一闪一闪。</p>
+<p>陈渡没有立刻走。他把纸箱翻过来，箱底压着一层薄灰，四只泡沫垫块缺了一角。缺角处露出胶合板，边缘起毛。</p>
+<p>箱子里装着三台调音台、一只无线话筒、两块功放板。省台后勤处叫他来送设备，没说谁接。他问了三个人，得到的回答都是往里走。</p>
+<p>走廊很长，电缆从墙边的插孔里垂下来。有人推着音响车经过，车轮压过门槛，卡了一下。陈渡站到墙边，等车过去。</p>
+<p>周隼拿旧手机时，柜台上的收音机正播着一档路况节目。女声报完收费站，前面堵了十一公里，随后是一段广告，音乐响得比人声大。</p>
+<p>配电箱旁边蹲着一个人。</p>
+<p>她穿灰色工装裤，鞋底沾着灰。头发扎在脑后，几缕落在耳边。她一只手扶着打开的箱门，另一只手举起一支细长的话筒，话筒前端有黑色海绵，指向墙顶的日光灯管。</p>
+<p>陈渡把数字写在纸箱侧面：24，60，03391—03416。</p>
+<p>「先别过来。」她说。</p>
+<p>陈渡没有停。</p>
+<p>「盘数不对。」他说。</p>
+<p>她按下录音键。日光灯发出一阵稳定的嗡声。</p>
+<p>「你们后勤的人？」</p>
+<p>周隼抬起头。</p>
+<p>「修设备的。」</p>
+<p>「那更别过来。」</p>
+<p>「箱里二十四盘。」</p>
+<p>陈渡把设备箱放到墙边。</p>
+<p>她戴上一只耳机，慢慢转动录音机的旋钮。回放声从耳机里漏出一点，像远处有人在磨铁。</p>
+<p>「清单五百零九。」</p>
+<p>「你听。」</p>
+<p>她摘下一边耳机，递给陈渡。</p>
+<p>「这是最后一批。」</p>
+<p>他蹲下，把耳机戴好。</p>
+<p>一段底噪铺在下面。中间有十二赫兹的嗡声，持续、整齐。每次底噪起伏，它都压在下面，不消失。</p>
+<p>「以前的呢？」</p>
+<p>陈渡把音量转高一格。</p>
+<p>嗡声立刻清楚起来。灯管里的镇流器在震动，声音通过空气，再被话筒收进去。</p>
+<p>「柜里。」</p>
+<p>「十二赫兹。」他说。</p>
+<p>「你也听得出？」</p>
+<p>「哪一批放进去的？」</p>
+<p>「差两赫兹就是二十四。」</p>
+<p>她按下停止键。</p>
+<p>周隼没有回答。他拉开身后的木柜，玻璃门上的锁扣已经氧化，拧了两下才开。柜里塞着七层旧报纸，报纸日期从两年前到去年不等。最上层放着三只没有标签的空磁带盒。</p>
+<p>「这段有十二赫兹的交流声，来源是旁边的日光灯管。」她说，「我录了二十七分钟。」</p>
+<p>「做什么用？」</p>
+<p>「每一批都报数？」陈渡问。</p>
+<p>「存档。」</p>
+<p>陈渡又听了一遍，手指搭在耳罩边缘。</p>
+<p>「她报。」</p>
+<p>「这台机子的底噪偏高。」</p>
+<p>「我没问机器。」</p>
+<p>「你不记？」</p>
+<p>他摘下耳机。</p>
+<p>她把耳机和录音机收回箱中。录音机是两轨的，外壳包着黑色胶带。右侧进线口接着那支话筒，线长三米左右，绕在手上。</p>
+<p>「柜子记。」</p>
+<p>「你是来修这个的？」</p>
+<p>「不修这个。」</p>
+<p>陈渡把箱盖上的胶带撕开。胶带下面压着三根扎带，其中一根断了。他拿在手里掂了掂，塑料芯已经发白。</p>
+<p>「为什么？」</p>
+<p>「它没坏。」</p>
+<p>周隼伸手拿过去。</p>
+<p>「你怎么知道？」</p>
+<p>「能录。声音也稳。」</p>
+<p>「她拿来的。」</p>
+<p>她把话筒收回来。</p>
+<p>「这台日光灯也是。」她说，「它没坏。」</p>
+<p>「扎带也在箱里？」</p>
+<p>陈渡看了一眼灯架。接线处缠着两圈旧胶布。</p>
+<p>「这种灯管会响。」他说，「换掉电源线，或者并一个抑制电容，能小很多。」</p>
+<p>「装东西顺手放的。」</p>
+<p>「我没说要小。」</p>
+<p>「十二赫兹一直压着底噪，后面录什么都叠一层。」</p>
+<p>「我以为她只录声音。」</p>
+<p>「原声。」</p>
+<p>「什么？」</p>
+<p>「东西都要捆。」</p>
+<p>「这段我要留着。」</p>
+<p>她把录音机放回箱子，关上箱门。</p>
+<p>周隼把断带扔进墙边铁皮桶。桶里塞满螺丝头和剪下的线头。</p>
+<p>陈渡的手还搭在设备箱提手上。提手缠着黑胶布，边缘已经翻起来。</p>
+<p>「这种交流声没人要。」她说，「我听过七盘旧带。没人要。」</p>
+<p>陈渡看着那只桶。</p>
+<p>「那是他们不懂。」</p>
+<p>「不是。」</p>
+<p>「117的皮带在哪儿？」</p>
+<p>她看着陈渡。</p>
+<p>「他们不是不懂，是不需要。」</p>
+<p>「抽屉。」</p>
+<p>陈渡重新抱起设备箱。里面的金属件互相碰着，响了几声。</p>
+<p>「十二赫兹能修掉。」他说。</p>
+<p>「哪一格？」</p>
+<p>「它没坏。」</p>
+<p>「修掉不代表坏。」</p>
+<p>周隼用螺丝刀柄敲了敲柜门。</p>
+<p>「我没说坏。」</p>
+<p>她提起录音箱，站起身，另一只手拿着话筒。</p>
+<p>「你自己找。」</p>
+<p>日光灯又嗡了一声。</p>
+<p>陈渡没有走。</p>
+<p>陈渡拉开最下面一格。里面放着六只旧皮带，长度不一。最上面那只包着一层透明塑料，塑料上贴着一小片白纸，写着：117，备用，2019。</p>
+<p>她也没有立刻走。</p>
+<p>「你刚才说十二赫兹。」</p>
+<p>他捏住白纸角，没有揭。</p>
+<p>「嗯。」</p>
+<p>「你怎么判断的？」</p>
+<p>「还是原来的？」</p>
+<p>「耳朵。」</p>
+<p>「用什么耳朵？」</p>
+<p>「她送来的。」</p>
+<p>「两只。」</p>
+<p>她点了一下头，像在记录某个参数。</p>
+<p>「什么时候？」</p>
+<p>「那只能做初判。」</p>
+<p>陈渡看见她胸前口袋里的记录本。本子露出半截，边角磨白，内页夹着不同颜色的标签。</p>
+<p>「去年。」</p>
+<p>「你不是后勤的人。」</p>
+<p>「也不是。」</p>
+<p>「她说为什么留？」</p>
+<p>「哪个部门？」</p>
+<p>「不归哪个部门。」</p>
+<p>周隼拿万用表去够音箱背面的接线柱，线不够长，他蹲下去换了个位置。</p>
+<p>她拉开箱子侧袋，掏出一张工作证。</p>
+<p>「外聘。田野录音。」</p>
+<p>「她没说什么。」</p>
+<p>陈渡看了一眼。证件上的照片很小，头发比现在长。工作单位那一栏印着省广播台，下面没有部门名，只有栏目组。</p>
+<p>「栏目组一年播几期？」</p>
+<p>陈渡把皮带放回原处。塑料袋被压在两只电容下面，他只抽出一点，底下露出一张折过的收据。日期是2019年11月3日。品名：原配传动带，数量一根。收款人一栏空着。</p>
+<p>「四期。」</p>
+<p>「每期多久？」</p>
+<p>「她买这个做什么？」</p>
+<p>「七分钟。」</p>
+<p>「你剪吗？」</p>
+<p>「她说是你让留的。」</p>
+<p>「剪。」</p>
+<p>「会改声音吗？」</p>
+<p>「我没让。」</p>
+<p>「不改。」</p>
+<p>「留瑕疵？」</p>
+<p>周隼用表笔碰了一下接线柱。</p>
+<p>「留。」</p>
+<p>她收起工作证。</p>
+<p>「那就不是我说的。」</p>
+<p>走廊尽头有人推门出来，抱着一只泡沫箱。那人看见她，停下脚步。</p>
+<p>「林老师，东西放哪儿？」</p>
+<p>「东西有来的地方。」</p>
+<p>「三号库。」</p>
+<p>「临时用那批也送过去？」</p>
+<p>周隼手里的表笔停了一下。他把数值记在纸角，写得很慢。</p>
+<p>「送。」</p>
+<p>那人抬脚就走，泡沫箱挡住了半边走廊。</p>
+<p>「一百八十赫兹……一百八十七……」</p>
+<p>林岫没有马上走。她蹲下去，重新打开录音箱。</p>
+<p>陈渡提起自己的箱子。</p>
+<p>陈渡把收据放回塑料袋底下，压平折痕。</p>
+<p>「十二赫兹可以做个参考。」她说，「但不能凭耳朵写报告。」</p>
+<p>「没人让你写报告。」</p>
+<p>「她还说别的了吗？」</p>
+<p>「你刚才说能修。」</p>
+<p>「能。」</p>
+<p>「说你是来拿的。」</p>
+<p>「为什么修？」</p>
+<p>「因为它影响后面的声音。」</p>
+<p>「什么时候？」</p>
+<p>「后面的声音本来就有。」</p>
+<p>陈渡看着她。</p>
+<p>「送东西的时候。」</p>
+<p>她把话筒插回侧袋，拉链拉到一半，又停住。</p>
+<p>「你修过很多东西？」</p>
+<p>「你怎么说？」</p>
+<p>「够用。」</p>
+<p>「修完呢？」</p>
+<p>「我问你什么时候来。」</p>
+<p>「给别人用。」</p>
+<p>「你不听？」</p>
+<p>「你怎么答？」</p>
+<p>「有时听。」</p>
+<p>「听完呢？」</p>
+<p>周隼把表笔从接线柱上拿开。屏幕上的数值停在183。</p>
+<p>「没坏就行。」</p>
+<p>她把拉链拉好。</p>
+<p>「我说不知道。」</p>
+<p>走廊墙上的挂钟走了一格。秒针掠过十二的位置，响得比刚才清楚。</p>
+<p>「你叫什么？」她问。</p>
+<p>走廊的收音机换了节目。男声念完一串电话号码，背景里有一辆车按喇叭，按了三次，每次长短一样。</p>
+<p>「陈渡。」</p>
+<p>「做什么的？」</p>
+<p>陈渡把设备箱的扣锁重新按紧。扣锁有一颗歪了，他用指甲扳了一下，没扳动，便从口袋里摸出刀片，沿缝刮下一层黑漆。</p>
+<p>「修设备。」</p>
+<p>「修什么？」</p>
+<p>「这个要换。「周隼说。</p>
+<p>「录音机、功放、调音台。」</p>
+<p>「磁带机？」</p>
+<p>「能用就行。」</p>
+<p>「也修。」</p>
+<p>「老式的？」</p>
+<p>「卡壳会掉零件。」</p>
+<p>「苏式的较多。」</p>
+<p>「编号最后三位是117？」</p>
+<p>「先通电。」</p>
+<p>陈渡看了她一眼。</p>
+<p>「你知道那台？」</p>
+<p>「通了再修？」</p>
+<p>「不知道那台。」她说，「我知道编号。」</p>
+<p>「什么意思？」</p>
+<p>「现在修。」</p>
+<p>「东西都有它来的地方。」</p>
+<p>这句话说得很慢。陈渡听过有人修不好东西，也这么说。话一出来，事情就不归追问的人管了。</p>
+<p>陈渡蹲下，拆开扣锁底部的盖板。里面两枚螺钉，一枚十字，一枚一字。他把刀片压在螺丝头上刮了三次。</p>
+<p>林岫提起箱子。</p>
+<p>「你耳朵不错。」她说，「但你只听见需要修的部分。」</p>
+<p>周隼放下万用表，走过来看了一眼。</p>
+<p>「能修就行。」</p>
+<p>「原声。别的别加。」</p>
+<p>「你父亲教你的？」</p>
+<p>她往走廊另一头走。</p>
+<p>陈渡站在原地。设备箱垂在腿边，里面那台旧录音机的皮带松了，晃一下就响。</p>
+<p>「账本上这么写。「</p>
+<p>她走了几步，又停下。</p>
+<p>「你的设备还没交。」陈渡说。</p>
+<p>「他还记什么？」</p>
+<p>「我知道。」</p>
+<p>她没有回头。</p>
+<p>「修设备。」</p>
+<p>「三号库往左。」</p>
+<p>「门上有编号。」</p>
+<p>陈渡刮到第五下，螺丝槽露出亮色。</p>
+<p>「071。」</p>
+<p>陈渡看了一眼刚才差点撞上的那扇门。</p>
+<p>「哪台机器？」</p>
+<p>门牌确实是071。</p>
+<p>她继续往前走。</p>
+<p>「什么都记。」</p>
+<p>陈渡提起箱子，向右转了十几步，看见一扇写着072的门。门旁贴着一张褪色的纸。</p>
+<p>纸上写着：三号库，左转，直走，第二个路口。</p>
+<p>「机器还记名字？」</p>
+<p>他把纸揭下来，折成两折，塞进裤袋。</p>
+<p>三号库在第二个路口。门开着，里面堆着旧调音台和黑色设备箱。负责收货的人核对清单，又打开箱子看了一遍。</p>
+<p>「不记。」</p>
+<p>「坏了两个。」那人指着一块功放板。</p>
+<p>「这个烧了。」陈渡说，「那个只是接插件松了。」</p>
+<p>「不记名字怎么找？」</p>
+<p>「你先说能不能用。」</p>
+<p>「能用就行。」</p>
+<p>「按日期。」</p>
+<p>「到底能不能用？」</p>
+<p>「通电能响。接上输入再看。」</p>
+<p>周隼伸手，把工作灯往陈渡那边推了十厘米。灯杆底座压住一张旧电路图，只露出一个线圈符号。</p>
+<p>收货的人把清单推过来。</p>
+<p>陈渡签了字。日期写到八月十七日。</p>
+<p>「他修东西不问你为什么坏。」周隼说。</p>
+<p>他把设备箱放回车后座，关门时看见副驾驶脚垫上放着一只防风毛衣罩。黑色的，套在话筒外面，只露出前端一小截。</p>
+<p>他看了两秒。</p>
+<p>「问了也不能修。」</p>
+<p>那东西不是他的。</p>
+<p>车开回县城用了四个小时。陈渡把货款放进副驾驶储物格，又去城南找了间便宜的旅馆。房间窗户正对后巷。隔壁有人打电话，反复说今晚不能过去。</p>
+<p>「你也不问。」</p>
+<p>他洗完脸，坐在床边修那台皮带松的录音机。机壳是深灰色，按键磨白。拆开后盖，里面少了原配的压带轮。</p>
+<p>他拿出零件盒，找到一只直径相近的换上。皮带没有换，先调了一下张紧。</p>
+<p>陈渡把螺丝拧下来。扣锁里的弹簧弹到地上，在水泥地上滚了两圈，停在电烙铁插头旁。</p>
+<p>通电。</p>
+<p>一百二十赫兹……二百……</p>
+<p>他用刀尖把弹簧拨进零件盒。</p>
+<p>磁带转起来。底噪从喇叭里出来，断断续续。</p>
+<p>陈渡把音量拧小，取出磁带。</p>
+<p>「问不问都一样。」</p>
+<p>标签空白。他拿记号笔在角上写：0817-01。</p>
+<p>第二天他没接活。</p>
+<p>「那台117怎么坏的？」</p>
+<p>旅馆前台的电话响了三声。他接起来，对方说省台那边有东西要送回县城，姓林。</p>
+<p>「什么东西？」</p>
+<p>「没人坏。」</p>
+<p>「一箱磁带。」</p>
+<p>「坏了？」</p>
+<p>「那你为什么换电容？」</p>
+<p>「没坏。」</p>
+<p>「那让我送什么？」</p>
+<p>「鼓包了。」</p>
+<p>「你送到周隼那儿。」</p>
+<p>陈渡握着听筒。</p>
+<p>周隼点了一下头。他拿起那根断了的扎带，用剪钳剪掉坏结，剩下的一段留在手里。</p>
+<p>「周隼？」</p>
+<p>「隼音器修。步行街那家。」</p>
+<p>「三个电容鼓包，还是六个？」</p>
+<p>「谁让你们送的？」</p>
+<p>电话那头停了两秒。</p>
+<p>「换过三个。」</p>
+<p>「林岫说的。」</p>
+<p>「她认识周隼？」</p>
+<p>「还剩三个？」</p>
+<p>「你认识吗？」</p>
+<p>陈渡看着窗台上的磁带机。</p>
+<p>「还剩三个。」</p>
+<p>「认识。」</p>
+<p>「那就送过去。」</p>
+<p>「鼓了没有？」</p>
+<p>挂断电话后，他先退了旅馆房间。</p>
+<p>租的车一天一百八十，押金另算。他把设备箱搬上车，又去城北买了一只新的压带轮。</p>
+<p>「没鼓。」</p>
+<p>「四十五。」</p>
+<p>「三十五。」</p>
+<p>「那你换什么？」</p>
+<p>「你要旧的？」</p>
+<p>「新的。」</p>
+<p>陈渡把新扣锁的螺丝穿回去。</p>
+<p>「四十二。」</p>
+<p>「四十。包邮。」</p>
+<p>「到年限了。「</p>
+<p>老板把零钱塞进抽屉。陈渡多拿了两个五孔插座。</p>
+<p>下午五点二十，他进了步行街。</p>
+<p>周隼把剪钳放回桌面。</p>
+<p>隼音器修的门半开着。周隼坐在门口换吉他弦。桌上摊着一把旧吉他，琴颈伸到街上。弦轴旁放着一只小磁铁。</p>
+<p>陈渡抱着纸箱下车。</p>
+<p>「那就到了。」</p>
+<p>周隼没抬头。</p>
+<p>「你听这个。」</p>
+<p>街口有人推着铁皮车经过，车上压着成捆的纸箱。轮子卡进地砖缝里，倾斜了十几度。骑车的人用脚撑住地面，弯腰扶车。纸箱最上面一只开了封，里面露出一排白瓷碗。</p>
+<p>他捏住最细的弦，轻轻拨了一下。弦音发闷，底部带着一点抖。</p>
+<p>「哪一根？」陈渡问。</p>
+<p>周隼走到门口，把半块卷帘门往上抬了半尺，又放下。</p>
+<p>「三弦。」</p>
+<p>「卷弦器偏了。」</p>
+<p>「今天晚了。」他说。</p>
+<p>周隼抬起眼。</p>
+<p>「你听得出来。」</p>
+<p>「箱放哪儿？」</p>
+<p>「偏不到多少。」</p>
+<p>「三赫兹。」</p>
+<p>」里面。「</p>
+<p>陈渡把纸箱放到工作台边。</p>
+<p>「省台有东西。」他说，「一箱磁带。林岫让我送过来。」</p>
+<p>」磁带怕挤。「</p>
+<p>周隼的手停了。</p>
+<p>「她跟你说了？」</p>
+<p>」木柜有地方。「</p>
+<p>「说了名字。」</p>
+<p>「别的呢？」</p>
+<p>陈渡把纸箱搬到木柜前。周隼挪开两卷旧报纸，腾出一层空格。二十九盘不到了，柜顶只够放十八盘。他量了一遍宽窄，把箱子平放在下层，又将二十四盘分成两叠。</p>
+<p>「没别的。」</p>
+<p>周隼放下卷弦器，擦了一下掌心的锈。</p>
+<p>「三排在里，两排在外。」他说。</p>
+<p>「东西呢？」</p>
+<p>「箱子。」</p>
+<p>「别横放。」</p>
+<p>「打开。」</p>
+<p>陈渡拆开胶带。箱里平码着二十四盘磁带，每盘都用白标签标了编号。最上面一盘是03391。</p>
+<p>「竖放带边会磨。」</p>
+<p>「她以前送过？」</p>
+<p>「送过。」</p>
+<p>「她不让你横放？「</p>
+<p>「多久一次？」</p>
+<p>「看录到什么。」</p>
+<p>」她贴的签。「</p>
+<p>周隼从箱底抽出一盘。标签上的数字是02908，日期写着两年前。</p>
+<p>「这盘在我这里放过三年。」</p>
+<p>周隼从抽屉里取出一张裁好的报纸，铺在两叠之间。</p>
+<p>「她知道吗？」</p>
+<p>「知道。」</p>
+<p>」03291到03308。「</p>
+<p>陈渡又看了看箱里的编号。</p>
+<p>「一共多少？」</p>
+<p>」外面是前面八盘。「</p>
+<p>「她有多少？」</p>
+<p>「我不问这个。」</p>
+<p>」剩下十六盘在里。「</p>
+<p>「箱底有单子。」</p>
+<p>陈渡拆开夹层，抽出一张打印纸。上面只有三行。</p>
+<p>陈渡将编号念了一遍，按数字顺序摆好。最上面那盘03391的标签边缘翘起，他用指腹压了一遍，压不平，便从纸箱里撕下一小段胶带，贴在标签背面。</p>
+<p>编号范围：02908—03416。</p>
+<p>本批数量：509。</p>
+<p>周隼看着那道胶带。</p>
+<p>备用编号：03417。</p>
+<p>陈渡看着最后一行。</p>
+<p>「她不让贴。」</p>
+<p>「备用？」</p>
+<p>周隼把吉他挪到墙边。</p>
+<p>「怕掉就撕掉。」</p>
+<p>「她一直这么写。」</p>
+<p>「留一盘空号？」</p>
+<p>」那你还贴？「</p>
+<p>「不是留。是下一个还没录到。」</p>
+<p>陈渡翻到03416。磁带外壳磨损，卷轴上有指甲划出的白痕。</p>
+<p>」标签掉了就找错。「</p>
+<p>「03417呢？」</p>
+<p>「空的。」</p>
+<p>」她有单子。「</p>
+<p>「什么时候空？」</p>
+<p>「从上个月开始。」</p>
+<p>」单子也会掉。「</p>
+<p>「为什么？」</p>
+<p>周隼拿起桌上的小磁铁，在指间翻了一下。</p>
+<p>周隼从柜底抽出一本硬壳登记簿。封皮上写着」隼音器修「，下面用圆珠笔添了一行：磁带借用。</p>
+<p>「她去录什么了？」</p>
+<p>「你问她。」</p>
+<p>第一页夹着几张车票。最上面一张是去湛江的长途汽车票，日期1990年8月16日。</p>
+<p>「你碰见她了。」</p>
+<p>「她来拿东西。」</p>
+<p>周隼翻到后面。每一行只有日期、编号、取走和归还。</p>
+<p>周隼看着他。</p>
+<p>「她让你送来的。」</p>
+<p>「要登记？」陈渡问。</p>
+<p>「嗯。」</p>
+<p>「没说别的？」</p>
+<p>「要。」</p>
+<p>「没有。」</p>
+<p>陈渡把清单折回去。纸角在手里发出脆响。</p>
+<p>「她签不签？」</p>
+<p>周隼伸出手。</p>
+<p>「给我。」</p>
+<p>「她不签。」</p>
+<p>陈渡把清单递过去。</p>
+<p>周隼没有接纸。他先拿起最上面的03391，对着光看了看带边。</p>
+<p>「那你替她签？」</p>
+<p>「你最近还在改那台117。」</p>
+<p>「还能用。」</p>
+<p>周隼把笔递给他。</p>
+<p>「电容换了几个？」</p>
+<p>「三个。」</p>
+<p>「你送来的。你签。」</p>
+<p>「还有几个？」</p>
+<p>「三个。」</p>
+<p>陈渡翻到最后一页。登记簿上最近一行停在四月十二日，编号03277。后面六个空格都空着。</p>
+<p>周隼点了一下头，把磁带放进柜子。</p>
+<p>「那三个是什么规格？」</p>
+<p>他写下日期：八月十七日。</p>
+<p>「一万微法。」</p>
+<p>「耐压？」</p>
+<p>然后在」取走「一栏停住。</p>
+<p>「五十伏。」</p>
+<p>「别用二十五伏的。」</p>
+<p>「写谁？」</p>
+<p>「我知道。」</p>
+<p>陈渡站在工作台前，手还搭在纸箱边缘。</p>
+<p>」写她的。「</p>
+<p>街上的卷帘门一家接一家拉下。修鞋摊收了摊，卖旧书的卷帘门卡在半截。周隼抬手，把店里的灯打开。</p>
+<p>「她录到过灯管吗？」陈渡问。</p>
+<p>「她没来。」</p>
+<p>「录过。」</p>
+<p>「十二赫兹？」</p>
+<p>」东西到了就算取走。「</p>
+<p>「你怎么知道？」</p>
+<p>「听见了。」</p>
+<p>陈渡写下」林岫「。笔画不重。写完，他又在」归还「栏画了一道横线。</p>
+<p>周隼把磁带一盘盘放进木柜。每盘之间隔着两层旧报纸。</p>
+<p>「她说给省台，没人要。」</p>
+<p>周隼接过本子，看了一眼。</p>
+<p>「她跟我说没人要。」</p>
+<p>「她对谁都说。」</p>
+<p>「你不写自己？」</p>
+<p>「她还要了？」</p>
+<p>「她一直要。」</p>
+<p>」送的不算拿。「</p>
+<p>陈渡看向木柜。03417的位置空着，柜底露出一块深色木板。</p>
+<p>「为什么要编号？」</p>
+<p>」你也没问她。「</p>
+<p>「好找。」</p>
+<p>「只是为了好找？」</p>
+<p>」她没问。「</p>
+<p>周隼没回答。他从抽屉里取出一只万用表，表笔夹在指间，转身去测一只落地的旧音箱。</p>
+<p>「频率稳定吗？」陈渡问。</p>
+<p>周隼把登记簿合上，压在磁带柜的钥匙下面。</p>
+<p>「哪一段？」</p>
+<p>「她录的。」</p>
+<p>柜台收音机里的路况节目结束了。主持人报时：下午六点十二分。接着是一首老歌，吉他扫弦从喇叭左边过来。</p>
+<p>「十二赫兹一直有。」</p>
+<p>「别的呢？」</p>
+<p>陈渡只听到前奏。唱声进来时，他把扣锁装回设备箱，按了两次，扣住。</p>
+<p>「现场都有。」</p>
+<p>「她不修？」</p>
+<p>周隼在抽屉里翻找了一阵，拿出一卷黑色绝缘胶带。</p>
+<p>「她说不加东西。」</p>
+<p>陈渡摸出记号笔，在清单背面写下一行：灯管，12Hz。</p>
+<p>」这个给你。「</p>
+<p>周隼看了他一眼。</p>
+<p>「你要改？」</p>
+<p>陈渡看了看胶带。外圈已经被剪得只剩半卷，边缘沾着细灰。</p>
+<p>「先测。」</p>
+<p>「她不会用。」</p>
+<p>「剩多少？」</p>
+<p>「她说什么时候用？」</p>
+<p>「她没说。」</p>
+<p>「十二米左右。」</p>
+<p>「那就还是可能用。」</p>
+<p>周隼把万用表夹在腋下，手没有停。</p>
+<p>」够用。「</p>
+<p>「你怕它坏。」</p>
+<p>「东西会坏。」</p>
+<p>」你拿回去。「</p>
+<p>「她怕它原样。」</p>
+<p>陈渡抬起头。</p>
+<p>陈渡没有接。</p>
+<p>周隼已经在测第二只喇叭。他把表笔换到另一个孔，嘴里念着数字。</p>
+<p>「一百二十赫兹……二百……一百八十……」</p>
+<p>「先通电。」</p>
+<p>外面一辆送餐车按了两声喇叭。磁带柜的玻璃门跟着震了一下。</p>
+<p>陈渡把记号笔盖上。</p>
+<p>」线头要包。「</p>
+<p>「03417录什么？」他问。</p>
+<p>周隼没有停手。</p>
+<p>」我有。「</p>
+<p>「你问她。」</p>
+<p>「她什么时候来拿？」</p>
+<p>他拉开设备箱侧袋，里面有一卷灰色胶带。边角受潮翘起，摸上去发黏。</p>
+<p>「你问她。」</p>
+<p>「她留了电话吗？」</p>
+<p>周隼把那卷黑色胶带放到工具台上。</p>
+<p>周隼从工作台边拿起一只旧手机。屏幕右上角缺了一角，按键磨得发亮。</p>
+<p>他翻了两次，递过来。</p>
+<p>「117也缺胶带？」</p>
+<p>「省台栏目组。这个号打不通，就发短信。」</p>
+<p>陈渡没有接。</p>
+<p>」磁带机不用这个。「</p>
+<p>「你存一下。」周隼说，「她不是每次都带东西来。」</p>
+<p>「我送到了。」</p>
+<p>「那你要多少？」</p>
+<p>「送到不算。」</p>
+<p>「什么才算？」</p>
+<p>」十二米太多。」</p>
+<p>周隼把万用表收回来，卷好表笔。</p>
+<p>「她问你叫什么。」</p>
+<p>陈渡抽出自己的胶带，撕下二十厘米。胶带粘在指腹上，他用牙咬住一端，撕开。</p>
+<p>陈渡想起走廊里那个问题。</p>
+<p>「她问了。」</p>
+<p>周隼看着他把露出的线头缠了三圈，再用刀片割断。</p>
+<p>「你怎么答的？」</p>
+<p>「陈渡。」</p>
+<p>「不是没坏么？」陈渡问。</p>
+<p>周隼把手机放在桌上。</p>
+<p>「她记不记，跟你说不说，不一样。」</p>
+<p>「电容快到年限了。」</p>
+<p>陈渡拿过手机，在通讯录里输入林岫的号码。</p>
+<p>他只输入了号码，没有姓名。</p>
+<p>周隼说。</p>
+<p>周隼看着他按完最后一个数字。</p>
+<p>「你会打？」</p>
+<p>「鼓过几个？」</p>
+<p>「东西坏了会打。」</p>
+<p>「她那里没有坏东西。」</p>
+<p>「还在箱子里。」</p>
+<p>陈渡收起手机。</p>
+<p>「那就等她先打。」</p>
+<p>周隼低头继续量电阻。数值从表屏上跳出来，一个一个变过去。</p>
+<p>陈渡把纸箱折好。箱盖内侧粘着一张便签，是林岫的字迹。</p>
+<p>上面只有一行：</p>
+<p>03417，空号。不要让任何人占用。</p>
+<p>陈渡把便签撕下来，折好，放进上衣口袋。</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>慢车</tag>
+        <tag>小说</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>成本核算</title>
+    <url>/%E5%B7%A5%E4%BD%9C/fb428c48.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="403034e3763252e0a1d875383418dced566fe36d7f58183614979363551524dd">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d01b15f88bbf2f997a33ad0e4769faa2f3731a35f9c12d7a5ad97247c985de51ed62c20bb6ba6113954fea16ed76707f8571dfaa584b4e3826985032b10288f7e13b93b331fc92e4ebc21cf2f3989f25ee250dd18448f86303d9d929567d54c0a64b2443cfcf3f54aaead2719e45509f355f0caa4661d7651db96a887b5ef79aae101fb73978cce5fa93b24287b98f2639e871f614db934381ee4e241a12fd224faedd825390e487d9287e6e7e03f0f00f6d33956db5549ab690eaa4bb73d57207b7847ceb796384c2d90aa03b08f9b7e3ba9a9a6c7120e569cfed730553994f200ff398b4a63e437ef87626081679e9d7691c9f8e574971d814fc42fa4c170c044f0bcc2d5227ab77afa36e2413a79cc9bf8212fbd04d467345d1da089614c3541e6a0e5e09c42f977cf917b15799600e6b55dfc9e445c2f9dd638939b32bad9f629832be56693f9f509d3cc0be74cc147cd44bc6700722b45b4a11e2ad51071ae0ce795058801497056bc30e1461d624e3ef86c45e64a651b1559f1031fec9ae6443177a5ba67cbe961cc2ee7bcb59a3cb88af0ba1c243d1a9549addf257a8fd8e64d179401465d805f41a2e032f4d5da29b43777ae9d1116ecc9094f9e86b387ece6c26fc4d30c9eaf9739da84f69da0b4ea41e78627adedac8bea9396bbb6806b40612b5c1bbe434a7b618df8245da6fadf861fcd1fe52c022ff5d00bebff5e77aaeb566e6771ee0c72ec95fba73eeda6035933d452127a7eb41d143e35c090114ecb95da3cd9e20fc000491f57605434acdc82a821345325b6fe27933402f57f3bfebbc23ae6d83578dea596364ce1d2de5344a20bc8185ddd344defea04ac49210125785b24cb993cbbd61e9d5c92b2e20c482ae4a367fe05eb0ea7756beada75cdfea44c37c1962ee408896582b27f0bd400fc35a73e25bcee8d14bc17d447e2eed7fcd9f800ab220101df770a45c2d9699e451dd225e650418c1bd3849960f965551be548eaf21d51928281ebbb761aeec3620bdcf2a58c461c611478e033254ad3cb3a1351b121f9dfa505a687e712a02f53d2d02d638bac0b3578a5e23f9fdaf699e32d58790b16e0397719a2e44505699e7dbba8e040b17a880f73d0aeeba704cbd5c15603c1dcee81e33633310b859c124a1c3c09bd063b5efb8e220c37583cc40dc155b0e30339572da533b70d8f084119e20b2f504f375a0e0076518afd45f70f61f893d65b14088c5a597e13deb62b6d0f0f64df8149522f1e5e7156b682aa8d639097e18fff4b2d8c57dc60d8625da2cecc8042490337199a41ba03f080582b97d39be52551ffacb3c2fb7c5606da03a13886c69d303864d35430398a00eecac17c7b5717f06dd40d5ab1a73f0465d54332570eb748cbb97afd416422b5b2f3bd679a080b9cc94199d8e90ee83d2b85ffa93528e020c93e5cfbc93875fc96ed4277efcf4d747686ef84f784204f1dec6588c829002c6919354b5cf23beb81b81b4ba5e9033d81bd5d1443cdb999f55c0996e9d02db7a7c25bc2ecf7f2cef76bd2c964a9934db64580e072eab8f721027d5ec8fb66aa9fec34f2f3b190cdccde6603f11c0f85f2e92f83f4082cd378982b2b4a742cb760a4137f33a9bb2da5f4a450eb5d05392221eed47c59399ed95b514557f3fb468293b94ac388d4119a167dca4b4d90dfef7310fa4c69d1b945d28f4322685a6708a142d355cfb6a5dfcf0819b8bbedb88a886828dfb0ef0919bfda0ab3a12381f980cd4738b6245d2960713d6f531563bc42af3589ce9fa03f1a8ca8f4b10b138ef17d6e3ae7a0e5c529ddf83432ec32c5d838bce16c4e10806956318e4b4f5e85c6af9aa2648d595e6a3155d6250d721f172a7cff78aac9a6b69b364d3aace867e838f95c5731f6a8c1d2faf055f8bca28ac6f80ac18f0061d41e8757bbcdcd29393a521c68fada0ef5c23c5a898792ddf530072b98ab37a519e76be5318ee82b88566a41f54cc929afc6c6c1887fb7323f8ef4d9773824b7d32b48a551ba4f2080e9517fe665260c20f1756351b43c77eced10722a926ef5ecdd3379acd3577b3e7fac6e38fb611d6f5465c809c7ec9015dd013f74e8039e30e138919f9f2d7b0d084a8c41bfe3322d87a0aeb6d40c902e473b91336a439dfac7e0e817a3978ad95b6583f07d9176f9e520a4fd11ac158a8f51d1012cbe8344ecb5bf4e81a8a5e00ee4e3edf3d66652e61fc56b1e8d71765486de4b7f802db8f10bf074fd207b5e933f4d02091ccd16fefe8ccf2e2e6e4feb487c9c43e311a33ec49adafe05da42685bbe4aa9e578e34b54dcfd1c795d6d3a04cc88085504aafb3d624fa7845a7fdb2d940b8370cfec5f6ee8c6604ada6ec88bba256584f049076476224a7777b67d04f09bfbe7366d5703382ce66642f94fd4cd5a6b3ddf66245514e1b976b1d4168361ab42f1bc5a103467e4225716042556a1d128e0c87ec1370df9e7f10e23b99c0a203ad9f35a8299e1d365fe3c35dc0e639aabbe5e3a06581dbad5be30e4d591ff16a74a4b29a066fe6d26adce8caec90688063fc3f21ef8ff09e8de081bc9528b39c7779107bfe0c52326c1d913e9c9a3cc9bde78e475944bd927923e9d3c70a48b608c95d3e6293e14d6378429de2051171bd75974afb3fe63f59d988e4e3592f473cd186b864fce54e8ebe7212dc12a630ac0fdbd4d416e4064549fd1683cfa3e43330b717de74222a5dc20affda36e381f36f7a4ba90d82425a22a179f19f400417d5daf3072ddcde25f25f429e13550608229a01fbd0b0d549168374f0518e0bfca4919a9b52c7b39f5ea57bdea3447a683891624bdb619459913c6b6ebf4827ee4ade374f83ea6d82127edcdbbda1885a238e0bcac36b70b61e6a5496cc726942c540e01ba3954e297939eb0f9d80c4abb968f6d9ddd92a5110863eac74a47d11dec7d99332c39b4c76678f859</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-wave">
+      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>工作</category>
+      </categories>
+  </entry>
+  <entry>
     <title>慢车 03：那台机器</title>
     <url>/%E5%B0%8F%E8%AF%B4/56c829bc.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>螺丝刀在第三颗螺丝上打了两次滑。</p>
@@ -12796,28 +13368,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
         <tag>慢车</tag>
         <tag>小说</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>成本核算</title>
-    <url>/%E5%B7%A5%E4%BD%9C/fb428c48.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="403034e3763252e0a1d875383418dced566fe36d7f58183614979363551524dd">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d01b15f88bbf2f997a33ad0e4769faa2f3731a35f9c12d7a5ad97247c985de51ed62c20bb6ba6113954fea16ed76707f8571dfaa584b4e3826985032b10288f7e13b93b331fc92e4ebc21cf2f3989f25ee250dd18448f86303d9d929567d54c0a64b2443cfcf3f54aaead2719e45509f355f0caa4661d7651db96a887b5ef79aae101fb73978cce5fa93b24287b98f2639e871f614db934381ee4e241a12fd224faedd825390e487d9287e6e7e03f0f00f6d33956db5549ab690eaa4bb73d57207b7847ceb796384c2d90aa03b08f9b7e3ba9a9a6c7120e569cfed730553994f200ff398b4a63e437ef87626081679e9d7691c9f8e574971d814fc42fa4c170c044f0bcc2d5227ab77afa36e2413a79cc9bf8212fbd04d467345d1da089614c3541e6a0e5e09c42f977cf917b15799600e6b55dfc9e445c2f9dd638939b32bad9f629832be56693f9f509d3cc0be74cc147cd44bc6700722b45b4a11e2ad51071ae0ce795058801497056bc30e1461d624e3ef86c45e64a651b1559f1031fec9ae6443177a5ba67cbe961cc2ee7bcb59a3cb88af0ba1c243d1a9549addf257a8fd8e64d179401465d805f41a2e032f4d5da29b43777ae9d1116ecc9094f9e86b387ece6c26fc4d30c9eaf9739da84f69da0b4ea41e78627adedac8bea9396bbb6806b40612b5c1bbe434a7b618df8245da6fadf861fcd1fe52c022ff5d00bebff5e77aaeb566e6771ee0c72ec95fba73eeda6035933d452127a7eb41d143e35c090114ecb95da3cd9e20fc000491f57605434acdc82a821345325b6fe27933402f57f3bfebbc23ae6d83578dea596364ce1d2de5344a20bc8185ddd344defea04ac49210125785b24cb993cbbd61e9d5c92b2e20c482ae4a367fe05eb0ea7756beada75cdfea44c37c1962ee408896582b27f0bd400fc35a73e25bcee8d14bc17d447e2eed7fcd9f800ab220101df770a45c2d9699e451dd225e650418c1bd3849960f965551be548eaf21d51928281ebbb761aeec3620bdcf2a58c461c611478e033254ad3cb3a1351b121f9dfa505a687e712a02f53d2d02d638bac0b3578a5e23f9fdaf699e32d58790b16e0397719a2e44505699e7dbba8e040b17a880f73d0aeeba704cbd5c15603c1dcee81e33633310b859c124a1c3c09bd063b5efb8e220c37583cc40dc155b0e30339572da533b70d8f084119e20b2f504f375a0e0076518afd45f70f61f893d65b14088c5a597e13deb62b6d0f0f64df8149522f1e5e7156b682aa8d639097e18fff4b2d8c57dc60d8625da2cecc8042490337199a41ba03f080582b97d39be52551ffacb3c2fb7c5606da03a13886c69d303864d35430398a00eecac17c7b5717f06dd40d5ab1a73f0465d54332570eb748cbb97afd416422b5b2f3bd679a080b9cc94199d8e90ee83d2b85ffa93528e020c93e5cfbc93875fc96ed4277efcf4d747686ef84f784204f1dec6588c829002c6919354b5cf23beb81b81b4ba5e9033d81bd5d1443cdb999f55c0996e9d02db7a7c25bc2ecf7f2cef76bd2c964a9934db64580e072eab8f721027d5ec8fb66aa9fec34f2f3b190cdccde6603f11c0f85f2e92f83f4082cd378982b2b4a742cb760a4137f33a9bb2da5f4a450eb5d05392221eed47c59399ed95b514557f3fb468293b94ac388d4119a167dca4b4d90dfef7310fa4c69d1b945d28f4322685a6708a142d355cfb6a5dfcf0819b8bbedb88a886828dfb0ef0919bfda0ab3a12381f980cd4738b6245d2960713d6f531563bc42af3589ce9fa03f1a8ca8f4b10b138ef17d6e3ae7a0e5c529ddf83432ec32c5d838bce16c4e10806956318e4b4f5e85c6af9aa2648d595e6a3155d6250d721f172a7cff78aac9a6b69b364d3aace867e838f95c5731f6a8c1d2faf055f8bca28ac6f80ac18f0061d41e8757bbcdcd29393a521c68fada0ef5c23c5a898792ddf530072b98ab37a519e76be5318ee82b88566a41f54cc929afc6c6c1887fb7323f8ef4d9773824b7d32b48a551ba4f2080e9517fe665260c20f1756351b43c77eced10722a926ef5ecdd3379acd3577b3e7fac6e38fb611d6f5465c809c7ec9015dd013f74e8039e30e138919f9f2d7b0d084a8c41bfe3322d87a0aeb6d40c902e473b91336a439dfac7e0e817a3978ad95b6583f07d9176f9e520a4fd11ac158a8f51d1012cbe8344ecb5bf4e81a8a5e00ee4e3edf3d66652e61fc56b1e8d71765486de4b7f802db8f10bf074fd207b5e933f4d02091ccd16fefe8ccf2e2e6e4feb487c9c43e311a33ec49adafe05da42685bbe4aa9e578e34b54dcfd1c795d6d3a04cc88085504aafb3d624fa7845a7fdb2d940b8370cfec5f6ee8c6604ada6ec88bba256584f049076476224a7777b67d04f09bfbe7366d5703382ce66642f94fd4cd5a6b3ddf66245514e1b976b1d4168361ab42f1bc5a103467e4225716042556a1d128e0c87ec1370df9e7f10e23b99c0a203ad9f35a8299e1d365fe3c35dc0e639aabbe5e3a06581dbad5be30e4d591ff16a74a4b29a066fe6d26adce8caec90688063fc3f21ef8ff09e8de081bc9528b39c7779107bfe0c52326c1d913e9c9a3cc9bde78e475944bd927923e9d3c70a48b608c95d3e6293e14d6378429de2051171bd75974afb3fe63f59d988e4e3592f473cd186b864fce54e8ebe7212dc12a630ac0fdbd4d416e4064549fd1683cfa3e43330b717de74222a5dc20affda36e381f36f7a4ba90d82425a22a179f19f400417d5daf3072ddcde25f25f429e13550608229a01fbd0b0d549168374f0518e0bfca4919a9b52c7b39f5ea57bdea3447a683891624bdb619459913c6b6ebf4827ee4ade374f83ea6d82127edcdbbda1885a238e0bcac36b70b61e6a5496cc726942c540e01ba3954e297939eb0f9d80c4abb968f6d9ddd92a5110863eac74a47d11dec7d99332c39b4c76678f859</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-wave">
-      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
   </entry>
   <entry>
     <title>我们不像诗歌</title>
@@ -17404,12 +17954,12 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
     <title>路</title>
     <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-        <div id="aplayer-uCpIaFNj" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-TPjjqGFH" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-uCpIaFNj"),
+            element: document.getElementById("aplayer-TPjjqGFH"),
             narrow: false,
             autoplay: true,
             showlrc: false,
