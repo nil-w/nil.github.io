@@ -10720,6 +10720,21 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
+    <title>基于k8s、traefik、springboot的微服务实践</title>
+    <url>/%E5%B7%A5%E4%BD%9C/3382022550.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>]]></content>
+      <categories>
+        <category>工作</category>
+      </categories>
+      <tags>
+        <tag>k8s</tag>
+        <tag>docker</tag>
+        <tag>容器技术</tag>
+        <tag>traefik2</tag>
+        <tag>springboot</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>大盘鸡🐔</title>
     <url>/%E8%8F%9C%E8%B0%B1/c43e7c0d.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>吃鸡最痛快的吃法之一，一定有大盘鸡。</p>
@@ -10818,21 +10833,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       <tags>
         <tag>大盘鸡</tag>
         <tag>美食</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>基于k8s、traefik、springboot的微服务实践</title>
-    <url>/%E5%B7%A5%E4%BD%9C/3382022550.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-      <tags>
-        <tag>k8s</tag>
-        <tag>docker</tag>
-        <tag>容器技术</tag>
-        <tag>traefik2</tag>
-        <tag>springboot</tag>
       </tags>
   </entry>
   <entry>
@@ -10935,7 +10935,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
   </entry>
   <entry>
     <title>慢车 01：十一小时</title>
-    <url>/%E5%B0%8F%E8%AF%B4/1fb89b8c.html</url>
+    <url>/%E5%B0%8F%E8%AF%B4/%E6%85%A2%E8%BD%A6/1fb89b8c.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>列车员把车门合上，陈渡的木箱撞在车厢连接处的铁链上。</p>
 <p>咚。闷的。箱子外面裹着旧报纸，胶带横着缠了七八道，边角都翘起来了。</p>
 <p>他一手托底，一手扶住门框，等两节车接稳了才往里走。</p>
@@ -11364,6 +11364,7 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 ]]></content>
       <categories>
         <category>小说</category>
+        <category>慢车</category>
       </categories>
       <tags>
         <tag>慢车</tag>
@@ -15977,12 +15978,12 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
     <title>路</title>
     <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-        <div id="aplayer-OleYwuBh" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-lyRrvTFc" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-OleYwuBh"),
+            element: document.getElementById("aplayer-lyRrvTFc"),
             narrow: false,
             autoplay: true,
             showlrc: false,
