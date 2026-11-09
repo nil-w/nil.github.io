@@ -2990,11 +2990,52 @@
       </tags>
   </entry>
   <entry>
+    <title>Rust与WebGPU正在重塑三维开源工具链</title>
+    <url>/%E6%8A%80%E6%9C%AF/4bf0c0d0.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="rust与webgpu正在重塑三维开源工具链"><a class="markdownIt-Anchor" href="#rust与webgpu正在重塑三维开源工具链"></a> Rust与WebGPU正在重塑三维开源工具链</h2>
+<p>独立开发者构建专业级 3D 应用的成本，正在从“掌握一整套原生图形工程”转向“选对底层工具”。我最初关注 WebGPU，理由很简单：浏览器里能跑 GPU 计算，部署和分发却更轻。真正让我改变看法的，是并发安全与图形栈开始同时进入开源工具链。Rust负责把系统边界做稳，WebGPU负责把渲染能力铺开，两者组合让小团队有机会做出可用、可维护的 3D 产品。</p>
+<p>这类应用过去常被大型公司包办。底层代码多，平台差异多，维护成本也高。独立开发者如果同时处理内存、线程、窗口和 GPU 资源，很容易停在原型阶段。能完成演示的产品少，能长期更新的更少。</p>
+<p>Ketchup 3D 的出现提供了一个具体样本。它基于 Web 技术构建 3D 应用，文章链接在 <code>https://ketchup3d.github.io/app/</code>，对应 Hacker News 条目的 ID 是 <code>50418176</code>。该讨论获得 <code>Points</code> 124，评论 22 条。数据规模不大，却足以说明开发者正在关注这条路线。</p>
+<blockquote>
+<p>一个产品链接，加上 124 Points 和 22 条评论，背后是独立开发者对轻量 3D 工具链的真实兴趣。</p>
+</blockquote>
+<h2 id="并发安全让复杂功能更容易维护"><a class="markdownIt-Anchor" href="#并发安全让复杂功能更容易维护"></a> 并发安全让复杂功能更容易维护</h2>
+<p>Rust 对 3D 工具链最重要的贡献，是把许多运行期错误提前到编译阶段。应用场景复杂以后，场景图、资源加载、后台任务和渲染线程会同时工作。资源生命周期若管理不严，崩溃和竞态会直接吞掉开发时间。</p>
+<p>我以前在《集群、负载均衡、分布式》（2018-11-17）里讨论过并行计算。那时我更关心多台机器如何分工，边界集中在集群、负载均衡与分布式系统。现在看单机 3D 应用，边界已经向下移动到线程、任务队列和图形资源。多核 CPU 与 GPU 协同，也很像一个小型计算系统。</p>
+<p>Rust 的所有权模型让资源归属变得清楚。谁创建，谁修改，何时释放，都能通过代码结构表达出来。开发者仍会犯错，但错误更容易被编译器拦住。对预算有限的小团队，这种减少调试时间的能力比某项渲染特性更有价值。</p>
+<p><span class="hl">专业级 3D 应用的门槛，正在从图形算法能力转向系统组织能力。</span></p>
+<p>这也改变了独立开发者的产品策略。先把导入、编辑、预览、导出等主流程做稳，再逐步增加高级功能，比追求完整功能表更现实。工具链可靠，迭代速度才不会随着功能增加而快速下降。</p>
+<blockquote>
+<p>124 Points 并不能证明 Rust 与 WebGPU 已经赢得市场，却说明这种组合进入了开发者的视野。</p>
+</blockquote>
+<h2 id="webgpu让浏览器成为图形运行入口"><a class="markdownIt-Anchor" href="#webgpu让浏览器成为图形运行入口"></a> WebGPU让浏览器成为图形运行入口</h2>
+<p>WebGPU 的吸引力集中在两点：统一的 GPU 访问方式，以及浏览器原生分发。开发者无需先解决复杂安装流程，用户打开链接就能使用。对独立产品来说，这会直接影响试用、分享和付费转化。</p>
+<p>过去开发 Web 端 3D 功能，团队常在 WebGL、浏览器兼容性和性能之间取舍。WebGPU 提供更现代的图形接口，能更直接地利用 GPU 能力。对模型查看、材质预览和轻量编辑而言，这条路线的上限更高。</p>
+<p>我仍有一个疑问：复杂桌面场景能否只靠 WebGPU 支撑。浏览器标签页的资源限制、后台调度、文件系统权限和设备差异，都可能形成新的成本。开源项目节省的是分发负担，有时会把问题转交给兼容性维护。</p>
+<p>所以，独立开发者需要先确认产品主要在浏览器运行，还是需要深度接入本地文件系统。场景不同，技术组合也会不同。</p>
+<blockquote>
+<p>22 条评论里是否都在讨论实际部署，我无法从摘要确认；但 124 Points 已经足以构成一次值得跟踪的开发者信号。</p>
+</blockquote>
+<h2 id="低成本不等于没有工程成本"><a class="markdownIt-Anchor" href="#低成本不等于没有工程成本"></a> 低成本不等于没有工程成本</h2>
+<p>《0. 低代码》（2022-12-22）让我重新审视了“低代码”这个概念。可视化配置、自动生成和数据编排确实能减少代码量，但专业 3D 应用仍有大量底层工作。低代码减少了界面搭建成本，没有自动消除并发、资源管理和图形接口适配。</p>
+<p>Rust 与 WebGPU 能降低一部分门槛。Rust 压缩并发安全成本，WebGPU 压缩部署与跨平台成本。它们没有消灭工程成本，只是把投入从重复造轮子，转向产品本身。</p>
+<p>我更愿意把这类项目看成新的开发分工。独立开发者不必从零维护所有底层模块，可以调用成熟接口，把精力放在交互、工作流和输出质量上。Ketchup 3D 这类案例证明，这条路线已经能进入真实工具领域。</p>
+<p><span class="hl">开源图形栈提供杠杆，独立开发者负责决定产品价值。</span></p>
+<p>真正值得追踪的指标也很简单：安装步骤能否继续减少，浏览器性能能否覆盖更多场景，以及开源维护者能否承受长期兼容成本。Rust 与 WebGPU 正在降低专业级 3D 应用的进入成本；下一步会由真实用户规模来决定，它们能否支撑长期产品。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>科技停止于21世纪初，AI将沦为确定性副产品</title>
     <url>/%E6%8A%80%E6%9C%AF/2203b34d.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="技术在2007年停下了吗"><a class="markdownIt-Anchor" href="#技术在2007年停下了吗"></a> 技术在2007年停下了吗</h2>
 <p><span class="hl">科技并未停止，但它正在失去改造生活的目标。</span></p>
-<p>我最初把“科技停止于21世纪初”理解成怀旧。回到那几年，人工智能还没 pervasive，智能手机也没吞掉日常，手机只是工具，互联网也没成为所有人生活的底座。</p>
+<p>我最初把“科技停止于21世纪初”理解成怀旧。回到那几年，人工智能还没普及，智能手机也没吞掉日常，手机只是工具，互联网也没成为所有人生活的底座。</p>
 <p>可那篇文章停在2007年6月，恰好让我重新想了一遍这个问题。</p>
 <blockquote>
 <p>如果技术继续沿着原来的方向前进，它究竟会把人带到哪里？</p>
@@ -3029,47 +3070,6 @@
 <p>如果一项产品让效率提高，却让人的注意力、判断和行动持续被接管，它就不该只拿“方便”来解释。便利如果以失去自主为代价，便利本身也需要重新定价。</p>
 <p>我到现在也没搞明白，2007年6月究竟是文章作者记忆里的黄金时刻，还是一个更普通的起点。人总容易把某个阶段想象成平衡点，再把后来的变化全部归咎于技术。</p>
 <p>也许技术从来没有真正停过。停下的是我们用技术改善生活的愿望。</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>技术</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Rust与WebGPU正在重塑三维开源工具链</title>
-    <url>/%E6%8A%80%E6%9C%AF/4bf0c0d0.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="rust与webgpu正在重塑三维开源工具链"><a class="markdownIt-Anchor" href="#rust与webgpu正在重塑三维开源工具链"></a> Rust与WebGPU正在重塑三维开源工具链</h2>
-<p>独立开发者构建专业级 3D 应用的成本，正在从“掌握一整套原生图形工程”转向“选对底层工具”。我最初关注 WebGPU，理由很简单：浏览器里能跑 GPU 计算，部署和分发却更轻。真正让我改变看法的，是并发安全与图形栈开始同时进入开源工具链。Rust负责把系统边界做稳，WebGPU负责把渲染能力铺开，两者组合让小团队有机会做出可用、可维护的 3D 产品。</p>
-<p>这类应用过去常被大型公司包办。底层代码多，平台差异多，维护成本也高。独立开发者如果同时处理内存、线程、窗口和 GPU 资源，很容易停在原型阶段。能完成演示的产品少，能长期更新的更少。</p>
-<p>Ketchup 3D 的出现提供了一个具体样本。它基于 Web 技术构建 3D 应用，文章链接在 <code>https://ketchup3d.github.io/app/</code>，对应 Hacker News 条目的 ID 是 <code>50418176</code>。该讨论获得 <code>Points</code> 124，评论 22 条。数据规模不大，却足以说明开发者正在关注这条路线。</p>
-<blockquote>
-<p>一个产品链接，加上 124 Points 和 22 条评论，背后是独立开发者对轻量 3D 工具链的真实兴趣。</p>
-</blockquote>
-<h2 id="并发安全让复杂功能更容易维护"><a class="markdownIt-Anchor" href="#并发安全让复杂功能更容易维护"></a> 并发安全让复杂功能更容易维护</h2>
-<p>Rust 对 3D 工具链最重要的贡献，是把许多运行期错误提前到编译阶段。应用场景复杂以后，场景图、资源加载、后台任务和渲染线程会同时工作。资源生命周期若管理不严，崩溃和竞态会直接吞掉开发时间。</p>
-<p>我以前在《集群、负载均衡、分布式》（2018-11-17）里讨论过并行计算。那时我更关心多台机器如何分工，边界集中在集群、负载均衡与分布式系统。现在看单机 3D 应用，边界已经向下移动到线程、任务队列和图形资源。多核 CPU 与 GPU 协同，也很像一个小型计算系统。</p>
-<p>Rust 的所有权模型让资源归属变得清楚。谁创建，谁修改，何时释放，都能通过代码结构表达出来。开发者仍会犯错，但错误更容易被编译器拦住。对预算有限的小团队，这种减少调试时间的能力比某项渲染特性更有价值。</p>
-<p><span class="hl">专业级 3D 应用的门槛，正在从图形算法能力转向系统组织能力。</span></p>
-<p>这也改变了独立开发者的产品策略。先把导入、编辑、预览、导出等主流程做稳，再逐步增加高级功能，比追求完整功能表更现实。工具链可靠，迭代速度才不会随着功能增加而快速下降。</p>
-<blockquote>
-<p>124 Points 并不能证明 Rust 与 WebGPU 已经赢得市场，却说明这种组合进入了开发者的视野。</p>
-</blockquote>
-<h2 id="webgpu让浏览器成为图形运行入口"><a class="markdownIt-Anchor" href="#webgpu让浏览器成为图形运行入口"></a> WebGPU让浏览器成为图形运行入口</h2>
-<p>WebGPU 的吸引力集中在两点：统一的 GPU 访问方式，以及浏览器原生分发。开发者无需先解决复杂安装流程，用户打开链接就能使用。对独立产品来说，这会直接影响试用、分享和付费转化。</p>
-<p>过去开发 Web 端 3D 功能，团队常在 WebGL、浏览器兼容性和性能之间取舍。WebGPU 提供更现代的图形接口，能更直接地利用 GPU 能力。对模型查看、材质预览和轻量编辑而言，这条路线的上限更高。</p>
-<p>我仍有一个疑问：复杂桌面场景能否只靠 WebGPU 支撑。浏览器标签页的资源限制、后台调度、文件系统权限和设备差异，都可能形成新的成本。开源项目节省的是分发负担，有时会把问题转交给兼容性维护。</p>
-<p>所以，独立开发者需要先确认产品主要在浏览器运行，还是需要深度接入本地文件系统。场景不同，技术组合也会不同。</p>
-<blockquote>
-<p>22 条评论里是否都在讨论实际部署，我无法从摘要确认；但 124 Points 已经足以构成一次值得跟踪的开发者信号。</p>
-</blockquote>
-<h2 id="低成本不等于没有工程成本"><a class="markdownIt-Anchor" href="#低成本不等于没有工程成本"></a> 低成本不等于没有工程成本</h2>
-<p>《0. 低代码》（<a href="http://xn--0--df3cwpq49n.md">0-低代码.md</a>）让我重新审视了“低代码”这个概念。可视化配置、自动生成和数据编排确实能减少代码量，但专业 3D 应用仍有大量底层工作。低代码减少了界面搭建成本，没有自动消除并发、资源管理和图形接口适配。</p>
-<p>Rust 与 WebGPU 能降低一部分门槛。Rust 压缩并发安全成本，WebGPU 压缩部署与跨平台成本。它们没有消灭工程成本，只是把投入从重复造轮子，转向产品本身。</p>
-<p>我更愿意把这类项目看成新的开发分工。独立开发者不必从零维护所有底层模块，可以调用成熟接口，把精力放在交互、工作流和输出质量上。Ketchup 3D 这类案例证明，这条路线已经能进入真实工具领域。</p>
-<p><span class="hl">开源图形栈提供杠杆，独立开发者负责决定产品价值。</span></p>
-<p>真正值得追踪的指标也很简单：安装步骤能否继续减少，浏览器性能能否覆盖更多场景，以及开源维护者能否承受长期兼容成本。Rust 与 WebGPU 正在降低专业级 3D 应用的进入成本；下一步会由真实用户规模来决定，它们能否支撑长期产品。</p>
 ]]></content>
       <categories>
         <category>技术</category>
@@ -4299,35 +4299,6 @@ section 运维阶段
       </tags>
   </entry>
   <entry>
-    <title>rust-结构定义和实例化</title>
-    <url>/%E5%AD%A6%E4%B9%A0/e0d5ed17.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="结构定义"><a class="markdownIt-Anchor" href="#结构定义"></a> 结构定义</h2>
-<blockquote>
-<p>定义结构体，需要使用 <code>struct</code> 关键字并为整个结构体提供一个名字。结构体的名字需要描述它所组合的数据的意义。接着，在大括号中，定义每一部分数据的名字和类型，我们称为 <strong>字段</strong>（<em>field</em>）。</p>
-</blockquote>
-<p>以下演示了结构定义、打印对象、debug打印对象；</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>可以定义有字段和无字段结构，包括类似<code>Tuple</code>（元组）的方式定义；</p>
-</li>
-<li class="lvl-2">
-<p><code>println!</code>和<code>dbg!</code>打印对象需要在结构上添加外部属性 <code>#[derive(Debug)]</code>；</p>
-</li>
-<li class="lvl-2">
-<p><code>dbg!</code>宏打印需要注意值引用；</p>
-</li>
-</ul>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    active: <span class="type">bool</span>,</span><br><span class="line">    username: <span class="type">String</span>,</span><br><span class="line">    email: <span class="type">String</span>,</span><br><span class="line">    sign_in_count: <span class="type">u64</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Color</span>(<span class="type">i32</span>,<span class="type">i32</span>,<span class="type">i32</span>);</span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Point</span>(<span class="type">i32</span>,<span class="type">i32</span>, <span class="type">i32</span>);</span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">AlwaysEqual</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Square</span>(<span class="type">u32</span>,<span class="type">u32</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Hello, world!&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">user</span> =  <span class="title function_ invoke__">build_user</span>(<span class="string">&quot;dong33@163.com&quot;</span>,<span class="string">&quot;dong33&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;user is &#123;:?&#125;&quot;</span>,user);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">user1</span> = User&#123;</span><br><span class="line">        active: <span class="literal">true</span>,</span><br><span class="line">        username: user.username,</span><br><span class="line">        email: user.email,</span><br><span class="line">        sign_in_count: <span class="number">1</span>,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;user1 is &#123;:?&#125;&quot;</span>,user1);</span><br><span class="line">    dbg!(user1);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">black</span> = <span class="title function_ invoke__">Color</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;black is &#123;:?&#125;&quot;</span>,black);</span><br><span class="line">    dbg!(black);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">origin</span> = <span class="title function_ invoke__">Point</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;origin is &#123;:?&#125;&quot;</span>,origin);</span><br><span class="line">    dbg!(origin);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">subject</span> = AlwaysEqual;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;subject is &#123;:?&#125;&quot;</span>,subject);</span><br><span class="line">    dbg!(subject);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">width</span> = <span class="number">30</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">height</span> = <span class="number">50</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot; area is &#123;&#125;&quot;</span>,<span class="title function_ invoke__">area</span>(width, height));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">rect</span> = <span class="title function_ invoke__">Square</span>(<span class="number">30</span>,<span class="number">50</span>);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;rect is &#123;:?&#125;&quot;</span>,rect);</span><br><span class="line">    dbg!(&amp;rect);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;square area is &#123;&#125;&quot;</span>,<span class="title function_ invoke__">area_square</span>(&amp;rect));</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">build_user</span>(email: &amp;<span class="type">str</span>,username: &amp;<span class="type">str</span>) <span class="punctuation">-&gt;</span> User &#123;</span><br><span class="line">    User &#123;</span><br><span class="line">        active: <span class="literal">true</span>,</span><br><span class="line">        username: <span class="type">String</span>::<span class="title function_ invoke__">from</span>(username),</span><br><span class="line">        email: <span class="type">String</span>::<span class="title function_ invoke__">from</span>(email),</span><br><span class="line">        sign_in_count: <span class="number">1</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">area</span>(width: <span class="type">u32</span>,height: <span class="type">u32</span>) <span class="punctuation">-&gt;</span> <span class="type">u32</span>&#123;</span><br><span class="line">    width * height</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">area_square</span>(square: &amp;Square) <span class="punctuation">-&gt;</span> <span class="type">u32</span>&#123;</span><br><span class="line">    square.<span class="number">0</span> * square.<span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>rust</tag>
-        <tag>struct</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>rust-生命周期</title>
     <url>/%E5%AD%A6%E4%B9%A0/6d3c8f51.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="生命周期"><a class="markdownIt-Anchor" href="#生命周期"></a> 生命周期</h2>
@@ -4388,6 +4359,35 @@ section 运维阶段
       <tags>
         <tag>rust</tag>
         <tag>lifetime</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>rust-结构定义和实例化</title>
+    <url>/%E5%AD%A6%E4%B9%A0/e0d5ed17.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="结构定义"><a class="markdownIt-Anchor" href="#结构定义"></a> 结构定义</h2>
+<blockquote>
+<p>定义结构体，需要使用 <code>struct</code> 关键字并为整个结构体提供一个名字。结构体的名字需要描述它所组合的数据的意义。接着，在大括号中，定义每一部分数据的名字和类型，我们称为 <strong>字段</strong>（<em>field</em>）。</p>
+</blockquote>
+<p>以下演示了结构定义、打印对象、debug打印对象；</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>可以定义有字段和无字段结构，包括类似<code>Tuple</code>（元组）的方式定义；</p>
+</li>
+<li class="lvl-2">
+<p><code>println!</code>和<code>dbg!</code>打印对象需要在结构上添加外部属性 <code>#[derive(Debug)]</code>；</p>
+</li>
+<li class="lvl-2">
+<p><code>dbg!</code>宏打印需要注意值引用；</p>
+</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    active: <span class="type">bool</span>,</span><br><span class="line">    username: <span class="type">String</span>,</span><br><span class="line">    email: <span class="type">String</span>,</span><br><span class="line">    sign_in_count: <span class="type">u64</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Color</span>(<span class="type">i32</span>,<span class="type">i32</span>,<span class="type">i32</span>);</span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Point</span>(<span class="type">i32</span>,<span class="type">i32</span>, <span class="type">i32</span>);</span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">AlwaysEqual</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Square</span>(<span class="type">u32</span>,<span class="type">u32</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Hello, world!&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">user</span> =  <span class="title function_ invoke__">build_user</span>(<span class="string">&quot;dong33@163.com&quot;</span>,<span class="string">&quot;dong33&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;user is &#123;:?&#125;&quot;</span>,user);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">user1</span> = User&#123;</span><br><span class="line">        active: <span class="literal">true</span>,</span><br><span class="line">        username: user.username,</span><br><span class="line">        email: user.email,</span><br><span class="line">        sign_in_count: <span class="number">1</span>,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;user1 is &#123;:?&#125;&quot;</span>,user1);</span><br><span class="line">    dbg!(user1);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">black</span> = <span class="title function_ invoke__">Color</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;black is &#123;:?&#125;&quot;</span>,black);</span><br><span class="line">    dbg!(black);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">origin</span> = <span class="title function_ invoke__">Point</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;origin is &#123;:?&#125;&quot;</span>,origin);</span><br><span class="line">    dbg!(origin);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">subject</span> = AlwaysEqual;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;subject is &#123;:?&#125;&quot;</span>,subject);</span><br><span class="line">    dbg!(subject);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">width</span> = <span class="number">30</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">height</span> = <span class="number">50</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot; area is &#123;&#125;&quot;</span>,<span class="title function_ invoke__">area</span>(width, height));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">rect</span> = <span class="title function_ invoke__">Square</span>(<span class="number">30</span>,<span class="number">50</span>);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;rect is &#123;:?&#125;&quot;</span>,rect);</span><br><span class="line">    dbg!(&amp;rect);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;square area is &#123;&#125;&quot;</span>,<span class="title function_ invoke__">area_square</span>(&amp;rect));</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">build_user</span>(email: &amp;<span class="type">str</span>,username: &amp;<span class="type">str</span>) <span class="punctuation">-&gt;</span> User &#123;</span><br><span class="line">    User &#123;</span><br><span class="line">        active: <span class="literal">true</span>,</span><br><span class="line">        username: <span class="type">String</span>::<span class="title function_ invoke__">from</span>(username),</span><br><span class="line">        email: <span class="type">String</span>::<span class="title function_ invoke__">from</span>(email),</span><br><span class="line">        sign_in_count: <span class="number">1</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">area</span>(width: <span class="type">u32</span>,height: <span class="type">u32</span>) <span class="punctuation">-&gt;</span> <span class="type">u32</span>&#123;</span><br><span class="line">    width * height</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">area_square</span>(square: &amp;Square) <span class="punctuation">-&gt;</span> <span class="type">u32</span>&#123;</span><br><span class="line">    square.<span class="number">0</span> * square.<span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>rust</tag>
+        <tag>struct</tag>
       </tags>
   </entry>
   <entry>
@@ -11076,6 +11076,20 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
+    <title>开年大吉，工作顺利！</title>
+    <url>/%E5%B7%A5%E4%BD%9C/73b21f0a.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><div style="display:flex;justify-content: center;">
+    <div>
+      <img width="400" height="auto" src="../images/image-20240218151047849.png"  alt="龙年大吉大利"  style="text-align: center;"></img>
+      <div style="text-align: center;user-select: none;">图片：“龙年大吉大利”</div>
+    </div>
+  </div>
+]]></content>
+      <categories>
+        <category>工作</category>
+      </categories>
+  </entry>
+  <entry>
     <title>安全风险评估</title>
     <url>/%E5%B7%A5%E4%BD%9C/2576489939.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="评估"><a class="markdownIt-Anchor" href="#评估"></a> 评估</h2>
@@ -11132,20 +11146,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
         <tag>策略</tag>
         <tag>预测</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>开年大吉，工作顺利！</title>
-    <url>/%E5%B7%A5%E4%BD%9C/73b21f0a.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><div style="display:flex;justify-content: center;">
-    <div>
-      <img width="400" height="auto" src="../images/image-20240218151047849.png"  alt="龙年大吉大利"  style="text-align: center;"></img>
-      <div style="text-align: center;user-select: none;">图片：“龙年大吉大利”</div>
-    </div>
-  </div>
-]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
   </entry>
   <entry>
     <title>慢车 01：十一小时</title>
@@ -17871,551 +17871,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
-    <title>慢车 13：回来的人</title>
-    <url>/%E5%B0%8F%E8%AF%B4/b61d20cb.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>塑料饭勺碰着搪瓷碗沿，响了三下。</p>
-<p>老板娘还是把两碗面端来了。碗底有水，切面泡得发白，葱花黏在汤面上。</p>
-<p>老许把钱压在盐罐下面，先数了两遍。三张一百，一张不够，另外三张五十，两张二十，一张十块。</p>
-<p>老许看了看面，没动筷子。</p>
-<p>「三百二。」陈渡说。</p>
-<p>「不饿？」陈渡问。</p>
-<p>「多了二十。」</p>
-<p>「车上有盒饭。」</p>
-<p>「六年前是三百。」陈渡把零钱推回去，「利息。」</p>
-<p>「两点的车，还是四点的？」</p>
-<p>老许没拿。他从烟盒里抽出一根烟，没点，只在桌上滚了半圈。</p>
-<p>「四点的。转车，三点二十到省城。」</p>
-<p>「你还是这样。」</p>
-<p>「什么车？」</p>
-<p>「哪样。」</p>
-<p>「普速。K7。」</p>
-<p>「算得清。」</p>
-<p>陈渡把筷子拆开，抽出两根，在桌沿磕齐。</p>
-<p>饭馆里只有两张桌子空着。靠墙那张堆着没拆的啤酒箱，泡沫露在箱缝里。灶上的锅盖碰着铁勺，每隔十几秒响一下。</p>
-<p>老许看他一眼：「你坐过？」</p>
-<p>陈渡把胶带卷放到脚边。老许的右手一直压着裤兜，那里装着一部屏幕裂了的手机。</p>
-<p>「十一小时。」</p>
-<p>「你回来多久了？」陈渡问。</p>
-<p>「哪一段？」</p>
-<p>「上个月。」</p>
-<p>「南昌到衡阳。」</p>
-<p>「住哪儿？」</p>
-<p>「硬座？」</p>
-<p>「城南那个老纺织厂。租了间房，十二平。」老许说，「窗户关不上，纱窗少了一块。」</p>
-<p>「硬座。」</p>
-<p>「现在做什么？」</p>
-<p>老许拿起筷子，夹住一片姜，咬了一半。</p>
-<p>「物流。先在城南拉货，后来去郑霖那儿。」</p>
-<p>「到衡阳要多久？」</p>
-<p>「哪个郑霖。」</p>
-<p>「四个多钟头。」</p>
-<p>「你那个鼓手。」</p>
-<p>「你那台机器带在身边？」</p>
-<p>陈渡拿起茶壶，给老许续了半杯。壶嘴离杯口还有两寸，水柱细，断了一次。</p>
-<p>陈渡用筷子拨开碗里的面。</p>
-<p>「他找你的？」</p>
-<p>「能放桌下。」</p>
-<p>「去年找的。」老许说，「我那时候在海口送货，他问我认不认识陈渡。」</p>
-<p>「怕丢？」</p>
-<p>陈渡的手停在壶柄上。</p>
-<p>「怕压。」</p>
-<p>「你怎么说的。」</p>
-<p>老许把半片姜吐到碟子里。</p>
-<p>「我说认识。跑过同一个场子，欠你三百块，一直没还。」</p>
-<p>「机壳哪边裂了？」</p>
-<p>「然后呢。」</p>
-<p>「左边提手下面。螺丝孔松了两颗。」</p>
-<p>「然后他问你在哪儿写东西。」</p>
-<p>「铁的还是塑料？」</p>
-<p>服务员端来两碗面。汤面上浮着葱花，其中一片贴在陈渡的筷子头上。</p>
-<p>「铁。上次用四十八号钻头扩过，没吃住。」</p>
-<p>陈渡把葱花挑到碗边，先吃了一口面。</p>
-<p>老许从裤袋里摸出一包烟，抽出一根，没拆封。</p>
-<p>「我不在哪儿写东西。」</p>
-<p>「我车上有六号扳手。」</p>
-<p>「我也这么说。他不信。」老许把手机从裤兜里拿出来，屏幕朝下扣在桌上，「他就拿出手机，里面有一首歌。」</p>
-<p>「六号开不了机壳。」</p>
-<p>「什么歌。」</p>
-<p>「我知道。开不了。」</p>
-<p>「《白线》。」</p>
-<p>「四号内六角。」</p>
-<p>陈渡的筷子停在碗里。</p>
-<p>老许把烟放回桌上。</p>
-<p>《白线》是郑霖前年直播间唱得最多的一首。副歌里有一句：「我把名字留在白线外，等一个人开着慢车回来。」陈渡改过十七稿，最后留下的是：「我把名字留在白线外，等一辆慢车经过。」</p>
-<p>「你包里那套不全？」</p>
-<p>郑霖唱的是「回来」。</p>
-<p>「差一把。四号短柄的，前年丢在海口。」</p>
-<p>「副歌改了。」陈渡说。</p>
-<p>「新的三十八。」</p>
-<p>「我听出来了。」老许说，「他问我原版是不是‘经过’。我说不知道。我连词都没写全过。」</p>
-<p>「有孔位就十二。」</p>
-<p>「你怎么答的。」</p>
-<p>老许笑了一声。</p>
-<p>「我说，陈渡不写完整歌词。他只写几句，发群里。谁接得上，谁就唱。」</p>
-<p>「修磁带机也这样？」</p>
-<p>陈渡喝了一口汤。</p>
-<p>「哪样。」</p>
-<p>「他给你看过原稿吗？」</p>
-<p>「什么都要换算成钱。」</p>
-<p>「没有。就那一张截图。我拿手机拍过，后来删了。」</p>
-<p>「不换算，就记着。」</p>
-<p>「为什么删？」</p>
-<p>陈渡从工具包侧层抽出一张折叠的维修单。纸边已经起毛，右下角有两滴黑色机油。他把纸摊在桌上，压住被热茶顶起的杯底。</p>
-<p>「留着干什么。他现在是老板，我犯不上。」老许笑了一声，「再说了，那歌我唱不来。音太高。」</p>
-<p>上面列着日期、机器、故障、换件、工时。最下面一行是空的，只有日期栏写着「11.03」。</p>
-<p>门外有人拉卷帘门，铁片蹭过铁片，尖响从门缝钻进来。</p>
-<p>老许伸手要看。陈渡把纸往回收了两寸。</p>
-<p>老许把烟折了一下，折痕压断烟身。</p>
-<p>「还剩几个电容？」老许问。</p>
-<p>「他问我你还写不写。」</p>
-<p>「三个。」</p>
-<p>「你怎么答？」</p>
-<p>「鼓包几个？」</p>
-<p>「我说不知道。六年没见你写歌了。」</p>
-<p>「两个。还有一个漏液。」</p>
-<p>陈渡把面推到一边。碗底沉着两片姜，边缘发黑。</p>
-<p>「漏多久了？」</p>
-<p>「你今天来，除了还钱，还问这个？」</p>
-<p>「上次通电以后。」</p>
-<p>「钱就是钱。」老许说，「以前不想还。拖着不想见面。现在要走了，该还。」</p>
-<p>「多久没通？」</p>
-<p>「去哪儿。」</p>
-<p>「三个月。」</p>
-<p>「郑霖给我开了三个月。试用期，两千八。过了再谈。」</p>
-<p>「那先别上电。」</p>
-<p>「什么岗位？」</p>
-<p>「知道。」</p>
-<p>「运营。管六个直播间，排时段，做数据。他那边现在一天要三首新词，排下来连轴转。」</p>
-<p>「电容漏液会把线路腐蚀。」</p>
-<p>老许说得很顺，像在报一张表。</p>
-<p>「所以先拍照。」</p>
-<p>陈渡拿起茶壶，又给老许添满。</p>
-<p>老许盯着那张维修单。</p>
-<p>「运营还管写词？」</p>
-<p>「你每台都拍？」</p>
-<p>「管。词不够就找外包。给钱，按条算，一首八十。改一版二十。」</p>
-<p>「要送人的拍。自己的不拍。」</p>
-<p>「一天三首。」陈渡说。</p>
-<p>「为什么？」</p>
-<p>「三首还不止。有时候六首。二十四小时播，唱两小时就要换新词，不然老粉听出来就骂。」</p>
-<p>「自己的坏了，换就是。」</p>
-<p>「郑霖自己写？」</p>
-<p>「你那台不是自己的？」</p>
-<p>「他写不全。」老许说，「他拿别人的来改。开头留一段，结尾留一段，中间换掉。不能跟上一首重太多。也不能太怪。」</p>
-<p>陈渡把维修单重新折好，塞回侧层。</p>
-<p>老许从手机里点开一段直播回放。手机外放很小，郑霖的声音从裂开的喇叭里挤出来。</p>
-<p>「机器是我的。」</p>
-<p>「走过路口，别回头看，白线还在我这一边——」</p>
-<p>老许没接这句。他端起杯子，吹开浮在水面的茶叶梗，抿了一口。</p>
-<p>唱到这里，他停了。</p>
-<p>「电容多少微法？」</p>
-<p>「后面的词换过。」老许说，「直播里这版，后面是‘等一个人开着慢车回来’。你原来那句不是这个意思。」</p>
-<p>「一万二。」</p>
-<p>陈渡把手机推回去。</p>
-<p>「耐压？」</p>
-<p>「什么原来的意思。」</p>
-<p>「六十三伏。」</p>
-<p>「我不知道。」老许说，「我又不是写的人。」</p>
-<p>「鼓包的是多少？」</p>
-<p>灶上的锅盖又响了一下。</p>
-<p>「也是一万二。」</p>
-<p>老许看了一眼墙上的钟。</p>
-<p>「那两个换新的，漏液的换同规格。别拿低容量的顶，滤波曲线不一样。」</p>
-<p>「他问我陈渡写过什么歌。我说《白线》。他问我还有没有。我说了《雨停在南站》《空车经过》《二十三点半的出口》。」</p>
-<p>「知道。」</p>
-<p>「还有吗？」</p>
-<p>老许抬起眼：「你真改过那台机器？」</p>
-<p>「还有一首，名字我不记得了。里面有一句‘门没关严，走廊全是你的声音’。」</p>
-<p>「改过。」</p>
-<p>陈渡拿筷子的手往后缩了一寸。</p>
-<p>「改到不录自己？」</p>
-<p>那是两年前的东西。他写在县城旅馆的便签上，后来给一个婚庆乐队。对方没要词，只抄了电话号码。</p>
-<p>「先通电。」</p>
-<p>「你告诉他了？」</p>
-<p>「这不是回答。」</p>
-<p>「就这些。」</p>
-<p>「是回答。」</p>
-<p>「怎么说的。」</p>
-<p>陈渡把碗里那几根已经泡软的细面夹起来，放到碟边。他没有再吃。</p>
-<p>「原话说‘陈渡以前写词挺多，现在不写了’。」老许说，「郑霖问‘他真不写了’，我说‘我见他的时候没写’。他问‘你肯定’，我说‘不敢肯定’。」</p>
-<p>老许把手机拿起来，点开相册。里面有一张后台表格的截图，红色表头，六列。最下面一栏写着「词源确认」。</p>
-<p>「为什么不敢肯定。」</p>
-<p>「我昨晚加的。」老许说，「郑总说运营要标。」</p>
-<p>老许低头看着桌上的烟。</p>
-<p>「标什么？」</p>
-<p>「因为有次我给他送谱，他在纸上写了一整页。」</p>
-<p>「原创、改编、拼歌、外包。」</p>
-<p>「什么谱。」</p>
-<p>「怎么分？」</p>
-<p>「不知道。他写完就折起来了。」</p>
-<p>「他说，听着像自己写的就算原创。」</p>
-<p>服务员来收空碗。陈渡把面汤往旁边挪，让她端走。</p>
-<p>陈渡看了一眼屏幕。</p>
-<p>「还有一句。」老许说，「你写的时候，他在旁边。他说你不写整歌，只写两句。别人唱，他不管。」</p>
-<p>「后面那列呢。」</p>
-<p>陈渡看着桌面的划痕。一道旧刀印从烟灰缸边拖到老许面前。</p>
-<p>「词作者。」</p>
-<p>「他现在知道词是你写的了。」</p>
-<p>「现在写谁？」</p>
-<p>「可能吧。」</p>
-<p>「郑总。」</p>
-<p>「可能？」</p>
-<p>「三十七首都写他？」</p>
-<p>「我说了那些歌，他自己会查。」老许说，「查不到作者，就说原创。网上那些介绍我都看过，写的是‘郑霖独立创作’。」</p>
-<p>「改了名的写郑总。旧的没改的，词作者空着，等公司确认。」</p>
-<p>「你告诉他了。」</p>
-<p>「谁确认。」</p>
-<p>「我说第一次见你的时候，你写过词。」</p>
-<p>「法务。」</p>
-<p>「这不是一样。」</p>
-<p>老许往下滑了一格。</p>
-<p>「对他来说一样。」老许说，「他把那几句发到群里，十二个人都说好。第二天就改成直播版。」</p>
-<p>表格最下面有三十七个编号。十八个旁边标着红色对勾，四个写着「待补授权」，其余空着。</p>
-<p>陈渡把胶带卷拿起来，撕下一段。胶带粘在指腹，拉出一声细响。</p>
-<p>「这个呢？」陈渡指着一行。</p>
-<p>「老许。」</p>
-<p>《白线》。词作者栏里写着郑霖，备注栏只有三个字：可商用。</p>
-<p>「嗯。」</p>
-<p>「这张表发给几个人？」</p>
-<p>「那些改了十七稿的词，是被别人改着改着传出去的。」</p>
-<p>「运营组。行政。财务。」</p>
-<p>老许没接话。</p>
-<p>「周老师呢？」</p>
-<p>「怎么？」陈渡问。</p>
-<p>老许抬头：「周老师？」</p>
-<p>「没什么。」老许把手机翻过来，屏幕亮了，「我当时说的是『改成直播版』。」</p>
-<p>「发给他了？」</p>
-<p>「十七稿不在改一版里？」</p>
-<p>「没有。」</p>
-<p>「那是你说的。」</p>
-<p>「为什么？」</p>
-<p>「我没说过。」</p>
-<p>「公司群。」老许说，「郑总说内部资料，不外传。」</p>
-<p>「那就是你自己算的。」</p>
-<p>「那你怎么拿到的？」</p>
-<p>陈渡把胶带贴在杯子底下，压住翘起的一角。</p>
-<p>「我做的。」</p>
-<p>老许看着他。</p>
-<p>老许把手机放回桌上，拇指在屏幕边缘来回蹭了两下。屏幕裂纹里卡着一小片灰。</p>
-<p>「有区别吗？」</p>
-<p>陈渡拿过桌上的胶带卷，撕下三厘米，压住维修单露在外面的边角。</p>
-<p>陈渡没回答。</p>
-<p>「周老师去年那台调音台，修完没有？」陈渡问。</p>
-<p>老许用指甲划开烟盒的封口，抽出那根折断的烟。烟丝从断口漏出来，落在桌面上。</p>
-<p>「修了。我带电容过去，他当场换了。」</p>
-<p>「郑霖去年问过我三次。」他说，「第一次问你在哪儿，第二次问你还写不写，第三次让我找人，要你以前的词。」</p>
-<p>「啸叫停了？」</p>
-<p>「你找了吗？」</p>
-<p>「停了。十分钟后又响。」</p>
-<p>「找了。乐队群解散了，我问过两个。一个拉货，一个开汽修店。都没存。」</p>
-<p>「什么频段？」</p>
-<p>「郑霖手里有多少。」</p>
-<p>「我没听出来。像是话筒_gain太高。」</p>
-<p>「我看见三十七首。」</p>
-<p>「增益不是频段。」</p>
-<p>陈渡的指腹压在胶带接缝上。</p>
-<p>「他说接近两到三千。」</p>
-<p>「三十七首。」</p>
-<p>「三千赫兹，像反馈。」</p>
-<p>「运营后台有文档。他让我排直播顺序，说这些都要拆。」</p>
-<p>「后来呢？」</p>
-<p>「拆成什么？」</p>
-<p>「后来把增益降了六格。好了。」</p>
-<p>「一句一首，三十秒。或者十五秒。短视频用。直播用。」</p>
-<p>老许把烟盒转了半圈。</p>
-<p>老许把折断的烟放进空烟盒，盖上盖子。</p>
-<p>「周老师问过你没有？」</p>
-<p>「他还说，词不能太完整。完整了像歌，太完整就不够日常。」</p>
-<p>「问什么。」</p>
-<p>「谁说的。」</p>
-<p>「问你去哪儿。」</p>
-<p>「他说做直播的人都这么说。」</p>
-<p>「你怎么答的。」</p>
-<p>陈渡抬眼看他。</p>
-<p>「我说不知道。」</p>
-<p>「他改过你的？」</p>
-<p>「他就没再说？」</p>
-<p>「改过。每首至少三个版本。‘等’换‘等’，这个不用改。‘回来’换‘经过’。‘回来’有结束的意思，‘经过’没有，用户爱听没结果的。」</p>
-<p>「他让我听这个。」</p>
-<p>「这是谁教他的？」</p>
-<p>老许学不出周隼说话时的停顿，只把烟盒往柜台那边推了推。</p>
-<p>「数据。平台数据。」老许说，「运营部十个人，每天开会看曲线。他说三首词不一定都留下，得看哪首涨粉。」</p>
-<p>「还说什么了？」</p>
-<p>陈渡把杯子转了半圈。杯底压着的那截胶带翘起来，粘起一块桌面上的油渍。</p>
-<p>「说那只电容不是他做的。」</p>
-<p>老许伸手去拿茶壶。</p>
-<p>陈渡拆开工具包最里层的拉链。里面是一只透明塑料袋，装着三只黑色电容。袋口用记号笔写着「12K63」，最后一笔描了两遍。</p>
-<p>陈渡先把壶提起来，给两个人续满。</p>
-<p>「后来呢？」</p>
-<p>「你什么时候进的公司？」</p>
-<p>「后来他让我把电容带回来。」</p>
-<p>「上个月十七号。」</p>
-<p>「带回来做什么？」</p>
-<p>「他招你之前，知道你是谁吗？」</p>
-<p>「装到机器上。」</p>
-<p>「知道。」</p>
-<p>「你带回来了？」</p>
-<p>「知道你欠我钱？」</p>
-<p>「没有。」</p>
-<p>「也说过。」老许喝了一口茶，「他说既然来，就别拖旧账。工资试用期扣两百。」</p>
-<p>「为什么？」</p>
-<p>「扣了？」</p>
-<p>「郑总不让。」</p>
-<p>「扣了。」</p>
-<p>「他说电容有问题？」</p>
-<p>「那你刚才又多给我二十。」</p>
-<p>「他说来源不清。」</p>
-<p>「我没带够三百。」</p>
-<p>陈渡捏住其中一只电容的引脚，轻轻弯了一下。引脚没有断。</p>
-<p>陈渡从口袋里拿出手机，打开计算器，把屏幕转向老许。</p>
-<p>「现在还在周老师那里。」</p>
-<p>「一百八十四。」他说。</p>
-<p>「应该在。」</p>
-<p>老许看着那三个数字，没有伸手。</p>
-<p>「他会不会拆。」</p>
-<p>「真不够。」</p>
-<p>「我没问。」</p>
-<p>「你手机里不是有转账？」</p>
-<p>老许的手机又震了一下。他没有翻过来，只用指腹按住侧边。</p>
-<p>「郑霖让我别乱点。广告后台权限没开，不能乱进系统。」</p>
-<p>「下午的车票呢？」陈渡问。</p>
-<p>陈渡收起手机。</p>
-<p>「买了。」</p>
-<p>「六年前，是什么场子？」</p>
-<p>「几号车厢。」</p>
-<p>「南站后面那个仓库。」老许说，「你带四个设备，鼓、贝斯、吉他和一台键盘。我忘词，你替我补。你那次不是唱，是打键盘。」</p>
-<p>「还没选。」</p>
-<p>「你欠三百。」</p>
-<p>「有卧铺就买卧铺。」</p>
-<p>「对。散场后你说要给周老师买磁带。我拿走了三百，后来一直没给。」</p>
-<p>「买不到。」</p>
-<p>「我没问你要过。」</p>
-<p>「站台票能补。」</p>
-<p>「我知道。」老许说，「所以拖了六年。」</p>
-<p>「K7全程十一个钟头。中间还有两段限速，站着也能睡。」</p>
-<p>「周隼给了磁带？」</p>
-<p>陈渡把三只电容重新装回塑料袋，压平袋口。</p>
-<p>「我不知道。你拿钱的时候，他在。他让我先买一箱，后来又拿了两盘空白带。」</p>
-<p>「你到省城以后，先把表改了。」</p>
-<p>「哪一年？」</p>
-<p>「怎么改？」</p>
-<p>「2018。秋天。」</p>
-<p>「没签授权的，不标商用。」</p>
-<p>「不是六年前。」</p>
-<p>「郑总问呢？」</p>
-<p>老许拿烟盒的手停住。</p>
-<p>「说没有授权。」</p>
-<p>「那五年我记错了。」</p>
-<p>「他会骂。」</p>
-<p>「你欠的是六年前。」</p>
-<p>「让他问。」</p>
-<p>「可能。」</p>
-<p>老许把手机翻过来。屏幕上不是郑霖的来电，是一个文档提醒。</p>
-<p>陈渡看着他。</p>
-<p>《慢车》拆词表。</p>
-<p>老许避开他的视线，把桌上那截断烟捡起来，放进烟盒。</p>
-<p>预计完成：13:40。</p>
-<p>「你为什么找我？」陈渡问。</p>
-<p>陈渡看了两秒，把目光移到窗外。玻璃上贴着半张旧外卖单，浆糊从边角翘起，露出后面更旧的一层白纸。</p>
-<p>「还钱。」</p>
-<p>「你这首拆了吗？」老许问。</p>
-<p>「还有呢。」</p>
-<p>「没有。」</p>
-<p>「看看你还写不写。」</p>
-<p>「两首就够。」</p>
-<p>「不写。」</p>
-<p>「我不拆。」</p>
-<p>「郑霖也不信。」</p>
-<p>「先做五首。」</p>
-<p>「他信不信跟我不写没有关系。」</p>
-<p>「我不做。」</p>
-<p>老许笑了一下。</p>
-<p>「那就按格式抄。」</p>
-<p>「你现在说话真像周老师。」</p>
-<p>陈渡把胶带卷收回工具包，红线从拉链上垂下来，擦过桌沿。</p>
-<p>陈渡把筷子摆在碗沿。筷尖朝外，一根长，一根短。</p>
-<p>「格式发我。」</p>
-<p>「周老师什么时候给过你？」</p>
-<p>老许愣了一下。</p>
-<p>「去年十一月。直播公司有台调音台啸叫，他让我去找周老师。他一听，说带一个电容过去。」</p>
-<p>「什么？」</p>
-<p>「什么电容。」</p>
-<p>「拆词格式。」</p>
-<p>「他没细说。说拿那种耐压高、容量小的。」</p>
-<p>「你不是说——」</p>
-<p>陈渡点头。</p>
-<p>「我看一眼。」</p>
-<p>老许看了他一眼。</p>
-<p>老许解开手机，点开文档。屏幕上先出现的是标题、时长、情绪、投放时段，最下面是原词与新词两栏。</p>
-<p>「你们聊什么？」</p>
-<p>陈渡把屏幕拿过去。</p>
-<p>「没聊。」</p>
-<p>第一行写：《白线》。</p>
-<p>「我提你名字了。」</p>
-<p>原词栏只截了三句。新词栏里，「回来」两个字被圈过，旁边标着「保留，高转化」。</p>
-<p>「那更没聊。」</p>
-<p>他把手机还给老许。</p>
-<p>老许把茶杯往桌心推。杯底在塑料桌布上擦出一条水痕。</p>
-<p>「这不算拆词。」</p>
-<p>「你知道他为什么找你吗？」</p>
-<p>「郑总要能唱。」</p>
-<p>「修设备。」</p>
-<p>「原词也能唱。」</p>
-<p>「他还想拿那台机器。」</p>
-<p>「原词少一个爆点。」</p>
-<p>陈渡的手离开杯子。</p>
-<p>「爆点在哪。」</p>
-<p>「谁说的。」</p>
-<p>「最后一句。」</p>
-<p>「他问过我，你那台改装机还在不在。」</p>
-<p>「最后一句有什么问题。」</p>
-<p>「你怎么答。」</p>
-<p>「太平。」</p>
-<p>「我说不知道。乐队散的时候，我没见过你的箱子。」</p>
-<p>「哪平。」</p>
-<p>「还在。」</p>
-<p>老许盯着屏幕：「用户得听出来这里要停。」</p>
-<p>「在哪？」</p>
-<p>「它本来就要停。」</p>
-<p>「我身上。」</p>
-<p>老许没说话。灶上的锅盖落回锅沿，金属声连响了两下。</p>
-<p>老许往他背上看了一眼。那只黑色工具包立在桌脚旁，拉链上拴着一截红线。</p>
-<p>「这个表谁做的？」陈渡问。</p>
-<p>「那台机器能录自己吗？」</p>
-<p>「我按郑总的录音改的。」</p>
-<p>「能。」</p>
-<p>「他唱过《白线》的旧版？」</p>
-<p>「现在能了？」</p>
-<p>「唱过。」</p>
-<p>「先通电。」</p>
-<p>「什么时候。」</p>
-<p>「还是录不进？」</p>
-<p>「去年直播。」</p>
-<p>「没试。」</p>
-<p>「哪一场？」</p>
-<p>老许把身体往前倾。</p>
-<p>「十一月吧。改版之前。」</p>
-<p>「郑霖说那台机器不录人声。他让人查过，说是磁头老化。」</p>
-<p>「哪个月十一日？」</p>
-<p>「谁让人查的？」</p>
-<p>老许想了片刻。</p>
-<p>「他朋友。卖二手音响的。拆了后盖，看不懂，就说是磁头。」</p>
-<p>「十一日还是十二日。那天他在说新歌。」</p>
-<p>陈渡打开工具包侧袋，摸出一支测电笔。笔尖的黄铜碰了碰桌角。</p>
-<p>陈渡看向墙上的钟。</p>
-<p>「磁头不在拾音线路里。」</p>
-<p>十一点三十六分。</p>
-<p>「那在哪？」</p>
-<p>他把塑料袋塞回工具包最里层，又将拉链拉过头，留出那截红线在外面。</p>
-<p>「我改过的地方。」</p>
-<p>「改了七年？」</p>
-<p>「七年。」</p>
-<p>「能修吗？」</p>
-<p>「能用就行。」</p>
-<p>老许笑了一下。</p>
-<p>「你还是这句话。」</p>
-<p>陈渡把测电笔收回去。</p>
-<p>「你现在住哪儿？」</p>
-<p>「纺织厂那边。老二室。押金三百，六百八一个月。」</p>
-<p>「水电另算？」</p>
-<p>「水四块一吨，电一块二。」</p>
-<p>「够住。」</p>
-<p>「够。窗纱得自己买。」</p>
-<p>老许把手机揣回裤兜，又拿出来看了一眼。</p>
-<p>「我下午四点的车。」</p>
-<p>陈渡看了一眼墙上的钟。十一点二十六。</p>
-<p>「去哪儿？」</p>
-<p>「省城。接运营总监的班。他休假十天。」</p>
-<p>「十天以后呢？」</p>
-<p>「再看郑霖招不招正式工。」</p>
-<p>「你现在是试用期。」</p>
-<p>「对。」</p>
-<p>陈渡把胶带卷放回包里，拉上拉链。</p>
-<p>老许从椅子上站起来。</p>
-<p>「那三百二，我先拿走。」</p>
-<p>陈渡从裤袋里掏出折叠的钱，数出三张一百和两张二十，放到桌上。</p>
-<p>「三百二。」</p>
-<p>「不是说欠三百？」</p>
-<p>「六年前三百。现在三百二。」</p>
-<p>「我说不用利息。」</p>
-<p>「我没说不用。」</p>
-<p>老许看着那几张钱，没有拿。</p>
-<p>「你以前不这样。」</p>
-<p>「以前你也不还。」</p>
-<p>灶上的抽油烟机发出连续的嗡声。频率不高，压住说话声，却压不住桌边手机震了一下。</p>
-<p>老许拿出来，屏幕上显示」郑总「。</p>
-<p>他看了一眼，没有接。</p>
-<p>「怎么不接？」陈渡问。</p>
-<p>「他问进度。」</p>
-<p>「什么进度。」</p>
-<p>「下午面试。还有……你。」</p>
-<p>陈渡抬头。</p>
-<p>老许把手机放回桌面，拇指按住了接听键。</p>
-<p>「喂，郑总。」</p>
-<p>电话里的声音开得很大，贴在裂开的屏幕上。</p>
-<p>「找到了？中午吃饭了吗？」郑霖说，「晚上那个场子提前，运营组全员到。名单发群里了，老许你第一个到。」</p>
-<p>「我在县城。」老许说，「下午四点的车。」</p>
-<p>「提前回来，车票我报。上午把陈渡那几首的拆词做出来，下午开会要用。」</p>
-<p>「拆词？」</p>
-<p>「三十七首，按分钟切。那几首带‘慢车’的先做。还有《白线》，副歌现在这版不够好，再改。」</p>
-<p>「往哪改？」</p>
-<p>「往用户嘴里改。上一版‘回来’数据最好，保留。前面几句再顺一遍。」</p>
-<p>电话那边有人在喊名字，背景里有六七个麦克风一起开着，电流声挤成一团。</p>
-<p>郑霖说：「两点前给我。」</p>
-<p>老许看向陈渡。</p>
-<p>「她不在。」老许说，「陈渡没写词。」</p>
-<p>「她？」郑霖的声音停了一下，「陈渡男的吧？」</p>
-<p>「他男的。」</p>
-<p>「那就你做。照我发你的格式。」</p>
-<p>「做不了那么快。」</p>
-<p>「先拆五首。拆完再说你做不了。」</p>
-<p>电话挂断。</p>
-<p>老许把手机扣在桌上。</p>
-<p>「他一直这样。」他说，「电话多，事情快，一分钟嫌长。」</p>
-<p>陈渡拿起桌上那五百块，数回三百，又把一百和一百放进口袋。</p>
-<p>「他会用我的词。」</p>
-<p>「已经用了。」</p>
-<p>「他给钱吗？」</p>
-<p>「平台给，郑霖是主播。词外包八十，改版二十。做出来按条结。」</p>
-<p>「我呢？」</p>
-<p>老许没回答。</p>
-<p>他拿起桌上的三百二，一张一张理齐，塞进钱包。钱包鼓起来，最外面那张一百折了边。</p>
-<p>「他说过词作者有分成吗？」陈渡问。</p>
-<p>「没有。」</p>
-<p>「合同呢？」</p>
-<p>「只有员工合同。试用期三个月，两千八。」</p>
-<p>「外包的呢？」</p>
-<p>「跟公司签。公司收，再转给写词的人。签电子合同，身份证，银行卡。」</p>
-<p>「署名呢？」</p>
-<p>「郑霖说，直播歌不署作者。只有上电台或者短视频买版权的时候才写词作者。」</p>
-<p>「写谁。」</p>
-<p>「写郑霖。」</p>
-<p>陈渡把工具包提到脚边。</p>
-<p>「他还不知道那些词是你写的吧？」</p>
-<p>老许正把钱包按回裤兜，手停了一下。</p>
-<p>「他知道你会写。」老许说，「他问过很多回。你在哪儿，你写什么，你跟周老师什么关系。」</p>
-<p>「那他知道。」</p>
-<p>「可能知道一部分。」</p>
-<p>「哪些词是我写的，哪些不是。」</p>
-<p>老许抬头看他。</p>
-<p>「他不知道那些词是你写的吧？」</p>
-<p>陈渡把工具包的带子绕过提手，拉紧。</p>
-<p>「他知道的。」</p>
-<p>老许愣了一下。</p>
-<p>「那他为什么不给你钱。」</p>
-<p>饭馆老板娘在灶边喊了一声，问他们要不要加面。桌上两碗面都见了底，汤里只剩葱花和蒜末。</p>
-<p>陈渡没有回头。</p>
-<p>「先通电。」</p>
-]]></content>
-      <categories>
-        <category>小说</category>
-      </categories>
-      <tags>
-        <tag>慢车</tag>
-        <tag>小说</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>慢车 14：三百块</title>
     <url>/%E5%B0%8F%E8%AF%B4/294ec049.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>卷帘门旁的电子屏亮着。</p>
@@ -19148,6 +18603,551 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>陈渡盯着屏幕上那行修改说明。</p>
 <p>「哪一年？」</p>
 <p>「二〇〇九年啊。」郑霖说，「你跟我说的。」</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>慢车</tag>
+        <tag>小说</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>慢车 13：回来的人</title>
+    <url>/%E5%B0%8F%E8%AF%B4/b61d20cb.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>塑料饭勺碰着搪瓷碗沿，响了三下。</p>
+<p>老板娘还是把两碗面端来了。碗底有水，切面泡得发白，葱花黏在汤面上。</p>
+<p>老许把钱压在盐罐下面，先数了两遍。三张一百，一张不够，另外三张五十，两张二十，一张十块。</p>
+<p>老许看了看面，没动筷子。</p>
+<p>「三百二。」陈渡说。</p>
+<p>「不饿？」陈渡问。</p>
+<p>「多了二十。」</p>
+<p>「车上有盒饭。」</p>
+<p>「六年前是三百。」陈渡把零钱推回去，「利息。」</p>
+<p>「两点的车，还是四点的？」</p>
+<p>老许没拿。他从烟盒里抽出一根烟，没点，只在桌上滚了半圈。</p>
+<p>「四点的。转车，三点二十到省城。」</p>
+<p>「你还是这样。」</p>
+<p>「什么车？」</p>
+<p>「哪样。」</p>
+<p>「普速。K7。」</p>
+<p>「算得清。」</p>
+<p>陈渡把筷子拆开，抽出两根，在桌沿磕齐。</p>
+<p>饭馆里只有两张桌子空着。靠墙那张堆着没拆的啤酒箱，泡沫露在箱缝里。灶上的锅盖碰着铁勺，每隔十几秒响一下。</p>
+<p>老许看他一眼：「你坐过？」</p>
+<p>陈渡把胶带卷放到脚边。老许的右手一直压着裤兜，那里装着一部屏幕裂了的手机。</p>
+<p>「十一小时。」</p>
+<p>「你回来多久了？」陈渡问。</p>
+<p>「哪一段？」</p>
+<p>「上个月。」</p>
+<p>「南昌到衡阳。」</p>
+<p>「住哪儿？」</p>
+<p>「硬座？」</p>
+<p>「城南那个老纺织厂。租了间房，十二平。」老许说，「窗户关不上，纱窗少了一块。」</p>
+<p>「硬座。」</p>
+<p>「现在做什么？」</p>
+<p>老许拿起筷子，夹住一片姜，咬了一半。</p>
+<p>「物流。先在城南拉货，后来去郑霖那儿。」</p>
+<p>「到衡阳要多久？」</p>
+<p>「哪个郑霖。」</p>
+<p>「四个多钟头。」</p>
+<p>「你那个鼓手。」</p>
+<p>「你那台机器带在身边？」</p>
+<p>陈渡拿起茶壶，给老许续了半杯。壶嘴离杯口还有两寸，水柱细，断了一次。</p>
+<p>陈渡用筷子拨开碗里的面。</p>
+<p>「他找你的？」</p>
+<p>「能放桌下。」</p>
+<p>「去年找的。」老许说，「我那时候在海口送货，他问我认不认识陈渡。」</p>
+<p>「怕丢？」</p>
+<p>陈渡的手停在壶柄上。</p>
+<p>「怕压。」</p>
+<p>「你怎么说的。」</p>
+<p>老许把半片姜吐到碟子里。</p>
+<p>「我说认识。跑过同一个场子，欠你三百块，一直没还。」</p>
+<p>「机壳哪边裂了？」</p>
+<p>「然后呢。」</p>
+<p>「左边提手下面。螺丝孔松了两颗。」</p>
+<p>「然后他问你在哪儿写东西。」</p>
+<p>「铁的还是塑料？」</p>
+<p>服务员端来两碗面。汤面上浮着葱花，其中一片贴在陈渡的筷子头上。</p>
+<p>「铁。上次用四十八号钻头扩过，没吃住。」</p>
+<p>陈渡把葱花挑到碗边，先吃了一口面。</p>
+<p>老许从裤袋里摸出一包烟，抽出一根，没拆封。</p>
+<p>「我不在哪儿写东西。」</p>
+<p>「我车上有六号扳手。」</p>
+<p>「我也这么说。他不信。」老许把手机从裤兜里拿出来，屏幕朝下扣在桌上，「他就拿出手机，里面有一首歌。」</p>
+<p>「六号开不了机壳。」</p>
+<p>「什么歌。」</p>
+<p>「我知道。开不了。」</p>
+<p>「《白线》。」</p>
+<p>「四号内六角。」</p>
+<p>陈渡的筷子停在碗里。</p>
+<p>老许把烟放回桌上。</p>
+<p>《白线》是郑霖前年直播间唱得最多的一首。副歌里有一句：「我把名字留在白线外，等一个人开着慢车回来。」陈渡改过十七稿，最后留下的是：「我把名字留在白线外，等一辆慢车经过。」</p>
+<p>「你包里那套不全？」</p>
+<p>郑霖唱的是「回来」。</p>
+<p>「差一把。四号短柄的，前年丢在海口。」</p>
+<p>「副歌改了。」陈渡说。</p>
+<p>「新的三十八。」</p>
+<p>「我听出来了。」老许说，「他问我原版是不是‘经过’。我说不知道。我连词都没写全过。」</p>
+<p>「有孔位就十二。」</p>
+<p>「你怎么答的。」</p>
+<p>老许笑了一声。</p>
+<p>「我说，陈渡不写完整歌词。他只写几句，发群里。谁接得上，谁就唱。」</p>
+<p>「修磁带机也这样？」</p>
+<p>陈渡喝了一口汤。</p>
+<p>「哪样。」</p>
+<p>「他给你看过原稿吗？」</p>
+<p>「什么都要换算成钱。」</p>
+<p>「没有。就那一张截图。我拿手机拍过，后来删了。」</p>
+<p>「不换算，就记着。」</p>
+<p>「为什么删？」</p>
+<p>陈渡从工具包侧层抽出一张折叠的维修单。纸边已经起毛，右下角有两滴黑色机油。他把纸摊在桌上，压住被热茶顶起的杯底。</p>
+<p>「留着干什么。他现在是老板，我犯不上。」老许笑了一声，「再说了，那歌我唱不来。音太高。」</p>
+<p>上面列着日期、机器、故障、换件、工时。最下面一行是空的，只有日期栏写着「11.03」。</p>
+<p>门外有人拉卷帘门，铁片蹭过铁片，尖响从门缝钻进来。</p>
+<p>老许伸手要看。陈渡把纸往回收了两寸。</p>
+<p>老许把烟折了一下，折痕压断烟身。</p>
+<p>「还剩几个电容？」老许问。</p>
+<p>「他问我你还写不写。」</p>
+<p>「三个。」</p>
+<p>「你怎么答？」</p>
+<p>「鼓包几个？」</p>
+<p>「我说不知道。六年没见你写歌了。」</p>
+<p>「两个。还有一个漏液。」</p>
+<p>陈渡把面推到一边。碗底沉着两片姜，边缘发黑。</p>
+<p>「漏多久了？」</p>
+<p>「你今天来，除了还钱，还问这个？」</p>
+<p>「上次通电以后。」</p>
+<p>「钱就是钱。」老许说，「以前不想还。拖着不想见面。现在要走了，该还。」</p>
+<p>「多久没通？」</p>
+<p>「去哪儿。」</p>
+<p>「三个月。」</p>
+<p>「郑霖给我开了三个月。试用期，两千八。过了再谈。」</p>
+<p>「那先别上电。」</p>
+<p>「什么岗位？」</p>
+<p>「知道。」</p>
+<p>「运营。管六个直播间，排时段，做数据。他那边现在一天要三首新词，排下来连轴转。」</p>
+<p>「电容漏液会把线路腐蚀。」</p>
+<p>老许说得很顺，像在报一张表。</p>
+<p>「所以先拍照。」</p>
+<p>陈渡拿起茶壶，又给老许添满。</p>
+<p>老许盯着那张维修单。</p>
+<p>「运营还管写词？」</p>
+<p>「你每台都拍？」</p>
+<p>「管。词不够就找外包。给钱，按条算，一首八十。改一版二十。」</p>
+<p>「要送人的拍。自己的不拍。」</p>
+<p>「一天三首。」陈渡说。</p>
+<p>「为什么？」</p>
+<p>「三首还不止。有时候六首。二十四小时播，唱两小时就要换新词，不然老粉听出来就骂。」</p>
+<p>「自己的坏了，换就是。」</p>
+<p>「郑霖自己写？」</p>
+<p>「你那台不是自己的？」</p>
+<p>「他写不全。」老许说，「他拿别人的来改。开头留一段，结尾留一段，中间换掉。不能跟上一首重太多。也不能太怪。」</p>
+<p>陈渡把维修单重新折好，塞回侧层。</p>
+<p>老许从手机里点开一段直播回放。手机外放很小，郑霖的声音从裂开的喇叭里挤出来。</p>
+<p>「机器是我的。」</p>
+<p>「走过路口，别回头看，白线还在我这一边——」</p>
+<p>老许没接这句。他端起杯子，吹开浮在水面的茶叶梗，抿了一口。</p>
+<p>唱到这里，他停了。</p>
+<p>「电容多少微法？」</p>
+<p>「后面的词换过。」老许说，「直播里这版，后面是‘等一个人开着慢车回来’。你原来那句不是这个意思。」</p>
+<p>「一万二。」</p>
+<p>陈渡把手机推回去。</p>
+<p>「耐压？」</p>
+<p>「什么原来的意思。」</p>
+<p>「六十三伏。」</p>
+<p>「我不知道。」老许说，「我又不是写的人。」</p>
+<p>「鼓包的是多少？」</p>
+<p>灶上的锅盖又响了一下。</p>
+<p>「也是一万二。」</p>
+<p>老许看了一眼墙上的钟。</p>
+<p>「那两个换新的，漏液的换同规格。别拿低容量的顶，滤波曲线不一样。」</p>
+<p>「他问我陈渡写过什么歌。我说《白线》。他问我还有没有。我说了《雨停在南站》《空车经过》《二十三点半的出口》。」</p>
+<p>「知道。」</p>
+<p>「还有吗？」</p>
+<p>老许抬起眼：「你真改过那台机器？」</p>
+<p>「还有一首，名字我不记得了。里面有一句‘门没关严，走廊全是你的声音’。」</p>
+<p>「改过。」</p>
+<p>陈渡拿筷子的手往后缩了一寸。</p>
+<p>「改到不录自己？」</p>
+<p>那是两年前的东西。他写在县城旅馆的便签上，后来给一个婚庆乐队。对方没要词，只抄了电话号码。</p>
+<p>「先通电。」</p>
+<p>「你告诉他了？」</p>
+<p>「这不是回答。」</p>
+<p>「就这些。」</p>
+<p>「是回答。」</p>
+<p>「怎么说的。」</p>
+<p>陈渡把碗里那几根已经泡软的细面夹起来，放到碟边。他没有再吃。</p>
+<p>「原话说‘陈渡以前写词挺多，现在不写了’。」老许说，「郑霖问‘他真不写了’，我说‘我见他的时候没写’。他问‘你肯定’，我说‘不敢肯定’。」</p>
+<p>老许把手机拿起来，点开相册。里面有一张后台表格的截图，红色表头，六列。最下面一栏写着「词源确认」。</p>
+<p>「为什么不敢肯定。」</p>
+<p>「我昨晚加的。」老许说，「郑总说运营要标。」</p>
+<p>老许低头看着桌上的烟。</p>
+<p>「标什么？」</p>
+<p>「因为有次我给他送谱，他在纸上写了一整页。」</p>
+<p>「原创、改编、拼歌、外包。」</p>
+<p>「什么谱。」</p>
+<p>「怎么分？」</p>
+<p>「不知道。他写完就折起来了。」</p>
+<p>「他说，听着像自己写的就算原创。」</p>
+<p>服务员来收空碗。陈渡把面汤往旁边挪，让她端走。</p>
+<p>陈渡看了一眼屏幕。</p>
+<p>「还有一句。」老许说，「你写的时候，他在旁边。他说你不写整歌，只写两句。别人唱，他不管。」</p>
+<p>「后面那列呢。」</p>
+<p>陈渡看着桌面的划痕。一道旧刀印从烟灰缸边拖到老许面前。</p>
+<p>「词作者。」</p>
+<p>「他现在知道词是你写的了。」</p>
+<p>「现在写谁？」</p>
+<p>「可能吧。」</p>
+<p>「郑总。」</p>
+<p>「可能？」</p>
+<p>「三十七首都写他？」</p>
+<p>「我说了那些歌，他自己会查。」老许说，「查不到作者，就说原创。网上那些介绍我都看过，写的是‘郑霖独立创作’。」</p>
+<p>「改了名的写郑总。旧的没改的，词作者空着，等公司确认。」</p>
+<p>「你告诉他了。」</p>
+<p>「谁确认。」</p>
+<p>「我说第一次见你的时候，你写过词。」</p>
+<p>「法务。」</p>
+<p>「这不是一样。」</p>
+<p>老许往下滑了一格。</p>
+<p>「对他来说一样。」老许说，「他把那几句发到群里，十二个人都说好。第二天就改成直播版。」</p>
+<p>表格最下面有三十七个编号。十八个旁边标着红色对勾，四个写着「待补授权」，其余空着。</p>
+<p>陈渡把胶带卷拿起来，撕下一段。胶带粘在指腹，拉出一声细响。</p>
+<p>「这个呢？」陈渡指着一行。</p>
+<p>「老许。」</p>
+<p>《白线》。词作者栏里写着郑霖，备注栏只有三个字：可商用。</p>
+<p>「嗯。」</p>
+<p>「这张表发给几个人？」</p>
+<p>「那些改了十七稿的词，是被别人改着改着传出去的。」</p>
+<p>「运营组。行政。财务。」</p>
+<p>老许没接话。</p>
+<p>「周老师呢？」</p>
+<p>「怎么？」陈渡问。</p>
+<p>老许抬头：「周老师？」</p>
+<p>「没什么。」老许把手机翻过来，屏幕亮了，「我当时说的是『改成直播版』。」</p>
+<p>「发给他了？」</p>
+<p>「十七稿不在改一版里？」</p>
+<p>「没有。」</p>
+<p>「那是你说的。」</p>
+<p>「为什么？」</p>
+<p>「我没说过。」</p>
+<p>「公司群。」老许说，「郑总说内部资料，不外传。」</p>
+<p>「那就是你自己算的。」</p>
+<p>「那你怎么拿到的？」</p>
+<p>陈渡把胶带贴在杯子底下，压住翘起的一角。</p>
+<p>「我做的。」</p>
+<p>老许看着他。</p>
+<p>老许把手机放回桌上，拇指在屏幕边缘来回蹭了两下。屏幕裂纹里卡着一小片灰。</p>
+<p>「有区别吗？」</p>
+<p>陈渡拿过桌上的胶带卷，撕下三厘米，压住维修单露在外面的边角。</p>
+<p>陈渡没回答。</p>
+<p>「周老师去年那台调音台，修完没有？」陈渡问。</p>
+<p>老许用指甲划开烟盒的封口，抽出那根折断的烟。烟丝从断口漏出来，落在桌面上。</p>
+<p>「修了。我带电容过去，他当场换了。」</p>
+<p>「郑霖去年问过我三次。」他说，「第一次问你在哪儿，第二次问你还写不写，第三次让我找人，要你以前的词。」</p>
+<p>「啸叫停了？」</p>
+<p>「你找了吗？」</p>
+<p>「停了。十分钟后又响。」</p>
+<p>「找了。乐队群解散了，我问过两个。一个拉货，一个开汽修店。都没存。」</p>
+<p>「什么频段？」</p>
+<p>「郑霖手里有多少。」</p>
+<p>「我没听出来。像是话筒_gain太高。」</p>
+<p>「我看见三十七首。」</p>
+<p>「增益不是频段。」</p>
+<p>陈渡的指腹压在胶带接缝上。</p>
+<p>「他说接近两到三千。」</p>
+<p>「三十七首。」</p>
+<p>「三千赫兹，像反馈。」</p>
+<p>「运营后台有文档。他让我排直播顺序，说这些都要拆。」</p>
+<p>「后来呢？」</p>
+<p>「拆成什么？」</p>
+<p>「后来把增益降了六格。好了。」</p>
+<p>「一句一首，三十秒。或者十五秒。短视频用。直播用。」</p>
+<p>老许把烟盒转了半圈。</p>
+<p>老许把折断的烟放进空烟盒，盖上盖子。</p>
+<p>「周老师问过你没有？」</p>
+<p>「他还说，词不能太完整。完整了像歌，太完整就不够日常。」</p>
+<p>「问什么。」</p>
+<p>「谁说的。」</p>
+<p>「问你去哪儿。」</p>
+<p>「他说做直播的人都这么说。」</p>
+<p>「你怎么答的。」</p>
+<p>陈渡抬眼看他。</p>
+<p>「我说不知道。」</p>
+<p>「他改过你的？」</p>
+<p>「他就没再说？」</p>
+<p>「改过。每首至少三个版本。‘等’换‘等’，这个不用改。‘回来’换‘经过’。‘回来’有结束的意思，‘经过’没有，用户爱听没结果的。」</p>
+<p>「他让我听这个。」</p>
+<p>「这是谁教他的？」</p>
+<p>老许学不出周隼说话时的停顿，只把烟盒往柜台那边推了推。</p>
+<p>「数据。平台数据。」老许说，「运营部十个人，每天开会看曲线。他说三首词不一定都留下，得看哪首涨粉。」</p>
+<p>「还说什么了？」</p>
+<p>陈渡把杯子转了半圈。杯底压着的那截胶带翘起来，粘起一块桌面上的油渍。</p>
+<p>「说那只电容不是他做的。」</p>
+<p>老许伸手去拿茶壶。</p>
+<p>陈渡拆开工具包最里层的拉链。里面是一只透明塑料袋，装着三只黑色电容。袋口用记号笔写着「12K63」，最后一笔描了两遍。</p>
+<p>陈渡先把壶提起来，给两个人续满。</p>
+<p>「后来呢？」</p>
+<p>「你什么时候进的公司？」</p>
+<p>「后来他让我把电容带回来。」</p>
+<p>「上个月十七号。」</p>
+<p>「带回来做什么？」</p>
+<p>「他招你之前，知道你是谁吗？」</p>
+<p>「装到机器上。」</p>
+<p>「知道。」</p>
+<p>「你带回来了？」</p>
+<p>「知道你欠我钱？」</p>
+<p>「没有。」</p>
+<p>「也说过。」老许喝了一口茶，「他说既然来，就别拖旧账。工资试用期扣两百。」</p>
+<p>「为什么？」</p>
+<p>「扣了？」</p>
+<p>「郑总不让。」</p>
+<p>「扣了。」</p>
+<p>「他说电容有问题？」</p>
+<p>「那你刚才又多给我二十。」</p>
+<p>「他说来源不清。」</p>
+<p>「我没带够三百。」</p>
+<p>陈渡捏住其中一只电容的引脚，轻轻弯了一下。引脚没有断。</p>
+<p>陈渡从口袋里拿出手机，打开计算器，把屏幕转向老许。</p>
+<p>「现在还在周老师那里。」</p>
+<p>「一百八十四。」他说。</p>
+<p>「应该在。」</p>
+<p>老许看着那三个数字，没有伸手。</p>
+<p>「他会不会拆。」</p>
+<p>「真不够。」</p>
+<p>「我没问。」</p>
+<p>「你手机里不是有转账？」</p>
+<p>老许的手机又震了一下。他没有翻过来，只用指腹按住侧边。</p>
+<p>「郑霖让我别乱点。广告后台权限没开，不能乱进系统。」</p>
+<p>「下午的车票呢？」陈渡问。</p>
+<p>陈渡收起手机。</p>
+<p>「买了。」</p>
+<p>「六年前，是什么场子？」</p>
+<p>「几号车厢。」</p>
+<p>「南站后面那个仓库。」老许说，「你带四个设备，鼓、贝斯、吉他和一台键盘。我忘词，你替我补。你那次不是唱，是打键盘。」</p>
+<p>「还没选。」</p>
+<p>「你欠三百。」</p>
+<p>「有卧铺就买卧铺。」</p>
+<p>「对。散场后你说要给周老师买磁带。我拿走了三百，后来一直没给。」</p>
+<p>「买不到。」</p>
+<p>「我没问你要过。」</p>
+<p>「站台票能补。」</p>
+<p>「我知道。」老许说，「所以拖了六年。」</p>
+<p>「K7全程十一个钟头。中间还有两段限速，站着也能睡。」</p>
+<p>「周隼给了磁带？」</p>
+<p>陈渡把三只电容重新装回塑料袋，压平袋口。</p>
+<p>「我不知道。你拿钱的时候，他在。他让我先买一箱，后来又拿了两盘空白带。」</p>
+<p>「你到省城以后，先把表改了。」</p>
+<p>「哪一年？」</p>
+<p>「怎么改？」</p>
+<p>「2018。秋天。」</p>
+<p>「没签授权的，不标商用。」</p>
+<p>「不是六年前。」</p>
+<p>「郑总问呢？」</p>
+<p>老许拿烟盒的手停住。</p>
+<p>「说没有授权。」</p>
+<p>「那五年我记错了。」</p>
+<p>「他会骂。」</p>
+<p>「你欠的是六年前。」</p>
+<p>「让他问。」</p>
+<p>「可能。」</p>
+<p>老许把手机翻过来。屏幕上不是郑霖的来电，是一个文档提醒。</p>
+<p>陈渡看着他。</p>
+<p>《慢车》拆词表。</p>
+<p>老许避开他的视线，把桌上那截断烟捡起来，放进烟盒。</p>
+<p>预计完成：13:40。</p>
+<p>「你为什么找我？」陈渡问。</p>
+<p>陈渡看了两秒，把目光移到窗外。玻璃上贴着半张旧外卖单，浆糊从边角翘起，露出后面更旧的一层白纸。</p>
+<p>「还钱。」</p>
+<p>「你这首拆了吗？」老许问。</p>
+<p>「还有呢。」</p>
+<p>「没有。」</p>
+<p>「看看你还写不写。」</p>
+<p>「两首就够。」</p>
+<p>「不写。」</p>
+<p>「我不拆。」</p>
+<p>「郑霖也不信。」</p>
+<p>「先做五首。」</p>
+<p>「他信不信跟我不写没有关系。」</p>
+<p>「我不做。」</p>
+<p>老许笑了一下。</p>
+<p>「那就按格式抄。」</p>
+<p>「你现在说话真像周老师。」</p>
+<p>陈渡把胶带卷收回工具包，红线从拉链上垂下来，擦过桌沿。</p>
+<p>陈渡把筷子摆在碗沿。筷尖朝外，一根长，一根短。</p>
+<p>「格式发我。」</p>
+<p>「周老师什么时候给过你？」</p>
+<p>老许愣了一下。</p>
+<p>「去年十一月。直播公司有台调音台啸叫，他让我去找周老师。他一听，说带一个电容过去。」</p>
+<p>「什么？」</p>
+<p>「什么电容。」</p>
+<p>「拆词格式。」</p>
+<p>「他没细说。说拿那种耐压高、容量小的。」</p>
+<p>「你不是说——」</p>
+<p>陈渡点头。</p>
+<p>「我看一眼。」</p>
+<p>老许看了他一眼。</p>
+<p>老许解开手机，点开文档。屏幕上先出现的是标题、时长、情绪、投放时段，最下面是原词与新词两栏。</p>
+<p>「你们聊什么？」</p>
+<p>陈渡把屏幕拿过去。</p>
+<p>「没聊。」</p>
+<p>第一行写：《白线》。</p>
+<p>「我提你名字了。」</p>
+<p>原词栏只截了三句。新词栏里，「回来」两个字被圈过，旁边标着「保留，高转化」。</p>
+<p>「那更没聊。」</p>
+<p>他把手机还给老许。</p>
+<p>老许把茶杯往桌心推。杯底在塑料桌布上擦出一条水痕。</p>
+<p>「这不算拆词。」</p>
+<p>「你知道他为什么找你吗？」</p>
+<p>「郑总要能唱。」</p>
+<p>「修设备。」</p>
+<p>「原词也能唱。」</p>
+<p>「他还想拿那台机器。」</p>
+<p>「原词少一个爆点。」</p>
+<p>陈渡的手离开杯子。</p>
+<p>「爆点在哪。」</p>
+<p>「谁说的。」</p>
+<p>「最后一句。」</p>
+<p>「他问过我，你那台改装机还在不在。」</p>
+<p>「最后一句有什么问题。」</p>
+<p>「你怎么答。」</p>
+<p>「太平。」</p>
+<p>「我说不知道。乐队散的时候，我没见过你的箱子。」</p>
+<p>「哪平。」</p>
+<p>「还在。」</p>
+<p>老许盯着屏幕：「用户得听出来这里要停。」</p>
+<p>「在哪？」</p>
+<p>「它本来就要停。」</p>
+<p>「我身上。」</p>
+<p>老许没说话。灶上的锅盖落回锅沿，金属声连响了两下。</p>
+<p>老许往他背上看了一眼。那只黑色工具包立在桌脚旁，拉链上拴着一截红线。</p>
+<p>「这个表谁做的？」陈渡问。</p>
+<p>「那台机器能录自己吗？」</p>
+<p>「我按郑总的录音改的。」</p>
+<p>「能。」</p>
+<p>「他唱过《白线》的旧版？」</p>
+<p>「现在能了？」</p>
+<p>「唱过。」</p>
+<p>「先通电。」</p>
+<p>「什么时候。」</p>
+<p>「还是录不进？」</p>
+<p>「去年直播。」</p>
+<p>「没试。」</p>
+<p>「哪一场？」</p>
+<p>老许把身体往前倾。</p>
+<p>「十一月吧。改版之前。」</p>
+<p>「郑霖说那台机器不录人声。他让人查过，说是磁头老化。」</p>
+<p>「哪个月十一日？」</p>
+<p>「谁让人查的？」</p>
+<p>老许想了片刻。</p>
+<p>「他朋友。卖二手音响的。拆了后盖，看不懂，就说是磁头。」</p>
+<p>「十一日还是十二日。那天他在说新歌。」</p>
+<p>陈渡打开工具包侧袋，摸出一支测电笔。笔尖的黄铜碰了碰桌角。</p>
+<p>陈渡看向墙上的钟。</p>
+<p>「磁头不在拾音线路里。」</p>
+<p>十一点三十六分。</p>
+<p>「那在哪？」</p>
+<p>他把塑料袋塞回工具包最里层，又将拉链拉过头，留出那截红线在外面。</p>
+<p>「我改过的地方。」</p>
+<p>「改了七年？」</p>
+<p>「七年。」</p>
+<p>「能修吗？」</p>
+<p>「能用就行。」</p>
+<p>老许笑了一下。</p>
+<p>「你还是这句话。」</p>
+<p>陈渡把测电笔收回去。</p>
+<p>「你现在住哪儿？」</p>
+<p>「纺织厂那边。老二室。押金三百，六百八一个月。」</p>
+<p>「水电另算？」</p>
+<p>「水四块一吨，电一块二。」</p>
+<p>「够住。」</p>
+<p>「够。窗纱得自己买。」</p>
+<p>老许把手机揣回裤兜，又拿出来看了一眼。</p>
+<p>「我下午四点的车。」</p>
+<p>陈渡看了一眼墙上的钟。十一点二十六。</p>
+<p>「去哪儿？」</p>
+<p>「省城。接运营总监的班。他休假十天。」</p>
+<p>「十天以后呢？」</p>
+<p>「再看郑霖招不招正式工。」</p>
+<p>「你现在是试用期。」</p>
+<p>「对。」</p>
+<p>陈渡把胶带卷放回包里，拉上拉链。</p>
+<p>老许从椅子上站起来。</p>
+<p>「那三百二，我先拿走。」</p>
+<p>陈渡从裤袋里掏出折叠的钱，数出三张一百和两张二十，放到桌上。</p>
+<p>「三百二。」</p>
+<p>「不是说欠三百？」</p>
+<p>「六年前三百。现在三百二。」</p>
+<p>「我说不用利息。」</p>
+<p>「我没说不用。」</p>
+<p>老许看着那几张钱，没有拿。</p>
+<p>「你以前不这样。」</p>
+<p>「以前你也不还。」</p>
+<p>灶上的抽油烟机发出连续的嗡声。频率不高，压住说话声，却压不住桌边手机震了一下。</p>
+<p>老许拿出来，屏幕上显示」郑总「。</p>
+<p>他看了一眼，没有接。</p>
+<p>「怎么不接？」陈渡问。</p>
+<p>「他问进度。」</p>
+<p>「什么进度。」</p>
+<p>「下午面试。还有……你。」</p>
+<p>陈渡抬头。</p>
+<p>老许把手机放回桌面，拇指按住了接听键。</p>
+<p>「喂，郑总。」</p>
+<p>电话里的声音开得很大，贴在裂开的屏幕上。</p>
+<p>「找到了？中午吃饭了吗？」郑霖说，「晚上那个场子提前，运营组全员到。名单发群里了，老许你第一个到。」</p>
+<p>「我在县城。」老许说，「下午四点的车。」</p>
+<p>「提前回来，车票我报。上午把陈渡那几首的拆词做出来，下午开会要用。」</p>
+<p>「拆词？」</p>
+<p>「三十七首，按分钟切。那几首带‘慢车’的先做。还有《白线》，副歌现在这版不够好，再改。」</p>
+<p>「往哪改？」</p>
+<p>「往用户嘴里改。上一版‘回来’数据最好，保留。前面几句再顺一遍。」</p>
+<p>电话那边有人在喊名字，背景里有六七个麦克风一起开着，电流声挤成一团。</p>
+<p>郑霖说：「两点前给我。」</p>
+<p>老许看向陈渡。</p>
+<p>「她不在。」老许说，「陈渡没写词。」</p>
+<p>「她？」郑霖的声音停了一下，「陈渡男的吧？」</p>
+<p>「他男的。」</p>
+<p>「那就你做。照我发你的格式。」</p>
+<p>「做不了那么快。」</p>
+<p>「先拆五首。拆完再说你做不了。」</p>
+<p>电话挂断。</p>
+<p>老许把手机扣在桌上。</p>
+<p>「他一直这样。」他说，「电话多，事情快，一分钟嫌长。」</p>
+<p>陈渡拿起桌上那五百块，数回三百，又把一百和一百放进口袋。</p>
+<p>「他会用我的词。」</p>
+<p>「已经用了。」</p>
+<p>「他给钱吗？」</p>
+<p>「平台给，郑霖是主播。词外包八十，改版二十。做出来按条结。」</p>
+<p>「我呢？」</p>
+<p>老许没回答。</p>
+<p>他拿起桌上的三百二，一张一张理齐，塞进钱包。钱包鼓起来，最外面那张一百折了边。</p>
+<p>「他说过词作者有分成吗？」陈渡问。</p>
+<p>「没有。」</p>
+<p>「合同呢？」</p>
+<p>「只有员工合同。试用期三个月，两千八。」</p>
+<p>「外包的呢？」</p>
+<p>「跟公司签。公司收，再转给写词的人。签电子合同，身份证，银行卡。」</p>
+<p>「署名呢？」</p>
+<p>「郑霖说，直播歌不署作者。只有上电台或者短视频买版权的时候才写词作者。」</p>
+<p>「写谁。」</p>
+<p>「写郑霖。」</p>
+<p>陈渡把工具包提到脚边。</p>
+<p>「他还不知道那些词是你写的吧？」</p>
+<p>老许正把钱包按回裤兜，手停了一下。</p>
+<p>「他知道你会写。」老许说，「他问过很多回。你在哪儿，你写什么，你跟周老师什么关系。」</p>
+<p>「那他知道。」</p>
+<p>「可能知道一部分。」</p>
+<p>「哪些词是我写的，哪些不是。」</p>
+<p>老许抬头看他。</p>
+<p>「他不知道那些词是你写的吧？」</p>
+<p>陈渡把工具包的带子绕过提手，拉紧。</p>
+<p>「他知道的。」</p>
+<p>老许愣了一下。</p>
+<p>「那他为什么不给你钱。」</p>
+<p>饭馆老板娘在灶边喊了一声，问他们要不要加面。桌上两碗面都见了底，汤里只剩葱花和蒜末。</p>
+<p>陈渡没有回头。</p>
+<p>「先通电。」</p>
 ]]></content>
       <categories>
         <category>小说</category>
@@ -33190,6 +33190,28 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
+    <title>成本核算</title>
+    <url>/%E5%B7%A5%E4%BD%9C/fb428c48.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="403034e3763252e0a1d875383418dced566fe36d7f58183614979363551524dd">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d01b15f88bbf2f997a33ad0e4769faa2f3731a35f9c12d7a5ad97247c985de51ed62c20bb6ba6113954fea16ed76707f8571dfaa584b4e3826985032b10288f7e13b93b331fc92e4ebc21cf2f3989f25ee250dd18448f86303d9d929567d54c0a64b2443cfcf3f54aaead2719e45509f355f0caa4661d7651db96a887b5ef79aae101fb73978cce5fa93b24287b98f2639e871f614db934381ee4e241a12fd224faedd825390e487d9287e6e7e03f0f00f6d33956db5549ab690eaa4bb73d57207b7847ceb796384c2d90aa03b08f9b7e3ba9a9a6c7120e569cfed730553994f200ff398b4a63e437ef87626081679e9d7691c9f8e574971d814fc42fa4c170c044f0bcc2d5227ab77afa36e2413a79cc9bf8212fbd04d467345d1da089614c3541e6a0e5e09c42f977cf917b15799600e6b55dfc9e445c2f9dd638939b32bad9f629832be56693f9f509d3cc0be74cc147cd44bc6700722b45b4a11e2ad51071ae0ce795058801497056bc30e1461d624e3ef86c45e64a651b1559f1031fec9ae6443177a5ba67cbe961cc2ee7bcb59a3cb88af0ba1c243d1a9549addf257a8fd8e64d179401465d805f41a2e032f4d5da29b43777ae9d1116ecc9094f9e86b387ece6c26fc4d30c9eaf9739da84f69da0b4ea41e78627adedac8bea9396bbb6806b40612b5c1bbe434a7b618df8245da6fadf861fcd1fe52c022ff5d00bebff5e77aaeb566e6771ee0c72ec95fba73eeda6035933d452127a7eb41d143e35c090114ecb95da3cd9e20fc000491f57605434acdc82a821345325b6fe27933402f57f3bfebbc23ae6d83578dea596364ce1d2de5344a20bc8185ddd344defea04ac49210125785b24cb993cbbd61e9d5c92b2e20c482ae4a367fe05eb0ea7756beada75cdfea44c37c1962ee408896582b27f0bd400fc35a73e25bcee8d14bc17d447e2eed7fcd9f800ab220101df770a45c2d9699e451dd225e650418c1bd3849960f965551be548eaf21d51928281ebbb761aeec3620bdcf2a58c461c611478e033254ad3cb3a1351b121f9dfa505a687e712a02f53d2d02d638bac0b3578a5e23f9fdaf699e32d58790b16e0397719a2e44505699e7dbba8e040b17a880f73d0aeeba704cbd5c15603c1dcee81e33633310b859c124a1c3c09bd063b5efb8e220c37583cc40dc155b0e30339572da533b70d8f084119e20b2f504f375a0e0076518afd45f70f61f893d65b14088c5a597e13deb62b6d0f0f64df8149522f1e5e7156b682aa8d639097e18fff4b2d8c57dc60d8625da2cecc8042490337199a41ba03f080582b97d39be52551ffacb3c2fb7c5606da03a13886c69d303864d35430398a00eecac17c7b5717f06dd40d5ab1a73f0465d54332570eb748cbb97afd416422b5b2f3bd679a080b9cc94199d8e90ee83d2b85ffa93528e020c93e5cfbc93875fc96ed4277efcf4d747686ef84f784204f1dec6588c829002c6919354b5cf23beb81b81b4ba5e9033d81bd5d1443cdb999f55c0996e9d02db7a7c25bc2ecf7f2cef76bd2c964a9934db64580e072eab8f721027d5ec8fb66aa9fec34f2f3b190cdccde6603f11c0f85f2e92f83f4082cd378982b2b4a742cb760a4137f33a9bb2da5f4a450eb5d05392221eed47c59399ed95b514557f3fb468293b94ac388d4119a167dca4b4d90dfef7310fa4c69d1b945d28f4322685a6708a142d355cfb6a5dfcf0819b8bbedb88a886828dfb0ef0919bfda0ab3a12381f980cd4738b6245d2960713d6f531563bc42af3589ce9fa03f1a8ca8f4b10b138ef17d6e3ae7a0e5c529ddf83432ec32c5d838bce16c4e10806956318e4b4f5e85c6af9aa2648d595e6a3155d6250d721f172a7cff78aac9a6b69b364d3aace867e838f95c5731f6a8c1d2faf055f8bca28ac6f80ac18f0061d41e8757bbcdcd29393a521c68fada0ef5c23c5a898792ddf530072b98ab37a519e76be5318ee82b88566a41f54cc929afc6c6c1887fb7323f8ef4d9773824b7d32b48a551ba4f2080e9517fe665260c20f1756351b43c77eced10722a926ef5ecdd3379acd3577b3e7fac6e38fb611d6f5465c809c7ec9015dd013f74e8039e30e138919f9f2d7b0d084a8c41bfe3322d87a0aeb6d40c902e473b91336a439dfac7e0e817a3978ad95b6583f07d9176f9e520a4fd11ac158a8f51d1012cbe8344ecb5bf4e81a8a5e00ee4e3edf3d66652e61fc56b1e8d71765486de4b7f802db8f10bf074fd207b5e933f4d02091ccd16fefe8ccf2e2e6e4feb487c9c43e311a33ec49adafe05da42685bbe4aa9e578e34b54dcfd1c795d6d3a04cc88085504aafb3d624fa7845a7fdb2d940b8370cfec5f6ee8c6604ada6ec88bba256584f049076476224a7777b67d04f09bfbe7366d5703382ce66642f94fd4cd5a6b3ddf66245514e1b976b1d4168361ab42f1bc5a103467e4225716042556a1d128e0c87ec1370df9e7f10e23b99c0a203ad9f35a8299e1d365fe3c35dc0e639aabbe5e3a06581dbad5be30e4d591ff16a74a4b29a066fe6d26adce8caec90688063fc3f21ef8ff09e8de081bc9528b39c7779107bfe0c52326c1d913e9c9a3cc9bde78e475944bd927923e9d3c70a48b608c95d3e6293e14d6378429de2051171bd75974afb3fe63f59d988e4e3592f473cd186b864fce54e8ebe7212dc12a630ac0fdbd4d416e4064549fd1683cfa3e43330b717de74222a5dc20affda36e381f36f7a4ba90d82425a22a179f19f400417d5daf3072ddcde25f25f429e13550608229a01fbd0b0d549168374f0518e0bfca4919a9b52c7b39f5ea57bdea3447a683891624bdb619459913c6b6ebf4827ee4ade374f83ea6d82127edcdbbda1885a238e0bcac36b70b61e6a5496cc726942c540e01ba3954e297939eb0f9d80c4abb968f6d9ddd92a5110863eac74a47d11dec7d99332c39b4c76678f859</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-wave">
+      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>工作</category>
+      </categories>
+  </entry>
+  <entry>
     <title>慢车 40：慢车</title>
     <url>/%E5%B0%8F%E8%AF%B4/1d505e47.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>两台117号磁带机并排放在工作台上。</p>
@@ -33656,28 +33678,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
-    <title>成本核算</title>
-    <url>/%E5%B7%A5%E4%BD%9C/fb428c48.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="403034e3763252e0a1d875383418dced566fe36d7f58183614979363551524dd">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d01b15f88bbf2f997a33ad0e4769faa2f3731a35f9c12d7a5ad97247c985de51ed62c20bb6ba6113954fea16ed76707f8571dfaa584b4e3826985032b10288f7e13b93b331fc92e4ebc21cf2f3989f25ee250dd18448f86303d9d929567d54c0a64b2443cfcf3f54aaead2719e45509f355f0caa4661d7651db96a887b5ef79aae101fb73978cce5fa93b24287b98f2639e871f614db934381ee4e241a12fd224faedd825390e487d9287e6e7e03f0f00f6d33956db5549ab690eaa4bb73d57207b7847ceb796384c2d90aa03b08f9b7e3ba9a9a6c7120e569cfed730553994f200ff398b4a63e437ef87626081679e9d7691c9f8e574971d814fc42fa4c170c044f0bcc2d5227ab77afa36e2413a79cc9bf8212fbd04d467345d1da089614c3541e6a0e5e09c42f977cf917b15799600e6b55dfc9e445c2f9dd638939b32bad9f629832be56693f9f509d3cc0be74cc147cd44bc6700722b45b4a11e2ad51071ae0ce795058801497056bc30e1461d624e3ef86c45e64a651b1559f1031fec9ae6443177a5ba67cbe961cc2ee7bcb59a3cb88af0ba1c243d1a9549addf257a8fd8e64d179401465d805f41a2e032f4d5da29b43777ae9d1116ecc9094f9e86b387ece6c26fc4d30c9eaf9739da84f69da0b4ea41e78627adedac8bea9396bbb6806b40612b5c1bbe434a7b618df8245da6fadf861fcd1fe52c022ff5d00bebff5e77aaeb566e6771ee0c72ec95fba73eeda6035933d452127a7eb41d143e35c090114ecb95da3cd9e20fc000491f57605434acdc82a821345325b6fe27933402f57f3bfebbc23ae6d83578dea596364ce1d2de5344a20bc8185ddd344defea04ac49210125785b24cb993cbbd61e9d5c92b2e20c482ae4a367fe05eb0ea7756beada75cdfea44c37c1962ee408896582b27f0bd400fc35a73e25bcee8d14bc17d447e2eed7fcd9f800ab220101df770a45c2d9699e451dd225e650418c1bd3849960f965551be548eaf21d51928281ebbb761aeec3620bdcf2a58c461c611478e033254ad3cb3a1351b121f9dfa505a687e712a02f53d2d02d638bac0b3578a5e23f9fdaf699e32d58790b16e0397719a2e44505699e7dbba8e040b17a880f73d0aeeba704cbd5c15603c1dcee81e33633310b859c124a1c3c09bd063b5efb8e220c37583cc40dc155b0e30339572da533b70d8f084119e20b2f504f375a0e0076518afd45f70f61f893d65b14088c5a597e13deb62b6d0f0f64df8149522f1e5e7156b682aa8d639097e18fff4b2d8c57dc60d8625da2cecc8042490337199a41ba03f080582b97d39be52551ffacb3c2fb7c5606da03a13886c69d303864d35430398a00eecac17c7b5717f06dd40d5ab1a73f0465d54332570eb748cbb97afd416422b5b2f3bd679a080b9cc94199d8e90ee83d2b85ffa93528e020c93e5cfbc93875fc96ed4277efcf4d747686ef84f784204f1dec6588c829002c6919354b5cf23beb81b81b4ba5e9033d81bd5d1443cdb999f55c0996e9d02db7a7c25bc2ecf7f2cef76bd2c964a9934db64580e072eab8f721027d5ec8fb66aa9fec34f2f3b190cdccde6603f11c0f85f2e92f83f4082cd378982b2b4a742cb760a4137f33a9bb2da5f4a450eb5d05392221eed47c59399ed95b514557f3fb468293b94ac388d4119a167dca4b4d90dfef7310fa4c69d1b945d28f4322685a6708a142d355cfb6a5dfcf0819b8bbedb88a886828dfb0ef0919bfda0ab3a12381f980cd4738b6245d2960713d6f531563bc42af3589ce9fa03f1a8ca8f4b10b138ef17d6e3ae7a0e5c529ddf83432ec32c5d838bce16c4e10806956318e4b4f5e85c6af9aa2648d595e6a3155d6250d721f172a7cff78aac9a6b69b364d3aace867e838f95c5731f6a8c1d2faf055f8bca28ac6f80ac18f0061d41e8757bbcdcd29393a521c68fada0ef5c23c5a898792ddf530072b98ab37a519e76be5318ee82b88566a41f54cc929afc6c6c1887fb7323f8ef4d9773824b7d32b48a551ba4f2080e9517fe665260c20f1756351b43c77eced10722a926ef5ecdd3379acd3577b3e7fac6e38fb611d6f5465c809c7ec9015dd013f74e8039e30e138919f9f2d7b0d084a8c41bfe3322d87a0aeb6d40c902e473b91336a439dfac7e0e817a3978ad95b6583f07d9176f9e520a4fd11ac158a8f51d1012cbe8344ecb5bf4e81a8a5e00ee4e3edf3d66652e61fc56b1e8d71765486de4b7f802db8f10bf074fd207b5e933f4d02091ccd16fefe8ccf2e2e6e4feb487c9c43e311a33ec49adafe05da42685bbe4aa9e578e34b54dcfd1c795d6d3a04cc88085504aafb3d624fa7845a7fdb2d940b8370cfec5f6ee8c6604ada6ec88bba256584f049076476224a7777b67d04f09bfbe7366d5703382ce66642f94fd4cd5a6b3ddf66245514e1b976b1d4168361ab42f1bc5a103467e4225716042556a1d128e0c87ec1370df9e7f10e23b99c0a203ad9f35a8299e1d365fe3c35dc0e639aabbe5e3a06581dbad5be30e4d591ff16a74a4b29a066fe6d26adce8caec90688063fc3f21ef8ff09e8de081bc9528b39c7779107bfe0c52326c1d913e9c9a3cc9bde78e475944bd927923e9d3c70a48b608c95d3e6293e14d6378429de2051171bd75974afb3fe63f59d988e4e3592f473cd186b864fce54e8ebe7212dc12a630ac0fdbd4d416e4064549fd1683cfa3e43330b717de74222a5dc20affda36e381f36f7a4ba90d82425a22a179f19f400417d5daf3072ddcde25f25f429e13550608229a01fbd0b0d549168374f0518e0bfca4919a9b52c7b39f5ea57bdea3447a683891624bdb619459913c6b6ebf4827ee4ade374f83ea6d82127edcdbbda1885a238e0bcac36b70b61e6a5496cc726942c540e01ba3954e297939eb0f9d80c4abb968f6d9ddd92a5110863eac74a47d11dec7d99332c39b4c76678f859</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-wave">
-      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-  </entry>
-  <entry>
     <title>我们不像诗歌</title>
     <url>/%E7%94%9F%E6%B4%BB/340466787.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
@@ -33938,28 +33938,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
-    <title>研发年终总结</title>
-    <url>/%E5%B7%A5%E4%BD%9C/72bee84d.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="d750b976d0af0dae30016627668be28e6d2795db96258477d297a1da59746216">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d0184c4df4adb62aec6770ccb2861933b80934badbd52b2032fb7d7fa8ea0a30401ead330577c4c8a85a72eb63f81f2d244582b0bf85438efa61c49e9528be85df7860fd17b3214829fa137b0184419f3fed24cb821d072633aec08c83b1784e73254f5ed31d204d1b341591704aec00a4d084e8d5095986f4aacc7046f1624418b2ec37bd0d60f984141aac07614e7fb2771146fa6ae68844ab7397c9522ac715b</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-wave">
-      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-  </entry>
-  <entry>
     <title>炝锅面</title>
     <url>/%E8%8F%9C%E8%B0%B1/b2113df8.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>河南大多地方以面食为主，炝锅面又是最经典的面食之一。</p>
@@ -34050,6 +34028,28 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
         <tag>美食</tag>
         <tag>河南</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>研发年终总结</title>
+    <url>/%E5%B7%A5%E4%BD%9C/72bee84d.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="d750b976d0af0dae30016627668be28e6d2795db96258477d297a1da59746216">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d0184c4df4adb62aec6770ccb2861933b80934badbd52b2032fb7d7fa8ea0a30401ead330577c4c8a85a72eb63f81f2d244582b0bf85438efa61c49e9528be85df7860fd17b3214829fa137b0184419f3fed24cb821d072633aec08c83b1784e73254f5ed31d204d1b341591704aec00a4d084e8d5095986f4aacc7046f1624418b2ec37bd0d60f984141aac07614e7fb2771146fa6ae68844ab7397c9522ac715b</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-wave">
+      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>工作</category>
+      </categories>
   </entry>
   <entry>
     <title>第800小时 01：颁证日</title>
@@ -34833,6 +34833,157 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
+    <title>第800小时 06：会失败的动作</title>
+    <url>/%E5%B0%8F%E8%AF%B4/62547a53.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>2026 年 5 月 12 日的这堂课，后来有两个人没法再走进这栋楼。一个人的名字会出现在一张贴出来的纸上，签字的时候笔尖把纸戳破了；另一个人的名字会从一面墙上被取下来。那天他们都还在，坐在同一个屋里。</p>
+<p>5 月 12 日上午九点十分，多功能厅的门开着。通知单贴在门内侧，打印的：</p>
+<p>内部公开课<br />
+《会失败的动作》<br />
+讲师：林野<br />
+5 月 12 日 19:00—21:00<br />
+计入教练示范时数 2.0</p>
+<p>「示范时数」底下画了一道线，线上补写：含讲义整理 0.4。</p>
+<p>陶砚把通知单从头看到尾。这 2.0 小时会进结算表。他没有问。通知单边上还贴了一张旧的，是四月那场体能测试的，日期发黄，纸角翘着。</p>
+<p>他七点四十分到，坐在第三排靠边的位置。</p>
+<p>来的人比他想的多。基地的内部教练到了二十几个，剩下的位置被学员占了一半。多功能厅平时用来开周会，椅子是可折叠的，折叠腿底下的橡胶垫磨掉了一层，踩上去会响。</p>
+<p>小鹿坐在第六排靠过道的位置。她穿着训练服，袖口卷了两圈，手里捏着一支笔，本子摊在膝盖上，没写字。</p>
+<p>陶砚把手机调成静音。</p>
+<p>晚上七点整，林野进来。</p>
+<p>他没有讲台，没有 PPT，也没有发讲义。他手里只拿着一叠 A4 白纸和一把铅笔，走到台前，把纸放在第一排的桌子上。</p>
+<p>「今天不教新动作。」他说，「我先要一张纸。」</p>
+<p>他举起一张白纸，让底下的人看清楚。</p>
+<p>「写两行。第一行：你现在最熟练的一个动作。第二行：上个月你做过多少次。」</p>
+<p>四十三个人低头写。写字的声音在多功能厅里响成一片。</p>
+<p>「写好了往下传。」林野说，「传完收上来。」</p>
+<p>纸在座位之间往后传。陶砚写完自己的两行，传给后面的人。他写的是：卧位举枪，186 次。写完他看了一眼。186 不是一个能说明问题的数。他还是交了上去。</p>
+<p>九分钟，四十三张纸全部收齐。林野抽出一张举起来。</p>
+<p>「力量组的。深蹲，十个一组，上个月 42 次。」他念完，把纸放在讲台上，「你 42 次都在做同一件事。你上一次做深蹲，做出了一个新东西吗？」</p>
+<p>底下没人回答。</p>
+<p>「现在你们做。」林野朝左边一排抬了下手，「力量组的这位，上来做十次。别的组的人看着他。」</p>
+<p>那个学员二十出头，做了十次。第四次膝盖往里扣了一下，第七次又扣了一下。</p>
+<p>林野在讲台上的白纸上画了两道竖线，标上 4 和 7。</p>
+<p>「短跑的，上来做十次单腿跳。」</p>
+<p>一个女学员上去。第五次落地的时候重心往后倒了一下，第九次倒得更大。</p>
+<p>「射击组的，十枪。」</p>
+<p>那个学员端枪上靶。第四枪扣扳机的时候眼皮先合了一下，第九枪又合了一下。</p>
+<p>林野在白纸上写下：4、9。写完把笔放下。</p>
+<p>「十次里，两到四次会失败。」他说，「失败的那几次，位置固定。这不是偶然，也不是状态差。这是你身体的边界。」</p>
+<p>他在白板上画了三个字：会失败。</p>
+<p>「你们写的那两行，是你们已经会的东西。会的东西不用练。你练它一万次，还是那一万次的同一件事。」</p>
+<p>他把笔尖点在「会失败」三个字上。</p>
+<p>「我要讲的是另外一件事。你的身体比你的脑子先知道它在哪儿失败。所以你要给它一个固定的条件——固定的坡度，固定的配速，固定的距离——让失败每一次都落在同一个地方。」</p>
+<p>底下有人举手，是中年男人，声音压得很低。</p>
+<p>「那我练到什么时候？」</p>
+<p>「练到它不再在同一个地方失败。」林野说。</p>
+<p>那个男人把手放下了。</p>
+<p>「今天回去，每组写一张纸。三行。」林野举起一张白纸，「第一行：条件是什么。第二行：测谁。第三行：停在哪儿。」</p>
+<p>「停在哪儿是什么意思？」</p>
+<p>「条件加到什么程度就停。不能加到人受伤。」</p>
+<p>「写下来贴哪儿？」</p>
+<p>「贴在你们组的训练计划上。」林野把白纸放下，「明天我来看。」</p>
+<p>「写不出来呢？」</p>
+<p>「写不出来就说明还没想清楚。」林野说，「没想清楚的条件，不许用。」</p>
+<p>前排有个女教练小声跟旁边的人说了一句什么，旁边的人摇了摇头。</p>
+<p>「我提一个问题。」林野说，「刚才短跑那位，第十一次单腿跳会在哪一下失败？」</p>
+<p>底下的教练们面面相觑。</p>
+<p>「说个地方。」</p>
+<p>「第四下。」有人说。</p>
+<p>「为什么是第四下？」</p>
+<p>「……因为上次是第五下。」</p>
+<p>「上次是第五下。你怎么知道这次不是第八下？」</p>
+<p>没人回答。</p>
+<p>「这就是问题。」林野说，「你们不知道自己的失败在哪儿，所以你们的每一次训练，都是把失败重新掷一次骰子。」</p>
+<p>他把讲台上的白纸收起来，捏成一叠。</p>
+<p>「这套方法不是我写的。」</p>
+<p>他在白板上写了三个字。写得很慢，笔画压得重。</p>
+<p>「陈守拙。省体校的教练。」</p>
+<p>底下有几个人交换了眼神。陶砚没有动。</p>
+<p>「你从哪儿知道他的名字？」一个教练问。</p>
+<p>「从格式上。」林野把讲台上的那叠纸翻过来，抽出最上面一张，反着举起来，「他的日志里没有『成功』这一栏。一栏只有五项。」</p>
+<p>他用手指在纸上点。</p>
+<p>「日期。时数。动作。偏差。备注。」</p>
+<p>多功能厅里没有人说话。</p>
+<p>陶砚的手指在膝盖上收了一下。那五项他太熟了。1998 年 9 月，他第一次拿到那本硬壳本的时候，陈守拙把本子翻到第二页，指着印好的表头说：写下来。一样都不许瞒。</p>
+<p>「2002 年冬天，他用过一次。」林野说。</p>
+<p>他转过身，在白板上又写了一个年份。</p>
+<p>「省体校。一个少年，被他当众拆了一段录像。拆完，那个少年照原样练。第二年，队伍里就没有他了。」</p>
+<p>「拆完照原样练？」底下的教练问。</p>
+<p>「是。」林野说，「那个少年练了四年。练坏的那一个动作，占了他全部训练时间的九成八。」</p>
+<p>「后来呢？」</p>
+<p>「后来没有后来。」林野说，「档案上写的是中途离队。」</p>
+<p>「谁离队？」</p>
+<p>林野没有回答这句话。他把笔放在讲台上。</p>
+<p>「一个动作，错了，你练得越多，错得越深。」他说，「所以要练会失败的动作。不是练你已经很熟练的那个。」</p>
+<p>小鹿这时候开口了。</p>
+<p>「老师，我练 200 米。」她说，「我老在同一个地方崩。要练多久才算够？」</p>
+<p>林野看了她一眼。</p>
+<p>「崩在哪儿？」</p>
+<p>「最后 150 米。」</p>
+<p>「每次都在 150？」</p>
+<p>「每次都在 150。」</p>
+<p>「那你的条件就固定在 150。」林野在白纸上写下 150，又在后面加了一个括号，「你的失败有一个固定的位置，这是你比很多人有福气的地方。大多数人的失败到处跑。」</p>
+<p>小鹿低头在本子上写了一行字，写完把笔盖上。</p>
+<p>「我崩过十九天。」她说。</p>
+<p>林野没有接这句话。他在白板上写下：47。</p>
+<p>「第十九天你停在哪儿？」</p>
+<p>「第四十七次落地。」小鹿说。</p>
+<p>林野把笔帽扣上。</p>
+<p>陶砚坐在第三排。他的右手放在膝盖上，手没有动。他记得那十九天——不是记得小鹿，是记得监控室的回放。他记得自己按下暂停键，然后没有再按播放。</p>
+<p>林野把讲台上的白纸收起来，捏成一叠。</p>
+<p>「我只要求三件事。第一，每次训练加一个你做不成的条件。第二，条件固定，不许换。第三，只记失败的那几次。」</p>
+<p>「成功的那些不记？」</p>
+<p>「你已经会了，记它浪费本子。」</p>
+<p>底下一个教练举手。</p>
+<p>「这个失败，怎么算？我们的认证按时数算。记失败，能换成金牌吗？」</p>
+<p>「不能。」林野说。</p>
+<p>「那它算什么？」</p>
+<p>「算它本来就该算的那部分。」林野把白纸翻过来，「你今天在这个动作上花二十分钟，其中十九分钟是在重复你早就会的东西。你付了二十小时包的钱，拿到的是一小时的东西。这笔账本来就在你那本日志里，只是没人记。」</p>
+<p>「记了会怎样？」</p>
+<p>「记了你才知道自己哪一格是空的。」林野说，「空的那一格才是训练。你现在填满了整张表，每一格都很漂亮，漂亮得像一张假成绩单。」</p>
+<p>陶砚在第三排。他想起一月那节示范课的录像：前二十分钟和后四十分钟做的是同一件事。他看过那段录像。他没有跟任何人说过。</p>
+<p>他手里的笔转了半圈，停住。笔尖那一点墨在纸上洇开一个小圆点。</p>
+<p>「陶教练。」林野忽然叫他。</p>
+<p>四十几双眼睛转过来。</p>
+<p>「您带过多少个班？」</p>
+<p>「记不清。」</p>
+<p>「那您记得您一节课里，同一个动作重复了多少次吗？」</p>
+<p>陶砚没有回答。有几个人笑了，笑得很轻。</p>
+<p>「不怪您。」林野说，「没人给过您这个数。」</p>
+<p>九点二十八分，林野看了一眼手表。</p>
+<p>「今天到这儿。」</p>
+<p>椅子响。四十三个人陆续站起来。有人往前排走，想在白板被擦掉之前看清那三个字。小鹿合上本子，从过道挤出去，走到门口的时候回头看了一眼白板，看完走了。</p>
+<p>陶砚最后一个起身。他走上讲台，拿起讲台上的板擦，把白板擦了一遍。粉笔字吃进板面里，一道要擦两次。他擦到第三遍的时候，只剩一条湿印子。</p>
+<p>林野在收讲义。他的帆布包带子断了一根，用尼龙绳接着。陶砚没有跟他说话。</p>
+<p>行政在走廊那头。陶砚刷工牌进了演播室旁边的小机房，把 5 月 12 日这一段的录像导出到自己的移动硬盘。文件名是自动生成的：20260512_多功能厅_公开课_示范。时长 2 小时 4 分 31 秒。他看着进度条走完，把硬盘收进包里。</p>
+<p>出机房的时候，他走错了方向，走到走廊尽头才发现。回来的路上要经过多功能厅。里面的灯已经关了，只剩讲台上一盏。</p>
+<p>垃圾桶在门后面，是那种脚踏式的铁桶。桶沿上有一道用胶带贴过的裂口。陶砚没有留意，是他的鞋碰到了桶底踏板，桶盖弹开的声音让他停了脚。</p>
+<p>桶里有一张纸。折过，对折两次，边上带着装订孔。</p>
+<p>他弯腰把它捡起来。</p>
+<p>是一页手写的表格，字很方，横平竖直，跟他自己的笔迹不一样。表格上面一行标题：</p>
+<p>陶砚 2002—2003 训练结构分析</p>
+<p>下面三行：</p>
+<p>台账 2002（省体校）：动作 9 类<br />
+录像 2003—2005（教学）：动作 5 类<br />
+2003 年起，最高频的那一类从「练」变成了「示范」</p>
+<p>右下角一行小字，墨色比正文淡：</p>
+<p>来源：省体校旧档案室 · 借阅登记（2002 年 12 月 20 日 · 陶砚）</p>
+<p>陶砚站在走廊里，把纸翻过来又翻回去。</p>
+<p>2002 年 12 月 20 日。那是拆解的第二天。他记得那天。档案室在训练馆后面一栋小楼的地下室，除湿机整夜响着。他在台账架上找了两个小时，把 2002 年 1 月到 12 月的记录一本一本摊在长条桌上，摊完再一本一本码回去。走的时候他把台账放回原位，位置偏了两厘米，他记得自己又推回去。</p>
+<p>台账的封面他摸过很多遍。</p>
+<p>有人用他借阅登记上的名字，把那本台账找了出来；有人看了他 2003 年以后的公开课录像，把两个数字放在一张纸上写成了三行；有人把这一页从本子上撕下来，揉成一团丢进讲台边的铁桶。</p>
+<p>他抬头看了一眼讲台。台面擦得很干净，粉笔灰被擦掉了，只留下湿印子的边缘。</p>
+<p>他把那页纸对折两次，放进上衣内袋。纸很薄，边角硌着胸口。</p>
+<p>最后一行是那个日期：2002 年 12 月 20 日。</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>小说</tag>
+        <tag>第800小时</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>第800小时 05：账本</title>
     <url>/%E5%B0%8F%E8%AF%B4/6821e4a.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>0.11。</p>
@@ -35012,157 +35163,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>她把门带上。</p>
 <p>财务室里剩下陶砚一个人。那张手抄的纸摊在桌面上，14% 那一行正对着他。刻痕里嵌着的黑墨在台灯下泛着光。</p>
 <p>九点整，走廊的声控灯灭了。</p>
-]]></content>
-      <categories>
-        <category>小说</category>
-      </categories>
-      <tags>
-        <tag>小说</tag>
-        <tag>第800小时</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>第800小时 06：会失败的动作</title>
-    <url>/%E5%B0%8F%E8%AF%B4/62547a53.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>2026 年 5 月 12 日的这堂课，后来有两个人没法再走进这栋楼。一个人的名字会出现在一张贴出来的纸上，签字的时候笔尖把纸戳破了；另一个人的名字会从一面墙上被取下来。那天他们都还在，坐在同一个屋里。</p>
-<p>5 月 12 日上午九点十分，多功能厅的门开着。通知单贴在门内侧，打印的：</p>
-<p>内部公开课<br />
-《会失败的动作》<br />
-讲师：林野<br />
-5 月 12 日 19:00—21:00<br />
-计入教练示范时数 2.0</p>
-<p>「示范时数」底下画了一道线，线上补写：含讲义整理 0.4。</p>
-<p>陶砚把通知单从头看到尾。这 2.0 小时会进结算表。他没有问。通知单边上还贴了一张旧的，是四月那场体能测试的，日期发黄，纸角翘着。</p>
-<p>他七点四十分到，坐在第三排靠边的位置。</p>
-<p>来的人比他想的多。基地的内部教练到了二十几个，剩下的位置被学员占了一半。多功能厅平时用来开周会，椅子是可折叠的，折叠腿底下的橡胶垫磨掉了一层，踩上去会响。</p>
-<p>小鹿坐在第六排靠过道的位置。她穿着训练服，袖口卷了两圈，手里捏着一支笔，本子摊在膝盖上，没写字。</p>
-<p>陶砚把手机调成静音。</p>
-<p>晚上七点整，林野进来。</p>
-<p>他没有讲台，没有 PPT，也没有发讲义。他手里只拿着一叠 A4 白纸和一把铅笔，走到台前，把纸放在第一排的桌子上。</p>
-<p>「今天不教新动作。」他说，「我先要一张纸。」</p>
-<p>他举起一张白纸，让底下的人看清楚。</p>
-<p>「写两行。第一行：你现在最熟练的一个动作。第二行：上个月你做过多少次。」</p>
-<p>四十三个人低头写。写字的声音在多功能厅里响成一片。</p>
-<p>「写好了往下传。」林野说，「传完收上来。」</p>
-<p>纸在座位之间往后传。陶砚写完自己的两行，传给后面的人。他写的是：卧位举枪，186 次。写完他看了一眼。186 不是一个能说明问题的数。他还是交了上去。</p>
-<p>九分钟，四十三张纸全部收齐。林野抽出一张举起来。</p>
-<p>「力量组的。深蹲，十个一组，上个月 42 次。」他念完，把纸放在讲台上，「你 42 次都在做同一件事。你上一次做深蹲，做出了一个新东西吗？」</p>
-<p>底下没人回答。</p>
-<p>「现在你们做。」林野朝左边一排抬了下手，「力量组的这位，上来做十次。别的组的人看着他。」</p>
-<p>那个学员二十出头，做了十次。第四次膝盖往里扣了一下，第七次又扣了一下。</p>
-<p>林野在讲台上的白纸上画了两道竖线，标上 4 和 7。</p>
-<p>「短跑的，上来做十次单腿跳。」</p>
-<p>一个女学员上去。第五次落地的时候重心往后倒了一下，第九次倒得更大。</p>
-<p>「射击组的，十枪。」</p>
-<p>那个学员端枪上靶。第四枪扣扳机的时候眼皮先合了一下，第九枪又合了一下。</p>
-<p>林野在白纸上写下：4、9。写完把笔放下。</p>
-<p>「十次里，两到四次会失败。」他说，「失败的那几次，位置固定。这不是偶然，也不是状态差。这是你身体的边界。」</p>
-<p>他在白板上画了三个字：会失败。</p>
-<p>「你们写的那两行，是你们已经会的东西。会的东西不用练。你练它一万次，还是那一万次的同一件事。」</p>
-<p>他把笔尖点在「会失败」三个字上。</p>
-<p>「我要讲的是另外一件事。你的身体比你的脑子先知道它在哪儿失败。所以你要给它一个固定的条件——固定的坡度，固定的配速，固定的距离——让失败每一次都落在同一个地方。」</p>
-<p>底下有人举手，是中年男人，声音压得很低。</p>
-<p>「那我练到什么时候？」</p>
-<p>「练到它不再在同一个地方失败。」林野说。</p>
-<p>那个男人把手放下了。</p>
-<p>「今天回去，每组写一张纸。三行。」林野举起一张白纸，「第一行：条件是什么。第二行：测谁。第三行：停在哪儿。」</p>
-<p>「停在哪儿是什么意思？」</p>
-<p>「条件加到什么程度就停。不能加到人受伤。」</p>
-<p>「写下来贴哪儿？」</p>
-<p>「贴在你们组的训练计划上。」林野把白纸放下，「明天我来看。」</p>
-<p>「写不出来呢？」</p>
-<p>「写不出来就说明还没想清楚。」林野说，「没想清楚的条件，不许用。」</p>
-<p>前排有个女教练小声跟旁边的人说了一句什么，旁边的人摇了摇头。</p>
-<p>「我提一个问题。」林野说，「刚才短跑那位，第十一次单腿跳会在哪一下失败？」</p>
-<p>底下的教练们面面相觑。</p>
-<p>「说个地方。」</p>
-<p>「第四下。」有人说。</p>
-<p>「为什么是第四下？」</p>
-<p>「……因为上次是第五下。」</p>
-<p>「上次是第五下。你怎么知道这次不是第八下？」</p>
-<p>没人回答。</p>
-<p>「这就是问题。」林野说，「你们不知道自己的失败在哪儿，所以你们的每一次训练，都是把失败重新掷一次骰子。」</p>
-<p>他把讲台上的白纸收起来，捏成一叠。</p>
-<p>「这套方法不是我写的。」</p>
-<p>他在白板上写了三个字。写得很慢，笔画压得重。</p>
-<p>「陈守拙。省体校的教练。」</p>
-<p>底下有几个人交换了眼神。陶砚没有动。</p>
-<p>「你从哪儿知道他的名字？」一个教练问。</p>
-<p>「从格式上。」林野把讲台上的那叠纸翻过来，抽出最上面一张，反着举起来，「他的日志里没有『成功』这一栏。一栏只有五项。」</p>
-<p>他用手指在纸上点。</p>
-<p>「日期。时数。动作。偏差。备注。」</p>
-<p>多功能厅里没有人说话。</p>
-<p>陶砚的手指在膝盖上收了一下。那五项他太熟了。1998 年 9 月，他第一次拿到那本硬壳本的时候，陈守拙把本子翻到第二页，指着印好的表头说：写下来。一样都不许瞒。</p>
-<p>「2002 年冬天，他用过一次。」林野说。</p>
-<p>他转过身，在白板上又写了一个年份。</p>
-<p>「省体校。一个少年，被他当众拆了一段录像。拆完，那个少年照原样练。第二年，队伍里就没有他了。」</p>
-<p>「拆完照原样练？」底下的教练问。</p>
-<p>「是。」林野说，「那个少年练了四年。练坏的那一个动作，占了他全部训练时间的九成八。」</p>
-<p>「后来呢？」</p>
-<p>「后来没有后来。」林野说，「档案上写的是中途离队。」</p>
-<p>「谁离队？」</p>
-<p>林野没有回答这句话。他把笔放在讲台上。</p>
-<p>「一个动作，错了，你练得越多，错得越深。」他说，「所以要练会失败的动作。不是练你已经很熟练的那个。」</p>
-<p>小鹿这时候开口了。</p>
-<p>「老师，我练 200 米。」她说，「我老在同一个地方崩。要练多久才算够？」</p>
-<p>林野看了她一眼。</p>
-<p>「崩在哪儿？」</p>
-<p>「最后 150 米。」</p>
-<p>「每次都在 150？」</p>
-<p>「每次都在 150。」</p>
-<p>「那你的条件就固定在 150。」林野在白纸上写下 150，又在后面加了一个括号，「你的失败有一个固定的位置，这是你比很多人有福气的地方。大多数人的失败到处跑。」</p>
-<p>小鹿低头在本子上写了一行字，写完把笔盖上。</p>
-<p>「我崩过十九天。」她说。</p>
-<p>林野没有接这句话。他在白板上写下：47。</p>
-<p>「第十九天你停在哪儿？」</p>
-<p>「第四十七次落地。」小鹿说。</p>
-<p>林野把笔帽扣上。</p>
-<p>陶砚坐在第三排。他的右手放在膝盖上，手没有动。他记得那十九天——不是记得小鹿，是记得监控室的回放。他记得自己按下暂停键，然后没有再按播放。</p>
-<p>林野把讲台上的白纸收起来，捏成一叠。</p>
-<p>「我只要求三件事。第一，每次训练加一个你做不成的条件。第二，条件固定，不许换。第三，只记失败的那几次。」</p>
-<p>「成功的那些不记？」</p>
-<p>「你已经会了，记它浪费本子。」</p>
-<p>底下一个教练举手。</p>
-<p>「这个失败，怎么算？我们的认证按时数算。记失败，能换成金牌吗？」</p>
-<p>「不能。」林野说。</p>
-<p>「那它算什么？」</p>
-<p>「算它本来就该算的那部分。」林野把白纸翻过来，「你今天在这个动作上花二十分钟，其中十九分钟是在重复你早就会的东西。你付了二十小时包的钱，拿到的是一小时的东西。这笔账本来就在你那本日志里，只是没人记。」</p>
-<p>「记了会怎样？」</p>
-<p>「记了你才知道自己哪一格是空的。」林野说，「空的那一格才是训练。你现在填满了整张表，每一格都很漂亮，漂亮得像一张假成绩单。」</p>
-<p>陶砚在第三排。他想起一月那节示范课的录像：前二十分钟和后四十分钟做的是同一件事。他看过那段录像。他没有跟任何人说过。</p>
-<p>他手里的笔转了半圈，停住。笔尖那一点墨在纸上洇开一个小圆点。</p>
-<p>「陶教练。」林野忽然叫他。</p>
-<p>四十几双眼睛转过来。</p>
-<p>「您带过多少个班？」</p>
-<p>「记不清。」</p>
-<p>「那您记得您一节课里，同一个动作重复了多少次吗？」</p>
-<p>陶砚没有回答。有几个人笑了，笑得很轻。</p>
-<p>「不怪您。」林野说，「没人给过您这个数。」</p>
-<p>九点二十八分，林野看了一眼手表。</p>
-<p>「今天到这儿。」</p>
-<p>椅子响。四十三个人陆续站起来。有人往前排走，想在白板被擦掉之前看清那三个字。小鹿合上本子，从过道挤出去，走到门口的时候回头看了一眼白板，看完走了。</p>
-<p>陶砚最后一个起身。他走上讲台，拿起讲台上的板擦，把白板擦了一遍。粉笔字吃进板面里，一道要擦两次。他擦到第三遍的时候，只剩一条湿印子。</p>
-<p>林野在收讲义。他的帆布包带子断了一根，用尼龙绳接着。陶砚没有跟他说话。</p>
-<p>行政在走廊那头。陶砚刷工牌进了演播室旁边的小机房，把 5 月 12 日这一段的录像导出到自己的移动硬盘。文件名是自动生成的：20260512_多功能厅_公开课_示范。时长 2 小时 4 分 31 秒。他看着进度条走完，把硬盘收进包里。</p>
-<p>出机房的时候，他走错了方向，走到走廊尽头才发现。回来的路上要经过多功能厅。里面的灯已经关了，只剩讲台上一盏。</p>
-<p>垃圾桶在门后面，是那种脚踏式的铁桶。桶沿上有一道用胶带贴过的裂口。陶砚没有留意，是他的鞋碰到了桶底踏板，桶盖弹开的声音让他停了脚。</p>
-<p>桶里有一张纸。折过，对折两次，边上带着装订孔。</p>
-<p>他弯腰把它捡起来。</p>
-<p>是一页手写的表格，字很方，横平竖直，跟他自己的笔迹不一样。表格上面一行标题：</p>
-<p>陶砚 2002—2003 训练结构分析</p>
-<p>下面三行：</p>
-<p>台账 2002（省体校）：动作 9 类<br />
-录像 2003—2005（教学）：动作 5 类<br />
-2003 年起，最高频的那一类从「练」变成了「示范」</p>
-<p>右下角一行小字，墨色比正文淡：</p>
-<p>来源：省体校旧档案室 · 借阅登记（2002 年 12 月 20 日 · 陶砚）</p>
-<p>陶砚站在走廊里，把纸翻过来又翻回去。</p>
-<p>2002 年 12 月 20 日。那是拆解的第二天。他记得那天。档案室在训练馆后面一栋小楼的地下室，除湿机整夜响着。他在台账架上找了两个小时，把 2002 年 1 月到 12 月的记录一本一本摊在长条桌上，摊完再一本一本码回去。走的时候他把台账放回原位，位置偏了两厘米，他记得自己又推回去。</p>
-<p>台账的封面他摸过很多遍。</p>
-<p>有人用他借阅登记上的名字，把那本台账找了出来；有人看了他 2003 年以后的公开课录像，把两个数字放在一张纸上写成了三行；有人把这一页从本子上撕下来，揉成一团丢进讲台边的铁桶。</p>
-<p>他抬头看了一眼讲台。台面擦得很干净，粉笔灰被擦掉了，只留下湿印子的边缘。</p>
-<p>他把那页纸对折两次，放进上衣内袋。纸很薄，边角硌着胸口。</p>
-<p>最后一行是那个日期：2002 年 12 月 20 日。</p>
 ]]></content>
       <categories>
         <category>小说</category>
@@ -37575,6 +37575,18 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
+    <title>航空港区-兴港-沟通</title>
+    <url>/uncategorized/ae0adc94.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><ol>
+<li class="lvl-3">
+<p>航空港区 水务</p>
+</li>
+<li class="lvl-3">
+</li>
+</ol>
+]]></content>
+  </entry>
+  <entry>
     <title>第800小时 20：第800小时</title>
     <url>/%E5%B0%8F%E8%AF%B4/7bc32b1.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>五月九号，岚城郊外的旧厂房，第一堂课六点开始。</p>
@@ -37809,18 +37821,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
         <tag>小说</tag>
         <tag>第800小时</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>航空港区-兴港-沟通</title>
-    <url>/uncategorized/ae0adc94.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><ol>
-<li class="lvl-3">
-<p>航空港区 水务</p>
-</li>
-<li class="lvl-3">
-</li>
-</ol>
-]]></content>
   </entry>
   <entry>
     <title>芝麻叶糊涂面</title>
@@ -38262,12 +38262,12 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
     <title>路</title>
     <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-        <div id="aplayer-ZyotQqgG" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-rhuEsAMB" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-ZyotQqgG"),
+            element: document.getElementById("aplayer-rhuEsAMB"),
             narrow: false,
             autoplay: true,
             showlrc: false,
@@ -38428,6 +38428,22 @@ ExcelUtil --> RecordHandler</pre>
         <tag>replace</tag>
         <tag>ignore</tag>
         <tag>insert</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>鲁迅先生写道: 父母存在的意义</title>
+    <url>/%E7%94%9F%E6%B4%BB/2375039249.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
+<p><strong>鲁迅先生写父母存在的意义是：</strong><br />
+父母存在的意义不是给予孩子舒适和富裕的生活，而是当你想到你的父母时你的内心就会充满力量，会感受到温暖，从而拥有克服困难的勇气和能力，因此获得人生真正的乐趣和自由。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>鲁迅先生</tag>
+        <tag>父母</tag>
       </tags>
   </entry>
   <entry>
@@ -38766,22 +38782,6 @@ ExcelUtil --> RecordHandler</pre>
         <tag>机器学习</tag>
         <tag>ocr</tag>
         <tag>人工智能</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>鲁迅先生写道: 父母存在的意义</title>
-    <url>/%E7%94%9F%E6%B4%BB/2375039249.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
-<p><strong>鲁迅先生写父母存在的意义是：</strong><br />
-父母存在的意义不是给予孩子舒适和富裕的生活，而是当你想到你的父母时你的内心就会充满力量，会感受到温暖，从而拥有克服困难的勇气和能力，因此获得人生真正的乐趣和自由。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>鲁迅先生</tag>
-        <tag>父母</tag>
       </tags>
   </entry>
   <entry>
