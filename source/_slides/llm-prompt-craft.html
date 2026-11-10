@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第十集：把话说明白 —— 提示词的实用写法</title>
+<style>
+  html,body{margin:0;height:100%;background:#07080f;overflow:hidden;}
+  canvas{display:block;cursor:pointer;}
+</style>
+</head>
+<body>
+<canvas id="cv"></canvas>
+<script>
+(function(){
+"use strict";
+
+const VW=1600, VH=900;
+const cv=document.getElementById('cv'), ctx=cv.getContext('2d');
+let scale=1, offX=0, offY=0, dpr=1;
+
+const FONT='"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif';
+const MONO='Menlo,Consolas,"SF Mono",monospace';
+
+const BG='#0c0a06', PANEL='#171310', PANEL2='#221b15', LINE='#3b2f22',
+      TXT='#f8f2e8', DIM='#a89a86',
+      ACC='#ffc95c',        /* 金：本集主色 */
+      ACC2='#5b9dff',
+      ACC3='#39d0c6',
+      WARN='#f2617a', OK='#5cd692';
+
+const clamp=(x,a,b)=>x<a?a:(x>b?b:x);
+const cl01=x=>clamp(x,0,1);
+const seg=(t,a,b)=>b<=a?(t>=b?1:0):cl01((t-a)/(b-a));
+const eo=t=>1-Math.pow(1-cl01(t),3);
+const lerp=(a,b,t)=>a+(b-a)*t;
+function hex2rgb(h){return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];}
+function mixc(c1,c2,t){const a=hex2rgb(c1),b=hex2rgb(c2);t=cl01(t);
+  return 'rgb('+Math.round(lerp(a[0],b[0],t))+','+Math.round(lerp(a[1],b[1],t))+','+Math.round(lerp(a[2],b[2],t))+')';}
+function rgba(c,a){const r=hex2rgb(c);return 'rgba('+r[0]+','+r[1]+','+r[2]+','+cl01(a)+')';}
+function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);
+  ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
+
+function T(s,x,y,size,color,align,weight,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.fillStyle=color;ctx.font=(weight||400)+' '+size+'px '+FONT;
+  ctx.textAlign=align||'left';ctx.textBaseline='middle';
+  ctx.fillText(s,x,y);ctx.restore();
+}
+function TF(s,x,y,size,color,align,weight,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.fillStyle=color;ctx.font=(weight||400)+' '+size+'px '+MONO;
+  ctx.textAlign=align||'left';ctx.textBaseline='middle';
+  ctx.fillText(s,x,y);ctx.restore();
+}
+function box(x,y,w,h,fill,stroke,r,lw,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  rr(x,y,w,h,r===undefined?12:r);
+  if(fill){ctx.fillStyle=fill;ctx.fill();}
+  if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lw||2;ctx.stroke();}
+  ctx.restore();
+}
+function arrow(x1,y1,x2,y2,color,lw,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=lw||2;ctx.lineCap='round';
+  ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+  const ang=Math.atan2(y2-y1,x2-x1), L=9;
+  ctx.beginPath();ctx.moveTo(x2,y2);
+  ctx.lineTo(x2-L*Math.cos(ang-0.4),y2-L*Math.sin(ang-0.4));
+  ctx.lineTo(x2-L*Math.cos(ang+0.4),y2-L*Math.sin(ang+0.4));
+  ctx.closePath();ctx.fill();
+  ctx.restore();
+}
+function badge(n,x,y,r,color,a){
+  ctx.save();ctx.globalAlpha=a===undefined?1:cl01(a);
+  ctx.fillStyle=rgba(color,0.18);ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
+  ctx.strokeStyle=rgba(color,0.95);ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.stroke();
+  ctx.fillStyle=color;ctx.font='700 '+Math.round(r*1.12)+'px '+FONT;
+  ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(n,x,y+1);
+  ctx.restore();
+}
+
+/* ================= S0 开场 ================= */
+function S0(t){
+  const a1=eo(seg(t,0.1,1.0)), a2=eo(seg(t,0.7,1.6)), a3=eo(seg(t,1.4,2.3));
+  const g=ctx.createRadialGradient(VW/2,VH/2-40,40,VW/2,VH/2-40,660);
+  g.addColorStop(0,'rgba(255,201,92,0.13)');g.addColorStop(1,'rgba(255,201,92,0)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,VW,VH);
+
+  T('第十集',VW/2,VH/2-190,22,ACC,'center',700,a1);
+  T('把话说明白',VW/2,VH/2-100,72,TXT,'center',700,a1);
+  T('提示词不是咒语，是一份任务交接单',VW/2,VH/2-8,29,ACC2,'center',400,a2);
+
+  const items=[['五要素','少一个都会猜',ACC],['对照写法','模糊 vs 具体',ACC2],['反模式','四个常见坑',WARN]];
+  for(let i=0;i<3;i++){
+    const a=eo(seg(t,1.5+i*0.35,1.9+i*0.35));
+    const x=VW/2-450+i*310;
+    box(x,VH/2+76,280,84,mixc(BG,PANEL2,0.7),rgba(items[i][2],0.75*a),12,1.8,a);
+    T(items[i][0],x+140,VH/2+108,22,items[i][2],'center',700,a);
+    T(items[i][1],x+140,VH/2+142,15,DIM,'center',400,a);
+  }
+  T('这一集全是能直接抄走用的东西',VW/2,VH/2+216,19,DIM,'center',400,a3*0.95);
+}
+
+/* ================= S1 提示词是什么 ================= */
+function S1(t){
+  T('换个角度想这件事',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('你要交办给一个"很聪明、但完全不了解你情况"的新同事',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 左：坏交接
+  const la=eo(seg(t,0.5,1.1));
+  box(140,196,620,220,PANEL,rgba(WARN,0.55),13,1.7,la);
+  T('像这样的交接',170,232,14,WARN,'left',700,la);
+  T('"帮我做个方案。"',170,282,22,TXT,'left',500,la);
+  T('→ 他只能猜：给谁看？多长？什么形式？重点是什么？',170,346,14,DIM,'left',400,la);
+  T('猜错一次，你就得重来一次。',170,380,14,WARN,'left',600,la*0.95);
+
+  // 右：好交接
+  const ra=eo(seg(t,1.4,2.0));
+  box(840,196,620,220,PANEL,rgba(OK,0.55),13,1.7,ra);
+  T('像这样的交接',870,232,14,OK,'left',700,ra);
+  T('给谁：老板 / 要什么：三页 PPT 提纲',870,278,17,TXT,'left',500,ra);
+  T('重点：成本对比 / 不用：技术术语',870,312,17,TXT,'left',500,ra);
+  T('→ 他没得猜，只能照做。',870,368,14,OK,'left',600,ra*0.95);
+
+  // 对比结论
+  const ba=eo(seg(t,3.0,3.6));
+  if(ba>0){
+    box(140,456,1320,110,PANEL2,rgba(ACC,0.6),13,1.7,ba);
+    T('三个反直觉的事实',176,496,17,ACC,'left',700,ba);
+    T('① 模型不会读心，它只会"按最可能的理解"补全 —— 你省掉的字，它会用最俗套的答案补上',330,496,15,TXT,'left',400,ba);
+    T('② 你说得越具体，它越不像"AI 味儿"；越模糊，越是一股模板腔',330,534,15,TXT,'left',400,ba);
+  }
+
+  const bs=eo(seg(t,4.4,5.0));
+  T('所以写提示词的本质',140,614,16,DIM,'left',600,bs);
+  T('不是"找一句能唤醒它的咒语"，而是"把你自己脑子里的隐含前提全部写出来"。',140,656,20,TXT,'left',700,bs);
+
+  T('原来如此',140,748,17,ACC,'left',700,eo(seg(t,5.8,6.3)));
+  T('你觉得"这还用说"的部分，恰恰是模型最需要的那部分。',230,748,17,TXT,'left',400,eo(seg(t,5.8,6.3))*0.96);
+}
+
+/* ================= S2 五要素 ================= */
+function S2(t){
+  T('一份能用的提示词，至少五个要素',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('缺一个，它就自己替你决定 —— 而它决定的通常不是你要的',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const E=[
+    {n:'角色',k:'你是谁',d:'限定专业视角和语气',ex:'你是做 B 端产品的市场',c:ACC},
+    {n:'任务',k:'做什么',d:'动词开头，一件事',ex:'写一段产品介绍',c:ACC2},
+    {n:'输入',k:'材料在哪',d:'用分隔符框起来',ex:'=== 产品资料 ===',c:ACC3},
+    {n:'约束',k:'不能怎样',d:'边界、禁区、风格',ex:'不用形容词堆砌，不夸大',c:WARN},
+    {n:'输出',k:'什么格式',d:'字数、结构、字段',ex:'150 字，一段话，无标题',c:OK}
+  ];
+  for(let i=0;i<5;i++){
+    const e=E[i], a=eo(seg(t,0.5+i*0.32,1.0+i*0.32));
+    const x=140+i*262;
+    box(x,192,242,300,PANEL,rgba(e.c,0.6),12,1.6,a);
+    badge(String(i+1),x+32,228,17,e.c,a);
+    T(e.n,x+62,228,19,TXT,'left',700,a);
+    T(e.k,x+24,282,17,e.c,'left',600,a);
+    T(e.d,x+24,318,13,DIM,'left',400,a*0.95);
+    box(x+18,352,206,86,PANEL2,rgba(LINE,0.8),8,1.2,a*0.9);
+    T(e.ex,x+121,395,12,TXT,'center',500,a);
+  }
+
+  // 拼起来
+  const ca=eo(seg(t,2.4,3.0));
+  T('拼起来长这样',140,530,17,ACC,'left',700,ca);
+  box(140,562,1320,180,'rgba(18,14,10,0.9)',rgba(ACC,0.45),10,1.5,ca);
+  const lines=[
+    '你是做 B 端 SaaS 的产品市场。',
+    '为下面这款考勤产品，写一段面向中小企业老板的介绍。',
+    '要求：150 字以内，一段话，突出"省人力"，不用形容词堆砌，不夸大效果。',
+    '=== 产品资料 ===',
+    '（粘贴资料）'
+  ];
+  for(let i=0;i<lines.length;i++){
+    const a=eo(seg(t,2.6+i*0.22,3.0+i*0.22));
+    T(lines[i],176,596+i*28,14,i<3?TXT:ACC3,'left',400,a);
+  }
+
+  const ba=eo(seg(t,4.2,4.8));
+  if(ba>0){
+    box(140,772,1320,80,PANEL,mixc(LINE,ACC2,0.45),12,1.7,ba);
+    T('顺序也有讲究',176,812,16,ACC2,'left',700,ba);
+    T('越靠前的内容权重越高 —— 约束别写在最后，它容易被稀释。',340,812,15,TXT,'left',400,ba);
+  }
+}
+
+/* ================= S3 对照写法 ================= */
+function S3(t){
+  T('同样是提需求，差别在哪',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('左边每一句都在"允许它自由发挥"，右边每一句都在"收窄范围"',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const PAIRS=[
+    {
+      bad:'帮我总结一下这份文档',
+      good:'用 5 条要点总结，每条不超过 20 字；读者是不懂技术的管理者，不要出现专业术语',
+      why:'"总结"没有长度、没有受众、没有风格 —— 它只能给你一份放之四海的摘要'
+    },
+    {
+      bad:'写个专业的、高端的、有质感的文案',
+      good:'面向 30~40 岁男性工程师，150 字，讲清楚"省下多少时间"，不用感叹号和排比句',
+      why:'形容词是主观的，"专业"对它来说等于"堆名词"；换成具体人群和可验证的信息'
+    },
+    {
+      bad:'帮我优化一下这段代码',
+      good:'这段 Java 代码在 1 万条数据时慢了 3 秒，帮我定位性能瓶颈，只指出问题不重写',
+      why:'不说什么叫"优化"，它可能给你改格式、加注释，或者整段重写成你不认识的样子'
+    }
+  ];
+
+  for(let i=0;i<3;i++){
+    const p=PAIRS[i], st=0.6+i*1.55;
+    const y=196+i*212;
+
+    const a1=eo(seg(t,st,st+0.4));
+    box(140,y,600,80,PANEL,rgba(WARN,0.6),11,1.6,a1);
+    T('✗',164,y+40,20,WARN,'left',700,a1);
+    T(p.bad,196,y+40,15,TXT,'left',400,a1);
+
+    const a2=eo(seg(t,st+0.45,st+0.85));
+    box(140,y+90,600,80,PANEL,rgba(OK,0.6),11,1.6,a2);
+    T('✓',164,y+130,20,OK,'left',700,a2);
+    if(p.good.length>26){
+      T(p.good.slice(0,26),196,y+114,13,TXT,'left',400,a2);
+      T(p.good.slice(26),196,y+140,13,TXT,'left',400,a2);
+    } else {
+      T(p.good,196,y+130,13,TXT,'left',400,a2);
+    }
+
+    const a3=eo(seg(t,st+0.9,st+1.3));
+    T('差在哪',800,y+86,14,ACC,'left',700,a3);
+    T(p.why,800,y+118,14,DIM,'left',400,a3);
+  }
+
+  T('原来如此',140,846,16,ACC,'left',700,eo(seg(t,5.8,6.3)));
+  T('把"我觉得当然"的那部分写出来 —— 受众、长度、风格、边界，每写一个，就少一次返工。',230,846,16,TXT,'left',400,eo(seg(t,5.8,6.3))*0.96);
+}
+
+/* ================= S4 少样本示例 ================= */
+function S4(t){
+  T('说一百句，不如给两个例子',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('示例会把"格式、语气、颗粒度"一次性锚定住',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 左：只有描述
+  const la=eo(seg(t,0.5,1.1));
+  box(140,192,620,300,PANEL,rgba(WARN,0.5),12,1.6,la);
+  T('只给要求',170,228,15,WARN,'left',700,la);
+  T('"把用户反馈分类，输出分类和理由。"',170,272,15,TXT,'left',500,la);
+  const BAD=['输出①：物流问题 —— 用户说快递慢','  理由：提到了配送时间','','输出②：售后类 —— 不满意','  理由：用户情绪负面'];
+  for(let i=0;i<5;i++){
+    const a=eo(seg(t,0.8+i*0.22,1.2+i*0.22));
+    T(BAD[i],170,318+i*32,13,i<2?DIM:WARN,'left',400,a);
+  }
+
+  // 右：给两个例子
+  const ra=eo(seg(t,2.0,2.6));
+  box(840,192,620,300,PANEL,rgba(OK,0.5),12,1.6,ra);
+  T('给两个示例',870,228,15,OK,'left',700,ra);
+  const GOOD=['示例1：','  输入：快递三天没动','  输出：{"类目":"物流","紧急度":"高"}','示例2：','  输入：发票开错了抬头','  输出：{"类目":"财务","紧急度":"中"}'];
+  for(let i=0;i<6;i++){
+    const a=eo(seg(t,2.2+i*0.22,2.6+i*0.22));
+    T(GOOD[i],870,266+i*32,13,i===0||i===3?ACC3:TXT,'left',400,a);
+  }
+
+  // 结果对比
+  const ba=eo(seg(t,4.0,4.6));
+  if(ba>0){
+    box(140,516,1320,110,PANEL2,rgba(ACC,0.55),12,1.7,ba);
+    T('为什么示例这么有效',176,556,16,ACC,'left',700,ba);
+    T('示例把"什么叫分类对、什么叫格式对"变成了可模仿的模板 —— 描述是抽象的，示例是可复制的。',350,556,15,TXT,'left',400,ba);
+    T('经验值：2~3 个示例通常就够，再多收益递减，还占 token。',350,596,14,DIM,'left',400,ba);
+  }
+
+  // 什么时候用
+  const ca=eo(seg(t,5.2,5.8));
+  const conds=[
+    {k:'输出格式要求严',d:'JSON、固定字段 → 必须给示例',c:OK},
+    {k:'风格难描述',d:'"像这个公众号的调性" → 给一篇原文',c:ACC3},
+    {k:'边界要卡住',d:'给一个"该拒绝"的例子比写十条规则都管用',c:ACC2}
+  ];
+  for(let i=0;i<3;i++){
+    const c=conds[i], a=eo(seg(t,5.4+i*0.32,5.8+i*0.32));
+    const x=140+i*450;
+    box(x,654,410,92,PANEL,rgba(c.c,0.5),10,1.5,a);
+    T(c.k,x+22,688,15,c.c,'left',700,a);
+    T(c.d,x+22,718,12,DIM,'left',400,a*0.95);
+  }
+
+  T('原来如此',140,806,16,ACC,'left',700,eo(seg(t,6.6,7.1)));
+  T('教人做事的标准做法也是示范一遍 —— 模型和人在这件事上没区别。',230,806,16,TXT,'left',400,eo(seg(t,6.6,7.1))*0.96);
+}
+
+/* ================= S5 先想再答 ================= */
+function S5(t){
+  T('顺序会改变结论',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('让它先写结论，还是先写分析？答案会不一样',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 左：先结论
+  const la=eo(seg(t,0.5,1.1));
+  box(140,192,620,340,PANEL,rgba(WARN,0.55),13,1.7,la);
+  T('先给结论',170,228,16,WARN,'left',700,la);
+  const L1=['Q：这个方案能不能上线？','','A：能上线。','  理由1：性能测试通过……','  理由2：灰度没问题……'];
+  for(let i=0;i<5;i++){
+    const a=eo(seg(t,0.8+i*0.24,1.2+i*0.24));
+    T(L1[i],170,272+i*36,14,i===2?WARN:TXT,'left',i===2?700:400,a);
+  }
+  T('结论一旦写出来，后面就变成"给它找理由"',170,470,13,WARN,'left',500,eo(seg(t,1.9,2.4)));
+
+  // 右：先分析
+  const ra=eo(seg(t,2.2,2.8));
+  box(840,192,620,340,PANEL,rgba(OK,0.55),13,1.7,ra);
+  T('先分析再结论',870,228,16,OK,'left',700,ra);
+  const R1=['Q：这个方案能不能上线？','','先看：性能、灰度、回滚、监控','  → 回滚没演练过','','A：能上，但先补回滚演练。'];
+  for(let i=0;i<R1.length;i++){
+    const a=eo(seg(t,2.4+i*0.22,2.8+i*0.22));
+    T(R1[i],870,266+i*34,13,i===R1.length-1?OK:TXT,'left',i===R1.length-1?700:400,a);
+  }
+
+  // 怎么问
+  const ba=eo(seg(t,4.2,4.8));
+  if(ba>0){
+    box(140,562,1320,120,PANEL,mixc(LINE,ACC,0.45),12,1.7,ba);
+    T('怎么落地',176,606,16,ACC,'left',700,ba);
+    T('"先列出判断依据和排除掉的选项，再给结论" —— 一句话加在提示词里，准确率明显提升。',330,606,15,TXT,'left',400,ba);
+    T('适合：要判断的、有对错的、需要推理的。不适合：改写、翻译、格式化 —— 那些不需要想。',330,650,14,DIM,'left',400,ba);
+  }
+
+  T('原来如此',140,740,17,ACC,'left',700,eo(seg(t,5.6,6.1)));
+  T('人写报告也是这样：先写结论的人，后面都在找补；先看数据的人，结论才靠得住。',230,740,17,TXT,'left',400,eo(seg(t,5.6,6.1))*0.96);
+  T('注意：思考过程要多花 token，简单任务上纯属浪费。',230,784,15,DIM,'left',400,eo(seg(t,6.4,6.9))*0.95);
+}
+
+/* ================= S6 结构化 ================= */
+function S6(t){
+  T('把提示词排版，也是技术活',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('一串长句子会糊在一起，分段、加标记、编号就清楚得多',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 左：一坨
+  const la=eo(seg(t,0.5,1.1));
+  box(140,196,600,220,PANEL,rgba(WARN,0.5),12,1.6,la);
+  T('一坨',170,228,14,WARN,'left',700,la);
+  T('你是产品经理请根据下面的需求帮我写一个方案要注意时间节点还要考虑预算和风险最后用表格输出',170,252,13,TXT,'left',400,la);
+  T('→ 角色、任务、要求、格式全搅在一起，它容易漏掉后半段',170,376,13,DIM,'left',400,la*0.95);
+
+  // 右：结构化
+  const rx=810;
+  const ra=eo(seg(t,1.6,2.2));
+  box(rx,196,650,470,'rgba(18,14,10,0.92)',rgba(ACC,0.5),12,1.6,ra);
+  T('分段',rx+24,226,14,ACC,'left',700,ra);
+  const lines=[
+    {s:'# 角色',c:ACC3},
+    {s:'你是资深产品经理。',c:TXT},
+    {s:'',c:TXT},
+    {s:'# 任务',c:ACC3},
+    {s:'为下面的需求写一份方案。',c:TXT},
+    {s:'',c:TXT},
+    {s:'# 要求',c:ACC3},
+    {s:'1. 必须包含时间节点',c:TXT},
+    {s:'2. 必须包含预算区间',c:TXT},
+    {s:'3. 列出 3 条主要风险',c:TXT},
+    {s:'',c:TXT},
+    {s:'# 输出格式',c:ACC3},
+    {s:'Markdown 表格，三列：阶段 / 时间 / 负责人',c:TXT}
+  ];
+  for(let i=0;i<lines.length;i++){
+    const a=eo(seg(t,1.8+i*0.14,2.1+i*0.14));
+    T(lines[i].s,rx+24,258+i*29,13,lines[i].c,'left',lines[i].c===ACC3?700:400,a);
+  }
+
+  // 分隔符
+  const da=eo(seg(t,4.0,4.6));
+  T('三个具体技巧',140,470,16,ACC,'left',700,da);
+  const TIPS=[
+    {k:'用标记框材料',d:'=== 文档开始 === / <doc>…</doc> —— 让"材料"和"指令"分得清',c:ACC2},
+    {k:'要求编号',d:'1. 2. 3. 比逗号连成一句更难漏',c:ACC3},
+    {k:'输出给模板',d:'直接给它一个空表格/JSON 骨架，让它填空',c:OK}
+  ];
+  for(let i=0;i<3;i++){
+    const p=TIPS[i], a=eo(seg(t,4.2+i*0.42,4.6+i*0.42));
+    const y=506+i*78;
+    badge(String(i+1),164,y,15,p.c,a);
+    T(p.k,196,y,15,p.c,'left',700,a);
+    T(p.d,196,y+30,13,DIM,'left',400,a*0.95);
+  }
+
+  T('原来如此',140,782,16,ACC,'left',700,eo(seg(t,5.8,6.3)));
+  T('结构化不是为了好看，是因为它真的会"漏读"中间那一段 —— 排版就是在防漏。',230,782,16,TXT,'left',400,eo(seg(t,5.8,6.3))*0.96);
+}
+
+/* ================= S7 反模式 ================= */
+function S7(t){
+  T('四个高频反模式',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('这些写法看着合理，实际是在浪费 token',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const P=[
+    {n:'否定式指令',bad:'"不要编造，不要啰嗦，不要用术语"',
+     good:'"资料里没有就回答不知道；每条不超过 20 字；用日常口语"',
+     why:'它不擅长"不做某件事"，擅长"做某件事"。把禁止翻译成要求。',c:WARN},
+    {n:'堆形容词',bad:'"写得更专业、更高级、更有质感一些"',
+     good:'"像华为财报解读那种口吻：只讲数据和结论，不用比喻"',
+     why:'形容词没有共同标准。要给它可对照的样本，不是给它感受。',c:ACC3},
+    {n:'贪多求全',bad:'一个提示词里塞 5 个任务：先总结、再翻译、再改语气、再出表格',
+     good:'拆成多次调用，每步只做一件事，前一步的输出当后一步的输入',
+     why:'它会把每件事都做一半。串行几步，比一次全干质量高得多。',c:ACC2},
+    {n:'系统提示过长',bad:'3000 字的角色设定，历史案例、公司简介全塞进去',
+     good:'只保留真正影响输出的规则，通常几百字就够',
+     why:'越靠前权重越高，后面写的规则会被前面稀释掉。',c:ACC}
+  ];
+
+  for(let i=0;i<4;i++){
+    const p=P[i], st=0.5+i*0.75, a=eo(seg(t,st,st+0.45));
+    const col=i%2, row=Math.floor(i/2);
+    const x=140+col*670, y=192+row*272;
+    box(x,y,630,244,PANEL,rgba(p.c,0.6),13,1.7,a);
+    badge(String(i+1),x+42,y+40,19,p.c,a);
+    T(p.n,x+76,y+40,19,TXT,'left',700,a);
+    T('✗',x+24,y+88,14,WARN,'left',700,a*0.95);
+    T(p.bad,x+50,y+88,13,WARN,'left',400,a*0.95);
+    T('✓',x+24,y+126,14,OK,'left',700,a*0.95);
+    T(p.good,x+50,y+126,13,OK,'left',400,a*0.95);
+    T('为什么',x+24,y+172,12,DIM,'left',700,a*0.9);
+    T(p.why,x+24,y+200,13,TXT,'left',400,a*0.95);
+  }
+
+  T('原来如此',140,790,16,ACC,'left',700,eo(seg(t,4.0,4.5)));
+  T('提示词里每多一句废话，真正重要的那句就被稀释一分。',230,790,16,TXT,'left',400,eo(seg(t,4.0,4.5))*0.96);
+}
+
+/* ================= S8 迭代 ================= */
+function S8(t){
+  T('最后一个问题：怎么把它调到能用',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('答案很朴素：像调代码一样调它',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const STEPS=[
+    {n:'先攒用例',d:'从真实使用里攒 20 条输入，包括那些"它老是搞错"的',c:ACC},
+    {n:'一次改一处',d:'同时改三处，你就不知道是哪处起的作用了',c:ACC2},
+    {n:'留版本',d:'v1 / v2 都存着，新版本变差能立刻退回去',c:ACC3},
+    {n:'跑全量',d:'改完把 20 条全跑一遍，看通过几条 —— 别看单条手感',c:OK}
+  ];
+  for(let i=0;i<4;i++){
+    const s=STEPS[i], a=eo(seg(t,0.5+i*0.42,0.95+i*0.42));
+    const y=196+i*118;
+    box(140,y,720,100,PANEL,rgba(s.c,0.6),11,1.6,a);
+    badge(String(i+1),182,y+50,20,s.c,a);
+    T(s.n,228,y+38,18,TXT,'left',700,a);
+    T(s.d,228,y+72,13,DIM,'left',400,a*0.95);
+  }
+
+  // 右侧演进示意
+  const rx=920;
+  const ra=eo(seg(t,2.2,2.8));
+  T('版本演进',rx,196,17,ACC,'left',700,ra);
+  const vers=[
+    {v:'v1',score:0.35,c:WARN},
+    {v:'v2 加角色',score:0.52,c:ACC3},
+    {v:'v3 加示例',score:0.74,c:ACC2},
+    {v:'v4 加格式约束',score:0.88,c:OK}
+  ];
+  for(let i=0;i<4;i++){
+    const v=vers[i], a=eo(seg(t,2.4+i*0.4,2.8+i*0.4));
+    const y=244+i*104;
+    T(v.v,rx,y,14,TXT,'left',600,a);
+    const w=Math.max(6,380*v.score)*a;
+    box(rx+120,y-16,w,32,rgba(v.c,0.25),rgba(v.c,0.85),6,1.4,a);
+    T(Math.round(v.score*100)+'%',rx+132+w,y,14,v.c,'left',700,a);
+  }
+
+  const ba=eo(seg(t,4.6,5.2));
+  if(ba>0){
+    box(140,700,1320,96,PANEL,mixc(LINE,WARN,0.4),12,1.7,ba);
+    T('最浪费时间的做法',176,748,16,WARN,'left',700,ba);
+    T('凭一条结果反复改词，改十版不知道哪版更好 —— 一次改动就可能变差，而你看不出来。',350,748,15,TXT,'left',400,ba);
+  }
+
+  T('原来如此',140,834,16,ACC,'left',700,eo(seg(t,5.8,6.3)));
+  T('提示词工程的本质是实验管理：固定输入、单变量、留记录 —— 和调性能一个道理。',230,834,16,TXT,'left',400,eo(seg(t,5.8,6.3))*0.96);
+}
+
+/* ================= S9 收尾 ================= */
+function S9(t){
+  const g=ctx.createRadialGradient(VW/2,VH/2,60,VW/2,VH/2,620);
+  g.addColorStop(0,'rgba(255,201,92,0.11)');g.addColorStop(1,'rgba(255,201,92,0)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,VW,VH);
+
+  T('原来如此',VW/2,VH/2-110,22,ACC,'center',700,eo(seg(t,0.1,0.9)));
+  T('决定效果的，是你说清了什么',VW/2,VH/2-40,44,TXT,'center',700,eo(seg(t,0.4,1.2)));
+  T('而不是你用了什么神奇的句式',VW/2,VH/2+34,44,ACC,'center',700,eo(seg(t,0.9,1.7)));
+
+  T('角色、任务、约束、格式、示例 —— 五个格子填满，效果自然就上来了。',VW/2,VH/2+130,20,DIM,'center',400,eo(seg(t,2.0,2.8))*0.95);
+  T('下一集：流式输出、限流与重试 —— 上线前必须处理的工程问题',VW/2,VH/2+206,17,ACC2,'center',600,eo(seg(t,3.2,4.0))*0.9);
+}
+
+/* ================= 时间轴 ================= */
+const SCENES=[
+  {n:'开场',        d:4.5,  f:S0},
+  {n:'交接单',      d:11.0, f:S1},
+  {n:'五要素',      d:12.0, f:S2},
+  {n:'对照写法',    d:12.0, f:S3},
+  {n:'示例',        d:11.0, f:S4},
+  {n:'先想再答',    d:11.0, f:S5},
+  {n:'结构化',      d:11.0, f:S6},
+  {n:'反模式',      d:10.5, f:S7},
+  {n:'迭代',        d:11.0, f:S8},
+  {n:'收尾',        d:6.0,  f:S9}
+];
+const TOTAL=SCENES.reduce((s,x)=>s+x.d,0);
+
+let clock=0, playing=true, last=0;
+
+function locate(g){
+  let acc=0;
+  for(let i=0;i<SCENES.length;i++){
+    if(g<acc+SCENES[i].d||i===SCENES.length-1)return {i:i,t:g-acc};
+    acc+=SCENES[i].d;
+  }
+  return {i:SCENES.length-1,t:SCENES[SCENES.length-1].d};
+}
+
+function drawTopHUD(idx){
+  T('Prompt · Structure · Iteration',44,34,15,DIM,'left',600,1);
+  T('/ '+SCENES[idx].n,340,34,15,ACC,'left',600,1);
+}
+
+function drawProgress(g){
+  const y=VH-8;
+  ctx.fillStyle='rgba(59,47,34,0.9)';ctx.fillRect(0,y,VW,3);
+  ctx.fillStyle=ACC;ctx.fillRect(0,y,VW*(g/TOTAL),3);
+  let acc=0;
+  for(let i=0;i<SCENES.length;i++){
+    const x=VW*(acc/TOTAL);
+    ctx.fillStyle=BG;ctx.fillRect(x-1,y-3,2,9);
+    acc+=SCENES[i].d;
+  }
+}
+
+function render(){
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.fillStyle=BG;ctx.fillRect(0,0,cv.width/dpr,cv.height/dpr);
+  ctx.setTransform(dpr*scale,0,0,dpr*scale,offX*dpr,offY*dpr);
+
+  const loc=locate(clock);
+  const sc=SCENES[loc.i];
+  const fin=cl01(loc.t/0.42), fout=cl01((sc.d-loc.t)/0.34);
+  const alpha=Math.min(fin,fout);
+
+  ctx.save();ctx.globalAlpha=alpha;sc.f(loc.t);ctx.restore();
+  drawTopHUD(loc.i);
+  drawProgress(clock);
+}
+
+function loop(ts){
+  if(!last)last=ts;
+  let dt=(ts-last)/1000;last=ts;
+  if(dt>0.12)dt=0.12;
+  if(playing){clock+=dt;if(clock>=TOTAL)clock=0;}
+  render();
+  requestAnimationFrame(loop);
+}
+
+function resize(){
+  dpr=Math.min(window.devicePixelRatio||1,2);
+  const w=window.innerWidth,h=window.innerHeight;
+  cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);
+  cv.style.width=w+'px';cv.style.height=h+'px';
+  scale=Math.min(w/VW,h/VH);
+  offX=(w-VW*scale)/2;offY=(h-VH*scale)/2;
+}
+window.addEventListener('resize',resize);
+
+document.addEventListener('keydown',e=>{
+  if(e.code==='Space'){e.preventDefault();playing=!playing;last=0;}
+  else if(e.code==='ArrowRight'||e.code==='ArrowLeft'){
+    const loc=locate(clock);
+    const target=e.code==='ArrowRight'?Math.min(loc.i+1,SCENES.length-1):Math.max(loc.i-1,0);
+    let acc=0;
+    for(let i=0;i<SCENES.length;i++){if(i===target){clock=acc;break;}acc+=SCENES[i].d;}
+    last=0;
+  } else if(e.key==='r'||e.key==='R'){clock=0;last=0;playing=true;}
+});
+
+cv.addEventListener('click',e=>{
+  const r=cv.getBoundingClientRect();
+  const w=r.width,h=r.height;
+  const s=Math.min(w/VW,h/VH);
+  const ox=(w-VW*s)/2, oy=(h-VH*s)/2;
+  const vx=(e.clientX-r.left-ox)/s, vy=(e.clientY-r.top-oy)/s;
+  if(vy>VH-24){clock=cl01(vx/VW)*TOTAL;last=0;}
+  else {playing=!playing;last=0;}
+});
+
+try{
+  const qp=new URLSearchParams(location.search);
+  if(qp.has('t')){
+    const v=parseFloat(qp.get('t'));
+    if(!isNaN(v))clock=Math.max(0,Math.min(TOTAL-0.04,v));
+  }
+  if(qp.get('pause')==='1')playing=false;
+}catch(err){}
+
+resize();
+requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

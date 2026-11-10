@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第十二集：记住上次聊到哪 —— 记忆系统怎么设计</title>
+<style>
+  html,body{margin:0;height:100%;background:#06040c;overflow:hidden;}
+  canvas{display:block;cursor:pointer;}
+</style>
+</head>
+<body>
+<canvas id="cv"></canvas>
+<script>
+(function(){
+"use strict";
+
+const VW=1600, VH=900;
+const cv=document.getElementById('cv'), ctx=cv.getContext('2d');
+let scale=1, offX=0, offY=0, dpr=1;
+
+const FONT='"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif';
+const MONO='Menlo,Consolas,"SF Mono",monospace';
+
+const BG='#0a0810', PANEL='#151122', PANEL2='#1f1930', LINE='#332a4a',
+      TXT='#f2eefb', DIM='#9a90b5',
+      ACC='#c79bff',        /* 记忆紫 */
+      ACC2='#5b9dff',
+      ACC3='#39d0c6',
+      ACC4='#ffc95c',
+      WARN='#f2617a',
+      OK='#5cd692';
+
+const clamp=(x,a,b)=>x<a?a:(x>b?b:x);
+const cl01=x=>clamp(x,0,1);
+const seg=(t,a,b)=>b<=a?(t>=b?1:0):cl01((t-a)/(b-a));
+const eo=t=>1-Math.pow(1-cl01(t),3);
+const lerp=(a,b,t)=>a+(b-a)*t;
+function hex2rgb(h){return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];}
+function mixc(c1,c2,t){const a=hex2rgb(c1),b=hex2rgb(c2);t=cl01(t);
+  return 'rgb('+Math.round(lerp(a[0],b[0],t))+','+Math.round(lerp(a[1],b[1],t))+','+Math.round(lerp(a[2],b[2],t))+')';}
+function rgba(c,a){const r=hex2rgb(c);return 'rgba('+r[0]+','+r[1]+','+r[2]+','+cl01(a)+')';}
+function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);
+  ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
+
+function T(s,x,y,size,color,align,weight,alpha){
+  if(s===undefined||s===null)return;
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.fillStyle=color;ctx.font=(weight||400)+' '+size+'px '+FONT;
+  ctx.textAlign=align||'left';ctx.textBaseline='middle';
+  ctx.fillText(s,x,y);ctx.restore();
+}
+function TF(s,x,y,size,color,align,weight,alpha){
+  if(s===undefined||s===null)return;
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.fillStyle=color;ctx.font=(weight||400)+' '+size+'px '+MONO;
+  ctx.textAlign=align||'left';ctx.textBaseline='middle';
+  ctx.fillText(s,x,y);ctx.restore();
+}
+function box(x,y,w,h,fill,stroke,r,lw,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  rr(x,y,w,h,r===undefined?12:r);
+  if(fill){ctx.fillStyle=fill;ctx.fill();}
+  if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lw||2;ctx.stroke();}
+  ctx.restore();
+}
+function arrow(x1,y1,x2,y2,color,lw,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=lw||2;ctx.lineCap='round';
+  ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+  const ang=Math.atan2(y2-y1,x2-x1), L=9;
+  ctx.beginPath();ctx.moveTo(x2,y2);
+  ctx.lineTo(x2-L*Math.cos(ang-0.4),y2-L*Math.sin(ang-0.4));
+  ctx.lineTo(x2-L*Math.cos(ang+0.4),y2-L*Math.sin(ang+0.4));
+  ctx.closePath();ctx.fill();
+  ctx.restore();
+}
+function badge(n,x,y,r,color,a){
+  ctx.save();ctx.globalAlpha=a===undefined?1:cl01(a);
+  ctx.fillStyle=rgba(color,0.18);ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
+  ctx.strokeStyle=rgba(color,0.95);ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.stroke();
+  ctx.fillStyle=color;ctx.font='700 '+Math.round(r*1.1)+'px '+FONT;
+  ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(n,x,y+1);
+  ctx.restore();
+}
+
+/* ================= S0 开场 ================= */
+function S0(t){
+  const a1=eo(seg(t,0.1,1.0)), a2=eo(seg(t,0.7,1.6)), a3=eo(seg(t,1.4,2.3));
+  const g=ctx.createRadialGradient(VW/2,VH/2-40,40,VW/2,VH/2-40,660);
+  g.addColorStop(0,'rgba(199,155,255,0.12)');g.addColorStop(1,'rgba(199,155,255,0)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,VW,VH);
+
+  T('第十二集',VW/2,VH/2-190,22,ACC,'center',700,a1);
+  T('记住上次聊到哪',VW/2,VH/2-100,68,TXT,'center',700,a1);
+  T('它本身没有记忆 —— 记忆是你替它保存的',VW/2,VH/2-8,29,ACC2,'center',400,a2);
+
+  const items=[['存什么','三个月后还有用吗',ACC],['怎么取','别把 200 条全塞进去',ACC3],['怎么忘','能删才是合规',WARN]];
+  for(let i=0;i<3;i++){
+    const a=eo(seg(t,1.5+i*0.35,1.9+i*0.35));
+    const x=VW/2-450+i*310;
+    box(x,VH/2+76,280,84,mixc(BG,PANEL2,0.7),rgba(items[i][2],0.75*a),12,1.8,a);
+    T(items[i][0],x+140,VH/2+108,22,items[i][2],'center',700,a);
+    T(items[i][1],x+140,VH/2+142,15,DIM,'center',400,a);
+  }
+  T('这一集讲的是"产品感"最强的一块',VW/2,VH/2+216,19,DIM,'center',400,a3*0.95);
+}
+
+/* ================= S1 它没有记忆 ================= */
+function S1(t){
+  T('先接受一个事实',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('它不记得你，一次也不记得',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 两次请求
+  const A=[
+    {n:'第一次对话',lines:['你：我叫老王，做后端','它：你好老王','你：我主要用 Java'],c:ACC2},
+    {n:'第二次对话（新会话）',lines:['你：帮我看看这段代码','它：好的，请贴代码','（它完全不知道你是谁）'],c:WARN}
+  ];
+  for(let i=0;i<2;i++){
+    const a=eo(seg(t,0.5+i*0.5,1.0+i*0.5));
+    const x=140+i*670;
+    box(x,192,620,180,PANEL,rgba(A[i].c,0.55),12,1.6,a);
+    T(A[i].n,x+24,224,15,A[i].c,'left',700,a);
+    for(let j=0;j<3;j++){
+      const aa=eo(seg(t,0.7+i*0.5+j*0.2,1.0+i*0.5+j*0.2));
+      T(A[i].lines[j],x+24,266+j*32,13,j===2&&i===1?WARN:TXT,'left',400,aa);
+    }
+  }
+
+  // 关键说明
+  const ba=eo(seg(t,2.4,3.0));
+  box(140,404,1320,124,PANEL2,rgba(ACC,0.55),12,1.7,ba);
+  T('为什么',176,444,16,ACC,'left',700,ba);
+  T('每次请求都是独立的：你把聊天记录打成一个包发过去，它算完，包就丢了。服务端不留任何东西。',350,444,15,TXT,'left',400,ba);
+  T('所以"记忆"从来不是模型的能力，是应用层在每次请求里，把该带的东西重新带一遍。',350,488,15,TXT,'left',400,ba);
+
+  // 类比
+  const ca=eo(seg(t,3.8,4.4));
+  T('打个比方',140,584,17,ACC,'left',700,ca);
+  const C=[
+    {k:'它不是"记住"',d:'更像每天来上班都失忆的顾问 —— 能力一直在，情况全忘了',c:ACC3},
+    {k:'你也不是"提醒"',d:'是每次开会前递给他一份情况说明，开完就收回',c:ACC2}
+  ];
+  for(let i=0;i<2;i++){
+    const c=C[i], a=eo(seg(t,4.0+i*0.4,4.4+i*0.4));
+    const x=140+i*670;
+    box(x,620,620,100,PANEL,rgba(c.c,0.5),11,1.5,a);
+    T(c.k,x+24,656,15,c.c,'left',700,a);
+    T(c.d,x+24,690,13,DIM,'left',400,a*0.95);
+  }
+
+  T('原来如此',140,780,17,ACC,'left',700,eo(seg(t,5.4,5.9)));
+  T('你以为的"它有记忆"，其实是"每次开机前你都把资料重新放桌上" —— 忘了放，它就真不知道。',230,780,17,TXT,'left',400,eo(seg(t,5.4,5.9))*0.96);
+}
+
+/* ================= S2 三层 ================= */
+function S2(t){
+  T('记忆至少分三层，别混在一起',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('混在一起，就会既贵又不准',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const L=[
+    {n:'会话内',sub:'工作记忆',d:'这次聊的内容，跟着对话走',life:'活到会话结束',how:'直接放进上下文',c:ACC2,pct:0.35},
+    {n:'用户档案',sub:'长期事实',d:'职业、技术栈、偏好、在做的事',life:'跨会话永久',how:'抽取成结构化字段',c:ACC,pct:0.30},
+    {n:'外部知识',sub:'资料库',d:'文档、手册、历史工单',life:'随时更新',how:'检索后按需注入',c:ACC3,pct:0.28}
+  ];
+  for(let i=0;i<3;i++){
+    const l=L[i], a=eo(seg(t,0.5+i*0.45,0.95+i*0.45));
+    const y=192+i*140;
+    box(140,y,940,120,PANEL,rgba(l.c,0.6),12,1.6,a);
+    box(140,y,8,120,l.c,null,4,0,a);
+    T(l.n,176,y+34,18,TXT,'left',700,a);
+    T('（'+l.sub+'）',176+l.n.length*18+8,y+34,13,l.c,'left',400,a);
+    T(l.d,176,y+72,13,DIM,'left',400,a*0.95);
+    T('生命周期：'+l.life,700,y+40,12,DIM,'left',400,a*0.95);
+    T('怎么带：'+l.how,700,y+72,12,DIM,'left',400,a*0.95);
+  }
+
+  // 上下文预算饼
+  const pa=eo(seg(t,2.2,2.8));
+  box(1120,192,340,400,PANEL,rgba(ACC4,0.5),12,1.6,pa);
+  T('一次请求的预算怎么分',1150,224,13,ACC4,'left',700,pa);
+  // 环形
+  const cx=1290, cy=380, R=88;
+  let acc=0.0;
+  const cols=[ACC2,ACC,ACC3];
+  for(let i=0;i<3;i++){
+    const st=acc*Math.PI*2-Math.PI/2;
+    acc+=L[i].pct;
+    const en=acc*Math.PI*2-Math.PI/2;
+    ctx.save();ctx.globalAlpha=pa;
+    ctx.strokeStyle=cols[i];ctx.lineWidth=26;ctx.lineCap='butt';
+    ctx.beginPath();ctx.arc(cx,cy,R,st,en);ctx.stroke();
+    ctx.restore();
+  }
+  ctx.save();ctx.globalAlpha=pa;
+  ctx.strokeStyle=rgba(LINE,0.9);ctx.lineWidth=26;
+  ctx.beginPath();ctx.arc(cx,cy,R,acc*Math.PI*2-Math.PI/2,Math.PI*1.5);ctx.stroke();
+  ctx.restore();
+  T('剩下的',cx,cy-12,12,DIM,'center',600,pa);
+  T('留给提问',cx,cy+12,12,DIM,'center',600,pa);
+
+  const lg=['历史对话 35%','用户档案 30%','资料片段 28%','提问'];
+  for(let i=0;i<4;i++){
+    const a=eo(seg(t,2.6+i*0.2,3.0+i*0.2));
+    const cc=i<3?cols[i]:DIM;
+    box(1150,500+i*22,12,12,cc,null,3,0,a);
+    T(lg[i],1172,506+i*22,12,cc,'left',400,a);
+  }
+
+  const ba=eo(seg(t,3.8,4.4));
+  if(ba>0){
+    box(140,588,940,96,PANEL2,rgba(WARN,0.5),11,1.5,ba);
+    T('最常见的错误',176,626,15,WARN,'left',700,ba);
+    T('把全部历史对话当记忆 —— 越聊越贵、越聊越慢，到后面全是被截断的碎片。',340,626,14,TXT,'left',400,ba);
+    T('记忆不是"全都留着"，是"挑出该留的"。',340,664,13,DIM,'left',400,ba*0.95);
+  }
+
+  T('原来如此',140,746,17,ACC,'left',700,eo(seg(t,5.0,5.5)));
+  T('会话内靠上下文，跨会话靠档案，查资料靠检索 —— 三件事用三种办法，混着做一定出问题。',230,746,17,TXT,'left',400,eo(seg(t,5.0,5.5))*0.96);
+}
+
+/* ================= S3 存什么 ================= */
+function S3(t){
+  T('第一个真正难的问题：什么值得记',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('判断标准只有一条：三个月后，这条还有用吗',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const Y=[
+    {t:'稳定的身份信息','e':'做后端的，十年经验'},
+    {t:'长期的技术偏好','e':'不喜欢术语堆砌，要结论先行'},
+    {t:'正在进行的事','e':'在做 Rehear 这个 App'},
+    {t:'明确的禁忌','e':'别提某些话题'}
+  ];
+  const N=[
+    {t:'一次性的状态','e':'今天有点累'},
+    {t:'寒暄与客套','e':'谢谢、好的'},
+    {t:'临时查询','e':'今天几号'},
+    {t:'敏感信息','e':'密码、证件号、银行卡'}
+  ];
+
+  const ya=eo(seg(t,0.5,1.0));
+  box(140,192,620,340,PANEL,rgba(OK,0.55),12,1.6,ya);
+  T('该记',170,226,16,OK,'left',700,ya);
+  for(let i=0;i<4;i++){
+    const a=eo(seg(t,0.7+i*0.24,1.05+i*0.24));
+    T('✓ '+Y[i].t,170,272+i*60,14,TXT,'left',600,a);
+    T('　　'+Y[i].e,170,300+i*60,12,DIM,'left',400,a*0.95);
+  }
+
+  const na=eo(seg(t,1.6,2.1));
+  box(840,192,620,340,PANEL,rgba(WARN,0.55),12,1.6,na);
+  T('不该记',870,226,16,WARN,'left',700,na);
+  for(let i=0;i<4;i++){
+    const a=eo(seg(t,1.8+i*0.24,2.15+i*0.24));
+    T('✗ '+N[i].t,870,272+i*60,14,TXT,'left',600,a);
+    T('　　'+N[i].e,870,300+i*60,12,DIM,'left',400,a*0.95);
+  }
+
+  // 抽取流程
+  const fa=eo(seg(t,3.0,3.6));
+  T('怎么抽取：让模型自己填表',140,570,16,ACC,'left',700,fa);
+  const steps=[
+    {n:'对话结束',d:'或每 N 轮',c:ACC3},
+    {n:'后台跑一次',d:'不占用户等待',c:ACC2},
+    {n:'输出候选事实',d:'结构化 JSON',c:ACC},
+    {n:'去重合并入库',d:'同键覆盖',c:ACC4}
+  ];
+  for(let i=0;i<4;i++){
+    const s=steps[i], a=eo(seg(t,3.2+i*0.32,3.6+i*0.32));
+    const x=140+i*335;
+    box(x,606,270,96,PANEL,rgba(s.c,0.5),10,1.5,a);
+    badge(String(i+1),x+32,638,15,s.c,a);
+    T(s.n,x+60,638,14,s.c,'left',700,a);
+    T(s.d,x+18,678,12,DIM,'left',400,a*0.95);
+    if(i<3)arrow(x+276,654,x+326,654,rgba(DIM,0.7*a),1.6,a*0.9);
+  }
+
+  T('原来如此',140,748,17,ACC,'left',700,eo(seg(t,5.0,5.5)));
+  T('记"结论"，不记"过程" —— 记住他做后端，不用记住你问过三次 Java 的语法。',230,748,17,TXT,'left',400,eo(seg(t,5.0,5.5))*0.96);
+  T('记太多，等于没记：噪声会把真正重要的那条挤出去。',230,792,15,DIM,'left',400,eo(seg(t,5.6,6.1))*0.95);
+}
+
+/* ================= S4 怎么存 ================= */
+function S4(t){
+  T('存的方式，决定它能不能被用起来',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('不要一上来就上向量库 —— 大部分记忆是结构化的',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 表结构
+  const ta=eo(seg(t,0.5,1.1));
+  box(140,192,860,330,'rgba(10,8,16,0.92)',rgba(ACC,0.45),12,1.6,ta);
+  T('一张表就能管住大部分记忆',170,224,14,ACC,'left',700,ta);
+  const COLS=[
+    {s:'user_id      用户',w:150,c:ACC2},
+    {s:'key          类别',w:150,c:ACC2},
+    {s:'value        内容',w:180,c:TXT},
+    {s:'source       来源',w:130,c:DIM},
+    {s:'confidence   置信',w:120,c:DIM},
+    {s:'updated_at   时间',w:120,c:ACC3}
+  ];
+  // 表头
+  let cx=170;
+  for(let i=0;i<COLS.length;i++){
+    const a=eo(seg(t,0.7+i*0.12,1.0+i*0.12));
+    box(cx,254,COLS[i].w-8,32,rgba(LINE,0.5),rgba(LINE,0.9),5,1,a*0.9);
+    T(COLS[i].s.split('  ')[0],cx+8,270,11,COLS[i].c,'left',600,a);
+    cx+=COLS[i].w;
+  }
+  const ROWS=[
+    ['u_8f2a','技术栈','Java 17 / Spring Boot 3.5','对话抽取','0.95','2026-03-12'],
+    ['u_8f2a','偏好','要结论先行，不要术语','用户明示','1.00','2026-04-01'],
+    ['u_8f2a','项目','Rehear：HarmonyOS 端侧应用','对话抽取','0.88','2026-05-20'],
+    ['u_8f2a','设备','Apple Silicon Mac','对话抽取','0.90','2026-02-08']
+  ];
+  for(let r=0;r<4;r++){
+    const a=eo(seg(t,1.3+r*0.28,1.7+r*0.28));
+    let x=170;
+    for(let i=0;i<6;i++){
+      box(x,296+r*50,COLS[i].w-8,38,rgba(PANEL2,0.6),null,5,0,a*0.85);
+      const txt=ROWS[r][i];
+      T(txt,x+8,315+r*50,11,i===2?TXT:DIM,'left',400,a);
+      x+=COLS[i].w;
+    }
+  }
+  T('看得懂、改得动、查得快 —— 这就是结构化记忆的全部好处',170,494,12,DIM,'left',400,ta*0.95);
+
+  // 何时用向量
+  const va=eo(seg(t,2.6,3.2));
+  box(1040,192,420,330,PANEL,rgba(ACC3,0.55),12,1.6,va);
+  T('什么时候才需要向量',1066,226,15,ACC3,'left',700,va);
+  const V=['记忆条数上万','内容是非结构化长文','需要"意思相近也能召回"','用户自己都记不清原话'];
+  for(let i=0;i<4;i++){
+    const a=eo(seg(t,2.8+i*0.26,3.15+i*0.26));
+    T('· '+V[i],1066,272+i*44,13,TXT,'left',400,a);
+  }
+  T('否则：字段查询 + 时间排序',1066,470,12,DIM,'left',400,va*0.95);
+  T('比向量检索准得多',1066,494,12,DIM,'left',400,va*0.95);
+
+  // 关键字段
+  const ka=eo(seg(t,4.0,4.6));
+  T('三个容易被忽略但必须有的字段',140,562,16,ACC,'left',700,ka);
+  const K=[
+    {n:'来源',d:'这条从哪来的（用户明说 / 模型推断）—— 推断的要敢降权',c:ACC2},
+    {n:'时间',d:'没有时间戳，就没法做新旧覆盖，也没法做衰减',c:ACC3},
+    {n:'置信',d:'模型推断的 0.7 分，用户明说的 1.0 分，处理方式必须不同',c:ACC4}
+  ];
+  for(let i=0;i<3;i++){
+    const k=K[i], a=eo(seg(t,4.2+i*0.34,4.6+i*0.34));
+    const x=140+i*450;
+    box(x,598,410,100,PANEL,rgba(k.c,0.5),10,1.5,a);
+    T(k.n,x+22,632,15,k.c,'left',700,a);
+    T(k.d,x+22,668,12,DIM,'left',400,a*0.95);
+  }
+
+  T('原来如此',140,764,17,ACC,'left',700,eo(seg(t,5.6,6.1)));
+  T('记忆不是聊天记录 —— 它是"结论 + 来源 + 时间 + 可信度"，四样少一样都会在某个时刻坑你。',230,764,17,TXT,'left',400,eo(seg(t,5.6,6.1))*0.96);
+}
+
+/* ================= S5 怎么取 ================= */
+function S5(t){
+  T('存得再好，取错了等于没存',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('每次只能带 5~8 条进去，选哪几条是核心',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 三个打分维度
+  const D=[
+    {n:'相关',d:'和这次问的有关系吗',w:'权重最高',c:ACC2},
+    {n:'新鲜',d:'越久权重越低',w:'时间衰减',c:ACC3},
+    {n:'重要',d:'用户强调过的加分',w:'手动置顶',c:ACC4}
+  ];
+  for(let i=0;i<3;i++){
+    const d=D[i], a=eo(seg(t,0.5+i*0.35,0.9+i*0.35));
+    const x=140+i*335;
+    box(x,192,305,130,PANEL,rgba(d.c,0.6),11,1.6,a);
+    T(d.n,x+22,226,17,d.c,'left',700,a);
+    T(d.d,x+22,262,13,TXT,'left',400,a*0.95);
+    T(d.w,x+22,296,12,DIM,'left',600,a*0.9);
+  }
+
+  // 打分表
+  const la=eo(seg(t,1.8,2.4));
+  box(140,360,1010,300,'rgba(10,8,16,0.9)',rgba(LINE,0.85),12,1.5,la);
+  T('候选记忆打分',170,392,13,DIM,'left',600,la);
+
+  const H=['记忆内容','相关','新鲜','综合'];
+  const HX=[170,760,900,1010];
+  for(let i=0;i<4;i++){
+    T(H[i],HX[i],426,12,DIM,'left',600,la);
+  }
+
+  const ROWS=[
+    {t:'技术栈：Java 17',r:0.72,f:0.80,s:0.75,keep:true},
+    {t:'偏好：要结论先行',r:0.55,f:0.95,s:0.70,keep:true},
+    {t:'项目：Rehear',r:0.88,f:0.85,s:0.87,keep:true},
+    {t:'去年问过 Excel 公式',r:0.20,f:0.10,s:0.16,keep:false},
+    {t:'喜欢深色主题',r:0.15,f:0.60,s:0.30,keep:false}
+  ];
+  for(let i=0;i<ROWS.length;i++){
+    const row=ROWS[i], a=eo(seg(t,2.0+i*0.26,2.4+i*0.26));
+    const y=462+i*40;
+    const cc=row.keep?OK:DIM;
+    T((row.keep?'✓ ':'✗ ')+row.t,170,y,13,row.keep?TXT:DIM,'left',400,a);
+    T(row.r.toFixed(2),800,y,12,cc,'center',500,a);
+    T(row.f.toFixed(2),930,y,12,cc,'center',500,a);
+    // 综合条
+    box(1010,y-9,220*row.s,18,rgba(cc,0.3),rgba(cc,0.85),4,1,a);
+    T(row.s.toFixed(2),1010+220*row.s+16,y,12,cc,'left',600,a);
+  }
+  T('取 top 3 注入，其余不进上下文',170,634,12,DIM,'left',400,la*0.95);
+
+  // 召回预算
+  const ra=eo(seg(t,3.8,4.4));
+  box(1200,360,260,300,PANEL,rgba(ACC,0.55),12,1.6,ra);
+  T('召回预算',1226,392,14,ACC,'left',700,ra);
+  T('条数',1226,438,12,DIM,'left',600,ra);
+  T('5~8 条',1226,466,20,TXT,'left',700,ra);
+  T('字数',1226,510,12,DIM,'left',600,ra);
+  T('≤ 800 字',1226,538,20,TXT,'left',700,ra);
+  T('超过这个数',1226,584,12,WARN,'left',600,ra);
+  T('准确率反而下降',1226,610,12,WARN,'left',600,ra*0.95);
+
+  T('原来如此',140,700,17,ACC,'left',700,eo(seg(t,5.2,5.7)));
+  T('记忆召回不是"越多越好"，是"越准越好" —— 一条不相关的记忆，比没有记忆更糟。',230,700,17,TXT,'left',400,eo(seg(t,5.2,5.7))*0.96);
+  T('它会理直气壮地把去年的旧情况，当成你现在的情况。',230,744,15,DIM,'left',400,eo(seg(t,5.8,6.3))*0.95);
+}
+
+/* ================= S6 冲突 ================= */
+function S6(t){
+  T('记忆一定会互相矛盾',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('人是会变的，你怎么处理"变心"这件事',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 时间线
+  const la=eo(seg(t,0.5,1.1));
+  box(140,192,1320,190,'rgba(10,8,16,0.9)',rgba(ACC2,0.5),12,1.6,la);
+  T('同一个用户，两条冲突的记忆',170,224,13,ACC2,'left',700,la);
+
+  ctx.save();ctx.globalAlpha=la;
+  ctx.strokeStyle=rgba(LINE,0.9);ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(200,300);ctx.lineTo(1420,300);ctx.stroke();
+  ctx.restore();
+
+  const M=[
+    {x:340,t:'2025-08',txt:'"我用 Java 做后端"',c:DIM},
+    {x:1080,t:'2026-04',txt:'"最近转 Go 了"',c:ACC}
+  ];
+  for(let i=0;i<2;i++){
+    const a=eo(seg(t,0.8+i*0.4,1.2+i*0.4));
+    ctx.save();ctx.globalAlpha=a;ctx.fillStyle=M[i].c;
+    ctx.beginPath();ctx.arc(M[i].x,300,8,0,Math.PI*2);ctx.fill();ctx.restore();
+    T(M[i].t,M[i].x,266,12,M[i].c,'center',600,a);
+    T(M[i].txt,M[i].x,336,14,TXT,'center',500,a);
+  }
+  T('两条都对，但只有一条是"现在"',800,368,12,DIM,'center',400,la*0.95);
+
+  // 三种处理
+  const H=[
+    {n:'以新为准',d:'新记忆覆盖旧记忆，旧的标记失效但不删',good:true,c:OK},
+    {n:'都留着并标注',d:'两条都存，注入时写明时间，让模型自己判断',good:true,c:ACC3},
+    {n:'直接覆盖删除',d:'旧记录物理删除 —— 出了问题查不到为什么',good:false,c:WARN}
+  ];
+  for(let i=0;i<3;i++){
+    const h=H[i], a=eo(seg(t,2.2+i*0.42,2.6+i*0.42));
+    const x=140+i*450;
+    box(x,410,410,124,PANEL,rgba(h.c,0.55),11,1.5,a);
+    T(h.good?'✓':'✗',x+24,444,15,h.c,'left',700,a);
+    T(h.n,x+52,444,15,TXT,'left',700,a);
+    T(h.d,x+24,488,12,DIM,'left',400,a*0.95);
+  }
+
+  // 注入时的写法
+  const ia=eo(seg(t,4.0,4.6));
+  T('注入时最好带上时间，别让模型自己猜',140,570,16,ACC,'left',700,ia);
+  box(140,604,1320,110,'rgba(10,8,16,0.92)',rgba(ACC,0.45),10,1.5,ia);
+  TF('已知用户信息（按时间倒序，后者优先）：',176,638,13,ACC3,'left',500,ia);
+  TF('· [2025-08] 后端方向：Java',176,668,13,DIM,'left',400,ia);
+  TF('· [2026-04] 后端方向：Go（较新，优先采用）',176,694,13,TXT,'left',400,ia);
+
+  T('原来如此',140,760,17,ACC,'left',700,eo(seg(t,5.4,5.9)));
+  T('记忆的关键不是"记住正确的答案"，是"记住它是什么时候变的" —— 没有时间，新旧就是一堆平级的废话。',230,760,17,TXT,'left',400,eo(seg(t,5.4,5.9))*0.96);
+}
+
+/* ================= S7 遗忘与隐私 ================= */
+function S7(t){
+  T('还有一半工作：怎么忘',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('设计记忆系统时，遗忘往往被留到最后 —— 它应该在最前面',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const P=[
+    {n:'过期时间',d:'临时性信息（这次的项目、这周的安排）直接设 TTL，到期自动清',c:ACC3},
+    {n:'用户可查可删',d:'让用户看见你记了什么，并能一条条删掉 —— 这不是加分项，是底线',c:ACC},
+    {n:'敏感不落库',d:'密码、证件号、健康信息，一律不进记忆表，连日志都别打',c:WARN},
+    {n:'删除要彻底',d:'软删不够：向量索引、缓存、备份里的副本都要一起清',c:ACC2}
+  ];
+  for(let i=0;i<4;i++){
+    const p=P[i], st=0.5+i*0.8, a=eo(seg(t,st,st+0.45));
+    const col=i%2, row=Math.floor(i/2);
+    const x=140+col*670, y=192+row*240;
+    box(x,y,630,214,PANEL,rgba(p.c,0.6),13,1.7,a);
+    badge(String(i+1),x+42,y+40,19,p.c,a);
+    T(p.n,x+76,y+40,18,TXT,'left',700,a);
+    T(p.d,x+24,y+96,13,DIM,'left',400,a*0.95);
+  }
+
+  const ba=eo(seg(t,3.8,4.4));
+  box(140,678,1320,96,PANEL2,rgba(ACC4,0.5),12,1.6,ba);
+  T('一个现实提醒',176,716,15,ACC4,'left',700,ba);
+  T('用户可能截图、可能转发、可能把对话粘到别处 —— 记忆系统的承诺只能是"我们这边不留"。',350,716,14,TXT,'left',400,ba);
+  T('所以话术要谨慎，别承诺做不到的事。',350,754,13,DIM,'left',400,ba*0.95);
+
+  T('原来如此',140,816,16,ACC,'left',700,eo(seg(t,5.2,5.7)));
+  T('能记住是能力，能忘掉是责任 —— 后者才决定这件事能不能做下去。',230,816,16,TXT,'left',400,eo(seg(t,5.2,5.7))*0.96);
+}
+
+/* ================= S8 最小方案 ================= */
+function S8(t){
+  T('拼起来：一个能上线的记忆系统',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('四个模块，一周能做出第一版',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const S=[
+    {n:'① 抽取',d:'对话结束跑一次，让模型填表：类别 / 内容 / 置信',c:ACC},
+    {n:'② 存储',d:'一张表：user_id + key + value + source + time',c:ACC2},
+    {n:'③ 检索',d:'按当前问题算相关度，结合时间衰减，取 top 5',c:ACC3},
+    {n:'④ 注入',d:'拼在系统提示后面，带时间戳，标明是背景信息',c:ACC4}
+  ];
+  for(let i=0;i<4;i++){
+    const s=S[i], a=eo(seg(t,0.5+i*0.38,0.9+i*0.38));
+    const x=140+i*335;
+    box(x,192,305,150,PANEL,rgba(s.c,0.6),11,1.6,a);
+    T(s.n,x+22,228,17,s.c,'left',700,a);
+    T(s.d,x+22,272,12,DIM,'left',400,a*0.95);
+    if(i<3)arrow(x+310,266,x+330,266,rgba(DIM,0.7*a),1.6,a*0.9);
+  }
+
+  // 注入模板
+  const ta=eo(seg(t,2.2,2.8));
+  box(140,376,1320,250,'rgba(10,8,16,0.92)',rgba(ACC,0.45),12,1.6,ta);
+  T('最终发出去的那次请求长这样',170,408,13,ACC,'left',700,ta);
+  const L=[
+    {s:'[系统]',c:ACC2,t:'你是一个专业助手，回答要结论先行，不用术语堆砌。'},
+    {s:'[背景]',c:ACC3,t:'已知用户信息（按时间倒序）：'},
+    {s:'',c:DIM,t:'  · [2026-04] 后端方向：Go（较新）'},
+    {s:'',c:DIM,t:'  · [2026-04] 偏好：要结论先行'},
+    {s:'',c:DIM,t:'  · [2026-05] 在做项目：Rehear'},
+    {s:'[对话]',c:ACC2,t:'用户：这个接口怎么设计……'}
+  ];
+  for(let i=0;i<L.length;i++){
+    const a=eo(seg(t,2.4+i*0.2,2.8+i*0.2));
+    T(L[i].s,176,446+i*30,12,L[i].c,'left',700,a);
+    T(L[i].t,260,446+i*30,12,i===0||i===5?TXT:DIM,'left',400,a);
+  }
+
+  const ba=eo(seg(t,4.4,5.0));
+  T('别一上来就做大的',140,676,16,ACC,'left',700,ba);
+  const B=['先做"用户明说的偏好"这一类，准确率最高','别做自动总结，先做字段抽取','召回先做规则，跑通了再上向量','每一步都留日志，出问题能查'];
+  for(let i=0;i<4;i++){
+    const a=eo(seg(t,4.6+i*0.26,5.0+i*0.26));
+    T('· '+B[i],170,712+i*30,13,DIM,'left',400,a);
+  }
+
+  T('原来如此',140,852,15,ACC,'left',700,eo(seg(t,6.0,6.5)));
+  T('记忆系统的本质是个后台任务 + 一个表 + 一段拼接 —— 不难，难在忍住不把它做复杂。',230,852,15,TXT,'left',400,eo(seg(t,6.0,6.5))*0.96);
+}
+
+/* ================= S9 收尾 ================= */
+function S9(t){
+  const g=ctx.createRadialGradient(VW/2,VH/2,60,VW/2,VH/2,620);
+  g.addColorStop(0,'rgba(199,155,255,0.11)');g.addColorStop(1,'rgba(199,155,255,0)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,VW,VH);
+
+  T('原来如此',VW/2,VH/2-110,22,ACC,'center',700,eo(seg(t,0.1,0.9)));
+  T('它从来不会「记住」',VW/2,VH/2-40,44,TXT,'center',700,eo(seg(t,0.4,1.2)));
+  T('是你每次都替它把资料重新放回桌上',VW/2,VH/2+34,44,ACC,'center',700,eo(seg(t,0.9,1.7)));
+
+  T('记结论、带来源、留时间、能删除 —— 四件事做到，它就像一个真的了解你的人了。',VW/2,VH/2+130,20,DIM,'center',400,eo(seg(t,2.0,2.8))*0.95);
+  T('下一集：把大模型接进业务流程 —— 从 Demo 到能用的产品',VW/2,VH/2+206,17,ACC2,'center',600,eo(seg(t,3.2,4.0))*0.9);
+}
+
+/* ================= 时间轴 ================= */
+const SCENES=[
+  {n:'开场',        d:4.5,  f:S0},
+  {n:'它没有记忆',  d:11.0, f:S1},
+  {n:'三层记忆',    d:11.0, f:S2},
+  {n:'存什么',      d:11.0, f:S3},
+  {n:'怎么存',      d:11.0, f:S4},
+  {n:'怎么取',      d:11.0, f:S5},
+  {n:'冲突处理',    d:11.0, f:S6},
+  {n:'遗忘与隐私',  d:10.5, f:S7},
+  {n:'最小方案',    d:11.0, f:S8},
+  {n:'收尾',        d:6.0,  f:S9}
+];
+const TOTAL=SCENES.reduce((s,x)=>s+x.d,0);
+
+let clock=0, playing=true, last=0;
+
+function locate(g){
+  let acc=0;
+  for(let i=0;i<SCENES.length;i++){
+    if(g<acc+SCENES[i].d||i===SCENES.length-1)return {i:i,t:g-acc};
+    acc+=SCENES[i].d;
+  }
+  return {i:SCENES.length-1,t:SCENES[SCENES.length-1].d};
+}
+
+function drawTopHUD(idx){
+  T('Memory · Profile · Recall',44,34,15,DIM,'left',600,1);
+  T('/ '+SCENES[idx].n,330,34,15,ACC,'left',600,1);
+}
+
+function drawProgress(g){
+  const y=VH-8;
+  ctx.fillStyle='rgba(51,42,74,0.9)';ctx.fillRect(0,y,VW,3);
+  ctx.fillStyle=ACC;ctx.fillRect(0,y,VW*(g/TOTAL),3);
+  let acc=0;
+  for(let i=0;i<SCENES.length;i++){
+    const x=VW*(acc/TOTAL);
+    ctx.fillStyle=BG;ctx.fillRect(x-1,y-3,2,9);
+    acc+=SCENES[i].d;
+  }
+}
+
+function render(){
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.fillStyle=BG;ctx.fillRect(0,0,cv.width/dpr,cv.height/dpr);
+  ctx.setTransform(dpr*scale,0,0,dpr*scale,offX*dpr,offY*dpr);
+
+  const loc=locate(clock);
+  const sc=SCENES[loc.i];
+  const fin=cl01(loc.t/0.42), fout=cl01((sc.d-loc.t)/0.34);
+  const alpha=Math.min(fin,fout);
+
+  ctx.save();ctx.globalAlpha=alpha;sc.f(loc.t);ctx.restore();
+  drawTopHUD(loc.i);
+  drawProgress(clock);
+}
+
+function loop(ts){
+  if(!last)last=ts;
+  let dt=(ts-last)/1000;last=ts;
+  if(dt>0.12)dt=0.12;
+  if(playing){clock+=dt;if(clock>=TOTAL)clock=0;}
+  render();
+  requestAnimationFrame(loop);
+}
+
+function resize(){
+  dpr=Math.min(window.devicePixelRatio||1,2);
+  const w=window.innerWidth,h=window.innerHeight;
+  cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);
+  cv.style.width=w+'px';cv.style.height=h+'px';
+  scale=Math.min(w/VW,h/VH);
+  offX=(w-VW*scale)/2;offY=(h-VH*scale)/2;
+}
+window.addEventListener('resize',resize);
+
+document.addEventListener('keydown',e=>{
+  if(e.code==='Space'){e.preventDefault();playing=!playing;last=0;}
+  else if(e.code==='ArrowRight'||e.code==='ArrowLeft'){
+    const loc=locate(clock);
+    const target=e.code==='ArrowRight'?Math.min(loc.i+1,SCENES.length-1):Math.max(loc.i-1,0);
+    let acc=0;
+    for(let i=0;i<SCENES.length;i++){if(i===target){clock=acc;break;}acc+=SCENES[i].d;}
+    last=0;
+  } else if(e.key==='r'||e.key==='R'){clock=0;last=0;playing=true;}
+});
+
+cv.addEventListener('click',e=>{
+  const r=cv.getBoundingClientRect();
+  const w=r.width,h=r.height;
+  const s=Math.min(w/VW,h/VH);
+  const ox=(w-VW*s)/2, oy=(h-VH*s)/2;
+  const vx=(e.clientX-r.left-ox)/s, vy=(e.clientY-r.top-oy)/s;
+  if(vy>VH-24){clock=cl01(vx/VW)*TOTAL;last=0;}
+  else {playing=!playing;last=0;}
+});
+
+try{
+  const qp=new URLSearchParams(location.search);
+  if(qp.has('t')){
+    const v=parseFloat(qp.get('t'));
+    if(!isNaN(v))clock=Math.max(0,Math.min(TOTAL-0.04,v));
+  }
+  if(qp.get('pause')==='1')playing=false;
+}catch(err){}
+
+resize();
+requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

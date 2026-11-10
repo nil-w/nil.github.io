@@ -1,0 +1,202 @@
+<head>
+  <meta charset="utf-8">
+  <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
+  <link rel="dns-prefetch" href="https://github.com" />
+  <link rel="dns-prefetch" href="https://unpkg.com" />
+  <%# 首屏三款字体同源预加载：与 css/googleapis.css 的本地 first 顺序对齐，
+      让字体请求与关键 CSS 并行，把字体阻塞期压到 100ms 以内（font-display: optional）。 %>
+  <link rel="preload" href="/fonts/0QIvMX1D_JOuMwr7I_FMl_E.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/S6uyw4BMUTPHjx4wXiWtFCc.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="/fonts/ke80OhoaMkR6-hSn7kbHVoFf7ZfgMPr_nTorBcwXLqAXIyA.woff2" as="font" type="font/woff2" crossorigin>
+  <%
+  // ── SEO 变量 ──────────────────────────────────────────────
+  var SITE = String(config.url || '').replace(/\/+$/, '');
+  var siteName = config.title;
+  var tagline = config.site_tagline || config.subtitle || '';
+  var pageNo = page.current || 1;
+  var isPaged = pageNo > 1;
+  var pageTitle = page.title;
+
+  if (is_archive()){
+    pageTitle = __('archive_a');
+    if (is_month()){
+      pageTitle += ': ' + page.year + '/' + page.month;
+    } else if (is_year()){
+      pageTitle += ': ' + page.year;
+    }
+  } else if (is_category()){
+    pageTitle = __('category') + ': ' + page.category;
+  } else if (is_tag()){
+    pageTitle = __('tag') + ': ' + page.tag;
+  }
+
+  // 首页（含分页）没有 pageTitle，用站点定位短语拼装
+  var finalTitle;
+  if (pageTitle){
+    finalTitle = isPaged
+      ? '第 ' + pageNo + ' 页 - ' + pageTitle + ' - ' + siteName
+      : pageTitle + ' - ' + siteName;
+  } else if (isPaged){
+    finalTitle = '第 ' + pageNo + ' 页 - ' + siteName + (tagline ? ' · ' + tagline : '');
+  } else {
+    finalTitle = siteName + (tagline ? ' - ' + tagline : '') + '｜技术·思考·生活';
+  }
+
+  // 列表页/分页页生成独立 description，避免全站共用同一段简介
+  if (!page.description){
+    if (isPaged){
+      page.description = siteName + ' 第 ' + pageNo + ' 页：' + (config.description || '');
+    } else if (is_category()){
+      page.description = page.category + ' 分类下共 ' + (page.posts ? page.posts.length : 0) + ' 篇文章。' + (config.description || '');
+    } else if (is_tag()){
+      page.description = '标签「' + page.tag + '」下的全部文章。' + (config.description || '');
+    } else if (is_archive()){
+      page.description = '文章归档：' + (config.description || '');
+    } else {
+      page.description = config.description || '';
+    }
+  }
+
+  // 规范化 URL：首页收敛到根路径，其余统一 encodeURI，并去掉末尾 index.html
+  var canonical;
+  if (is_home() && !isPaged){
+    canonical = SITE + '/';
+  } else {
+    var p = String(page.path || '').replace(/^\/+/, '').replace(/index\.html$/, '');
+    canonical = p ? SITE + '/' + encodeURI(p) : SITE + '/';
+  }
+
+  // 幻灯片 / 图表按需加载（避免首页拉 reveal.js + mermaid）
+  var bodyHtml = String(page.content || '');
+  var needReveal = /class=["']slides["']/.test(bodyHtml);
+  var needMermaid = /class=["']mermaid["']/.test(bodyHtml);
+
+  // 社交分享封面：文章配图优先，否则用站点默认图（必须是绝对 URL）
+  var _photo = page.photos && page.photos.length ? String(page.photos[0]) : '';
+  var ogImg = /^https?:\/\//i.test(_photo) ? _photo : SITE + (_photo || '/images/og-default.png');
+  %>
+  <title><%= finalTitle %></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <% if (page.keywords || config.keywords){ %>
+  <meta name="keywords" content="<%= page.keywords || config.keywords %>">
+  <% } %>
+  <meta name="author" content="<%= config.author %>">
+  <meta name="theme-color" content="#212121">
+  <% if (theme.rss){ %>
+    <%- feed_tag(theme.rss, { type: 'rss' }) %>
+  <% } %>
+  <% if (theme.favicon.apple_touch_icon){ %>
+    <link rel="apple-touch-icon" sizes="180x180" href="<%- theme.favicon.apple_touch_icon%>">
+  <% } %>
+
+  <% if (theme.favicon.medium){ %>
+    <link rel="icon" type="image/png" sizes="32x32" href="<%- theme.favicon.medium%>">
+    <% } %>
+
+  <% if (theme.favicon.small){ %>
+    <link rel="icon" type="image/png" sizes="32x32" href="<%- theme.favicon.small%>">
+    <% } %>
+
+  <% if (theme.favicon.safari_pinned_tab){ %>
+    <link rel="mask-icon" href="<%- url_for(theme.favicon.safari_pinned_tab) %>" color="#212121">
+    <% } %>
+
+  <%- css('css/style') %>
+  <%- css('css/search') %>
+  <%# KaTeX 仅在正文真的渲染出公式时才加载：无公式的文章不再背 23KB CSS %>
+  <% if (page.layout === 'post' && /class="katex/.test(bodyHtml)){ %>
+    <%- css('css/katex.min') %>
+  <% } %>
+  <%- css('css/googleapis') %>
+  <% if (theme.highlight){ %>
+    <%- css('css/highlight') %>
+  <% } %>
+  <%- open_graph({ twitter_id: 'nil-w', image: ogImg }) %>
+  <%# Twitter Card %>
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@nil-w" />
+  <meta name="twitter:creator" content="@nil-w" />
+  <meta name="twitter:title" content="<%= finalTitle %>" />
+  <meta name="twitter:description" content="<%= page.description %>" />
+  <meta name="twitter:image" content="<%= ogImg %>" />
+  <%# Canonical URL %>
+  <link rel="canonical" href="<%= canonical %>" />
+  <%# JSON-LD Structured Data %>
+  <% if (page.layout === 'post') { %>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": <%- JSON.stringify(page.title || '') %>,
+    "datePublished": "<%= page.date.toISOString() %>",
+    "dateModified": "<%= (page.updated || page.date).toISOString() %>",
+    "author": {
+      "@type": "Person",
+      "name": <%- JSON.stringify(config.author || '') %>,
+      "url": "<%= SITE %>/"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": <%- JSON.stringify(config.title || '') %>,
+      "url": "<%= SITE %>/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "<%= SITE %>/images/og-default.png",
+        "width": 1200,
+        "height": 630
+      }
+    },
+    "description": <%- JSON.stringify(page.description || config.description || '') %>,
+    "image": ["<%= ogImg %>"],
+    "url": "<%= canonical %>",
+    "mainEntityOfPage": { "@type": "WebPage", "@id": "<%= canonical %>" },
+    "inLanguage": "zh-CN",
+    "wordCount": <%= (function(txt){
+      txt = String(txt || '').replace(/<[^>]*>/g, ' ');
+      var cn = (txt.match(/[\u4e00-\u9fa5]/g) || []).length;
+      var en = (txt.replace(/[\u4e00-\u9fa5]/g, ' ').match(/[A-Za-z0-9_'\-]+/g) || []).length;
+      return cn + en;
+    })(page.content) %>
+    <% if (page.categories && page.categories.length){ %>, "articleSection": <%- JSON.stringify(page.categories.first().name) %><% } %>
+    <% if (page.tags && page.tags.length){ %>, "keywords": <%- JSON.stringify(page.tags.map(function(t){ return t.name; }).join(',')) %><% } %>
+  }
+  </script>
+  <% } else { %>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": <%- JSON.stringify(config.title || '') %>,
+    "alternateName": <%- JSON.stringify(config.site_tagline || config.subtitle || '') %>,
+    "description": <%- JSON.stringify(config.description || '') %>,
+    "url": "<%= SITE %>/",
+    "inLanguage": "zh-CN",
+    "author": {
+      "@type": "Person",
+      "name": <%- JSON.stringify(config.author || '') %>
+    }
+  }
+  </script>
+  <% } %>
+  <%# Breadcrumb 结构化数据：让搜索结果展示「首页 › 分类 › 文章」路径 %>
+  <% if (page.layout === 'post'){ %>
+  <%
+    var _bc = [{ n: '首页', u: SITE + '/' }];
+    if (page.categories && page.categories.length){
+      var _c0 = page.categories.first();
+      _bc.push({ n: _c0.name, u: encodeURI(SITE + '/' + _c0.path) });
+    }
+    _bc.push({ n: page.title || '', u: canonical });
+  %>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [<% _bc.forEach(function(it, i){ %>{"@type": "ListItem", "position": <%= i + 1 %>, "name": <%- JSON.stringify(it.n) %>, "item": "<%= it.u %>"}<% if (i < _bc.length - 1){ %>, <% } %><% }) %>]
+  }
+  </script>
+  <% } %>
+  <% if (needReveal){ %>
+  <%- css('css/reveal') %>
+  <% } %>
+</head>

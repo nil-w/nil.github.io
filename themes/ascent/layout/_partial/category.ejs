@@ -1,0 +1,7 @@
+<section class="archives-wrap" style="margin-bottom: 0.5em;">
+  <input class="hidden-input" type="checkbox" onClick="tgl(this)" id="toggle-all">
+  <label class="month" for="toggle-all"><%- __('toggle_all')%></label>
+</section>
+<% var last; %>
+<% var i = 0; %>
+<%= JSON.stringify(site.categories,null,2) %>

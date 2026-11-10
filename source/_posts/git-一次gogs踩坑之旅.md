@@ -1,0 +1,84 @@
+---
+title: 一次gogs踩坑之路
+description: ubuntu 安装 gogs
+tags:
+  - aliyun
+  - 阿里云
+  - gogs
+  - git
+  - ubuntu 14.04
+abbrlink: 1398242790
+toc: true
+categories:
+  - 工作
+date: 2018-06-03 00:00:00
+---
+
+一定要按照操作步骤走
+
+<!--more-->
+
+1.创建用户，一定要记住密码
+
+```
+sudo adduser git
+su git
+cd ~
+```
+
+2.下载并解压安装包
+
+```
+wget https://dl.gogs.io/0.11.43/gogs_0.11.43_linux_amd64.zip
+unzip gogs_0.11.43_linux_amd64.zip
+```
+
+3.拷贝启动项到系统下
+
+```
+cp /home/xx/gogs/scripts/init/debian/gogs /etc/init.d/
+chmod +x /etc/init.d/gogs
+```
+
+4.安装 mysql
+
+```
+apt update
+apt install mysql-server
+mysql -u root -p < /home/xx/gogs/scripts/mysql.sql
+
+
+mysql -u root -p
+> # （输入密码）
+> create user 'gogs'@'localhost' identified by '密码';
+> grant all privileges on gogs.* to 'gogs'@'localhost';
+> flush privileges;
+> exit;
+```
+
+5.启动 gogs
+
+```
+service gogs start
+curl -I http://localhost:3000  => HTTP OK 200
+```
+
+6.nginx 配置
+
+```
+  server {
+        listen       80;
+        server_name  www.example.com;
+        location / {
+            proxy_pass http://localhost:3000/;
+        }
+  }
+```
+
+7.访问 www.example.com/install 进行初始化
+
+8.你可能遇到的问题
+
+[Gogs 与 Linux 主机共享 SSH22 端口](https://blog.csdn.net/u013710784/article/details/78778044)
+
+[装 Gogs 后 ssh 无法和远程登录同时使用的解决方案](https://blog.csdn.net/bigsea622/article/details/53956786)

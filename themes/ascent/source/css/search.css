@@ -1,0 +1,14 @@
+.tools-bar {
+  position: fixed;
+  right: 2.2rem;
+  bottom: 2.2rem;
+}
+
+.tools-bar .tools-bar-item {
+  margin: 10px 0;
+  font-weight: bold;
+}
+
+.tools-bar .back-to-top.hidden {
+  display: none;
+}

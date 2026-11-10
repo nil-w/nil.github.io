@@ -1,0 +1,93 @@
+# Header
+menu:
+  # home: /
+  archives: /archives
+  categories: categories
+  # tags: tags
+  about: /about
+  # search: /post/search.html
+
+math:
+  enable: true
+  specific: false
+  engine: katex
+
+local_search:
+  enable: true
+  # If auto, trigger search by changing input.
+  # If manual, trigger search by pressing enter key or search button.
+  trigger: auto
+  # Show top n results per article, show all results by setting to -1
+  top_n_per_article: 1
+  # Unescape html strings to the readable one.
+  unescape: false
+  # Preload the search data when the page loads.
+  preload: false
+# Content
+excerpt_link: read_more
+
+index:
+  enable_sticky: true
+  post_url_target: _self
+  enable_category: true
+  enable_tag: true
+
+tagcloud:
+  min_font: 10
+  max_font: 35
+  unit: px
+  start_color: "#c0c0c0"
+  end_color: "#618794"
+
+
+search:
+  enable: true
+  placeholder:
+
+cdn:
+  jquery: '/js/jquery.min.js'
+  qrcode: '/js/jquery.qrcode.min.js'
+# Favicon
+# favicon: /favicon.ico
+
+# Settings toggle
+settings: true
+
+# Code CSS toggle
+highlight: true
+
+# Word count (needs hexo-wordcount)
+word_count: false
+
+# Google Analytics
+google_analytics:
+  enable: false
+  acct: "UA-000000000-0"
+
+# IntenseDebate ID
+intensedebate:
+  enable: false
+  acct: "00000000000000000000000000000000"
+
+favicon:
+  small: /images/favicon.ico
+  medium: /images/favicon.ico
+  apple_touch_icon: /images/favicon.ico
+  safari_pinned_tab: /images/favicon.ico
+
+lazyload:
+  enable: true
+
+# rss: 'atom.xml'
+
+
+gitalk:
+  enable:  true
+  githubID:  nil-w  # 配置项基本于 GitTalk保持一致
+  repo:  'nil.github.io'
+  ClientID:  'd99a4bdc344cff33585d'
+  # ClientSecret 不入库：构建时由环境变量 GITALK_CLIENT_SECRET 注入
+  # （见 scripts/security-config.js）。未设置则自动停用评论，避免明文泄露。
+  ClientSecret:  ''
+  adminUser:  nil-w
+  distractionFreeMode: true

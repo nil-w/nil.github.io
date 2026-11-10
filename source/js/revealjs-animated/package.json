@@ -1,0 +1,34 @@
+{
+  "name": "revealjs-animated",
+  "version": "1.2.2",
+  "description": "RevealJs plugin to facilitate usage of animation inside slides",
+  "main": "webpack.config.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rogeralmeida/revealjs-animated"
+  },
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "jest-puppeteer": "^3.7.0",
+    "web-animations-js": "^2.3.1"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.2.3",
+    "babel-core": "^7.0.0-bridge.0",
+    "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.4",
+    "eslint": "^5.10.0",
+    "http-server": "^0.11.1",
+    "jest": "^23.6.0",
+    "puppeteer": "^1.11.0",
+    "webpack": "^4.28.2"
+  },
+  "scripts": {
+    "test": "jest"
+  },
+  "author": "Roger Almeida <roger.eduardo@gmail.com>",
+  "license": "MIT"
+}

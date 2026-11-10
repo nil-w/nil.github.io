@@ -1,0 +1,168 @@
+
+  <!doctype html>
+  <html lang="zh-CN">
+    <head>
+      <meta charset="utf-8">
+      <meta name="googlebot" content="noindex,indexifembedded" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+      <title>表单中心功能</title>
+
+      <link rel="stylesheet" href="/js/reveal.js/dist/reset.css?v=0.0.1">
+      <link rel="stylesheet" href="/js/reveal.js/dist/reveal.css?v=0.0.1">
+      <link rel="stylesheet" href="/js/reveal.js/dist/theme/dracula.css?v=0.0.1">
+
+      <!-- Theme used for syntax highlighted code -->
+      <link rel="stylesheet" href="/js/reveal.js/plugin/highlight/monokai.css?v=0.0.1">
+
+      <link rel="stylesheet" href="/js/reveal.js-plugins/customcontrols/style.css"><link rel="stylesheet" href="/js/reveal.js-plugins/chalkboard/style.css">
+
+      <style type="text/css">
+          .fragment.blur {
+            filter: blur(5px);
+          }
+
+          .fragment.blur.visible {
+            filter: none;
+          }
+
+          #notescanvas {
+            -webkit-backdrop-filter: unset;
+            backdrop-filter: unset;
+          }
+      </style>
+
+    </head>
+    <body>
+      <div class="reveal">
+        <div class="slides">
+          <section data-markdown
+                data-auto-animate
+                data-separator="^?
+----?
+$"
+                data-separator-vertical="^?
+--?
+$"
+                data-separator-notes="^Note:"
+                data-charset="utf-8">
+            <textarea data-template>
+              <!-- .slide: id="slide1" -->
+
+### 0.多端适配
+
+* 一次绘制表单；<!-- .element: class="fragment custom blur animated scale-down" data-animated-scale-down-from="5" data-animated-scale-down-to="1" -->
+
+* PC、终端、移动端自适应； <!-- .element: class="fragment custom blur animated scale-down" data-animated-scale-down-from="5" data-animated-scale-down-to="1" -->
+
+* CSS 计算适配样式；  <!-- .element: class="fragment custom blur animated scale-down" data-animated-scale-down-from="5" data-animated-scale-down-to="1" -->
+
+
+
+----
+
+<!-- .slide: id="slide2" -->
+
+### 1.集成方式
+
+* URL iframe集成；<!-- .element: class="fragment custom blur animated scale-down" data-animated-scale-down-from="5" data-animated-scale-down-to="1" -->
+* 前端 SDK 引入；<!-- .element: class="fragment custom blur animated scale-down" data-animated-scale-down-from="5" data-animated-scale-down-to="1" -->
+* 前两者兼容；<!-- .element: class="fragment custom blur animated scale-down" data-animated-scale-down-from="5" data-animated-scale-down-to="1" -->
+
+
+
+--
+
+<!-- .slide: id="slide3" -->
+
+### 1.1 需求分析
+
+* 需求基本明确；<!-- .element: class="fragment custom blur animated scale-down" data-animated-scale-down-from="5" data-animated-scale-down-to="1" -->
+* 类iframe方式微应用集成；<!-- .element: class="fragment custom blur animated scale-down" data-animated-scale-down-from="5" data-animated-scale-down-to="1" -->
+* 如何消除接入方技术复杂度？<!-- .element: class="fragment custom blur animated scale-down" data-animated-scale-down-from="5" data-animated-scale-down-to="1" -->
+
+--
+
+
+
+<!-- .slide: id="slide4_1" -->
+
+### 1.2 可行技术
+
+
+**流行的微应用框架**
+
+|对比|qiankun|wujie|micro app|
+|---|---|---|---|
+|  接入成本  |      高       |          低          |          低          |
+|  数据通信  | props属性传递 | 发布订阅+CustomEvent | 发布订阅+CustomEvent |
+| 多框架兼容 |       ✔️       |          ✔️           |          ✔️           |
+|   js沙箱   |       ✔️       |          ✔️           |          ✔️           |
+| window侵入 |       ❎       |          ✔️           |          ✔️           |
+|  样式隔离  |       ❎       |          ✔️           |          ✔️           |
+|  元素隔离  |       ❎       |          ✔️           |          ✔️           |
+|   预加载   |       ✔️       |          ✔️           |          ✔️           |
+|  保活模式  |       ❎       |          ✔️           |          ✔️           |
+
+<!-- .element:  style="font-size: 22px" class="fragment custom blur animated scale-down" data-animated-scale-down-from="5" data-animated-scale-down-to="1" -->
+
+--
+
+<!-- .slide: id="slide4" -->
+
+### 1.3 注意点
+
+* 样式隔离；<!-- .element: class="fragment custom blur animated scale-down" data-animated-scale-down-from="5" data-animated-scale-down-to="1" -->
+* 资源隔离；<!-- .element: class="fragment custom blur animated scale-down" data-animated-scale-down-from="5" data-animated-scale-down-to="1" -->
+* 自定义元素；<!-- .element: class="fragment custom blur animated scale-down" data-animated-scale-down-from="5" data-animated-scale-down-to="1" -->
+* 数据通信；<!-- .element: class="fragment custom blur animated scale-down" data-animated-scale-down-from="5" data-animated-scale-down-to="1" -->
+
+
+
+----
+
+
+
+<!-- .slide: id="slide5" -->
+
+### 2.版式文件
+
+* 类Word编辑器；<!-- .element: class="fragment custom blur animated scale-down" data-animated-scale-down-from="5" data-animated-scale-down-to="1" -->
+* 支持编辑器分页；<!-- .element: class="fragment custom blur animated scale-down" data-animated-scale-down-from="5" data-animated-scale-down-to="1" -->
+* A4版面样式控制；<!-- .element: class="fragment custom blur animated scale-down" data-animated-scale-down-from="5" data-animated-scale-down-to="1" -->
+* PDF\Word导出套打;<!-- .element: class="fragment custom blur animated scale-down" data-animated-scale-down-from="5" data-animated-scale-down-to="1" -->
+
+
+
+----
+
+
+
+<!-- .slide: id="slide6" -->
+
+### 3.数据存储
+
+* 表单数据缓存在表单中心；
+
+
+            </textarea>
+          </section>
+        </div>
+      </div>
+
+      <!-- Font awesome is required for the chalkboard plugin -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+      <script src="/js/reveal.js/dist/reveal.js?v=0.0.1"></script>
+      <script src="/js/reveal.js/plugin/markdown/markdown.js?v=0.0.1"></script><script src="/js/reveal.js/plugin/highlight/highlight.js?v=0.0.1"></script><script src="/js/reveal.js/plugin/search/search.js?v=0.0.1"></script><script src="/js/reveal.js/plugin/notes/notes.js?v=0.0.1"></script><script src="/js/reveal.js/plugin/math/math.js?v=0.0.1"></script><script src="/js/reveal.js/plugin/math/math.js?v=0.0.1"></script><script src="/js/reveal.js/plugin/zoom/zoom.js?v=0.0.1"></script><script src="/js/reveal.js-mermaid-plugin/plugin/mermaid/mermaid.js?v=0.0.1"></script><script src="/js/reveal.js-plugins/chalkboard/plugin.js?v=0.0.1"></script><script src="/js/reveal.js-plugins/customcontrols/plugin.js?v=0.0.1"></script>
+      
+      <script type="module">
+        Reveal.initialize({
+          ...{"hash":true,"help":false,"transition":"zoom","overview":false,"history":true,"autoAnimateEasing":"ease-out","autoSlide":false,"loop":true,"chalkboard":{"boardmarkerWidth":3,"chalkWidth":7,"chalkEffect":1,"storage":null,"src":null,"transition":800,"theme":"chalkboard","background":["rgba(127,127,127,.1)","/js/reveal.js-plugins/chalkboard/img/blackboard.png"],"grid":{"color":"rgb(50,50,10,0.5)","distance":80,"width":2},"eraser":{"src":"/js/reveal.js-plugins/chalkboard/img/sponge.png","radius":20},"boardmarkers":[{"color":"rgba(100,100,100,1)","cursor":"url(/js/reveal.js-plugins/chalkboard/img/boardmarker-black.png), auto","opacity":0},{"color":"rgba(30,144,255, 1)","cursor":"url(/js/reveal.js-plugins/chalkboard/img/boardmarker-blue.png), auto"},{"color":"rgba(220,20,60,1)","cursor":"url(1img/boardmarker-red.png), auto"},{"color":"rgba(50,205,50,1)","cursor":"url(/js/reveal.js-plugins/chalkboard/img/boardmarker-green.png), auto"},{"color":"rgba(255,140,0,1)","cursor":"url(/js/reveal.js-plugins/chalkboard/img/boardmarker-orange.png), auto"},{"color":"rgba(150,0,20150,1)","cursor":"url(/js/reveal.js-plugins/chalkboard/img/boardmarker-purple.png), auto"},{"color":"rgba(255,220,0,1)","cursor":"url(/js/reveal.js-plugins/chalkboard/img/boardmarker-yellow.png), auto"}],"chalks":[{"color":"rgba(255,255,255,0.5)","cursor":"url(/js/reveal.js-plugins/chalkboard/img/chalk-white.png), auto"},{"color":"rgba(96, 154, 244, 0.5)","cursor":"url(/js/reveal.js-plugins/chalkboard/img/chalk-blue.png), auto"},{"color":"rgba(237, 20, 28, 0.5)","cursor":"url(/js/reveal.js-plugins/chalkboard/img/chalk-red.png), auto"},{"color":"rgba(20, 237, 28, 0.5)","cursor":"url(/js/reveal.js-plugins/chalkboard/img/chalk-green.png), auto"},{"color":"rgba(220, 133, 41, 0.5)","cursor":"url(/js/reveal.js-plugins/chalkboard/img/chalk-orange.png), auto"},{"color":"rgba(220,0,220,0.5)","cursor":"url(/js/reveal.js-plugins/chalkboard/img/chalk-purple.png), auto"},{"color":"rgba(255,220,0,0.5)","cursor":"url(/js/reveal.js-plugins/chalkboard/img/chalk-yellow.png), auto"}]},"showNotes":false,"dependencies":[{"src":"/js/revealjs-animated/dist/revealjs-animated.js","async":true}],"controls":true,"slideNumber":true,"mermaid":{"theme":"dark"},"autoAnimate":true,"transitionSpeed":"slow","backgroundTransition":"slide"},
+          plugins: [RevealMarkdown, RevealHighlight, RevealSearch, RevealNotes, RevealMath, RevealMath.KaTeX, RevealZoom, RevealMermaid, RevealChalkboard, RevealCustomControls],
+        });
+      </script>
+    </body>
+  </html>
+  

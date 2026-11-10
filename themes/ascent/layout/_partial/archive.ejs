@@ -1,0 +1,86 @@
+
+<% if (page.total > 1){ %>
+  <nav id="page-nav" class="page-nav">
+    <% var prev_text = "« " + __('prev');var next_text = __('next') + " »"%>
+    <%- paginator({
+      prev_text: '<',
+      next_text: '>'
+    }) %>
+  </nav>
+<% } %>
+<% if (pagination == 2){ %>
+  <% if (index){ %>
+  <%# .site-intro 已停用。分类页顶部的站点标题/简介/分类导航块。
+      EJS 的单行注释标签不能跨多行、也不能含嵌套的 EJS 标签，
+      所以整块用 if(false) 包裹：内容不渲染、不进 HTML 源码。
+      恢复时把下面这行的 false 改成 true 即可。
+      样式残留在 themes/ascent/source/css/style.css 的 .site-intro 规则里，不影响其他页面。 %>
+  <% if (false) { %>
+  <section class="site-intro">
+    <% if ((page.current || 1) === 1){ %>
+    <h1><%= config.title %> · <%= config.site_tagline || config.subtitle %></h1>
+    <% } else { %>
+    <h1><%= config.title %> · <%= config.site_tagline || config.subtitle %>（第 <%= page.current %> 页）</h1>
+    <% } %>
+    <p><%= config.description %></p>
+    <p class="site-intro-note">记录后端架构与工程实践、AI 与 Agent 落地、独立开发与日常思考——写代码，也写踩过的坑。</p>
+    <nav class="site-intro-links">
+      <% site.categories.sort('-length').limit(8).each(function(c){ %>
+      <a href="<%= url_for(c.path) %>"><%= c.name %><span class="site-intro-count"><%= c.posts.length %></span></a>
+      <% }) %>
+      <a href="<%= url_for('/archives/') %>">全部文章<span class="site-intro-count"><%= site.posts.length %></span></a>
+    </nav>
+  </section>
+  <% } %>
+  <% } %>
+  <div class="archive-body">
+    <% var last; %>
+  <% var i = 0; %>
+  <% page.posts.each(function(post, i){ %>
+    <% var date_obj = post.date; %>
+    <% var month = post.date.year(); %>
+    <% if (last != month){ %>
+      <% if (last != null){ %>
+        </div></div>
+      <% } %>
+      <% last = month; %>
+      <% i = i + 1 %>
+      <div>
+        <h3><%= date(date_obj, "YYYY") %></h3>
+        <div class="list-group">
+    <% } %>
+    <%- partial('archive-post', {class_name: 'list-group-item' ,post: post}) %>
+  <% }) %>
+  <% if (page.posts.length){ %>
+    </div></div>
+  <% } %>
+  </div>
+<% } else { %>
+  <div class="archive-wrapper">
+  <h1 class="list-header"><%= page.posts.length || 0 %> 文章</h1>
+  <div class="archive-body">
+    <% var last; %>
+  <% var i = 0; %>
+  <% page.posts.each(function(post, i){ %>
+    <% var date_obj = post.date; %>
+    <% var month = post.date.year(); %>
+    <% if (last != month){ %>
+      <% if (last != null){ %>
+        </div></section>
+      <% } %>
+      <% last = month; %>
+      <% i = i + 1 %>
+      <section class="archives-wrap">
+        <input class="hidden-input" type="checkbox" name="expand" id="<%= 'expand' + i %>">
+        <label class="month" for="<%= 'expand' + i %>"><%= date(date_obj, "YYYY") %></label>
+        <div class="archives hidden">
+    <% } %>
+    <%- partial('archive-post', {class_name: '' ,post: post}) %>
+  <% }) %>
+  <% if (page.posts.length){ %>
+    </div></section>
+  <% } %>
+  </div>
+
+</div>
+<% } %>

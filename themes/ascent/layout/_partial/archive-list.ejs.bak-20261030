@@ -1,0 +1,31 @@
+<div class="list-group">
+  <h1 class="list-header">
+    <%= params.postTotal %> <%= params.category %>
+  </h1>
+  <% let currDate; %>
+    <% page.posts.each(function(post) { %>
+      <% if (currDate !==date(post.date, 'YYYY' )) { %>
+        <% currDate=date(post.date, 'YYYY' ) %>
+          <h3>
+            <%= currDate %>
+          </h3>
+          <% } %>
+            <div class="list-group-item">
+              <div class="archive-article-date">
+                <%= date(post.date, 'MM-DD A' ) %>
+              </div>
+              <div class="archive-article-title">
+                <a href="<%= url_for(post.path) %>" target="<%- theme.index.post_url_target %>">
+                  <%= post.title %>&nbsp;&nbsp;<%= post.password ? '🔐' : '' %>
+                </a>
+              </div>
+            </div>
+            <% })%>
+</ul>
+
+<% if (page.total> 1){ %>
+  <nav id="page-nav" class="page-nav">
+    <% var prev_text="« " + __('prev');var next_text=__('next') + " »" %>
+      <%- paginator({ prev_text: '<' , next_text: '>' }) %>
+  </nav>
+  <% } %>

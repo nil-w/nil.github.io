@@ -1,0 +1,334 @@
+<% if (theme.intensedebate.enable && theme.intensedebate.acct){ %>
+<%- css('css/comments') %>
+<% } %>
+
+<% if (is_archive() || is_category() || is_tag()){ %>
+<script type="text/javascript">
+  let tgl = (s) => {
+    x = document.getElementsByName("expand");
+    for (let i = 0; i < x.length; i++) x[i].checked = s.checked;
+  }
+</script>
+<% } %>
+
+<% if (theme.settings){ %>
+<div id="settings-container">
+  <div id="dark-mode"></div>
+  <div id="sans-font"></div>
+</div>
+
+
+<span class="post-count"><%- totalcount(site) %></span>
+<%# legacy mermaid script tags removed; use ESM import below %>
+<script type="text/javascript">
+
+
+  let d = document,
+    r = d.documentElement.style,
+    f = r.setProperty.bind(r),
+    l = localStorage,
+    rawS = l.getItem('s'),
+    s = (rawS === '1' || rawS === '2') ? Number(rawS) : 0,
+    sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches,
+    m = d.getElementById("dark-mode"),
+    b = () => {
+      f('--bg-color', '#fafafa');
+      f('--code-bg-color', '#f4f4f4');
+      f('--text-color', '#212121');
+      f('--secondary-color', '#6e6e6e');
+      f('--tertiary-color', '#767676');
+      f('--link-color', '#7d9aa3');
+      f('--link-hover-color', '#3f6673');
+      f('--link-text-color', '#3f6673');
+      f('--link-bg-color', '#dae4e7');
+      f('--selection-color', '#dae4e7');
+    },
+    c = () => {
+      f('--bg-color', '#212121');
+      f('--code-bg-color', '#292929');
+      f('--text-color', '#fff');
+      f('--secondary-color', '#c0c0c0');
+      f('--tertiary-color', '#8f8f8f');
+      f('--link-color', '#5c8089');
+      f('--link-hover-color', '#a9c6d0');
+      f('--link-text-color', '#a9c6d0');
+      f('--link-bg-color', '#5d828e');
+      f('--selection-color', '#acc1c9');
+    },
+    n = Number(l.getItem('n')) || 0,
+    o = d.getElementById("sans-font"),
+    e = () => {
+      f('--body-stack', '"Lora", "Lora Fallback", "Georgia", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Times New Roman", serif');
+    },
+    g = () => {
+      f('--body-stack', '"Lato", "Lato Fallback", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif');
+    },
+    applyTheme = () => {
+      if (s === 1) b();
+      else if (s === 2) c();
+      else (sysDark ? c() : b());
+    };
+  m.onclick = function(){
+    s = s === 2 ? 0 : s + 1;
+    l.setItem('s', s);
+    applyTheme();
+  };
+  o.onclick =function(){
+    if (n == 2) {
+      n = 1;
+      l.setItem('n', n);
+      g()
+    } else {
+      n = 2;
+      l.setItem('n', n);
+      e()
+    }
+  };
+  applyTheme();
+  if (!n) {
+    n = 2;
+    l.setItem('n', 2)
+  };
+  if (n == '1') {
+    g();
+  };
+  if (n == '2') {
+    e();
+  };
+</script>
+<% } %>
+
+<%
+  // 性能优化：mermaid（约 3MB CDN 包）与 reveal（约 100KB 脚本 + 主题 CSS）
+  // 只在真正用到它们的页面加载。此前二者会在全站每一页（含首页）请求。
+  var _body = String(page.content || '');
+  var needMermaid = /class=["']mermaid["']/.test(_body);
+  var needReveal = /class=["']slides["']/.test(_body);
+%>
+
+<% if (needMermaid){ %>
+<script type="module">
+  // mermaid 9.4.3 → 12.2.0（9.x 有 7 个已知 CVE，且 9 已停止维护）
+  // 注意：v10 起废弃 mermaid.init()，改用 mermaid.run()
+  import mermaid from "https://cdn.jsdelivr.net/npm/mermaid@12.2.0/+esm";
+  let theme = localStorage.getItem("s");
+  mermaid.initialize({
+      startOnLoad: true,
+      logLevel: 'error',
+      securityLevel: 'strict',
+      theme: theme === '2' ? 'forest' : 'dark',
+    });
+  let mode = document.getElementById("dark-mode");
+   let arrayGraphs =  [];
+  let nodes = document.getElementsByClassName('mermaid')
+  for(let n of nodes){
+    arrayGraphs.push(n.innerHTML);
+  }
+
+  if (mode) mode.addEventListener("click",async ()=>{
+    theme = localStorage.getItem("s");
+    mermaid.initialize({
+      startOnLoad: true,
+      logLevel: 'error',
+      securityLevel: 'strict',
+      theme: theme === '2' ? 'forest' : 'dark',
+    });
+  for(let i = 0;i< nodes.length;i++){
+      let n =  nodes[i]
+      let id = `mermaid-${i}`
+      n.removeAttribute("data-processed");
+      n.setAttribute("id",`mermaid-${i}`)
+      n.replaceChildren();
+      n.innerHTML = arrayGraphs[i]
+      mermaid.run({ nodes: [n] })
+    }
+  },false);
+
+  // 加密文章解密后，hexo-blog-encrypt 把明文注入 DOM，
+  // 此时新出现的 .mermaid 不在初始 nodes 快照里 → 需补渲染一次。
+  // 注意：该插件用 window.dispatchEvent(new CustomEvent('hexo-blog-decrypt'))
+  // 派发（实测 v4.1.0），故必须监听 window；document 上冗余保留以兼容旧版。
+  const rerenderMermaid = () => {
+    const pending = Array.from(document.querySelectorAll('.mermaid:not([data-processed])'));
+    if (pending.length) {
+      mermaid.run({ nodes: pending }).catch(() => {});
+    }
+  };
+  window.addEventListener('hexo-blog-decrypt', rerenderMermaid);
+  document.addEventListener('hexo-blog-decrypt', rerenderMermaid);
+
+</script>
+<% } %>
+
+<% if (theme.google_analytics.enable && theme.google_analytics.acct){ %>
+<script type="text/javascript">
+  // (function(i, s, o, g, r, a, m) {
+  //   i['GoogleAnalyticsObject'] = r;
+  //   i[r] = i[r] || function() {
+  //     (i[r].q = i[r].q || []).push(arguments)
+  //   }, i[r].l = 1 * new Date();
+  //   a = s.createElement(o),
+  //     m = s.getElementsByTagName(o)[0];
+  //   a.async = 1;
+  //   a.src = g;
+  //   m.parentNode.insertBefore(a, m)
+  // })(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+
+  // ga('create', '<%= theme.google_analytics.acct %>', 'auto');
+  // ga('send', 'pageview');
+
+</script>
+<% } %>
+
+<script src="<%= theme.cdn.jquery %>" defer ></script>
+<script src="<%= theme.cdn.qrcode %>" defer ></script>
+<%# reveal 版本与本地 vendored 副本（source/js/reveal.js）保持一致，避免降级时行为漂移 %>
+<% if (needReveal){ %>
+<script src="https://unpkg.com/reveal.js@5.2.1/dist/reveal.js" defer></script>
+<script src="https://unpkg.com/reveal.js-mermaid-plugin@11.15.0/plugin/mermaid/mermaid.js" defer></script>
+<% } %>
+<%# echarts defer script optional %>
+<script type="module">
+  import qrcodeInit from '/js/qrcode.js'
+  qrcodeInit();
+</script>
+<script type="module">
+/***
+ * 兼容不支持requestAnimationFrame的浏览器
+ ***/
+window.requestAnimationFrame = (function () {
+  return window.requestAnimationFrame ||
+    window.webkitRequestAnimationFrame ||/* Safari 和 Chrome */
+    window.mozRequestAnimationFrame ||/* Firefox */
+    window.oRequestAnimationFrame      ||/* Opera */
+    window.msRequestAnimationFrame     ||/* IE 9 */
+    function (callback) {
+      window.setTimeout(callback, 6000 / 60)
+    }
+})();
+window.cancelAnimationFrame = (function () {
+  return window.cancelAnimationFrame ||
+    window.webkitCancelAnimationFrame ||
+    window.mozCancelAnimationFrame ||
+    window.oCancelAnimationFrame ||
+    window.msCancelAnimationFrame || clearTimeout
+})();
+</script>
+<script type="module">
+  /*诗*/
+if ($("div").hasClass("poem-wrap")) {
+            get_poem('#poem', '#info')
+}
+function get_poem(poem_ele, info_ele) {
+    var poem = document.querySelector(poem_ele);
+    var info = document.querySelector(info_ele);
+    var xhr = new XMLHttpRequest();
+    xhr.open('get', 'https://v2.jinrishici.com/one.json?client=browser-sdk/1.2');
+    xhr.withCredentials = true;
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === 4) {
+            var data = JSON.parse(xhr.responseText);
+            poem.innerHTML = data.data.content;
+            info.innerHTML = '[' + data.data.origin.dynasty + '] ' + data.data.origin.author + '《' + data.data.origin.title + '》';
+        }
+    };
+    xhr.send();
+}
+
+function modifySubmitBtn(){
+  var btn = $('.hbe-button');
+  var password = $('#hbePass');
+  if(btn.length > 0){
+    btn.text('重新输入密码')
+  }
+  if(password.length > 0){
+    password.attr('autocomplete','false')
+  }
+}
+modifySubmitBtn();
+
+function layoutTagCloud(){
+  // var list = $('.tagcloud a');
+  // var size = Math.round(Math.random() * 20);
+
+  // for(let i = 0;i< list.length;i++){
+  //       if(i % even == 0 ){
+  //         list[i].classList = `${list[i].classList} deg_90`
+  //       }
+  // }
+}
+
+function loopHover(){
+  var list = $('.tagcloud a');
+  var hover = $('.tagcloud a[class="tag-hover"]')
+  var next = Math.round(Math.random() * (list.length  - 1))
+
+  if(next < 0){
+    next = 0
+  }
+
+  if(next > list.length){
+    next = list.length - 1
+  }
+  if(list.length){
+    if(hover.length){
+      for(let i = 0;i< hover.length;i++){
+        hover[i].classList = ''
+      }
+    }
+    list[next].classList = 'tag-hover'
+  }
+}
+// layoutTagCloud();
+
+
+/**
+ * 设置精度定时器
+ * @param {function} 回调函数
+ * @param {number}   延迟时间
+ * @return {number}  定时器ID
+ */
+ function setIntervalPrecision(callback, delay) {
+  // 生成并记录定时器ID
+  let obj = window.interValPrecisionObj || (window.interValPrecisionObj = { num: 0 })
+  obj.num++
+  obj['n' + obj.num] = true
+  var intervalId = obj.num
+  // 开始时间
+  var startTime = +new Date()
+  // 已执行次数
+  var count = 0
+  // 延迟时间
+  delay = delay || 0
+
+
+  ;(function loop() {
+    // 定时器被清除，则终止
+    if (!obj['n' + intervalId]) return
+
+    // 满足条件执行回调
+    if (+new Date() > startTime + delay * (count + 1)) {
+      count++
+      callback(count)
+    }
+
+    window.requestAnimationFrame(loop)
+  })()
+
+  return intervalId
+}
+
+/**
+ * 清除精度定时器
+ * @param {number} 定时器ID
+ */
+function clearIntervalPrecision(intervalId) {
+  if (window.interValPrecisionObj) {
+    window.cancelAnimationFrame('n' + intervalId)
+    delete window.interValPrecisionObj['n' + intervalId]
+  }
+}
+
+setIntervalPrecision(loopHover, 250)
+
+</script>

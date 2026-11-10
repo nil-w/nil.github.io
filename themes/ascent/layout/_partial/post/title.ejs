@@ -1,0 +1,25 @@
+<%
+  // 文章详情页（index === false）用 <h1> 作为页面唯一主标题；
+  // 列表页/归档页（index 为 true 或未传）仍用 <h3>，避免一页多个 h1。
+  var tag = (index === false) ? 'h1' : 'h3';
+%>
+<% if (post.link){ %>
+  <<%= tag %> class="<%= class_name %>" itemprop="name">
+    <a href="<%- url_for(post.link) %>" target="_blank" itemprop="url"><span><%= post.title %> <%= post.password ? '🔐' : '' %></span></a>
+  </<%= tag %>>
+<% } else if (post.title){ %>
+  <% if (index){ %>
+    <h3 class="<%= class_name %>" itemprop="name">
+      <a href="<%- url_for(post.path) %>"><span><%= post.title %> &nbsp;&nbsp;<%= post.password ? '🔐' : '' %></span></a>
+      <% if (theme.word_count){ %>
+        <% if (is_archive()){ %>
+          <span class="archive-article-word-count"><%= wordcount(post.content) %> words</span>
+        <% } %>
+      <% } %>
+    </h3>
+  <% } else { %>
+    <<%= tag %> class="<%= class_name %>" itemprop="headline name">
+      <%= post.title %>&nbsp;&nbsp;<%= post.password ? '🔐' : '' %>
+    </<%= tag %>>
+  <% } %>
+<% } %>

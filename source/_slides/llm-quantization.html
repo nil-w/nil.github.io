@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第七集：装进你的口袋 —— 量化与端侧推理</title>
+<style>
+  html,body{margin:0;height:100%;background:#07080f;overflow:hidden;}
+  canvas{display:block;cursor:pointer;}
+</style>
+</head>
+<body>
+<canvas id="cv"></canvas>
+<script>
+(function(){
+"use strict";
+
+const VW=1600, VH=900;
+const cv=document.getElementById('cv'), ctx=cv.getContext('2d');
+let scale=1, offX=0, offY=0, dpr=1;
+
+const FONT='"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif';
+const MONO='Menlo,Consolas,"SF Mono",monospace';
+
+const BG='#070c11', PANEL='#0f1a20', PANEL2='#152630', LINE='#263a44',
+      TXT='#e6f2f4', DIM='#8497a0',
+      ACC='#39d0c6',        /* 青绿：本集主色 */
+      ACC2='#7c9dff',       /* 蓝紫 */
+      ACC3='#b79cff',       /* 紫 */
+      WARN='#f2617a', OK='#5cd692';
+
+const clamp=(x,a,b)=>x<a?a:(x>b?b:x);
+const cl01=x=>clamp(x,0,1);
+const seg=(t,a,b)=>b<=a?(t>=b?1:0):cl01((t-a)/(b-a));
+const eo=t=>1-Math.pow(1-cl01(t),3);
+const lerp=(a,b,t)=>a+(b-a)*t;
+function hex2rgb(h){return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];}
+function mixc(c1,c2,t){const a=hex2rgb(c1),b=hex2rgb(c2);t=cl01(t);
+  return 'rgb('+Math.round(lerp(a[0],b[0],t))+','+Math.round(lerp(a[1],b[1],t))+','+Math.round(lerp(a[2],b[2],t))+')';}
+function rgba(c,a){const r=hex2rgb(c);return 'rgba('+r[0]+','+r[1]+','+r[2]+','+cl01(a)+')';}
+function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);
+  ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
+
+function T(s,x,y,size,color,align,weight,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.fillStyle=color;ctx.font=(weight||400)+' '+size+'px '+FONT;
+  ctx.textAlign=align||'left';ctx.textBaseline='middle';
+  ctx.fillText(s,x,y);ctx.restore();
+}
+function TF(s,x,y,size,color,align,weight,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.fillStyle=color;ctx.font=(weight||400)+' '+size+'px '+MONO;
+  ctx.textAlign=align||'left';ctx.textBaseline='middle';
+  ctx.fillText(s,x,y);ctx.restore();
+}
+function box(x,y,w,h,fill,stroke,r,lw,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  rr(x,y,w,h,r===undefined?12:r);
+  if(fill){ctx.fillStyle=fill;ctx.fill();}
+  if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lw||2;ctx.stroke();}
+  ctx.restore();
+}
+function arrow(x1,y1,x2,y2,color,lw,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=lw||2;ctx.lineCap='round';
+  ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+  const ang=Math.atan2(y2-y1,x2-x1), L=9;
+  ctx.beginPath();ctx.moveTo(x2,y2);
+  ctx.lineTo(x2-L*Math.cos(ang-0.4),y2-L*Math.sin(ang-0.4));
+  ctx.lineTo(x2-L*Math.cos(ang+0.4),y2-L*Math.sin(ang+0.4));
+  ctx.closePath();ctx.fill();
+  ctx.restore();
+}
+function badge(n,x,y,r,color,a){
+  ctx.save();ctx.globalAlpha=a===undefined?1:cl01(a);
+  ctx.fillStyle=rgba(color,0.18);ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
+  ctx.strokeStyle=rgba(color,0.95);ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.stroke();
+  ctx.fillStyle=color;ctx.font='700 '+Math.round(r*1.12)+'px '+FONT;
+  ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(n,x,y+1);
+  ctx.restore();
+}
+
+/* ================= S0 开场 ================= */
+function S0(t){
+  const a1=eo(seg(t,0.1,1.0)), a2=eo(seg(t,0.7,1.6)), a3=eo(seg(t,1.4,2.3));
+  const g=ctx.createRadialGradient(VW/2,VH/2-40,40,VW/2,VH/2-40,660);
+  g.addColorStop(0,'rgba(57,208,198,0.13)');g.addColorStop(1,'rgba(57,208,198,0)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,VW,VH);
+
+  T('第七集',VW/2,VH/2-190,22,ACC,'center',700,a1);
+  T('装进你的口袋',VW/2,VH/2-100,72,TXT,'center',700,a1);
+  T('一个几百亿参数的模型，怎么塞进一台手机',VW/2,VH/2-8,29,ACC2,'center',400,a2);
+
+  const items=[['剪小','把每个数字压窄',ACC],['搬轻','少读内存就快',ACC3],['落地','最后装进设备',OK]];
+  for(let i=0;i<3;i++){
+    const a=eo(seg(t,1.5+i*0.35,1.9+i*0.35));
+    const x=VW/2-450+i*310;
+    box(x,VH/2+76,280,84,mixc(BG,PANEL2,0.7),rgba(items[i][2],0.75*a),12,1.8,a);
+    T(items[i][0],x+140,VH/2+108,22,items[i][2],'center',700,a);
+    T(items[i][1],x+140,VH/2+142,16,DIM,'center',400,a);
+  }
+  T('三件事合起来，叫量化（Quantization）',VW/2,VH/2+216,20,DIM,'center',400,a3*0.95);
+}
+
+/* ================= S1 参数量 → 占多少内存 ================= */
+function S1(t){
+  T('先算一笔账：模型到底多大',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('模型大小 = 参数个数 × 每个参数占几个字节。只有这一条公式。',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const ROWS=[
+    {name:'FP32',bytes:'4 字节',gb:28,color:WARN,note:'每个数 32 位，最精确，也最占地方'},
+    {name:'FP16',bytes:'2 字节',gb:14,color:'#ff9f5a',note:'半精度，训练后的默认体重'},
+    {name:'INT8',bytes:'1 字节',gb:7,color:ACC2,note:'只用 256 个整数档位'},
+    {name:'INT4',bytes:'0.5 字节',gb:3.5,color:ACC,note:'只剩 16 个档位，手机上跑得动'}
+  ];
+  const x0=340, BARW=680, MAXGB=28;
+
+  T('一个 70 亿参数（7B）的模型',140,182,18,ACC3,'left',600,eo(seg(t,0.3,0.7)));
+
+  for(let i=0;i<ROWS.length;i++){
+    const r=ROWS[i], st=0.5+i*1.0, a=eo(seg(t,st,st+0.4));
+    if(a<=0)continue;
+    const y=232+i*112;
+    T(r.name,x0-24,y+4,22,r.color,'right',700,a);
+    T(r.bytes,x0-24,y+30,14,DIM,'right',400,a*0.9);
+    const w=Math.max(6,BARW*(r.gb/MAXGB))*a;
+    box(x0,y-22,w,48,rgba(r.color,0.20),rgba(r.color,0.9),8,1.6,a);
+    T(r.gb+' GB',x0+w-12,y+2,20,TXT,'right',700,a);
+    T(r.note,x0+16,y+42,14,DIM,'left',400,a*0.92);
+  }
+
+  // 参考线
+  const la=eo(seg(t,4.2,4.8));
+  const refs=[{gb:3.5,tag:'手机可用 ~4GB',c:WARN},{gb:16,tag:'笔记本 16GB',c:ACC3}];
+  for(let i=0;i<refs.length;i++){
+    const x=x0+BARW*(refs[i].gb/MAXGB);
+    ctx.save();ctx.globalAlpha=la*0.8;ctx.setLineDash([6,6]);
+    ctx.strokeStyle=refs[i].c;ctx.lineWidth=1.6;
+    ctx.beginPath();ctx.moveTo(x,206);ctx.lineTo(x,672);ctx.stroke();ctx.restore();
+    T(refs[i].tag,x+10,206+12+i*4,13,refs[i].c,'left',600,la*0.9);
+  }
+
+  const b=eo(seg(t,5.2,5.8));
+  if(b>0){
+    box(140,700,1320,78,PANEL,mixc(LINE,ACC,0.5),12,1.7,b);
+    T('原来如此',176,739,18,ACC,'left',700,b);
+    T('量化不改架构、不加参数，只是把"每个数用几位存"从 32 位砍到 4 位 —— 同一张成绩单换个写法。',320,739,17,TXT,'left',400,b);
+  }
+}
+
+/* ================= S2 量化在做什么 ================= */
+function S2(t){
+  T('量化到底动了什么',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('把一把刻度极细的尺子，换成一把刻度很粗的尺子',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 上半：连续数轴 → 整数格
+  const ay=270, ax=200, aw=1180;
+  const la=eo(seg(t,0.4,0.9));
+  ctx.save();ctx.globalAlpha=la;
+  ctx.strokeStyle=LINE;ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(ax,ay);ctx.lineTo(ax+aw,ay);ctx.stroke();
+
+  // 浮点刻度（密集）
+  for(let i=0;i<=160;i++){
+    const x=ax+aw*(i/160);
+    const h=(i%10===0)?9:4;
+    ctx.strokeStyle=(i%10===0)?'rgba(124,157,255,0.85)':'rgba(124,157,255,0.3)';
+    ctx.lineWidth=1.2;
+    ctx.beginPath();ctx.moveTo(x,ay-h);ctx.lineTo(x,ay+h);ctx.stroke();
+  }
+  T('连续值：想多细就多细',ax,ay-38,16,ACC2,'left',600,la);
+  T('FP16：65536 档',ax+aw,ay-38,16,DIM,'right',400,la);
+  ctx.restore();
+
+  // 下方整数格
+  const by=400, ga=eo(seg(t,1.4,2.0));
+  const N=16, cw=aw/N;
+  T('INT4：只剩 16 档',ax,by-42,16,ACC,'left',600,ga);
+  for(let i=0;i<N;i++){
+    const sa=eo(seg(t,1.6+i*0.06,1.9+i*0.06));
+    const x=ax+i*cw;
+    box(x+3,by-24,cw-6,48,rgba(ACC,0.10*sa),rgba(ACC,0.6*sa),5,1.4,sa);
+    T(String(i-8),x+cw/2,by,15,ACC,'center',600,sa*0.9);
+  }
+
+  // 映射箭头与示例
+  const ma=eo(seg(t,2.8,3.4));
+  const samples=[{v:1.037,pos:0.634,to:2},{v:-0.412,pos:0.396,to:-3}];
+  for(let i=0;i<samples.length;i++){
+    const s=samples[i];
+    const sa=eo(seg(t,3.0+i*0.5,3.5+i*0.5));
+    const sx=ax+aw*s.pos;
+    ctx.save();ctx.globalAlpha=sa;
+    ctx.fillStyle=ACC3;ctx.beginPath();ctx.arc(sx,ay-22,7,0,Math.PI*2);ctx.fill();
+    TF(s.v.toFixed(3),sx,ay-52,15,ACC3,'center',600,1);
+    const tx=ax+(s.to+8)*cw+cw/2;
+    arrow(sx,ay+30,tx,by-30,rgba(ACC3,0.7),1.6,sa);
+    ctx.restore();
+  }
+  T('刻度少了 → 相邻两个数会被压成同一个格子 → 这就是"精度损失"',ax,by+72,17,DIM,'left',400,eo(seg(t,3.6,4.2))*0.95);
+
+  const b=eo(seg(t,6.2,6.8));
+  if(b>0){
+    box(140,560,1320,150,PANEL,mixc(LINE,ACC,0.45),14,1.7,b);
+    T('缩放因子',176,600,17,ACC,'left',700,b);
+    TF('scale = (最大值 - 最小值) / (2^bits - 1)',330,600,17,TXT,'left',500,b);
+    T('所有数先除以这个 scale，四舍五入成整数存起来；用时再乘回去。一个缩放因子，决定整组数的精度。',176,646,16,DIM,'left',400,b);
+    T('所以量化的核心问题从来不是"要不要除"，而是"范围取多大、一组管多少个数"。',176,678,16,ACC2,'left',500,b);
+  }
+
+  T('原来如此',140,780,17,ACC,'left',700,eo(seg(t,7.4,7.9)));
+  T('量化不是把模型变小一号，是把每个数换了一把更粗的尺子 —— 差的那点精度，换来了能装进设备的体积。',230,780,17,TXT,'left',400,eo(seg(t,7.4,7.9))*0.96);
+}
+
+/* ================= S3 分组与离群值 ================= */
+function S3(t){
+  T('但直接一刀切会出事',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('一组数里只要有一个"巨无霸"，其他全被它连累',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 情形一：整层一个缩放因子
+  const g1=eo(seg(t,0.5,1.1));
+  T('做法 A：整层共用一把尺子',140,196,19,WARN,'left',700,g1);
+
+  const N=32, x0=140, cw=22, baseY=380;
+  const vals=[];
+  for(let i=0;i<N;i++){
+    let v=0.4+0.5*Math.sin(i*1.7)+0.3*Math.cos(i*0.9);
+    vals.push(Math.abs(v)+0.05);
+  }
+  vals[13]=15.8;   // 离群值
+
+  for(let i=0;i<N;i++){
+    const sa=eo(seg(t,0.7+i*0.03,1.0+i*0.03));
+    const h=Math.max(4,vals[i]*15);
+    const isOut=(i===13);
+    ctx.save();ctx.globalAlpha=sa;
+    ctx.fillStyle=isOut?rgba(WARN,0.85):rgba(ACC2,0.65);
+    ctx.fillRect(x0+i*cw,baseY-h,cw-6,h);
+    ctx.restore();
+  }
+  T('普通权重（大概率都在 ±1 之间）',x0,baseY+28,14,DIM,'left',400,g1);
+  const pa=eo(seg(t,1.6,2.0));
+  T('一个离群值 15.8',x0+13*cw-4,baseY-15.8*15-30,14,WARN,'center',700,pa);
+
+  // 后果
+  const ca=eo(seg(t,2.4,3.0));
+  if(ca>0){
+    box(140,430,700,110,PANEL,rgba(WARN,0.7),12,1.6,ca);
+    T('缩放因子被拉到 0.124',176,466,17,WARN,'left',700,ca);
+    T('其余 31 个数本来有 1/256 的分辨率，现在只剩 ±8 个整数格 —— 精度全毁。',176,504,15,TXT,'left',400,ca);
+  }
+
+  // 情形二：分组
+  const g2=eo(seg(t,3.6,4.2));
+  T('做法 B：分组量化（每 32 个数一组，各用各的尺子）',140,196,19,OK,'left',700,g2*0);
+
+  // 右侧对比：分组后的格子
+  const rx=880, ry=250;
+  const ra=eo(seg(t,4.0,4.6));
+  T('分组之后',rx,ry-30,18,OK,'left',700,ra);
+  for(let gi=0;gi<4;gi++){
+    const ga=eo(seg(t,4.2+gi*0.25,4.6+gi*0.25));
+    const y=ry+gi*88;
+    box(rx,y,560,68,PANEL2,rgba(OK,0.55),10,1.6,ga);
+    T('第 '+(gi+1)+' 组',rx+18,y+22,14,DIM,'left',400,ga);
+    TF('scale'+(gi+1),rx+18,y+46,14,ACC,'left',500,ga);
+    // 组内小格
+    for(let k=0;k<10;k++){
+      const sa=ga*eo(seg(t,4.4+gi*0.25+k*0.02,4.6+gi*0.25+k*0.02));
+      ctx.save();ctx.globalAlpha=sa*0.9;
+      ctx.fillStyle=rgba(OK,0.55);
+      ctx.fillRect(rx+150+k*38,y+22,28,26);
+      ctx.restore();
+    }
+    T(gi===3?'含离群值 → 保留 FP16':'精度完好',rx+540,y+46,13,gi===3?WARN:OK,'right',600,ga*0.9);
+  }
+
+  const b=eo(seg(t,6.4,7.0));
+  if(b>0){
+    box(140,566,1320,96,PANEL,mixc(LINE,OK,0.45),12,1.7,b);
+    T('三件套',176,614,18,OK,'left',700,b);
+    T('① 分组更细（32 甚至 16 个一组）② 离群值单独留高精度 ③ 重要性高的层用更高位宽 —— 这就是 Q4_K_M 里那两个字母的含义。',320,614,16,TXT,'left',400,b);
+  }
+
+  T('原来如此',140,726,17,ACC,'left',700,eo(seg(t,7.6,8.1)));
+  T('量化做得好不好，看的不是平均值，而是"最倒霉的那一个数有没有把一组拖下水"。',230,726,17,TXT,'left',400,eo(seg(t,7.6,8.1))*0.96);
+  T('所以工程上很少用"均匀一刀切"，都是分组 + 混合精度。',230,764,16,DIM,'left',400,eo(seg(t,8.2,8.7))*0.95);
+}
+
+/* ================= S4 GGUF 命名 ================= */
+function S4(t){
+  T('文件名里的密码',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('下载模型时看到的 Q4_K_M，其实是三个信息压缩成四个字符',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const parts=[
+    {ch:'Q',x:140,c:ACC,label:'Quantized',desc:'已量化'},
+    {ch:'4',x:300,c:ACC2,label:'4 bit',desc:'每个数 4 位'},
+    {ch:'K',x:460,c:ACC3,label:'K-quant',desc:'分组式量化'},
+    {ch:'_M',x:620,c:OK,label:'Medium',desc:'关键层混更高精度'}
+  ];
+  for(let i=0;i<parts.length;i++){
+    const p=parts[i], a=eo(seg(t,0.5+i*0.3,1.0+i*0.3));
+    box(p.x,190,140,110,PANEL2,rgba(p.c,0.7),12,1.8,a);
+    T(p.ch,p.x+70,232,38,p.c,'center',700,a);
+    T(p.label,p.x+70,280,13,DIM,'center',400,a*0.92);
+  }
+  const da=eo(seg(t,1.9,2.5));
+  const descs=['Q = 量化过的','4 = 4 位','K = 分组','_M = 中等混合'];
+  for(let i=0;i<4;i++)T(descs[i],parts[i].x+70,332,15,TXT,'center',600,da);
+
+  // 右侧：文件大小对照
+  const rx=860;
+  T('同样是 7B 模型，不同量化的体积',rx,190,17,ACC,'left',600,eo(seg(t,2.4,2.9)));
+  const FILES=[
+    {n:'F16',gb:13.5,c:WARN},
+    {n:'Q8_0',gb:7.2,c:'#ff9f5a'},
+    {n:'Q5_K_M',gb:5.3,c:ACC3},
+    {n:'Q4_K_M',gb:4.4,c:ACC},
+    {n:'Q2_K',gb:2.8,c:DIM}
+  ];
+  for(let i=0;i<FILES.length;i++){
+    const f=FILES[i], st=2.6+i*0.4, a=eo(seg(t,st,st+0.4));
+    const y=234+i*62;
+    T(f.n,rx,y+6,16,f.c,'left',600,a);
+    const w=Math.max(4,430*(f.gb/13.5))*a;
+    box(rx+120,y-14,Math.max(w,4),30,rgba(f.c,0.22),rgba(f.c,0.85),6,1.5,a);
+    TF(f.gb+' GB',rx+120+Math.max(w,4)+12,y+2,15,TXT,'left',600,a);
+  }
+  const na=eo(seg(t,4.8,5.4));
+  T('Q4 是社区公认的甜点：体积约 1/3，效果损失很小',rx,566,15,DIM,'left',400,na*0.95);
+
+  // 底部工具链
+  const ya=eo(seg(t,5.4,6.0));
+  T('这些东西怎么跑起来',140,626,17,ACC,'left',700,ya);
+  const chain=['llama.cpp','Ollama · LM Studio','手机 App · 桌面端'];
+  for(let i=0;i<3;i++){
+    const a=eo(seg(t,5.6+i*0.25,6.0+i*0.25));
+    const x=140+i*420;
+    box(x,656,380,64,PANEL2,rgba(ACC,0.6),10,1.6,a);
+    T(chain[i],x+190,688,18,TXT,'center',600,a);
+    if(i<2)arrow(x+392,688,x+412,688,rgba(ACC,0.7),1.8,eo(seg(t,5.9+i*0.25,6.2+i*0.25)));
+  }
+
+  T('原来如此',140,780,17,ACC,'left',700,eo(seg(t,6.8,7.3)));
+  T('GGUF 就是一个"权重 + 词表 + 配置"打成一个包，谁都能读 —— 端侧生态能起来，靠的就是这个格式统一。',230,780,17,TXT,'left',400,eo(seg(t,6.8,7.3))*0.96);
+}
+
+/* ================= S5 速度 ================= */
+function S5(t){
+  T('跑得动，还得好用',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('衡量体验只有一个指标：每秒吐几个字（tokens/s）',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const x0=280, BARW=1000, MAX=120, y0=236, ROWH=104;
+  // 轴
+  const aa=eo(seg(t,0.3,0.8));
+  ctx.save();ctx.globalAlpha=aa;ctx.strokeStyle=LINE;ctx.lineWidth=1.6;
+  ctx.beginPath();ctx.moveTo(x0,y0-20);ctx.lineTo(x0,y0+ROWH*4+10);ctx.stroke();ctx.restore();
+  for(let v=0;v<=MAX;v+=20){
+    T(String(v),x0+BARW*(v/MAX),y0+ROWH*4+36,13,DIM,'center',400,aa);
+  }
+  T('tokens / 秒',x0+BARW,y0-44,14,DIM,'right',600,aa);
+
+  const BARS=[
+    {n:'云端大模型',s:'70B 级',v:85,c:ACC2,note:'能力最强，但要联网、要付 token 费'},
+    {n:'笔记本 7B Q4',s:'M 系列 / 独显',v:42,c:ACC,note:'日常够用，离线可用'},
+    {n:'手机 3B Q4',s:'骁龙 / 麒麟 NPU',v:16,c:ACC3,note:'大约刚好赶上人的阅读速度'},
+    {n:'手机 1B Q4',s:'低端机',v:28,c:OK,note:'小模型反而快，但脑子简单'}
+  ];
+  for(let i=0;i<BARS.length;i++){
+    const b=BARS[i], st=0.8+i*0.8, a=eo(seg(t,st,st+0.5));
+    const y=y0+i*ROWH;
+    T(b.n,x0-24,y-8,17,TXT,'right',600,a);
+    T(b.s,x0-24,y+16,13,DIM,'right',400,a*0.9);
+    const w=BARW*(b.v/MAX);
+    box(x0,y-24,Math.max(4,w*a),42,rgba(b.c,0.22),rgba(b.c,0.9),7,1.6,a);
+    TF(b.v+' t/s',x0+Math.max(4,w*a)+14,y-3,17,b.c,'left',700,a);
+    T(b.note,x0+14,y+34,13,DIM,'left',400,a*0.88);
+  }
+
+  // 阅读速度线
+  const ra=eo(seg(t,4.4,5.0));
+  const rx=x0+BARW*(8/MAX);
+  ctx.save();ctx.globalAlpha=ra;ctx.setLineDash([7,6]);
+  ctx.strokeStyle=WARN;ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(rx,y0-30);ctx.lineTo(rx,y0+ROWH*4-6);ctx.stroke();ctx.restore();
+  T('人类阅读 ~8 字/秒',rx+12,y0+ROWH*4+62,14,WARN,'left',600,ra);
+
+  const b=eo(seg(t,5.6,6.2));
+  if(b>0){
+    box(140,720,1320,74,PANEL,mixc(LINE,ACC,0.5),12,1.7,b);
+    T('原来如此',176,757,17,ACC,'left',700,b);
+    T('超过 8~10 tokens/s 人就不觉得卡了。所以端侧小模型的速度焦虑，其实大半是心理焦虑。',320,757,16,TXT,'left',400,b);
+  }
+}
+
+/* ================= S6 硬件加速 ================= */
+function S6(t){
+  T('量化还买了一张门票',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('手机里真正干活的不是 CPU，是那块只认整数的专用芯片',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const chips=[
+    {n:'CPU',c:DIM,sub:'什么都能算',speed:'慢 · 费电',accept:'任意精度'},
+    {n:'GPU',c:ACC2,sub:'并行算力强',speed:'快 · 很费电',accept:'FP16 / FP32'},
+    {n:'NPU',c:ACC,sub:'专为神经网络',speed:'最快 · 最省电',accept:'只吃 INT8 / INT4'}
+  ];
+  for(let i=0;i<3;i++){
+    const c=chips[i], a=eo(seg(t,0.5+i*0.4,1.0+i*0.4));
+    const x=140+i*450;
+    box(x,196,410,170,PANEL2,rgba(c.c,0.7),14,1.9,a);
+    T(c.n,x+205,240,30,c.c,'center',700,a);
+    T(c.sub,x+205,278,15,DIM,'center',400,a*0.92);
+    T(c.speed,x+205,310,15,TXT,'center',500,a);
+    box(x+60,330,290,26,rgba(c.c,0.14),rgba(c.c,0.45),6,1.2,a*0.9);
+    T(c.accept,x+205,344,13,c.c,'center',600,a*0.95);
+  }
+
+  // 结论箭头
+  const ca=eo(seg(t,2.4,3.0));
+  arrow(1100,380,900,470,rgba(ACC,0.75),2.2,ca);
+  T('所以模型必须被量化成整数，才能被 NPU 接住',880,500,16,ACC,'center',600,ca);
+
+  // 软件栈
+  T('各家手机的加速入口',140,546,17,ACC,'left',700,eo(seg(t,3.2,3.7)));
+  const stacks=[
+    {n:'Android',api:'NNAPI / QNN',x:140},
+    {n:'iPhone',api:'Core ML',x:440},
+    {n:'HarmonyOS',api:'MindSpore Lite',x:740},
+    {n:'嵌入式',api:'CMSIS-NN / TFLite Micro',x:1040}
+  ];
+  for(let i=0;i<stacks.length;i++){
+    const s=stacks[i], a=eo(seg(t,3.4+i*0.28,3.8+i*0.28));
+    box(s.x,576,280,78,PANEL,rgba(ACC3,0.6),10,1.5,a);
+    T(s.n,s.x+140,602,16,TXT,'center',600,a);
+    T(s.api,s.x+140,630,13,ACC3,'center',500,a*0.92);
+  }
+
+  const b=eo(seg(t,4.8,5.4));
+  if(b>0){
+    box(140,700,1320,86,PANEL,mixc(LINE,ACC,0.45),12,1.7,b);
+    T('两个好处',176,743,17,ACC,'left',700,b);
+    T('① 省内存，能装下 ② 能上 NPU，速度和功耗直接降一个数量级 —— 第二点常被忽略，但它才是端侧体验的分水岭。',320,743,16,TXT,'left',400,b);
+  }
+}
+
+/* ================= S7 内存墙 ================= */
+function S7(t){
+  T('账还没算完',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('权重只是入场费，运行时还要租两间房',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 堆叠柱
+  const bx=200, by=620, MAXGB=6.2, H=360;
+  const PARTS=[
+    {n:'模型权重',gb:3.5,c:ACC,note:'7B 参数 × 4 bit'},
+    {n:'KV Cache',gb:1.5,c:ACC2,note:'上下文 4K 时的对话记忆'},
+    {n:'运行时开销',gb:0.8,c:ACC3,note:'中间结果、框架自身'}
+  ];
+  let cum=0;
+  for(let i=0;i<PARTS.length;i++){
+    const p=PARTS[i], a=eo(seg(t,0.6+i*0.6,1.1+i*0.6));
+    const h=H*(p.gb/MAXGB);
+    const ah=h*a;
+    const y=by-cum-ah;
+    box(bx,y,160,ah,rgba(p.c,0.28),rgba(p.c,0.9),6,1.6,a);
+    T(p.n,bx+184,by-cum-h/2,15,p.c,'left',600,a);
+    TF(p.gb+' GB',bx+184,by-cum-h/2+26,13,DIM,'left',500,a*0.9);
+    cum+=h;
+  }
+  const tot=eo(seg(t,2.6,3.2));
+  T('合计 5.8 GB',bx+80,by+44,20,WARN,'center',700,tot);
+
+  // 手机上限线
+  const la=eo(seg(t,3.0,3.6));
+  const ly=by-H*(4.0/MAXGB);
+  ctx.save();ctx.globalAlpha=la;ctx.setLineDash([8,7]);
+  ctx.strokeStyle=WARN;ctx.lineWidth=2.2;
+  ctx.beginPath();ctx.moveTo(140,ly);ctx.lineTo(770,ly);ctx.stroke();ctx.restore();
+  T('虚线 = 手机可用内存上限约 4 GB',770,by+44,14,WARN,'right',600,la);
+
+  // 右侧说明
+  const rx=820;
+  const rows=[
+    {k:'权重',v:'固定不变，跟着模型走',c:ACC},
+    {k:'KV Cache',v:'随上下文长度线性增长 —— 聊得越久越吃内存',c:ACC2},
+    {k:'开销',v:'框架自己也要占一份',c:ACC3}
+  ];
+  for(let i=0;i<rows.length;i++){
+    const r=rows[i], a=eo(seg(t,3.4+i*0.45,3.9+i*0.45));
+    const y=214+i*130;
+    badge(String(i+1),rx+22,y,17,r.c,a);
+    T(r.k,rx+54,y-12,18,r.c,'left',700,a);
+    T(r.v,rx+54,y+18,15,DIM,'left',400,a*0.93);
+  }
+
+  const b=eo(seg(t,5.0,5.6));
+  if(b>0){
+    box(820,620,640,130,PANEL,rgba(WARN,0.65),13,1.8,b);
+    T('这就是"内存墙"',852,658,18,WARN,'left',700,b);
+    T('所以手机上跑 7B 要么缩上下文，要么继续降到 3B ——',852,696,15,TXT,'left',400,b);
+    T('标称 4GB 的模型，真正跑起来通常要 6GB 以上。',852,724,15,ACC2,'left',600,b);
+  }
+
+  T('原来如此',140,720,17,ACC,'left',700,eo(seg(t,6.2,6.7)));
+  T('决定端侧能不能跑的，不是"模型多大"，而是"模型 + 上下文 + 框架"三者加起来多大。',230,720,17,TXT,'left',400,eo(seg(t,6.2,6.7))*0.96);
+}
+
+/* ================= S8 端侧还是云 ================= */
+function S8(t){
+  T('该放端上，还是该放云上',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('这不是技术偏好问题，是五个约束的权衡',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const L=[
+    {k:'隐私',e:'数据不出设备',c:OK},
+    {k:'离线',e:'飞机上也能用',c:OK},
+    {k:'延迟',e:'没有网络往返',c:OK},
+    {k:'成本',e:'不按 token 付费',c:OK},
+    {k:'能力',e:'大模型才够聪明',c:WARN}
+  ];
+  const C=[
+    {k:'隐私',e:'数据要上传',c:WARN},
+    {k:'离线',e:'断网即失效',c:WARN},
+    {k:'延迟',e:'一段网络往返',c:WARN},
+    {k:'成本',e:'每千 token 计费',c:WARN},
+    {k:'能力',e:'最大最强',c:OK}
+  ];
+
+  // 表头
+  const ha=eo(seg(t,0.4,0.9));
+  T('端侧',420,196,22,ACC,'center',700,ha);
+  T('云端',760,196,22,ACC2,'center',700,ha);
+  T('维度',220,196,17,DIM,'center',600,ha);
+
+  for(let i=0;i<5;i++){
+    const a=eo(seg(t,0.7+i*0.34,1.1+i*0.34));
+    const y=254+i*76;
+    box(140,y-28,1000,56,i%2===0?PANEL:'rgba(0,0,0,0)',null,8,0,a*0.85);
+    T(L[i].k,220,y,17,TXT,'center',600,a);
+    T(L[i].e,420,y,16,L[i].c,'center',600,a);
+    T(C[i].e,760,y,16,C[i].c,'center',600,a);
+  }
+
+  // 混合方案
+  const ma=eo(seg(t,3.6,4.3));
+  T('实际产品的答案：混合',140,672,18,ACC,'left',700,ma);
+  const flow=[
+    {n:'端侧小模型',d:'先接住：敏感信息、简单任务、离线场景',c:ACC,x:140},
+    {n:'路由判断',d:'不确定 / 需要推理 → 上云',c:ACC3,x:600},
+    {n:'云端大模型',d:'兜底：复杂任务、需要最新知识',c:ACC2,x:1060}
+  ];
+  for(let i=0;i<3;i++){
+    const f=flow[i], a=eo(seg(t,3.8+i*0.3,4.2+i*0.3));
+    box(f.x,700,380,84,PANEL2,rgba(f.c,0.7),11,1.7,a);
+    T(f.n,f.x+190,726,17,f.c,'center',700,a);
+    T(f.d,f.x+190,756,13,DIM,'center',400,a*0.93);
+    if(i<2)arrow(f.x+388,742,f.x+450,742,rgba(f.c,0.7),2,a);
+  }
+
+  T('原来如此',140,820,16,ACC,'left',700,eo(seg(t,5.2,5.7)));
+  T('端侧不是云的替代品，是云的前置过滤器 —— 九成的简单请求在设备上就消化掉了。',230,820,16,TXT,'left',400,eo(seg(t,5.2,5.7))*0.96);
+}
+
+/* ================= S9 收尾 ================= */
+function S9(t){
+  const g=ctx.createRadialGradient(VW/2,VH/2,60,VW/2,VH/2,620);
+  g.addColorStop(0,'rgba(57,208,198,0.10)');g.addColorStop(1,'rgba(57,208,198,0)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,VW,VH);
+
+  const a1=eo(seg(t,0.1,0.9));
+  T('原来如此',VW/2,VH/2-110,22,ACC,'center',700,a1);
+  T('量化不是"凑合用的压缩版"',VW/2,VH/2-40,44,TXT,'center',700,eo(seg(t,0.4,1.2)));
+  T('它是让模型离开机房、走进日常设备的那一步',VW/2,VH/2+34,44,ACC,'center',700,eo(seg(t,0.9,1.7)));
+
+  const a3=eo(seg(t,2.0,2.8));
+  T('体积 × 精度 × 速度 —— 三者之间那条线，就是工程经验。',VW/2,VH/2+130,21,DIM,'center',400,a3*0.95);
+
+  const a4=eo(seg(t,3.2,4.0));
+  T('下一集：大模型怎么学会看图、听声音',VW/2,VH/2+206,17,ACC3,'center',600,a4*0.9);
+}
+
+/* ================= 时间轴 ================= */
+const SCENES=[
+  {n:'开场',        d:4.5,  f:S0},
+  {n:'算账',        d:11.0, f:S1},
+  {n:'量化是什么',  d:11.5, f:S2},
+  {n:'分组与离群',  d:11.5, f:S3},
+  {n:'文件名',      d:11.0, f:S4},
+  {n:'速度',        d:10.5, f:S5},
+  {n:'硬件加速',    d:11.5, f:S6},
+  {n:'内存墙',      d:11.0, f:S7},
+  {n:'端侧还是云',  d:11.0, f:S8},
+  {n:'收尾',        d:6.5,  f:S9}
+];
+const TOTAL=SCENES.reduce((s,x)=>s+x.d,0);
+
+let clock=0, playing=true, last=0;
+
+function locate(g){
+  let acc=0;
+  for(let i=0;i<SCENES.length;i++){
+    if(g<acc+SCENES[i].d||i===SCENES.length-1)return {i:i,t:g-acc};
+    acc+=SCENES[i].d;
+  }
+  return {i:SCENES.length-1,t:SCENES[SCENES.length-1].d};
+}
+
+function drawTopHUD(idx){
+  T('Quantization · On-Device',44,34,15,DIM,'left',600,1);
+  T('/ '+SCENES[idx].n,290,34,15,ACC,'left',600,1);
+}
+
+function drawProgress(g){
+  const y=VH-8;
+  ctx.fillStyle='rgba(38,58,68,0.9)';ctx.fillRect(0,y,VW,3);
+  ctx.fillStyle=ACC;ctx.fillRect(0,y,VW*(g/TOTAL),3);
+  let acc=0;
+  for(let i=0;i<SCENES.length;i++){
+    const x=VW*(acc/TOTAL);
+    ctx.fillStyle=BG;ctx.fillRect(x-1,y-3,2,9);
+    acc+=SCENES[i].d;
+  }
+}
+
+function render(){
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.fillStyle=BG;ctx.fillRect(0,0,cv.width/dpr,cv.height/dpr);
+  ctx.setTransform(dpr*scale,0,0,dpr*scale,offX*dpr,offY*dpr);
+
+  const loc=locate(clock);
+  const sc=SCENES[loc.i];
+  const fin=cl01(loc.t/0.42), fout=cl01((sc.d-loc.t)/0.34);
+  const alpha=Math.min(fin,fout);
+
+  ctx.save();ctx.globalAlpha=alpha;sc.f(loc.t);ctx.restore();
+  drawTopHUD(loc.i);
+  drawProgress(clock);
+}
+
+function loop(ts){
+  if(!last)last=ts;
+  let dt=(ts-last)/1000;last=ts;
+  if(dt>0.12)dt=0.12;
+  if(playing){clock+=dt;if(clock>=TOTAL)clock=0;}
+  render();
+  requestAnimationFrame(loop);
+}
+
+function resize(){
+  dpr=Math.min(window.devicePixelRatio||1,2);
+  const w=window.innerWidth,h=window.innerHeight;
+  cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);
+  cv.style.width=w+'px';cv.style.height=h+'px';
+  scale=Math.min(w/VW,h/VH);
+  offX=(w-VW*scale)/2;offY=(h-VH*scale)/2;
+}
+window.addEventListener('resize',resize);
+
+document.addEventListener('keydown',e=>{
+  if(e.code==='Space'){e.preventDefault();playing=!playing;last=0;}
+  else if(e.code==='ArrowRight'||e.code==='ArrowLeft'){
+    const loc=locate(clock);
+    const target=e.code==='ArrowRight'?Math.min(loc.i+1,SCENES.length-1):Math.max(loc.i-1,0);
+    let acc=0;
+    for(let i=0;i<SCENES.length;i++){if(i===target){clock=acc;break;}acc+=SCENES[i].d;}
+    last=0;
+  } else if(e.key==='r'||e.key==='R'){clock=0;last=0;playing=true;}
+});
+
+cv.addEventListener('click',e=>{
+  const r=cv.getBoundingClientRect();
+  const w=r.width,h=r.height;
+  const s=Math.min(w/VW,h/VH);
+  const ox=(w-VW*s)/2, oy=(h-VH*s)/2;
+  const vx=(e.clientX-r.left-ox)/s, vy=(e.clientY-r.top-oy)/s;
+  if(vy>VH-24){clock=cl01(vx/VW)*TOTAL;last=0;}
+  else {playing=!playing;last=0;}
+});
+
+try{
+  const qp=new URLSearchParams(location.search);
+  if(qp.has('t')){
+    const v=parseFloat(qp.get('t'));
+    if(!isNaN(v))clock=Math.max(0,Math.min(TOTAL-0.04,v));
+  }
+  if(qp.get('pause')==='1')playing=false;
+}catch(err){}
+
+resize();
+requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

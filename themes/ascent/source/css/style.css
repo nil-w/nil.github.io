@@ -1,0 +1,1693 @@
+/* general */
+:root {
+  --bg-color: #fafafa;
+  --code-bg-color: #f4f4f4;
+  --text-color: #212121;
+  --secondary-color: #6e6e6e;
+  --tertiary-color: #767676;
+  --link-color: #7d9aa3;
+  --link-hover-color: #3f6673;
+  --link-text-color: #3f6673;
+  --link-bg-color: #dae4e7;
+  --selection-color: #dae4e7;
+  --body-stack: "Lora", "Georgia", "Times New Roman", serif;
+  --secondary-stack: "Lato", "Lucida Grande", "Lucida Sans Unicode",
+    "Lucida Sans", "Verdana", sans-serif;
+  --title-stack: "Playfair Display SC", "Georgia", serif;
+  --fs-body: clamp(16px, 2.4vw, 21px);
+}
+
+html {
+  height: 100%;
+}
+
+body {
+  background: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--body-stack);
+  font-size: 16px;
+  /* 基准字号提为变量：值与原 clamp 完全一致，供 em 外的算术引用 */
+  font-size: var(--fs-body);
+  margin: auto;
+  position: relative;
+  width: 100%;
+  user-select: text;
+}
+
+/* wrapper */
+#wrapper {
+  background: none;
+  border: none;
+  box-sizing: border-box;
+  display: block;
+  margin: 2rem auto auto auto;
+  max-width: 100%;
+  /* padding: 1em; */
+  width: 50em;
+}
+
+
+
+/* wrapper */
+#new-wrapper {
+  background: none;
+  border: none;
+  box-sizing: border-box;
+  display: block;
+  margin: 2rem auto auto auto;
+  max-width: 100%;
+  /* padding: 1em; */
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+}
+
+
+#sider{
+  height: 100vh;
+  width: 40vw;
+}
+
+
+@media all and (max-width: 760px) {
+  #wrapper {
+    margin-top: 3rem;
+  }
+}
+@media all and (max-width: 520px) {
+  #wrapper {
+    margin-top: 1rem;
+  }
+}
+
+/* header */
+#header {
+  /* border-bottom: solid 1px var(--secondary-color); */
+  line-height: 0.6em;
+  padding: 0.25em 0;
+}
+
+#title {
+  font-family: var(--title-stack);
+  font-size: 2em;
+  font-weight: 900;
+  letter-spacing: 0.05em;
+  margin: 1em 0;
+  text-align: center;
+}
+
+#header nav {
+  /* margin: 1.5em 0; */
+  text-align: left;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  flex-direction: row-reverse;
+  padding: 20px 0 100px;
+}
+
+.header-nav-links {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center;
+}
+
+.nav-link-first{
+  font-size: 1.5em;
+  /* min-width: 240px; */
+}
+
+.nav-link,
+.nav-spacer,
+.article-more-link {
+  font-size: .8em;
+  width: 1rem;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+  letter-spacing: 0.2em;
+  font-family: var(--secondary-stack);
+  color: var(--secondary-color);
+}
+
+.nav-spacer {
+  margin: 0 0.5em;
+}
+
+@media (max-width: 760px) {
+  #header {
+    line-height: normal;
+  }
+
+  #header nav {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.25rem;
+  }
+
+  .header-nav-links {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    gap: 0.5rem 1rem;
+  }
+
+  #header .nav-link,
+  #header .nav-link-first {
+    writing-mode: horizontal-tb;
+    text-orientation: mixed;
+    width: auto;
+    letter-spacing: 0.05em;
+  }
+
+  #header .nav-spacer {
+    display: none;
+  }
+}
+
+/* posts */
+.article {
+  border-bottom: solid 1px var(--secondary-color);
+  margin: 2em 0;
+  padding-bottom: 1em;
+}
+
+.article-header {
+  margin-bottom: 1.75em;
+  text-align: center;
+}
+
+.article-title {
+  font-family: var(--title-stack);
+  font-size: 1.25em;
+  font-weight: normal;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.25em;
+}
+
+.article-entry {
+  line-height: 1.5;
+  margin-bottom: 1em;
+  overflow: visible;
+  font-size: .8em;
+}
+
+
+@media (max-width: 760px) {
+  .article-entry p,code,figure{
+    font-size: 1em;
+  }
+}
+
+.article-category {
+  line-height: 1.5;
+  text-align: right;
+}
+
+.article-meta,
+.archive-article-date,
+.article-nav,
+.page-nav,
+.article-footer,
+.archive-article-word-count {
+  color: var(--secondary-color);
+  font-family: var(--secondary-stack);
+  font-size: 0.8em;
+  height: auto;
+  line-height: inherit;
+  margin: 0;
+  padding: 0;
+}
+
+@media all and (max-width: 760px) {
+  .article-meta,
+  .archive-article-date,
+  .article-nav,
+  .page-nav,
+  .article-footer,
+  .archive-article-word-count {
+    font-size: 1em;
+  }
+}
+
+/* archive */
+.archives-wrap {
+  margin: 0.25rem 0;
+  position: relative;
+  top: 0.5rem;
+}
+
+@media all and (max-width: 620px) {
+  .archives-wrap {
+    margin-left: 1rem;
+  }
+}
+
+.month {
+  color: var(--text-color);
+  cursor: pointer;
+  font-family: var(--secondary-stack);
+}
+
+.hidden,
+.hidden-input {
+  display: none;
+  margin-bottom: 1em;
+}
+
+.hidden-input ~ .month::before {
+  content: "+ ";
+  position: absolute;
+  left: -1em;
+}
+
+.hidden-input:checked ~ .month::before {
+  content: "– ";
+}
+
+.hidden-input:checked ~ .hidden {
+  display: block;
+}
+
+/* 列表页主标题（分类/标签/归档）——统一 h1 层级 */
+.list-header {
+  font-family: var(--secondary-stack);
+  font-size: 1.1rem;
+  font-weight: 400;
+  letter-spacing: 0.02em;
+  margin: 0 0 1.2rem 0;
+  text-transform: none;
+}
+
+/* 首页站点介绍：给首页一个真正的 h1 + 可索引的文本内容 */
+.site-intro {
+  border-bottom: 1px solid var(--code-bg-color);
+  margin: 0 0 2rem 0;
+  padding-bottom: 1.25rem;
+}
+
+.site-intro h1 {
+  font-family: var(--title-stack);
+  font-size: 1.45rem;
+  letter-spacing: 0;
+  line-height: 1.4;
+  margin: 0 0 0.6rem 0;
+  text-transform: none;
+}
+
+.site-intro-note {
+  margin: 0.5rem 0 0.9rem 0 !important;
+  line-height: 1.8;
+}
+
+.site-intro-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem 0.6rem;
+}
+
+.site-intro-links a {
+  border: 1px solid var(--code-bg-color);
+  border-radius: 3px;
+  font-size: 0.82rem;
+  padding: 0.2rem 0.55rem;
+  text-decoration: none;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.site-intro-links a:hover {
+  border-color: var(--link-color);
+  color: var(--link-color);
+}
+
+.site-intro-count {
+  color: var(--secondary-color);
+  font-size: 0.72rem;
+  margin-left: 0.35rem;
+}
+
+.site-intro p {
+  color: var(--secondary-color);
+  font-size: 0.9rem;
+  line-height: 1.75;
+  margin: 0;
+}
+
+.archive-article {
+  margin: 0.25em 0;
+  position: relative;
+}
+
+.archive-article-header {
+  align-items: center;
+  display: flex;
+  justify-content: space-between;
+}
+
+.archive-article-date {
+  /* position: absolute;
+  right: calc(100% - 6em); */
+  /* width: 12rem; */
+  font-size: 0.8rem;
+  margin-left: 1rem;
+  /* margin-right: 1rem; */
+  width: 100%;
+}
+
+.archive-article-title {
+  font: inherit;
+  letter-spacing: 0;
+  margin: 0;
+  position: relative;
+  text-align: left;
+  text-decoration: none;
+  font-size: 1.2rem;
+  text-transform: none;
+  /* font-family: var(--title-stack); */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-left: 1rem;
+  width: 100%;
+}
+
+.article-nav {
+  display: flex;
+  margin: 2em 0;
+}
+
+#article-nav-older,
+#article-nav-newer {
+  flex-basis: 50%;
+  /* flex 默认 min-width:auto 会被长标题撑开，导致窄屏横向滚动 */
+  min-width: 0;
+}
+
+#article-nav-older a,
+#article-nav-newer a {
+  display: block;
+  max-width: 100%;
+}
+
+#article-nav-newer {
+  order: 1;
+  text-align: right;
+}
+
+/* pagination */
+.page-nav {
+  text-align: right;
+}
+
+.page-number,
+.space,
+.extend {
+  font-size: 1.3em;
+  margin: 0 0.4em;
+}
+
+.current {
+  color: var(--text-color);
+}
+
+/* typography */
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+p,
+ul,
+ol,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0 0 1rem 0;
+}
+
+ul{
+  list-style-type: square;
+  padding-left: 2em;
+}
+
+
+ul  ul {
+  list-style-type: circle;
+  padding-left: 1em;
+}
+
+ol{
+  list-style-type: decimal;
+  padding-left: 2em;
+}
+
+
+ol  ol {
+  list-style-type: lower-alpha;
+  padding-left: 1em;
+}
+
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  letter-spacing: 0.1em;
+  /* text-align: center; */
+  text-decoration: none;
+}
+
+h1,
+h2 {
+  font-size: 2em;
+  letter-spacing: 0;
+  margin-top: 2rem;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font-size: 1em;
+  font-weight: bold;
+  margin-top: 1.5rem;
+  text-transform: uppercase;
+}
+
+h4,
+h5,
+h6 {
+  font-size: 0.9em;
+  margin-top: 1rem;
+}
+
+blockquote {
+  display: block;
+  margin: 0 0 1em;
+  padding-left: 0.75rem;
+  /* border-left: 1px solid var(--tertiary-color); */
+}
+
+/* 2026-11-06 新增：正文高亮 <span class="hl">…</span>
+   博客管线把「至少 2 处 class="hl"」当成硬性格式闸门（validate() 的
+   "hl < 2"），但 ascent 主题**从来没有 .hl 的样式**——于是这些高亮
+   在线上渲染出来跟普通正文一模一样，读者根本看不出来。
+   闸门在拦一个不存在的视觉元素。实测 public/css/bundle.css 里 .hl 命中数为 0。
+   处方：给 .hl 一个可见样式（沿用主题已有的 --link-text-color / --link-bg-color
+   变量，亮暗两套主题都跟着走）。 */
+.hl {
+  color: var(--link-text-color);
+  background: var(--link-bg-color);
+  padding: 0 0.15em;
+  border-radius: 2px;
+}
+
+
+
+.article .article-entry blockquote footer,
+.caption {
+  color: var(--secondary-color);
+  display: block;
+  text-align: center;
+}
+
+.article .article-entry blockquote footer cite:before {
+  content: " — ";
+}
+
+.pullquote {
+  border: 0;
+  color: var(--secondary-color);
+  font-size: 1.2em;
+  font-family: var(--secondary-stack);
+  margin: 0;
+  width: 40%;
+}
+
+.pullquote p {
+  margin: 0;
+}
+
+.pullquote.left {
+  float: left;
+  padding: 1em 1em 1em 0;
+  text-align: left;
+}
+
+.pullquote.right {
+  float: right;
+  padding: 0 1em 1em 1em;
+  text-align: right;
+}
+
+.caption {
+  color: #aeb4b9;
+  display: block;
+  font-size: 0.8em;
+  text-align: center;
+}
+
+.katex {
+  font-size: 1.1em;
+}
+
+.article-entry a {
+  color: var(--link-text-color);
+  -webkit-transition-duration: 0.3s;
+  -webkit-transition-property: border-bottom;
+  border-bottom: 1px solid rgba(63, 102, 115, 0.3);
+  transition-duration: 0.2s;
+  transition-property: border-bottom-color, color;
+}
+
+.article-entry a:hover {
+  -webkit-transition-duration: 0.3s;
+  -webkit-transition-property: border-bottom;
+  border-bottom: 1px solid currentColor;
+  color: var(--link-hover-color);
+  transition-duration: 0.2s;
+  transition-property: border-bottom-color, color;
+}
+
+#title a,
+.article-title a,
+a.nav-link,
+.archive-article-title a,
+.article-nav a,
+a.page-number,
+a.extend,
+.month,
+.article-footer a,
+.article-category a,
+.article-tag a,
+.article-more-link a {
+  -webkit-transition-duration: 0.3s;
+  -webkit-transition-property: background;
+  transition-duration: 0.3s;
+  transition-property: background;
+}
+
+#title a:hover,
+.article-title a:hover,
+a.nav-link:hover,
+.archive-article-title a:hover,
+.article-nav a:hover,
+a.page-number:hover,
+a.extend:hover,
+.month:hover,
+.article-footer a:hover,
+.article-category a:hover,
+.article-tag a:hover,
+.article-more-link a:hover {
+  -webkit-transition-duration: 0.3s;
+  -webkit-transition-property: background;
+  /* background: var(--link-bg-color) !important; */
+  border-bottom-color: transparent;
+  box-shadow: inset 0 -1px 0 currentColor;
+  transition-duration: 0.3s;
+  transition-property: background;
+}
+
+.article-category,
+.article-tag {
+  color: var(--secondary-color);
+  font-family: var(--secondary-stack);
+  margin-top: 2em;
+  font-size: 0.8em;
+}
+
+.article-more-link {
+  font-size: 0.9em;
+  letter-spacing: 0.1em;
+  margin-bottom: 1.1em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* miscellaneous */
+img {
+  box-sizing: border-box;
+  display: block;
+  /* margin: 0 auto; */
+  max-width: 100%;
+}
+
+a img {
+  -webkit-transition-duration: 0.3s;
+  -webkit-transition-property: border;
+  border: 3px solid var(--bg-color);
+  transition-duration: 0.3s;
+  transition-property: border;
+}
+
+a img:hover {
+  -webkit-transition-duration: 0.3s;
+  -webkit-transition-property: border;
+  border: 3px solid var(--secondary-color);
+  transition-duration: 0.3s;
+  transition-property: border;
+}
+
+.article-gallery img,
+table {
+  margin: 1em auto;
+  border: 1px solid var(--tertiary-color);
+  /* border-bottom: 1px solid var(--tertiary-color); */
+  border-collapse: collapse;
+  min-width: 25em;
+  text-align: left;
+  width: 100%;
+}
+
+td,
+th {
+  border: 1px solid var(--tertiary-color);
+  padding: 0.25em;
+  margin: 0.25em;
+}
+
+.video-container {
+  position: relative;
+  padding-top: 56.25%;
+  margin-bottom: 1em;
+  height: 0;
+  overflow: hidden;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  margin-top: 0;
+}
+
+::selection {
+  background-color: var(--selection-color);
+}
+
+#settings-container {
+  /* background: var(--tertiary-color); */
+  bottom: 0;
+  position: fixed;
+  right: 0;
+}
+
+#sans-font,
+#dark-mode {
+  cursor: pointer;
+  float: right;
+  padding: 0.5em;
+}
+
+.article-nav-title {
+  /* font-size: 0.8em; */
+  color: var(--text-color);
+  font-family: var(--body-stack);
+  overflow: hidden; /*超过部分不显示*/
+  　text-overflow: ellipsis; /*超过部分用点点表示*/
+  　white-space: nowrap; /*不换行*/
+}
+
+.article-category-link {
+  color: var(--text-color);
+  font-family: var(--body-stack);
+}
+.article-tag-link {
+  color: var(--text-color);
+  font-family: var(--body-stack);
+}
+
+blockquote {
+  position: relative;
+  padding: 1.5em 1.5em 1.5em 2em;
+  box-sizing: border-box;
+  font-style: italic;
+  /* background: var(--bg-color); */
+  color: var(--secondary-color);
+  /* border-left: 4px solid;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.14); */
+}
+
+
+blockquote:before {
+  display: inline-block;
+  color: var(--text-color);
+  content: "\201C";
+  font-size: 3rem;
+  position:absolute;
+  left:-10px;
+  top: 50px;
+  line-height: 0.1em;
+  font-family: var(--body-stack);
+  opacity: 0.35;
+}
+
+/* blockquote:after {
+  display: inline-block;
+  color: var(--text-color);
+  content: "\201D";
+  font-size: 3rem;
+  position:absolute;
+  right:30px;
+  bottom: 0em;
+  line-height: 0.1em;
+  font-family: FontAwesome;
+} */
+
+
+blockquote p {
+  padding: 0;
+  margin: 7px 0;
+  line-height: 1.7;
+}
+
+blockquote cite {
+  display: block;
+  text-align: right;
+  color: #888888;
+  font-size: 0.9em;
+}
+
+.mermaid {
+  text-align: center;
+  background-color: transparent;
+}
+
+#toc {
+  float: right;
+  font-size: 0.8em;
+  color: color-link;
+  margin: 5px;
+  position: fixed;
+  right: 10px;
+  max-width: 20rem;
+  z-index: 999;
+  top: 30%;
+}
+#toc .toc {
+  list-style: none;
+  padding: 10px;
+}
+#toc .toc-item,
+#toc .toc-link {
+  list-style: none;
+}
+#toc ol {
+  margin: 0;
+}
+
+@media screen and (max-width: 768px) {
+  #toc {
+    display: none;
+  }
+}
+
+/*诗*/
+.poem-wrap {
+  position: relative;
+  width: 730px;
+  max-width: 80%;
+  /* border: 1px solid var(--text-color); */
+  border-top: none;
+  text-align: left;
+  margin:auto;
+  margin-left: 0;
+}
+
+.poem-wrap h1 {
+  position: relative;
+  margin-top: -20px;
+  display: inline-block;
+  letter-spacing: 4px;
+  color: var(--text-color);
+  font-family: var(--title-stack);
+  font-size: 1.5em;
+  font-weight: 900;
+  /* letter-spacing: 0.05em; */
+  text-align: right;
+}
+
+.poem-wrap p {
+  margin: auto;
+  line-height: 30px;
+  color: var(--text-color);
+  font-family: var(--title-stack);
+}
+
+.poem-wrap p#poem {
+  font-size: 15px;
+}
+
+.poem-wrap p#info {
+  font-size: 13px;
+}
+
+.poem-border {
+  position: absolute;
+  height: 1px;
+  width: 27%;
+  /* background-color: var(--text-color); */
+}
+
+.poem-right {
+  right: 0;
+}
+
+.poem-left {
+  left: 0;
+}
+
+@media (max-width: 760px) {
+  .poem-wrap {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+    text-align: center;
+    box-sizing: border-box;
+  }
+
+  .poem-wrap p#poem {
+    font-size: 20px;
+  }
+
+  .poem-wrap p#info {
+    font-size: 14px;
+  }
+
+  .poem-border {
+    width: 18%;
+  }
+}
+
+.list-group{
+}
+
+.list-group h3 {
+  color: var(--text-color);
+}
+.list-group h3:not(:first-child) {
+  /* margin-top: 2rem; */
+}
+.list-group .list-group-item {
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  border: none;
+  margin-left: 10px;
+  align-items: center;
+  margin: 0.25em 0;
+}
+.list-group .list-group-item a {
+  color: var(--text-color);
+}
+.list-group .list-group-item a:hover {
+  color: var(--link-hover-color);
+}
+.list-group .list-group-item .post-date {
+  float: right;
+  color: var(--text-color);
+}
+
+.list-group .category-group-item{
+  display: flex;
+  justify-content: space-between;
+  border: none;
+  margin-left: 10px;
+  align-items: center;
+  margin: 0.25em 0;
+}
+
+
+.list-group .category-group-item .category{
+  margin-left: 1rem;
+}
+
+
+
+
+
+.tags-wrapper {
+  display: flex;
+  flex-direction: column;
+}
+.tags-wrapper .tagcloud {
+  display: flex;
+  flex-wrap: wrap;
+  border-radius: 100%;
+  shape-outside:circle();
+}
+
+
+.tagcloud{
+
+  margin: 30px 30px 30px 30px;
+}
+
+.tags-wrapper a {
+  padding: 10px;
+}
+
+.tags-wrapper a:hover {
+  background-color: var(--link-hover-color);
+  color: #fff !important;
+  border-radius: 10px;
+  -webkit-box-shadow: 10px 10px 99px 6px var(--link-hover-color);
+  -moz-box-shadow: 10px 10px 99px 6px var(--link-hover-color);
+  box-shadow: 10px 10px 99px 6px var(--link-hover-color);
+  transition: background-color 0.3s ease;
+}
+
+
+.tag-hover {
+  background-color: var(--link-hover-color);
+  color: #fff !important;
+  border-radius: 5px;
+  -webkit-box-shadow: 10px 10px 99px 6px var(--link-hover-color);
+  -moz-box-shadow: 10px 10px 99px 6px var(--link-hover-color);
+  box-shadow: 10px 10px 99px 6px var(--link-hover-color);
+  transition: background-color 0.3s ease;
+}
+
+.deg_90 {
+  transform: rotate(90deg);
+}
+
+@keyframes shutters {
+  0% {
+    clip-path: polygon(0% 0%, 20% 0%, 20% 100%, 20% 100%, 20% 0%, 40% 0%, 40% 100%, 40% 100%, 40% 0%, 60% 0%, 60% 100%, 60% 100%, 60% 0%, 80% 0%, 80% 100%, 80% 100%, 80% 0%, 100% 0%, 100% 100%, 0% 100%);
+  }
+  100% {
+    clip-path: polygon(20% 0%, 20% 0%, 20% 100%, 40% 100%, 40% 0%, 40% 0%, 40% 100%, 60% 100%, 60% 0%, 60% 0%, 60% 100%, 80% 100%, 80% 0%, 80% 0%, 80% 100%, 100% 100%, 100% 0%, 100% 0%, 100% 100%, 20% 100%);
+  }
+}
+
+
+
+.image-wrapper {
+  margin: 0 auto;
+}
+
+
+
+.archive-body{
+  /* padding-left: 2em; */
+
+}
+
+.bg-img{
+  position: fixed;
+  right: 0;
+  bottom: 0;
+  width: 150px;
+}
+
+
+
+
+#content{
+  padding: 10px;
+}
+
+#content .post{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 1em;
+  font-family: var(--body-stack);
+}
+
+
+#content .post .post-date{
+  margin-right: 1.5em;
+  color: var(--secondary-color);
+}
+
+
+#content .post .post-title{
+  margin-right: 1.5rem;
+  color: var(--secondary-color);
+  overflow:hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 30rem;
+}
+
+#content .post .post-word{
+  color: var(--secondary-color);
+  font-size: 1rem;
+}
+
+
+
+.post-count{
+  position: fixed;
+  bottom: 10px;
+  right: 10px;
+  pointer-events: none; /* 纯展示计数，避免遮挡右下角主题按钮的点击 */
+  user-select: none;
+}
+
+#settings-container {
+  z-index: 1000; /* 保证主题切换按钮在计数之上可点 */
+}
+
+@media screen and (max-width: 768px) {
+
+.post-count{
+  bottom: 10px;
+}
+}
+
+
+.article-entry .tips {
+  padding-left: 10px;
+  background-color: rgba(52,152,219,.6);
+  border-left: 4px solid rgb(52,152,219);
+  color: var(--text-color);
+}
+.article-entry .success {
+  padding-left: 10px;
+  background-color: rgba(46,204,113,.6);
+  border-left: 4px solid rgb(46,204,113);
+  color: var(--text-color);
+}
+.article-entry .warning {
+  padding-left: 10px;
+  background-color: rgba(241,196,15,.6);
+  border-left: 4px solid rgb(241,196,15);
+  color: var(--text-color);
+}
+.article-entry .danger {
+  padding-left: 10px;
+  background-color: rgba(231,76,60,.6);
+  border-left: 4px solid rgb(231,76,60);
+  color: var(--text-color);
+}
+
+.article-entry details{
+  background-color: var(--code-bg-color);
+}
+
+
+
+input[type="checkbox" i]{
+  margin-left: 1em;
+}
+
+
+.article-entry details{
+  padding: .5em 1em;
+}
+
+/*
+
+@media screen and (min-width: 1024px) {
+  .archive-body{
+    padding-left: 1em;
+    border-left: 1px solid var(--text-color);
+  }
+
+  .archive-body h3{
+    position: relative;
+  }
+
+  .archive-body h3:before{
+    content: ' ';
+    width: 15px;
+    height: 15px;
+    background-color:  var(--text-color);
+    border-radius: 50%;
+    position: absolute;
+    left: -1.45em;
+    top: .3em
+  }
+
+
+  .archive-body article:before{
+    content: ' ';
+    width: 10px;
+    height: 10px;
+    background-color: var(--text-color);
+    border-radius: 50%;
+    position: absolute;
+    left: -1.3em;
+    top: .8em
+  }
+
+}
+ */
+
+/* ------------------------------------------------------------------
+   细节优化（保持原有布局结构不变）
+   1. 字体渲染与锚点定位
+   2. 键盘焦点可见
+   3. 代码块与表格的可读性 / 溢出处理
+   4. 图片防变形、标签云 hover 收敛
+   5. 打印样式
+   ------------------------------------------------------------------ */
+
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+}
+
+/* 正文标题作为锚点跳转目标时，留出顶部呼吸位 */
+.article-entry h1,
+.article-entry h2,
+.article-entry h3,
+.article-entry h4,
+.article-entry h5,
+.article-entry h6 {
+  scroll-margin-top: 1.5em;
+}
+
+/* 界面区不发生误选，正文保持可选中 */
+#header,
+#footer,
+.article-footer,
+.article-nav,
+.page-nav,
+#toc,
+#settings-container {
+  user-select: none;
+}
+
+/* 键盘可达性：鼠标点击不出现描边，Tab 聚焦清晰可见 */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+summary:focus-visible,
+[tabindex]:focus-visible {
+  border-radius: 2px;
+  outline: 2px solid var(--link-hover-color);
+  outline-offset: 3px;
+}
+
+/* 代码块：等宽字体栈、横向滚动、轻微圆角 */
+.article-entry code,
+.article-entry pre,
+.article-entry kbd,
+.article-entry samp {
+  font-family: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+    "Liberation Mono", monospace;
+  font-variant-ligatures: none;
+}
+
+.article-entry pre {
+  -webkit-overflow-scrolling: touch;
+  overflow-x: auto;
+  tab-size: 4;
+}
+
+.article-entry .highlight,
+.article-entry pre,
+.article-entry details {
+  border-radius: 4px;
+}
+
+/* 行内代码不与正文其他部分粘连 */
+.article-entry p > code,
+.article-entry li > code,
+.article-entry td > code {
+  padding: 0.1em 0.3em;
+  border-radius: 3px;
+  background-color: var(--code-bg-color);
+  font-size: 0.92em;
+}
+
+/* 表格：窄屏允许自身横向滚动，避免撑破页面 */
+@media (max-width: 760px) {
+  .article-entry table {
+    display: block;
+    max-width: 100%;
+    min-width: 0;
+    overflow-x: auto;
+    width: 100%;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* 代码块（figure.highlight 内的表格）整体横向滚动，避免撑破页面 */
+  .article-entry figure.highlight {
+    max-width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .article-entry figure.highlight table {
+    display: table;
+    min-width: 0;
+    width: auto;
+  }
+
+  .article-entry figure.highlight .code pre {
+    max-width: none;
+    width: auto;
+  }
+}
+
+/* 图片：等比缩放，避免被拉伸 */
+.article-entry img {
+  height: auto;
+}
+
+/* 标签云 hover：去掉大面积光晕，收敛为细边 */
+.tags-wrapper a:hover,
+.tag-hover {
+  -webkit-box-shadow: 0 0 0 3px rgba(97, 135, 148, 0.16);
+  -moz-box-shadow: 0 0 0 3px rgba(97, 135, 148, 0.16);
+  box-shadow: 0 0 0 3px rgba(97, 135, 148, 0.16);
+}
+
+/* 打印：去掉导航、目录、交互元素，正文纯黑 */
+@media print {
+  #header,
+  #footer,
+  #toc,
+  #settings-container,
+  .article-nav,
+  .page-nav,
+  .article-footer,
+  .article-category,
+  .article-tag {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+    font-size: 11pt;
+  }
+
+  .article-entry a {
+    border-bottom: none;
+    color: #000;
+  }
+
+  .article-entry pre,
+  .article-entry blockquote,
+  .article-entry table {
+    page-break-inside: avoid;
+  }
+}
+
+/* 尊重系统减少动效偏好 */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* ==========================================================================
+   设计感优化层 · 2026-10-30
+   硬约束：不改 DOM 结构、不改栅格与盒模型尺寸、不增删元素。
+   本层只做「字形层 / 伪元素 / 颜色 / 资源加载」层面的优化，因此不产生几何位移。
+   ========================================================================== */
+
+/* 1. 字体栈补全（不改首选字体，字形解析结果与改动前完全一致）
+      a) 在 webfont 之后插入「度量匹配回退体」，字体交换窗口内也不发生行高/折行动；
+      b) 把原先隐式命中的中文字体（macOS 上 Chromium 实际用的是 PingFang SC）
+         显式写进栈尾，中西文混排不再依赖各系统的匿名兜底规则。 */
+:root {
+  --body-stack: "Lora", "Lora Fallback", "Georgia", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", "Times New Roman", serif;
+  --secondary-stack: "Lato", "Lato Fallback", "Lucida Grande",
+    "Lucida Sans Unicode", "Lucida Sans", "Verdana", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+  --title-stack: "Playfair Display SC", "Playfair Fallback", "Georgia",
+    "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", serif;
+}
+
+/* 2. 正文链接：把 1px 边框下划线换成 text-decoration。
+      内联元素的 border 会沿着每一行的折行片段重复绘制，视觉上偏粗；
+      text-decoration 随字形基线走，还能自动跳过下伸笔画（skip-ink）。
+      内联盒的 border 不参与行高计算，替换后行盒高度不变。 */
+.article-entry a {
+  /* 保留 1px 透明边框：让内联盒高度与改动前逐像素一致（border 不参与行高，
+     但会计入内联盒的 border-box），可见下划线改由 text-decoration 绘制。 */
+  border-bottom: 1px solid transparent;
+  text-decoration: underline;
+  text-decoration-color: rgba(63, 102, 115, 0.3);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.24em;
+  text-decoration-skip-ink: auto;
+}
+
+.article-entry a:hover {
+  border-bottom-color: transparent;
+  text-decoration-color: currentColor;
+}
+
+/* 图片被链接包裹时不画下划线 */
+.article-entry a:has(> img),
+.article-entry a:has(> picture) {
+  text-decoration: none;
+}
+
+/* 3. 中文标点悬挂：行末标点外挂在版心之外，右侧边缘看起来更齐。
+      Chromium 未实现该属性时会直接忽略，属渐进增强。 */
+.article-entry p,
+.article-entry li,
+.article-entry blockquote,
+.article-entry td,
+.article-entry dd {
+  hanging-punctuation: allow-end;
+}
+
+/* 4. 列表标记：只给 marker 换色，标记几何尺寸沿用浏览器默认值。 */
+.article-entry ul > li::marker,
+.article-entry ol > li::marker,
+.article-entry dl > dt::marker {
+  color: var(--link-color);
+}
+
+/* 5. 诗句块预留一行：页脚诗歌由 XHR 回填，回填瞬间 #info 从 0 高变一行，
+      会把页脚整体上推。这里用零宽字符占位（:empty 在回填后自动失效），
+      回填前后高度一致 —— 布局结果与改动前完全相同，只是不再跳。 */
+.poem-wrap p#info:empty::before {
+  content: "\200B";
+}
+
+/* 6. 引号对齐：装饰性左引号是绝对定位伪元素，不参与文档流。
+      原 top: 50px 是固定像素，短引用时会掉到第二行甚至块外；
+      改为随字号缩放的 em 值，始终与首行基线对齐。 */
+blockquote:before {
+  /* 引用块首行字顶 = padding-top(1.5em，em 相对引用块内文字 .8em 字号 = 1.2×--fs-body)
+     + p 上边距 7px + 引号墨迹相对 top 的 18px 进深（3rem / line-height .1em 推得）。 */
+  top: calc(1.2 * var(--fs-body) + 25px);
+  left: -10px;
+}
+
+/* 7. 代码：统一关闭连字与字距连写，等宽字形宽度严格一致，复制/对比更可靠。 */
+.article-entry pre,
+.article-entry code,
+.article-entry kbd,
+.article-entry samp {
+  font-feature-settings: "liga" 0, "calt" 0, "dlig" 0;
+  font-variant-ligatures: none;
+}
+
+/* 8. 滚动边界：禁止页面级橡皮筋/下拉刷新，减少移动端滚动期间的画面回弹。 */
+html {
+  overscroll-behavior-y: none;
+}
+
+/* 9. 选中态：统一前后景对比，避免部分浏览器默认蓝底与暗色主题冲突。 */
+::selection {
+  background-color: var(--selection-color);
+  color: var(--text-color);
+  text-shadow: none;
+}
+
+/* 10. hover 零位移：图片链接的悬停描边原用 border，1px→3px 会把图片撑大 6px，
+       并把下方内容整体推走（典型的 hover 抖动）。改为等视觉的 box-shadow 描边，
+       绘制在盒子外侧、不参与布局，悬停时几何完全不动。 */
+.article-entry a img,
+.article-entry img {
+  border: 0;
+}
+
+.article-entry a img:hover,
+a img:hover {
+  border: 0;
+  box-shadow: 0 0 0 3px var(--secondary-color);
+  transition: box-shadow 0.3s ease;
+}
+
+/* 11. 标签云过渡：原 transition 只写在 :hover 里，移出时颜色瞬间硬切。
+       写到常态规则上，进出对称；只影响颜色/阴影，不涉尺寸。 */
+.tags-wrapper a {
+  transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* ============================================================
+   首页（body.home）界面细节优化
+   —— 作用域严格限定 body.home（首页/列表首页），
+      文章详情页、归档页、分类页、标签页不受影响。
+   ① header：只做零几何变化的细节打磨（位置/尺寸/结构/视觉样式全部保持原样）
+   ② 列表：标题行距与条目垂直节奏重排（不改条目结构、不改排版样式）
+   ============================================================ */
+
+/* ---------- ① header 细节打磨 ----------
+   原则：不新增边框、不改 padding / line-height / flex 方向、不改字号字距，
+   因此 #header 及其子项的盒模型与改动前逐像素一致。
+   - 原 #header 的 border-bottom 在主题里是注释状态（0px），此处不新增，避免外观变化；
+   - 悬停/焦点反馈统一到 --link-hover-color，并补齐进出对称的过渡，
+     消除"移入有过渡、移出硬切"的观感不一致；
+   - 文字渲染与全局 html 规则对齐，避免 header 内字形粗细与正文不一致。 */
+body.home #header {
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body.home #header #title a,
+body.home #header a.nav-link,
+body.home #header a.nav-link-first {
+  /* 原规则 transition 只写在 :hover 上，移出时颜色瞬间硬切 */
+  transition: color 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+}
+
+body.home #header #title a:hover,
+body.home #header #title a:focus-visible {
+  color: var(--link-hover-color);
+}
+
+/* 竖排导航项的悬停下沿高亮（box-shadow 绘制，不占盒模型，零位移） */
+body.home #header a.nav-link:hover,
+body.home #header a.nav-link-first:hover,
+body.home #header a.nav-link:focus-visible,
+body.home #header a.nav-link-first:focus-visible {
+  color: var(--link-hover-color);
+  box-shadow: inset 0 -1px 0 var(--link-hover-color);
+}
+
+/* 键盘聚焦描边统一参数，避免描边压到相邻竖排导航项 */
+body.home #header a:focus-visible {
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* ---------- ② 首页锁在一屏内，分页、列表、页眉作为一组垂直居中 ----------
+   结构不变：分页在上，年份 + 标题/日期列表在中，诗句与导航在下。
+   列表区高度固定，少文章的分页不再把分页和页眉一起上下挪。
+   放不下时只在列表内部滚动，不盖住导航。
+   只作用于 body.home，文章页仍按正文高度滚动。 */
+html:has(body.home) {
+  height: 100%;
+  overflow: hidden;
+}
+
+body.home {
+  height: 100%;
+  height: 100dvh;
+  margin: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+body.home #wrapper {
+  flex: 1 1 auto;
+  height: 100%;
+  min-height: 0;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  width: 50em;
+  max-width: 100%;
+  margin: 0 auto;
+  justify-content: center;
+  gap: clamp(0.75rem, 2vh, 1.4rem);
+  padding: clamp(8px, 1.6vh, 16px) 12px;
+}
+
+body.home #content {
+  flex: 0 1 auto;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  padding: 0;
+}
+
+body.home .page-nav {
+  flex: 0 0 auto;
+  margin: 0;
+  line-height: 1.2;
+}
+
+body.home .archive-body {
+  flex: 0 0 auto;
+  box-sizing: border-box;
+  min-height: clamp(16rem, calc(100dvh - 15.25rem), 44rem);
+  max-height: clamp(16rem, calc(100dvh - 15.25rem), 44rem);
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
+  padding-bottom: 0.75rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--tertiary-color) transparent;
+}
+
+body.home .archive-body::-webkit-scrollbar {
+  width: 4px;
+}
+
+body.home .archive-body::-webkit-scrollbar-thumb {
+  background: var(--tertiary-color);
+  border-radius: 4px;
+}
+
+body.home .archive-body > div {
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+body.home .archive-body h3:not(.archive-article-title) {
+  flex: 0 0 auto;
+  margin: 0.35rem 0 0.2rem;
+  line-height: 1.2;
+}
+
+body.home .archive-body h3:first-child:not(.archive-article-title) {
+  margin-top: 0.15rem;
+}
+
+body.home .archive-body .list-group {
+  flex: 1 1 auto;
+  min-height: 0;
+  margin: .5rem 1rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  gap: 0.8rem;
+}
+
+body.home .archive-body .list-group .archive-article {
+  flex: 0 0 auto;
+  margin: 0;
+  display: flex;
+  align-items: flex-start;
+}
+
+body.home .archive-body .list-group .archive-article-inner {
+  width: 100%;
+  min-width: 0;
+}
+
+body.home .archive-body .list-group .list-group-item {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-width: 0;
+  align-items: stretch;
+}
+
+body.home .archive-body .list-group .archive-article-title {
+  line-height: 1.35;
+  margin: 0 0 0.22em;
+  width: 100%;
+  max-width: 100%;
+  font-size: clamp(1.15rem, 2.25vh, 1.35rem);
+}
+
+body.home .archive-body .list-group .archive-article-date {
+  line-height: 1.3;
+  margin: 0;
+  width: auto;
+  max-width: 100%;
+  font-size: clamp(0.82rem, 1.55vh, 0.95rem);
+}
+
+body.home #header {
+  flex: 0 0 auto;
+  position: relative;
+  z-index: 2;
+  line-height: 1.2;
+  background: var(--bg-color);
+}
+
+body.home #header nav {
+  align-items: flex-end;
+  box-sizing: border-box;
+  padding: 0.45rem 0 0.7rem 0;
+}
+
+body.home .poem-wrap {
+  max-width: 62%;
+}
+
+body.home .poem-wrap p {
+  line-height: 1.4;
+  margin: 0;
+}
+
+body.home .poem-wrap p#poem {
+  font-size: clamp(13px, 1.45vh, 15px);
+}
+
+body.home .poem-wrap p#info {
+  font-size: clamp(12px, 1.25vh, 13px);
+}
+
+body.home .post-count {
+  right: 12px;
+  bottom: 8px;
+  font-size: 0.72rem;
+  line-height: 1;
+}
+
+@media (max-width: 760px) {
+  body.home #wrapper {
+    padding-top: 0.65rem;
+  }
+
+  body.home #header nav {
+    align-items: center;
+    padding: 0.55rem 0 0.55rem;
+  }
+
+  body.home .poem-wrap {
+    max-width: 100%;
+  }
+
+  body.home .poem-wrap p#poem {
+    font-size: 15px;
+  }
+
+  body.home .poem-wrap p#info {
+    font-size: 12px;
+  }
+
+  body.home .archive-body .list-group .archive-article-title {
+    font-size: clamp(1.05rem, 2.1vh, 1.22rem);
+  }
+
+  body.home .archive-body .list-group .archive-article-date {
+    font-size: clamp(0.78rem, 1.5vh, 0.9rem);
+  }
+}

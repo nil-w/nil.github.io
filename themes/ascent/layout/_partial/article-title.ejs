@@ -1,0 +1,17 @@
+
+
+<div id="<%= post.layout %>-<%= post.slug %>" class="post post-type-<%= post.layout %>" itemprop="blogPost" itemscope>
+  <div class="post-date"><a href="<%- url_for(post.path) %>" target="_blank" itemprop="url"><%- partial('post/date', {class_name: 'article-date', date_format: 'YYYY-MM-DD'}) %></a></div>
+  <div class="post-title"><a href="<%- url_for(post.path) %>" target="_blank" itemprop="url"><%= post.title %></a></div>
+  <!-- <div class="post-more"> <a href="<%- url_for(post.path) %>#more"><%= __(theme.excerpt_link) %></a></div> -->
+  <div class="post-word">
+    <% if (theme.word_count){ %>
+      <span class="post-word-count"><%= wordcount(post.content) %> 字</span>
+      <% if (min2read(post.content) == 1){ %>
+      / <span class="post-time-to-read"><%= min2read(post.content) %> 分钟</span>
+      <% } else { %>
+      / <span class="post-time-to-read"><%= min2read(post.content) %> 分钟</span>
+      <% } %>
+    <% } %>
+  </div>
+</div>
