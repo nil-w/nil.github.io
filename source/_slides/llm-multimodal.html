@@ -1,0 +1,666 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第八集：学会看和听 —— 多模态是怎么接进来的</title>
+<style>
+  html,body{margin:0;height:100%;background:#07080f;overflow:hidden;}
+  canvas{display:block;cursor:pointer;}
+</style>
+</head>
+<body>
+<canvas id="cv"></canvas>
+<script>
+(function(){
+"use strict";
+
+const VW=1600, VH=900;
+const cv=document.getElementById('cv'), ctx=cv.getContext('2d');
+let scale=1, offX=0, offY=0, dpr=1;
+
+const FONT='"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif';
+const MONO='Menlo,Consolas,"SF Mono",monospace';
+
+const BG='#0d0810', PANEL='#1a1220', PANEL2='#241a2c', LINE='#3a2c42',
+      TXT='#f4ecf7', DIM='#9c8fa6',
+      ACC='#e879c7',        /* 粉紫：本集主色 */
+      ACC2='#7c9dff',       /* 蓝紫 */
+      ACC3='#ffc95c',       /* 金 */
+      WARN='#f2617a', OK='#5cd692';
+
+const clamp=(x,a,b)=>x<a?a:(x>b?b:x);
+const cl01=x=>clamp(x,0,1);
+const seg=(t,a,b)=>b<=a?(t>=b?1:0):cl01((t-a)/(b-a));
+const eo=t=>1-Math.pow(1-cl01(t),3);
+const lerp=(a,b,t)=>a+(b-a)*t;
+function hex2rgb(h){return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];}
+function mixc(c1,c2,t){const a=hex2rgb(c1),b=hex2rgb(c2);t=cl01(t);
+  return 'rgb('+Math.round(lerp(a[0],b[0],t))+','+Math.round(lerp(a[1],b[1],t))+','+Math.round(lerp(a[2],b[2],t))+')';}
+function rgba(c,a){const r=hex2rgb(c);return 'rgba('+r[0]+','+r[1]+','+r[2]+','+cl01(a)+')';}
+function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);
+  ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
+
+function T(s,x,y,size,color,align,weight,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.fillStyle=color;ctx.font=(weight||400)+' '+size+'px '+FONT;
+  ctx.textAlign=align||'left';ctx.textBaseline='middle';
+  ctx.fillText(s,x,y);ctx.restore();
+}
+function TF(s,x,y,size,color,align,weight,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.fillStyle=color;ctx.font=(weight||400)+' '+size+'px '+MONO;
+  ctx.textAlign=align||'left';ctx.textBaseline='middle';
+  ctx.fillText(s,x,y);ctx.restore();
+}
+function box(x,y,w,h,fill,stroke,r,lw,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  rr(x,y,w,h,r===undefined?12:r);
+  if(fill){ctx.fillStyle=fill;ctx.fill();}
+  if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lw||2;ctx.stroke();}
+  ctx.restore();
+}
+function arrow(x1,y1,x2,y2,color,lw,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=lw||2;ctx.lineCap='round';
+  ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+  const ang=Math.atan2(y2-y1,x2-x1), L=9;
+  ctx.beginPath();ctx.moveTo(x2,y2);
+  ctx.lineTo(x2-L*Math.cos(ang-0.4),y2-L*Math.sin(ang-0.4));
+  ctx.lineTo(x2-L*Math.cos(ang+0.4),y2-L*Math.sin(ang+0.4));
+  ctx.closePath();ctx.fill();
+  ctx.restore();
+}
+function badge(n,x,y,r,color,a){
+  ctx.save();ctx.globalAlpha=a===undefined?1:cl01(a);
+  ctx.fillStyle=rgba(color,0.18);ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
+  ctx.strokeStyle=rgba(color,0.95);ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.stroke();
+  ctx.fillStyle=color;ctx.font='700 '+Math.round(r*1.12)+'px '+FONT;
+  ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(n,x,y+1);
+  ctx.restore();
+}
+
+/* ================= S0 开场 ================= */
+function S0(t){
+  const a1=eo(seg(t,0.1,1.0)), a2=eo(seg(t,0.7,1.6)), a3=eo(seg(t,1.4,2.3));
+  const g=ctx.createRadialGradient(VW/2,VH/2-40,40,VW/2,VH/2-40,660);
+  g.addColorStop(0,'rgba(232,121,199,0.14)');g.addColorStop(1,'rgba(232,121,199,0)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,VW,VH);
+
+  T('第八集',VW/2,VH/2-190,22,ACC,'center',700,a1);
+  T('让它学会看和听',VW/2,VH/2-100,72,TXT,'center',700,a1);
+  T('图片和声音，是怎么变成模型能读的字符的',VW/2,VH/2-8,29,ACC2,'center',400,a2);
+
+  const items=[['看图','切成小块再编码',ACC],['听声','每 25 毫秒一刀',ACC2],['输出','文字之外还能生图',ACC3]];
+  for(let i=0;i<3;i++){
+    const a=eo(seg(t,1.5+i*0.35,1.9+i*0.35));
+    const x=VW/2-450+i*310;
+    box(x,VH/2+76,280,84,mixc(BG,PANEL2,0.7),rgba(items[i][2],0.75*a),12,1.8,a);
+    T(items[i][0],x+140,VH/2+108,22,items[i][2],'center',700,a);
+    T(items[i][1],x+140,VH/2+142,15,DIM,'center',400,a);
+  }
+  T('这件事有个名字：多模态（Multimodal）',VW/2,VH/2+216,20,DIM,'center',400,a3*0.95);
+}
+
+/* ================= S1 模型天生没有眼睛 ================= */
+function S1(t){
+  T('先说一个容易被忽略的事实',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('模型的整个世界，从头到尾只有一串数字',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 左：文字
+  const la=eo(seg(t,0.5,1.1));
+  T('文字',140,196,18,ACC2,'left',700,la);
+  const words=['今天','天气','不错','适合','出门'];
+  for(let i=0;i<words.length;i++){
+    const a=eo(seg(t,0.7+i*0.12,1.0+i*0.12));
+    const x=140+i*112;
+    box(x,214,100,46,rgba(ACC2,0.14*a),rgba(ACC2,0.75*a),8,1.6,a);
+    T(words[i],x+50,237,17,TXT,'center',500,a);
+    TF(['1024','3306','88','211','1422'][i],x+50,278,13,DIM,'center',400,a*0.85);
+  }
+
+  // 右：图片
+  const ra=eo(seg(t,1.5,2.1));
+  T('图片',840,196,18,ACC,'left',700,ra);
+  const ix=840, iy=214, iw=180, ih=110;
+  ctx.save();ctx.globalAlpha=ra;
+  ctx.fillStyle='#1d2b3a';ctx.fillRect(ix,iy,iw,ih);
+  ctx.fillStyle='#3d6b8f';ctx.beginPath();ctx.moveTo(ix,iy+ih);ctx.lineTo(ix+60,iy+40);ctx.lineTo(ix+120,iy+ih);ctx.closePath();ctx.fill();
+  ctx.fillStyle='#2a4f6b';ctx.beginPath();ctx.moveTo(ix+70,iy+ih);ctx.lineTo(ix+130,iy+55);ctx.lineTo(ix+iw,iy+ih);ctx.closePath();ctx.fill();
+  ctx.fillStyle='#ffd166';ctx.beginPath();ctx.arc(ix+146,iy+30,14,0,Math.PI*2);ctx.fill();
+  ctx.restore();
+  const ta=eo(seg(t,2.0,2.6));
+  T('机器看到的：',1044,240,16,DIM,'left',400,ta);
+  TF('[[31,68,92],',1044,268,13,ACC,'left',400,ta);
+  TF(' [34,71,95], ...]',1044,290,13,ACC,'left',400,ta);
+
+  // 汇合
+  const fa=eo(seg(t,3.0,3.6));
+  T('两条路最后都汇进同一个数字序列',140,372,17,TXT,'left',500,fa);
+
+  const seq=['1024','3306','88','211','1422','7831','9202','4410','6677'];
+  const colors=[ACC2,ACC2,ACC2,ACC2,ACC2,ACC,ACC,ACC,ACC];
+  for(let i=0;i<seq.length;i++){
+    const a=eo(seg(t,3.2+i*0.16,3.6+i*0.16));
+    const x=140+i*136;
+    box(x,404,120,54,rgba(colors[i],0.16*a),rgba(colors[i],0.8*a),8,1.6,a);
+    TF(seq[i],x+60,431,15,colors[i],'center',600,a);
+    T(i<5?'字':'图',x+60,470,12,DIM,'center',400,a*0.8);
+  }
+
+  const b=eo(seg(t,5.2,5.8));
+  if(b>0){
+    box(140,516,1320,96,PANEL,mixc(LINE,ACC,0.5),12,1.7,b);
+    T('关键',176,564,18,ACC,'left',700,b);
+    T('模型没有"看"这个动作。它只认数字。所以"看图"这件事，本质是把图翻译成一串数字塞进同一个队列。',300,564,16,TXT,'left',400,b);
+  }
+
+  T('原来如此',140,672,17,ACC,'left',700,eo(seg(t,6.4,6.9)));
+  T('所谓多模态，不是给模型装眼睛，是给图片造一套"文字等价物"。',230,672,17,TXT,'left',400,eo(seg(t,6.4,6.9))*0.96);
+  T('翻译做得好不好，决定了它"看"得准不准 —— 后面所有缺陷都源于这一步。',230,712,16,DIM,'left',400,eo(seg(t,7.0,7.5))*0.95);
+}
+
+/* ================= S2 图片怎么变成 token ================= */
+function S2(t){
+  T('一张图变成 token 的全过程',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('切块 → 编码 → 变成向量，三步，没有魔法',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const ix=140, iy=206, iw=300, ih=300;
+  // 原图
+  const ia=eo(seg(t,0.4,1.0));
+  ctx.save();ctx.globalAlpha=ia;
+  const sky=ctx.createLinearGradient(ix,iy,ix,iy+ih);
+  sky.addColorStop(0,'#243a52');sky.addColorStop(1,'#7fa8c4');
+  ctx.fillStyle=sky;ctx.fillRect(ix,iy,iw,ih);
+  ctx.fillStyle='#2f5d43';ctx.fillRect(ix,iy+ih*0.72,iw,ih*0.28);
+  ctx.fillStyle='#48795c';ctx.beginPath();
+  ctx.moveTo(ix,iy+ih);ctx.lineTo(ix+90,iy+ih*0.5);ctx.lineTo(ix+180,iy+ih);ctx.closePath();ctx.fill();
+  ctx.fillStyle='#ffe08a';ctx.beginPath();ctx.arc(ix+iw*0.74,iy+ih*0.22,26,0,Math.PI*2);ctx.fill();
+  ctx.fillStyle='#3b2f22';ctx.fillRect(ix+iw*0.2,iy+ih*0.68,14,ih*0.2);
+  ctx.fillStyle='#4f7a3a';ctx.beginPath();ctx.arc(ix+iw*0.2+7,iy+ih*0.66,26,0,Math.PI*2);ctx.fill();
+  ctx.restore();
+
+  // 网格
+  const ga=eo(seg(t,1.2,1.9));
+  ctx.save();ctx.globalAlpha=ga;ctx.strokeStyle=rgba(ACC,0.85);ctx.lineWidth=2;
+  for(let i=1;i<3;i++){
+    ctx.beginPath();ctx.moveTo(ix+iw*i/3,iy);ctx.lineTo(ix+iw*i/3,iy+ih);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(ix,iy+ih*i/3);ctx.lineTo(ix+iw,iy+ih*i/3);ctx.stroke();
+  }
+  ctx.restore();
+  T('切成小块（patch）',ix,iy+ih+30,16,ACC,'left',600,ga);
+
+  // 中间：编码器
+  const ea=eo(seg(t,3.0,3.7));
+  box(560,300,240,120,PANEL2,rgba(ACC3,0.75),14,2,ea);
+  T('视觉编码器',680,342,20,ACC3,'center',700,ea);
+  T('ViT / SigLIP',680,376,14,DIM,'center',400,ea);
+  arrow(ix+iw+10,356,552,356,rgba(ACC3,0.7),2,eo(seg(t,2.6,3.1)));
+  T('小块',ix+iw+16,330,14,DIM,'left',400,eo(seg(t,2.6,3.1)));
+
+  // 右侧：token 序列
+  const va=eo(seg(t,4.0,4.6));
+  T('每块变成一串数字（向量）',830,254,16,ACC,'left',600,va);
+  for(let i=0;i<9;i++){
+    const a=eo(seg(t,4.0+i*0.14,4.4+i*0.14));
+    const col=i%3, row=Math.floor(i/3);
+    const x=830+col*180, y=284+row*96;
+    box(x,y,160,72,PANEL,rgba(ACC,0.6*a),10,1.5,a);
+    TF('['+((i*37)%90+10)+','+((i*53)%90+10)+',…]',x+80,y+26,13,ACC,'center',500,a);
+    T('块 '+(i+1),x+80,y+52,12,DIM,'center',400,a*0.9);
+    arrow(812,360+ (row*30),x-6,y+36,rgba(ACC,0.35),1.2,a*0.5);
+  }
+
+  // 底部流程
+  const fa=eo(seg(t,6.0,6.6));
+  const steps=['原图','切 3×3','每块 → 向量','拼进上下文'];
+  for(let i=0;i<4;i++){
+    const a=eo(seg(t,6.0+i*0.22,6.4+i*0.22));
+    const x=140+i*350;
+    box(x,676,300,64,PANEL2,rgba(ACC3,0.55),10,1.5,a);
+    T(steps[i],x+150,708,17,TXT,'center',600,a);
+    if(i<3)arrow(x+308,708,x+342,708,rgba(ACC3,0.6),1.8,a*0.8);
+  }
+
+  T('原来如此',140,790,17,ACC,'left',700,eo(seg(t,7.6,8.1)));
+  T('图片和文字最后躺在同一个列表里，块也是"词"，只不过一个词代表一片颜色。',230,790,17,TXT,'left',400,eo(seg(t,7.6,8.1))*0.96);
+}
+
+/* ================= S3 一张图折多少 token ================= */
+function S3(t){
+  T('关键问题：一张图算多少钱',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('块切得越细，看得越清，token 也越多',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 左侧：公式
+  const fa=eo(seg(t,0.4,1.0));
+  box(140,192,660,120,PANEL,rgba(ACC3,0.55),12,1.7,fa);
+  T('换算方式',176,224,15,DIM,'left',600,fa);
+  TF('token ≈ (宽 ÷ 块边) × (高 ÷ 块边)',176,262,19,TXT,'left',500,fa);
+  T('块边通常 14 或 16 像素',176,292,14,DIM,'left',400,fa*0.9);
+
+  // 表格
+  const ROWS=[
+    {sz:'224 × 224',g:'14 × 14',n:'196',c:OK,tag:'缩略图'},
+    {sz:'512 × 512',g:'32 × 32',n:'1024',c:ACC,tag:'普通配图'},
+    {sz:'1024 × 1024',g:'64 × 64',n:'4096',c:ACC3,tag:'截图/文档'},
+    {sz:'2048 × 2048',g:'128 × 128',n:'16384',c:WARN,tag:'高清大图'}
+  ];
+  const ha=eo(seg(t,1.2,1.7));
+  T('图片尺寸',180,368,14,DIM,'left',600,ha);
+  T('切块数',480,368,14,DIM,'center',600,ha);
+  T('token 数',640,368,14,DIM,'center',600,ha);
+
+  for(let i=0;i<ROWS.length;i++){
+    const r=ROWS[i], st=1.4+i*0.55, a=eo(seg(t,st,st+0.4));
+    const y=414+i*72;
+    box(140,y-26,700,56,i%2===0?PANEL:'rgba(0,0,0,0)',rgba(r.c,0.35*a),8,1.3,a*0.9);
+    T(r.sz,180,y+2,17,TXT,'left',600,a);
+    T(r.tag,180,y+26,12,r.c,'left',400,a*0.8);
+    T(r.g,480,y+2,15,DIM,'center',500,a);
+    T(r.n,640,y+2,20,r.c,'center',700,a);
+  }
+
+  // 右侧对照
+  const ra=eo(seg(t,4.0,4.7));
+  T('换算成生活单位',900,368,17,ACC,'left',700,ra);
+  const CMP=[
+    {a:'一页 A4 文字',b:'约 800 token',c:ACC2},
+    {a:'一张 1024 截图',b:'约 5 页文字',c:ACC3},
+    {a:'一张 2048 原图',b:'约 20 页文字',c:WARN}
+  ];
+  for(let i=0;i<CMP.length;i++){
+    const c=CMP[i], a=eo(seg(t,4.2+i*0.5,4.7+i*0.5));
+    const y=414+i*100;
+    box(900,y-30,560,76,PANEL2,rgba(c.c,0.5),10,1.5,a);
+    T(c.a,924,y-6,16,TXT,'left',500,a);
+    T(c.b,924,y+26,16,c.c,'left',700,a);
+  }
+
+  const b=eo(seg(t,6.2,6.8));
+  if(b>0){
+    box(140,700,1320,82,PANEL,mixc(LINE,ACC,0.5),12,1.7,b);
+    T('省钱的土办法',176,741,16,ACC,'left',700,b);
+    T('传图前先缩到必要尺寸、裁掉无关区域；文档截图反而要给足分辨率 —— 图里的字一旦糊了，模型就永远读不对。',330,741,15,TXT,'left',400,b);
+  }
+}
+
+/* ================= S4 语音 ================= */
+function S4(t){
+  T('声音比图片更有"时间感"',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('声音本来就是连续的波，所以按时间切成小段',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 波形
+  const wx=140, wy=280, ww=1320, wh=120;
+  const wa=eo(seg(t,0.4,1.0));
+  ctx.save();ctx.globalAlpha=wa;ctx.strokeStyle=ACC2;ctx.lineWidth=2;
+  ctx.beginPath();
+  for(let i=0;i<=ww;i+=2){
+    const p=i/ww;
+    const amp=(0.25+0.75*Math.abs(Math.sin(p*9)))*(0.5+0.5*Math.sin(p*31));
+    const y=wy+Math.sin(p*220)*amp*wh*0.5;
+    if(i===0)ctx.moveTo(wx+i,y);else ctx.lineTo(wx+i,y);
+  }
+  ctx.stroke();ctx.restore();
+  T('一段语音的波形',wx,wy-56,15,DIM,'left',500,wa);
+
+  // 分帧
+  const fa=eo(seg(t,1.2,1.8));
+  for(let i=0;i<12;i++){
+    const a=eo(seg(t,1.3+i*0.09,1.6+i*0.09));
+    const x=wx+i*110;
+    ctx.save();ctx.globalAlpha=a*0.85;ctx.strokeStyle=rgba(ACC3,0.75);ctx.lineWidth=1.5;ctx.setLineDash([5,5]);
+    ctx.beginPath();ctx.moveTo(x,wy-wh*0.8);ctx.lineTo(x,wy+wh*0.8);ctx.stroke();ctx.restore();
+  }
+  T('每 25 毫秒切一帧',wx,wy+wh*0.8+30,15,ACC3,'left',600,fa);
+
+  // 频谱条
+  const sa=eo(seg(t,2.4,3.0));
+  T('每一帧 → 一张频谱图 → 一个向量',140,486,17,TXT,'left',600,sa);
+  for(let f=0;f<8;f++){
+    const a=eo(seg(t,2.5+f*0.1,2.8+f*0.1));
+    const x=140+f*104;
+    box(x,516,88,110,PANEL,rgba(ACC3,0.5*a),8,1.4,a);
+    for(let k=0;k<7;k++){
+      const h=8+Math.abs(Math.sin(f*1.7+k*0.9))*62*a;
+      ctx.save();ctx.globalAlpha=a*0.8;
+      ctx.fillStyle=mixc(ACC2,ACC3,k/7);
+      ctx.fillRect(x+10+k*10,616-h,7,h);
+      ctx.restore();
+    }
+  }
+  T('…一秒钟 40 帧，一分钟 2400 帧',140,656,14,DIM,'left',400,eo(seg(t,3.4,3.9))*0.9);
+
+  // 对比
+  const ra=eo(seg(t,4.4,5.0));
+  T('一分钟的语音 vs 一分钟的文字',880,486,17,ACC,'left',700,ra);
+  const cmp=[
+    {k:'一分钟文字（约 200 字）',v:200,c:ACC2},
+    {k:'一分钟语音（16kHz）',v:1500,c:ACC3}
+  ];
+  for(let i=0;i<2;i++){
+    const c=cmp[i], a=eo(seg(t,4.6+i*0.4,5.1+i*0.4));
+    const y=530+i*84;
+    T(c.k,880,y,15,TXT,'left',500,a);
+    const w=Math.max(4,420*(c.v/1500))*a;
+    box(880,y+18,w,26,rgba(c.c,0.28),rgba(c.c,0.85),5,1.4,a);
+    TF(c.v+' token',880+w+12,y+31,15,c.c,'left',700,a);
+  }
+
+  const b=eo(seg(t,6.2,6.8));
+  if(b>0){
+    box(140,712,1320,80,PANEL,mixc(LINE,ACC,0.5),12,1.7,b);
+    T('原来如此',176,752,16,ACC,'left',700,b);
+    T('语音贵在帧率：说一句话的时间，模型要处理几百个"声音的快照" —— 这就是语音对话按分钟收费的原因。',330,752,15,TXT,'left',400,b);
+  }
+}
+
+/* ================= S5 视频 ================= */
+function S5(t){
+  T('视频是图片的平方',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('它不是"再多一点"，而是直接指数爆炸',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 帧堆叠
+  const bx=180, by=500;
+  const na=eo(seg(t,0.5,1.1));
+  T('2 秒视频 = 60 帧（30fps）',bx,190,18,ACC,'left',700,na);
+  for(let i=0;i<10;i++){
+    const a=eo(seg(t,0.6+i*0.12,1.0+i*0.12));
+    const x=bx+i*26, y=by-i*26;
+    box(x,y,180,110,rgba(ACC,0.10*a),rgba(ACC,0.55*a),6,1.3,a);
+    if(i===9)T('…',x+90,y+55,30,ACC,'center',700,a);
+  }
+
+  // 右侧算式
+  const rx=700;
+  const rows=[
+    {k:'帧数',v:'60',c:ACC},
+    {k:'每帧 token',v:'× 256',c:ACC2},
+    {k:'合计',v:'= 15360',c:WARN}
+  ];
+  for(let i=0;i<3;i++){
+    const r=rows[i], a=eo(seg(t,2.0+i*0.4,2.4+i*0.4));
+    T(r.k,rx,300+i*64,17,DIM,'left',500,a);
+    TF(r.v,rx+260,300+i*64,24,r.c,'left',700,a);
+  }
+  const ca=eo(seg(t,3.4,4.0));
+  T('相当于 20 页文档，只换来"看两秒"',rx,500,16,DIM,'left',400,ca*0.95);
+
+  // 压缩手段
+  T('所以视频理解必须做减法',140,600,17,ACC,'left',700,eo(seg(t,4.2,4.7)));
+  const cuts=[
+    {k:'抽帧',d:'30fps 抽到 1~2fps',v:'-95%',c:OK},
+    {k:'降分辨率',d:'短边压到 336',v:'-75%',c:OK},
+    {k:'时间合并',d:'相邻帧融合成一帧',v:'-50%',c:ACC2},
+    {k:'只看关键段',d:'先定位再细看',v:'-90%',c:ACC3}
+  ];
+  for(let i=0;i<4;i++){
+    const c=cuts[i], a=eo(seg(t,4.4+i*0.32,4.8+i*0.32));
+    const x=140+i*340;
+    box(x,632,310,90,PANEL2,rgba(c.c,0.55),10,1.5,a);
+    T(c.k,x+18,660,16,TXT,'left',700,a);
+    T(c.d,x+18,688,13,DIM,'left',400,a*0.9);
+    T(c.v,x+292,676,17,c.c,'right',700,a);
+  }
+
+  T('原来如此',140,790,17,ACC,'left',700,eo(seg(t,6.4,6.9)));
+  T('视频理解的本质不是"看得更多"，而是"聪明地看得更少" —— 抽帧策略比模型大小更影响效果。',230,790,17,TXT,'left',400,eo(seg(t,6.4,6.9))*0.96);
+}
+
+/* ================= S6 输出侧 ================= */
+function S6(t){
+  T('输入之外，输出也能换模态',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('同一句话，可以被"翻译"成图、成声、成视频',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 中心
+  const ca=eo(seg(t,0.4,1.0));
+  box(640,392,320,116,PANEL2,rgba(ACC,0.8),14,2,ca);
+  T('语义空间',800,430,22,ACC,'center',700,ca);
+  T('同一套向量表示',800,464,14,DIM,'center',400,ca);
+
+  // 四个方向
+  const dirs=[
+    {n:'读图',d:'编码器把图变成向量',x:140,y:212,c:ACC2,dir:'in'},
+    {n:'听声',d:'频谱编码成向量',x:140,y:596,c:ACC2,dir:'in'},
+    {n:'画图',d:'从噪声逐步去噪成图',x:1060,y:212,c:ACC3,dir:'out'},
+    {n:'说话',d:'文字转成声波',x:1060,y:596,c:ACC3,dir:'out'}
+  ];
+  for(let i=0;i<4;i++){
+    const d=dirs[i], a=eo(seg(t,0.8+i*0.3,1.3+i*0.3));
+    box(d.x,d.y,400,110,PANEL,rgba(d.c,0.7),12,1.8,a);
+    T(d.n,d.x+200,d.y+38,20,d.c,'center',700,a);
+    T(d.d,d.x+200,d.y+72,13,DIM,'center',400,a*0.92);
+    const sx=d.dir==='in'?d.x+408:d.x-8, sy=d.y+55;
+    const ex=d.dir==='in'?632:968;
+    arrow(sx,sy,ex,d.dir==='in'?(d.y<400?450:450):(d.y<400?450:450),rgba(d.c,0.65),2,a*0.85);
+  }
+
+  // 底部：去噪过程
+  const da=eo(seg(t,3.2,3.8));
+  T('生成图片不是"画"出来的，是从噪声里"擦"出来的',640,610,17,TXT,'left',600,da);
+  for(let i=0;i<6;i++){
+    const a=eo(seg(t,3.4+i*0.22,3.8+i*0.22));
+    const x=160+i*212;
+    const noiseLeft=1-i/5;
+    ctx.save();ctx.globalAlpha=a;
+    ctx.fillStyle='#141019';ctx.fillRect(x,646,180,120);
+    for(let k=0;k<40;k++){
+      const px=x+((k*61+i*17)%180), py=646+((k*97+i*13)%120);
+      ctx.fillStyle=rgba(i>2?ACC:ACC2,noiseLeft*0.7+0.12);
+      ctx.fillRect(px,py,4,4);
+    }
+    if(i>=3){
+      ctx.fillStyle=rgba(ACC,0.45);
+      ctx.beginPath();ctx.arc(x+130,676,20,0,Math.PI*2);ctx.fill();
+      ctx.fillStyle=rgba(ACC3,0.5);ctx.fillRect(x,730,180,36);
+    }
+    ctx.restore();
+    T(i===0?'纯噪声':(i===5?'成品':'第 '+(i*4)+' 步'),x+90,786,13,i===5?ACC:DIM,'center',600,a*0.92);
+  }
+
+  T('原来如此',140,850,16,ACC,'left',700,eo(seg(t,5.6,6.1)));
+  T('所谓"AI 会画图"，其实是学会了从一堆随机点里，一步步猜出你想看的那张图。',230,850,16,TXT,'left',400,eo(seg(t,5.6,6.1))*0.96);
+}
+
+/* ================= S7 多模态的坑 ================= */
+function S7(t){
+  T('它会看，但看得不太准',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('四个高频翻车现场，根子都在"翻译"那一步',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const PITS=[
+    {n:'小字看不清',d:'图里 8pt 的合同条款、表格里的小数点，被压缩后直接糊成一团，模型只能猜',c:WARN,icon:'Aa'},
+    {n:'数量数不准',d:'让它数图上有几个苹果、几根柱子 —— 这是它最不擅长的题，精度常低于随手一数',c:ACC3,icon:'7'},
+    {n:'空间关系弱',d:'"左边那个""上面的按钮"这类指代，容易张冠李戴，尤其是元素密集的截图',c:ACC2,icon:'↔'},
+    {n:'压缩失真',d:'聊天软件转发过的图、截图再截图，细节已经丢了，模型看到的是二次污染版本',c:ACC,icon:'▤'}
+  ];
+  for(let i=0;i<4;i++){
+    const p=PITS[i], a=eo(seg(t,0.5+i*0.5,1.0+i*0.5));
+    const col=i%2, row=Math.floor(i/2);
+    const x=140+col*670, y=196+row*228;
+    box(x,y,630,196,PANEL,rgba(p.c,0.6),13,1.7,a);
+    box(x+24,y+26,56,56,rgba(p.c,0.18),rgba(p.c,0.7),10,1.5,a);
+    T(p.icon,x+52,y+54,22,p.c,'center',700,a);
+    T(p.n,x+100,y+46,20,TXT,'left',700,a);
+    T(p.d,x+24,y+112,15,DIM,'left',400,a*0.95);
+  }
+
+  const b=eo(seg(t,3.0,3.6));
+  if(b>0){
+    box(140,656,1320,92,PANEL,mixc(LINE,WARN,0.45),12,1.7,b);
+    T('工程解法',176,702,17,WARN,'left',700,b);
+    T('① 关键区域单独裁一张高清图再问 ② 要精确数字就让它输出坐标或用 OCR 工具 ③ 别用它做计数和精确测量。',330,702,15,TXT,'left',400,b);
+  }
+
+  T('原来如此',140,790,16,ACC,'left',700,eo(seg(t,4.6,5.1)));
+  T('它不是眼睛，是"看得很粗的翻译官" —— 把任务设计成它擅长的形状，比换更大的模型有效。',230,790,16,TXT,'left',400,eo(seg(t,4.6,5.1))*0.96);
+}
+
+/* ================= S8 通用 vs 专用 ================= */
+function S8(t){
+  T('什么时候用通用多模态，什么时候用专用模型',140,86,36,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('通用模型胜在"能理解"，专用模型胜在"抠得准"',140,134,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const ha=eo(seg(t,0.4,0.9));
+  T('任务',220,192,16,DIM,'center',600,ha);
+  T('通用多模态',620,192,18,ACC,'center',700,ha);
+  T('专用模型',1060,192,18,ACC2,'center',700,ha);
+
+  const ROWS=[
+    {k:'识别图里的文字',g:'能读，但排版和小字易错',s:'OCR（PaddleOCR 等）逐字精确',c:ACC2},
+    {k:'语音转文字',g:'省事，长音频要分段',s:'ASR 专用，更稳更便宜',c:ACC2},
+    {k:'水果/缺陷/计数',g:'容易数错',s:'目标检测 / 分割模型',c:WARN},
+    {k:'理解场景和意图',g:'强项：能解释"这是在干什么"',s:'做不了',c:ACC},
+    {k:'跨模态推理',g:'强项：图+文字一起推因果',s:'做不了',c:ACC}
+  ];
+  for(let i=0;i<ROWS.length;i++){
+    const r=ROWS[i], a=eo(seg(t,0.6+i*0.42,1.05+i*0.42));
+    const y=248+i*86;
+    box(140,y-32,1320,68,i%2===0?PANEL:'rgba(0,0,0,0)',null,9,0,a*0.85);
+    T(r.k,220,y,16,TXT,'center',600,a);
+    T(r.g,620,y,15,r.c,'center',500,a);
+    T(r.s,1060,y,15,DIM,'center',400,a);
+  }
+
+  // 结论条
+  const b=eo(seg(t,3.2,3.9));
+  if(b>0){
+    box(140,690,1320,120,PANEL,mixc(LINE,OK,0.45),12,1.7,b);
+    T('实践里最常见的组合',176,726,17,OK,'left',700,b);
+    T('专用模型负责"取"：OCR 取字、ASR 取话、检测框取位置。',330,726,15,TXT,'left',400,b);
+    T('通用模型负责"懂"：把取出来的东西串起来，回答人真正想问的问题。',330,766,15,TXT,'left',400,b);
+  }
+
+  T('原来如此',140,840,16,ACC,'left',700,eo(seg(t,4.8,5.3)));
+  T('别指望一个模型包打天下 —— 精确的活交给小专模型，理解的活交给大通用模型。',230,840,16,TXT,'left',400,eo(seg(t,4.8,5.3))*0.96);
+}
+
+/* ================= S9 收尾 ================= */
+function S9(t){
+  const g=ctx.createRadialGradient(VW/2,VH/2,60,VW/2,VH/2,620);
+  g.addColorStop(0,'rgba(232,121,199,0.11)');g.addColorStop(1,'rgba(232,121,199,0)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,VW,VH);
+
+  const a1=eo(seg(t,0.1,0.9));
+  T('原来如此',VW/2,VH/2-110,22,ACC,'center',700,a1);
+  T('模型从来不"看"，它只读',VW/2,VH/2-40,44,TXT,'center',700,eo(seg(t,0.4,1.2)));
+  T('图片、声音、视频，全都被翻译成同一种数字',VW/2,VH/2+34,44,ACC,'center',700,eo(seg(t,0.9,1.7)));
+
+  T('翻译的精度，就是它"感官"的上限。',VW/2,VH/2+130,21,DIM,'center',400,eo(seg(t,2.0,2.8))*0.95);
+  T('下一集：为什么你的知识库总也搜不准',VW/2,VH/2+206,17,ACC2,'center',600,eo(seg(t,3.2,4.0))*0.9);
+}
+
+/* ================= 时间轴 ================= */
+const SCENES=[
+  {n:'开场',        d:4.5,  f:S0},
+  {n:'没有眼睛',    d:10.5, f:S1},
+  {n:'图片变token', d:12.0, f:S2},
+  {n:'算 token',    d:11.0, f:S3},
+  {n:'声音',        d:11.0, f:S4},
+  {n:'视频',        d:10.5, f:S5},
+  {n:'输出侧',      d:11.0, f:S6},
+  {n:'翻车现场',    d:11.0, f:S7},
+  {n:'通用vs专用',  d:11.0, f:S8},
+  {n:'收尾',        d:6.0,  f:S9}
+];
+const TOTAL=SCENES.reduce((s,x)=>s+x.d,0);
+
+let clock=0, playing=true, last=0;
+
+function locate(g){
+  let acc=0;
+  for(let i=0;i<SCENES.length;i++){
+    if(g<acc+SCENES[i].d||i===SCENES.length-1)return {i:i,t:g-acc};
+    acc+=SCENES[i].d;
+  }
+  return {i:SCENES.length-1,t:SCENES[SCENES.length-1].d};
+}
+
+function drawTopHUD(idx){
+  T('Multimodal · Vision · Audio',44,34,15,DIM,'left',600,1);
+  T('/ '+SCENES[idx].n,330,34,15,ACC,'left',600,1);
+}
+
+function drawProgress(g){
+  const y=VH-8;
+  ctx.fillStyle='rgba(58,44,66,0.9)';ctx.fillRect(0,y,VW,3);
+  ctx.fillStyle=ACC;ctx.fillRect(0,y,VW*(g/TOTAL),3);
+  let acc=0;
+  for(let i=0;i<SCENES.length;i++){
+    const x=VW*(acc/TOTAL);
+    ctx.fillStyle=BG;ctx.fillRect(x-1,y-3,2,9);
+    acc+=SCENES[i].d;
+  }
+}
+
+function render(){
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.fillStyle=BG;ctx.fillRect(0,0,cv.width/dpr,cv.height/dpr);
+  ctx.setTransform(dpr*scale,0,0,dpr*scale,offX*dpr,offY*dpr);
+
+  const loc=locate(clock);
+  const sc=SCENES[loc.i];
+  const fin=cl01(loc.t/0.42), fout=cl01((sc.d-loc.t)/0.34);
+  const alpha=Math.min(fin,fout);
+
+  ctx.save();ctx.globalAlpha=alpha;sc.f(loc.t);ctx.restore();
+  drawTopHUD(loc.i);
+  drawProgress(clock);
+}
+
+function loop(ts){
+  if(!last)last=ts;
+  let dt=(ts-last)/1000;last=ts;
+  if(dt>0.12)dt=0.12;
+  if(playing){clock+=dt;if(clock>=TOTAL)clock=0;}
+  render();
+  requestAnimationFrame(loop);
+}
+
+function resize(){
+  dpr=Math.min(window.devicePixelRatio||1,2);
+  const w=window.innerWidth,h=window.innerHeight;
+  cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);
+  cv.style.width=w+'px';cv.style.height=h+'px';
+  scale=Math.min(w/VW,h/VH);
+  offX=(w-VW*scale)/2;offY=(h-VH*scale)/2;
+}
+window.addEventListener('resize',resize);
+
+document.addEventListener('keydown',e=>{
+  if(e.code==='Space'){e.preventDefault();playing=!playing;last=0;}
+  else if(e.code==='ArrowRight'||e.code==='ArrowLeft'){
+    const loc=locate(clock);
+    const target=e.code==='ArrowRight'?Math.min(loc.i+1,SCENES.length-1):Math.max(loc.i-1,0);
+    let acc=0;
+    for(let i=0;i<SCENES.length;i++){if(i===target){clock=acc;break;}acc+=SCENES[i].d;}
+    last=0;
+  } else if(e.key==='r'||e.key==='R'){clock=0;last=0;playing=true;}
+});
+
+cv.addEventListener('click',e=>{
+  const r=cv.getBoundingClientRect();
+  const w=r.width,h=r.height;
+  const s=Math.min(w/VW,h/VH);
+  const ox=(w-VW*s)/2, oy=(h-VH*s)/2;
+  const vx=(e.clientX-r.left-ox)/s, vy=(e.clientY-r.top-oy)/s;
+  if(vy>VH-24){clock=cl01(vx/VW)*TOTAL;last=0;}
+  else {playing=!playing;last=0;}
+});
+
+try{
+  const qp=new URLSearchParams(location.search);
+  if(qp.has('t')){
+    const v=parseFloat(qp.get('t'));
+    if(!isNaN(v))clock=Math.max(0,Math.min(TOTAL-0.04,v));
+  }
+  if(qp.get('pause')==='1')playing=false;
+}catch(err){}
+
+resize();
+requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

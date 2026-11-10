@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第十一集：上线前的那些坑 —— 流式、限流与重试</title>
+<style>
+  html,body{margin:0;height:100%;background:#05070a;overflow:hidden;}
+  canvas{display:block;cursor:pointer;}
+</style>
+</head>
+<body>
+<canvas id="cv"></canvas>
+<script>
+(function(){
+"use strict";
+
+const VW=1600, VH=900;
+const cv=document.getElementById('cv'), ctx=cv.getContext('2d');
+let scale=1, offX=0, offY=0, dpr=1;
+
+const FONT='"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif';
+const MONO='Menlo,Consolas,"SF Mono",monospace';
+
+const BG='#07090d', PANEL='#101720', PANEL2='#18222e', LINE='#2a3543',
+      TXT='#eef4fa', DIM='#8698ab',
+      ACC='#7ee787',        /* 终端绿 */
+      ACC2='#5b9dff',
+      ACC3='#ffc95c',
+      WARN='#f2617a',
+      OK='#5cd692';
+
+const clamp=(x,a,b)=>x<a?a:(x>b?b:x);
+const cl01=x=>clamp(x,0,1);
+const seg=(t,a,b)=>b<=a?(t>=b?1:0):cl01((t-a)/(b-a));
+const eo=t=>1-Math.pow(1-cl01(t),3);
+const lerp=(a,b,t)=>a+(b-a)*t;
+function hex2rgb(h){return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];}
+function mixc(c1,c2,t){const a=hex2rgb(c1),b=hex2rgb(c2);t=cl01(t);
+  return 'rgb('+Math.round(lerp(a[0],b[0],t))+','+Math.round(lerp(a[1],b[1],t))+','+Math.round(lerp(a[2],b[2],t))+')';}
+function rgba(c,a){const r=hex2rgb(c);return 'rgba('+r[0]+','+r[1]+','+r[2]+','+cl01(a)+')';}
+function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);
+  ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
+
+function T(s,x,y,size,color,align,weight,alpha){
+  if(s===undefined||s===null)return;
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.fillStyle=color;ctx.font=(weight||400)+' '+size+'px '+FONT;
+  ctx.textAlign=align||'left';ctx.textBaseline='middle';
+  ctx.fillText(s,x,y);ctx.restore();
+}
+function TF(s,x,y,size,color,align,weight,alpha){
+  if(s===undefined||s===null)return;
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.fillStyle=color;ctx.font=(weight||400)+' '+size+'px '+MONO;
+  ctx.textAlign=align||'left';ctx.textBaseline='middle';
+  ctx.fillText(s,x,y);ctx.restore();
+}
+function box(x,y,w,h,fill,stroke,r,lw,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  rr(x,y,w,h,r===undefined?12:r);
+  if(fill){ctx.fillStyle=fill;ctx.fill();}
+  if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lw||2;ctx.stroke();}
+  ctx.restore();
+}
+function arrow(x1,y1,x2,y2,color,lw,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=lw||2;ctx.lineCap='round';
+  ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+  const ang=Math.atan2(y2-y1,x2-x1), L=9;
+  ctx.beginPath();ctx.moveTo(x2,y2);
+  ctx.lineTo(x2-L*Math.cos(ang-0.4),y2-L*Math.sin(ang-0.4));
+  ctx.lineTo(x2-L*Math.cos(ang+0.4),y2-L*Math.sin(ang+0.4));
+  ctx.closePath();ctx.fill();
+  ctx.restore();
+}
+function badge(n,x,y,r,color,a){
+  ctx.save();ctx.globalAlpha=a===undefined?1:cl01(a);
+  ctx.fillStyle=rgba(color,0.18);ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
+  ctx.strokeStyle=rgba(color,0.95);ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.stroke();
+  ctx.fillStyle=color;ctx.font='700 '+Math.round(r*1.1)+'px '+FONT;
+  ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(n,x,y+1);
+  ctx.restore();
+}
+
+/* ================= S0 开场 ================= */
+function S0(t){
+  const a1=eo(seg(t,0.1,1.0)), a2=eo(seg(t,0.7,1.6)), a3=eo(seg(t,1.4,2.3));
+  const g=ctx.createRadialGradient(VW/2,VH/2-40,40,VW/2,VH/2-40,660);
+  g.addColorStop(0,'rgba(126,231,135,0.11)');g.addColorStop(1,'rgba(126,231,135,0)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,VW,VH);
+
+  T('第十一集',VW/2,VH/2-190,22,ACC,'center',700,a1);
+  T('上线前的那些坑',VW/2,VH/2-100,68,TXT,'center',700,a1);
+  T('本地跑通只是及格，接进产品才刚开始',VW/2,VH/2-8,29,ACC2,'center',400,a2);
+
+  const items=[['流式输出','先给字，再给完',ACC],['限流与重试','429 是常态',ACC3],['超时与降级','别让用户干等',WARN]];
+  for(let i=0;i<3;i++){
+    const a=eo(seg(t,1.5+i*0.35,1.9+i*0.35));
+    const x=VW/2-450+i*310;
+    box(x,VH/2+76,280,84,mixc(BG,PANEL2,0.7),rgba(items[i][2],0.75*a),12,1.8,a);
+    T(items[i][0],x+140,VH/2+108,22,items[i][2],'center',700,a);
+    T(items[i][1],x+140,VH/2+142,15,DIM,'center',400,a);
+  }
+  T('这一集讲的全是"能上线"和"不能上线"的区别',VW/2,VH/2+216,19,DIM,'center',400,a3*0.95);
+}
+
+/* ================= S1 为什么要流式 ================= */
+function S1(t){
+  T('先说一件最影响体感的事',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('同样的答案，一起给和慢慢给，用户感受差十倍',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 左：非流式
+  const la=eo(seg(t,0.5,1.1));
+  box(140,196,620,300,PANEL,rgba(WARN,0.55),13,1.7,la);
+  T('等全部算完再给',170,232,16,WARN,'left',700,la);
+  // 进度条：空白很久
+  const pw=560;
+  box(170,268,pw,26,'rgba(42,53,67,0.6)',rgba(LINE,0.9),13,1.2,la);
+  const pfull=seg(t,1.0,3.6);
+  box(170,268,pw*pfull,rgba(WARN,0.55),null,13,0,la);
+  T('40 秒里屏幕一直是空的',170,320,14,DIM,'left',400,la*0.95);
+  for(let i=0;i<4;i++){
+    const a=eo(seg(t,3.4+i*0.18,3.7+i*0.18));
+    T('████████████████',170,354+i*26,13,TXT,'left',400,a);
+  }
+  T('→ 用户在第 8 秒就以为卡死了，直接关掉',170,464,13,WARN,'left',500,eo(seg(t,4.4,4.9)));
+
+  // 右：流式
+  const ra=eo(seg(t,1.4,2.0));
+  box(840,196,620,300,PANEL,rgba(ACC,0.6),13,1.7,ra);
+  T('算一点给一点',870,232,16,ACC,'left',700,ra);
+  box(870,268,560,26,'rgba(42,53,67,0.6)',rgba(LINE,0.9),13,1.2,ra);
+  const rfull=seg(t,2.0,3.6);
+  box(870,268,560*rfull,rgba(ACC,0.5),null,13,0,ra);
+  T('0.5 秒出第一个字，40 秒出完',870,320,14,DIM,'left',400,ra*0.95);
+  const WORDS=['今','今天','今天咱们','今天咱们聊聊','今天咱们聊聊流式','今天咱们聊聊流式输出'];
+  const wi=Math.floor(seg(t,2.0,3.6)*5.99);
+  T(WORDS[clamp(wi,0,5)],870,368,17,ACC,'left',600,ra);
+  T('→ 阅读和生成在同时进行，等待感消失',870,464,13,ACC,'left',500,eo(seg(t,4.4,4.9)));
+
+  // 关键指标
+  const ba=eo(seg(t,5.2,5.8));
+  if(ba>0){
+    box(140,536,1320,124,PANEL2,rgba(ACC3,0.55),12,1.7,ba);
+    T('两个必须盯的数字',176,576,16,ACC3,'left',700,ba);
+    T('首字延迟 TTFT：从发请求到看见第一个字 —— 用户对"有没有反应"极度敏感，这个数要压到 1 秒内',350,576,15,TXT,'left',400,ba);
+    T('总时长：不算慢，只要在动就没人在意 —— 所以流式是"用感知换时间"的最便宜手段',350,620,15,TXT,'left',400,ba);
+  }
+
+  T('原来如此',140,716,17,ACC,'left',700,eo(seg(t,6.6,7.1)));
+  T('用户抱怨"慢"，抱怨的其实不是总时长，是那几秒什么都没发生。',230,716,17,TXT,'left',400,eo(seg(t,6.6,7.1))*0.96);
+  T('流式不改变实际速度，只是把等待摊薄了。',230,760,15,DIM,'left',400,eo(seg(t,7.2,7.7))*0.95);
+}
+
+/* ================= S2 流式怎么实现 ================= */
+function S2(t){
+  T('它是怎么"一个字一个字"出来的',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('答案很朴素：服务端算出一个就推一个，浏览器边收边拼',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 数据流
+  const la=eo(seg(t,0.5,1.1));
+  box(140,196,860,340,'rgba(10,15,20,0.92)',rgba(ACC,0.45),12,1.6,la);
+  T('SSE —— 一条不断开的长连接',170,228,14,ACC,'left',700,la);
+  const LINES=[
+    {s:'HTTP/1.1 200 OK',c:DIM},
+    {s:'Content-Type: text/event-stream',c:ACC3},
+    {s:'',c:DIM},
+    {s:'data: {"delta":{"content":"今"}}',c:TXT},
+    {s:'data: {"delta":{"content":"天"}}',c:TXT},
+    {s:'data: {"delta":{"content":"咱们"}}',c:TXT},
+    {s:'data: {"delta":{"content":"聊"}}',c:TXT},
+    {s:'data: [DONE]',c:ACC}
+  ];
+  for(let i=0;i<LINES.length;i++){
+    const a=eo(seg(t,0.7+i*0.22,1.1+i*0.22));
+    TF(LINES[i].s,170,262+i*32,13,LINES[i].c,'left',400,a);
+  }
+  T('每一行是一个增量，不是全文 —— 前端要自己拼起来',170,516,13,DIM,'left',400,eo(seg(t,3.0,3.5))*0.95);
+
+  // 右侧三条
+  const TIPS=[
+    {k:'① 增量不是全量',d:'收到 "咱们" 要接在 "今天" 后面，不是替换',c:ACC2},
+    {k:'② 网络会把包切碎',d:'一个 chunk 可能只有半行 JSON，要按换行符缓冲',c:WARN},
+    {k:'③ 流式就有流式的错法',d:'中途 429、内容审核、长度超限，都会在流里出现',c:ACC3}
+  ];
+  for(let i=0;i<3;i++){
+    const p=TIPS[i], a=eo(seg(t,2.4+i*0.45,2.8+i*0.45));
+    const y=196+i*118;
+    box(1040,y,420,100,PANEL,rgba(p.c,0.55),11,1.5,a);
+    T(p.k,1066,y+34,15,p.c,'left',700,a);
+    T(p.d,1066,y+68,12,DIM,'left',400,a*0.95);
+  }
+
+  const ba=eo(seg(t,4.6,5.2));
+  if(ba>0){
+    box(140,568,1320,92,PANEL2,rgba(ACC2,0.5),12,1.6,ba);
+    T('一个常见 bug',176,614,16,WARN,'left',700,ba);
+    T('把每次收到的内容当成完整答案刷新显示 —— 结果屏幕上只剩最后几个字，前面全被覆盖了。',380,614,15,TXT,'left',400,ba);
+  }
+
+  T('原来如此',140,714,17,ACC,'left',700,eo(seg(t,5.8,6.3)));
+  T('它不是"分批算好再发"，而是"算一个发一个" —— 所以永远拼不回原句，除非你按顺序累积。',230,714,17,TXT,'left',400,eo(seg(t,5.8,6.3))*0.96);
+}
+
+/* ================= S3 流式的新麻烦 ================= */
+function S3(t){
+  T('流式解决的体感，是拿工程复杂度换的',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('下面四个问题，只在流式下才会遇到',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const P=[
+    {n:'中断无从续',d:'已经吐了 300 字，连接断了。重试要从头发一遍 —— 前 300 字的钱已经花了。',fix:'按段落做检查点，重连时把已生成部分作为前缀再续',c:WARN},
+    {n:'半截结构没法用',d:'流到一半的 JSON 是非法 JSON，直接 parse 会崩。',fix:'只在收到 [DONE] 后解析；或边收边做容错解析',c:ACC3},
+    {n:'半截 Markdown 渲染错',d:'只收到 "```java" 而没有闭合，渲染器会把后面全刷成代码块。',fix:'按块渲染，未闭合的代码块先当纯文本',c:ACC2},
+    {n:'错误藏在流里',d:'HTTP 已经 200 了，错误在 data 里以 error 事件返回。',fix:'别只看状态码，要检查流内的 error 类型',c:ACC}
+  ];
+  for(let i=0;i<4;i++){
+    const p=P[i], st=0.5+i*0.85, a=eo(seg(t,st,st+0.45));
+    const col=i%2, row=Math.floor(i/2);
+    const x=140+col*670, y=192+row*258;
+    box(x,y,630,232,PANEL,rgba(p.c,0.6),13,1.7,a);
+    badge(String(i+1),x+42,y+38,19,p.c,a);
+    T(p.n,x+76,y+38,18,TXT,'left',700,a);
+    T(p.d,x+24,y+88,13,DIM,'left',400,a*0.95);
+    T('怎么办',x+24,y+162,12,p.c,'left',700,a*0.95);
+    T(p.fix,x+24,y+190,13,TXT,'left',400,a*0.95);
+  }
+
+  T('原来如此',140,752,17,ACC,'left',700,eo(seg(t,4.4,4.9)));
+  T('流式把"一次交易"变成了"一次长对话" —— 长连接会断、会超时、会中途出错，这才是真正的工程量。',230,752,17,TXT,'left',400,eo(seg(t,4.4,4.9))*0.96);
+}
+
+/* ================= S4 限流 ================= */
+function S4(t){
+  T('然后你会撞上 429',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('不是它坏了，是你用超了 —— 限流分三层，卡住你的通常不是你以为的那层',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const L=[
+    {n:'每分钟请求数',code:'RPM',d:'最简单的一层，好理解',risk:'低',c:ACC},
+    {n:'每分钟 token 数',code:'TPM',d:'输入+输出一起算，长 prompt 一次吃光',risk:'高',c:WARN},
+    {n:'并发连接数',code:'Concurrency',d:'流式占着连接不放，高峰期最先打满',risk:'高',c:ACC3}
+  ];
+  for(let i=0;i<3;i++){
+    const l=L[i], a=eo(seg(t,0.5+i*0.35,0.95+i*0.35));
+    const y=192+i*104;
+    box(140,y,760,88,PANEL,rgba(l.c,0.55),11,1.6,a);
+    badge(String(i+1),182,y+44,20,l.c,a);
+    T(l.n,228,y+32,16,TXT,'left',700,a);
+    TF(l.code,228,y+60,12,l.c,'left',500,a);
+    T(l.d,400,y+46,13,DIM,'left',400,a*0.95);
+    badge(l.risk,850,y+44,20,l.risk==='高'?WARN:OK,a);
+  }
+
+  // 右侧：429 含义
+  const ra=eo(seg(t,2.2,2.8));
+  box(950,192,510,290,PANEL,rgba(WARN,0.55),13,1.7,ra);
+  T('429 的正确读法',980,228,16,WARN,'left',700,ra);
+  const R=[
+    '不是"系统故障"，是"你太快了"',
+    '看 retry-after 响应头',
+    '它能告诉你几秒后再试',
+    '别立刻重试 —— 那只会继续 429'
+  ];
+  for(let i=0;i<4;i++){
+    const a=eo(seg(t,2.4+i*0.28,2.75+i*0.28));
+    T('· '+R[i],980,270+i*44,13,i===1?ACC3:TXT,'left',400,a);
+  }
+
+  // TPM 示意
+  const ba=eo(seg(t,3.8,4.4));
+  if(ba>0){
+    T('为什么 TPM 最容易被忽略',140,528,16,ACC,'left',700,ba);
+    const barY=568;
+    box(140,barY,1320,44,'rgba(42,53,67,0.5)',rgba(LINE,0.9),10,1.2,ba);
+    box(140,barY,1320*0.88,rgba(WARN,0.5),null,10,0,ba);
+    T('一个 8 万字的文档问答 = 12 万 token',190,barY+22,13,TXT,'left',600,ba);
+    T('配额 10 万/分钟 → 一次请求就超了',1000,barY+22,13,WARN,'left',600,ba);
+    T('所以长文档任务要排队 + 切片，而不是并发猛冲',140,646,14,DIM,'left',400,ba);
+  }
+
+  T('原来如此',140,720,17,ACC,'left',700,eo(seg(t,5.0,5.5)));
+  T('限流不是障碍，是合同条款 —— 它按 token 卖，你就得按 token 规划。',230,720,17,TXT,'left',400,eo(seg(t,5.0,5.5))*0.96);
+  T('先算清一次请求要吃多少 token，再决定能并发几个。',230,764,15,DIM,'left',400,eo(seg(t,5.6,6.1))*0.95);
+}
+
+/* ================= S5 重试 ================= */
+function S5(t){
+  T('重试这件事，做错比不做更糟',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('该重的不重，不该重的重了 —— 一个让用户等，一个让账单翻倍',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 可重试 vs 不可
+  const ca=eo(seg(t,0.5,1.0));
+  box(140,192,620,180,PANEL,rgba(OK,0.55),12,1.6,ca);
+  T('可以重试',170,226,15,OK,'left',700,ca);
+  const RET=['429 限流','500 / 502 / 503','连接超时、读超时','连接被重置'];
+  for(let i=0;i<4;i++){
+    const a=eo(seg(t,0.7+i*0.22,1.05+i*0.22));
+    T('✓ '+RET[i],170,268+i*26,13,TXT,'left',400,a);
+  }
+
+  const da=eo(seg(t,1.5,2.0));
+  box(840,192,620,180,PANEL,rgba(WARN,0.55),12,1.6,da);
+  T('不能重试',870,226,15,WARN,'left',700,da);
+  const NORET=['400 参数写错了','401 / 403 权限','内容审核拒绝','上下文超长'];
+  for(let i=0;i<4;i++){
+    const a=eo(seg(t,1.7+i*0.22,2.05+i*0.22));
+    T('✗ '+NORET[i],870,268+i*26,13,TXT,'left',400,a);
+  }
+  T('这些重试一万次也一样，只会浪费时间和钱',870,346,12,DIM,'left',400,eo(seg(t,2.8,3.2))*0.95);
+
+  // 退避曲线
+  const ba=eo(seg(t,3.2,3.8));
+  T('重试间隔：指数退避 + 抖动',140,412,16,ACC,'left',700,ba);
+  const bx=140, by=456, bw=760, bh=150;
+  box(bx,by,bw,bh,'rgba(10,15,20,0.9)',rgba(LINE,0.8),10,1.2,ba*0.9);
+  const delays=[1,2,4,8];
+  for(let i=0;i<4;i++){
+    const a=eo(seg(t,3.4+i*0.3,3.8+i*0.3));
+    const h=bh*0.82*((i+1)/4);
+    const x=bx+70+i*170, w=76;
+    box(x,by+bh-24-h,w,h,rgba(ACC,0.35),rgba(ACC,0.9),5,1.4,a);
+    T(delays[i]+'s',x+w/2,by+bh-24-h-20,14,ACC,'center',700,a);
+  }
+  T('每次都翻倍，再加一点随机偏移（jitter）—— 防止所有客户端在同一秒一起重试',140,626,13,DIM,'left',400,ba*0.95);
+
+  // 幂等
+  const ia=eo(seg(t,4.6,5.2));
+  box(950,412,510,214,PANEL,rgba(ACC2,0.55),12,1.6,ia);
+  T('重试前必须解决的前提：幂等',980,448,15,ACC2,'left',700,ia);
+  T('请求里带一个唯一的 request_id，服务端见到同一个 id 直接返回上次结果。',980,494,13,TXT,'left',400,ia);
+  T('否则重试 = 重复生成 = 重复扣费。',980,548,13,WARN,'left',500,ia*0.95);
+  T('流式场景更麻烦：前面已经吐出去的字，没法撤回。',980,588,13,DIM,'left',400,ia*0.95);
+
+  T('原来如此',140,700,17,ACC,'left',700,eo(seg(t,5.8,6.3)));
+  T('重试不是"再试一次"，是"在确认安全的前提下再试一次" —— 先判类型，再退避，再保证幂等。',230,700,17,TXT,'left',400,eo(seg(t,5.8,6.3))*0.96);
+  T('三个缺一个，重试就从保险变成了风险。',230,744,15,DIM,'left',400,eo(seg(t,6.4,6.9))*0.95);
+}
+
+/* ================= S6 超时与降级 ================= */
+function S6(t){
+  T('还有一类问题：它没报错，就是不给',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('所以超时不能只有一个数，至少拆成两段',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 时间轴
+  const la=eo(seg(t,0.5,1.1));
+  box(140,192,1320,180,'rgba(10,15,20,0.9)',rgba(ACC2,0.5),12,1.6,la);
+  T('一次请求的时间轴',170,224,14,ACC2,'left',700,la);
+
+  ctx.save();ctx.globalAlpha=la;
+  ctx.strokeStyle=rgba(LINE,0.9);ctx.lineWidth=3;
+  ctx.beginPath();ctx.moveTo(200,300);ctx.lineTo(1400,300);ctx.stroke();
+  ctx.restore();
+
+  const marks=[
+    {x:200,l:'发请求',c:DIM},
+    {x:420,l:'排队',c:ACC3},
+    {x:640,l:'首字到达',c:ACC},
+    {x:1400,l:'生成结束',c:OK}
+  ];
+  for(let i=0;i<marks.length;i++){
+    const a=eo(seg(t,0.8+i*0.3,1.2+i*0.3));
+    ctx.save();ctx.globalAlpha=a;
+    ctx.fillStyle=marks[i].c;ctx.beginPath();ctx.arc(marks[i].x,300,7,0,Math.PI*2);ctx.fill();
+    ctx.restore();
+    T(marks[i].l,marks[i].x,262,13,marks[i].c,'center',600,a);
+  }
+  // 两段超时标注
+  const a1=eo(seg(t,2.2,2.7));
+  T('首字超时 15s',320,336,13,WARN,'center',600,a1);
+  arrow(200,318,640,318,rgba(WARN,0.8*a1),1.6,a1);
+  const a2=eo(seg(t,2.6,3.1));
+  T('总超时 120s',1020,336,13,ACC3,'center',600,a2);
+  arrow(200,352,1400,352,rgba(ACC3,0.7*a2),1.6,a2);
+
+  // 区别
+  const da=eo(seg(t,3.4,4.0));
+  T('为什么要拆两段',140,400,17,ACC,'left',700,da);
+  const D=[
+    {k:'卡在首字之前',d:'大概率是排队、限流或服务过载 —— 该做的是切节点 / 降级，不是继续等',c:ACC3},
+    {k:'首字之后的慢',d:'模型在正常生成，只是长 —— 该做的是提示用户"正在输出"，别掐断',c:ACC}
+  ];
+  for(let i=0;i<2;i++){
+    const d=D[i], a=eo(seg(t,3.6+i*0.4,4.0+i*0.4));
+    const x=140+i*670;
+    box(x,436,630,112,PANEL,rgba(d.c,0.55),11,1.5,a);
+    T(d.k,x+24,472,15,d.c,'left',700,a);
+    T(d.d,x+24,506,13,DIM,'left',400,a*0.95);
+  }
+
+  // 降级
+  const ga=eo(seg(t,4.8,5.4));
+  T('降级的三个档次',140,584,16,ACC,'left',700,ga);
+  const G=[
+    {n:'换小的',d:'大模型超时 → 小模型先答，够用就行',c:OK},
+    {n:'先给旧的',d:'有缓存或历史答案，先顶上，后台再算新的',c:ACC2},
+    {n:'老实说',d:'都不行就明确告诉用户稍后重试，别转圈',c:ACC3}
+  ];
+  for(let i=0;i<3;i++){
+    const g=G[i], a=eo(seg(t,5.0+i*0.3,5.4+i*0.3));
+    const x=140+i*450;
+    box(x,620,410,100,PANEL,rgba(g.c,0.5),10,1.5,a);
+    T(g.n,x+22,654,15,g.c,'left',700,a);
+    T(g.d,x+22,686,12,DIM,'left',400,a*0.95);
+  }
+
+  T('原来如此',140,772,17,ACC,'left',700,eo(seg(t,6.4,6.9)));
+  T('用户能接受"慢一点"和"差一点"，不能接受"没反应" —— 降级的意义就是永远给个反应。',230,772,17,TXT,'left',400,eo(seg(t,6.4,6.9))*0.96);
+}
+
+/* ================= S7 成本错觉 ================= */
+function S7(t){
+  T('两个关于成本的错觉',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('很多团队上量之后才发现，账单和预估对不上',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const M=[
+    {n:'错觉一：流式能省钱',t:'不省。按 token 计价，流不流式一个价。',d:'流式只改善体感，一点都不便宜 —— 它甚至因为长连接占用，让并发成本更高。',c:WARN},
+    {n:'错觉二：用户关了就不花钱',t:'不一定。请求已经被处理，token 就已经消耗了。',d:'除非你在前端断开时同步发取消请求（abort），否则服务端照样算完、照样计费。',c:ACC3}
+  ];
+  for(let i=0;i<2;i++){
+    const m=M[i], st=0.5+i*1.6, a=eo(seg(t,st,st+0.5));
+    const y=192+i*180;
+    box(140,y,1320,152,PANEL,rgba(m.c,0.6),13,1.7,a);
+    badge(String(i+1),184,y+46,21,m.c,a);
+    T(m.n,228,y+34,18,TXT,'left',700,a);
+    T(m.t,228,y+72,14,m.c,'left',500,a);
+    T(m.d,228,y+112,13,DIM,'left',400,a*0.95);
+  }
+
+  // 省钱的真办法
+  const sa=eo(seg(t,3.8,4.4));
+  T('真正能省钱的地方',140,570,17,ACC,'left',700,sa);
+  const S=[
+    {n:'砍输入',d:'同样的问题，prompt 少 2000 字，长期省得最多',c:ACC},
+    {n:'用缓存',d:'固定前缀命中缓存，价格差好几倍',c:ACC2},
+    {n:'选对档位',d:'简单任务用便宜模型，别一律上最贵的',c:ACC3},
+    {n:'限输出',d:'max_tokens 卡住上限，防跑飞的回答',c:OK}
+  ];
+  for(let i=0;i<4;i++){
+    const s=S[i], a=eo(seg(t,4.0+i*0.3,4.4+i*0.3));
+    const x=140+i*335;
+    box(x,606,305,120,PANEL,rgba(s.c,0.5),10,1.5,a);
+    badge(String(i+1),x+34,640,15,s.c,a);
+    T(s.n,x+62,640,15,s.c,'left',700,a);
+    T(s.d,x+20,684,12,DIM,'left',400,a*0.95);
+  }
+
+  T('原来如此',140,780,17,ACC,'left',700,eo(seg(t,5.6,6.1)));
+  T('省钱从来不在"怎么调接口"，而在"发了多少字进去"和"让谁去答"。',230,780,17,TXT,'left',400,eo(seg(t,5.6,6.1))*0.96);
+}
+
+/* ================= S8 监控 ================= */
+function S8(t){
+  T('上线之后，四个数字决定生死',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('这四个数掉下来，用户就会走 —— 而它们不会自己报警',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const C=[
+    {n:'首字延迟 P95',v:'1.2s',ok:'< 1.5s',c:ACC},
+    {n:'输出速度',v:'58 tok/s',ok:'> 30',c:ACC2},
+    {n:'429 占比',v:'3.4%',ok:'< 5%',c:ACC3},
+    {n:'重试成功率',v:'82%',ok:'> 80%',c:OK}
+  ];
+  for(let i=0;i<4;i++){
+    const c=C[i], a=eo(seg(t,0.5+i*0.32,0.9+i*0.32));
+    const x=140+i*335;
+    box(x,192,305,150,PANEL,rgba(c.c,0.6),12,1.6,a);
+    T(c.n,x+20,222,13,DIM,'left',600,a);
+    T(c.v,x+20,268,30,c.c,'left',700,a);
+    T('目标 '+c.ok,x+20,312,12,DIM,'left',400,a*0.95);
+  }
+
+  // 曲线
+  const ga=eo(seg(t,2.2,2.8));
+  box(140,368,1320,270,'rgba(10,15,20,0.9)',rgba(LINE,0.8),12,1.5,ga);
+  T('首字延迟趋势（一周）',170,402,13,DIM,'left',600,ga);
+
+  // 网格
+  ctx.save();ctx.globalAlpha=ga*0.5;
+  ctx.strokeStyle=rgba(LINE,0.8);ctx.lineWidth=1;
+  for(let i=0;i<4;i++){
+    ctx.beginPath();ctx.moveTo(200,440+i*48);ctx.lineTo(1420,440+i*48);ctx.stroke();
+  }
+  ctx.restore();
+
+  // 折线：缓慢上升然后暴涨
+  const pts=[];
+  for(let i=0;i<=28;i++){
+    const x=200+i*(1220/28);
+    let y;
+    if(i<16) y=580-i*3;
+    else y=532+(i-16)*(i-16)*0.9;
+    pts.push([x,clamp(y,442,600)]);
+  }
+  const prog=seg(t,2.4,4.6);
+  ctx.save();ctx.globalAlpha=ga;
+  ctx.strokeStyle=ACC;ctx.lineWidth=2.6;ctx.lineJoin='round';
+  ctx.beginPath();
+  const n=Math.floor(pts.length*prog);
+  for(let i=0;i<n;i++){
+    if(i===0)ctx.moveTo(pts[i][0],pts[i][1]);
+    else ctx.lineTo(pts[i][0],pts[i][1]);
+  }
+  ctx.stroke();
+  if(n>0){
+    ctx.fillStyle=ACC;ctx.beginPath();ctx.arc(pts[Math.min(n,pts.length-1)][0],pts[Math.min(n,pts.length-1)][1],5,0,Math.PI*2);ctx.fill();
+  }
+  ctx.restore();
+
+  const wa=eo(seg(t,4.8,5.4));
+  T('↑ 这里开始变慢，但没有任何报错',1080,480,13,WARN,'left',600,wa);
+
+  const ba=eo(seg(t,5.6,6.2));
+  T('为什么必须自己埋点：模型服务不会告诉你"变慢了"，它只是安静地慢下去。',140,672,15,TXT,'left',400,ba);
+
+  T('原来如此',140,740,17,ACC,'left',700,eo(seg(t,6.6,7.1)));
+  T('大模型应用最典型的故障不是"挂了"，是"慢慢变差" —— 只有曲线能看见它。',230,740,17,TXT,'left',400,eo(seg(t,6.6,7.1))*0.96);
+  T('埋四个点，比写四千行代码有用。',230,784,15,DIM,'left',400,eo(seg(t,7.2,7.7))*0.95);
+}
+
+/* ================= S9 收尾 ================= */
+function S9(t){
+  const g=ctx.createRadialGradient(VW/2,VH/2,60,VW/2,VH/2,620);
+  g.addColorStop(0,'rgba(126,231,135,0.10)');g.addColorStop(1,'rgba(126,231,135,0)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,VW,VH);
+
+  T('原来如此',VW/2,VH/2-110,22,ACC,'center',700,eo(seg(t,0.1,0.9)));
+  T('本地跑通，只证明了它「能用」',VW/2,VH/2-40,42,TXT,'center',700,eo(seg(t,0.4,1.2)));
+  T('流式、限流、超时、监控，才决定它「能上线」',VW/2,VH/2+34,42,ACC,'center',700,eo(seg(t,0.9,1.7)));
+
+  T('这四件事做完，你就有了一个不会在半夜炸的服务。',VW/2,VH/2+130,20,DIM,'center',400,eo(seg(t,2.0,2.8))*0.95);
+  T('下一集：记忆系统 —— 让 AI 记住上次聊到哪',VW/2,VH/2+206,17,ACC2,'center',600,eo(seg(t,3.2,4.0))*0.9);
+}
+
+/* ================= 时间轴 ================= */
+const SCENES=[
+  {n:'开场',        d:4.5,  f:S0},
+  {n:'为什么流式',  d:11.0, f:S1},
+  {n:'怎么实现',    d:11.0, f:S2},
+  {n:'流式的麻烦',  d:11.0, f:S3},
+  {n:'限流三层',    d:11.0, f:S4},
+  {n:'重试',        d:11.0, f:S5},
+  {n:'超时降级',    d:11.0, f:S6},
+  {n:'成本错觉',    d:10.5, f:S7},
+  {n:'监控',        d:11.0, f:S8},
+  {n:'收尾',        d:6.0,  f:S9}
+];
+const TOTAL=SCENES.reduce((s,x)=>s+x.d,0);
+
+let clock=0, playing=true, last=0;
+
+function locate(g){
+  let acc=0;
+  for(let i=0;i<SCENES.length;i++){
+    if(g<acc+SCENES[i].d||i===SCENES.length-1)return {i:i,t:g-acc};
+    acc+=SCENES[i].d;
+  }
+  return {i:SCENES.length-1,t:SCENES[SCENES.length-1].d};
+}
+
+function drawTopHUD(idx){
+  T('Streaming · Rate Limit · Retry',44,34,15,DIM,'left',600,1);
+  T('/ '+SCENES[idx].n,370,34,15,ACC,'left',600,1);
+}
+
+function drawProgress(g){
+  const y=VH-8;
+  ctx.fillStyle='rgba(42,53,67,0.9)';ctx.fillRect(0,y,VW,3);
+  ctx.fillStyle=ACC;ctx.fillRect(0,y,VW*(g/TOTAL),3);
+  let acc=0;
+  for(let i=0;i<SCENES.length;i++){
+    const x=VW*(acc/TOTAL);
+    ctx.fillStyle=BG;ctx.fillRect(x-1,y-3,2,9);
+    acc+=SCENES[i].d;
+  }
+}
+
+function render(){
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.fillStyle=BG;ctx.fillRect(0,0,cv.width/dpr,cv.height/dpr);
+  ctx.setTransform(dpr*scale,0,0,dpr*scale,offX*dpr,offY*dpr);
+
+  const loc=locate(clock);
+  const sc=SCENES[loc.i];
+  const fin=cl01(loc.t/0.42), fout=cl01((sc.d-loc.t)/0.34);
+  const alpha=Math.min(fin,fout);
+
+  ctx.save();ctx.globalAlpha=alpha;sc.f(loc.t);ctx.restore();
+  drawTopHUD(loc.i);
+  drawProgress(clock);
+}
+
+function loop(ts){
+  if(!last)last=ts;
+  let dt=(ts-last)/1000;last=ts;
+  if(dt>0.12)dt=0.12;
+  if(playing){clock+=dt;if(clock>=TOTAL)clock=0;}
+  render();
+  requestAnimationFrame(loop);
+}
+
+function resize(){
+  dpr=Math.min(window.devicePixelRatio||1,2);
+  const w=window.innerWidth,h=window.innerHeight;
+  cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);
+  cv.style.width=w+'px';cv.style.height=h+'px';
+  scale=Math.min(w/VW,h/VH);
+  offX=(w-VW*scale)/2;offY=(h-VH*scale)/2;
+}
+window.addEventListener('resize',resize);
+
+document.addEventListener('keydown',e=>{
+  if(e.code==='Space'){e.preventDefault();playing=!playing;last=0;}
+  else if(e.code==='ArrowRight'||e.code==='ArrowLeft'){
+    const loc=locate(clock);
+    const target=e.code==='ArrowRight'?Math.min(loc.i+1,SCENES.length-1):Math.max(loc.i-1,0);
+    let acc=0;
+    for(let i=0;i<SCENES.length;i++){if(i===target){clock=acc;break;}acc+=SCENES[i].d;}
+    last=0;
+  } else if(e.key==='r'||e.key==='R'){clock=0;last=0;playing=true;}
+});
+
+cv.addEventListener('click',e=>{
+  const r=cv.getBoundingClientRect();
+  const w=r.width,h=r.height;
+  const s=Math.min(w/VW,h/VH);
+  const ox=(w-VW*s)/2, oy=(h-VH*s)/2;
+  const vx=(e.clientX-r.left-ox)/s, vy=(e.clientY-r.top-oy)/s;
+  if(vy>VH-24){clock=cl01(vx/VW)*TOTAL;last=0;}
+  else {playing=!playing;last=0;}
+});
+
+try{
+  const qp=new URLSearchParams(location.search);
+  if(qp.has('t')){
+    const v=parseFloat(qp.get('t'));
+    if(!isNaN(v))clock=Math.max(0,Math.min(TOTAL-0.04,v));
+  }
+  if(qp.get('pause')==='1')playing=false;
+}catch(err){}
+
+resize();
+requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

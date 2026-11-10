@@ -1,0 +1,25 @@
+<%
+  page.layout === 'tags'
+  page.title = '标签'
+
+  let min_font = theme.tagcloud.min_font || 15
+  let max_font = theme.tagcloud.max_font || 30
+  let unit = theme.tagcloud.unit || 'px'
+  let start_color = theme.tagcloud.start_color
+  let end_color = theme.tagcloud.end_color
+%>
+
+<div class="tag-wrapper">
+  <h1 class="list-header"><%= site.tags.length || 0 %> 标签 </h1>
+  <div class="tagcloud">
+    <%- tagcloud({
+      min_font: min_font,
+      max_font: max_font,
+      amount: 999,
+      unit: unit,
+      color: true,
+      start_color,
+      end_color
+    }) %>
+  </div>
+</div>

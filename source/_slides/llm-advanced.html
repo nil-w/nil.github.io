@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>大模型入门 · 第二集：往深一层</title>
+<style>
+  html,body{margin:0;height:100%;background:#07090e;overflow:hidden;}
+  canvas{display:block;cursor:pointer;}
+</style>
+</head>
+<body>
+<canvas id="cv"></canvas>
+<script>
+(function(){
+"use strict";
+
+const VW=1600, VH=900;
+const cv=document.getElementById('cv'), ctx=cv.getContext('2d');
+let scale=1, offX=0, offY=0, dpr=1;
+
+const FONT='"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif';
+const MONO='Menlo,Consolas,"SF Mono",monospace';
+
+const BG='#0a0d14', PANEL='#121824', PANEL2='#18212e', LINE='#2a3646',
+      TXT='#e8eef8', DIM='#8a97a9', CYAN='#3ecde0', ORANGE='#ff9c42',
+      PURPLE='#9c7eff', GREEN='#5cd692', PINK='#ff6c96', YELLOW='#f5d76e';
+
+const clamp=(x,a,b)=>x<a?a:(x>b?b:x);
+const cl01=x=>clamp(x,0,1);
+const seg=(t,a,b)=>b<=a?(t>=b?1:0):cl01((t-a)/(b-a));
+const eo=t=>1-Math.pow(1-cl01(t),3);
+const lerp=(a,b,t)=>a+(b-a)*t;
+function hex2rgb(h){return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];}
+function mixc(c1,c2,t){const a=hex2rgb(c1),b=hex2rgb(c2);t=cl01(t);
+  return 'rgb('+Math.round(lerp(a[0],b[0],t))+','+Math.round(lerp(a[1],b[1],t))+','+Math.round(lerp(a[2],b[2],t))+')';}
+function rgba(c,a){const r=hex2rgb(c);return 'rgba('+r[0]+','+r[1]+','+r[2]+','+cl01(a)+')';}
+function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);
+  ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
+
+function T(s,x,y,size,color,align,weight,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.fillStyle=color;ctx.font=(weight||400)+' '+size+'px '+FONT;
+  ctx.textAlign=align||'left';ctx.textBaseline='middle';
+  ctx.fillText(s,x,y);ctx.restore();
+}
+function box(x,y,w,h,fill,stroke,r,lw,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  rr(x,y,w,h,r===undefined?12:r);
+  if(fill){ctx.fillStyle=fill;ctx.fill();}
+  if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lw||2;ctx.stroke();}
+  ctx.restore();
+}
+function arrow(x1,y1,x2,y2,color,lw,alpha,head){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=lw||2;ctx.lineCap='round';
+  ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+  if(head!==false){
+    const ang=Math.atan2(y2-y1,x2-x1), L=9;
+    ctx.beginPath();ctx.moveTo(x2,y2);
+    ctx.lineTo(x2-L*Math.cos(ang-0.4),y2-L*Math.sin(ang-0.4));
+    ctx.lineTo(x2-L*Math.cos(ang+0.4),y2-L*Math.sin(ang+0.4));
+    ctx.closePath();ctx.fill();
+  }
+  ctx.restore();
+}
+
+/* ================= S0 ================= */
+function S0(t){
+  const a1=eo(seg(t,0.1,1.0)), a2=eo(seg(t,0.7,1.6)), a3=eo(seg(t,1.4,2.3));
+  const g=ctx.createRadialGradient(VW/2,VH/2-40,40,VW/2,VH/2-40,660);
+  g.addColorStop(0,'rgba(156,126,255,0.14)');g.addColorStop(1,'rgba(156,126,255,0)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,VW,VH);
+
+  T('第二集',VW/2,VH/2-180,22,PURPLE,'center',700,a1);
+  T('往深一层',VW/2,VH/2-96,84,TXT,'center',700,a1);
+  T('第一集讲了「它是什么」———— 这集讲「它内部怎么转，怎么用」',VW/2,VH/2-4,30,CYAN,'center',400,a2);
+  const lw=560*a3;
+  ctx.strokeStyle=rgba(PURPLE,0.8*a3);ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(VW/2-lw/2,VH/2+50);ctx.lineTo(VW/2+lw/2,VH/2+50);ctx.stroke();
+  T('字怎么变成数字 · 注意力怎么算 · 怎么学会 · 怎么调 · 怎么查资料 · 怎么动手',
+    VW/2,VH/2+112,20,DIM,'center',400,a3*0.95);
+}
+
+/* ================= S1 字怎么变成数字 ================= */
+const TOKS=[['今天',CYAN],['天气',ORANGE],['不错',PURPLE],['适合',GREEN],['出门',PINK],['。',DIM]];
+const PTS=[['猫',1150,432,'R'],['狗',1216,398,'R'],['兔子',1258,492,'R'],
+           ['汽车',1064,556,'C'],['飞机',1012,498,'C'],
+           ['苹果',1330,296,'G'],['香蕉',1372,352,'G']];
+function S1(t){
+  T('第一步：把字变成一串数字',140,86,42,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('机器不认识汉字，只认识数字。这中间有两次转换。',140,136,22,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 原文
+  const a0=eo(seg(t,0.3,0.9));
+  T('原句：今天天气不错，适合出门。',140,190,22,DIM,'left',400,a0);
+
+  // token 块
+  T('① 先切成小块（token）',140,238,19,CYAN,'left',700,a0);
+  let x=140;
+  const tw=[];
+  for(let i=0;i<TOKS.length;i++){
+    const n=TOKS[i][0].length;
+    const w=n<=1?56:56+n*34;
+    tw.push([x,w]);
+    const st=0.5+i*0.14, a=eo(seg(t,st,st+0.28));
+    if(a>0){
+      box(x,258,w,50,mixc(PANEL,TOKS[i][1],0.30*a),rgba(TOKS[i][1],0.9*a),8,1.6,a);
+      T(TOKS[i][0],x+w/2,283,20,TXT,'center',600,a);
+      T('#'+(1200+i*731),x+w/2,323,11,rgba(TOKS[i][1],0.75),'center',400,a*0.9);
+    }
+    x+=w+12;
+  }
+
+  // 向量
+  const b0=eo(seg(t,1.8,2.4));
+  T('② 每个小块变成一整排数字（向量）',140,372,19,PURPLE,'left',700,b0);
+  for(let i=0;i<TOKS.length;i++){
+    const st=2.1+i*0.16, a=eo(seg(t,st,st+0.3));
+    if(a<=0)continue;
+    const y=400+i*46;
+    T(TOKS[i][0],140,y+16,17,TOKS[i][1],'left',600,a);
+    for(let j=0;j<14;j++){
+      const v=(Math.sin(i*3.7+j*2.3)*0.5+0.5);
+      const col=mixc('#1a2430',TOKS[i][1],v);
+      box(212+j*44,y+2,38,30,col,null,3,0,0.35+0.65*a);
+    }
+    T('…一共几百到几千个数',838,y+16,13,DIM,'left',400,a*0.8);
+  }
+
+  // 右：向量空间
+  const c0=eo(seg(t,3.6,4.2));
+  if(c0>0){
+    box(1000,240,460,380,mixc(BG,PANEL2,0.5),rgba(LINE,0.9*c0),14,1.5,c0);
+    T('这些数字组成「坐标」',1024,270,17,TXT,'left',700,c0);
+    // 轴
+    ctx.save();ctx.globalAlpha=0.25*c0;ctx.strokeStyle=DIM;ctx.setLineDash([4,6]);
+    ctx.beginPath();ctx.moveTo(1024,470);ctx.lineTo(1436,470);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(1230,300);ctx.lineTo(1230,590);ctx.stroke();
+    ctx.restore();
+    // 分组圈
+    const groups={R:[1150,432],C:[1038,527],G:[1351,324]};
+    for(let k in groups){
+      const a=eo(seg(t,4.2,4.8));
+      ctx.save();ctx.globalAlpha=0.16*a;ctx.fillStyle=k==='R'?ORANGE:(k==='C'?CYAN:GREEN);
+      ctx.beginPath();ctx.arc(groups[k][0],groups[k][1],96,0,Math.PI*2);ctx.fill();ctx.restore();
+    }
+    for(let i=0;i<PTS.length;i++){
+      const st=3.9+i*0.12, a=eo(seg(t,st,st+0.26));
+      if(a<=0)continue;
+      const p=PTS[i], col=p[3]==='R'?ORANGE:(p[3]==='C'?CYAN:GREEN);
+      ctx.save();ctx.globalAlpha=a;ctx.fillStyle=col;
+      ctx.beginPath();ctx.arc(p[1],p[2],6,0,Math.PI*2);ctx.fill();ctx.restore();
+      T(p[0],p[1],p[2]-20,16,TXT,'center',600,a);
+    }
+    T('意思越近 → 坐标越近',1024,596,15,PURPLE,'left',600,eo(seg(t,5.0,5.6)));
+    T('「猫」的坐标天然挨着「狗」，离「汽车」很远',1024,624,13,DIM,'left',400,eo(seg(t,5.2,5.8))*0.95);
+  }
+
+  // 底部两条提示
+  const d0=eo(seg(t,6.2,6.9));
+  if(d0>0){
+    box(140,690,760,76,PANEL,mixc(LINE,CYAN,0.4),12,1.5,d0);
+    T('还要加「位置」',176,728,17,CYAN,'left',700,d0);
+    T('不然「猫吃鱼」和「鱼吃猫」在它眼里一模一样。',340,728,17,TXT,'left',400,d0);
+  }
+  const e0=eo(seg(t,7.0,7.7));
+  T('顺带一提：一个汉字通常算 1~2 个 token；英文长词会被砍成几块，unbelievable → un / believ / able。',
+    140,808,16,DIM,'left',400,e0*0.95);
+}
+
+/* ================= S2 注意力 ================= */
+const AW=[['小猫','鱼',0.62],['小猫','藏',0.18],['小猫','沙发',0.12],['小猫','在',0.05],['小猫','把',0.03]];
+const WORDS2=['小猫','把','鱼','藏','在','沙发'];
+function S2(t){
+  T('第二步：注意力 ———— 它怎么「读上下文」',140,86,42,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('每个词都去问一句：「你们谁跟我有关系？」',140,136,22,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const ww=170,gp=16,x0=140,y0=250;
+  const pos={};
+  for(let i=0;i<WORDS2.length;i++)pos[WORDS2[i]]=x0+i*(ww+gp)+ww/2;
+
+  // 句子块
+  for(let i=0;i<WORDS2.length;i++){
+    const st=0.3+i*0.12, a=eo(seg(t,st,st+0.28));
+    if(a<=0)continue;
+    const isSrc=(i===0);
+    box(x0+i*(ww+gp),y0,ww,64,mixc(PANEL,isSrc?CYAN:PANEL2,isSrc?0.35*a:0.2*a),
+        rgba(isSrc?CYAN:LINE,0.9*a),10,isSrc?2.4:1.4,a);
+    T(WORDS2[i],pos[WORDS2[i]],y0+32,24,TXT,'center',600,a);
+  }
+
+  // 弧线（向下）
+  for(let k=0;k<AW.length;k++){
+    const st=1.0+k*0.28, a=eo(seg(t,st,st+0.42));
+    if(a<=0)continue;
+    const src=AW[k][0], dst=AW[k][1], w=AW[k][2];
+    const sx=pos[src], dx=pos[dst];
+    const cy=y0+64+70+w*210;
+    ctx.save();ctx.globalAlpha=a*0.9;
+    ctx.strokeStyle=mixc(PURPLE,CYAN,w/0.62);ctx.lineWidth=1.2+w*15;ctx.lineCap='round';
+    ctx.beginPath();ctx.moveTo(sx,y0+64);
+    ctx.quadraticCurveTo((sx+dx)/2,cy,dx,y0+64);ctx.stroke();
+    ctx.restore();
+    // 权重标签
+    const lx=(sx+dx)/2, ly=y0+64+(cy-(y0+64))*0.5;
+    if(w>=0.05){
+      ctx.save();ctx.globalAlpha=a;
+      ctx.fillStyle=BG;rr(lx-30,ly-14,60,26,6);ctx.fill();
+      ctx.strokeStyle=rgba(CYAN,0.7);ctx.lineWidth=1;ctx.stroke();
+      ctx.restore();
+      T(Math.round(w*100)+'%',lx,ly,14,CYAN,'center',700,a);
+    }
+  }
+  T('箭头越粗 = 这一处信息被吸得越多',140,y0+300,16,DIM,'left',400,eo(seg(t,2.6,3.2))*0.95);
+
+  // 右侧 QKV
+  const qkv=[
+    ['Q 提问','我问：谁跟我有关？','"小猫"发出去的问题',CYAN],
+    ['K 名片','我亮出：我是啥？','每个词自己的标签',PURPLE],
+    ['V 内容','配对上了，就把内容给你','真正的信息在这里',ORANGE]
+  ];
+  for(let i=0;i<3;i++){
+    const st=3.2+i*0.4, a=eo(seg(t,st,st+0.4));
+    if(a<=0)continue;
+    const y=210+i*118;
+    box(1090,y,370,100,mixc(BG,PANEL2,0.6),mixc(LINE,qkv[i][3],0.5*a),12,1.6,a);
+    T(qkv[i][0],1116,y+30,19,qkv[i][3],'left',700,a);
+    T(qkv[i][1],1116,y+58,15,TXT,'left',400,a*0.95);
+    T(qkv[i][2],1116,y+80,12,DIM,'left',400,a*0.8);
+  }
+
+  // 下方两块
+  const b1=eo(seg(t,4.8,5.4));
+  if(b1>0){
+    box(140,556,610,120,PANEL,mixc(LINE,GREEN,0.45),12,1.6,b1);
+    T('同时开很多组（多头）',176,594,19,GREEN,'left',700,b1);
+    T('8~128 个小组一起看，有的管语法、有的管指代、',176,626,16,TXT,'left',400,b1*0.95);
+    T('有的管「谁修饰谁」。最后拼起来，理解就立体了。',176,652,16,TXT,'left',400,b1*0.95);
+  }
+  const b2=eo(seg(t,5.6,6.2));
+  if(b2>0){
+    box(790,556,670,120,PANEL,mixc(LINE,PINK,0.45),12,1.6,b2);
+    T('不许偷看后面',826,594,19,PINK,'left',700,b2);
+    T('生成时只能看已经出现的词，后面的要遮住。',826,626,16,TXT,'left',400,b2*0.95);
+    T('不遮住就等于考试时偷看答案，学不会。',826,652,16,TXT,'left',400,b2*0.95);
+  }
+  const b3=eo(seg(t,6.8,7.4));
+  T('专业名词：Q / K / V、多头注意力、因果掩码（Causal Mask）。记住本质就行：问 — 对 — 取。',
+    140,724,16,DIM,'left',400,b3*0.95);
+}
+
+/* ================= S3 为什么能叠 80 层 ================= */
+function S3(t){
+  T('凭什么能叠 80 层还不崩？',140,86,42,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('关键在一个小设计：每层只「补一点」，不推翻重来',140,136,22,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 左：主干
+  const cx=300;
+  const a0=eo(seg(t,0.3,0.8));
+  T('往上传的「主干」',176,190,16,CYAN,'left',700,a0);
+  ctx.save();ctx.globalAlpha=a0*0.6;ctx.strokeStyle=rgba(CYAN,0.7);ctx.lineWidth=4;
+  ctx.beginPath();ctx.moveTo(cx,740);ctx.lineTo(cx,215);ctx.stroke();ctx.restore();
+  for(let i=0;i<5;i++){
+    const st=0.5+i*0.28, a=eo(seg(t,st,st+0.30));
+    if(a<=0)continue;
+    const y=680-i*105;
+    box(cx-100,y-18,200,36,mixc(BG,PANEL2,0.9),rgba(PURPLE,0.75*a),8,1.6,a);
+    T('第'+(i+1)+'层：算一遍',cx,y,14,TXT,'center',500,a);
+    // 旁路
+    if(i<4){
+      const a2=eo(seg(t,st+0.15,st+0.45));
+      ctx.save();ctx.globalAlpha=a2*0.85;ctx.strokeStyle=rgba(ORANGE,0.85);
+      ctx.lineWidth=2;ctx.setLineDash([6,5]);
+      ctx.beginPath();ctx.moveTo(cx+100,y);ctx.lineTo(cx+150,y);
+      ctx.quadraticCurveTo(cx+178,y,cx+178,y-52);
+      ctx.lineTo(cx+178,y-105-18+20);
+      ctx.quadraticCurveTo(cx+178,y-105-18,cx+152,y-105-18);
+      ctx.lineTo(cx+104,y-105-18);ctx.stroke();ctx.restore();
+      T('原样抄一份',cx+186,y-56,12,ORANGE,'left',600,a2*0.9);
+    }
+    // 加号
+    const a3=eo(seg(t,st+0.3,st+0.5));
+    ctx.save();ctx.globalAlpha=a3;
+    ctx.strokeStyle=rgba(GREEN,0.95);ctx.lineWidth=2.5;
+    ctx.beginPath();ctx.arc(cx+178,y-52,13,0,Math.PI*2);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(cx+171,y-52);ctx.lineTo(cx+185,y-52);
+    ctx.moveTo(cx+178,y-59);ctx.lineTo(cx+178,y-45);ctx.stroke();ctx.restore();
+  }
+
+  // 右：两条曲线
+  const gx=610,gy=215,gw=800,gh=420;
+  const a1=eo(seg(t,2.2,2.8));
+  if(a1>0){
+    box(gx,gy,gw,gh,mixc(BG,PANEL2,0.45),rgba(LINE,0.9*a1),14,1.4,a1);
+    T('数值幅度随层数变化',gx+24,gy+28,16,TXT,'left',700,a1);
+    // 无残差（爆炸）
+    const a2=eo(seg(t,2.8,4.0));
+    if(a2>0){
+      ctx.save();ctx.beginPath();ctx.rect(gx,gy,gw*a2,gh);ctx.clip();
+      ctx.strokeStyle=rgba(PINK,0.95);ctx.lineWidth=3;
+      ctx.beginPath();
+      let first=true;
+      for(let i=0;i<=60;i++){
+        const px=gx+40+(gw-80)*(i/80);
+        const v=Math.exp(i*0.115);
+        const py=gy+gh-40-v*2.2;
+        if(py<gy+20)break;
+        if(first){ctx.moveTo(px,py);first=false;}else ctx.lineTo(px,py);
+      }
+      ctx.stroke();ctx.restore();
+      T('不做加法（直接覆盖）→ 越叠越乱，直接爆掉',gx+520,gy+28,15,PINK,'left',600,a2*0.95);
+    }
+    // 有残差
+    const a3=eo(seg(t,4.2,5.6));
+    if(a3>0){
+      ctx.save();ctx.beginPath();ctx.rect(gx,gy,gw*a3,gh);ctx.clip();
+      ctx.strokeStyle=rgba(GREEN,0.95);ctx.lineWidth=3;
+      ctx.beginPath();
+      for(let i=0;i<=80;i++){
+        const px=gx+40+(gw-80)*(i/80);
+        const v=100+22*Math.sin(i*0.55)+12*Math.cos(i*1.3);
+        const py=gy+gh-40-v*1.1;
+        if(i===0)ctx.moveTo(px,py);else ctx.lineTo(px,py);
+      }
+      ctx.stroke();ctx.restore();
+      T('加上「原样抄一份」→ 稳如老狗，叠 80 层没问题',gx+520,gy+52,15,GREEN,'left',600,a3*0.95);
+    }
+    T('层数',gx+gw-70,gy+gh-18,14,DIM,'center',400,a1*0.9);
+  }
+
+  const b1=eo(seg(t,6.0,6.6));
+  if(b1>0){
+    box(140,672,1260,84,PANEL,mixc(LINE,GREEN,0.45),12,1.7,b1);
+    T('打个比方',176,714,18,GREEN,'left',700,b1);
+    T('像传话游戏：每人只负责补充一两个细节，不重新讲一遍 —— 传一百个人，故事还在。',340,714,18,TXT,'left',400,b1);
+  }
+  const b2=eo(seg(t,7.0,7.6));
+  T('还有个配套动作：每算完一次，把数值拉回固定范围（归一化）。不然数字越乘越大，机器直接算炸。',
+    140,792,16,DIM,'left',400,b2*0.95);
+}
+
+/* ================= S4 怎么学会 ================= */
+function S4(t){
+  T('它到底是怎么「学会」的？',140,86,42,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('四个字：猜、对答案、算差多少、把旋钮拧一点点',140,136,22,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 左：流程
+  const steps=[
+    ['① 猜','看到「一只猫坐在」，猜下一个字是「窗」',CYAN],
+    ['② 对答案','标准答案是「前」。猜错了。',ORANGE],
+    ['③ 算差多少','差距 = 损失（loss）。差得越多，罚得越重',PINK],
+    ['④ 拧旋钮','反推：是哪些旋钮导致猜错？每个拧一丁点',PURPLE]
+  ];
+  for(let i=0;i<4;i++){
+    const st=0.4+i*0.9, a=eo(seg(t,st,st+0.45));
+    if(a<=0)continue;
+    const y=195+i*105;
+    box(140,y,700,86,mixc(BG,PANEL2,0.6),mixc(LINE,steps[i][2],0.55*a),12,1.7,a);
+    T(steps[i][0],170,y+28,20,steps[i][2],'left',700,a);
+    T(steps[i][1],170,y+60,16,TXT,'left',400,a*0.95);
+    if(i<3){
+      arrow(490,y+86,490,y+101,rgba(DIM,0.8),2,a*0.9);
+    }
+  }
+  const a4=eo(seg(t,4.0,4.6));
+  T('重复几万亿次。就这么朴素。',140,632,20,CYAN,'left',600,a4*0.95);
+
+  // 右下：旋钮
+  const knobs=[[880,560],[1010,560],[1140,560],[1270,560],[1400,560]];
+  const a5=eo(seg(t,4.2,4.8));
+  for(let i=0;i<knobs.length;i++){
+    const k=knobs[i], rot=Math.sin(t*3.2+i)*0.5+(i===2?Math.sin(t*5)*0.7:0);
+    ctx.save();ctx.globalAlpha=a5;
+    ctx.strokeStyle=rgba(PURPLE,0.55);ctx.lineWidth=2.5;
+    ctx.beginPath();ctx.arc(k[0],k[1],30,Math.PI*0.8,Math.PI*2.2);ctx.stroke();
+    ctx.strokeStyle=rgba(CYAN,0.95);ctx.lineWidth=3;ctx.lineCap='round';
+    ctx.beginPath();ctx.moveTo(k[0],k[1]);
+    ctx.lineTo(k[0]+Math.cos(-Math.PI/2+rot)*22,k[1]+Math.sin(-Math.PI/2+rot)*22);ctx.stroke();
+    ctx.restore();
+    T('旋钮',k[0],k[1]+52,12,DIM,'center',400,a5*0.85);
+  }
+  T('每一个旋钮，都只被拧了极小的一下',880,650,18,TXT,'left',400,a5*0.95);
+  T('「学习」的全部含义，就是这几万亿次微调',880,680,18,DIM,'left',400,a5*0.95);
+
+  // 右上：loss 曲线
+  const a6=eo(seg(t,5.2,5.8));
+  if(a6>0){
+    box(880,195,530,300,mixc(BG,PANEL2,0.45),rgba(LINE,0.9*a6),14,1.4,a6);
+    T('训练全程：错误率一路往下掉',904,225,16,TXT,'left',700,a6);
+    ctx.save();ctx.beginPath();ctx.rect(912,240,480*a6,240);ctx.clip();
+    ctx.strokeStyle=rgba(GREEN,0.95);ctx.lineWidth=3;
+    ctx.beginPath();
+    const prog=cl01((t-5.4)/3.2);
+    const N=Math.floor(160*prog);
+    for(let i=0;i<=N;i++){
+      const px=912+480*(i/160);
+      const v=1/(1+i*0.06)+0.06;
+      const py=440-v*260;
+      if(i===0)ctx.moveTo(px,py);else ctx.lineTo(px,py);
+    }
+    ctx.stroke();ctx.restore();
+    T('训练步数 →',1350,462,13,DIM,'right',400,a6*0.9);
+    T('错误率',918,258,13,DIM,'left',400,a6*0.9);
+  }
+  const a7=eo(seg(t,7.4,8.0));
+  T('注意：它从没被教过「什么是对的」，它只在学「怎么接得更像人类写的」。这两件事不一样。',
+    140,730,18,YELLOW,'left',600,a7*0.95);
+}
+
+/* ================= S5 采样参数 ================= */
+const LOGITS=[3.2,2.6,2.2,1.5,1.1,0.8,0.4,0.1,-0.3,-0.8];
+const W10=['窗','前','台','边','上','外面','发呆','看雨','睡觉','跑掉'];
+function softmax(l,Tm){
+  const m=Math.max.apply(null,l);
+  const e=l.map(v=>Math.exp((v-m)/Tm));
+  const s=e.reduce((a,b)=>a+b,0);
+  return e.map(v=>v/s);
+}
+function S5(t){
+  T('出结果时，你能拧的那个旋钮：温度',140,86,42,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('模型给出的是「每个字的概率」。温度决定你多大胆地用这些概率。',140,136,22,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 温度循环
+  const cyc=(t%9)/9;
+  let Tm = cyc<0.5 ? lerp(0.25,1.7,cyc/0.5) : lerp(1.7,0.25,(cyc-0.5)/0.5);
+  const P=softmax(LOGITS,Tm);
+  const maxP=P[0];
+
+  // 顶部状态
+  const state = Tm<0.55?['保守','几乎每次选同一个，稳定但死板',CYAN]
+              : (Tm<1.15?['正常','有一点变化，最常用',GREEN]:['大胆','偶尔蹦出冷门词，有创意也易胡说',PINK]);
+  T('温度 = '+Tm.toFixed(2),140,190,26,TXT,'left',700,1);
+  T(state[0]+'：'+state[1],400,190,20,state[2],'left',600,1);
+
+  // 柱状图
+  const bx=140, by=620, bw=118, bgp=10, maxH=330;
+  for(let i=0;i<10;i++){
+    const a=eo(seg(t,0.4+i*0.07,0.7+i*0.07));
+    if(a<=0)continue;
+    const h=Math.max(3,P[i]*maxH);
+    const x=bx+i*(bw+bgp);
+    const isTop=(i<3);
+    box(x,by-h,bw,h,mixc(PANEL,isTop?ORANGE:PURPLE,(isTop?0.45:0.22)*a),rgba(isTop?ORANGE:PURPLE,0.85*a),8,1.4,a);
+    T((P[i]*100).toFixed(1)+'%',x+bw/2,by-h-20,14,TXT,'center',600,a);
+    T(W10[i],x+bw/2,by+22,18,TXT,'center',500,a);
+  }
+  // 基线
+  ctx.fillStyle=rgba(LINE,0.9);ctx.fillRect(140,by,1260,2);
+
+  // 说明
+  const c1=eo(seg(t,2.0,2.6));
+  if(c1>0){
+    box(140,690,600,86,PANEL,mixc(LINE,CYAN,0.45),12,1.6,c1);
+    T('温度调低 → 一根高高的尖峰',176,724,17,CYAN,'left',700,c1);
+    T('像考试只选最有把握的答案。稳，但永远同一个味。',176,752,14,TXT,'left',400,c1*0.95);
+  }
+  const c2=eo(seg(t,2.8,3.4));
+  if(c2>0){
+    box(770,690,630,86,PANEL,mixc(LINE,PINK,0.45),12,1.6,c2);
+    T('温度调高 → 一堆矮胖柱子',806,724,17,PINK,'left',700,c2);
+    T('敢选冷门词，写法有变化。但也会把「跑掉」这种词选出来。',806,752,14,TXT,'left',400,c2*0.95);
+  }
+  const c3=eo(seg(t,4.0,4.6));
+  T('还有个配套的 top-p：只从累计占 90% 的那几个词里选，长尾直接砍掉，防止胡说。',
+    140,808,16,DIM,'left',400,c3*0.95);
+}
+
+/* ================= S6 上下文与 RAG ================= */
+function S6(t){
+  T('它记不住你们公司的资料，怎么办',140,86,42,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('靠的不是「再教它一遍」，而是每次提问时把资料翻出来给它看',140,136,22,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 左：上下文档位
+  const a0=eo(seg(t,0.4,0.9));
+  T('它的「工作台」就这么大',140,196,18,CYAN,'left',700,a0);
+  box(140,220,660,150,mixc(BG,PANEL2,0.5),rgba(CYAN,0.5*a0),14,2,a0);
+  const slots=['你说的话','它的回答','给的资料','对话历史'];
+  for(let i=0;i<4;i++){
+    const a=eo(seg(t,0.6+i*0.16,0.9+i*0.16));
+    if(a<=0)continue;
+    box(164+i*158,246,142,98,mixc(PANEL,PURPLE,0.18*a),rgba(LINE,0.8*a),8,1.2,a);
+    T(slots[i],164+i*158+71,295,14,TXT,'center',500,a);
+  }
+  T('塞满了，前面的就得扔掉 —— 所以长对话它会「忘了开头」',140,394,15,ORANGE,'left',400,eo(seg(t,1.4,2.0))*0.95);
+
+  // 右：RAG 流程
+  const a1=eo(seg(t,2.2,2.8));
+  T('做法：让它先去翻书（这就叫 RAG）',140,452,18,PURPLE,'left',700,a1);
+
+  // 文档库
+  for(let i=0;i<4;i++){
+    const a=eo(seg(t,2.6+i*0.12,2.9+i*0.12));
+    if(a<=0)continue;
+    box(150+i*8,486-i*9,150,80,mixc(BG,PANEL2,0.9),rgba(LINE,0.85*a),8,1.4,a);
+  }
+  T('你的文档',165,600,14,DIM,'left',500,a1*0.9);
+
+  // 切块
+  const a2=eo(seg(t,3.2,3.8));
+  if(a2>0){
+    arrow(330,520,392,520,rgba(CYAN,0.9),2.5,a2);
+    T('切块',336,500,13,CYAN,'left',600,a2);
+    for(let i=0;i<6;i++){
+      const r=Math.floor(i/3), c=i%3;
+      box(410+c*74,486+r*46,64,38,mixc(PANEL,PURPLE,0.22*a2),rgba(PURPLE,0.8*a2),6,1.2,a2);
+    }
+  }
+
+  // 检索
+  const a3=eo(seg(t,4.2,4.8));
+  if(a3>0){
+    arrow(650,520,706,520,rgba(CYAN,0.9),2.5,a3);
+    T('算相似度',656,500,13,CYAN,'left',600,a3);
+    // 选中的块
+    const sel=[1,4,2];
+    for(let i=0;i<6;i++){
+      const r=Math.floor(i/3), c=i%3;
+      const on=sel.indexOf(i)>=0;
+      if(on){
+        box(724+c*74,486+r*46,64,38,mixc(PANEL,GREEN,0.4*a3),rgba(GREEN,0.95*a3),6,2,a3);
+      }else{
+        box(724+c*74,486+r*46,64,38,mixc(PANEL,PURPLE,0.10*a3),rgba(PURPLE,0.35*a3),6,1,a3*0.6);
+      }
+    }
+    T('最像的 3 块',724,600,13,GREEN,'left',600,a3*0.95);
+  }
+
+  // 塞回去
+  const a4=eo(seg(t,5.4,6.0));
+  if(a4>0){
+    arrow(970,520,1030,520,rgba(GREEN,0.9),2.5,a4);
+    T('塞进工作台',976,500,13,GREEN,'left',600,a4);
+    box(1048,470,420,110,mixc(BG,PANEL2,0.6),rgba(GREEN,0.6*a4),12,1.8,a4);
+    T('问题 + 这三块资料 → 一起交给模型',1074,506,15,TXT,'left',500,a4*0.95);
+    T('它照着资料回答，就有了「依据」',1074,536,14,DIM,'left',400,a4*0.9);
+  }
+
+  // 两个坑
+  const b1=eo(seg(t,6.4,7.0));
+  if(b1>0){
+    box(140,640,600,96,PANEL,mixc(LINE,ORANGE,0.45),12,1.6,b1);
+    T('坑一：切块切坏了',176,676,17,ORANGE,'left',700,b1);
+    T('一句话被切成两半，检索到半句，答案就跑偏。',176,706,14,TXT,'left',400,b1*0.95);
+  }
+  const b2=eo(seg(t,7.0,7.6));
+  if(b2>0){
+    box(770,640,670,96,PANEL,mixc(LINE,ORANGE,0.45),12,1.6,b2);
+    T('坑二：资料太长会「中间塌陷」',806,676,17,ORANGE,'left',700,b2);
+    T('塞进去 10 万字，它往往只看开头和结尾，中间那段被忽略。',806,706,14,TXT,'left',400,b2*0.95);
+  }
+  const b3=eo(seg(t,8.0,8.6));
+  T('所以：给资料要短、要分段、要点明「请根据以下内容回答」—— 这不是玄学，是在帮它分配注意力。',
+    140,772,16,DIM,'left',400,b3*0.95);
+}
+
+/* ================= S7 Agent ================= */
+function S7(t){
+  T('从「只会说」到「会动手」：Agent',140,86,42,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('模型本身不能上网、不能点按钮。给它装工具，它就能干活了。',140,136,22,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 左：循环图
+  const cx=470,cy=430,R=165;
+  const a0=eo(seg(t,0.4,0.9));
+  ctx.save();ctx.globalAlpha=a0*0.35;ctx.strokeStyle=rgba(PURPLE,0.8);
+  ctx.lineWidth=3;ctx.beginPath();ctx.arc(cx,cy,R,0,Math.PI*2);ctx.stroke();ctx.restore();
+
+  const nodes=[
+    ['想：要干什么',cx,cy-R,CYAN],
+    ['调工具',cx+R,cy,ORANGE],
+    ['看结果',cx,cy+R,GREEN],
+    ['再想：下一步',cx-R,cy,PURPLE]
+  ];
+  for(let i=0;i<4;i++){
+    const st=0.6+i*0.35, a=eo(seg(t,st,st+0.35));
+    if(a<=0)continue;
+    const n=nodes[i];
+    box(n[1]-92,n[2]-32,184,64,mixc(BG,PANEL2,0.7),rgba(n[3],0.85*a),12,2,a);
+    T(n[0],n[1],n[2],17,TXT,'center',600,a);
+  }
+  // 流转光点
+  for(let k=0;k<8;k++){
+    const ph=((t*0.55+k/8)%1);
+    const ang=-Math.PI/2+ph*Math.PI*2;
+    const a=eo(seg(t,2.2,2.7));
+    if(a<=0)break;
+    ctx.save();ctx.globalAlpha=a*0.9;ctx.fillStyle=CYAN;
+    ctx.beginPath();ctx.arc(cx+Math.cos(ang)*R,cy+Math.sin(ang)*R,5,0,Math.PI*2);ctx.fill();ctx.restore();
+  }
+  T('一直转，直到它认为任务完成',cx,cy-6,16,DIM,'center',400,eo(seg(t,2.4,3.0))*0.9);
+
+  // 右：工具调用细节
+  const a1=eo(seg(t,2.8,3.4));
+  if(a1>0){
+    box(790,200,680,190,mixc(BG,PANEL2,0.5),rgba(LINE,0.9*a1),14,1.5,a1);
+    T('工具调用长什么样',816,232,16,TXT,'left',700,a1);
+    T('它输出的不是「帮我搜一下」，而是一段结构化指令：',816,264,15,DIM,'left',400,a1*0.95);
+    T('{ "工具": "搜索", "参数": "郑州 天气" }',816,304,17,CYAN,'left',600,a1);
+    T('系统执行完，把结果原样塞回给它，它接着想。',816,344,15,DIM,'left',400,a1*0.95);
+  }
+
+  // 误差累积
+  const a2=eo(seg(t,4.4,5.0));
+  if(a2>0){
+    T('为什么 Agent 比聊天更容易翻车',790,432,18,PINK,'left',700,a2);
+    for(let i=0;i<5;i++){
+      const a=eo(seg(t,4.6+i*0.22,4.9+i*0.22));
+      if(a<=0)continue;
+      const ok=i<2;
+      box(790+i*140,470,124,74,mixc(BG,ok?GREEN:PINK,0.16*a),rgba(ok?GREEN:PINK,0.85*a),10,1.6,a);
+      T('第'+(i+1)+'步',852+i*140,496,15,TXT,'center',600,a);
+      T(ok?'对':'偏了',852+i*140,522,14,ok?GREEN:PINK,'center',600,a);
+    }
+    T('一步偏，后面全偏 —— 错误会累积，还越走越远。',790,580,16,DIM,'left',400,a2*0.95);
+  }
+
+  const b1=eo(seg(t,6.2,6.8));
+  if(b1>0){
+    box(140,660,640,96,PANEL,mixc(LINE,CYAN,0.45),12,1.6,b1);
+    T('所以实用的 Agent 都这样设计',176,696,17,CYAN,'left',700,b1);
+    T('关键动作要人确认 · 每步留痕可回滚 · 拆小任务别一次做完',176,726,14,TXT,'left',400,b1*0.95);
+  }
+  const b2=eo(seg(t,6.8,7.4));
+  if(b2>0){
+    box(810,660,660,96,PANEL,mixc(LINE,ORANGE,0.45),12,1.6,b2);
+    T('一句话区分',846,696,17,ORANGE,'left',700,b2);
+    T('聊天 = 给建议；Agent = 动手办。动手就要担责，设计要更保守。',846,726,14,TXT,'left',400,b2*0.95);
+  }
+}
+
+/* ================= S8 怎么选 ================= */
+const TIERS=[
+  ['端侧小模型','10 亿 ~ 80 亿参数','跑在你手机、笔记本上','快、免费、离线、隐私好','能力有限，复杂推理不行',CYAN],
+  ['中杯通用','200 亿 ~ 700 亿参数','公司一台服务器能跑','够用的通用能力，数据不出内网','贵一点，部署要点功夫',PURPLE],
+  ['旗舰闭源','上千亿，只给接口','云端调用','最强的推理和长文能力','最贵，数据要出内网',ORANGE]
+];
+function S8(t){
+  T('怎么选、怎么评？别只看排行榜',140,86,42,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('能力不是越高越好，是「刚好够用」最划算',140,136,22,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const cw=390,chh=340,gp=40,total=3*cw+2*gp,x0=(VW-total)/2,y0=190;
+  for(let i=0;i<3;i++){
+    const st=0.4+i*0.5, a=eo(seg(t,st,st+0.45));
+    if(a<=0)continue;
+    const x=x0+i*(cw+gp), d=TIERS[i];
+    box(x,y0,cw,chh,mixc(BG,PANEL2,0.6),mixc(LINE,d[5],0.55*a),16,1.8,a);
+    T(d[0],x+26,y0+40,25,TXT,'left',700,a);
+    T(d[1],x+26,y0+76,15,d[5],'left',600,a*0.95);
+    T(d[2],x+26,y0+112,15,DIM,'left',400,a*0.9);
+    ctx.save();ctx.globalAlpha=a*0.3;ctx.strokeStyle=d[5];ctx.lineWidth=1;
+    ctx.beginPath();ctx.moveTo(x+26,y0+138);ctx.lineTo(x+cw-26,y0+138);ctx.stroke();ctx.restore();
+    T('✔ '+d[3],x+26,y0+176,15,TXT,'left',400,a*0.95);
+    T('✘ '+d[4],x+26,y0+222,15,TXT,'left',400,a*0.95);
+    if(i===1){
+      T('大多数公司的默认选择',x+cw/2,y0+chh-24,13,PURPLE,'center',600,a*0.9);
+    }
+  }
+
+  const b1=eo(seg(t,2.6,3.2));
+  if(b1>0){
+    box(190,580,1220,92,PANEL,mixc(LINE,GREEN,0.5),12,1.7,b1);
+    T('怎么评才靠谱',228,626,18,GREEN,'left',700,b1);
+    T('别信榜单。拿你自己 20 条真实问题做一套小测，跑一遍对比 —— 这份小测比任何排行榜都准。',430,626,18,TXT,'left',400,b1);
+  }
+  const b2=eo(seg(t,3.8,4.4));
+  T('顺带：模型输出不稳定，同一问题问十次答案都可能不同。你需要的是「十次里有几次能用」，不是「某一次很惊艳」。',
+    190,714,17,DIM,'left',400,b2*0.95);
+  const b3=eo(seg(t,4.6,5.2));
+  T('成本 = token 单价 × 用量 × 重试次数。真实账单常常比预估高好几倍，因为没人一开始就想到要重试。',
+    190,758,17,DIM,'left',400,b3*0.95);
+}
+
+/* ================= S9 收尾 ================= */
+function S9(t){
+  const a1=eo(seg(t,0.1,0.7)), a2=eo(seg(t,0.9,1.5)), a3=eo(seg(t,1.7,2.3));
+  const g=ctx.createRadialGradient(VW/2,VH/2,40,VW/2,VH/2,560);
+  g.addColorStop(0,'rgba(156,126,255,0.11)');g.addColorStop(1,'rgba(156,126,255,0)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,VW,VH);
+
+  T('两集看下来，其实就这几句',VW/2,150,17,PURPLE,'center',600,a1);
+  const lines=[
+    '字变数字 → 数字在注意力里互相交换信息 → 一层层微调往上叠',
+    '猜错就拧旋钮，拧几万亿次 → 它学会了像人一样接话',
+    '记不住就查资料（RAG）· 不会做就装工具（Agent）· 拿不准就调温度'
+  ];
+  for(let i=0;i<3;i++){
+    const a=eo(seg(t,0.4+i*0.5,0.9+i*0.5));
+    T(lines[i],VW/2,242+i*66,25,i===2?YELLOW:TXT,'center',500,a);
+  }
+  ctx.strokeStyle=rgba(PURPLE,0.6*a3);ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(VW/2-340,470);ctx.lineTo(VW/2+340,470);ctx.stroke();
+
+  T('最后一句忠告',VW/2,530,18,PINK,'center',700,a3);
+  T('它是个极好的助手，但不是权威。它给出的每个字都「很像」，不等于「正确」。',VW/2,580,24,TXT,'center',600,a3);
+  T('重要的事，永远自己核一遍。',VW/2,636,28,PINK,'center',700,a3);
+
+  T('空格 暂停 / 播放    ←  →  切换章节    点进度条跳转',VW/2,800,16,DIM,'center',400,eo(seg(t,3.0,3.6))*0.8);
+}
+
+/* ================= 时间轴 ================= */
+const SCENES=[
+  {n:'开场',      d:4.5, f:S0},
+  {n:'字变数字',  d:14.0,f:S1},
+  {n:'注意力',    d:15.0,f:S2},
+  {n:'叠80层',    d:13.0,f:S3},
+  {n:'怎么学会',  d:13.0,f:S4},
+  {n:'温度',      d:13.0,f:S5},
+  {n:'查资料',    d:14.0,f:S6},
+  {n:'会动手',    d:13.0,f:S7},
+  {n:'怎么选',    d:12.0,f:S8},
+  {n:'收尾',      d:7.5, f:S9}
+];
+const TOTAL=SCENES.reduce((s,x)=>s+x.d,0);
+
+let clock=0, playing=true, last=0;
+
+function locate(g){
+  let acc=0;
+  for(let i=0;i<SCENES.length;i++){
+    if(g<acc+SCENES[i].d||i===SCENES.length-1)return {i:i,t:g-acc};
+    acc+=SCENES[i].d;
+  }
+  return {i:SCENES.length-1,t:SCENES[SCENES.length-1].d};
+}
+
+function drawTopHUD(idx){
+  T('大模型入门 · 第二集',44,34,15,DIM,'left',600,1);
+  T('/ '+SCENES[idx].n,232,34,15,PURPLE,'left',600,1);
+}
+
+function drawProgress(g){
+  const y=VH-8;
+  ctx.fillStyle='rgba(40,52,68,0.9)';ctx.fillRect(0,y,VW,3);
+  ctx.fillStyle=PURPLE;ctx.fillRect(0,y,VW*(g/TOTAL),3);
+  let acc=0;
+  for(let i=0;i<SCENES.length;i++){
+    const x=VW*(acc/TOTAL);
+    ctx.fillStyle=BG;ctx.fillRect(x-1,y-3,2,9);
+    acc+=SCENES[i].d;
+  }
+}
+
+function render(){
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.fillStyle=BG;ctx.fillRect(0,0,cv.width/dpr,cv.height/dpr);
+  ctx.setTransform(dpr*scale,0,0,dpr*scale,offX*dpr,offY*dpr);
+
+  const loc=locate(clock);
+  const sc=SCENES[loc.i];
+  const fin=cl01(loc.t/0.42), fout=cl01((sc.d-loc.t)/0.34);
+  const alpha=Math.min(fin,fout);
+
+  ctx.save();ctx.globalAlpha=alpha;sc.f(loc.t);ctx.restore();
+  drawTopHUD(loc.i);
+  drawProgress(clock);
+}
+
+function loop(ts){
+  if(!last)last=ts;
+  let dt=(ts-last)/1000;last=ts;
+  if(dt>0.12)dt=0.12;
+  if(playing){clock+=dt;if(clock>=TOTAL)clock=0;}
+  render();
+  requestAnimationFrame(loop);
+}
+
+function resize(){
+  dpr=Math.min(window.devicePixelRatio||1,2);
+  const w=window.innerWidth,h=window.innerHeight;
+  cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);
+  cv.style.width=w+'px';cv.style.height=h+'px';
+  scale=Math.min(w/VW,h/VH);
+  offX=(w-VW*scale)/2;offY=(h-VH*scale)/2;
+}
+window.addEventListener('resize',resize);
+
+document.addEventListener('keydown',e=>{
+  if(e.code==='Space'){e.preventDefault();playing=!playing;last=0;}
+  else if(e.code==='ArrowRight'||e.code==='ArrowLeft'){
+    const loc=locate(clock);
+    let target=e.code==='ArrowRight'?Math.min(loc.i+1,SCENES.length-1):Math.max(loc.i-1,0);
+    let acc=0;
+    for(let i=0;i<SCENES.length;i++){if(i===target){clock=acc;break;}acc+=SCENES[i].d;}
+    last=0;
+  } else if(e.key==='r'||e.key==='R'){clock=0;last=0;playing=true;}
+});
+
+cv.addEventListener('click',e=>{
+  const r=cv.getBoundingClientRect();
+  const w=r.width,h=r.height;
+  const s=Math.min(w/VW,h/VH);
+  const ox=(w-VW*s)/2, oy=(h-VH*s)/2;
+  const vx=(e.clientX-r.left-ox)/s, vy=(e.clientY-r.top-oy)/s;
+  if(vy>VH-24){clock=cl01(vx/VW)*TOTAL;last=0;}
+  else {playing=!playing;last=0;}
+});
+
+try{
+  const qp=new URLSearchParams(location.search);
+  if(qp.has('t')){
+    const v=parseFloat(qp.get('t'));
+    if(!isNaN(v))clock=Math.max(0,Math.min(TOTAL-0.04,v));
+  }
+  if(qp.get('pause')==='1')playing=false;
+}catch(err){}
+
+resize();
+requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第九集：为什么你的知识库总也搜不准</title>
+<style>
+  html,body{margin:0;height:100%;background:#07080f;overflow:hidden;}
+  canvas{display:block;cursor:pointer;}
+</style>
+</head>
+<body>
+<canvas id="cv"></canvas>
+<script>
+(function(){
+"use strict";
+
+const VW=1600, VH=900;
+const cv=document.getElementById('cv'), ctx=cv.getContext('2d');
+let scale=1, offX=0, offY=0, dpr=1;
+
+const FONT='"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif';
+const MONO='Menlo,Consolas,"SF Mono",monospace';
+
+const BG='#060a12', PANEL='#0e1622', PANEL2='#152234', LINE='#26364d',
+      TXT='#e8f0fb', DIM='#8494aa',
+      ACC='#5b9dff',        /* 蓝：本集主色 */
+      ACC2='#39d0c6',       /* 青 */
+      ACC3='#ffc95c',       /* 金 */
+      WARN='#f2617a', OK='#5cd692';
+
+const clamp=(x,a,b)=>x<a?a:(x>b?b:x);
+const cl01=x=>clamp(x,0,1);
+const seg=(t,a,b)=>b<=a?(t>=b?1:0):cl01((t-a)/(b-a));
+const eo=t=>1-Math.pow(1-cl01(t),3);
+const lerp=(a,b,t)=>a+(b-a)*t;
+function hex2rgb(h){return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];}
+function mixc(c1,c2,t){const a=hex2rgb(c1),b=hex2rgb(c2);t=cl01(t);
+  return 'rgb('+Math.round(lerp(a[0],b[0],t))+','+Math.round(lerp(a[1],b[1],t))+','+Math.round(lerp(a[2],b[2],t))+')';}
+function rgba(c,a){const r=hex2rgb(c);return 'rgba('+r[0]+','+r[1]+','+r[2]+','+cl01(a)+')';}
+function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);
+  ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
+
+function T(s,x,y,size,color,align,weight,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.fillStyle=color;ctx.font=(weight||400)+' '+size+'px '+FONT;
+  ctx.textAlign=align||'left';ctx.textBaseline='middle';
+  ctx.fillText(s,x,y);ctx.restore();
+}
+function TF(s,x,y,size,color,align,weight,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.fillStyle=color;ctx.font=(weight||400)+' '+size+'px '+MONO;
+  ctx.textAlign=align||'left';ctx.textBaseline='middle';
+  ctx.fillText(s,x,y);ctx.restore();
+}
+function box(x,y,w,h,fill,stroke,r,lw,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  rr(x,y,w,h,r===undefined?12:r);
+  if(fill){ctx.fillStyle=fill;ctx.fill();}
+  if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lw||2;ctx.stroke();}
+  ctx.restore();
+}
+function arrow(x1,y1,x2,y2,color,lw,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=lw||2;ctx.lineCap='round';
+  ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+  const ang=Math.atan2(y2-y1,x2-x1), L=9;
+  ctx.beginPath();ctx.moveTo(x2,y2);
+  ctx.lineTo(x2-L*Math.cos(ang-0.4),y2-L*Math.sin(ang-0.4));
+  ctx.lineTo(x2-L*Math.cos(ang+0.4),y2-L*Math.sin(ang+0.4));
+  ctx.closePath();ctx.fill();
+  ctx.restore();
+}
+function badge(n,x,y,r,color,a){
+  ctx.save();ctx.globalAlpha=a===undefined?1:cl01(a);
+  ctx.fillStyle=rgba(color,0.18);ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
+  ctx.strokeStyle=rgba(color,0.95);ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.stroke();
+  ctx.fillStyle=color;ctx.font='700 '+Math.round(r*1.12)+'px '+FONT;
+  ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(n,x,y+1);
+  ctx.restore();
+}
+
+/* ================= S0 开场 ================= */
+function S0(t){
+  const a1=eo(seg(t,0.1,1.0)), a2=eo(seg(t,0.7,1.6)), a3=eo(seg(t,1.4,2.3));
+  const g=ctx.createRadialGradient(VW/2,VH/2-40,40,VW/2,VH/2-40,660);
+  g.addColorStop(0,'rgba(91,157,255,0.13)');g.addColorStop(1,'rgba(91,157,255,0)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,VW,VH);
+
+  T('第九集',VW/2,VH/2-190,22,ACC,'center',700,a1);
+  T('为什么它总也搜不准',VW/2,VH/2-100,66,TXT,'center',700,a1);
+  T('知识库答不好的真正原因，八成不在模型',VW/2,VH/2-8,29,ACC2,'center',400,a2);
+
+  const items=[['切块','切坏了全坏',ACC],['检索','找得到才算',ACC2],['重排','排得准才管用',ACC3]];
+  for(let i=0;i<3;i++){
+    const a=eo(seg(t,1.5+i*0.35,1.9+i*0.35));
+    const x=VW/2-450+i*310;
+    box(x,VH/2+76,280,84,mixc(BG,PANEL2,0.7),rgba(items[i][2],0.75*a),12,1.8,a);
+    T(items[i][0],x+140,VH/2+108,22,items[i][2],'center',700,a);
+    T(items[i][1],x+140,VH/2+142,15,DIM,'center',400,a);
+  }
+  T('这三步合起来就是 RAG（检索增强生成）的工程部分',VW/2,VH/2+216,19,DIM,'center',400,a3*0.95);
+}
+
+/* ================= S1 先分清哪一步坏了 ================= */
+function S1(t){
+  T('第一步：别急着换模型',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('同一条 Pipeline 里有三个环节，坏在不同地方，症状完全不同',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const STEPS=[
+    {n:'切块',c:ACC,desc:'把文档切成小段，存进向量库'},
+    {n:'检索',c:ACC2,desc:'按问题找出最像的几段'},
+    {n:'生成',c:ACC3,desc:'把段落和问题一起交给模型'}
+  ];
+  for(let i=0;i<3;i++){
+    const s=STEPS[i], a=eo(seg(t,0.5+i*0.3,1.0+i*0.3));
+    const x=140+i*450;
+    box(x,196,410,96,PANEL2,rgba(s.c,0.75),12,1.8,a);
+    T(String(i+1),x+40,244,26,s.c,'center',700,a);
+    T(s.n,x+80,230,20,TXT,'left',700,a);
+    T(s.desc,x+80,262,13,DIM,'left',400,a*0.9);
+    if(i<2)arrow(x+418,244,x+442,244,rgba(s.c,0.6),2,a*0.85);
+  }
+
+  const SYM=[
+    {s:'"抱歉，资料里没有提到"',d:'切块漏了 / 检索没召回 —— 模型根本没看到那段',c:WARN,tag:'症状一：装傻'},
+    {s:'答案沾边但完全不对题',d:'召回的块不相关 —— 找到的是"隔壁那一段"',c:ACC3,tag:'症状二：跑题'},
+    {s:'块是对的，但答案编了',d:'生成阶段的问题 —— 提示词没约束好，或模型不听话',c:ACC2,tag:'症状三：瞎编'}
+  ];
+  for(let i=0;i<3;i++){
+    const y=SYM[i], a=eo(seg(t,1.8+i*0.55,2.3+i*0.55));
+    const yy=356+i*132;
+    box(140,yy,1320,110,PANEL,rgba(y.c,0.55),12,1.6,a);
+    T(y.tag,176,yy+32,15,y.c,'left',700,a);
+    T(y.s,176,yy+62,17,TXT,'left',600,a);
+    T(y.d,700,yy+62,15,DIM,'left',400,a);
+  }
+
+  const b=eo(seg(t,4.0,4.6));
+  if(b>0){
+    box(140,772,1320,72,PANEL,mixc(LINE,ACC,0.5),12,1.7,b);
+    T('怎么定位',176,808,16,ACC,'left',700,b);
+    T('把命中的原文片段打印出来看 —— 看一眼就知道是"没找到"还是"找到了但不好好答"。',310,808,15,TXT,'left',400,b);
+  }
+}
+
+/* ================= S2 Embedding ================= */
+function S2(t){
+  T('检索靠的是"意思的坐标"',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('把每句话变成一个点，意思越近，点越靠在一起',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 坐标系
+  const ox=140, oy=200, ow=760, oh=520;
+  const fa=eo(seg(t,0.4,1.0));
+  box(ox,oy,ow,oh,'rgba(10,20,32,0.6)',rgba(LINE,0.9),10,1.6,fa);
+  ctx.save();ctx.globalAlpha=fa*0.5;ctx.strokeStyle=LINE;ctx.lineWidth=1;
+  for(let i=1;i<6;i++){
+    ctx.beginPath();ctx.moveTo(ox+ow*i/6,oy);ctx.lineTo(ox+ow*i/6,oy+oh);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(ox,oy+oh*i/6);ctx.lineTo(ox+ow,oy+oh*i/6);ctx.stroke();
+  }
+  ctx.restore();
+
+  const PTS=[
+    {x:0.24,y:0.32,t:'退款流程',c:ACC},
+    {x:0.31,y:0.26,t:'退货条件',c:ACC},
+    {x:0.20,y:0.40,t:'售后政策',c:ACC},
+    {x:0.68,y:0.30,t:'物流时效',c:ACC2},
+    {x:0.75,y:0.38,t:'快递查询',c:ACC2},
+    {x:0.30,y:0.78,t:'发票开具',c:ACC3},
+    {x:0.38,y:0.72,t:'开票信息',c:ACC3},
+    {x:0.72,y:0.80,t:'会员等级',c:DIM},
+    {x:0.80,y:0.72,t:'积分规则',c:DIM}
+  ];
+  for(let i=0;i<PTS.length;i++){
+    const p=PTS[i], a=eo(seg(t,0.8+i*0.16,1.2+i*0.16));
+    const px=ox+ow*p.x, py=oy+oh*p.y;
+    ctx.save();ctx.globalAlpha=a;
+    ctx.fillStyle=rgba(p.c,0.85);ctx.beginPath();ctx.arc(px,py,7,0,Math.PI*2);ctx.fill();
+    ctx.restore();
+    T(p.t,px+12,py,14,p.c,'left',500,a*0.95);
+  }
+
+  // 查询点
+  const qa=eo(seg(t,3.0,3.6));
+  const qx=ox+ow*0.42, qy=oy+oh*0.44;
+  ctx.save();ctx.globalAlpha=qa;
+  ctx.fillStyle=WARN;ctx.beginPath();ctx.arc(qx,qy,10,0,Math.PI*2);ctx.fill();
+  ctx.strokeStyle=rgba(WARN,0.5);ctx.lineWidth=2;
+  ctx.beginPath();ctx.arc(qx,qy,20,0,Math.PI*2);ctx.stroke();
+  ctx.restore();
+  T('"我想退钱"',qx+16,qy-24,15,WARN,'left',700,qa);
+
+  // 连线到最近
+  const links=[[0.24,0.32],[0.31,0.26],[0.20,0.40]];
+  for(let i=0;i<3;i++){
+    const a=eo(seg(t,3.6+i*0.3,4.0+i*0.3));
+    const px=ox+ow*links[i][0], py=oy+oh*links[i][1];
+    ctx.save();ctx.globalAlpha=a*0.8;ctx.strokeStyle=ACC;ctx.lineWidth=2;ctx.setLineDash([6,6]);
+    ctx.beginPath();ctx.moveTo(qx,qy);ctx.lineTo(px,py);ctx.stroke();ctx.restore();
+  }
+
+  // 右侧说明
+  const rx=960;
+  const notes=[
+    {k:'没有"退钱"这两个字',d:'但"退款流程"和它意思最近 —— 这就是"同义不同词"也能搜到的原因',c:ACC},
+    {k:'向量不是关键词表',d:'它是把一句话压成几百个数字，数字之间的距离代表意思的远近',c:ACC2},
+    {k:'距离怎么量',d:'常用余弦相似度：方向越一致，值越接近 1',c:ACC3}
+  ];
+  for(let i=0;i<notes.length;i++){
+    const n=notes[i], a=eo(seg(t,2.4+i*0.5,2.9+i*0.5));
+    const y=250+i*150;
+    badge(String(i+1),rx+22,y,16,n.c,a);
+    T(n.k,rx+54,y-22,17,n.c,'left',700,a);
+    T(n.d,rx+54,y+8,14,DIM,'left',400,a*0.95);
+  }
+
+  const b=eo(seg(t,5.4,6.0));
+  if(b>0){
+    box(960,682,500,100,PANEL,rgba(ACC,0.55),12,1.6,b);
+    T('但向量的软肋',984,714,15,WARN,'left',700,b);
+    T('编号、型号、人名、专有名词 —— 它经常认不出来。',984,746,14,TXT,'left',400,b);
+  }
+
+  T('原来如此',140,772,16,ACC,'left',700,eo(seg(t,6.6,7.1)));
+  T('Embedding 不认字，只认意思 —— 这是它比关键词强的地方，也是它翻车的地方。',230,772,16,TXT,'left',400,eo(seg(t,6.6,7.1))*0.96);
+}
+
+/* ================= S3 Chunk ================= */
+function S3(t){
+  T('切块：最容易做错的一步',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('切得好不好，几乎决定了整个系统的上限',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const WAYS=[
+    {n:'切太碎',c:WARN,txt:'"退款政策见第 3 条"',
+     pros:'',cons:'只有一句话，没有上下文，模型看了也莫名其妙',tag:'精度高，理解差'},
+    {n:'切太大',c:ACC3,txt:'整章 3000 字',
+     pros:'',cons:'一段里混了十个主题，命中后一大半是噪声',tag:'理解全，噪声多'},
+    {n:'按结构切',c:OK,txt:'按标题层级切 300~800 字',
+     pros:'',cons:'一个块 = 一个完整的知识点，再留 10~15% 重叠防止切断',tag:'推荐做法'}
+  ];
+  for(let i=0;i<3;i++){
+    const w=WAYS[i], a=eo(seg(t,0.5+i*0.55,1.0+i*0.55));
+    const x=140+i*450;
+    box(x,192,410,240,PANEL,rgba(w.c,0.6),13,1.7,a);
+    T(w.n,x+28,228,19,w.c,'left',700,a);
+    T(w.tag,x+382,228,12,w.c,'right',500,a*0.8);
+    box(x+28,252,354,56,PANEL2,rgba(LINE,0.8),8,1.2,a*0.9);
+    T(w.txt,x+205,280,14,TXT,'center',500,a);
+    T(w.cons,x+28,340,14,DIM,'left',400,a*0.95);
+  }
+
+  // 重叠示意
+  const oa=eo(seg(t,2.6,3.2));
+  T('重叠窗口是干什么的',140,486,17,ACC,'left',700,oa);
+  const segs=[[140,0],[380,0],[620,0],[860,0]];
+  for(let i=0;i<4;i++){
+    const a=eo(seg(t,2.8+i*0.25,3.2+i*0.25));
+    const x=140+i*230;
+    box(x,516,290,64,rgba(ACC,0.12*a),rgba(ACC,0.65*a),8,1.4,a);
+    T('块 '+(i+1),x+145,548,15,ACC,'center',600,a);
+  }
+  for(let i=0;i<3;i++){
+    const a=eo(seg(t,3.6+i*0.3,4.0+i*0.3));
+    box(140+i*230+230,520,60,56,rgba(ACC3,0.22*a),rgba(ACC3,0.8*a),6,1.4,a);
+    T('重叠',140+i*230+260,548,11,ACC3,'center',600,a*0.9);
+  }
+
+  // 要点
+  const rs=[
+    {k:'别按字数硬切',d:'一句话被切成两半，两边都读不懂'},
+    {k:'一个块 = 一个可独立回答的问题',d:'能单独看懂，才算合格的块'},
+    {k:'给每个块带上出处',d:'文件名 + 章节 + 页码，出问题能追溯'}
+  ];
+  for(let i=0;i<3;i++){
+    const r=rs[i], a=eo(seg(t,4.2+i*0.45,4.6+i*0.45));
+    const y=640+i*62;
+    ctx.save();ctx.globalAlpha=a;ctx.fillStyle=ACC;
+    ctx.beginPath();ctx.arc(152,y,4,0,Math.PI*2);ctx.fill();ctx.restore();
+    T(r.k,170,y,16,TXT,'left',600,a);
+    T(r.d,400,y,14,DIM,'left',400,a*0.95);
+  }
+
+  T('原来如此',140,846,16,ACC,'left',700,eo(seg(t,6.0,6.5)));
+  T('切块不是在切文件，是在切"知识点" —— 一个块最好能单独回答一个问题。',230,846,16,TXT,'left',400,eo(seg(t,6.0,6.5))*0.96);
+}
+
+/* ================= S4 混合检索 ================= */
+function S4(t){
+  T('只看向量的检索，一定会漏东西',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('因为有两类问题，靠的是两套完全不同的能力',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 左：语义检索
+  const la=eo(seg(t,0.5,1.1));
+  box(140,192,620,300,PANEL,rgba(ACC,0.65),13,1.8,la);
+  T('语义检索（向量）',170,232,19,ACC,'left',700,la);
+  T('擅长：意思相近、说法不同',170,266,14,DIM,'left',400,la);
+  const LQ=['"我想退钱"→ 找到"退款流程"','"东西坏了"→ 找到"质量问题"','"多久能到"→ 找到"配送时效"'];
+  for(let i=0;i<3;i++){
+    const a=eo(seg(t,0.8+i*0.3,1.2+i*0.3));
+    T('✓',170,322+i*54,17,OK,'left',700,a);
+    T(LQ[i],200,322+i*54,14,TXT,'left',400,a*0.95);
+  }
+
+  // 右：关键词检索
+  const ra=eo(seg(t,1.2,1.8));
+  box(820,192,620,300,PANEL,rgba(ACC3,0.65),13,1.8,ra);
+  T('关键词检索（BM25）',850,232,19,ACC3,'left',700,ra);
+  T('擅长：精确匹配、编号、专有名词',850,266,14,DIM,'left',400,ra);
+  const RQ=['"SKU-8842" → 一击命中','"张三 136****1234" → 精确找到','"第 7.3 条" → 一字不差'];
+  for(let i=0;i<3;i++){
+    const a=eo(seg(t,1.4+i*0.3,1.8+i*0.3));
+    T('✓',850,322+i*54,17,OK,'left',700,a);
+    T(RQ[i],880,322+i*54,14,TXT,'left',400,a*0.95);
+  }
+
+  // 交叉失败
+  const fa=eo(seg(t,2.6,3.2));
+  T('反过来就会翻车',140,524,16,WARN,'left',700,fa);
+  const FAIL=[
+    {q:'用向量查 "SKU-8842"',r:'编号没有"意思"，向量只会找到一堆无关的型号',c:ACC},
+    {q:'用关键词查 "啥时候能退"',r:'文档里写的是"退款时效"，一个字都不重合，直接零命中',c:ACC3}
+  ];
+  for(let i=0;i<2;i++){
+    const f=FAIL[i], a=eo(seg(t,2.8+i*0.4,3.2+i*0.4));
+    const y=556+i*76;
+    T(f.q,140,y,15,f.c,'left',700,a);
+    T(f.r,420,y,14,DIM,'left',400,a);
+  }
+
+  // 融合
+  const ma=eo(seg(t,4.2,4.8));
+  T('做法：两路都查，再融合排序',140,712,17,OK,'left',700,ma);
+  const flows=[{n:'向量召回 50 条',x:140,c:ACC},{n:'关键词召回 50 条',x:420,c:ACC3},{n:'RRF 融合去重',x:700,c:OK},{n:'按名次打分合并',x:960,c:ACC2}];
+  for(let i=0;i<4;i++){
+    const f=flows[i], a=eo(seg(t,4.4+i*0.28,4.8+i*0.28));
+    box(f.x,744,250,64,PANEL2,rgba(f.c,0.65),9,1.5,a);
+    T(f.n,f.x+125,776,14,TXT,'center',600,a);
+    if(i<3)arrow(f.x+256,776,f.x+274,776,rgba(f.c,0.6),1.8,a*0.8);
+  }
+
+  T('原来如此',140,852,16,ACC,'left',700,eo(seg(t,5.8,6.3)));
+  T('语义检索懂人话，关键词检索认死理 —— 一个都不能少，缺一个就有一类问题永远搜不到。',230,852,16,TXT,'left',400,eo(seg(t,5.8,6.3))*0.96);
+}
+
+/* ================= S5 Rerank ================= */
+function S5(t){
+  T('找到了 ≠ 排对了',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('向量检索只保证"粗筛里没漏"，不保证"第一名就是答案"',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 漏斗
+  const stages=[
+    {n:'全部块',v:'10 万',w:640,c:DIM},
+    {n:'向量召回',v:'50 条',w:480,c:ACC},
+    {n:'Rerank 精排',v:'5 条',w:320,c:ACC3},
+    {n:'进上下文',v:'3~5 条',w:200,c:OK}
+  ];
+  for(let i=0;i<4;i++){
+    const s=stages[i], a=eo(seg(t,0.5+i*0.55,1.0+i*0.55));
+    const y=200+i*128;
+    const x=760-s.w/2;
+    box(x,y,s.w,96,rgba(s.c,0.14),rgba(s.c,0.75),10,1.6,a);
+    T(s.n,240,y+34,16,TXT,'left',600,a);
+    T(s.v,240,y+68,15,s.c,'left',700,a);
+    if(i<3)arrow(760,y+98,760,y+124,rgba(s.c,0.6),2,a*0.8);
+  }
+
+  // 右侧说明 rerank 原理
+  const rx=1100;
+  const notes=[
+    {k:'粗排用双塔',d:'问题和块分别编码，比向量距离 —— 快，但只看"像不像"',c:ACC},
+    {k:'精排用交叉编码',d:'把问题和块拼在一起判读 —— 慢，但能判断"这段真的回答了问题吗"',c:ACC3}
+  ];
+  for(let i=0;i<2;i++){
+    const n=notes[i], a=eo(seg(t,2.4+i*0.5,2.9+i*0.5));
+    const y=230+i*176;
+    box(rx,y,380,150,PANEL,rgba(n.c,0.5),11,1.5,a);
+    T(n.k,rx+22,y+34,16,n.c,'left',700,a);
+    T(n.d,rx+22,y+72,13,DIM,'left',400,a*0.95);
+  }
+
+  // 底部对比
+  const ba=eo(seg(t,3.6,4.2));
+  if(ba>0){
+    box(140,700,1320,96,PANEL,mixc(LINE,ACC3,0.45),12,1.7,ba);
+    T('加一步 Rerank 的代价与收益',176,746,16,ACC3,'left',700,ba);
+    T('代价：多一次模型调用，慢 100~300 毫秒；收益：上下文里每一条都真的相关 —— 通常比换更大的生成模型更有效。',420,746,15,TXT,'left',400,ba);
+  }
+
+  T('翻车的典型样子',140,530,16,WARN,'left',700,eo(seg(t,4.6,5.1)));
+  T('第一名是"退款政策总览"，真正需要的"海外订单退款细则"排在第七 —— 没精排，它就进不了上下文。',140,566,15,DIM,'left',400,eo(seg(t,4.6,5.1))*0.96);
+}
+
+/* ================= S6 查询改写 ================= */
+function S6(t){
+  T('问题在用户嘴里，答案在文档里',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('这两套话术之间有一道沟，得先把它填上',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 原问题
+  const qa=eo(seg(t,0.5,1.1));
+  box(140,200,600,110,PANEL,rgba(WARN,0.6),12,1.7,qa);
+  T('用户原话',170,232,13,WARN,'left',600,qa);
+  T('"为啥我上周那个单子到现在还没到"',170,272,18,TXT,'left',600,qa);
+
+  // 箭头
+  const ma=eo(seg(t,1.4,2.0));
+  arrow(760,255,830,255,rgba(ACC,0.7),2.2,ma);
+  T('改写',770,222,13,ACC,'center',600,ma);
+
+  // 改写后
+  box(850,186,610,138,PANEL2,rgba(ACC,0.7),12,1.7,eo(seg(t,1.6,2.2)));
+  T('改写后',880,216,13,ACC,'left',600,eo(seg(t,1.6,2.2)));
+  const QS=['订单未发货 物流状态查询','配送时效 超时未送达 处理'];
+  for(let i=0;i<2;i++){
+    const a=eo(seg(t,1.8+i*0.3,2.2+i*0.3));
+    T('· '+QS[i],880,252+i*44,16,TXT,'left',500,a);
+  }
+
+  // 三种手段
+  const WAYS=[
+    {n:'补全指代',d:'"那个单子" → 从对话历史里补成具体订单号',c:ACC},
+    {n:'多查询扩展',d:'一个问题改写成 3~5 个不同说法，分别去搜，结果合并',c:ACC2},
+    {n:'HyDE',d:'先让模型"假装"写一段答案，再拿这段答案去检索 —— 答案的措辞更接近文档',c:ACC3}
+  ];
+  for(let i=0;i<3;i++){
+    const w=WAYS[i], a=eo(seg(t,2.8+i*0.55,3.3+i*0.55));
+    const x=140+i*450;
+    box(x,372,410,180,PANEL,rgba(w.c,0.6),12,1.6,a);
+    T(w.n,x+26,406,18,w.c,'left',700,a);
+    T(w.d,x+26,450,14,DIM,'left',400,a*0.95);
+  }
+
+  // 成本提醒
+  const ba=eo(seg(t,5.2,5.8));
+  if(ba>0){
+    box(140,590,1320,100,PANEL,mixc(LINE,WARN,0.45),12,1.7,ba);
+    T('注意',176,640,17,WARN,'left',700,ba);
+    T('改写会让检索次数翻倍甚至翻五倍。生产上通常是"先原样搜一次，命中分低才触发改写" —— 别一上来就全部改写。',280,640,15,TXT,'left',400,ba);
+  }
+
+  T('原来如此',140,730,17,ACC,'left',700,eo(seg(t,6.4,6.9)));
+  T('检索做不好，往往不是库的问题，是"问法"和"写法"不匹配 —— 改写就是在两者之间做翻译。',230,730,17,TXT,'left',400,eo(seg(t,6.4,6.9))*0.96);
+  T('一个土办法：如果你的文档是自己写的，那就按用户会怎么问来写标题 —— 收益比调模型大得多。',230,774,15,DIM,'left',400,eo(seg(t,7.2,7.7))*0.95);
+}
+
+/* ================= S7 拼上下文 ================= */
+function S7(t){
+  T('最后一步：怎么把材料递给模型',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('同样五段材料，摆放顺序不同，答案质量能差一截',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 左侧：拼装结构
+  const la=eo(seg(t,0.5,1.1));
+  box(140,196,700,540,PANEL,rgba(ACC,0.5),13,1.7,la);
+  T('提示词结构',170,230,15,ACC,'left',700,la);
+
+  const blocks=[
+    {n:'系统指令',d:'"只依据以下资料回答，资料里没有就说没有"',c:ACC3,h:70},
+    {n:'资料 1（最相关）',d:'…',c:ACC,h:70},
+    {n:'资料 2',d:'…',c:ACC,h:56},
+    {n:'资料 3',d:'…',c:ACC,h:56},
+    {n:'资料 4（次相关）',d:'…',c:ACC,h:56},
+    {n:'用户问题',d:'放在最后，紧挨着生成位置',c:WARN,h:70}
+  ];
+  let acc=262;
+  for(let i=0;i<blocks.length;i++){
+    const b=blocks[i], a=eo(seg(t,0.7+i*0.25,1.1+i*0.25));
+    box(170,acc,640,b.h,rgba(b.c,0.12),rgba(b.c,0.55),8,1.4,a);
+    T(b.n,192,acc+18,14,b.c,'left',700,a);
+    if(b.d!=='…')T(b.d,192,acc+42,12,DIM,'left',400,a*0.9);
+    acc+=b.h+12;
+  }
+  T('资料按相关度排序，但别把最强的埋在中间',170,790,14,ACC2,'left',500,eo(seg(t,2.6,3.2)));
+
+  // 右侧：注意事项
+  const rx=920;
+  const NOTES=[
+    {k:'两头强，中间弱',d:'模型对开头和结尾的注意力更高，最相关的放头尾',c:ACC},
+    {k:'带上出处',d:'每段标文件名和章节，答案里能引用，用户才敢信',c:ACC2},
+    {k:'去重很重要',d:'五段里有三段是同一句话的变体，纯属浪费 token',c:ACC3},
+    {k:'没找到就说没有',d:'这句约束写在系统指令里，能挡掉一半的编造',c:WARN}
+  ];
+  for(let i=0;i<4;i++){
+    const n=NOTES[i], a=eo(seg(t,3.2+i*0.5,3.7+i*0.5));
+    const y=240+i*124;
+    badge(String(i+1),rx+22,y,16,n.c,a);
+    T(n.k,rx+54,y-18,16,n.c,'left',700,a);
+    T(n.d,rx+54,y+12,13,DIM,'left',400,a*0.95);
+  }
+
+  T('原来如此',140,846,16,ACC,'left',700,eo(seg(t,5.6,6.1)));
+  T('模型不是"读了全部"，它是"重点看了头尾" —— 上下文怎么排，和放什么同样重要。',230,846,16,TXT,'left',400,eo(seg(t,5.6,6.1))*0.96);
+}
+
+/* ================= S8 评估 ================= */
+function S8(t){
+  T('怎么知道改好了还是改坏了',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('没有评估集的调优，全凭手感 —— 迟早翻车',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 三个指标
+  const M=[
+    {n:'召回率',d:'该被找到的块，有多少真被找到了',c:ACC,tip:'调切块粒度、扩召回数量'},
+    {n:'准确率',d:'召回的块里，多少是真的相关',c:ACC2,tip:'调 Rerank、加过滤条件'},
+    {n:'忠实度',d:'答案里的每句话，是否都能在资料里找到依据',c:ACC3,tip:'调提示词、加引用约束'}
+  ];
+  for(let i=0;i<3;i++){
+    const m=M[i], a=eo(seg(t,0.5+i*0.5,1.0+i*0.5));
+    const y=196+i*166;
+    box(140,y,700,144,PANEL,rgba(m.c,0.6),12,1.7,a);
+    T(m.n,170,y+34,20,m.c,'left',700,a);
+    T(m.d,170,y+70,14,TXT,'left',400,a*0.95);
+    T('↓ 调这个：'+m.tip,170,y+108,13,DIM,'left',400,a*0.85);
+  }
+
+  // 黄金集
+  const ra=eo(seg(t,2.4,3.0));
+  T('黄金评估集：50~100 条就够',920,196,18,OK,'left',700,ra);
+  const steps=['从真实用户问题里抽 100 条','人工标注"应该命中哪几段"','跑一遍，看命中多少','每次改动都跑同一套题'];
+  for(let i=0;i<4;i++){
+    const a=eo(seg(t,2.6+i*0.4,3.1+i*0.4));
+    const y=244+i*84;
+    box(920,y,540,68,PANEL2,rgba(OK,0.5),9,1.5,a);
+    T(String(i+1),952,y+34,18,OK,'center',700,a);
+    T(steps[i],986,y+34,14,TXT,'left',500,a);
+  }
+
+  const ba=eo(seg(t,4.6,5.2));
+  if(ba>0){
+    box(920,596,540,110,PANEL,rgba(WARN,0.55),11,1.6,ba);
+    T('最常见的自欺欺人',944,626,14,WARN,'left',700,ba);
+    T('拿自己编的问题去测 —— 那当然测得好。',944,658,14,TXT,'left',400,ba);
+    T('必须用真实日志里的原话。',944,684,14,ACC2,'left',600,ba);
+  }
+
+  T('原来如此',140,772,17,ACC,'left',700,eo(seg(t,5.8,6.3)));
+  T('调 RAG 的顺序永远是：先建评估集，再动手 —— 不然你连"改好了"都不知道。',230,772,17,TXT,'left',400,eo(seg(t,5.8,6.3))*0.96);
+  T('一个经验值：多数线上 RAG 的问题，70% 出在切块和召回，只有 30% 出在生成。',230,816,15,DIM,'left',400,eo(seg(t,6.6,7.1))*0.95);
+}
+
+/* ================= S9 收尾 ================= */
+function S9(t){
+  const g=ctx.createRadialGradient(VW/2,VH/2,60,VW/2,VH/2,620);
+  g.addColorStop(0,'rgba(91,157,255,0.11)');g.addColorStop(1,'rgba(91,157,255,0)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,VW,VH);
+
+  T('原来如此',VW/2,VH/2-110,22,ACC,'center',700,eo(seg(t,0.1,0.9)));
+  T('RAG 的成败，八成在"找"不在"答"',VW/2,VH/2-40,42,TXT,'center',700,eo(seg(t,0.4,1.2)));
+  T('切块、混合检索、精排、改写 —— 四步都在解决同一件事',VW/2,VH/2+34,42,ACC,'center',700,eo(seg(t,0.9,1.7)));
+
+  T('让模型看到对的那几段。',VW/2,VH/2+130,21,DIM,'center',400,eo(seg(t,2.0,2.8))*0.95);
+  T('下一集：把话说明白 —— 提示词的实用写法',VW/2,VH/2+206,17,ACC2,'center',600,eo(seg(t,3.2,4.0))*0.9);
+}
+
+/* ================= 时间轴 ================= */
+const SCENES=[
+  {n:'开场',        d:4.5,  f:S0},
+  {n:'定位问题',    d:11.0, f:S1},
+  {n:'语义坐标',    d:12.0, f:S2},
+  {n:'切块',        d:12.0, f:S3},
+  {n:'混合检索',    d:11.5, f:S4},
+  {n:'精排',        d:11.0, f:S5},
+  {n:'查询改写',    d:11.0, f:S6},
+  {n:'拼上下文',    d:10.5, f:S7},
+  {n:'评估',        d:11.0, f:S8},
+  {n:'收尾',        d:6.0,  f:S9}
+];
+const TOTAL=SCENES.reduce((s,x)=>s+x.d,0);
+
+let clock=0, playing=true, last=0;
+
+function locate(g){
+  let acc=0;
+  for(let i=0;i<SCENES.length;i++){
+    if(g<acc+SCENES[i].d||i===SCENES.length-1)return {i:i,t:g-acc};
+    acc+=SCENES[i].d;
+  }
+  return {i:SCENES.length-1,t:SCENES[SCENES.length-1].d};
+}
+
+function drawTopHUD(idx){
+  T('Retrieval · Chunk · Rerank',44,34,15,DIM,'left',600,1);
+  T('/ '+SCENES[idx].n,300,34,15,ACC,'left',600,1);
+}
+
+function drawProgress(g){
+  const y=VH-8;
+  ctx.fillStyle='rgba(38,54,77,0.9)';ctx.fillRect(0,y,VW,3);
+  ctx.fillStyle=ACC;ctx.fillRect(0,y,VW*(g/TOTAL),3);
+  let acc=0;
+  for(let i=0;i<SCENES.length;i++){
+    const x=VW*(acc/TOTAL);
+    ctx.fillStyle=BG;ctx.fillRect(x-1,y-3,2,9);
+    acc+=SCENES[i].d;
+  }
+}
+
+function render(){
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.fillStyle=BG;ctx.fillRect(0,0,cv.width/dpr,cv.height/dpr);
+  ctx.setTransform(dpr*scale,0,0,dpr*scale,offX*dpr,offY*dpr);
+
+  const loc=locate(clock);
+  const sc=SCENES[loc.i];
+  const fin=cl01(loc.t/0.42), fout=cl01((sc.d-loc.t)/0.34);
+  const alpha=Math.min(fin,fout);
+
+  ctx.save();ctx.globalAlpha=alpha;sc.f(loc.t);ctx.restore();
+  drawTopHUD(loc.i);
+  drawProgress(clock);
+}
+
+function loop(ts){
+  if(!last)last=ts;
+  let dt=(ts-last)/1000;last=ts;
+  if(dt>0.12)dt=0.12;
+  if(playing){clock+=dt;if(clock>=TOTAL)clock=0;}
+  render();
+  requestAnimationFrame(loop);
+}
+
+function resize(){
+  dpr=Math.min(window.devicePixelRatio||1,2);
+  const w=window.innerWidth,h=window.innerHeight;
+  cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);
+  cv.style.width=w+'px';cv.style.height=h+'px';
+  scale=Math.min(w/VW,h/VH);
+  offX=(w-VW*scale)/2;offY=(h-VH*scale)/2;
+}
+window.addEventListener('resize',resize);
+
+document.addEventListener('keydown',e=>{
+  if(e.code==='Space'){e.preventDefault();playing=!playing;last=0;}
+  else if(e.code==='ArrowRight'||e.code==='ArrowLeft'){
+    const loc=locate(clock);
+    const target=e.code==='ArrowRight'?Math.min(loc.i+1,SCENES.length-1):Math.max(loc.i-1,0);
+    let acc=0;
+    for(let i=0;i<SCENES.length;i++){if(i===target){clock=acc;break;}acc+=SCENES[i].d;}
+    last=0;
+  } else if(e.key==='r'||e.key==='R'){clock=0;last=0;playing=true;}
+});
+
+cv.addEventListener('click',e=>{
+  const r=cv.getBoundingClientRect();
+  const w=r.width,h=r.height;
+  const s=Math.min(w/VW,h/VH);
+  const ox=(w-VW*s)/2, oy=(h-VH*s)/2;
+  const vx=(e.clientX-r.left-ox)/s, vy=(e.clientY-r.top-oy)/s;
+  if(vy>VH-24){clock=cl01(vx/VW)*TOTAL;last=0;}
+  else {playing=!playing;last=0;}
+});
+
+try{
+  const qp=new URLSearchParams(location.search);
+  if(qp.has('t')){
+    const v=parseFloat(qp.get('t'));
+    if(!isNaN(v))clock=Math.max(0,Math.min(TOTAL-0.04,v));
+  }
+  if(qp.get('pause')==='1')playing=false;
+}catch(err){}
+
+resize();
+requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

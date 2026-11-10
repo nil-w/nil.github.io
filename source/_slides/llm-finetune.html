@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第五集：微调 —— 把通用模型练成你的专属模型</title>
+<style>
+  html,body{margin:0;height:100%;background:#07080f;overflow:hidden;}
+  canvas{display:block;cursor:pointer;}
+</style>
+</head>
+<body>
+<canvas id="cv"></canvas>
+<script>
+(function(){
+"use strict";
+
+const VW=1600, VH=900;
+const cv=document.getElementById('cv'), ctx=cv.getContext('2d');
+let scale=1, offX=0, offY=0, dpr=1;
+
+const FONT='"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif';
+const MONO='Menlo,Consolas,"SF Mono",monospace';
+
+const BG='#080b12', PANEL='#101724', PANEL2='#161f2e', LINE='#28344a',
+      TXT='#e8eef8', DIM='#8a97a9',
+      ACC='#9b8cff', ACC2='#4ecdc4', ACC3='#ffb454', WARN='#f2617a', OK='#5cd692';
+
+const clamp=(x,a,b)=>x<a?a:(x>b?b:x);
+const cl01=x=>clamp(x,0,1);
+const seg=(t,a,b)=>b<=a?(t>=b?1:0):cl01((t-a)/(b-a));
+const eo=t=>1-Math.pow(1-cl01(t),3);
+const lerp=(a,b,t)=>a+(b-a)*t;
+function hex2rgb(h){return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];}
+function mixc(c1,c2,t){const a=hex2rgb(c1),b=hex2rgb(c2);t=cl01(t);
+  return 'rgb('+Math.round(lerp(a[0],b[0],t))+','+Math.round(lerp(a[1],b[1],t))+','+Math.round(lerp(a[2],b[2],t))+')';}
+function rgba(c,a){const r=hex2rgb(c);return 'rgba('+r[0]+','+r[1]+','+r[2]+','+cl01(a)+')';}
+function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);
+  ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
+
+function T(s,x,y,size,color,align,weight,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.fillStyle=color;ctx.font=(weight||400)+' '+size+'px '+FONT;
+  ctx.textAlign=align||'left';ctx.textBaseline='middle';
+  ctx.fillText(s,x,y);ctx.restore();
+}
+function TF(s,x,y,size,color,align,weight,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.fillStyle=color;ctx.font=(weight||400)+' '+size+'px '+MONO;
+  ctx.textAlign=align||'left';ctx.textBaseline='middle';
+  ctx.fillText(s,x,y);ctx.restore();
+}
+function box(x,y,w,h,fill,stroke,r,lw,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  rr(x,y,w,h,r===undefined?12:r);
+  if(fill){ctx.fillStyle=fill;ctx.fill();}
+  if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lw||2;ctx.stroke();}
+  ctx.restore();
+}
+function arrow(x1,y1,x2,y2,color,lw,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=lw||2;ctx.lineCap='round';
+  ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+  const ang=Math.atan2(y2-y1,x2-x1), L=9;
+  ctx.beginPath();ctx.moveTo(x2,y2);
+  ctx.lineTo(x2-L*Math.cos(ang-0.4),y2-L*Math.sin(ang-0.4));
+  ctx.lineTo(x2-L*Math.cos(ang+0.4),y2-L*Math.sin(ang+0.4));
+  ctx.closePath();ctx.fill();
+  ctx.restore();
+}
+function badge(n,x,y,r,color,a){
+  ctx.save();ctx.globalAlpha=a===undefined?1:cl01(a);
+  ctx.fillStyle=rgba(color,0.18);ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
+  ctx.strokeStyle=rgba(color,0.95);ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.stroke();
+  ctx.fillStyle=color;ctx.font='700 '+Math.round(r*1.12)+'px '+FONT;
+  ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(n,x,y+1);
+  ctx.restore();
+}
+// 画网格矩阵
+function grid(x,y,cols,rows,cs,color,fillA,alpha,dashed){
+  ctx.save();ctx.globalAlpha=cl01(alpha);
+  for(let r=0;r<rows;r++){
+    for(let c=0;c<cols;c++){
+      rr(x+c*cs+1,y+r*cs+1,cs-2,cs-2,3);
+      ctx.fillStyle=rgba(color,fillA);ctx.fill();
+      ctx.strokeStyle=rgba(color,0.55);ctx.lineWidth=1;ctx.stroke();
+    }
+  }
+  ctx.restore();
+}
+
+/* ================= S0 开场 ================= */
+function S0(t){
+  const a1=eo(seg(t,0.1,1.0)), a2=eo(seg(t,0.7,1.6)), a3=eo(seg(t,1.4,2.3));
+  const g=ctx.createRadialGradient(VW/2,VH/2-40,40,VW/2,VH/2-40,660);
+  g.addColorStop(0,'rgba(155,140,255,0.13)');g.addColorStop(1,'rgba(155,140,255,0)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,VW,VH);
+
+  T('第五集',VW/2,VH/2-190,22,ACC,'center',700,a1);
+  T('让它变成你的',VW/2,VH/2-100,72,TXT,'center',700,a1);
+  T('微调：把通用模型练成行业专用的那个人',VW/2,VH/2-8,29,ACC2,'center',400,a2);
+
+  const items=[['补事实','RAG',ACC2],['补手艺','微调',ACC],['补长度','长上下文',ACC3]];
+  for(let i=0;i<3;i++){
+    const a=eo(seg(t,1.5+i*0.35,1.9+i*0.35));
+    const x=VW/2-450+i*310;
+    box(x,VH/2+76,280,84,mixc(BG,PANEL2,0.7),rgba(items[i][2],0.75*a),12,1.8,a);
+    T(items[i][0],x+140,VH/2+108,17,DIM,'center',400,a);
+    T(items[i][1],x+140,VH/2+140,22,items[i][2],'center',700,a);
+  }
+  T('今天只讲中间那块 —— 也是被误解最多的一块',VW/2,VH/2+216,20,DIM,'center',400,a3*0.95);
+}
+
+/* ================= S1 选型三角 ================= */
+function S1(t){
+  T('先搞清楚：你缺的到底是"知识"还是"手艺"',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('这两件事，解法完全不同',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const COLS=[
+    ['缺知识','它不知道我们公司的退货规则',
+     '用 RAG','把文档检索出来塞进上下文',
+     '知识天天变，改一行文档就生效',ACC2],
+    ['缺手艺','它答得像客服机器人，不像我们药师',
+     '用微调','让它学会一种固定的说法和格式',
+     '任务窄、格式死、量大',ACC],
+    ['只是没读完','这次要把这份 50 页合同看完',
+     '用长上下文','直接塞进去，一次分析',
+     '一次性任务，不需要沉淀',ACC3]
+  ];
+  for(let i=0;i<3;i++){
+    const st=0.4+i*0.5, a=eo(seg(t,st,st+0.5));
+    if(a<=0)continue;
+    const x=140+i*440;
+    box(x,190,420,300,mixc(BG,PANEL2,0.6),mixc(LINE,COLS[i][5],0.55*a),14,1.8,a);
+    T('症状',x+26,226,13,DIM,'left',600,a);
+    T(COLS[i][0],x+26,254,24,COLS[i][5],'left',700,a);
+    T(COLS[i][1],x+26,294,14,TXT,'left',400,a*0.9);
+    T('解法',x+26,342,13,DIM,'left',600,a*0.9);
+    T(COLS[i][2],x+26,372,22,TXT,'left',700,a);
+    T(COLS[i][3],x+26,406,14,DIM,'left',400,a*0.9);
+    T(COLS[i][4],x+26,452,13,COLS[i][5],'left',500,a*0.85);
+  }
+
+  const b=eo(seg(t,2.2,2.8));
+  if(b>0){
+    T('动手的顺序，建议永远是这个',140,536,17,ACC3,'left',700,b);
+    const steps=['改提示词','上 RAG','再考虑微调'];
+    for(let i=0;i<3;i++){
+      const a=eo(seg(t,2.4+i*0.3,2.8+i*0.3));
+      const x=140+i*300;
+      box(x,566,260,74,mixc(BG,PANEL2,0.55),rgba(ACC3,0.6*a),12,1.5,a);
+      badge(String(i+1),x+34,603,17,ACC3,a);
+      T(steps[i],x+66,603,19,TXT,'left',600,a);
+      if(i<2)arrow(x+266,603,x+296,603,rgba(DIM,0.8),2,a);
+    }
+  }
+
+  const c=eo(seg(t,3.6,4.2));
+  if(c>0){
+    box(140,676,1320,92,PANEL,mixc(LINE,WARN,0.5),12,1.8,c);
+    T('最常见的错',176,722,18,WARN,'left',700,c);
+    T('拿微调去补知识 —— 今天教它退货规则，明天规则改了，你得重新训练一遍。RAG 改一行文档就完事。',380,722,17,TXT,'left',400,c);
+  }
+  const d=eo(seg(t,4.6,5.2));
+  T('一句话：知识会过期，手艺不会。所以知识交给检索，手艺才值得练进去。',140,802,16,DIM,'left',400,d*0.95);
+}
+
+/* ================= S2 什么时候不该微调 ================= */
+function S2(t){
+  T('什么时候该微调，什么时候纯属浪费钱',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('左右两列，对照着看',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const LEFT=[
+    '知识需要频繁更新（政策、价格、库存）',
+    '答案必须能引用出处、可溯源',
+    '手头真实样本不到几百条',
+    '只是觉得它"不够聪明"',
+    '想让模型学会一整套新领域知识'
+  ];
+  const RIGHT=[
+    '输出格式固定（固定结构的报告、单据）',
+    '语气风格固定（品牌人设、专业口吻）',
+    '任务很窄（只做分类、抽取、改写）',
+    '调用量很大，想用小模型替代大模型省钱',
+    '已有稳定业务，需要进一步提升准确率'
+  ];
+
+  const a0=eo(seg(t,0.4,0.9));
+  if(a0>0){
+    box(140,190,640,420,mixc(BG,WARN,0.07),rgba(WARN,0.75*a0),14,1.8,a0);
+    T('别微调',168,232,24,WARN,'left',700,a0);
+    T('这些需求，微调解决不了',168,266,15,DIM,'left',400,a0*0.9);
+    for(let i=0;i<LEFT.length;i++){
+      const a=eo(seg(t,0.6+i*0.22,1.0+i*0.22));
+      T('×',172,312+i*56,20,WARN,'left',700,a);
+      T(LEFT[i],206,312+i*56,16,TXT,'left',400,a*0.92);
+    }
+  }
+
+  const a1=eo(seg(t,1.6,2.1));
+  if(a1>0){
+    box(820,190,640,420,mixc(BG,OK,0.07),rgba(OK,0.75*a1),14,1.8,a1);
+    T('适合微调',848,232,24,OK,'left',700,a1);
+    T('这些需求，微调才对症',848,266,15,DIM,'left',400,a1*0.9);
+    for(let i=0;i<RIGHT.length;i++){
+      const a=eo(seg(t,1.8+i*0.22,2.2+i*0.22));
+      T('✓',852,312+i*56,20,OK,'left',700,a);
+      T(RIGHT[i],886,312+i*56,16,TXT,'left',400,a*0.92);
+    }
+  }
+
+  const b=eo(seg(t,3.2,3.8));
+  if(b>0){
+    box(140,646,1320,86,PANEL,mixc(LINE,ACC,0.5),12,1.7,b);
+    T('判断标准',176,689,18,ACC,'left',700,b);
+    T('问自己一句：我要它「知道得更多」，还是「做得更稳」？知道得多 → RAG；做得稳 → 微调。',380,689,17,TXT,'left',400,b);
+  }
+  const c=eo(seg(t,4.2,4.8));
+  T('补充一句：微调几乎不能给它新知识。你能教的是"怎么说话、怎么组织答案"，不是"事实"。',
+    140,776,16,DIM,'left',400,c*0.95);
+}
+
+/* ================= S3 全参微调为什么不现实 ================= */
+function S3(t){
+  T('先看为什么"全参微调"一般人玩不起',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('以 7B 模型、半精度训练为例，只算显存这一项',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const rows=[
+    ['全参微调',[['权重',14,PANEL2],['梯度',14,PANEL2],['优化器状态',56,ACC3],['激活值',20,PANEL2]],'≈ 100GB 起 → 需要多张卡'],
+    ['LoRA（16bit 基座）',[['权重（冻结）',14,LINE],['LoRA 参数+优化器',0.6,OK],['激活值',6,PANEL2]],'≈ 21GB → 单张 24G 卡可跑'],
+    ['QLoRA（4bit 基座）',[['权重（4bit，冻结）',3.5,LINE],['LoRA 参数+优化器',0.6,OK],['激活值',5,PANEL2]],'≈ 9GB → 消费级显卡够用']
+  ];
+  const maxGB=100, barX=380, barW=780, pxPerGB=barW/maxGB;
+
+  for(let i=0;i<3;i++){
+    const st=0.4+i*0.6, a=eo(seg(t,st,st+0.5));
+    if(a<=0)continue;
+    const y=200+i*150;
+    T(rows[i][0],140,y+44,18,TXT,'left',700,a);
+    let cx=barX, tot=0;
+    for(let j=0;j<rows[i][1].length;j++){
+      const nm=rows[i][1][j][0], gb=rows[i][1][j][1], col=rows[i][1][j][2];
+      const w=Math.max(3,gb*pxPerGB);
+      box(cx,y+20,w,52,mixc(BG,col===PANEL2?PANEL2:col,0.8),rgba(col===PANEL2?LINE:col,0.8*a),4,1.2,a);
+      if(gb>6)T(nm+' '+gb+'G',cx+w/2,y+46,12,col===PANEL2?TXT:col,'center',600,a*0.95);
+      cx+=w+2; tot+=gb;
+    }
+    T('≈ '+Math.round(tot)+' GB',cx+14,y+46,15,ACC3,'left',700,a);
+    T(rows[i][2],barX,y+96,14,i===0?WARN:OK,'left',600,a*0.9);
+  }
+
+  const b=eo(seg(t,2.6,3.2));
+  if(b>0){
+    box(140,672,1320,92,PANEL,mixc(LINE,WARN,0.5),12,1.8,b);
+    T('算笔账',176,718,18,WARN,'left',700,b);
+    T('优化器状态是大头：Adam 要为每个参数存两份动量，fp32 下就是每个参数 8 字节。7B 参数 = 56GB。',360,718,17,TXT,'left',400,b);
+  }
+  const c=eo(seg(t,3.6,4.2));
+  T('这就是为什么：全公司想微调，方案一定是 LoRA 或 QLoRA，而不是全参。',140,798,16,DIM,'left',400,c*0.95);
+}
+
+/* ================= S4 LoRA 原理 ================= */
+function S4(t){
+  T('LoRA 的巧劲：原书不动，只贴便利贴',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('冻结原权重，只训练一对很小很小的矩阵，让它俩相乘去"补偿"',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const cs=24, n=10;
+  // W
+  const a0=eo(seg(t,0.4,1.0));
+  if(a0>0){
+    T('原矩阵 W（冻结）',140,206,15,DIM,'left',600,a0);
+    grid(140,226,n,n,cs,ACC,0.10,a0);
+    T('一个字都不动',140,492,14,DIM,'left',400,a0*0.85);
+  }
+  // 加号
+  const a1=eo(seg(t,1.4,1.9));
+  T('+',386,346,34,DIM,'center',400,a1);
+  // ΔW
+  const a2=eo(seg(t,1.8,2.4));
+  if(a2>0){
+    T('ΔW = B × A（可训练）',416,206,15,OK,'left',600,a2);
+    grid(416,226,n,n,cs,OK,0.22,a2);
+    T('参数极少，全靠它补偿',416,492,14,OK,'left',400,a2*0.85);
+  }
+  // 等号
+  const a3=eo(seg(t,2.8,3.3));
+  T('=',662,346,34,DIM,'center',400,a3);
+  const a4=eo(seg(t,3.1,3.7));
+  if(a4>0){
+    T('微调后的效果',692,206,15,ACC,'left',600,a4);
+    grid(692,226,n,n,cs,ACC,0.16,a4);
+  }
+
+  // 右侧：B 和 A
+  const a5=eo(seg(t,3.6,4.2));
+  if(a5>0){
+    T('这对小矩阵长什么样',1000,206,15,DIM,'left',600,a5);
+    // B: 10 行 2 列
+    grid(1000,240,2,10,cs,OK,0.30,a5);
+    T('B',1060,300,18,OK,'left',700,a5);
+    T('d × r',1060,326,13,DIM,'left',400,a5*0.9);
+    T('窄',1060,350,12,DIM,'left',400,a5*0.8);
+
+    T('×',1112,340,26,DIM,'center',400,a5);
+
+    // A: 2 行 8 列
+    grid(1146,290,8,2,cs,OK,0.30,a5);
+    T('A',1146,378,18,OK,'left',700,a5);
+    T('r × d',1200,382,13,DIM,'left',400,a5*0.9);
+    T('扁',1146,412,12,DIM,'left',400,a5*0.8);
+
+    const a6=eo(seg(t,4.6,5.2));
+    T('r 就是 rank，通常取 8 / 16 / 32 / 64',1000,462,14,ACC3,'left',600,a6);
+    T('r 越小越省，但也越学不动',1000,490,13,DIM,'left',400,a6*0.9);
+  }
+
+  // 参数量对比
+  const b=eo(seg(t,5.4,6.0));
+  if(b>0){
+    box(140,538,1320,142,mixc(BG,PANEL2,0.55),rgba(ACC,0.55*b),14,1.7,b);
+    T('拿 4096 × 4096 的一层算',176,578,16,DIM,'left',600,b);
+    TF('W   : 4096 × 4096        = 1677 万参数',176,618,17,TXT,'left',400,b);
+    TF('B+A : 4096 × 8 + 8 × 4096 =  6.5 万参数',176,650,17,OK,'left',400,b);
+    T('差约 256 倍',1120,618,22,ACC3,'left',700,b);
+    T('训练显存、训练时间，同比缩小',1120,652,14,DIM,'left',400,b*0.9);
+  }
+
+  const c=eo(seg(t,6.6,7.2));
+  T('而且这份 ΔW 只有几百 KB —— 一个业务一份，可以随时切换、随时回滚。',140,742,17,ACC3,'left',600,c*0.95);
+  T('这是 LoRA 最被低估的好处：模型本体共用，业务差异靠插件。',140,782,16,DIM,'left',400,c*0.92);
+}
+
+/* ================= S5 QLoRA ================= */
+function S5(t){
+  T('再省一半：把底座也压小',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('QLoRA = 底座量化到 4bit 并冻结 + LoRA 用高精度训练',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const BARS=[
+    ['全参微调',100,WARN,'7B 全参，多卡起步'],
+    ['LoRA',21,ACC,'单张 24G 卡'],
+    ['QLoRA',9,OK,'单张 12~16G 卡 / 消费级显卡']
+  ];
+  const maxV=100, x0=140, maxW=820;
+  for(let i=0;i<3;i++){
+    const st=0.4+i*0.55, a=eo(seg(t,st,st+0.5));
+    if(a<=0)continue;
+    const y=210+i*120;
+    T(BARS[i][0],x0,y+22,19,TXT,'left',700,a);
+    const w=maxW*(BARS[i][1]/maxV)*eo(seg(t,st+0.15,st+0.9));
+    box(x0,y+46,maxW*(BARS[i][1]/maxV),34,'#121a26',null,8,0,a*0.8);
+    box(x0,y+46,Math.max(6,w),34,mixc(PANEL,BARS[i][2],0.8),null,8,0,a);
+    T(BARS[i][1]+' GB 左右',x0+maxW+24,y+63,16,BARS[i][2],'left',700,a);
+    T(BARS[i][3],x0,y+98,13,DIM,'left',400,a*0.88);
+  }
+
+  // 原理小图
+  const b=eo(seg(t,2.4,3.0));
+  if(b>0){
+    box(1060,190,400,360,mixc(BG,PANEL2,0.55),rgba(OK,0.5*b),14,1.6,b);
+    T('做法',1088,226,15,OK,'left',700,b);
+    const lines=[
+      ['底座 → 4bit','压缩后冻结，只读',OK,0],
+      ['LoRA → 16bit','照常训练，精度不降',ACC,1],
+      ['推理时合并','或者带着 adapter 跑',ACC2,2]
+    ];
+    for(let i=0;i<3;i++){
+      const a=eo(seg(t,2.6+i*0.3,3.0+i*0.3));
+      if(a<=0)continue;
+      badge(String(i+1),1108,272+i*78,15,lines[i][2],a);
+      T(lines[i][0],1140,264+i*78,16,TXT,'left',600,a);
+      T(lines[i][1],1140,290+i*78,13,DIM,'left',400,a*0.9);
+    }
+    T('代价：底座被压过，本身会掉一点点',1088,500,12,ACC3,'left',500,b*0.9);
+  }
+
+  const c=eo(seg(t,4.0,4.6));
+  if(c>0){
+    box(140,590,1320,92,PANEL,mixc(LINE,ACC2,0.5),12,1.7,c);
+    T('所以现在的现实是',176,636,18,ACC2,'left',700,c);
+    T('一台带 24G 显存的机器（甚至一台 Mac），就能微调 7B 模型。门槛早就没有想象中高了。',420,636,17,TXT,'left',400,c);
+  }
+  const d=eo(seg(t,5.2,5.8));
+  T('注意：QLoRA 省的是显存，买的仍然是时间。数据量大的时候，训练时长才是真正的成本。',140,724,16,DIM,'left',400,d*0.95);
+}
+
+/* ================= S6 数据决定一切 ================= */
+function S6(t){
+  T('决定成败的不是算法，是数据',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('LoRA 是现成的，框架是现成的，唯一没法现成的是你的数据',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 左：一条样本
+  const a0=eo(seg(t,0.4,1.0));
+  if(a0>0){
+    T('一条训练样本长这样',140,206,15,DIM,'left',600,a0);
+    box(140,226,600,262,mixc(BG,PANEL2,0.55),rgba(LINE,0.9*a0),12,1.4,a0);
+    const roles=[
+      ['system','你是一名资深药师，回答要引用说明书依据。',ACC2],
+      ['user','这个药能和降压药一起吃吗？',TXT],
+      ['assistant','（这里必须是你希望它学会的那个回答，\n 写得越具体，它学得越准）',OK]
+    ];
+    let yy=258;
+    for(let i=0;i<3;i++){
+      const a=eo(seg(t,0.6+i*0.35,1.0+i*0.35));
+      if(a<=0)continue;
+      TF('<'+roles[i][0]+'>',162,yy,12,roles[i][2],'left',700,a);
+      const ls=roles[i][1].split('\n');
+      for(let j=0;j<ls.length;j++)T(ls[j],162,yy+26+j*24,15,TXT,'left',400,a*0.92);
+      yy+=26+ls.length*24+16;
+    }
+  }
+
+  // 中：质量曲线
+  const a1=eo(seg(t,2.0,2.6));
+  if(a1>0){
+    T('数量 vs 质量',790,206,15,DIM,'left',600,a1);
+    box(790,226,360,262,mixc(BG,PANEL2,0.55),rgba(LINE,0.9*a1),12,1.4,a1);
+    // 两条经验线
+    const p0=eo(seg(t,2.4,3.0));
+    ctx.save();ctx.globalAlpha=p0*0.95;
+    ctx.strokeStyle=OK;ctx.lineWidth=3;ctx.beginPath();
+    ctx.moveTo(826,440);ctx.bezierCurveTo(880,392,960,330,1116,306);ctx.stroke();
+    ctx.strokeStyle=WARN;ctx.lineWidth=3;ctx.beginPath();
+    ctx.moveTo(826,440);ctx.bezierCurveTo(880,436,960,432,1116,428);ctx.stroke();
+    ctx.restore();
+    T('质量高',1120,300,13,OK,'left',600,p0);
+    T('数量堆',1120,428,13,WARN,'left',600,p0);
+    T('几百条好的，胜过十万条凑的',812,462,13,ACC3,'left',600,p0*0.95);
+  }
+
+  // 右：流程
+  const a2=eo(seg(t,3.2,3.8));
+  if(a2>0){
+    T('数据从哪来',1190,206,15,DIM,'left',600,a2);
+    const flow=['真实业务问题','人工写标准答案','强模型批量生成 + 人工抽检','清洗、去重、平衡','按 chat template 格式化'];
+    for(let i=0;i<flow.length;i++){
+      const a=eo(seg(t,3.4+i*0.28,3.8+i*0.28));
+      if(a<=0)continue;
+      const y=236+i*56;
+      box(1190,y,270,44,mixc(BG,PANEL2,0.5),rgba(ACC,0.55*a),10,1.3,a);
+      T(flow[i],1206,y+22,13,TXT,'left',500,a*0.92);
+      if(i<flow.length-1)T('↓',1325,y+48,13,DIM,'center',700,a*0.7);
+    }
+  }
+
+  const b=eo(seg(t,5.4,6.0));
+  if(b>0){
+    box(140,528,700,140,mixc(BG,WARN,0.07),rgba(WARN,0.7*b),12,1.6,b);
+    T('最容易踩的坑',176,564,16,WARN,'left',700,b);
+    T('几千条完全一样的问题，只是换了个说法',176,600,15,TXT,'left',400,b*0.92);
+    T('同质化数据只会让它背题，不会让它变聪明',176,632,14,DIM,'left',400,b*0.88);
+  }
+  const c=eo(seg(t,6.2,6.8));
+  if(c>0){
+    box(880,528,580,140,mixc(BG,OK,0.07),rgba(OK,0.7*c),12,1.6,c);
+    T('先做 100 条试试',916,564,16,OK,'left',700,c);
+    T('如果 100 条精品都跑不出效果，',916,600,15,TXT,'left',400,c*0.92);
+    T('再多数据也救不了 —— 先排查是不是任务本身不适合微调',916,632,14,DIM,'left',400,c*0.88);
+  }
+
+  const d=eo(seg(t,7.0,7.6));
+  T('记住一句话：微调学的是"怎么答"，不是"答什么"。想让它知道新事实，那是 RAG 的活。',140,724,17,ACC3,'left',600,d*0.95);
+}
+
+/* ================= S7 训练过程 ================= */
+function S7(t){
+  T('训练的时候，你在看什么',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('只有一个指标值得盯：验证集 loss',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const ox=180,oy=520,W=560,H=310;
+  const a0=eo(seg(t,0.4,1.0));
+  if(a0>0){
+    // 坐标轴
+    ctx.save();ctx.globalAlpha=a0*0.8;ctx.strokeStyle=rgba(LINE,0.95);ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ox+W,oy);ctx.moveTo(ox,oy);ctx.lineTo(ox,oy-H);ctx.stroke();
+    ctx.restore();
+    T('loss',ox-16,oy-H,13,DIM,'right',500,a0);
+    T('训练轮次 →',ox+W,oy+26,13,DIM,'right',500,a0);
+
+    const prog=eo(seg(t,1.0,4.2));
+    const E=4.0, steps=90;
+    // 训练 loss
+    ctx.save();ctx.globalAlpha=a0*0.95;ctx.strokeStyle=OK;ctx.lineWidth=3;ctx.lineCap='round';ctx.beginPath();
+    for(let i=0;i<=steps;i++){
+      const e=(i/steps)*E;
+      if(e>prog*E)break;
+      const v=0.08+0.72*Math.exp(-1.5*e);
+      const x=ox+(e/E)*W, y=oy-v*H*1.02;
+      if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+    }
+    ctx.stroke();ctx.restore();
+    // 验证 loss
+    ctx.save();ctx.globalAlpha=a0*0.95;ctx.strokeStyle=ACC3;ctx.lineWidth=3;ctx.lineCap='round';ctx.beginPath();
+    for(let i=0;i<=steps;i++){
+      const e=(i/steps)*E;
+      if(e>prog*E)break;
+      const ex=Math.max(0,e-2.1);
+      const v=0.10+0.74*Math.exp(-1.55*e)+0.085*ex*ex;
+      const x=ox+(e/E)*W, y=oy-v*H*1.02;
+      if(i===0)ctx.moveTo(x,y);else ctx.lineTo(x,y);
+    }
+    ctx.stroke();ctx.restore();
+
+    T('训练集',ox+W-10,oy-H+6,13,OK,'right',600,eo(seg(t,2.0,2.5)));
+    T('验证集',ox+W-10,oy-H+32,13,ACC3,'right',600,eo(seg(t,2.4,2.9)));
+
+    // 最低点标记
+    const a2=eo(seg(t,4.0,4.6));
+    if(a2>0){
+      const e=2.1, ex=Math.max(0,e-2.1);
+      const v=0.10+0.74*Math.exp(-1.55*e)+0.085*ex*ex;
+      const x=ox+(e/E)*W, y=oy-v*H*1.02;
+      ctx.save();ctx.globalAlpha=a2;
+      ctx.strokeStyle=rgba(WARN,0.9);ctx.setLineDash([5,5]);ctx.lineWidth=2;
+      ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x,oy);ctx.stroke();
+      ctx.setLineDash([]);
+      ctx.fillStyle=WARN;ctx.beginPath();ctx.arc(x,y,6,0,Math.PI*2);ctx.fill();
+      ctx.restore();
+      T('这里就该停了',x+16,y-18,15,WARN,'left',700,a2);
+      T('再练下去，验证 loss 开始上升 = 过拟合',x+16,y+8,13,DIM,'left',400,a2*0.9);
+    }
+  }
+
+  // 右：超参三件套
+  const a3=eo(seg(t,4.4,5.0));
+  if(a3>0){
+    T('三个真正要调的旋钮',800,206,15,DIM,'left',600,a3);
+    const knobs=[
+      ['学习率','1e-4 ~ 2e-4 起手','太大发散，太小学不动',ACC],
+      ['rank (r)','8 / 16 / 32 / 64','越大越能学，也越容易过拟合',ACC2],
+      ['epoch','1 ~ 3 轮','微调不是越久越好，通常 2 轮内',ACC3]
+    ];
+    for(let i=0;i<3;i++){
+      const a=eo(seg(t,4.6+i*0.4,5.0+i*0.4));
+      if(a<=0)continue;
+      const y=240+i*104;
+      box(800,y,600,88,mixc(BG,PANEL2,0.5),mixc(LINE,knobs[i][3],0.55*a),12,1.5,a);
+      T(knobs[i][0],828,y+30,18,knobs[i][3],'left',700,a);
+      T(knobs[i][1],828,y+58,15,TXT,'left',500,a*0.92);
+      T(knobs[i][2],1110,y+44,13,DIM,'left',400,a*0.88);
+    }
+  }
+
+  const b=eo(seg(t,6.4,7.0));
+  if(b>0){
+    box(140,600,1260,86,PANEL,mixc(LINE,ACC2,0.5),12,1.7,b);
+    T('早停',176,643,18,ACC2,'left',700,b);
+    T('盯着验证集 loss，连续两轮不降就停。别用训练集 loss 判断，它只会一直降，骗你的。',280,643,17,TXT,'left',400,b);
+  }
+  const c=eo(seg(t,7.4,8.0));
+  T('训练日志里那些 lr、step、grad_norm，绝大多数时候你不需要看懂 —— 只要 loss 曲线对了，方向就没问题。',
+    140,724,16,DIM,'left',400,c*0.95);
+}
+
+/* ================= S8 灾难性遗忘 ================= */
+function S8(t){
+  T('一个副作用：学会新手艺，忘了旧本事',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('这叫灾难性遗忘，微调必然发生，只是程度问题',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const ox=180,oy=470,W=520,H=250;
+  const a0=eo(seg(t,0.4,1.0));
+  if(a0>0){
+    ctx.save();ctx.globalAlpha=a0*0.75;ctx.strokeStyle=rgba(LINE,0.95);ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(ox,oy);ctx.lineTo(ox+W,oy);ctx.moveTo(ox,oy);ctx.lineTo(ox,oy-H);ctx.stroke();ctx.restore();
+    T('能力水平',ox-16,oy-H+10,13,DIM,'right',500,a0);
+    T('训练进度 →',ox+W,oy+26,13,DIM,'right',500,a0);
+
+    const prog=eo(seg(t,0.8,3.4));
+    // 专业能力上升
+    ctx.save();ctx.globalAlpha=a0*0.95;ctx.strokeStyle=OK;ctx.lineWidth=3;ctx.beginPath();
+    ctx.moveTo(ox,oy-H*0.35);
+    ctx.bezierCurveTo(ox+W*0.4*prog,oy-H*0.35,ox+W*0.7*prog,oy-H*0.72,ox+W*prog,oy-H*0.86);
+    ctx.stroke();ctx.restore();
+    T('专业能力 ↑',ox+W-8,oy-H*0.86-16,13,OK,'right',600,eo(seg(t,1.8,2.3)));
+
+    // 通用能力下降
+    ctx.save();ctx.globalAlpha=a0*0.95;ctx.strokeStyle=WARN;ctx.lineWidth=3;ctx.beginPath();
+    ctx.moveTo(ox,oy-H*0.80);
+    ctx.bezierCurveTo(ox+W*0.4*prog,oy-H*0.80,ox+W*0.7*prog,oy-H*0.42,ox+W*prog,oy-H*0.26);
+    ctx.stroke();ctx.restore();
+    T('通用能力 ↓',ox+W-8,oy-H*0.26-16,13,WARN,'right',600,eo(seg(t,2.4,2.9)));
+  }
+
+  // 右：解法
+  const a1=eo(seg(t,3.2,3.8));
+  if(a1>0){
+    box(800,200,620,270,mixc(BG,OK,0.07),rgba(OK,0.7*a1),14,1.8,a1);
+    T('解法：把通用数据混进去',828,240,20,OK,'left',700,a1);
+    T('训练数据里掺 10%~30% 的通用问答',828,286,16,TXT,'left',400,a1*0.92);
+    T('让它一边学新手艺，一边复习旧本事',828,320,16,TXT,'left',400,a1*0.92);
+    const a2=eo(seg(t,4.0,4.6));
+    T('效果：专业能力照样上去，通用能力基本保住',828,368,15,ACC3,'left',600,a2*0.95);
+    T('（代价是训练量变大，收敛慢一点）',828,404,13,DIM,'left',400,a2*0.88);
+  }
+
+  // 底：三个提醒
+  const a3=eo(seg(t,5.0,5.6));
+  if(a3>0){
+    const tips=[
+      ['rank 别贪大','r 越大越容易把原模型带偏'],
+      ['epoch 别太多','2 轮以内，越久忘得越多'],
+      ['一定要对比基座','和没微调的原模型同题对跑']
+    ];
+    for(let i=0;i<3;i++){
+      const a=eo(seg(t,5.2+i*0.3,5.6+i*0.3));
+      if(a<=0)continue;
+      const x=140+i*440;
+      box(x,506,420,104,mixc(BG,PANEL2,0.5),rgba(LINE,0.9*a),12,1.4,a);
+      T(tips[i][0],x+24,540,17,ACC,'left',700,a);
+      T(tips[i][1],x+24,574,14,TXT,'left',400,a*0.9);
+    }
+  }
+
+  const b=eo(seg(t,6.6,7.2));
+  T('判断标准很朴素：微调后，你原本用得顺手的那些场景，是不是有变差。有，就是忘了。',140,672,17,DIM,'left',400,b*0.95);
+}
+
+/* ================= S9 评测与上线 ================= */
+function S9(t){
+  T('练完了，怎么判断它真的更好',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('没有对比的"感觉不错"，一律不作数',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const flow=['训练完成','金标集评测','与基座对比','灰度 5%','监控 + 回滚'];
+  const bw=228,gp=22,total=5*bw+4*gp,x0=(VW-total)/2,y0=210;
+  for(let i=0;i<5;i++){
+    const st=0.4+i*0.45, a=eo(seg(t,st,st+0.45));
+    if(a<=0)continue;
+    const x=x0+i*(bw+gp);
+    const col=i===2?ACC3:(i===4?WARN:ACC);
+    box(x,y0,bw,110,mixc(BG,PANEL2,0.6),mixc(LINE,col,0.6*a),14,1.7,a);
+    badge(String(i+1),x+bw/2,y0+32,16,col,a);
+    T(flow[i],x+bw/2,y0+76,17,TXT,'center',700,a);
+    if(i<4)arrow(x+bw+2,y0+55,x+bw+gp-2,y0+55,rgba(DIM,0.75),2,a*0.85);
+  }
+
+  // 对比结果表
+  const a1=eo(seg(t,2.8,3.4));
+  if(a1>0){
+    T('关键在第 3 步：和基座同题对跑',140,382,17,ACC3,'left',700,a1);
+    const rows=[
+      ['业务格式合规率','61%','94%','↑ 明显变好',OK],
+      ['通用问答能力','82%','78%','↓ 轻微退化，可接受',ACC3],
+      ['常识题（防遗忘）','90%','71%','↓ 退化太多，要调',WARN]
+    ];
+    // 表头
+    const hy=410;
+    T('测试项',176,hy,14,DIM,'left',600,a1);
+    T('基座',800,hy,14,DIM,'left',600,a1);
+    T('微调后',940,hy,14,DIM,'left',600,a1);
+    T('结论',1100,hy,14,DIM,'left',600,a1);
+    ctx.save();ctx.globalAlpha=a1*0.5;ctx.strokeStyle=rgba(LINE,0.9);ctx.lineWidth=1.5;
+    ctx.beginPath();ctx.moveTo(176,hy+22);ctx.lineTo(1450,hy+22);ctx.stroke();ctx.restore();
+    for(let i=0;i<rows.length;i++){
+      const a=eo(seg(t,3.0+i*0.32,3.4+i*0.32));
+      if(a<=0)continue;
+      const y=hy+60+i*54;
+      T(rows[i][0],176,y,16,TXT,'left',500,a*0.92);
+      T(rows[i][1],800,y,16,DIM,'left',600,a*0.92);
+      T(rows[i][2],940,y,16,TXT,'left',700,a);
+      T(rows[i][3],1100,y,14,rows[i][4],'left',600,a*0.95);
+    }
+  }
+
+  const b=eo(seg(t,4.6,5.2));
+  if(b>0){
+    box(140,624,1320,88,PANEL,mixc(LINE,WARN,0.5),12,1.7,b);
+    T('最后一行才是重点',176,668,18,WARN,'left',700,b);
+    T('专业能力变好是理所当然的 —— 你就是在教它这个。真正要检查的，是它有没有把别的本事忘掉。',440,668,17,TXT,'left',400,b);
+  }
+  const c=eo(seg(t,5.6,6.2));
+  T('顺序别搞反：先建金标集，再动训练。没有评测集的微调，等于闭着眼睛改参数。',140,752,16,DIM,'left',400,c*0.95);
+}
+
+/* ================= S10 收尾 ================= */
+function S10(t){
+  const a1=eo(seg(t,0.1,0.7)), a3=eo(seg(t,1.5,2.1));
+  const g=ctx.createRadialGradient(VW/2,VH/2,40,VW/2,VH/2,560);
+  g.addColorStop(0,'rgba(155,140,255,0.12)');g.addColorStop(1,'rgba(155,140,255,0)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,VW,VH);
+
+  T('这一集，其实就三句话',VW/2,150,17,ACC,'center',600,a1);
+  const lines=[
+    '微调给的是手艺，不是知识 —— 知识靠 RAG，别搞反。',
+    '全参玩不起就 LoRA，显存不够就 QLoRA，两招覆盖九成场景。',
+    '决定成败的是数据质量和评测集，不是算法和参数。'
+  ];
+  for(let i=0;i<3;i++){
+    const a=eo(seg(t,0.4+i*0.5,0.9+i*0.5));
+    T(lines[i],VW/2,236+i*62,25,TXT,'center',500,a);
+  }
+  ctx.strokeStyle=rgba(ACC,0.6*a3);ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(VW/2-340,448);ctx.lineTo(VW/2+340,448);ctx.stroke();
+
+  T('知识会过期，手艺不会',VW/2,530,34,ACC3,'center',700,a3);
+  T('所以：会变的东西放外面（检索），不变的东西练进去（微调）',VW/2,592,22,DIM,'center',400,a3);
+  T('能同时做到这两件事的系统，才叫"你自己的模型"。',VW/2,652,20,OK,'center',600,a3);
+
+  T('空格 暂停 / 播放    ←  →  切换章节    点进度条跳转',VW/2,800,16,DIM,'center',400,eo(seg(t,2.8,3.4))*0.8);
+}
+
+/* ================= 时间轴 ================= */
+const SCENES=[
+  {n:'开场',        d:4.5,  f:S0},
+  {n:'选型三角',    d:11.0, f:S1},
+  {n:'该不该微调',  d:11.0, f:S2},
+  {n:'全参的成本',  d:12.0, f:S3},
+  {n:'LoRA 原理',   d:13.0, f:S4},
+  {n:'QLoRA',       d:11.0, f:S5},
+  {n:'数据',        d:13.0, f:S6},
+  {n:'训练过程',    d:12.0, f:S7},
+  {n:'灾难性遗忘',  d:10.0, f:S8},
+  {n:'评测与上线',  d:11.0, f:S9},
+  {n:'收尾',        d:6.5,  f:S10}
+];
+const TOTAL=SCENES.reduce((s,x)=>s+x.d,0);
+
+let clock=0, playing=true, last=0;
+
+function locate(g){
+  let acc=0;
+  for(let i=0;i<SCENES.length;i++){
+    if(g<acc+SCENES[i].d||i===SCENES.length-1)return {i:i,t:g-acc};
+    acc+=SCENES[i].d;
+  }
+  return {i:SCENES.length-1,t:SCENES[SCENES.length-1].d};
+}
+
+function drawTopHUD(idx){
+  T('Fine-tuning · LoRA · Data',44,34,15,DIM,'left',600,1);
+  T('/ '+SCENES[idx].n,300,34,15,ACC,'left',600,1);
+}
+
+function drawProgress(g){
+  const y=VH-8;
+  ctx.fillStyle='rgba(40,52,68,0.9)';ctx.fillRect(0,y,VW,3);
+  ctx.fillStyle=ACC;ctx.fillRect(0,y,VW*(g/TOTAL),3);
+  let acc=0;
+  for(let i=0;i<SCENES.length;i++){
+    const x=VW*(acc/TOTAL);
+    ctx.fillStyle=BG;ctx.fillRect(x-1,y-3,2,9);
+    acc+=SCENES[i].d;
+  }
+}
+
+function render(){
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.fillStyle=BG;ctx.fillRect(0,0,cv.width/dpr,cv.height/dpr);
+  ctx.setTransform(dpr*scale,0,0,dpr*scale,offX*dpr,offY*dpr);
+
+  const loc=locate(clock);
+  const sc=SCENES[loc.i];
+  const fin=cl01(loc.t/0.42), fout=cl01((sc.d-loc.t)/0.34);
+  const alpha=Math.min(fin,fout);
+
+  ctx.save();ctx.globalAlpha=alpha;sc.f(loc.t);ctx.restore();
+  drawTopHUD(loc.i);
+  drawProgress(clock);
+}
+
+function loop(ts){
+  if(!last)last=ts;
+  let dt=(ts-last)/1000;last=ts;
+  if(dt>0.12)dt=0.12;
+  if(playing){clock+=dt;if(clock>=TOTAL)clock=0;}
+  render();
+  requestAnimationFrame(loop);
+}
+
+function resize(){
+  dpr=Math.min(window.devicePixelRatio||1,2);
+  const w=window.innerWidth,h=window.innerHeight;
+  cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);
+  cv.style.width=w+'px';cv.style.height=h+'px';
+  scale=Math.min(w/VW,h/VH);
+  offX=(w-VW*scale)/2;offY=(h-VH*scale)/2;
+}
+window.addEventListener('resize',resize);
+
+document.addEventListener('keydown',e=>{
+  if(e.code==='Space'){e.preventDefault();playing=!playing;last=0;}
+  else if(e.code==='ArrowRight'||e.code==='ArrowLeft'){
+    const loc=locate(clock);
+    const target=e.code==='ArrowRight'?Math.min(loc.i+1,SCENES.length-1):Math.max(loc.i-1,0);
+    let acc=0;
+    for(let i=0;i<SCENES.length;i++){if(i===target){clock=acc;break;}acc+=SCENES[i].d;}
+    last=0;
+  } else if(e.key==='r'||e.key==='R'){clock=0;last=0;playing=true;}
+});
+
+cv.addEventListener('click',e=>{
+  const r=cv.getBoundingClientRect();
+  const w=r.width,h=r.height;
+  const s=Math.min(w/VW,h/VH);
+  const ox=(w-VW*s)/2, oy=(h-VH*s)/2;
+  const vx=(e.clientX-r.left-ox)/s, vy=(e.clientY-r.top-oy)/s;
+  if(vy>VH-24){clock=cl01(vx/VW)*TOTAL;last=0;}
+  else {playing=!playing;last=0;}
+});
+
+try{
+  const qp=new URLSearchParams(location.search);
+  if(qp.has('t')){
+    const v=parseFloat(qp.get('t'));
+    if(!isNaN(v))clock=Math.max(0,Math.min(TOTAL-0.04,v));
+  }
+  if(qp.get('pause')==='1')playing=false;
+}catch(err){}
+
+resize();
+requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

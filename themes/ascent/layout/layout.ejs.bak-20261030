@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<%- partial('_partial/head') %>
+
+  <body>
+    <div id="wrapper">
+        <div id="content">
+          <%- body %>
+        </div>
+        <%- partial('_partial/header') %>
+    </div>
+    <%- partial('_partial/footer') %>
+  <%# disabled: bg-img + color-scheme image swap %>
+  </body>
+
+</html>

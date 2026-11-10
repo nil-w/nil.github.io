@@ -1,0 +1,15 @@
+{
+  "name": "ds-course",
+  "version": "1.0.0",
+  "private": true,
+  "description": "重学算法与数据结构 — TypeScript 可运行代码",
+  "type": "module",
+  "scripts": {
+    "lesson": "tsx"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^5.0.0"
+  }
+}
