@@ -1,6 +1,6 @@
 ---
 title: datart-vite 开发历程：把 CRA 时代的 BI 前端搬到 Vite
-description: 一个 17 万行的 React BI 前端，从 CRA 4 + craco 迁到 Vite，顺手升完 React 18、antd 5、Router 6，并补上地图下钻与 UMD 任务产物的二次构建
+date: 2026-11-10 15:00:00
 categories:
   - 技术
 tags:
@@ -10,11 +10,23 @@ tags:
   - 前端工程化
   - BI
   - antd
+description: 一个 17 万行的 React BI 前端，从 CRA 4 + craco 迁到 Vite，顺手升完 React 18、antd 5、Router 6，并补上地图下钻与 UMD 任务产物的二次构建
 toc: true
 comments: true
 abbrlink: datart-vite
-date: 2026-11-10 15:00:00
+AIGC:
+  Label: '1'
+  ContentProducer: 001191440300708461136T1XGW3
+  ProduceID: 3e1145c2618c5c1a02da55a40379a02b_01f29bc5dcc911f1bff2525400cd780f
+  ReservedCode1: >-
+    iDzeySq7fJd8oGIREZBfw02whnudNBoEI/42RJrCmx6X9us5UeWj5Nkf+CT49iKSkAIPvxZV7WK2ruqgwWUij0M/u7DKervHaxNMUagBudb0G1bJryYA8czIUmz2Uidw7ujeZS8yzTww3XtA6TA7grJ0rNnndTZpDHko1y7lla6tWXYHwdAJgNqB8bs=
+  ContentPropagator: 001191440300708461136T1XGW3
+  PropagateID: 3e1145c2618c5c1a02da55a40379a02b_01f29bc5dcc911f1bff2525400cd780f
+  ReservedCode2: >-
+    iDzeySq7fJd8oGIREZBfw02whnudNBoEI/42RJrCmx6X9us5UeWj5Nkf+CT49iKSkAIPvxZV7WK2ruqgwWUij0M/u7DKervHaxNMUagBudb0G1bJryYA8czIUmz2Uidw7ujeZS8yzTww3XtA6TA7grJ0rNnndTZpDHko1y7lla6tWXYHwdAJgNqB8bs=
 ---
+
+
 
 # datart-vite 开发历程：把 CRA 时代的 BI 前端搬到 Vite
 
