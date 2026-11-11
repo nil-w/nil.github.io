@@ -1691,3 +1691,23 @@ body.home .post-count {
     font-size: clamp(0.78rem, 1.5vh, 0.9rem);
   }
 }
+
+/* 14. 正文图片统一居中：不论图片原始尺寸大小，一律水平居中显示。
+       全局 img 的 margin:0 auto 曾被注释掉，小图会贴左，与版心不对齐。 */
+.article-entry img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* 图片被 <a> 包裹（点击放大/外链）时，<a> 默认是 inline，
+   收缩为图片宽度后 margin:auto 无从计算，故把链接本身转为 fit-content 块并居中。 */
+.article-entry a:has(> img),
+.article-entry a:has(> picture) {
+  display: block;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}

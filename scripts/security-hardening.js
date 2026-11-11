@@ -169,11 +169,9 @@ hexo.extend.filter.register('after_generate', function () {
   }
 
   // ── 2. 自定义 404 页 ─────────────────────────────────────
+  // 每次构建都重写：旧版（独立内联皮肤的页面）不再残留
   const notFound = path.join(publicDir, '404.html');
-  const exists = fs.existsSync(notFound);
-  if (!exists) {
-    fs.writeFileSync(notFound, render404(), 'utf8');
-  }
+  fs.writeFileSync(notFound, render404(), 'utf8');
 
   // ── 3. 补 robots.txt 的 Sitemap 与 Crawl-delay ───────────
   const robotsPath = path.join(publicDir, 'robots.txt');
@@ -206,13 +204,62 @@ function FALLBACK_SECURITY_TXT() {
 }
 
 /**
- * 404 页：站内搜索引导 + 热门分类。评分机构看的是「404 是否有引导」，
- * 而不是「404 是否存在」。
+/**
+ * 404 页：套用站点主题外壳（同一份 bundle.css、同一套 CSS 变量、同一套导航），
+ * 内容区给「最新文章」作为出路。
+ * 历史：早期版本是内联皮肤的独立页面（灰底居中卡片），与站点风格割裂，已废弃。
+ * 注意：站点无 /search/ 页，旧版 404 的搜索表单是死链，本次一并去掉。
  */
 function render404() {
   const site = (hexo.config.url || '').replace(/\/+$/, '');
   const title = hexo.config.title || '';
   const desc = '页面不存在';
+
+  // 导航：复用主题 _config.yml 的 theme.menu，标签按 zh-CN 语言包翻译
+  const MENU_LABEL = {
+    home: '首页',
+    archives: '文章',
+    categories: '分类',
+    tags: '标签',
+    about: '关于我',
+    search: '搜索',
+    tagcloud: '标签云',
+  };
+  let menu = {};
+  try {
+    menu = (hexo.theme && hexo.theme.config && hexo.theme.config.menu) || {};
+  } catch (e) {
+    menu = {};
+  }
+  const navHtml = Object.keys(menu)
+    .map((key) => {
+      let href = String(menu[key] || '').trim();
+      if (!href) return '';
+      if (!/^(?:[a-z]+:)?\/\//i.test(href) && href.charAt(0) !== '/') href = '/' + href;
+      return `<a class="nav-link" href="${href}">${MENU_LABEL[key] || key}</a>`;
+    })
+    .filter(Boolean)
+    .join('\n          <span class="nav-spacer"> </span>\n          ');
+
+  // 最新文章：给 404 一个有去处的出口（失败不影响出页）
+  const pad = (n) => String(n).padStart(2, '0');
+  let latestHtml = '';
+  try {
+    latestHtml = hexo.locals
+      .get('posts')
+      .sort('-date')
+      .limit(5)
+      .toArray()
+      .map((p) => {
+        const d = p.date ? `${p.date.year()}-${pad(p.date.month() + 1)}-${pad(p.date.date())}` : '';
+        const url = site + '/' + encodeURI(String(p.path || '').replace(/^\/+/, ''));
+        return `            <li><span class="nf-date">${d}</span><a href="${url}">${p.title || p.slug || ''}</a></li>`;
+      })
+      .join('\n');
+  } catch (e) {
+    latestHtml = '';
+  }
+
   return `<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -220,48 +267,90 @@ function render404() {
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>404 ${desc} | ${title}</title>
 <meta name="robots" content="noindex,follow">
-<meta name="description" content="${desc}，返回首页或使用站内搜索。">
+<meta name="description" content="${desc}。这里是最新文章与站点导航。">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<!-- 与站点其它页面同一条 CSP（GitHub Pages 不支持响应头，只能走 meta） -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https:; frame-src 'self' https://www.slideshare.net https://player.bilibili.com; media-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+<link rel="stylesheet" href="/css/bundle.css">
 <style>
-  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
-       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
-       background:#fafafa;color:#212121}
-  .w{max-width:560px;padding:24px;text-align:center}
-  h1{font-size:64px;margin:0;letter-spacing:-2px;color:#b5c8cf}
-  p{color:#666;line-height:1.8}
-  a{color:#4a7d8c;text-decoration:none}
-  a:hover{text-decoration:underline}
-  .box{margin:24px 0;padding:18px;background:#fff;border-radius:8px;
-       box-shadow:0 1px 3px rgba(0,0,0,.08)}
-  .box a{display:inline-block;margin:4px 8px}
-  input{width:100%;padding:10px 12px;border:1px solid #ddd;border-radius:6px;font-size:14px}
-  button{margin-top:10px;padding:10px 22px;border:0;border-radius:6px;background:#4a7d8c;
-         color:#fff;cursor:pointer;font-size:14px}
-  footer{margin-top:28px;font-size:12px;color:#999}
+  /* 仅 404 专属排版；字体与配色全部取自主题 CSS 变量，随站点暗色模式联动 */
+  .nf-code {
+    font-family: var(--title-stack);
+    font-size: 3.2em;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    margin: 0 0 0.2em;
+    color: var(--link-color);
+  }
+  .nf-latest {
+    list-style: none;
+    margin: 1em 0 0;
+    padding: 0;
+  }
+  .nf-latest li {
+    margin: 0.5em 0;
+  }
+  .nf-date {
+    color: var(--secondary-color);
+    margin-right: 0.9em;
+  }
 </style>
 </head>
 <body>
-<div class="w">
-  <h1>404</h1>
-  <p>${desc}。可能是链接失效，或者文章已被移动。</p>
-
-  <div class="box">
-    <form action="${site}/search/" method="get">
-      <input type="text" name="q" placeholder="站内搜索…" aria-label="站内搜索">
-      <button type="submit">搜索</button>
-    </form>
+  <div id="wrapper">
+    <div id="content">
+      <div class="article">
+        <div class="article-header">
+          <p class="nf-code">404</p>
+          <h1 class="article-title">${desc}</h1>
+        </div>
+        <div class="article-entry">
+          <p>这个地址没有对应的页面，可能是链接已失效，或者文章被移动过。</p>
+          <p>下面是最近写的东西：</p>
+          <ul class="nf-latest">
+${latestHtml}
+          </ul>
+        </div>
+      </div>
+    </div>
+    <header id="header">
+      <nav>
+        <div class="header-nav-links">
+          <a class="nav-link-first" href="/">${title}</a>
+          <span class="nav-spacer"></span>
+          ${navHtml}
+        </div>
+      </nav>
+    </header>
   </div>
-
-  <div class="box">
-    <a href="${site}/">首页</a>
-    <a href="${site}/archives/">归档</a>
-    <a href="${site}/categories/">分类</a>
-    <a href="${site}/tags/">标签</a>
-    <a href="${site}/about/">关于</a>
-    <a href="${site}/atom.xml">RSS</a>
-  </div>
-
-  <footer>${title}</footer>
-</div>
+<script>
+  // 与站点共用偏好键：s = 0/1/2 明暗模式，n = 1/2 无衬线/衬线
+  (function () {
+    var style = document.documentElement.style;
+    var set = style.setProperty.bind(style);
+    var s = localStorage.getItem('s');
+    var sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var dark = s === '2' || (s !== '1' && sysDark);
+    if (dark) {
+      set('--bg-color', '#212121');
+      set('--code-bg-color', '#292929');
+      set('--text-color', '#fff');
+      set('--secondary-color', '#c0c0c0');
+      set('--tertiary-color', '#8f8f8f');
+      set('--link-color', '#5c8089');
+      set('--link-hover-color', '#a9c6d0');
+      set('--link-text-color', '#a9c6d0');
+      set('--link-bg-color', '#5d828e');
+      set('--selection-color', '#acc1c9');
+    }
+    if (localStorage.getItem('n') === '1') {
+      set('--body-stack', '"Lato", "Lato Fallback", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif');
+    }
+  })();
+</script>
 </body>
 </html>
 `;
