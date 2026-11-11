@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第十三集：从 Demo 到产品 —— 大模型怎么接进业务流程</title>
+<style>
+  html,body{margin:0;height:100%;background:#08060a;overflow:hidden;}
+  canvas{display:block;cursor:pointer;}
+</style>
+</head>
+<body>
+<canvas id="cv"></canvas>
+<script>
+(function(){
+"use strict";
+
+const VW=1600, VH=900;
+const cv=document.getElementById('cv'), ctx=cv.getContext('2d');
+let scale=1, offX=0, offY=0, dpr=1;
+
+const FONT='"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif';
+const MONO='Menlo,Consolas,"SF Mono",monospace';
+
+const BG='#0b0809', PANEL='#171114', PANEL2='#221a1e', LINE='#3a2c31',
+      TXT='#faf1ec', DIM='#ab958d',
+      ACC='#ff9f6e',        /* 暖橙 */
+      ACC2='#5b9dff',
+      ACC3='#39d0c6',
+      ACC4='#c79bff',
+      WARN='#f2617a',
+      OK='#5cd692';
+
+const clamp=(x,a,b)=>x<a?a:(x>b?b:x);
+const cl01=x=>clamp(x,0,1);
+const seg=(t,a,b)=>b<=a?(t>=b?1:0):cl01((t-a)/(b-a));
+const eo=t=>1-Math.pow(1-cl01(t),3);
+const lerp=(a,b,t)=>a+(b-a)*t;
+function hex2rgb(h){return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];}
+function mixc(c1,c2,t){const a=hex2rgb(c1),b=hex2rgb(c2);t=cl01(t);
+  return 'rgb('+Math.round(lerp(a[0],b[0],t))+','+Math.round(lerp(a[1],b[1],t))+','+Math.round(lerp(a[2],b[2],t))+')';}
+function rgba(c,a){const r=hex2rgb(c);return 'rgba('+r[0]+','+r[1]+','+r[2]+','+cl01(a)+')';}
+function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);
+  ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
+
+function T(s,x,y,size,color,align,weight,alpha){
+  if(s===undefined||s===null)return;
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.fillStyle=color;ctx.font=(weight||400)+' '+size+'px '+FONT;
+  ctx.textAlign=align||'left';ctx.textBaseline='middle';
+  ctx.fillText(s,x,y);ctx.restore();
+}
+function TF(s,x,y,size,color,align,weight,alpha){
+  if(s===undefined||s===null)return;
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.fillStyle=color;ctx.font=(weight||400)+' '+size+'px '+MONO;
+  ctx.textAlign=align||'left';ctx.textBaseline='middle';
+  ctx.fillText(s,x,y);ctx.restore();
+}
+function box(x,y,w,h,fill,stroke,r,lw,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  rr(x,y,w,h,r===undefined?12:r);
+  if(fill){ctx.fillStyle=fill;ctx.fill();}
+  if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lw||2;ctx.stroke();}
+  ctx.restore();
+}
+function arrow(x1,y1,x2,y2,color,lw,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=lw||2;ctx.lineCap='round';
+  ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+  const ang=Math.atan2(y2-y1,x2-x1), L=9;
+  ctx.beginPath();ctx.moveTo(x2,y2);
+  ctx.lineTo(x2-L*Math.cos(ang-0.4),y2-L*Math.sin(ang-0.4));
+  ctx.lineTo(x2-L*Math.cos(ang+0.4),y2-L*Math.sin(ang+0.4));
+  ctx.closePath();ctx.fill();
+  ctx.restore();
+}
+function badge(n,x,y,r,color,a){
+  ctx.save();ctx.globalAlpha=a===undefined?1:cl01(a);
+  ctx.fillStyle=rgba(color,0.18);ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
+  ctx.strokeStyle=rgba(color,0.95);ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.stroke();
+  ctx.fillStyle=color;ctx.font='700 '+Math.round(r*1.1)+'px '+FONT;
+  ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(n,x,y+1);
+  ctx.restore();
+}
+
+/* ================= S0 开场 ================= */
+function S0(t){
+  const a1=eo(seg(t,0.1,1.0)), a2=eo(seg(t,0.7,1.6)), a3=eo(seg(t,1.4,2.3));
+  const g=ctx.createRadialGradient(VW/2,VH/2-40,40,VW/2,VH/2-40,660);
+  g.addColorStop(0,'rgba(255,159,110,0.12)');g.addColorStop(1,'rgba(255,159,110,0)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,VW,VH);
+
+  T('第十三集',VW/2,VH/2-190,22,ACC,'center',700,a1);
+  T('从 Demo 到产品',VW/2,VH/2-100,66,TXT,'center',700,a1);
+  T('演示能过，不代表业务敢用',VW/2,VH/2-8,29,ACC2,'center',400,a2);
+
+  const items=[['该不该用','先问规则能不能解决',ACC],['放在哪','别把整条流程交给它',ACC3],['怎么兜','不确定时怎么办',WARN]];
+  for(let i=0;i<3;i++){
+    const a=eo(seg(t,1.5+i*0.35,1.9+i*0.35));
+    const x=VW/2-450+i*310;
+    box(x,VH/2+76,280,84,mixc(BG,PANEL2,0.7),rgba(items[i][2],0.75*a),12,1.8,a);
+    T(items[i][0],x+140,VH/2+108,22,items[i][2],'center',700,a);
+    T(items[i][1],x+140,VH/2+142,15,DIM,'center',400,a);
+  }
+  T('这一集讲的是产品判断，不是技术细节',VW/2,VH/2+216,19,DIM,'center',400,a3*0.95);
+}
+
+/* ================= S1 Demo 的错觉 ================= */
+function S1(t){
+  T('先看一组让人清醒的数字',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('同一套东西，10 次和 1000 次是两个世界',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // Demo
+  const la=eo(seg(t,0.5,1.1));
+  box(140,192,620,270,PANEL,rgba(OK,0.55),13,1.7,la);
+  T('Demo：跑 10 次',170,228,16,OK,'left',700,la);
+  T('成功 9 次 = 惊艳',170,272,20,TXT,'left',600,la);
+  T('那 1 次失败，你自己解释成"偶发"',170,314,13,DIM,'left',400,la*0.95);
+  // 小方块阵列 10 个
+  for(let i=0;i<10;i++){
+    const a=eo(seg(t,0.8+i*0.15,1.1+i*0.15));
+    box(170+i*52,356,40,40,i<9?rgba(OK,0.45):rgba(WARN,0.45),rgba(i<9?OK:WARN,0.85),6,1.4,a);
+  }
+  T('90% 准确率 —— 听起来能用了',170,428,13,OK,'left',500,eo(seg(t,2.4,2.8)));
+
+  // 产品
+  const ra=eo(seg(t,1.4,2.0));
+  box(840,192,620,270,PANEL,rgba(WARN,0.55),13,1.7,ra);
+  T('产品：跑 1000 次',870,228,16,WARN,'left',700,ra);
+  T('每天 100 个用户骂你',870,272,20,TXT,'left',600,ra);
+  T('90% 准确 = 每 10 个人里有 1 个被坑',870,314,13,DIM,'left',400,ra*0.95);
+  // 100 个方块
+  for(let i=0;i<10;i++){
+    for(let j=0;j<6;j++){
+      const a=eo(seg(t,1.6+i*0.08+j*0.05,1.9+i*0.08+j*0.05));
+      const idx=i*6+j;
+      const bad=(idx%10===3);
+      box(870+j*94,348+i*10,84,7,bad?rgba(WARN,0.75):rgba(OK,0.28),null,3,0,a*0.95);
+    }
+  }
+  T('60 个格子里 6 个是红的 —— 一天下来就是几十次',870,442,12,DIM,'left',400,ra*0.9);
+
+  // 结论
+  const ba=eo(seg(t,3.4,4.0));
+  if(ba>0){
+    box(140,516,660,130,PANEL2,rgba(ACC,0.55),12,1.7,ba);
+    T('真正的分界线不是准确率',176,556,16,ACC,'left',700,ba);
+    T('是"错了之后代价多大" ——',176,596,14,TXT,'left',400,ba);
+    T('写错一段文案，改掉就行；算错一笔金额，要赔钱。',176,626,14,TXT,'left',400,ba);
+  }
+
+  T('原来如此',140,700,17,ACC,'left',700,eo(seg(t,5.0,5.5)));
+  T('Demo 比的是"最好的一次有多好"，产品比的是"最坏的一次有多坏"。',230,700,17,TXT,'left',400,eo(seg(t,5.0,5.5))*0.96);
+  T('所以做产品，先问的不是准确率，是错了会怎样。',230,744,15,DIM,'left',400,eo(seg(t,5.6,6.1))*0.95);
+}
+
+/* ================= S2 该不该用 ================= */
+function S2(t){
+  T('接进去之前，先过一遍这个筛子',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('五道题，任何一道过不了，就不该用大模型',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const Q=[
+    {n:'规则能解决吗？',d:'能。比如提取固定格式的订单号 —— 正则三行代码，比模型快一万倍还不要钱。',v:'规则优先',c:ACC2},
+    {n:'输入是不是自然语言？',d:'不是。结构化数据做判断，用传统模型/规则更稳。',v:'看输入形态',c:ACC3},
+    {n:'错了能补救吗？',d:'能撤销、能人工复核 → 可以用；不可逆 → 必须加重保护。',v:'看容错度',c:ACC},
+    {n:'答案有客观标准吗？',d:'有标准答案 → 可以用；纯主观（写得好不好）→ 只能做辅助。',v:'看可验证性',c:ACC4},
+    {n:'量级够大吗？',d:'一天十几次，人工做更快；一天几千次，才值得投入工程。',v:'看性价比',c:OK}
+  ];
+  for(let i=0;i<5;i++){
+    const q=Q[i], a=eo(seg(t,0.5+i*0.42,0.95+i*0.42));
+    const y=196+i*106;
+    box(140,y,1180,88,PANEL,rgba(q.c,0.55),11,1.6,a);
+    badge(String(i+1),182,y+44,20,q.c,a);
+    T(q.n,228,y+32,16,TXT,'left',700,a);
+    T(q.d,228,y+62,12,DIM,'left',400,a*0.95);
+    box(1200-100,y+26,88,36,rgba(q.c,0.15),rgba(q.c,0.7),8,1.2,a*0.9);
+    T(q.v,1160,y+44,11,q.c,'center',600,a);
+  }
+
+  T('原来如此',140,772,17,ACC,'left',700,eo(seg(t,5.4,5.9)));
+  T('大模型擅长的是"理解模糊的自然语言"，不是"算得准" —— 用它做确定的事，是最常见的浪费。',230,772,17,TXT,'left',400,eo(seg(t,5.4,5.9))*0.96);
+}
+
+/* ================= S3 放在哪 ================= */
+function S3(t){
+  T('然后是：放在流程的哪一步',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('不是把整条流程交给它，是只在"需要理解"的那个环节用它',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 流程对比
+  const A=[
+    {n:'客服工单处理',steps:[
+      {t:'用户发消息',m:false},
+      {t:'理解诉求',m:true},
+      {t:'查订单',m:false},
+      {t:'决定退不退款',m:false},
+      {t:'写回复',m:true},
+      {t:'发出去',m:false}
+    ]}
+  ];
+  const sa=eo(seg(t,0.5,1.1));
+  box(140,192,1320,190,'rgba(10,8,10,0.9)',rgba(ACC,0.45),12,1.6,sa);
+  T('示例：一条客服工单的完整流程',170,224,13,ACC,'left',700,sa);
+  const st=A[0].steps;
+  for(let i=0;i<st.length;i++){
+    const a=eo(seg(t,0.7+i*0.22,1.05+i*0.22));
+    const x=170+i*212;
+    box(x,254,190,86,st[i].m?rgba(ACC,0.18):rgba(PANEL2,0.7),rgba(st[i].m?ACC:LINE,0.85),9,1.5,a);
+    T(st[i].t,x+95,288,13,st[i].m?ACC:TXT,'center',600,a);
+    T(st[i].m?'用模型':'规则/代码',x+95,314,11,st[i].m?ACC:DIM,'center',500,a);
+    if(i<st.length-1)arrow(x+194,297,x+208,297,rgba(DIM,0.6*a),1.5,a*0.9);
+  }
+  T('6 步里只有 2 步真的需要模型 —— 其余四步用代码，又快又准又便宜',170,352,12,DIM,'left',400,sa*0.95);
+
+  // 三个判断
+  const D=[
+    {n:'输入是自然语言 →',d:'才考虑用模型',c:ACC},
+    {n:'需要"判断"而不是"计算" →',d:'才考虑用模型',c:ACC3},
+    {n:'结果要能被人一眼检查 →',d:'最适合用模型',c:ACC4}
+  ];
+  for(let i=0;i<3;i++){
+    const d=D[i], a=eo(seg(t,2.6+i*0.4,3.0+i*0.4));
+    const x=140+i*450;
+    box(x,410,410,96,PANEL,rgba(d.c,0.55),10,1.5,a);
+    T(d.n,x+22,444,13,d.c,'left',700,a);
+    T(d.d,x+22,476,13,DIM,'left',400,a*0.95);
+  }
+
+  // 反例：全交给模型
+  const wa=eo(seg(t,3.8,4.4));
+  box(140,536,1320,120,PANEL2,rgba(WARN,0.5),12,1.6,wa);
+  T('反面教材',176,574,15,WARN,'left',700,wa);
+  T('"用户发一段话，你直接决定退不退款" —— 中间没有查询、没有规则校验、没有人复核。',340,574,14,TXT,'left',400,wa);
+  T('它不是不会做，是它做错了你也不知道为什么。',340,612,13,DIM,'left',400,wa*0.95);
+
+  T('原来如此',140,712,17,ACC,'left',700,eo(seg(t,5.2,5.7)));
+  T('把模型当成流程里的一个"翻译员"：它负责把人的话翻成结构，后面的决定权还在代码和人手上。',230,712,17,TXT,'left',400,eo(seg(t,5.2,5.7))*0.96);
+}
+
+/* ================= S4 兜底 ================= */
+function S4(t){
+  T('接下来是最容易被跳过的一步：不确定时怎么办',140,86,36,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('产品能不能上线，几乎全靠这一步',140,134,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const F=[
+    {n:'我确定了',d:'置信度高 → 直接给结论',act:'自动执行',c:OK},
+    {n:'我猜的',d:'置信度中 → 给两个选项让用户选',act:'给选择题',c:ACC},
+    {n:'我不知道',d:'置信度低 / 检索不到 → 转人工或明说不知道',act:'转人工',c:WARN}
+  ];
+  for(let i=0;i<3;i++){
+    const f=F[i], a=eo(seg(t,0.5+i*0.4,0.9+i*0.4));
+    const y=192+i*124;
+    box(140,y,700,104,PANEL,rgba(f.c,0.6),11,1.6,a);
+    T(f.n,176,y+34,16,f.c,'left',700,a);
+    T(f.d,176,y+68,13,DIM,'left',400,a*0.95);
+    box(740,y+28,80,44,rgba(f.c,0.16),rgba(f.c,0.8),8,1.3,a*0.9);
+    T(f.act,780,y+50,11,f.c,'center',600,a);
+  }
+
+  // 右侧示例
+  const ra=eo(seg(t,2.0,2.6));
+  box(900,192,560,360,'rgba(10,8,10,0.92)',rgba(ACC2,0.45),12,1.6,ra);
+  T('同样是"改地址"这件事',930,224,13,ACC2,'left',700,ra);
+
+  T('用户：我地址好像写错了',930,266,13,DIM,'left',400,eo(seg(t,2.2,2.6)));
+  T('其实想改成：科技园 3 号楼',930,294,13,DIM,'left',400,eo(seg(t,2.4,2.8)));
+
+  const opt=eo(seg(t,3.0,3.5));
+  T('模型：检测到 2 个可能匹配的地址',930,342,13,ACC,'left',600,opt);
+  box(930,364,500,52,rgba(PANEL2,0.7),rgba(ACC,0.6),8,1.3,opt);
+  T('① 科技园 3 号楼（去年用过）',954,390,12,TXT,'left',400,opt);
+  box(930,426,500,52,rgba(PANEL2,0.7),rgba(ACC,0.6),8,1.3,opt);
+  T('② 科技园 5 号楼（最近一次）',954,452,12,TXT,'left',400,opt);
+  T('请确认是哪一个？',930,504,12,DIM,'left',400,opt);
+
+  const ba=eo(seg(t,4.2,4.8));
+  T('为什么这道题比"直接改"好',140,588,16,ACC,'left',700,ba);
+  const B=[
+    '改错地址的代价很高（东西寄丢）',
+    '给两个选项，用户点一下就行，成本极低',
+    '它同时暴露了模型的犹豫 —— 用户反而更信任'
+  ];
+  for(let i=0;i<3;i++){
+    const a=eo(seg(t,4.4+i*0.28,4.8+i*0.28));
+    T('· '+B[i],170,624+i*30,13,DIM,'left',400,a);
+  }
+
+  T('原来如此',140,752,17,ACC,'left',700,eo(seg(t,5.6,6.1)));
+  T('好产品不是"样样都答"，是"知道什么时候该问一句" —— 这一句问话，就是全部的安全边际。',230,752,17,TXT,'left',400,eo(seg(t,5.6,6.1))*0.96);
+}
+
+/* ================= S5 人机协同界面 ================= */
+function S5(t){
+  T('界面要为"它会错"这件事设计',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('四个小设计，成本很低，效果很大',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const U=[
+    {n:'标来源',d:'"这段来自《员工手册》第 12 页" —— 用户能自己核对，信任度立刻不一样',c:ACC3},
+    {n:'可编辑',d:'生成的内容放在可编辑框里，不是一个只读的答案',c:ACC2},
+    {n:'可撤销',d:'一键回到上一版 —— 用户敢试，才敢用',c:ACC},
+    {n:'标不确定',d:'拿不准的地方直接标黄提示"建议核实"，比装作确定好一百倍',c:ACC4}
+  ];
+  for(let i=0;i<4;i++){
+    const u=U[i], st=0.5+i*0.75, a=eo(seg(t,st,st+0.42));
+    const col=i%2, row=Math.floor(i/2);
+    const x=140+col*670, y=192+row*210;
+    box(x,y,630,186,PANEL,rgba(u.c,0.6),12,1.6,a);
+    badge(String(i+1),x+42,y+38,19,u.c,a);
+    T(u.n,x+76,y+38,17,TXT,'left',700,a);
+    T(u.d,x+24,y+96,13,DIM,'left',400,a*0.95);
+  }
+
+  // 对比
+  const ca=eo(seg(t,3.8,4.4));
+  T('两种界面的差别',140,632,16,ACC,'left',700,ca);
+  box(140,666,620,96,PANEL,rgba(WARN,0.45),11,1.5,ca*0.95);
+  T('✗ 一个大框，直接蹦出一段话，没有来源，不能改',170,700,13,WARN,'left',400,ca*0.95);
+  T('→ 用户第一反应：这东西靠谱吗？',170,730,12,DIM,'left',400,ca*0.9);
+  box(840,666,620,96,PANEL,rgba(OK,0.45),11,1.5,ca*0.95);
+  T('✓ 分点、带出处、可编辑、有"重新生成"',870,700,13,OK,'left',400,ca*0.95);
+  T('→ 用户会拿它当助手，而不是当权威',870,730,12,DIM,'left',400,ca*0.9);
+
+  T('原来如此',140,800,16,ACC,'left',700,eo(seg(t,5.2,5.7)));
+  T('同一个模型，换个界面，用户从"不敢用"变成"愿意用" —— 差的不是能力，是可核对性。',230,800,16,TXT,'left',400,eo(seg(t,5.2,5.7))*0.96);
+}
+
+/* ================= S6 灰度与反馈 ================= */
+function S6(t){
+  T('上线不是开关，是阀门',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('先拧开一点点，看着压力表再加',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // 灰度阶梯
+  const ga=eo(seg(t,0.5,1.1));
+  T('灰度节奏',140,196,16,ACC,'left',700,ga);
+  const G=[
+    {p:5,l:'内部测试',c:ACC2},
+    {p:20,l:'种子用户',c:ACC3},
+    {p:50,l:'一半流量',c:ACC},
+    {p:100,l:'全量',c:OK}
+  ];
+  for(let i=0;i<4;i++){
+    const g=G[i], a=eo(seg(t,0.7+i*0.4,1.1+i*0.4));
+    const y=232+i*84;
+    T(g.l,140,y+26,13,TXT,'left',600,a);
+    box(300,y,700*(g.p/100),52,rgba(g.c,0.22),rgba(g.c,0.85),8,1.5,a);
+    T(g.p+'%',300+700*(g.p/100)+16,y+26,14,g.c,'left',700,a);
+  }
+  T('每一档都要停下来看反馈，别一口气推到全量',140,584,12,DIM,'left',400,ga*0.95);
+
+  // 反馈收集
+  const ra=eo(seg(t,2.4,3.0));
+  box(900,192,560,400,PANEL,rgba(ACC4,0.55),12,1.6,ra);
+  T('反馈按钮该问什么',930,226,14,ACC4,'left',700,ra);
+  const F=[
+    {q:'这个回答有用吗？',t:'👍 / 👎',w:'太粗，无法定位问题'},
+    {q:'哪里不对？',t:'理解错了 / 事实错了 / 不完整 / 太长',w:'能定位到具体类别'},
+    {q:'你本来想做什么？',t:'开放输入',w:'最有价值，但填的人少'}
+  ];
+  for(let i=0;i<3;i++){
+    const f=F[i], a=eo(seg(t,2.6+i*0.4,3.0+i*0.4));
+    const y=266+i*110;
+    T(f.q,930,y,13,TXT,'left',600,a);
+    T(f.t,930,y+28,12,ACC3,'left',400,a*0.95);
+    T(f.w,930,y+54,11,DIM,'left',400,a*0.9);
+  }
+
+  const ba=eo(seg(t,4.2,4.8));
+  box(140,616,1320,104,PANEL2,rgba(WARN,0.5),11,1.5,ba);
+  T('一个真实陷阱',176,656,15,WARN,'left',700,ba);
+  T('只统计"点了赞"的比例 —— 不高兴的人根本不点，你看到的永远是 95% 满意度。',340,656,14,TXT,'left',400,ba);
+  T('要盯的是"某类问题被点了多少次"，不是总分。',340,694,13,DIM,'left',400,ba*0.95);
+
+  T('原来如此',140,762,17,ACC,'left',700,eo(seg(t,5.6,6.1)));
+  T('灰度不是保守，是让错误只影响 5% 的人 —— 你花钱买的不是时间，是犯错的额度。',230,762,17,TXT,'left',400,eo(seg(t,5.6,6.1))*0.96);
+}
+
+/* ================= S7 悄悄变差 ================= */
+function S7(t){
+  T('最后一个坑：它会在你不知情时变差',140,86,36,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('你的代码一行没改，效果就是掉了',140,134,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const R=[
+    {n:'上游模型更新了',d:'同一个模型名，背后可能换版本 —— 你的提示词调好的那些小技巧，可能突然不灵了',c:WARN},
+    {n:'用户变了',d:'早期来的是爱尝鲜的人，现在来的是普通用户 —— 提问方式完全不同',c:ACC3},
+    {n:'数据变了',d:'业务加了新品类，你的示例里从来没有这类问题',c:ACC2},
+    {n:'知识过期了',d:'政策、价格、流程改了，知识库没跟着更新',c:ACC4}
+  ];
+  for(let i=0;i<4;i++){
+    const r=R[i], st=0.5+i*0.7, a=eo(seg(t,st,st+0.42));
+    const y=192+i*100;
+    box(140,y,760,84,PANEL,rgba(r.c,0.55),10,1.5,a);
+    badge(String(i+1),180,y+42,18,r.c,a);
+    T(r.n,214,y+30,15,TXT,'left',700,a);
+    T(r.d,214,y+58,12,DIM,'left',400,a*0.95);
+  }
+
+  // 回归测试
+  const ra=eo(seg(t,3.4,4.0));
+  box(940,192,520,400,PANEL,rgba(OK,0.55),12,1.6,ra);
+  T('唯一有效的办法：回归测试',970,226,14,OK,'left',700,ra);
+  const S=[
+    '固定 50 条真实问题',
+    '每条写清"什么样算对"',
+    '每次改动 / 每周自动跑一遍',
+    '通过率掉了就报警'
+  ];
+  for(let i=0;i<4;i++){
+    const a=eo(seg(t,3.6+i*0.3,4.0+i*0.3));
+    T((i+1)+'. '+S[i],970,276+i*52,13,TXT,'left',400,a);
+  }
+  box(970,494,460,70,rgba(OK,0.12),rgba(OK,0.6),8,1.2,ra*0.9);
+  T('通过率 46/50 → 41/50',994,516,12,OK,'left',600,ra*0.9);
+  T('这就是最便宜的早期预警',994,542,11,DIM,'left',400,ra*0.9);
+
+  T('原来如此',140,640,17,ACC,'left',700,eo(seg(t,4.8,5.3)));
+  T('大模型产品没有"发布"这个动作，只有"一直在发" —— 所以必须有一把随时能用的尺子。',230,640,17,TXT,'left',400,eo(seg(t,4.8,5.3))*0.96);
+  T('这把尺子就是那 50 条测试题，成本一天，收益一年。',230,684,15,DIM,'left',400,eo(seg(t,5.4,5.9))*0.95);
+}
+
+/* ================= S8 谁在维护 ================= */
+function S8(t){
+  T('最后一个现实问题：谁来维护它',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('它不是交付一次就完事的软件',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const W=[
+    {n:'提示词归谁',d:'散落在代码里、产品文档里、某个人脑子里 —— 上线三个月就没人知道哪版在用',fix:'统一存在配置里，带版本号',c:WARN},
+    {n:'指标谁看',d:'首字延迟、失败率、点踩率 —— 没人负责就等于没有',fix:'定一个 owner，每周看一次',c:ACC},
+    {n:'评测集谁更新',d:'用户新出现的问题要补进测试集，否则尺子会钝',fix:'每月从真实反馈里补 10 条',c:ACC3}
+  ];
+  for(let i=0;i<3;i++){
+    const w=W[i], a=eo(seg(t,0.5+i*0.5,0.9+i*0.5));
+    const y=192+i*140;
+    box(140,y,1320,118,PANEL,rgba(w.c,0.6),12,1.6,a);
+    badge(String(i+1),184,y+38,19,w.c,a);
+    T(w.n,222,y+38,16,TXT,'left',700,a);
+    T(w.d,222,y+68,12,DIM,'left',400,a*0.95);
+    T('→ '+w.fix,222,y+94,12,w.c,'left',600,a*0.95);
+  }
+
+  const ba=eo(seg(t,2.6,3.2));
+  box(140,624,1320,96,PANEL2,rgba(ACC2,0.5),11,1.5,ba);
+  T('一个组织建议',176,664,15,ACC2,'left',700,ba);
+  T('AI 功能最好由一个固定的人负责到底：他既看得懂提示词，也看得懂指标 —— 分散到三个人手上，一定烂。',340,664,14,TXT,'left',400,ba);
+
+  T('原来如此',140,762,17,ACC,'left',700,eo(seg(t,4.4,4.9)));
+  T('它不是"上线即完成"的项目，是"需要有人天天看着"的资产 —— 这决定了很多团队做不下去。',230,762,17,TXT,'left',400,eo(seg(t,4.4,4.9))*0.96);
+}
+
+/* ================= S9 收尾 ================= */
+function S9(t){
+  const g=ctx.createRadialGradient(VW/2,VH/2,60,VW/2,VH/2,620);
+  g.addColorStop(0,'rgba(255,159,110,0.11)');g.addColorStop(1,'rgba(255,159,110,0)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,VW,VH);
+
+  T('原来如此',VW/2,VH/2-110,22,ACC,'center',700,eo(seg(t,0.1,0.9)));
+  T('Demo 证明的是「它可能做到」',VW/2,VH/2-40,40,TXT,'center',700,eo(seg(t,0.4,1.2)));
+  T('产品要保证的是「它不会做不到」',VW/2,VH/2+34,40,ACC,'center',700,eo(seg(t,0.9,1.7)));
+
+  T('规则优先、只在必要时用它、留好兜底、能核对、灰度上线、长期盯着 —— 六件事。',VW/2,VH/2+130,19,DIM,'center',400,eo(seg(t,2.0,2.8))*0.95);
+  T('做到这六件，它才真的能进业务流程。',VW/2,VH/2+172,19,DIM,'center',400,eo(seg(t,2.4,3.2))*0.95);
+  T('（全系列 13 集完）',VW/2,VH/2+232,16,ACC3,'center',600,eo(seg(t,3.4,4.2))*0.9);
+}
+
+/* ================= 时间轴 ================= */
+const SCENES=[
+  {n:'开场',        d:4.5,  f:S0},
+  {n:'Demo 错觉',   d:11.0, f:S1},
+  {n:'该不该用',    d:11.0, f:S2},
+  {n:'放在哪',      d:11.0, f:S3},
+  {n:'兜底',        d:11.0, f:S4},
+  {n:'界面设计',    d:11.0, f:S5},
+  {n:'灰度反馈',    d:11.0, f:S6},
+  {n:'悄悄变差',    d:10.5, f:S7},
+  {n:'谁来维护',    d:10.5, f:S8},
+  {n:'收尾',        d:6.0,  f:S9}
+];
+const TOTAL=SCENES.reduce((s,x)=>s+x.d,0);
+
+let clock=0, playing=true, last=0;
+
+function locate(g){
+  let acc=0;
+  for(let i=0;i<SCENES.length;i++){
+    if(g<acc+SCENES[i].d||i===SCENES.length-1)return {i:i,t:g-acc};
+    acc+=SCENES[i].d;
+  }
+  return {i:SCENES.length-1,t:SCENES[SCENES.length-1].d};
+}
+
+function drawTopHUD(idx){
+  T('From Demo to Product',44,34,15,DIM,'left',600,1);
+  T('/ '+SCENES[idx].n,320,34,15,ACC,'left',600,1);
+}
+
+function drawProgress(g){
+  const y=VH-8;
+  ctx.fillStyle='rgba(58,44,49,0.9)';ctx.fillRect(0,y,VW,3);
+  ctx.fillStyle=ACC;ctx.fillRect(0,y,VW*(g/TOTAL),3);
+  let acc=0;
+  for(let i=0;i<SCENES.length;i++){
+    const x=VW*(acc/TOTAL);
+    ctx.fillStyle=BG;ctx.fillRect(x-1,y-3,2,9);
+    acc+=SCENES[i].d;
+  }
+}
+
+function render(){
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.fillStyle=BG;ctx.fillRect(0,0,cv.width/dpr,cv.height/dpr);
+  ctx.setTransform(dpr*scale,0,0,dpr*scale,offX*dpr,offY*dpr);
+
+  const loc=locate(clock);
+  const sc=SCENES[loc.i];
+  const fin=cl01(loc.t/0.42), fout=cl01((sc.d-loc.t)/0.34);
+  const alpha=Math.min(fin,fout);
+
+  ctx.save();ctx.globalAlpha=alpha;sc.f(loc.t);ctx.restore();
+  drawTopHUD(loc.i);
+  drawProgress(clock);
+}
+
+function loop(ts){
+  if(!last)last=ts;
+  let dt=(ts-last)/1000;last=ts;
+  if(dt>0.12)dt=0.12;
+  if(playing){clock+=dt;if(clock>=TOTAL)clock=0;}
+  render();
+  requestAnimationFrame(loop);
+}
+
+function resize(){
+  dpr=Math.min(window.devicePixelRatio||1,2);
+  const w=window.innerWidth,h=window.innerHeight;
+  cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);
+  cv.style.width=w+'px';cv.style.height=h+'px';
+  scale=Math.min(w/VW,h/VH);
+  offX=(w-VW*scale)/2;offY=(h-VH*scale)/2;
+}
+window.addEventListener('resize',resize);
+
+document.addEventListener('keydown',e=>{
+  if(e.code==='Space'){e.preventDefault();playing=!playing;last=0;}
+  else if(e.code==='ArrowRight'||e.code==='ArrowLeft'){
+    const loc=locate(clock);
+    const target=e.code==='ArrowRight'?Math.min(loc.i+1,SCENES.length-1):Math.max(loc.i-1,0);
+    let acc=0;
+    for(let i=0;i<SCENES.length;i++){if(i===target){clock=acc;break;}acc+=SCENES[i].d;}
+    last=0;
+  } else if(e.key==='r'||e.key==='R'){clock=0;last=0;playing=true;}
+});
+
+cv.addEventListener('click',e=>{
+  const r=cv.getBoundingClientRect();
+  const w=r.width,h=r.height;
+  const s=Math.min(w/VW,h/VH);
+  const ox=(w-VW*s)/2, oy=(h-VH*s)/2;
+  const vx=(e.clientX-r.left-ox)/s, vy=(e.clientY-r.top-oy)/s;
+  if(vy>VH-24){clock=cl01(vx/VW)*TOTAL;last=0;}
+  else {playing=!playing;last=0;}
+});
+
+try{
+  const qp=new URLSearchParams(location.search);
+  if(qp.has('t')){
+    const v=parseFloat(qp.get('t'));
+    if(!isNaN(v))clock=Math.max(0,Math.min(TOTAL-0.04,v));
+  }
+  if(qp.get('pause')==='1')playing=false;
+}catch(err){}
+
+resize();
+requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

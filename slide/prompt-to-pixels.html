@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>提示词如何变成图像与视频</title>
+<style>
+  html,body{margin:0;height:100%;background:#07090e;overflow:hidden;}
+  canvas{display:block;}
+  #cv{cursor:pointer;}
+</style>
+</head>
+<body>
+<canvas id="cv"></canvas>
+<script>
+(function(){
+"use strict";
+
+const VW=1600, VH=900;
+const cv=document.getElementById('cv'), ctx=cv.getContext('2d');
+let scale=1, offX=0, offY=0, dpr=1;
+
+const FONT='"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif';
+const MONO='Menlo,Consolas,"SF Mono",monospace';
+
+const BG='#0a0d14', PANEL='#121824', PANEL2='#18212e', LINE='#2a3646',
+      TXT='#e8eef8', DIM='#7e8ca0', CYAN='#3ecde0', ORANGE='#ff9c42',
+      PURPLE='#9c7eff', GREEN='#5cd692', PINK='#ff6c96';
+
+/* ---------- 基础工具 ---------- */
+const clamp=(x,a,b)=>x<a?a:(x>b?b:x);
+const cl01=x=>clamp(x,0,1);
+const seg=(t,a,b)=>b<=a?(t>=b?1:0):cl01((t-a)/(b-a));
+const eo=t=>1-Math.pow(1-cl01(t),3);
+const eio=t=>{t=cl01(t);return t<0.5?2*t*t:1-Math.pow(-2*t+2,2)/2;};
+const lerp=(a,b,t)=>a+(b-a)*t;
+function hex2rgb(h){return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];}
+function mixc(c1,c2,t){const a=hex2rgb(c1),b=hex2rgb(c2);t=cl01(t);
+  return 'rgb('+Math.round(lerp(a[0],b[0],t))+','+Math.round(lerp(a[1],b[1],t))+','+Math.round(lerp(a[2],b[2],t))+')';}
+function rgba(c,a){const r=hex2rgb(c);return 'rgba('+r[0]+','+r[1]+','+r[2]+','+cl01(a)+')';}
+
+function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);
+  ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
+
+function T(s,x,y,size,color,align,weight,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.fillStyle=color;ctx.font=(weight||400)+' '+size+'px '+FONT;
+  ctx.textAlign=align||'left';ctx.textBaseline='middle';
+  ctx.fillText(s,x,y);ctx.restore();
+}
+function TC(s,x,y,size,color,align,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.fillStyle=color;ctx.font='400 '+size+'px '+MONO;
+  ctx.textAlign=align||'left';ctx.textBaseline='middle';
+  ctx.fillText(s,x,y);ctx.restore();
+}
+function box(x,y,w,h,fill,stroke,r,lw,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  rr(x,y,w,h,r===undefined?12:r);
+  if(fill){ctx.fillStyle=fill;ctx.fill();}
+  if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lw||2;ctx.stroke();}
+  ctx.restore();
+}
+function arrow(x1,y1,x2,y2,color,alpha,lw){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.strokeStyle=color;ctx.lineWidth=lw||3;ctx.lineCap='round';
+  ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+  const ang=Math.atan2(y2-y1,x2-x1),hl=13;
+  ctx.beginPath();ctx.moveTo(x2,y2);
+  ctx.lineTo(x2-hl*Math.cos(ang-0.42),y2-hl*Math.sin(ang-0.42));
+  ctx.moveTo(x2,y2);
+  ctx.lineTo(x2-hl*Math.cos(ang+0.42),y2-hl*Math.sin(ang+0.42));
+  ctx.stroke();ctx.restore();
+}
+
+/* ---------- 目标图：橘猫 · 雨后窗台 · 逆光 ---------- */
+const TPAD=512;
+const target=document.createElement('canvas');
+target.width=TPAD;target.height=TPAD;
+(function drawTarget(){
+  const g=target.getContext('2d');
+  const S=TPAD;
+  const bg=g.createLinearGradient(0,0,0,S);
+  bg.addColorStop(0,'#26304c');bg.addColorStop(0.55,'#5a5260');bg.addColorStop(1,'#8a6848');
+  g.fillStyle=bg;g.fillRect(0,0,S,S);
+  const gl=g.createRadialGradient(S*0.88,S*0.26,10,S*0.88,S*0.26,S*0.62);
+  gl.addColorStop(0,'rgba(255,206,140,0.72)');gl.addColorStop(1,'rgba(255,206,140,0)');
+  g.fillStyle=gl;g.fillRect(0,0,S,S);
+  // 雨痕
+  g.strokeStyle='rgba(150,170,200,0.20)';g.lineWidth=1.4;
+  for(let i=0;i<24;i++){const x=10+i*21;g.beginPath();g.moveTo(x,0);g.lineTo(x+8,S*0.8);g.stroke();}
+  // 窗台
+  g.fillStyle='#2e2220';g.fillRect(0,S*0.80,S,S*0.20);
+  g.fillStyle='#7a5640';g.fillRect(0,S*0.80,S,S*0.016);
+  // 尾巴
+  g.strokeStyle='#e28e3e';g.lineWidth=S*0.036;g.lineCap='round';
+  g.beginPath();g.arc(S*0.74,S*0.72,S*0.09,-1.2,1.9);g.stroke();
+  // 身体
+  g.fillStyle='#e28e3e';g.beginPath();
+  g.ellipse(S*0.50,S*0.685,S*0.20,S*0.155,0,0,Math.PI*2);g.fill();
+  // 头
+  g.fillStyle='#ec9c48';g.beginPath();
+  g.ellipse(S*0.50,S*0.485,S*0.138,S*0.128,0,0,Math.PI*2);g.fill();
+  // 耳朵
+  g.fillStyle='#e28e3e';
+  g.beginPath();g.moveTo(S*0.378,S*0.408);g.lineTo(S*0.398,S*0.322);g.lineTo(S*0.445,S*0.398);g.closePath();g.fill();
+  g.beginPath();g.moveTo(S*0.622,S*0.408);g.lineTo(S*0.602,S*0.322);g.lineTo(S*0.555,S*0.398);g.closePath();g.fill();
+  // 轮廓逆光
+  g.strokeStyle='rgba(255,222,160,0.85)';g.lineWidth=3.2;
+  g.beginPath();g.ellipse(S*0.50,S*0.485,S*0.138,S*0.128,0,0,Math.PI*2);g.stroke();
+  g.beginPath();g.ellipse(S*0.50,S*0.685,S*0.20,S*0.155,0,0,Math.PI*2);g.stroke();
+  // 眼
+  g.fillStyle='#1c1a1e';
+  g.beginPath();g.ellipse(S*0.434,S*0.474,S*0.020,S*0.020,0,0,Math.PI*2);g.fill();
+  g.beginPath();g.ellipse(S*0.566,S*0.474,S*0.020,S*0.020,0,0,Math.PI*2);g.fill();
+})();
+
+/* ---------- 噪声图 ---------- */
+function makeNoise(seed,size){
+  const c=document.createElement('canvas');c.width=size;c.height=size;
+  const g=c.getContext('2d');const id=g.createImageData(size,size);
+  let s=seed;
+  const rnd=()=>{s=(s*1103515245+12345)&0x7fffffff;return s/0x7fffffff;};
+  for(let i=0;i<size*size;i++){
+    const v=rnd()*255;
+    id.data[i*4]=v*0.92;id.data[i*4+1]=v*0.90;id.data[i*4+2]=v;id.data[i*4+3]=255;
+  }
+  g.putImageData(id,0,0);return c;
+}
+const NOISES=[makeNoise(11,256),makeNoise(97,256),makeNoise(331,256),makeNoise(613,256)];
+
+/* ---------- 矩阵伪随机 ---------- */
+const MAT=[];{let s=12345;for(let r=0;r<8;r++){MAT.push([]);for(let c=0;c<24;c++){
+  s=(s*1103515245+12345)&0x7fffffff;MAT[r].push(0.18+0.82*(s/0x7fffffff));}}}
+
+const PROMPT='一只橘猫坐在雨后窗台上，逆光';
+const TOKENS=['一只','橘猫','坐在','雨后','窗台','上','，','逆光'];
+
+/* ================= 场景 0：标题 ================= */
+function S0(t){
+  const a1=eo(seg(t,0.15,1.2)), a2=eo(seg(t,0.7,1.7)), a3=eo(seg(t,1.3,2.3));
+  // 光晕
+  const g=ctx.createRadialGradient(VW/2,VH/2,50,VW/2,VH/2,620);
+  g.addColorStop(0,'rgba(62,205,224,0.10)');g.addColorStop(1,'rgba(62,205,224,0)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,VW,VH);
+  // 粒子
+  for(let i=0;i<80;i++){
+    const x=(i*197.3)%VW, y=(i*313.7)%VH;
+    const a=(0.06+0.22*(0.5+0.5*Math.sin(t*1.8+i)))*a3;
+    ctx.fillStyle=rgba(CYAN,a);
+    ctx.fillRect(x,y,2,2);
+  }
+  T('提示词如何变成图像与视频',VW/2,VH/2-90,72,TXT,'center',700,a1);
+  T('一条 prompt 的完整旅程 · 四段式管线拆解',VW/2,VH/2-10,30,DIM,'center',400,a2);
+  const lw=440*a3;
+  ctx.strokeStyle=rgba(CYAN,0.85*a3);ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(VW/2-lw/2,VH/2+46);ctx.lineTo(VW/2+lw/2,VH/2+46);ctx.stroke();
+  T('文本编码   →   潜空间去噪   →   像素解码   →   封装',VW/2,VH/2+100,25,CYAN,'center',400,a3);
+}
+
+/* ================= 场景 1：总览 ================= */
+const CARDS=[
+  ['01','文本条件编码',['tokenize → text encoder','输出条件矩阵 C[seq, d]'],CYAN],
+  ['02','潜空间去噪',['N 步 cross-attention','算的是 64×64×4 latent'],PURPLE],
+  ['03','像素解码',['VAE decoder 8× 上采样','高频细节在此生成'],ORANGE],
+  ['04','封装',['PNG / JPEG 熵编码','视频走 H.264'],GREEN]
+];
+function S1(t){
+  T('四段式管线',140,110,44,TXT,'left',700,eo(seg(t,0,0.5)));
+  T('生成 = 在条件 C 下从噪声里采样 p(x|C)，而 x 不在像素空间，在压缩后的潜空间',140,162,23,DIM,'left',400,eo(seg(t,0.25,0.9)));
+
+  const cw=318,ch=214,gap=52,total=4*cw+3*gap,x0=(VW-total)/2,y0=330;
+  for(let i=0;i<4;i++){
+    const st=0.6+i*0.5, a=eo(seg(t,st,st+0.45));
+    if(a<=0)continue;
+    const cx=x0+i*(cw+gap), col=CARDS[i][3];
+    box(cx,y0,cw,ch,mixc(BG,PANEL2,0.55+0.45*a),mixc(LINE,col,a),18,2,a);
+    TC(CARDS[i][0],cx+26,y0+30,26,mixc(BG,col,a),'left',a);
+    T(CARDS[i][1],cx+26,y0+76,29,TXT,'left',700,a);
+    T(CARDS[i][2][0],cx+26,y0+130,17,DIM,'left',400,a*0.95);
+    T(CARDS[i][2][1],cx+26,y0+160,17,DIM,'left',400,a*0.95);
+    if(i<3){
+      const ax=cx+cw+8;
+      arrow(ax,y0+ch/2,ax+gap-18,y0+ch/2,mixc(BG,CYAN,a),a,3);
+    }
+  }
+  const a=eo(seg(t,3.0,3.8));
+  if(a>0){
+    const cy=y0+ch+78;
+    box(VW/2-540,cy,1080,72,PANEL,mixc(LINE,CYAN,0.45),14,2,a);
+    TC('p(x | C)',VW/2-480,cy+36,28,CYAN,'left',a);
+    T('提示词唯一作用 = 构造那个 C',VW/2-240,cy+36,25,TXT,'left',400,a);
+  }
+  const b=eo(seg(t,4.2,5.0));
+  T('具体到每一步发生了什么 —— 往下看',VW/2,y0+ch+200,21,DIM,'center',400,b*0.9);
+}
+
+/* ================= 场景 2：文本编码 ================= */
+function S2(t){
+  T('① 文本 → 条件矩阵',140,86,40,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('tokenize  →  text encoder  →  C[seq, d]',140,132,20,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  // prompt 框
+  box(140,170,1020,86,PANEL,LINE,12,1.5,1);
+  const n=Math.floor(PROMPT.length*cl01(seg(t,0.3,1.9)));
+  const shown=PROMPT.slice(0,n);
+  T(shown,168,214,28,TXT,'left',400,1);
+  if(n<PROMPT.length&&Math.floor(t*3)%2===0){
+    ctx.save();ctx.font='400 28px '+FONT;
+    const w=ctx.measureText(shown).width;ctx.restore();
+    ctx.fillStyle=CYAN;ctx.fillRect(170+w,196,3,36);
+  }
+
+  // token 方块
+  const tw=112,th=68,tg=24;
+  for(let i=0;i<8;i++){
+    const st=2.2+i*0.20, a=eo(seg(t,st,st+0.28));
+    if(a<=0)continue;
+    const x=140+i*(tw+tg), y=300;
+    box(x,y,tw,th,mixc(BG,PANEL2,0.5+0.5*a),mixc(LINE,CYAN,0.7*a),10,1.6,a);
+    T(TOKENS[i],x+tw/2,y+th/2+1,24,TXT,'center',500,a);
+    T(String(i),x+tw/2,y+th+18,13,DIM,'center',400,a*0.8);
+  }
+
+  // 条件矩阵
+  const mx=140,my=430,c=26,gp=3;
+  const head=eo(seg(t,3.6,4.2));
+  T('条件矩阵 C  [8 × 24]',mx,my-24,19,CYAN,'left',500,head);
+  for(let r=0;r<8;r++)for(let col=0;col<24;col++){
+    const st=3.9+(r*24+col)*0.0042, a=eo(seg(t,st,st+0.16));
+    if(a<=0)continue;
+    const v=MAT[r][col];
+    const x=mx+col*(c+gp), y=my+r*(c+gp);
+    ctx.save();ctx.globalAlpha=a;
+    ctx.fillStyle=mixc('#141b26',v>0.6?CYAN:PURPLE,0.12+v*0.82);
+    ctx.fillRect(x,y,c,c);ctx.restore();
+  }
+  const done=eo(seg(t,5.1,5.6));
+  T('↑ 每个 token 一行，d 维为示意',mx,my+8*(c+gp)+22,15,DIM,'left',400,done*0.9);
+
+  // 右侧要点
+  const rx=1210, items=[
+    ['Tokenize','切 subword；中文 1 字 ≈ 1–2 token',CYAN],
+    ['编码器','CLIP text tower / T5-XXL / Gemma-2',PURPLE],
+    ['为什么有效','4 亿级图文对做对比学习，词向量被拉到\n与图像空间可比的位置 → 对齐的是视觉可区\n分方向，不是词典释义',ORANGE],
+    ['瓶颈','CLIP 上限 77 token；长句后半段被稀释',PINK]
+  ];
+  for(let i=0;i<items.length;i++){
+    const st=4.6+i*0.55, a=eo(seg(t,st,st+0.4));
+    if(a<=0)continue;
+    const y=300+i*118;
+    ctx.strokeStyle=rgba(items[i][2],0.75*a);ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(rx,y-26);ctx.lineTo(rx,y+56);ctx.stroke();
+    T(items[i][0],rx+16,y,19,items[i][2],'left',700,a);
+    const lines=items[i][1].split('\n');
+    for(let k=0;k<lines.length;k++) T(lines[k],rx+16,y+26+k*22,16,DIM,'left',400,a*0.95);
+  }
+}
+
+/* ================= 场景 3：cross-attention ================= */
+const PATCH_N=7, PC=58, PX=180, PY=300;
+const STAGES=[
+  {tok:1,t0:1.0,label:'「橘猫」→ 画面中央偏下的 patch 群',
+   w:(i,j)=>{const dx=i-3.2,dy=j-4.1;return Math.exp(-(dx*dx+dy*dy)/(2*1.55*1.55));},col:CYAN},
+  {tok:4,t0:5.0,label:'「雨后窗台」→ 底部一行，纹理区全占',
+   w:(i,j)=>{const k=Math.exp(-((j-6.15)*(j-6.15))/(2*0.62*0.62));return k*0.95;},col:ORANGE},
+  {tok:7,t0:8.8,label:'「逆光」→ 不改物体，调制整体亮度分布与边缘光',
+   w:(i,j)=>{const d=Math.sqrt((i-6)*(i-6)+(j-1)*(j-1));return 0.30+0.70*Math.exp(-d*d/(2*3.2*3.2));},col:PURPLE}
+];
+function stageWeight(t){
+  let W=null,active=-1,prog=0;
+  for(let s=0;s<STAGES.length;s++){
+    const nextT=s<STAGES.length-1?STAGES[s+1].t0:99;
+    if(t>=STAGES[s].t0&&t<nextT){active=s;prog=cl01((t-STAGES[s].t0)/(nextT-STAGES[s].t0));break;}
+  }
+  if(active<0)return {W:null,active:-1,prog:0};
+  const cur=STAGES[active];
+  const arr=[];
+  for(let j=0;j<PATCH_N;j++){arr.push([]);for(let i=0;i<PATCH_N;i++)arr[j].push(cur.w(i,j));}
+  if(active>0&&prog<0.22){
+    const prev=STAGES[active-1], k=prog/0.22;
+    for(let j=0;j<PATCH_N;j++)for(let i=0;i<PATCH_N;i++){
+      arr[j][i]=lerp(prev.w(i,j),arr[j][i],k);
+    }
+  }
+  return {W:arr,active:active,prog:prog};
+}
+function S3(t){
+  T('② 条件如何注入：cross-attention',140,86,40,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('Q 来自图像 patch，K / V 来自文本序列 —— 每个 patch 去「查」哪些词与自己相关',140,132,20,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const {W:w,active}=stageWeight(t);
+
+  // patch 网格
+  for(let j=0;j<PATCH_N;j++)for(let i=0;i<PATCH_N;i++){
+    const x=PX+i*PC, y=PY+j*PC, v=w?w[j][i]:0;
+    const col=active>=0?STAGES[active].col:CYAN;
+    const base=mixc('#141b26',col,0.10+0.86*cl01(v));
+    ctx.fillStyle=base;ctx.fillRect(x+2,y+2,PC-4,PC-4);
+    ctx.strokeStyle=rgba('#2a3646',0.85);ctx.lineWidth=1;
+    ctx.strokeRect(x+2,y+2,PC-4,PC-4);
+  }
+  T('图像 patch（7 × 7 示意）',PX,PY+PATCH_N*PC+26,16,DIM,'left',400,1);
+
+  // token 列
+  const tx=760,tw=168,th=42,tg=12;
+  for(let i=0;i<8;i++){
+    const y=PY+i*(th+tg), sel=active>=0&&STAGES[active].tok===i;
+    const col=active>=0?STAGES[active].col:CYAN;
+    box(tx,y,tw,th,sel?mixc(PANEL2,col,0.28):PANEL,sel?rgba(col,0.95):rgba(LINE,0.9),9,sel?2.2:1.4,1);
+    T(TOKENS[i],tx+16,y+th/2+1,19,sel?TXT:DIM,'left',sel?700:400,1);
+    TC(String(i),tx+tw-18,y+th/2+1,13,sel?col:DIM,'right',0.9);
+  }
+  T('文本 token',tx,PY+8*(th+tg)+10,16,DIM,'left',400,1);
+
+  // 连线
+  if(w){
+    const col=STAGES[active].col;
+    for(let j=0;j<PATCH_N;j++)for(let i=0;i<PATCH_N;i++){
+      const v=w[j][i];
+      if(v<0.24)continue;
+      const sx=tx-4, sy=PY+STAGES[active].tok*(th+tg)+th/2;
+      const ex=PX+i*PC+PC/2, ey=PY+j*PC+PC/2;
+      ctx.save();
+      ctx.globalAlpha=cl01(v)*0.55;
+      ctx.strokeStyle=col;ctx.lineWidth=1.2;
+      ctx.beginPath();
+      ctx.moveTo(sx,sy);
+      const cxx=(sx+ex)/2;
+      ctx.bezierCurveTo(cxx,sy,cxx,ey,ex,ey);
+      ctx.stroke();ctx.restore();
+    }
+  }
+
+  // 阶段说明
+  if(active>=0){
+    const st=STAGES[active];
+    const a=eo(seg(t,st.t0,st.t0+0.5));
+    T(st.label,140,PY+PATCH_N*PC+70,23,st.col,'left',600,a);
+  }
+
+  // 公式条
+  const b=eo(seg(t,10.2,10.9));
+  if(b>0){
+    const cy=790;
+    box(140,cy,1320,74,PANEL,mixc(LINE,PURPLE,0.5),14,2,b);
+    TC('ε = ε_u + w · (ε_c − ε_u)',176,cy+37,26,PURPLE,'left',b);
+    T('无分类器引导 CFG，w = 7 常见',820,cy+37,19,TXT,'left',400,b);
+    T('调太高 → 过饱和、细节炸掉',1140,cy+37,19,DIM,'left',400,b);
+  }
+
+  // 右侧注
+  const c=eo(seg(t,0.8,1.4));
+  T('同一套 attention',1460,320,17,'' ,'left',0,0);
+}
+
+/* ================= 场景 4：去噪 ================= */
+function S4(t){
+  T('③ 潜空间去噪：从纯噪声里采样',140,86,40,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('20–30 步，每步一次完整网络前向 —— 这是算力真正的消耗处',140,132,20,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const p=cl01(seg(t,0.6,11.0));
+  const step=Math.round(p*30);
+  const a=Math.pow(p,0.62);
+
+  const SZ=512, IX=170, IY=210;
+  // 噪声底
+  ctx.save();
+  ctx.beginPath();ctx.rect(IX,IY,SZ,SZ);ctx.clip();
+  const nImg=NOISES[Math.floor(t*8)%NOISES.length];
+  ctx.imageSmoothingEnabled=true;
+  ctx.drawImage(nImg,IX,IY,SZ,SZ);
+  // 目标以 alpha 叠加
+  const blur=10*(1-a);
+  ctx.globalAlpha=a;
+  if('filter' in ctx) ctx.filter='blur('+blur.toFixed(2)+'px)';
+  ctx.drawImage(target,IX,IY,SZ,SZ);
+  ctx.restore();
+  ctx.filter='none';
+
+  ctx.strokeStyle=rgba(LINE,1);ctx.lineWidth=2;ctx.strokeRect(IX,IY,SZ,SZ);
+
+  // 右侧仪表
+  const RX=780;
+  TC('step',RX,300,22,DIM,'left',1);
+  T(String(step).padStart(2,'0'),RX,368,86,CYAN,'left',700,1);
+  T('/ 30',RX+150,392,26,DIM,'left',400,1);
+
+  // 进度条
+  const bw=520;
+  box(RX,430,bw,10,'#1a2432',null,5,0,1);
+  box(RX,430,bw*p,10,CYAN,null,5,0,1);
+
+  const rows=[
+    ['latent','64 × 64 × 4（VAE 压缩 8×）',CYAN],
+    ['采样器','DPM-Solver++ / Euler',PURPLE],
+    ['CFG','w = 7.0',ORANGE],
+    ['单步开销','一次 U-Net / DiT 前向',GREEN]
+  ];
+  for(let i=0;i<rows.length;i++){
+    const st=1.2+i*0.5, al=eo(seg(t,st,st+0.4));
+    const y=500+i*64;
+    if(al<=0)continue;
+    T(rows[i][0],RX,y,18,rows[i][2],'left',700,al);
+    TC(rows[i][1],RX+120,y,18,TXT,'left',al);
+  }
+
+  const b=eo(seg(t,9.0,9.6));
+  T('模型算的从来不是像素',RX,790,21,DIM,'left',400,b*0.95);
+  TC('512×512×3  =  786,432 个数   →   64×64×4  =  16,384 个数',RX,824,16,CYAN,'left',b);
+}
+
+/* ================= 场景 5：VAE 解码 ================= */
+function S5(t){
+  T('④ 像素解码：VAE decoder',140,86,40,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('潜变量 → 3 通道像素，高频细节的唯一出处',140,132,20,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const p=cl01(seg(t,1.2,6.0));
+
+  // 左：latent 像素化
+  const LZ=256, LX=160, LY=250;
+  ctx.save();ctx.imageSmoothingEnabled=false;
+  ctx.drawImage(target,LX,LY,LZ,LZ);ctx.restore();
+  ctx.strokeStyle=rgba(PURPLE,0.30);ctx.lineWidth=1;
+  for(let i=0;i<=8;i++){
+    ctx.beginPath();ctx.moveTo(LX+i*LZ/8,LY);ctx.lineTo(LX+i*LZ/8,LY+LZ);ctx.stroke();
+    ctx.beginPath();ctx.moveTo(LX,LY+i*LZ/8);ctx.lineTo(LX+LZ,LY+i*LZ/8);ctx.stroke();
+  }
+  ctx.strokeStyle=rgba(LINE,1);ctx.lineWidth=2;ctx.strokeRect(LX,LY,LZ,LZ);
+  T('latent  64 × 64 × 4',LX,LY+LZ+26,17,PURPLE,'left',600,1);
+
+  // 箭头
+  arrow(LX+LZ+40,LY+LZ/2,LX+LZ+150,LY+LZ/2,rgba(CYAN,0.9),1,3);
+  T('8× 上采样',LX+LZ+95,LY+LZ/2-24,16,CYAN,'center',600,1);
+
+  // 右：像素图
+  const RZ=512, RX=610, RY=180;
+  ctx.save();
+  ctx.beginPath();ctx.rect(RX,RY,RZ,RZ);ctx.clip();
+  ctx.imageSmoothingEnabled=true;
+  ctx.globalAlpha=cl01(0.25+p*0.75);
+  if('filter' in ctx) ctx.filter='blur('+(7*(1-p)).toFixed(2)+'px)';
+  ctx.drawImage(target,RX,RY,RZ,RZ);
+  ctx.restore();ctx.filter='none';
+  // 扫描线
+  const sy=RY+RZ*p;
+  ctx.strokeStyle=rgba(CYAN,0.55*(1-Math.abs(p-0.5)*1.2));ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(RX,sy);ctx.lineTo(RX+RZ,sy);ctx.stroke();
+  ctx.strokeStyle=rgba(LINE,1);ctx.lineWidth=2;ctx.strokeRect(RX,RY,RZ,RZ);
+  T('像素  512 × 512 × 3',RX,RY+RZ+26,17,ORANGE,'left',600,1);
+
+  // 说明
+  const RX2=1180, items=[
+    ['高频从哪来','只有解码器能补回来。手指、小字、细线条\n糊掉，主因是 VAE 有损压缩丢高频，\n不是 attention 没算对',CYAN],
+    ['工程做法','低分辨率生成 + 超分 / 重绘二次修',GREEN],
+    ['最后一步','PNG / JPEG 熵编码 → 落盘',PURPLE]
+  ];
+  for(let i=0;i<items.length;i++){
+    const st=3.0+i*0.8, av=eo(seg(t,st,st+0.45));
+    if(av<=0)continue;
+    const y=300+i*160;
+    ctx.strokeStyle=rgba(items[i][2],0.75*av);ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(RX2,y-26);ctx.lineTo(RX2,y+72);ctx.stroke();
+    T(items[i][0],RX2+16,y,19,items[i][2],'left',700,av);
+    const ls=items[i][1].split('\n');
+    for(let k=0;k<ls.length;k++)T(ls[k],RX2+16,y+26+k*22,16,DIM,'left',400,av*0.95);
+  }
+}
+
+/* ================= 场景 6：视频 ================= */
+function S6(t){
+  T('⑤ 视频 = 图像 + 时间维',140,86,40,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('多了一个硬约束：时间一致性，代价是序列长度爆炸',140,132,20,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const N=6, FW=196, FH=110, GAP=20;
+  const x0=140, y0=250;
+  for(let i=0;i<N;i++){
+    const st=0.8+i*0.45, a=eo(seg(t,st,st+0.35));
+    if(a<=0)continue;
+    const x=x0+i*(FW+GAP);
+    ctx.save();ctx.globalAlpha=a;
+    ctx.beginPath();ctx.rect(x,y0,FW,FH);ctx.clip();
+    // 帧内容：目标图 + 横向微移 + 亮度差
+    ctx.drawImage(target, -i*6, 0, 512, 512, x, y0, FW, FH);
+    ctx.fillStyle='rgba(20,30,50,'+(0.05+i*0.045)+')';
+    ctx.fillRect(x,y0,FW,FH);
+    ctx.restore();
+    ctx.strokeStyle=rgba(i===N-1?CYAN:LINE,a);ctx.lineWidth=i===N-1?2.5:1.5;
+    ctx.strokeRect(x,y0,FW,FH);
+    TC('t='+i,x+8,y0+FH-12,12,rgba(TXT,0.75*a),'left',a);
+  }
+  // 时序连线
+  const ca=eo(seg(t,3.6,4.4));
+  for(let i=0;i<N-1;i++){
+    const x1=x0+i*(FW+GAP)+FW, x2=x0+(i+1)*(FW+GAP);
+    ctx.save();ctx.globalAlpha=ca*0.75;
+    ctx.strokeStyle=PURPLE;ctx.lineWidth=2;
+    ctx.beginPath();ctx.moveTo(x1,y0-14);
+    ctx.bezierCurveTo(x1+10,y0-42,x2-10,y0-42,x2,y0-14);ctx.stroke();
+    ctx.restore();
+  }
+  if(ca>0)T('时序 attention：跨帧对齐',x0+150,y0-58,16,PURPLE,'left',600,ca);
+
+  // 下方说明
+  const b=eo(seg(t,4.6,5.4));
+  if(b>0){
+    box(140,430,1320,120,PANEL,LINE,14,2,b);
+    TC('latent  [ T/4 , H/8 , W/8 , C ]',176,470,22,CYAN,'left',b);
+    T('视频 VAE 做时空双压缩',176,510,17,DIM,'left',400,b);
+    TC('sequence = T × H × W',720,470,22,PURPLE,'left',b);
+    T('attention 是 O(n²)，5 秒 720p 需序列并行',720,510,17,DIM,'left',400,b);
+    TC('O(n²)',1180,470,22,ORANGE,'left',b);
+    T('这是视频按秒计费的根本原因',1180,510,17,DIM,'left',400,b);
+  }
+
+  // 成本对比条
+  const c=eo(seg(t,6.4,7.2));
+  if(c>0){
+    T('同等质量下的 token 量对比',140,600,18,DIM,'left',600,c);
+    // 图像
+    box(140,630,120,26,CYAN,null,4,0,c);
+    T('单张图',280,643,17,TXT,'left',500,c);
+    TC('≈ 1×',400,643,16,DIM,'left',c);
+    // 视频
+    const wv=1180*c;
+    box(140,676,Math.max(6,wv),26,ORANGE,null,4,0,c);
+    T('5 秒 24fps 720p',280,689,17,TXT,'left',500,c);
+    TC('≈ 100× 以上',280+Math.max(6,wv)+16,689,16,ORANGE,'left',c);
+  }
+
+  const d=eo(seg(t,8.2,8.8));
+  T('音频 / 口型：通常独立 audio 分支，与视频分支做 cross-attention 对齐',140,760,18,DIM,'left',400,d*0.95);
+}
+
+/* ================= 场景 7：结论 ================= */
+const CONCL=[
+  ['01','提示词不是命令，是坐标','它指定潜空间里往哪儿走 —— 描述画面比下指令有效得多',CYAN],
+  ['02','词序与位置权重真实有效','因为 attention 有位置偏置；prompt 太长，后半段会被稀释',PURPLE],
+  ['03','可控性靠外挂条件，不靠措辞','ControlNet（边缘/深度/姿态）、IP-Adapter（参考图）、分区遮罩',ORANGE],
+  ['04','画质天花板在 VAE，不在采样器','想提清晰度，优先换更好的 VAE 或加超分，而不是调步数',GREEN]
+];
+function S7(t){
+  T('四条工程结论',140,100,42,TXT,'left',700,eo(seg(t,0,0.4)));
+  for(let i=0;i<CONCL.length;i++){
+    const st=0.5+i*0.9, a=eo(seg(t,st,st+0.5));
+    if(a<=0)continue;
+    const y=200+i*140;
+    ctx.save();ctx.globalAlpha=a;
+    box(140,y,1320,112,PANEL,mixc(LINE,CONCL[i][3],0.55),14,1.8,1);
+    ctx.restore();
+    TC(CONCL[i][0],176,y+34,24,CONCL[i][3],'left',a);
+    T(CONCL[i][1],176,y+72,25,TXT,'left',700,a);
+    T(CONCL[i][2],620,y+72,18,DIM,'left',400,a*0.95);
+  }
+  const b=eo(seg(t,4.4,5.0));
+  T('空格 暂停 / 播放    ←  →  切换章节    点击进度条跳转',VW/2,820,17,DIM,'center',400,b*0.8);
+}
+
+/* ================= 时间轴 ================= */
+const SCENES=[
+  {n:'标题',   d:4.5,  f:S0},
+  {n:'管线总览',d:10.0, f:S1},
+  {n:'文本编码',d:12.0, f:S2},
+  {n:'交叉注意力',d:13.0,f:S3},
+  {n:'去噪循环',d:13.0, f:S4},
+  {n:'VAE 解码',d:10.0, f:S5},
+  {n:'视频时间维',d:12.0,f:S6},
+  {n:'工程结论',d:10.0, f:S7}
+];
+const TOTAL=SCENES.reduce((s,x)=>s+x.d,0);
+
+/* ================= 渲染 ================= */
+let clock=0, playing=true, last=0;
+
+function locate(g){
+  let acc=0;
+  for(let i=0;i<SCENES.length;i++){
+    if(g<acc+SCENES[i].d||i===SCENES.length-1)return {i:i,t:g-acc};
+    acc+=SCENES[i].d;
+  }
+  return {i:SCENES.length-1,t:SCENES[SCENES.length-1].d};
+}
+
+function drawTopHUD(idx){
+  ctx.save();
+  ctx.globalAlpha=0.9;
+  T('提示词 → 像素',44,34,15,DIM,'left',600,1);
+  T('/ '+SCENES[idx].n,150,34,15,CYAN,'left',600,1);
+  ctx.restore();
+}
+
+function drawProgress(g){
+  const y=VH-8;
+  ctx.fillStyle='rgba(40,52,68,0.9)';
+  ctx.fillRect(0,y,VW,3);
+  ctx.fillStyle=CYAN;
+  ctx.fillRect(0,y,VW*(g/TOTAL),3);
+  let acc=0;
+  for(let i=0;i<SCENES.length;i++){
+    const x=VW*(acc/TOTAL);
+    ctx.fillStyle=rgba('#0a0d14',1);ctx.fillRect(x-1,y-3,2,9);
+    acc+=SCENES[i].d;
+  }
+}
+
+function render(){
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.fillStyle=BG;ctx.fillRect(0,0,cv.width/dpr,cv.height/dpr);
+  ctx.setTransform(dpr*scale,0,0,dpr*scale,offX*dpr,offY*dpr);
+
+  const loc=locate(clock);
+  const sc=SCENES[loc.i];
+  // 淡入淡出
+  const fin=cl01(loc.t/0.42), fout=cl01((sc.d-loc.t)/0.34);
+  const alpha=Math.min(fin,fout);
+
+  ctx.save();
+  ctx.globalAlpha=alpha;
+  sc.f(loc.t);
+  ctx.restore();
+
+  drawTopHUD(loc.i);
+  drawProgress(clock);
+}
+
+function loop(ts){
+  if(!last)last=ts;
+  let dt=(ts-last)/1000;last=ts;
+  if(dt>0.12)dt=0.12;
+  if(playing){
+    clock+=dt;
+    if(clock>=TOTAL)clock=0;
+  }
+  render();
+  requestAnimationFrame(loop);
+}
+
+/* ================= 交互 ================= */
+function resize(){
+  dpr=Math.min(window.devicePixelRatio||1,2);
+  const w=window.innerWidth,h=window.innerHeight;
+  cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);
+  cv.style.width=w+'px';cv.style.height=h+'px';
+  scale=Math.min(w/VW,h/VH);
+  offX=(w-VW*scale)/2;offY=(h-VH*scale)/2;
+}
+window.addEventListener('resize',resize);
+
+document.addEventListener('keydown',e=>{
+  if(e.code==='Space'){e.preventDefault();playing=!playing;last=0;}
+  else if(e.code==='ArrowRight'){
+    const loc=locate(clock);let acc=0;
+    for(let i=0;i<SCENES.length;i++){if(i===Math.min(loc.i+1,SCENES.length-1)){clock=acc;break;}acc+=SCENES[i].d;}
+    last=0;
+  } else if(e.code==='ArrowLeft'){
+    const loc=locate(clock);let acc=0,target=Math.max(loc.i-1,0);
+    for(let i=0;i<SCENES.length;i++){if(i===target){clock=acc+(loc.t>1.2?0:0);break;}acc+=SCENES[i].d;}
+    last=0;
+  } else if(e.key==='r'||e.key==='R'){clock=0;last=0;playing=true;}
+});
+
+cv.addEventListener('click',e=>{
+  const r=cv.getBoundingClientRect();
+  const w=r.width,h=r.height;
+  const s=Math.min(w/VW,h/VH);
+  const ox=(w-VW*s)/2, oy=(h-VH*s)/2;
+  const vx=(e.clientX-r.left-ox)/s, vy=(e.clientY-r.top-oy)/s;
+  if(vy>VH-24){
+    clock=cl01(vx/VW)*TOTAL;last=0;
+  } else {
+    playing=!playing;last=0;
+  }
+});
+
+/* 支持 ?t=秒 定位、?pause=1 定格 */
+try{
+  const qp=new URLSearchParams(location.search);
+  if(qp.has('t')){
+    const v=parseFloat(qp.get('t'));
+    if(!isNaN(v)) clock=Math.max(0,Math.min(TOTAL-0.04,v));
+  }
+  if(qp.get('pause')==='1') playing=false;
+}catch(err){}
+
+resize();
+requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta name="robots" content="noindex, nofollow">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第六集：Token 与账单 —— 一次对话到底花了多少钱</title>
+<style>
+  html,body{margin:0;height:100%;background:#07080f;overflow:hidden;}
+  canvas{display:block;cursor:pointer;}
+</style>
+</head>
+<body>
+<canvas id="cv"></canvas>
+<script>
+(function(){
+"use strict";
+
+const VW=1600, VH=900;
+const cv=document.getElementById('cv'), ctx=cv.getContext('2d');
+let scale=1, offX=0, offY=0, dpr=1;
+
+const FONT='"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif';
+const MONO='Menlo,Consolas,"SF Mono",monospace';
+
+const BG='#080b12', PANEL='#101724', PANEL2='#161f2e', LINE='#28344a',
+      TXT='#e8eef8', DIM='#8a97a9',
+      ACC='#ffb454',        /* 橙：本集主色 */
+      ACC2='#4ecdc4',       /* 青 */
+      ACC3='#9b8cff',       /* 紫 */
+      WARN='#f2617a', OK='#5cd692';
+
+const clamp=(x,a,b)=>x<a?a:(x>b?b:x);
+const cl01=x=>clamp(x,0,1);
+const seg=(t,a,b)=>b<=a?(t>=b?1:0):cl01((t-a)/(b-a));
+const eo=t=>1-Math.pow(1-cl01(t),3);
+const lerp=(a,b,t)=>a+(b-a)*t;
+function hex2rgb(h){return [parseInt(h.slice(1,3),16),parseInt(h.slice(3,5),16),parseInt(h.slice(5,7),16)];}
+function mixc(c1,c2,t){const a=hex2rgb(c1),b=hex2rgb(c2);t=cl01(t);
+  return 'rgb('+Math.round(lerp(a[0],b[0],t))+','+Math.round(lerp(a[1],b[1],t))+','+Math.round(lerp(a[2],b[2],t))+')';}
+function rgba(c,a){const r=hex2rgb(c);return 'rgba('+r[0]+','+r[1]+','+r[2]+','+cl01(a)+')';}
+function rr(x,y,w,h,r){ctx.beginPath();ctx.moveTo(x+r,y);
+  ctx.arcTo(x+w,y,x+w,y+h,r);ctx.arcTo(x+w,y+h,x,y+h,r);
+  ctx.arcTo(x,y+h,x,y,r);ctx.arcTo(x,y,x+w,y,r);ctx.closePath();}
+
+function T(s,x,y,size,color,align,weight,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.fillStyle=color;ctx.font=(weight||400)+' '+size+'px '+FONT;
+  ctx.textAlign=align||'left';ctx.textBaseline='middle';
+  ctx.fillText(s,x,y);ctx.restore();
+}
+function TF(s,x,y,size,color,align,weight,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.fillStyle=color;ctx.font=(weight||400)+' '+size+'px '+MONO;
+  ctx.textAlign=align||'left';ctx.textBaseline='middle';
+  ctx.fillText(s,x,y);ctx.restore();
+}
+function box(x,y,w,h,fill,stroke,r,lw,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  rr(x,y,w,h,r===undefined?12:r);
+  if(fill){ctx.fillStyle=fill;ctx.fill();}
+  if(stroke){ctx.strokeStyle=stroke;ctx.lineWidth=lw||2;ctx.stroke();}
+  ctx.restore();
+}
+function arrow(x1,y1,x2,y2,color,lw,alpha){
+  ctx.save();ctx.globalAlpha=alpha===undefined?1:cl01(alpha);
+  ctx.strokeStyle=color;ctx.fillStyle=color;ctx.lineWidth=lw||2;ctx.lineCap='round';
+  ctx.beginPath();ctx.moveTo(x1,y1);ctx.lineTo(x2,y2);ctx.stroke();
+  const ang=Math.atan2(y2-y1,x2-x1), L=9;
+  ctx.beginPath();ctx.moveTo(x2,y2);
+  ctx.lineTo(x2-L*Math.cos(ang-0.4),y2-L*Math.sin(ang-0.4));
+  ctx.lineTo(x2-L*Math.cos(ang+0.4),y2-L*Math.sin(ang+0.4));
+  ctx.closePath();ctx.fill();
+  ctx.restore();
+}
+function badge(n,x,y,r,color,a){
+  ctx.save();ctx.globalAlpha=a===undefined?1:cl01(a);
+  ctx.fillStyle=rgba(color,0.18);ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.fill();
+  ctx.strokeStyle=rgba(color,0.95);ctx.lineWidth=2;ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.stroke();
+  ctx.fillStyle=color;ctx.font='700 '+Math.round(r*1.12)+'px '+FONT;
+  ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(n,x,y+1);
+  ctx.restore();
+}
+
+/* ================= S0 开场 ================= */
+function S0(t){
+  const a1=eo(seg(t,0.1,1.0)), a2=eo(seg(t,0.7,1.6)), a3=eo(seg(t,1.4,2.3));
+  const g=ctx.createRadialGradient(VW/2,VH/2-40,40,VW/2,VH/2-40,660);
+  g.addColorStop(0,'rgba(255,180,84,0.12)');g.addColorStop(1,'rgba(255,180,84,0)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,VW,VH);
+
+  T('第六集',VW/2,VH/2-190,22,ACC,'center',700,a1);
+  T('账单为什么这么高',VW/2,VH/2-100,72,TXT,'center',700,a1);
+  T('Token、计费结构，以及 Agent 真正的成本黑洞',VW/2,VH/2-8,29,ACC2,'center',400,a2);
+
+  const items=[['输入','便宜',ACC2],['输出','贵 3~5 倍',WARN],['缓存','打骨折',OK]];
+  for(let i=0;i<3;i++){
+    const a=eo(seg(t,1.5+i*0.35,1.9+i*0.35));
+    const x=VW/2-450+i*310;
+    box(x,VH/2+76,280,84,mixc(BG,PANEL2,0.7),rgba(items[i][2],0.75*a),12,1.8,a);
+    T(items[i][0],x+140,VH/2+108,18,DIM,'center',400,a);
+    T(items[i][1],x+140,VH/2+140,22,items[i][2],'center',700,a);
+  }
+  T('这三句话，解释了你八成的话费',VW/2,VH/2+216,20,DIM,'center',400,a3*0.95);
+}
+
+/* ================= S1 Token 不是字数 ================= */
+function S1(t){
+  T('第一个误区：Token 不等于字数',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('它不是按字切，是按"模型见过的高频片段"切',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const CASES=[
+    {label:'中文',sent:'请问这个订单什么时候发货',n:0,
+     parts:['请问','这个','订单','什么','时候','发货'],color:ACC2,note:'约 6~9 个 token，大致 1 字 ≈ 1~1.5 token'},
+    {label:'英文',sent:'When will this order ship',n:1,
+     parts:['When',' will',' this',' order',' ship'],color:ACC3,note:'26 个字符 = 5 个 token，约 4 字符 ≈ 1 token'},
+    {label:'代码',sent:'const orderId = 12345;',n:2,
+     parts:['const',' ord','er','Id',' =',' 123','45',';'],color:WARN,note:'23 个字符却切了 8 个 token —— 符号和数字最费'}
+  ];
+
+  for(let ci=0;ci<CASES.length;ci++){
+    const cas=CASES[ci];
+    const st=0.4+ci*1.5, a=eo(seg(t,st,st+0.45));
+    if(a<=0)continue;
+    const y=206+ci*152;
+    T(cas.label,140,y+8,17,cas.color,'left',700,a);
+
+    // 切分块
+    let x=215;
+    for(let i=0;i<cas.parts.length;i++){
+      const pa=eo(seg(t,st+0.5+i*0.16,st+0.8+i*0.16));
+      if(pa<=0)break;
+      const s=cas.parts[i];
+      const w=Math.max(30,s.length*15+22);
+      box(x,y-22,w,44,rgba(cas.color,0.16*pa),rgba(cas.color,0.85*pa),8,1.5,pa);
+      T(s.trim()===''?'␣':s.trim(),x+w/2,y,17,cas.color,'center',600,pa);
+      x+=w+6;
+    }
+
+    const na=eo(seg(t,st+1.0,st+1.3));
+    T(cas.note,215,y+52,14,DIM,'left',400,na*0.9);
+  }
+
+  const b=eo(seg(t,5.0,5.6));
+  if(b>0){
+    box(140,676,1320,86,PANEL,mixc(LINE,WARN,0.5),12,1.7,b);
+    T('结论',176,720,18,WARN,'left',700,b);
+    T('按字数估 token 会差出一倍以上。中文、英文、代码、JSON、日志，同样长度花的钱完全不同。',320,720,17,TXT,'left',400,b);
+  }
+  const c=eo(seg(t,6.0,6.6));
+  T('准确估算法：用官方 tokenizer 实测，别用字数除以二。这一步省下的都是真金白银。',140,796,16,DIM,'left',400,c*0.95);
+}
+
+/* ================= S2 四档价 ================= */
+function S2(t){
+  T('一张账单，其实是四档不同的价',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('以下用相对倍数表示（把输入价记为 1），各家单价不同，但比例关系大体如此',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const TIERS=[
+    ['输入','1×',1.0,ACC2,'你发给它的所有内容'],
+    ['缓存命中','0.1×',0.1,OK,'前缀和上次完全一样\n直接复用算过的结果'],
+    ['缓存写入','1.25×',1.25,ACC3,'第一次建立缓存\n比正常输入还贵一点'],
+    ['输出','4×',4.0,WARN,'它生成的每一个字\n以及思考过程']
+  ];
+
+  const baseY=560, maxH=280, maxV=4.0;
+  for(let i=0;i<4;i++){
+    const st=0.4+i*0.5, a=eo(seg(t,st,st+0.5));
+    if(a<=0)continue;
+    const x=150+i*350;
+    const h=Math.max(6,(TIERS[i][2]/maxV)*maxH);
+    const hh=h*eo(seg(t,st+0.2,st+0.9));
+    box(x,baseY-hh,150,hh,mixc(PANEL,TIERS[i][3],0.85),null,8,0,a);
+    T(TIERS[i][1],x+75,baseY-hh-26,26,TIERS[i][3],'center',700,a);
+    T(TIERS[i][0],x+75,baseY+30,19,TXT,'center',700,a);
+    const ls=TIERS[i][4].split('\n');
+    for(let j=0;j<ls.length;j++)T(ls[j],x+75,baseY+62+j*22,13,DIM,'center',400,a*0.88);
+  }
+  // 基线
+  ctx.save();ctx.globalAlpha=eo(seg(t,0.6,1.2))*0.5;
+  ctx.strokeStyle=rgba(LINE,0.95);ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(140,baseY);ctx.lineTo(1460,baseY);ctx.stroke();ctx.restore();
+
+  const b=eo(seg(t,3.0,3.6));
+  if(b>0){
+    box(140,672,1320,86,PANEL,mixc(LINE,WARN,0.5),12,1.7,b);
+    T('记住这组比例',176,716,18,WARN,'left',700,b);
+    T('输出一个字的钱，够你输入十个字。所以"让它少啰嗦"是最直接的省钱操作。',400,716,17,TXT,'left',400,b);
+  }
+}
+
+/* ================= S3 为什么输出贵 ================= */
+function S3(t){
+  T('为什么输出贵 4 倍？因为它是"一个字一个字"蹦出来的',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('同样 1000 个 token，输入和输出的计算方式完全不同',140,136,21,DIM,'left',400,eo(seg(t,0.3,0.8)));
+
+  // 输入：并行
+  const a0=eo(seg(t,0.8,1.4));
+  if(a0>0){
+    T('输入 1000 token',140,216,20,ACC2,'left',700,a0);
+    for(let i=0;i<36;i++){
+      const a=eo(seg(t,0.9+i*0.013,1.15+i*0.013));
+      const x=140+i*20, y=248;
+      box(x,y,16,44,rgba(ACC2,0.35*a),rgba(ACC2,0.85*a),4,1.2,a);
+    }
+    const a2=eo(seg(t,1.8,2.3));
+    T('→  一次前向全部算完',960,270,19,ACC2,'left',600,a2);
+    T('GPU 并行吃满，效率极高',960,300,14,DIM,'left',400,a2*0.9);
+    T('耗时 ≈ 1 个单位',960,330,15,OK,'left',700,a2);
+  }
+
+  // 输出：串行
+  const b0=eo(seg(t,2.6,3.2));
+  if(b0>0){
+    T('输出 1000 token',140,404,20,WARN,'left',700,b0);
+    // 阶梯式串行
+    for(let i=0;i<26;i++){
+      const a=eo(seg(t,2.7+i*0.05,3.0+i*0.05));
+      if(a<=0)break;
+      const x=140+i*22, y=436+Math.floor(i/13)*0;
+      box(x,y,18,44,rgba(WARN,0.32*a),rgba(WARN,0.85*a),4,1.2,a);
+    }
+    // 串行连线示意
+    const a3=eo(seg(t,3.4,3.9));
+    ctx.save();ctx.globalAlpha=a3*0.9;ctx.strokeStyle=rgba(WARN,0.7);ctx.lineWidth=2;
+    for(let i=0;i<25;i++){
+      const x=140+i*22+18,y=436+22;
+      ctx.beginPath();ctx.moveTo(x,y);ctx.lineTo(x+4,y);ctx.stroke();
+    }
+    ctx.restore();
+    const a4=eo(seg(t,3.9,4.4));
+    T('每生成一个字，都要跑一次完整前向 —— 而它只知道前面写了什么',960,436,18,WARN,'left',600,a4);
+    T('必须等上一个出来，才能算下一个',960,468,14,DIM,'left',400,a4*0.9);
+    T('耗时 ≈ 1000 个单位',960,500,15,WARN,'left',700,a4);
+    T('（这就是"流式输出"存在的原因：不是省钱，是让你别干等）',960,530,13,DIM,'left',400,a4*0.85);
+  }
+
+  const c=eo(seg(t,5.4,6.0));
+  if(c>0){
+    box(140,576,1320,86,PANEL,mixc(LINE,ACC,0.5),12,1.7,c);
+    T('所以',176,620,18,ACC,'left',700,c);
+    T('输入是"批量阅卷"，输出是"逐字手写"。贵的那部分，买的是串行的算力时间。',320,620,17,TXT,'left',400,c);
+  }
+  const d=eo(seg(t,6.4,7.0));
+  T('推论：让模型"想一想"再答（思考 token 也按输出算价），嘴上省了，账上没省。',140,700,16,DIM,'left',400,d*0.95);
+}
+
+/* ================= S4 缓存命中 ================= */
+function S4(t){
+  T('最被低估的一档：缓存命中，价格只有 1/10',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('同样是发一段系统提示词，第二次发的时候可能便宜十倍',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const rows=[
+    ['第一轮（无缓存）','系统提示 2000',2000,1.0,0],
+    ['第二轮（命中）','系统提示 2000（缓存）',200,1.0,1]
+  ];
+
+  // 柱状对比
+  const baseY=470, maxW=760;
+  // 无缓存
+  const a0=eo(seg(t,0.6,1.2));
+  if(a0>0){
+    T('不开缓存',140,206,18,ACC2,'left',700,a0);
+    box(140,228,maxW*0.0+maxW*eo(seg(t,0.8,1.6)),64,mixc(PANEL,ACC2,0.75),null,8,0,a0);
+    TF('2000 token × 1.0 = 2000 单位',160,260,17,TXT,'left',700,eo(seg(t,1.2,1.7)));
+  }
+  // 开缓存
+  const b0=eo(seg(t,2.0,2.6));
+  if(b0>0){
+    T('开缓存（前缀没变）',140,340,18,OK,'left',700,b0);
+    box(140,362,maxW*(200/2000)*eo(seg(t,2.2,3.0)),64,mixc(PANEL,OK,0.85),null,8,0,b0);
+    const a1=eo(seg(t,2.8,3.3));
+    TF('200 token × 1.0 + 1800 token × 0.1 = 380 单位',160,394,17,TXT,'left',700,a1);
+    T('省掉 81%',1030,394,20,OK,'left',700,a1);
+    // 剩余部分示意
+    box(140+maxW*(200/2000)*eo(seg(t,2.2,3.0)),362,maxW*(1800/2000)*0.1*eo(seg(t,2.6,3.2)),64,rgba(OK,0.25),null,8,0,a1*0.8);
+  }
+
+  // 触发条件
+  const c=eo(seg(t,3.8,4.4));
+  if(c>0){
+    box(140,520,640,190,mixc(BG,OK,0.07),rgba(OK,0.7*c),14,1.7,c);
+    T('命中条件',168,556,18,OK,'left',700,c);
+    const okList=['前缀一个字都不能变','必须放在最前面','中间不能插时间戳、随机 ID'];
+    for(let i=0;i<3;i++){
+      const a=eo(seg(t,4.0+i*0.28,4.4+i*0.28));
+      T('✓',176,600+i*40,16,OK,'left',700,a);
+      T(okList[i],204,600+i*40,15,TXT,'left',400,a*0.92);
+    }
+  }
+  const d=eo(seg(t,4.6,5.2));
+  if(d>0){
+    box(820,520,640,190,mixc(BG,WARN,0.07),rgba(WARN,0.7*d),14,1.7,d);
+    T('一碰就全废',848,556,18,WARN,'left',700,d);
+    const noList=['把"当前时间"写进系统提示','每轮都改工具列表','提示词拼接顺序每次都不同'];
+    for(let i=0;i<3;i++){
+      const a=eo(seg(t,4.8+i*0.28,5.2+i*0.28));
+      T('×',856,600+i*40,16,WARN,'left',700,a);
+      T(noList[i],884,600+i*40,15,TXT,'left',400,a*0.92);
+    }
+  }
+
+  const e=eo(seg(t,5.8,6.4));
+  T('把"不变的放前面、会变的放后面"—— 这一个习惯，长期看能砍掉一半以上的输入成本。',140,766,17,ACC,'left',600,e*0.95);
+}
+
+/* ================= S5 Agent 账单黑洞 ================= */
+function S5(t){
+  T('真正的成本黑洞：多轮工具调用',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('模型是无状态的 —— 每一轮，它都要把前面所有内容重新发一遍（第三集讲过）',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const rounds=[
+    ['第 1 轮','系统提示 500 + 用户 50',550],
+    ['第 2 轮','+ 上次回复 80 + 工具结果 200',830],
+    ['第 3 轮','+ 上次回复 80 + 工具结果 300',1210],
+    ['第 4 轮','+ 上次回复 80 + 工具结果 250',1540]
+  ];
+  const maxV=1600, barW=620, x0=140;
+  let total=0;
+
+  for(let i=0;i<4;i++){
+    total+=rounds[i][2];
+    const st=0.6+i*0.85, a=eo(seg(t,st,st+0.5));
+    if(a<=0)continue;
+    const y=200+i*98;
+    T(rounds[i][0],x0,y+26,17,TXT,'left',700,a);
+    const w=barW*(rounds[i][2]/maxV)*eo(seg(t,st+0.15,st+0.75));
+    box(x0+110,y+4,barW,44,'#121a26',null,8,0,a*0.7);
+    box(x0+110,y+4,Math.max(6,w),44,mixc(PANEL,ACC,0.8),null,8,0,a);
+    T(rounds[i][2]+' token',x0+110+w+16,y+26,16,ACC,'left',700,a);
+    T(rounds[i][1],x0+110,y+64,13,DIM,'left',400,a*0.85);
+  }
+
+  const b=eo(seg(t,4.2,4.8));
+  if(b>0){
+    box(940,190,500,120,mixc(BG,WARN,0.09),rgba(WARN,0.75*b),14,1.8,b);
+    T('输入总量',968,224,15,DIM,'left',600,b);
+    T('4130',968,262,40,WARN,'left',700,b);
+    T('token',1150,262,18,DIM,'left',500,b);
+    T('而"只发一次"只要 550',968,296,14,DIM,'left',400,b*0.9);
+  }
+  const c=eo(seg(t,4.8,5.4));
+  if(c>0){
+    box(940,330,500,130,mixc(BG,ACC,0.09),rgba(ACC,0.75*c),14,1.8,c);
+    T('放大倍数',968,364,15,DIM,'left',600,c);
+    T('7.5×',968,404,44,ACC,'left',700,c);
+    T('4 轮任务，输入成本是单次的 7.5 倍',968,440,13,DIM,'left',400,c*0.9);
+  }
+
+  // 现实场景
+  const d=eo(seg(t,5.8,6.4));
+  if(d>0){
+    box(140,596,1300,110,PANEL,mixc(LINE,ACC3,0.5),12,1.7,d);
+    T('更真实的情况',176,632,17,ACC3,'left',700,d);
+    T('一个 Agent 任务 15~30 轮是常态：每轮都在为"全部历史"付费，输入 token 线性累加。',380,632,16,TXT,'left',400,d);
+    T('所以省钱的第一刀，永远砍在"轮数"和"塞进上下文的工具结果"上。',380,666,16,ACC2,'left',600,d*0.95);
+  }
+  const e=eo(seg(t,7.0,7.6));
+  T('把工具返回的整个 JSON 原样塞进去，是新手最贵的习惯。只留用得上的字段。',140,744,16,DIM,'left',400,e*0.95);
+}
+
+/* ================= S6 成本公式 ================= */
+function S6(t){
+  T('把它算成一道公式，成本就变可控',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('不用记单价，只要记住结构',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const a0=eo(seg(t,0.5,1.1));
+  if(a0>0){
+    box(140,190,1320,120,mixc(BG,PANEL2,0.6),rgba(ACC,0.6*a0),14,1.8,a0);
+    T('单次任务成本',176,226,15,DIM,'left',600,a0);
+    TF('= Σ(每轮输入 token × 输入价)  +  Σ(每轮输出 token × 输出价)',176,272,20,TXT,'left',600,a0);
+  }
+
+  const b=eo(seg(t,1.8,2.4));
+  if(b>0){
+    T('代入一个中等规模的 Agent 任务',140,352,17,ACC3,'left',700,b);
+    const rows=[
+      ['输入合计','6000 token','× 1×','= 6000 单位',ACC2],
+      ['输出合计','800 token','× 4×','= 3200 单位',WARN]
+    ];
+    for(let i=0;i<2;i++){
+      const a=eo(seg(t,2.0+i*0.4,2.5+i*0.4));
+      if(a<=0)continue;
+      const y=386+i*62;
+      T(rows[i][0],176,y,15,DIM,'left',500,a);
+      TF(rows[i][1],330,y,17,TXT,'left',600,a);
+      T(rows[i][2],560,y,16,DIM,'left',500,a);
+      T(rows[i][3],700,y,17,rows[i][4],'left',700,a);
+    }
+    const c=eo(seg(t,3.0,3.6));
+    if(c>0){
+      T('合计 9200 单位',176,530,20,ACC,'left',700,c);
+      T('输出只占 token 数的 12%，却吃掉了 35% 的钱',176,564,15,WARN,'left',600,c*0.95);
+    }
+  }
+
+  // 右侧：成本结构拆解
+  const dd=eo(seg(t,3.6,4.2));
+  if(dd>0){
+    T('钱花在哪',860,352,17,DIM,'left',600,dd);
+    // 堆叠条
+    const bx=860, by=390, bw=560;
+    box(bx,by,bw*0.65,54,rgba(ACC2,0.75),null,8,0,dd);
+    box(bx+bw*0.65,by,bw*0.35,54,rgba(WARN,0.8),null,8,0,dd);
+    T('输入 65%',bx+bw*0.32,by+27,14,BG,'center',700,dd);
+    T('输出 35%',bx+bw*0.82,by+27,14,BG,'center',700,dd);
+    T('想省大钱，改结构；想省小钱，改措辞',bx,by+82,14,DIM,'left',400,dd*0.9);
+  }
+
+  const e=eo(seg(t,5.2,5.8));
+  if(e>0){
+    box(140,614,1320,86,PANEL,mixc(LINE,OK,0.5),12,1.7,e);
+    T('先估再上线',176,658,18,OK,'left',700,e);
+    T('上线前先用 tokenizer 量一遍典型任务的 token 数，乘以单价 —— 这一步能提前发现十倍的预算偏差。',380,658,16,TXT,'left',400,e);
+  }
+  const f=eo(seg(t,6.4,7.0));
+  T('很多项目不是被模型能力卡住的，是被第一次月度账单卡住的。',140,742,16,DIM,'left',400,f*0.95);
+}
+
+/* ================= S7 六个开关 ================= */
+function S7(t){
+  T('六个开关，按性价比排序',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('全都打开的话，成本通常能降到原来的两到三成',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const SW=[
+    ['提示词缓存','把系统提示固定放最前，别掺变量','输入 ↓ 90%',OK],
+    ['限制输出','设 max_tokens，明确要求简洁、不要复述','输出 ↓ 40%',WARN],
+    ['工具结果裁剪','只回传需要的字段，别塞整个 JSON','输入 ↓ 50%',ACC2],
+    ['模型路由','简单任务给小模型，难的才给大模型','总价 ↓ 70%',ACC3],
+    ['上下文压缩','历史太长就总结，别硬塞（第四集）','输入 ↓ 60%',ACC],
+    ['批处理接口','非实时的活攒起来走离线队列','单价 ↓ 50%',ACC2]
+  ];
+
+  for(let i=0;i<6;i++){
+    const col=i%3, row=Math.floor(i/3);
+    const st=0.4+i*0.42, a=eo(seg(t,st,st+0.45));
+    if(a<=0)continue;
+    const x=140+col*440, y=196+row*212;
+    box(x,y,420,188,mixc(BG,PANEL2,0.6),mixc(LINE,SW[i][3],0.6*a),14,1.8,a);
+    badge(String(i+1),x+36,y+36,17,SW[i][3],a);
+    T(SW[i][0],x+68,y+36,19,TXT,'left',700,a);
+    T(SW[i][1],x+26,y+90,14,DIM,'left',400,a*0.9);
+    T(SW[i][2],x+26,y+148,20,SW[i][3],'left',700,a);
+  }
+
+  const b=eo(seg(t,3.4,4.0));
+  if(b>0){
+    box(140,628,1320,86,PANEL,mixc(LINE,WARN,0.5),12,1.7,b);
+    T('注意',176,672,18,WARN,'left',700,b);
+    T('"流式输出"不省钱，只省等待感。它不减少任何 token，别把它算进优化清单。',320,672,17,TXT,'left',400,b);
+  }
+  const c=eo(seg(t,4.4,5.0));
+  T('优先级很简单：先动"塞进去的东西"，再动"用哪个模型"，最后才考虑换供应商。',140,760,16,DIM,'left',400,c*0.95);
+}
+
+/* ================= S8 便宜的谎话 ================= */
+function S8(t){
+  T('便宜模型不一定便宜',140,86,38,TXT,'left',700,eo(seg(t,0,0.4)));
+  T('看的是"每个成功任务的总成本"，不是"每百万 token 的单价"',140,136,21,DIM,'left',400,eo(seg(t,0.2,0.7)));
+
+  const baseY=520, maxH=250;
+  // 名义成本
+  const a0=eo(seg(t,0.6,1.2));
+  if(a0>0){
+    const h=maxH*0.10*eo(seg(t,0.8,1.5));
+    box(200,baseY-h,140,h,mixc(PANEL,OK,0.85),null,8,0,a0);
+    T('0.1×',270,baseY-h-26,26,OK,'center',700,a0);
+    T('名义单价',270,baseY+30,17,TXT,'center',700,a0);
+    T('小模型标价',270,baseY+58,13,DIM,'center',400,a0*0.88);
+    T('确实只有十分之一',270,baseY+80,13,DIM,'center',400,a0*0.88);
+  }
+
+  // 实际成本：拆成四段堆叠
+  const b0=eo(seg(t,2.0,2.6));
+  if(b0>0){
+    const segs=[
+      ['基础单价',10,OK],
+      ['步数变多 ×3',20,ACC3],
+      ['输出更啰嗦 ×1.5',5,WARN],
+      ['失败重试',8,WARN]
+    ];
+    let acc=0;
+    for(let i=0;i<segs.length;i++){
+      const a=eo(seg(t,2.2+i*0.35,2.7+i*0.35));
+      if(a<=0)break;
+      const h=maxH*(segs[i][1]/100)*a;
+      const y=baseY-maxH*(acc/100)-h;
+      box(660,y,140,h,mixc(PANEL,segs[i][2],0.8),null,6,0,b0*a);
+      acc+=segs[i][1];
+      if(segs[i][1]>=14)T(segs[i][0],730,y+h/2,12,'#0b1018',660,a*0.95);
+    }
+    const a1=eo(seg(t,3.8,4.3));
+    T('≈ 0.43×',730,baseY-maxH*0.43-64,26,ACC3,'center',700,a1);
+    T('实际总成本',730,baseY+30,17,TXT,'center',700,a1);
+    T('便宜的只有四分之一',730,baseY+58,13,DIM,'center',400,a1*0.88);
+    T('含步数翻倍、输出啰嗦、重试',730,baseY+82,12,DIM,'center',400,a1*0.8);
+  }
+
+  // 大模型
+  const c0=eo(seg(t,4.6,5.2));
+  if(c0>0){
+    const h=maxH*1.0*eo(seg(t,4.8,5.5));
+    box(1120,baseY-h,140,h,mixc(PANEL,ACC,0.85),null,8,0,c0);
+    T('1.0×',1190,baseY-h-26,26,ACC,'center',700,c0);
+    T('大模型',1190,baseY+30,17,TXT,'center',700,c0);
+    T('两步搞定，一次就对',1190,baseY+58,13,DIM,'center',400,c0*0.88);
+  }
+
+  ctx.save();ctx.globalAlpha=eo(seg(t,1.0,1.6))*0.5;
+  ctx.strokeStyle=rgba(LINE,0.95);ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(160,baseY);ctx.lineTo(1300,baseY);ctx.stroke();ctx.restore();
+
+  const d=eo(seg(t,5.8,6.4));
+  if(d>0){
+    box(140,614,1320,110,PANEL,mixc(LINE,ACC2,0.5),12,1.7,d);
+    T('所以正确做法',176,650,17,ACC2,'left',700,d);
+    T('不是"全用便宜模型"，而是路由：能搞定的交给小模型，搞不定的第一次就上大模型。',380,650,16,TXT,'left',400,d);
+    T('让大模型反复救小模型的场，是账单上最难看的一种。',380,686,16,ACC3,'left',600,d*0.95);
+  }
+  const e=eo(seg(t,6.8,7.4));
+  T('还有一笔隐性成本别忘：失败任务要有人兜底。人工一分钟，比几万 token 贵。',140,760,16,DIM,'left',400,e*0.95);
+}
+
+/* ================= S9 收尾 ================= */
+function S9(t){
+  const a1=eo(seg(t,0.1,0.7)), a3=eo(seg(t,1.5,2.1));
+  const g=ctx.createRadialGradient(VW/2,VH/2,40,VW/2,VH/2,560);
+  g.addColorStop(0,'rgba(255,180,84,0.11)');g.addColorStop(1,'rgba(255,180,84,0)');
+  ctx.fillStyle=g;ctx.fillRect(0,0,VW,VH);
+
+  T('这一集，三句话',VW/2,150,17,ACC,'center',600,a1);
+  const lines=[
+    '输出比输入贵 3~5 倍，缓存命中只要 1/10 —— 比例比单价重要。',
+    'Agent 的成本黑洞不是单价，是轮数：每轮都在为全部历史重新付费。',
+    '省钱的第一刀砍上下文，第二刀砍轮数，最后才轮到换模型。'
+  ];
+  for(let i=0;i<3;i++){
+    const a=eo(seg(t,0.4+i*0.5,0.9+i*0.5));
+    T(lines[i],VW/2,236+i*62,24,TXT,'center',500,a);
+  }
+  ctx.strokeStyle=rgba(ACC,0.6*a3);ctx.lineWidth=2;
+  ctx.beginPath();ctx.moveTo(VW/2-340,448);ctx.lineTo(VW/2+340,448);ctx.stroke();
+
+  T('成本是设计出来的，不是省出来的',VW/2,530,34,ACC3,'center',700,a3);
+  T('上线前算一遍，比上线后砍一半容易得多',VW/2,592,22,DIM,'center',400,a3);
+  T('下一集：量化与端侧推理 —— 把模型搬到自己机器上，账怎么算。',VW/2,652,19,OK,'center',600,a3);
+
+  T('空格 暂停 / 播放    ←  →  切换章节    点进度条跳转',VW/2,800,16,DIM,'center',400,eo(seg(t,2.8,3.4))*0.8);
+}
+
+/* ================= 时间轴 ================= */
+const SCENES=[
+  {n:'开场',        d:4.5,  f:S0},
+  {n:'Token 不是字数', d:11.0, f:S1},
+  {n:'四档价',      d:11.0, f:S2},
+  {n:'为什么输出贵', d:12.0, f:S3},
+  {n:'缓存命中',    d:11.0, f:S4},
+  {n:'Agent 成本黑洞', d:13.0, f:S5},
+  {n:'成本公式',    d:11.0, f:S6},
+  {n:'六个开关',    d:13.0, f:S7},
+  {n:'便宜的谎话',  d:11.0, f:S8},
+  {n:'收尾',        d:6.5,  f:S9}
+];
+const TOTAL=SCENES.reduce((s,x)=>s+x.d,0);
+
+let clock=0, playing=true, last=0;
+
+function locate(g){
+  let acc=0;
+  for(let i=0;i<SCENES.length;i++){
+    if(g<acc+SCENES[i].d||i===SCENES.length-1)return {i:i,t:g-acc};
+    acc+=SCENES[i].d;
+  }
+  return {i:SCENES.length-1,t:SCENES[SCENES.length-1].d};
+}
+
+function drawTopHUD(idx){
+  T('Token · Pricing · Cost',44,34,15,DIM,'left',600,1);
+  T('/ '+SCENES[idx].n,246,34,15,ACC,'left',600,1);
+}
+
+function drawProgress(g){
+  const y=VH-8;
+  ctx.fillStyle='rgba(40,52,68,0.9)';ctx.fillRect(0,y,VW,3);
+  ctx.fillStyle=ACC;ctx.fillRect(0,y,VW*(g/TOTAL),3);
+  let acc=0;
+  for(let i=0;i<SCENES.length;i++){
+    const x=VW*(acc/TOTAL);
+    ctx.fillStyle=BG;ctx.fillRect(x-1,y-3,2,9);
+    acc+=SCENES[i].d;
+  }
+}
+
+function render(){
+  ctx.setTransform(dpr,0,0,dpr,0,0);
+  ctx.fillStyle=BG;ctx.fillRect(0,0,cv.width/dpr,cv.height/dpr);
+  ctx.setTransform(dpr*scale,0,0,dpr*scale,offX*dpr,offY*dpr);
+
+  const loc=locate(clock);
+  const sc=SCENES[loc.i];
+  const fin=cl01(loc.t/0.42), fout=cl01((sc.d-loc.t)/0.34);
+  const alpha=Math.min(fin,fout);
+
+  ctx.save();ctx.globalAlpha=alpha;sc.f(loc.t);ctx.restore();
+  drawTopHUD(loc.i);
+  drawProgress(clock);
+}
+
+function loop(ts){
+  if(!last)last=ts;
+  let dt=(ts-last)/1000;last=ts;
+  if(dt>0.12)dt=0.12;
+  if(playing){clock+=dt;if(clock>=TOTAL)clock=0;}
+  render();
+  requestAnimationFrame(loop);
+}
+
+function resize(){
+  dpr=Math.min(window.devicePixelRatio||1,2);
+  const w=window.innerWidth,h=window.innerHeight;
+  cv.width=Math.round(w*dpr);cv.height=Math.round(h*dpr);
+  cv.style.width=w+'px';cv.style.height=h+'px';
+  scale=Math.min(w/VW,h/VH);
+  offX=(w-VW*scale)/2;offY=(h-VH*scale)/2;
+}
+window.addEventListener('resize',resize);
+
+document.addEventListener('keydown',e=>{
+  if(e.code==='Space'){e.preventDefault();playing=!playing;last=0;}
+  else if(e.code==='ArrowRight'||e.code==='ArrowLeft'){
+    const loc=locate(clock);
+    const target=e.code==='ArrowRight'?Math.min(loc.i+1,SCENES.length-1):Math.max(loc.i-1,0);
+    let acc=0;
+    for(let i=0;i<SCENES.length;i++){if(i===target){clock=acc;break;}acc+=SCENES[i].d;}
+    last=0;
+  } else if(e.key==='r'||e.key==='R'){clock=0;last=0;playing=true;}
+});
+
+cv.addEventListener('click',e=>{
+  const r=cv.getBoundingClientRect();
+  const w=r.width,h=r.height;
+  const s=Math.min(w/VW,h/VH);
+  const ox=(w-VW*s)/2, oy=(h-VH*s)/2;
+  const vx=(e.clientX-r.left-ox)/s, vy=(e.clientY-r.top-oy)/s;
+  if(vy>VH-24){clock=cl01(vx/VW)*TOTAL;last=0;}
+  else {playing=!playing;last=0;}
+});
+
+try{
+  const qp=new URLSearchParams(location.search);
+  if(qp.has('t')){
+    const v=parseFloat(qp.get('t'));
+    if(!isNaN(v))clock=Math.max(0,Math.min(TOTAL-0.04,v));
+  }
+  if(qp.get('pause')==='1')playing=false;
+}catch(err){}
+
+resize();
+requestAnimationFrame(loop);
+})();
+</script>
+</body>
+</html>
