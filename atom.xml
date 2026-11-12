@@ -40,6 +40,27 @@
   </entry>
   
   <entry>
+    <title>AI代理订票遇阻</title>
+    <link href="https://nilw.rm-rf.ink/AI/aedb3753.html"/>
+    <id>https://nilw.rm-rf.ink/AI/aedb3753.html</id>
+    <published>2026-11-12T01:00:00.000Z</published>
+    <updated>2026-11-12T01:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="航空公司的限制暴露了责任分配问题"><a class="markdownIt-Anchor" href="#航空公司的限制暴露了责任分配问题"></a> 航空公司的限制暴露了责任分配问题</h2><p><span class="hl">智能体已经能规划行程，航空公司却不愿把付款权限交给它。</span></p><p>这正是 AI 代理走进真实业务时遇到的阻力。模型负责理解需求、比较航班、填写信息，航空公司负责提供接口并承担交易后果。两边没有谈好权限边界，预订就只能停在演示阶段。</p><p>联合航空表示，不允许个人 AI 助手代订机票，理由涉及隐私、监管和错误购买。公司称，目前主动尝试用代理订票的人还不多。这与其他企业观察到的情况一致。</p><p>我关注的并非代理能不能查到票价。搜索、筛选和生成行程已经能完成。真正卡住的是，代理做出的操作由谁确认，错误由谁承担。</p><blockquote><p>代理可以给出购买建议，却不能在没有授权边界的情况下完成购买。</p></blockquote><p>这也是责任分配问题。个人信息是否会被长期保存，代理是否可能误下单，航空公司的安全证明要求由谁完成，都需要落到具体规则上。</p><h2 id="代理需要交易授权也需要责任隔离"><a class="markdownIt-Anchor" href="#代理需要交易授权也需要责任隔离"></a> 代理需要交易授权，也需要责任隔离</h2><p><span class="hl">没有清晰的授权链，智能体就不该直接持有支付能力。</span></p><p>我最初以为，航空接口只要开放，代理订票很快就会普及。后来发现，接口开放只是技术问题。接口能返回航班，也能创建订单，支付成功却需要更清楚的规则。</p><p>联合航空担心的一个具体场景，是代理可能暴露客户信息，或完成客户没有打算进行的购买。航空业还需要向客户提供特定安全信息，并取得相应确认。代理若跳过这些步骤，效率越高，潜在责任越重。</p><p>这类限制可以理解。代理替人搜索，与代理替人付款，风险完全不同。航空公司也没有义务为陌生代理开放全部能力。</p><blockquote><p>搜索结果出错，可以重新选择。付款一旦完成，退改与赔付会立刻进入人工流程。</p></blockquote><p>我的判断是，接口设计应把权限拆开。代理可以筛选、填表、生成订单草稿，最后一步则交给账户持有人确认。航空公司的系统记录每次数据提交和操作确认，也让责任可以追溯。</p><p>这样也能减少两类麻烦。客户不必把银行卡、账户密码直接交给代理。航空公司也不必允许一个未经约束的模型代表客户作出最终决定。</p><p>但这还不够。航空公司给出的接口，需要明确代理究竟拿到了哪些信息，处理多久，保存在哪里。客户也需要看见代理调用了哪些接口，提交了哪些字段。隐私问题不能只靠一纸政策说明解决。</p><h2 id="接口之外还要回答谁来兜底"><a class="markdownIt-Anchor" href="#接口之外还要回答谁来兜底"></a> 接口之外，还要回答谁来兜底</h2><p><span class="hl">智能体落地的瓶颈，是交易结束后的责任能否被界定。</span></p><p>做 Hermes 时，我更常碰到权限和召回问题。mem-md 的召回命中率约为 9%，这个已知痛点会直接影响回答质量。接口返回成功，不代表代理理解了内容；代理理解内容，也不代表它适合承担交易。</p><p>我还在推“一人公司”，方向是信息差套利。Hermes Atlas 知识库已经在记录真实踩坑。眼前三个问题仍没答完：解决什么问题、谁付钱、怎么收钱。技术链路搭起来，只是中间一步。</p><p>这些经历让我更在意边界。谁使用工具、谁批准操作、谁对失败负责，需要同时写清。航空订票把问题放大了，因为一次误购会直接涉及行程和金钱。</p><p>我赞同联合航空限制个人 AI 助手直接订票。现阶段先保留人工确认更稳妥。可如果所有航空公司都长期禁止代理下单，行业就会错过标准化接口带来的新入口。</p><p>下一步应落在权限分层、支付确认、操作留痕和争议处理。航空公司愿意开放到什么程度，也取决于这些机制能否建立。</p><p>开放性问题留在这里：当代理逐渐理解旅客意图，航空公司的责任边界会随接口一起开放，还是会随每次付款变得更加保守？</p>]]></content>
+    
+    
+    <summary type="html">航空公司的限制暴露了责任分配问题 智能体已经能规划行程，航空公司却不愿把付款权限交给它。 这正是 AI 代理走进真实业务时遇到的阻力。模型负责理解需求、比较航班、填写信息，航空公司负责提供接口并承担交易后果。两边没有谈好权限边界，预订就只能停在演示阶段。</summary>
+    
+    
+    
+    <category term="AI" scheme="https://nilw.rm-rf.ink/categories/AI/"/>
+    
+    
+    <category term="AI" scheme="https://nilw.rm-rf.ink/tags/AI/"/>
+    
+  </entry>
+  
+  <entry>
     <title>编程早已面目全非，AI 正重写开发者的价值边界</title>
     <link href="https://nilw.rm-rf.ink/%E6%8A%80%E6%9C%AF/124f865b.html"/>
     <id>https://nilw.rm-rf.ink/%E6%8A%80%E6%9C%AF/124f865b.html</id>
@@ -71,6 +92,27 @@
     
     
     <summary type="html">模型榜单该退到第二步 模型选型曾经是 AI 应用的第一道题。哪个模型更聪明，哪个基准分更高，谁更适合写代码，这些指标直接影响效果。 我最初也按这个思路做判断。2026 年 11 月 10 日发布的 Claude Fable 5.2 和 Claude Mythos 5.2，把速度提升摆到了台前。</summary>
+    
+    
+    
+    <category term="AI" scheme="https://nilw.rm-rf.ink/categories/AI/"/>
+    
+    
+    <category term="AI" scheme="https://nilw.rm-rf.ink/tags/AI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>美国赢得AI竞赛，但黄仁勋差点亲手葬送优势</title>
+    <link href="https://nilw.rm-rf.ink/AI/1cdc5bc8.html"/>
+    <id>https://nilw.rm-rf.ink/AI/1cdc5bc8.html</id>
+    <published>2026-11-12T01:00:00.000Z</published>
+    <updated>2026-11-12T01:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="间谍风波改变不了算力胜负手"><a class="markdownIt-Anchor" href="#间谍风波改变不了算力胜负手"></a> 间谍风波改变不了算力胜负手</h2><p>黄仁勋面对的最大风险，来自个人关系引发的信任危机，而非芯片订单突然流失。</p><p>一则报道把黄仁勋推入间谍争议：一名疑似中国间谍的女人与他有婚外情，而美国情报机构甚至特朗普据称已经知道其间谍身份。对英伟达而言，这当然不是轻松的声誉插曲。芯片公司高度依赖政府许可、出口管制和跨国客户信任。</p><p>但我最初更在意的不是这段私生活，而是标题里隐含的判断：美国已经赢得AI竞赛，而黄仁勋差点亲手葬送优势。这个说法很容易把两件事混在一起。</p><p>黄仁勋可能遭遇政治审查。英伟达对AI产业的控制仍然存在。两者的影响完全不同。</p><blockquote><p>黄仁勋在1993年创办英伟达，至今仍担任负责人。他的个人风险，也与公司的战略信用连在一起。</p></blockquote><p>我到现在也没搞明白，这起风波最终会触及哪一层。它可能停留在婚姻与声誉层面，也可能迫使美国重新评估黄仁勋与政府、监管者及中国市场之间的关系。若涉及出口许可、游说或政策沟通，董事会的压力会明显上升。</p><p>可AI竞争并不只取决于一位CEO是否清白。</p><h2 id="英伟达的优势来自系统能力"><a class="markdownIt-Anchor" href="#英伟达的优势来自系统能力"></a> 英伟达的优势来自系统能力</h2><p>英伟达最关键的资产，是芯片、软件和开发生态形成的完整组合。</p><p>这件事在AI领域很关键。开发者购买的不是一块孤立芯片，而是一套能迅速把模型跑起来、把成本压下去、把产品做出来的工具。</p><p>我写《大模型入门》系列时，最大的感受之一，就是模型能力与部署条件不能分开谈。模型效果只是起点。显存、并行方式、推理框架和开发工具，都会影响企业能否真正使用它。</p><blockquote><p>一块芯片只能提供算力。整套工具链才决定算力能否变成产品。</p></blockquote><p>我最初把英伟达的优势理解成更先进的芯片。看到芯片、CUDA和开发者生态逐渐绑定后，我改了看法。它的优势更像一套系统，单换其中一项，并不能立刻复制。</p><p>这正是黄仁勋犯下的错误。外界谈论AI竞争时，注意力常落在芯片参数与模型榜单上。英伟达真正牢固的位置，在开发者已经习惯使用它的工具，软件更新持续改善训练与推理效率，客户迁移成本也进一步提高。</p><p>这也是美国胜势的一部分。竞争者追赶单颗芯片，要同时补上软件、工具和开发者信任。美国已经拥有完整链条。</p><blockquote><p>算力可以被追赶，生态迁移要慢得多。芯片优势会衰减，软件习惯不会立刻消失。</p></blockquote><h2 id="开源既是对手也是英伟达的朋友"><a class="markdownIt-Anchor" href="#开源既是对手也是英伟达的朋友"></a> 开源既是对手，也是英伟达的朋友</h2><p>美国在这场竞争中最聪明的一步，是让AI扩散得足够快。</p><p>开源模型压低了使用门槛，也让更多企业采用AI。可这些模型一旦进入生产环境，就需要稳定的计算资源和部署工具。模型越便宜，调用次数越多，基础设施的需求反而越广。</p><p>我开始做 Hermes Atlas 知识库后，也碰到过类似问题。知识库只是入口，决定它能否持续运行的，是记忆召回、文件管理和日常维护。我的 mem-md 目前召回命中率约为9%，这个结果很直接地提醒我：功能存在不等于系统可用。</p><blockquote><p><span class="hl">模型开源解决“能不能做”，英伟达生态解决“能不能持续做”。</span></p></blockquote><p>这可能是美国赢得AI竞赛的核心机制。美国公司提供高性能芯片，也提供模型、框架和工具。中国公司拥有competitive模型和广阔市场，却要承受更严苛的出口限制，以及更长的软硬件磨合期。</p><p>黄仁勋差点葬送的优势，指的应当是这种生态信用。若监管机构因间谍风波限制他与政府的关系，影响的不只是个人出席活动，也包括许可证沟通、政策游说和产业协调。</p><p>但芯片生意的根本变量仍由需求、客户与产品能力决定。个人丑闻无法让开发者立即放弃CUDA，也无法让客户立刻更换计算平台。</p><blockquote><p><span class="hl">信任危机能削弱一位CEO的制度影响力，却无法立即改写一家公司的产品位置。</span></p></blockquote><h2 id="美国赢了什么仍然需要继续观察"><a class="markdownIt-Anchor" href="#美国赢了什么仍然需要继续观察"></a> 美国赢了什么，仍然需要继续观察</h2><p>美国已经建立了AI产业最完整的商业与技术基础，这是事实。可“赢得”仍有两个问题没有答案。</p><p>第一，竞争会长期持续。中国公司仍在追赶计算能力，也拥有自己的模型、云服务和产业客户。单次出口限制可以延后差距，却未必能终止追赶。</p><p>第二，AI收益不会自动成为美国收益。算力越便宜，能力扩散得越快，价值也可能从模型提供者转移到应用公司。黄仁勋建立了基础设施优势，却无法保证所有利润都留在英伟达。</p><p>我一年前写过《存储股成科技避风港只是低估值幻觉》。那篇文章提醒我，产业景气不等于股票便宜，资本开支也有现金流代价。英伟达同样不能只看AI热度，还要看客户投入、利润质量和竞争替代。</p><blockquote><p>产业领先解决方向问题，企业护城河解决时间问题，投资回报解决价格问题。</p></blockquote><p>黄仁勋的私生活风波，可能让他付出政治与声誉代价。可真正决定AI竞赛的，仍是算力供给、开源扩散和开发者迁移成本。</p><p>留给黄仁勋的问题是，他能否让个人信任与公司战略重新分开。留给美国的问题是，能否把已经形成的生态优势变成持续创新，而非一次出口管制带来的暂时领先。</p>]]></content>
+    
+    
+    <summary type="html">间谍风波改变不了算力胜负手 黄仁勋面对的最大风险，来自个人关系引发的信任危机，而非芯片订单突然流失。 一则报道把黄仁勋推入间谍争议：一名疑似中国间谍的女人与他有婚外情，而美国情报机构甚至特朗普据称已经知道其间谍身份。对英伟达而言，这当然不是轻松的声誉插曲。芯片公司高度依赖政府许可、出口管制和跨国客户信任。</summary>
     
     
     
@@ -468,60 +510,6 @@
     
     
     <summary type="html">第一集讲的是「它是什么」，这一节讲「它内部怎么转，以及怎么用」。</summary>
-    
-    
-    
-    <category term="AI" scheme="https://nilw.rm-rf.ink/categories/AI/"/>
-    
-    
-    <category term="大模型" scheme="https://nilw.rm-rf.ink/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
-    
-    <category term="科普" scheme="https://nilw.rm-rf.ink/tags/%E7%A7%91%E6%99%AE/"/>
-    
-    <category term="系列" scheme="https://nilw.rm-rf.ink/tags/%E7%B3%BB%E5%88%97/"/>
-    
-    <category term="大模型入门" scheme="https://nilw.rm-rf.ink/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%85%A5%E9%97%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>大模型入门 01｜大模型到底是个啥</title>
-    <link href="https://nilw.rm-rf.ink/AI/llm101-01.html"/>
-    <id>https://nilw.rm-rf.ink/AI/llm101-01.html</id>
-    <published>2026-11-10T03:01:00.000Z</published>
-    <updated>2026-11-10T03:01:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote><p><strong>大模型入门系列</strong> · 共 14 集 · 本集为第 1 集<br />下一集：<a href="/AI/llm101-02.html">二、往深一层</a> ｜ <a href="/AI/7b3f9a21.html">系列总览</a></p></blockquote><h2 id="这套系列讲什么"><a class="markdownIt-Anchor" href="#这套系列讲什么"></a> 这套系列讲什么</h2><p>这套东西原本是十几集独立的动画，一集只回答一个问题：它是什么、里面怎么转、指令链怎么拼、工程上怎么不出事、怎么变成能上线的东西。单独看每一集都成立，但连起来看才有一条完整的线——从「猜下一个字」这个动作出发，一路走到「接进业务流程」这件事上。</p><p>所以这里把它整理成一套 14 集的系列。每一节前面挂一张配图和一段可交互动画，动画按章节推进，可以暂停、可以按左右方向键跳章，也可以点进度条直接落到某一节；下面正文是同一份内容的文字版，细节比动画里的屏内文字更多一些。读的顺序建议就按排列顺序来，因为后面的很多结论是前面几节推出来的——比如第六集的成本结构，前提是第三集讲的「消息拼接」；第四集的上下文预算，前提是第二集讲的工作台容量。</p><p>全篇只讲一件事的两面：模型本身的能力边界在哪里，以及围绕它叠出来的工程系统怎么做才不至于翻车。这两件事经常被混在一起谈，混在一起谈的结果就是：模型换了一版，产品还是一样难用；提示词改了几十遍，效果还是不稳。这篇文章试图把这条界线划清楚——哪些是模型天生做不到的，哪些是你在外面少做了一步。</p><p>动画里的语气偏口语，正文里的表述会紧一些。两者内容一致，不冲突。</p><span id="more"></span><h2 id="系列目录"><a class="markdownIt-Anchor" href="#系列目录"></a> 系列目录</h2><ol><li class="lvl-3"><p><a href="/AI/llm101-01.html">一、大模型到底是个啥</a> ← 本集</p></li><li class="lvl-3"><p><a href="/AI/llm101-02.html">二、往深一层</a></p></li><li class="lvl-3"><p><a href="/AI/llm101-03.html">三、Prompt、Thinking、Function Calling</a></p></li><li class="lvl-3"><p><a href="/AI/llm101-04.html">四、上下文工程与 Agent 可靠性</a></p></li><li class="lvl-3"><p><a href="/AI/llm101-05.html">五、微调</a></p></li><li class="lvl-3"><p><a href="/AI/llm101-06.html">六、Token 与账单</a></p></li><li class="lvl-3"><p><a href="/AI/llm101-07.html">七、量化与端侧推理</a></p></li><li class="lvl-3"><p><a href="/AI/llm101-08.html">八、多模态</a></p></li><li class="lvl-3"><p><a href="/AI/llm101-09.html">九、检索</a></p></li><li class="lvl-4"><p><a href="/AI/llm101-10.html">十、把话说明白</a></p></li><li class="lvl-4"><p><a href="/AI/llm101-11.html">十一、上线前的那些坑</a></p></li><li class="lvl-4"><p><a href="/AI/llm101-12.html">十二、记忆</a></p></li><li class="lvl-4"><p><a href="/AI/llm101-13.html">十三、从能跑到好用</a></p></li><li class="lvl-4"><p><a href="/AI/llm101-14.html">十四、从提示词到像素</a></p></li></ol><hr /><p><img src="/images/llm-101/llm-explained.png" alt="llm-explained" /></p><iframe src="/slide/llm-explained.html" style="width:100%;height:520px;border:0;border-radius:8px" loading="lazy" allowfullscreen></iframe><p>如果只允许用一句话解释大模型，最准确的说法不是「会思考的机器」，而是「一个把接下一个字练到极致的高手」。你给它半句话，它算出下一个字最可能是什么，填进去，再把新的半句话交还给自己，继续算。写文章、做翻译、回答提问、补全代码，全部是这同一个动作在不同输入上的重复。它并不存在一个「理解问题然后作答」的额外阶段。</p><p>这里的「字」不是汉字，是 token。一个汉字通常算一到两个 token，英文长词会被切成几块，比如 unbelievable 会变成 un / believ / able 三段。所以业内说「下一个 token 预测」，说的就是这件事，不是什么更高深的机制。</p><p>举个具体的例子。输入是「一只猫坐在」，它不会先去想象一只猫，而是给所有候选字打分：窗、地、沙、桌、椅，分数高的被选中，填进空格。它不是「懂」猫，而是读过的语料里「猫坐在窗台」「猫坐在地上」这类句子出现得足够多，于是这些接法在它的参数里被反复加强。猜得准不准，取决于它读得多不多、见得多不多。这句话听起来像废话，但它是整套技术的全部前提。</p><p>常被问的第二个问题是「它凭什么厉害」。答案同样朴素：三个「大」同时加上去——脑子大、书读得多、练得久。脑子大指的是参数特别多，几十亿到上万亿个；每被纠正一次，就有大量参数被微调一下。书读得多指的是训练语料几乎覆盖了整个互联网的文字。练得久值得拿几万张显卡连着跑几个月，电费是天文数字。三样缺一不可，就像养学生：只聪明不读书不行，只读书不练也不行。而三者同时放大的时候，能力增长呈现出可预测的斜率——这就是 Scaling Law，规模翻倍，错误率按固定斜率往下掉。这条规律是整个行业敢于投入巨额算力的唯一理由。</p><p>再往里扒一层，结构上没有任何花招：同一块积木重复叠八十次。所谓积木，就是一层里只做两个动作。第一个动作是「看看谁跟谁有关系」——读到「它」的时候回头找「它」指谁，读到「猫」的时候知道后面该跟动词，学名叫注意力机制（Self-Attention）。第二个动作是「翻记忆找知识」——想到「猫」就把关于猫的一堆常识调出来：会喵、怕水、爱吃鱼，学名叫前馈层（FFN），这里也是吃参数最多的地方。就这两个动作反反复复八十次，所有的「聪明」都是从这里长出来的。</p><p>它被教出来的过程分三堂课，顺序不能乱。第一课是海量读书，读的时候一直在做练习：遮住下一个字自己猜，猜错就拧一下旋钮，重复几万亿次；学的是怎么说话、世界上都有什么，这一课叫预训练（Pretraining）。第二课是老师示范，人写几万条问答让它照抄；它原本只会接着往下写，不会「回答问题」，看了几万条示范才学会你问我答，这一课叫监督微调（SFT）。第三课是按喜好打分，同一个问题让它答十个版本，人来排序哪个更好，它就朝着人更喜欢的方向调整，这一课叫人类反馈强化学习（RLHF）。</p><h3 id="一次回答的两段速度"><a class="markdownIt-Anchor" href="#一次回答的两段速度"></a> 一次回答的两段速度</h3><p>它回你话的时候分两步，快慢完全不一样。第一步是把你说的话整段读一遍，很快——所有字一起处理，一次算完；这一步在工程上叫 prefill。第二步是一个字一个字往外蹦，很慢——每蹦一个字，都要把整个脑子从头过一遍；这一步叫 decode。所以你看到字一个一个「打」出来，不是特效，是真的在一个一个算。</p><p>中间它会把刚说过的每个字记在一张草稿上，省得反复重算，这张草稿就是 KV cache。但草稿只在这一次请求里有效，聊完就扔，不会带进下一段对话。这也解释了长对话为什么慢：草稿越来越长，每蹦一个字要翻的家当越来越多。慢的原因不是算不动，是「翻得慢」。</p><h3 id="为什么它会一本正经地胡说"><a class="markdownIt-Anchor" href="#为什么它会一本正经地胡说"></a> 为什么它会一本正经地胡说</h3><p>因为它要的是「顺口」，不是「正确」。接得顺嘴就吐出来，不管真假，所以会一本正经地胡说八道。这是出身决定的，不是坏了：它的训练目标函数只奖励「像人写的下一句」，从不奖励「符合事实」。此外它的记性只有这一段对话，聊完就忘；它什么都懂一点、什么都不精，常识很行，专业细节容易翻车，尤其是很窄、很少见的领域；它只会说，不会做——不能上网、不能查库、不能点按钮，要动手得别人给它装手脚。</p><h3 id="三个衍生概念别搞混"><a class="markdownIt-Anchor" href="#三个衍生概念别搞混"></a> 三个衍生概念，别搞混</h3><p>经常被混在一起的几个名字，其实分工很清楚。小模型是专门训练出来干一件事的程序，比如只认人脸，大模型则是一个顶一堆。知识库是一堆资料、能按关键词查出来，大模型记不住细节，得靠它现查，这个组合叫 RAG。Agent 是给大模型装上的手脚，让它能真去点按钮、发邮件、调接口。至于画图模型，那是另一个流派：靠擦噪点作画，一个猜字、一个擦噪点，两回事。</p><p>记住这个比喻就够了：大模型是「嘴」，其余都是给它配的「眼睛、手和笔记本」。</p><blockquote><p><strong>原来如此</strong>：大模型就是一个读过全世界文字、把「猜下一个字」练到极致的高手。它很会说话——但它并不知道自己在说什么。</p></blockquote><p>怎么判断一个东西是不是大模型，三个特征：参数规模几十亿以上；什么都能干，不是只会一件事；靠接龙（或擦噪点）出结果。三条都符合，才是同一类东西。</p><hr /><blockquote><p>下一集：<a href="/AI/llm101-02.html">二、往深一层</a> ｜ <a href="/AI/7b3f9a21.html">系列总览</a></p></blockquote>]]></content>
-    
-    
-    <summary type="html">这套东西原本是十几集独立的动画，一集只回答一个问题：它是什么、里面怎么转、指令链怎么拼、工程上怎么不出事、怎么变成能上线的东西。</summary>
-    
-    
-    
-    <category term="AI" scheme="https://nilw.rm-rf.ink/categories/AI/"/>
-    
-    
-    <category term="大模型" scheme="https://nilw.rm-rf.ink/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
-    
-    <category term="科普" scheme="https://nilw.rm-rf.ink/tags/%E7%A7%91%E6%99%AE/"/>
-    
-    <category term="系列" scheme="https://nilw.rm-rf.ink/tags/%E7%B3%BB%E5%88%97/"/>
-    
-    <category term="大模型入门" scheme="https://nilw.rm-rf.ink/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%85%A5%E9%97%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>大模型入门：从猜下一个字，到接进业务流程</title>
-    <link href="https://nilw.rm-rf.ink/AI/7b3f9a21.html"/>
-    <id>https://nilw.rm-rf.ink/AI/7b3f9a21.html</id>
-    <published>2026-11-10T03:00:00.000Z</published>
-    <updated>2026-11-10T03:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote><p><strong>本页是「大模型入门」系列的总览与目录索引</strong>，共 14 集。每一集都有独立正文，页内嵌当集配图与可交互动画。</p></blockquote><h2 id="这套系列讲什么"><a class="markdownIt-Anchor" href="#这套系列讲什么"></a> 这套系列讲什么</h2><p>这套东西原本是十几集独立的动画，一集只回答一个问题：它是什么、里面怎么转、指令链怎么拼、工程上怎么不出事、怎么变成能上线的东西。单独看每一集都成立，但连起来看才有一条完整的线——从「猜下一个字」这个动作出发，一路走到「接进业务流程」这件事上。</p><p>所以这里把它整理成一套 14 集的系列：每集一篇正文，配一张配图和一段可交互动画。动画按章节推进，可以暂停、可以按左右方向键跳章，也可以点进度条直接落到某一节；正文是同一份内容的文字版，细节比动画里的屏内文字更多一些。本页是全系列的简介与目录。</p><p>全篇只讲一件事的两面：模型本身的能力边界在哪里，以及围绕它叠出来的工程系统怎么做才不至于翻车。这两件事经常被混在一起谈，混在一起谈的结果就是：模型换了一版，产品还是一样难用；提示词改了几十遍，效果还是不稳。这篇文章试图把这条界线划清楚——哪些是模型天生做不到的，哪些是你在外面少做了一步。</p><p>动画里的语气偏口语，正文里的表述会紧一些。两者内容一致，不冲突。</p><span id="more"></span><h2 id="怎么用这套系列"><a class="markdownIt-Anchor" href="#怎么用这套系列"></a> 怎么用这套系列</h2><ul class="lvl-0"><li class="lvl-2"><p><strong>顺序读</strong>：01 → 14。后面的结论多数建立在前面的铺垫上——第六集的成本结构，前提是第三集讲的「消息拼接」；第四集的上下文预算，前提是第二集讲的工作台容量。</p></li><li class="lvl-2"><p><strong>挑着读</strong>：每集独立成篇，只关心一个具体问题。目录里每集下面都有一句话摘要，先扫一遍再决定看哪集。</p></li><li class="lvl-2"><p><strong>只看动画</strong>：每集正文顶部内嵌同主题的 Canvas 动画，空格暂停、←→ 切章、点进度条跳转，也可从文末「动画直链」单独打开。</p></li></ul><h2 id="十四集目录"><a class="markdownIt-Anchor" href="#十四集目录"></a> 十四集目录</h2><h3 id="01-大模型到底是个啥"><a class="markdownIt-Anchor" href="#01-大模型到底是个啥"></a> 01 · 大模型到底是个啥</h3><p><strong>一个把接下一个字练到极致的高手</strong></p><p>不讲「会思考的机器」，讲「把接下一个字练到极致」。写作、翻译、答问、补代码都是同一个动作在不同输入上的重复，它没有「先理解再作答」的阶段。</p><blockquote><p>原来如此：大模型就是一个读过全世界文字、把「猜下一个字」练到极致的高手。它很会说话——但它并不知道自己在说什么。</p></blockquote><p><a href="/AI/llm101-01.html">读第 01 集 →</a></p><h3 id="02-往深一层"><a class="markdownIt-Anchor" href="#02-往深一层"></a> 02 · 往深一层</h3><p><strong>字怎么变成数字，注意力怎么算</strong></p><p>token 怎么变成向量、注意力怎么算、八十层为什么不会崩、它到底怎么学出来的、出结果时你能拧哪几个旋钮、记不住和不会动手分别怎么办。</p><blockquote><p>原来如此：聊天是给建议，Agent 是动手办。动手就要担责，设计必须更保守。</p></blockquote><p><a href="/AI/llm101-02.html">读第 02 集 →</a></p><h3 id="03-prompt-thinking-function-calling"><a class="markdownIt-Anchor" href="#03-prompt-thinking-function-calling"></a> 03 · Prompt、Thinking、Function Calling</h3><p><strong>三块拼图拼成一条链</strong></p><p>三块拼图：你给它看什么（Prompt）、它想几步再答（Thinking）、它能动手做什么（Function Calling）。拼成一条链，才叫一次完整的请求。</p><blockquote><p>原来如此：Prompt 决定它看得见什么，Thinking 决定它想几步，Function Calling 决定它能动手到什么程度。三者共同的上限，都是同一件事：上下文里到底有什么。</p></blockquote><p><a href="/AI/llm101-03.html">读第 03 集 →</a></p><h3 id="04-上下文工程与-agent-可靠性"><a class="markdownIt-Anchor" href="#04-上下文工程与-agent-可靠性"></a> 04 · 上下文工程与 Agent 可靠性</h3><p><strong>让它稳定干活的那些事</strong></p><p>放什么、放多少、按什么序、何时清——四个问题决定 Agent 稳不稳。写在外面的约束，比写在提示词里的约束可靠得多。</p><blockquote><p>原来如此：写在外面的约束，比写在提示词里的约束可靠。</p></blockquote><p><a href="/AI/llm101-04.html">读第 04 集 →</a></p><h3 id="05-微调"><a class="markdownIt-Anchor" href="#05-微调"></a> 05 · 微调</h3><p><strong>把通用模型练成你的专属模型</strong></p><p>动手前先分诊：你缺的是知识、手艺，还是上下文长度。三种缺口三种解法，用错一个，钱和时间都白花。</p><blockquote><p>原来如此：知识会过期，手艺不会。所以知识交给检索，手艺才值得练进去。</p></blockquote><p><a href="/AI/llm101-05.html">读第 05 集 →</a></p><h3 id="06-token-与账单"><a class="markdownIt-Anchor" href="#06-token-与账单"></a> 06 · Token 与账单</h3><p><strong>一次对话到底花了多少钱</strong></p><p>输出比输入贵三到五倍、缓存命中能打到骨折、多轮工具调用在放大总输入——三句话解释八成的账单。</p><blockquote><p>原来如此：成本是设计出来的，不是省出来的。上线前算一遍，比上线后砍一半容易得多。</p></blockquote><p><a href="/AI/llm101-06.html">读第 06 集 →</a></p><h3 id="07-量化与端侧推理"><a class="markdownIt-Anchor" href="#07-量化与端侧推理"></a> 07 · 量化与端侧推理</h3><p><strong>一个几百亿参数的模型怎么塞进手机</strong></p><p>把每个数字压窄、少读内存所以快、最后装进设备。量化不改架构也不加参数，只是把 32 位的写法砍到 4 位。</p><blockquote><p>原来如此：量化不改架构、不加参数，只是把每个数的写法从 32 位砍到 4 位——同一张成绩单换个写法。</p></blockquote><p><a href="/AI/llm101-07.html">读第 07 集 →</a></p><h3 id="08-多模态"><a class="markdownIt-Anchor" href="#08-多模态"></a> 08 · 多模态</h3><p><strong>图片和声音怎么变成模型能读的字符</strong></p><p>模型的世界从头到尾只有一串数字。所谓多模态，不是给它装眼睛，是给图片造一套翻译；翻译做得好不好，决定它「看」得准不准。</p><blockquote><p>原来如此：所谓多模态，不是给模型装眼睛，是给图片造一套翻译。翻译做得好不好，决定了它「看」得准不准——后面所有缺陷都源于这一步。</p></blockquote><p><a href="/AI/llm101-08.html">读第 08 集 →</a></p><h3 id="09-检索"><a class="markdownIt-Anchor" href="#09-检索"></a> 09 · 检索</h3><p><strong>为什么你的知识库总也搜不准</strong></p><p>答不好，八成不在模型。切段入库、按问题找最像的几段、把段落和问题一起交给模型——三个环节各自会翻车。</p><blockquote><p>原来如此：Embedding 不认字，只认意思。这是它比关键词强的地方，也是它翻车的地方。</p></blockquote><p><a href="/AI/llm101-09.html">读第 09 集 →</a></p><h3 id="10-把话说明白"><a class="markdownIt-Anchor" href="#10-把话说明白"></a> 10 · 把话说明白</h3><p><strong>提示词的实用写法</strong></p><p>全是能直接抄走用的写法，核心只有一句：你要交办给一个聪明但完全没有背景的新同事。</p><blockquote><p>原来如此：你觉得「不用说也懂」的部分，恰恰是模型最需要的那部分。</p></blockquote><p><a href="/AI/llm101-10.html">读第 10 集 →</a></p><h3 id="11-上线前的那些坑"><a class="markdownIt-Anchor" href="#11-上线前的那些坑"></a> 11 · 上线前的那些坑</h3><p><strong>流式、限流与重试</strong></p><p>本地跑通只是及格。流式、限流、重试、超时降级，四个不处理就不能上线的问题。</p><blockquote><p>原来如此：用户抱怨「慢」，抱怨的其实不是总时长，是那几秒什么都没发生。流式不改变实际速度，只是把等待摊薄了。</p></blockquote><p><a href="/AI/llm101-11.html">读第 11 集 →</a></p><h3 id="12-记忆"><a class="markdownIt-Anchor" href="#12-记忆"></a> 12 · 记忆</h3><p><strong>为什么它昨天还记得，今天就忘了</strong></p><p>最反直觉的一句：模型本身没有记忆。难点不是「记住」，而是「在该想起的时候想起」，九成工作在检索侧。</p><blockquote><p>原来如此：记忆系统真正的难点不是「记住」，而是「在该想起的时候想起」。前者是存储问题，后者是检索问题——而后面这个才是 90% 的失败所在。</p></blockquote><p><a href="/AI/llm101-12.html">读第 12 集 →</a></p><h3 id="13-从能跑到好用"><a class="markdownIt-Anchor" href="#13-从能跑到好用"></a> 13 · 从能跑到好用</h3><p><strong>把大模型接进业务流程</strong></p><p>会调 API 的人很多，能把模型接进业务流程、稳定创造价值的人很少。中间隔的不是技术，是产品判断。</p><blockquote><p>原来如此：模型能力决定下限，场景选择决定上限。选错场景，再强的模型也只是玩具。</p></blockquote><p><a href="/AI/llm101-13.html">读第 13 集 →</a></p><h3 id="14-从提示词到像素"><a class="markdownIt-Anchor" href="#14-从提示词到像素"></a> 14 · 从提示词到像素</h3><p><strong>扩散模型怎么把字变成图</strong></p><p>前面讲的模型都在「读」，这一集讲它怎么「画」。扩散模型不是在画图，是在一步一步擦掉噪声。</p><blockquote><p>原来如此：模型不是在「画图」，是在「擦掉噪声」，每一步只擦一点点。</p></blockquote><p><a href="/AI/llm101-14.html">读第 14 集 →</a></p><h2 id="速查表"><a class="markdownIt-Anchor" href="#速查表"></a> 速查表</h2><table><thead><tr><th>#</th><th>集</th><th>它回答的问题</th></tr></thead><tbody><tr><td>01</td><td><a href="/AI/llm101-01.html">大模型到底是个啥</a></td><td>它到底是什么，凭什么厉害</td></tr><tr><td>02</td><td><a href="/AI/llm101-02.html">往深一层</a></td><td>内部怎么转，你能拧哪些旋钮</td></tr><tr><td>03</td><td><a href="/AI/llm101-03.html">Prompt、Thinking、Function Calling</a></td><td>一条完整的请求由哪三块拼成</td></tr><tr><td>04</td><td><a href="/AI/llm101-04.html">上下文工程与 Agent 可靠性</a></td><td>怎么让它稳定干活而不是翻车</td></tr><tr><td>05</td><td><a href="/AI/llm101-05.html">微调</a></td><td>什么时候该微调，什么时候不该</td></tr><tr><td>06</td><td><a href="/AI/llm101-06.html">Token 与账单</a></td><td>钱花在哪，怎么在设计阶段省</td></tr><tr><td>07</td><td><a href="/AI/llm101-07.html">量化与端侧推理</a></td><td>几百亿参数怎么跑在手机上</td></tr><tr><td>08</td><td><a href="/AI/llm101-08.html">多模态</a></td><td>图片和声音怎么被模型读进去</td></tr><tr><td>09</td><td><a href="/AI/llm101-09.html">检索</a></td><td>知识库为什么总搜不准</td></tr><tr><td>10</td><td><a href="/AI/llm101-10.html">把话说明白</a></td><td>提示词怎么写才算说明白</td></tr><tr><td>11</td><td><a href="/AI/llm101-11.html">上线前的那些坑</a></td><td>流式、限流、重试这些上线必踩的坑</td></tr><tr><td>12</td><td><a href="/AI/llm101-12.html">记忆</a></td><td>它没有记忆，那记忆系统怎么做</td></tr><tr><td>13</td><td><a href="/AI/llm101-13.html">从能跑到好用</a></td><td>从 Demo 到产品的距离在哪</td></tr><tr><td>14</td><td><a href="/AI/llm101-14.html">从提示词到像素</a></td><td>文字怎么变成图</td></tr></tbody></table><h2 id="动画直链"><a class="markdownIt-Anchor" href="#动画直链"></a> 动画直链</h2><p>十四段动画都是单文件 Canvas，可单独打开全屏观看：</p><p><a href="/slide/llm-explained.html">01</a> · <a href="/slide/llm-advanced.html">02</a> · <a href="/slide/llm-agent-core.html">03</a> · <a href="/slide/llm-context-engineering.html">04</a> · <a href="/slide/llm-finetune.html">05</a> · <a href="/slide/llm-token-cost.html">06</a> · <a href="/slide/llm-quantization.html">07</a> · <a href="/slide/llm-multimodal.html">08</a> · <a href="/slide/llm-retrieval.html">09</a> · <a href="/slide/llm-prompt-craft.html">10</a> · <a href="/slide/llm-stream-ops.html">11</a> · <a href="/slide/llm-memory.html">12</a> · <a href="/slide/llm-to-product.html">13</a> · <a href="/slide/prompt-to-pixels.html">14</a></p><hr />]]></content>
-    
-    
-    <summary type="html">「大模型入门」系列总览与目录：14 集从猜下一个字讲到接进业务流程，每集配一张配图、一段可交互动画和一篇正文，附一句话摘要与速查表。</summary>
     
     
     
