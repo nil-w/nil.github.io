@@ -6,7 +6,7 @@
   <link href="https://nilw.rm-rf.ink/atom.xml" rel="self"/>
   
   <link href="https://nilw.rm-rf.ink/"/>
-  <updated>2026-11-11T01:00:00.000Z</updated>
+  <updated>2026-11-12T01:00:00.000Z</updated>
   <id>https://nilw.rm-rf.ink/</id>
   
   <author>
@@ -15,6 +15,92 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>编程早已面目全非，AI 正重写开发者的价值边界</title>
+    <link href="https://nilw.rm-rf.ink/%E6%8A%80%E6%9C%AF/124f865b.html"/>
+    <id>https://nilw.rm-rf.ink/%E6%8A%80%E6%9C%AF/124f865b.html</id>
+    <published>2026-11-12T01:00:00.000Z</published>
+    <updated>2026-11-12T01:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="代码正在退到系统背后"><a class="markdownIt-Anchor" href="#代码正在退到系统背后"></a> 代码正在退到系统背后</h2><p>AI 对开发的影响已经越过工具层。它进入代码生成、测试、审查和架构设计，重新划分了开发工作的价值边界。</p><p>我最初把它看成更快的代码生成器。输入需求，得到实现，再让人检查。这个理解很快就不够了。代码供给增加后，逐行审查会变成瓶颈，单元测试的成本也会被重新评估。</p><p>一份关于 AI 与编程的国外资深程序员观点很激进：代码审查将消失，单元测试可能消失，人类主要审查系统组成与架构是否合理。</p><p>我认同大方向，不认同其中的绝对判断。<span class="hl">代码审查会减少，审查对象却会扩大。</span>人可以少看几行 diff，但不能停止判断系统是否值得运行。</p><blockquote><p>如果 AI 每次都能重写实现，逐个检查代码单元就像在频繁更换的楼房里逐块检查砖头。</p></blockquote><p>这份观点真正有价值的地方，在于它把测试、审查和编码放进了同一条链路。以前，代码是相对稳定的交付物。现在，代码可能只是系统的一种临时表达。</p><h2 id="价值从产出代码转向定义问题"><a class="markdownIt-Anchor" href="#价值从产出代码转向定义问题"></a> 价值从产出代码转向定义问题</h2><p>我更关心另一个变化：程序员的核心产出开始从代码转向问题定义。</p><p>定义问题看起来只是需求分析的一步，实际包含对约束的识别。数据是否可靠，边界在哪里，失败后如何恢复，方案会不会制造新的依赖，这些判断很难交给生成模型。</p><p>我正在做 Hermes Atlas 知识库时，卡住我的三个问题很具体：解决什么问题，谁付钱，怎么收钱。它们都不会因为代码写得更快而自动变得清楚。</p><p><span class="hl">AI 可以快速给出答案，开发者仍要决定什么问题值得解决。</span>问题定义错了，代码越快，偏离得越远。</p><p>这和低代码的逻辑也有联系。我在 2022 年写过《0. 低代码》，那时关注的是用更少代码、更快交付应用。如今 AI 把生成门槛继续压低，代码产量不再稀缺，人的判断更加集中到入口处。</p><blockquote><p>低代码减少重复配置，AI 扩大了实现选择。两者都把难题推回“做什么”。</p></blockquote><p>这类能力很难只靠熟练掌握某种语法维持。语法可以查询，框架可以学习，判断却依赖经验。它也依赖对真实系统的理解，包括故障、成本和长期维护。</p><h2 id="系统能力成为新的护城河"><a class="markdownIt-Anchor" href="#系统能力成为新的护城河"></a> 系统能力成为新的护城河</h2><p>我在做 Hermes Agent 时，处理过 OpenClaw 迁移、Memory Provider 改造、MemPalace 记忆层和飞书卡片。真正消耗精力的，通常不是某个函数怎么写，而是多个组件如何连接，状态如何保持，权限如何隔离。</p><p>mem-md 的召回命中率目前约为 9%。这是已知痛点，也说明系统能力很难靠一次生成完成。记忆召回、上下文组织、错误恢复和可观察性，都需要持续调试。</p><p><span class="hl">系统能力来自长期反馈，无法靠一次提示词获得。</span>AI 缩短了局部实现的路径，系统之间的边界仍然需要人来守住。</p><p>我还没有完全想清楚，未来开发者的专业性会集中成什么样。可能一部分人更接近产品与系统设计者，另一部分人负责验证与治理。代码审查也不会彻底消失，它会从逐行确认转向风险判断。</p><p>但有一点已经比较清楚。写代码仍是一项能力，却很难继续充当唯一护城河。更值钱的是定义问题、组织系统，并为结果承担责任。</p><p>下一个阶段真正稀缺的资源，也许不是生成能力，而是提出正确问题的能力。</p>]]></content>
+    
+    
+    <summary type="html">代码正在退到系统背后 AI 对开发的影响已经越过工具层。它进入代码生成、测试、审查和架构设计，重新划分了开发工作的价值边界。 我最初把它看成更快的代码生成器。输入需求，得到实现，再让人检查。这个理解很快就不够了。代码供给增加后，逐行审查会变成瓶颈，单元测试的成本也会被重新评估。</summary>
+    
+    
+    
+    <category term="技术" scheme="https://nilw.rm-rf.ink/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="技术" scheme="https://nilw.rm-rf.ink/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>低成本模型冲击正在重写AI应用成本结构</title>
+    <link href="https://nilw.rm-rf.ink/AI/96f42dea.html"/>
+    <id>https://nilw.rm-rf.ink/AI/96f42dea.html</id>
+    <published>2026-11-12T01:00:00.000Z</published>
+    <updated>2026-11-12T01:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="模型榜单该退到第二步"><a class="markdownIt-Anchor" href="#模型榜单该退到第二步"></a> 模型榜单该退到第二步</h2><p>模型选型曾经是 AI 应用的第一道题。哪个模型更聪明，哪个基准分更高，谁更适合写代码，这些指标直接影响效果。</p><p>我最初也按这个思路做判断。2026 年 11 月 10 日发布的 Claude Fable 5.2 和 Claude Mythos 5.2，把速度提升摆到了台前。资料里写得很直接：输出速度最高提升30%。</p><p>后来我改看单位任务成本。这个指标更接近应用真正付出的代价。模型少贵一点、快一点，都要落到一个具体任务上才有意义。</p><blockquote><p>速度提升30%，仍然只是模型指标。只有换算成每次任务的金额和时间，才进入业务判断。</p></blockquote><p>模型榜单没有失效。它适合做能力筛选，却不该直接决定架构和采购。</p><h2 id="单位任务成本才是应用账单"><a class="markdownIt-Anchor" href="#单位任务成本才是应用账单"></a> 单位任务成本才是应用账单</h2><p>一次 AI 任务很少只调用一次模型。失败重试、上下文补全、结构校验、人工返工，都会增加真实成本。输入长度、输出长度、缓存策略和模型单价，也都影响最终金额。</p><p>按公开信息，Claude Fable 5 的价格曾写为 $10。这个数字不能脱离计费口径单独传播，但足以提醒团队：单价只是成本的起点。</p><blockquote><p><span class="hl">模型价格决定预算上限，单位任务成本决定产品能否持续。</span></p></blockquote><p>我更愿意用一张简单表核算。模型 A 的调用单价更低，但需要 3 次重试；模型 B 单价更高，却一次生成可用的结构化结果。比较时还要加入返工工时和响应时延。</p><p>这也接上了我在《大模型入门：从猜下一个字，到接进业务流程》里的思路。大模型应用的价值不由回答有多惊艳决定。它能否稳定进入表格、代码、工单和审批流程，决定了成本能否被业务接受。</p><p>我到现在也没找到一个适用于所有任务的固定公式。文本分类、代码生成、复杂决策的任务边界并不一样。公式会变，核算单位应该稳定。</p><h2 id="接进业务流程也要接受成本审判"><a class="markdownIt-Anchor" href="#接进业务流程也要接受成本审判"></a> “接进业务流程”也要接受成本审判</h2><p>把模型接进流程，不等于完成了 AI 化。业务不会奖励一次漂亮的演示，也不会替系统承担反复失败。</p><p>我推 Hermes Atlas 知识库时，最难回答的仍是三个问题：解决什么问题、谁付钱、怎么收钱。现在多了一个第四个问题：每次完成任务的成本是多少。</p><p>这个问题会迫使产品拆得更细。一个功能究竟服务一次检索、一次整理，还是一次可交付结果？输入什么数据，产出什么结果，失败后由谁接管？答案模糊，功能边界就会变模糊。</p><p>低代码平台、流程引擎和成本核算的经验都指向同一件事：系统是否可用，要看稳定交付和可重复运行。AI 应用也该接受同样的检查。</p><blockquote><p><span class="hl">低成本模型会降低试错门槛，也会放大流程设计不清的成本。</span></p></blockquote><p>模型便宜时，团队更容易频繁调用。便宜本身可能制造浪费。每次调用都应绑定一个业务结果，而不是绑定一段演示。</p><p>低成本模型正在重写 AI 应用的成本结构。选型仍要做，单位任务成本也要算。下一轮模型变化，我仍会关注榜单，但我更想记录一张表：每个任务调用几次，花多少钱，失败几次，最后交付了什么。</p><p>这套账还没有算完。接下来该把 Hermes Atlas 的任务边界写清楚，再给每个结果标上价格。</p>]]></content>
+    
+    
+    <summary type="html">模型榜单该退到第二步 模型选型曾经是 AI 应用的第一道题。哪个模型更聪明，哪个基准分更高，谁更适合写代码，这些指标直接影响效果。 我最初也按这个思路做判断。2026 年 11 月 10 日发布的 Claude Fable 5.2 和 Claude Mythos 5.2，把速度提升摆到了台前。</summary>
+    
+    
+    
+    <category term="AI" scheme="https://nilw.rm-rf.ink/categories/AI/"/>
+    
+    
+    <category term="AI" scheme="https://nilw.rm-rf.ink/tags/AI/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>三十岁后，我开始提前给下班后的自己发消息</title>
+    <link href="https://nilw.rm-rf.ink/%E4%BA%BA%E7%94%9F%E8%A7%82/349de850.html"/>
+    <id>https://nilw.rm-rf.ink/%E4%BA%BA%E7%94%9F%E8%A7%82/349de850.html</id>
+    <published>2026-11-12T01:00:00.000Z</published>
+    <updated>2026-11-12T01:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="十点以后消息才变得值钱"><a class="markdownIt-Anchor" href="#十点以后消息才变得值钱"></a> 十点以后，消息才变得值钱</h2><p>我开始给下班后的自己发消息，是因为十点以后，每一分钟都能换成别的东西。</p><p>那天加班到十点，我走出办公楼，地铁已经收尾。手机屏幕亮着，工作群还在跳消息。我站在路边等车，手指悬在输入框上，不知道该回什么。</p><p>以前我会回。</p><p>一句“收到”，一句“明天处理”，或者先解释一下刚才为什么没回。发完继续等车。十几分钟过去，事情没有推进，我的困意却先加重了。</p><p>那天我没有回复。我给自己发了一句：</p><p>“明早九点再处理。”</p><p>消息发出去以后，我才真正关掉工作群。</p><p>这不是一条普通备忘。它把一个已经结束的劳动日截断了。白天属于表格、需求、流程和别人的优先级。晚上本来该属于我，哪怕只剩四十分钟。</p><p>三十岁以后，我对时间的感觉变了。时间没有变少，单位时间里的选择变多了。</p><p>我以前用“今天还有多少小时”计算一天。现在我更常问：“这段时间还能拿来做什么？”</p><p><span class="hl">我觉得时间变贵，是因为它从无限供应的空白，变成了要主动领取的东西。</span></p><h2 id="我曾经以为消息是在催促我"><a class="markdownIt-Anchor" href="#我曾经以为消息是在催促我"></a> 我曾经以为，消息是在催促我</h2><p>工作消息天然带着催促感。</p><p>“同步一下”“尽快确认”“看到了回复”。每一句话都在缩小反应时间。人在这种环境里容易形成一种错觉：只要及时回消息，就算完成任务了。</p><p>我的博客从 2018 年 5 月开始写，已经有 217 篇 md 文件。有一阵子，我也很看重“不断更”。每天写多少、多久发出来，都像在证明自己还保持 productive。</p><p>后来我发现，有些晚上，我只是急着把一篇东西从草稿变成“已发布”。发布按钮带来的结束感，替代了真正的思考。</p><p>那样的晚上，我结束了一天，却没有获得一天。</p><p>提前给自己发消息，等于允许自己拒绝对即时性作出承诺。它不代表工作不重要，也不代表明天不会有人追。我只是给下班后的自己保留一点延迟。</p><p>延迟本身没有生产力。陪吴言蹊也好，读几页《统计思维》也好，洗澡时把手机留在客厅，都算。</p><blockquote><p>一天结束得很干净，比多完成一项待办更接近休息。</p></blockquote><p>这和《不再追求不浪费时间后，我开始故意浪费下午》是同一个方向。我以前把浪费时间视为失败，后来才承认，刻意留白才能把一天还给自己。</p><p>不过，我还没有把这套习惯整理成可靠的方法。</p><p>比如，临时出现的紧急事项怎么办？消息要不要设成定时发送？哪些工作可以隔夜，哪些一旦隔夜就会扩大损失？</p><p>我现在的做法很简单：下班时给手机里的自己留一句话，说明明早先看什么。其他事情，天亮再判断。</p><h2 id="提前发消息是在和明天的自己谈判"><a class="markdownIt-Anchor" href="#提前发消息是在和明天的自己谈判"></a> 提前发消息，是在和明天的自己谈判</h2><p>我推“一人公司”已经有一段时间，方向是信息差套利，具体载体包括 Hermes Atlas 知识库。</p><p>这件事最卡我的地方有三个：解决什么问题，谁付钱，怎么收钱。三个问题没答出来，我就很容易用整理工具替代回答问题。建目录、改流程、记踩坑，每件事都有动作，却没有逼我靠近交易本身。</p><p>提前给下班后的自己发消息，也是在对抗这种“用准备代替推进”。</p><p>以前我的晚上经常这样度过：打开电脑，列出第二天要做的事，再逐项删减，最后留下一个干净的待办清单。清单让我觉得明天会很轻松。</p><p>可那只是把压力搬到了明天。</p><p>现在的做法是，白天结束前，我给自己发一句明确的话。它通常很短：</p><p>“先回答谁付钱。”</p><p>“把 Atlas 的付费对象缩到一个行业。”</p><p>“先看 9% 的召回命中率为什么低。”</p><p>这不是待办清单。它只保留一个最值得带到明天的问题。晚上的任务从“完成很多”变成“想清一点”。</p><p><span class="hl">提前发消息，是把晚上的零散时间交给一个具体问题。</span></p><p>问题越具体，第二天越容易接着走。那条消息也不用写得漂亮。它只需要在十点后的地铁里，在我洗完澡准备拿起手机时，替明天的我保住一个方向。</p><p>我的“读书与账”系列写到第 5 篇时，我给“第二天提前到了”写过一句话。那时我以为提前准备能减少损耗。现在我会补一句：准备如果只让人感到安慰，它也是损耗。</p><p>消息必须指向一个判断、一个动作，或者一次拒绝。</p><blockquote><p>真正有用的晚间消息，不会让明天的任务更多。它会让明天最重要的那件事更清楚。</p></blockquote><h2 id="把一天切出边界需要一条小规则"><a class="markdownIt-Anchor" href="#把一天切出边界需要一条小规则"></a> 把一天切出边界，需要一条小规则</h2><p>我还没有找到适合所有人的规则。对现在的我来说，规则可以小到只有一句：</p><p>“下班后的消息，默认第二天处理。”</p><p>这条规则给了我 90 分钟左右的缓冲。它不保证睡眠，也不保证我不焦虑。它只让我在面对工作群时，不必每次都立刻解释自己。</p><p>截至 2026 年 11 月 12 日，我的博客有 217 篇文章。数字不断增加，真正让我改变的，却是把一天切成几段的能力。写文章是工作的一部分，维护系统也是。陪孩子、写书、思考公司的问题，则各自需要完整的一段时间。</p><p>如果所有时间都贴着任务运行，最后连判断从哪里来都会消失。</p><p>我仍然会加班到很晚，也仍然可能错过重要消息。提前发消息解决不了所有问题。它只处理一种很具体的内耗：明明已经离开工作，却还要求自己在原地继续值班。</p><p>三十岁以后，我开始为这种内耗定价。下班后的十分钟很安静。我关掉工作群，让明天的自己先收到一句话。</p><p>那条消息也许只是“今晚不解释了”。</p><p>它也可能在问：我真正想做的东西，究竟由谁来付钱？</p>]]></content>
+    
+    
+    <summary type="html">十点以后，消息才变得值钱 我开始给下班后的自己发消息，是因为十点以后，每一分钟都能换成别的东西。 那天加班到十点，我走出办公楼，地铁已经收尾。手机屏幕亮着，工作群还在跳消息。我站在路边等车，手指悬在输入框上，不知道该回什么。 以前我会回。 一句“收到”，一句“明天处理”，或者先解释一下刚才为什么没回。发完继续等车。</summary>
+    
+    
+    
+    <category term="人生观" scheme="https://nilw.rm-rf.ink/categories/%E4%BA%BA%E7%94%9F%E8%A7%82/"/>
+    
+    
+    <category term="人生观" scheme="https://nilw.rm-rf.ink/tags/%E4%BA%BA%E7%94%9F%E8%A7%82/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>能指出来源的部分，才算发生过</title>
+    <link href="https://nilw.rm-rf.ink/%E5%AE%87%E5%AE%99%E8%A7%82/dadb4374.html"/>
+    <id>https://nilw.rm-rf.ink/%E5%AE%87%E5%AE%99%E8%A7%82/dadb4374.html</id>
+    <published>2026-11-11T13:40:00.000Z</published>
+    <updated>2026-11-11T13:40:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="今天早上我删掉了自己一篇文章"><a class="markdownIt-Anchor" href="#今天早上我删掉了自己一篇文章"></a> 今天早上我删掉了自己一篇文章</h2><p>十一月十一号九点零一分，博客的自动管线启动。九点零二分写盘，九点零六分上线，一轮三篇，两篇热点一篇哲学类。</p><p>其中那篇哲学类叫《我整理祖父遗物时删掉遗言软件》。开头写我整理祖父遗物，删掉一个记录最后话语的软件，两百多条语音，四十多页转写，最后一页写于他去世前 11 天。</p><p><strong>这件事我没经历过，也没有那套软件。</strong></p><p>文章我删了，链接现在返回 404。删的时候没犹豫 —— 一段我自己的亲人往事，读者分辨不出真假，等于我替它担保。</p><p>管线留下的痕迹：</p><blockquote><p>[2026-11-11 09:02:01]   wrote: <a href="http://xn--2026-11-11--700r724ani0dgveo6ifjc123hy1a79u963awi5fde0a6seea.md">2026-11-11-我整理祖父遗物时删掉遗言软件.md</a></p></blockquote><h2 id="我手上现在指得出来的"><a class="markdownIt-Anchor" href="#我手上现在指得出来的"></a> 我手上现在指得出来的</h2><p>从 2018 年到今天，博客上 218 篇 md 文章（这篇算第 218 篇）。往下拆：</p><table><thead><tr><th>东西</th><th>量</th><th>出处</th></tr></thead><tbody><tr><td>《慢车》</td><td>40 篇，23 万字</td><td>40 个文件</td></tr><tr><td>《第800小时》</td><td>20 篇，7 万字</td><td>20 个文件</td></tr><tr><td>《程序员的数学》系列笔记</td><td>31 篇</td><td>31 个 md</td></tr><tr><td>精华摘要</td><td>11 份</td><td>11 个 md（其中 6 份出了 html 和 pdf）</td></tr><tr><td>读书与账</td><td>5 篇</td><td>5 个文件</td></tr><tr><td>大模型入门</td><td>15 篇</td><td>15 个文件</td></tr><tr><td>三十六计</td><td>1 个 skill</td><td>一个目录</td></tr></tbody></table><p>书这一头：实体书加电子书一共 687 本。有下游产出的 18 本 —— 精华摘要 11 本，程序员的数学系列 4 本，刻意练习，异类，三十六计。</p><p><strong>剩下的 669 本，用不上。</strong></p><h2 id="虚无不是没有是指不到"><a class="markdownIt-Anchor" href="#虚无不是没有是指不到"></a> 虚无不是没有，是指不到</h2><p>「虚无」这个词我以前往大了想，觉得它是个哲学命题，世界有没有意义，人活着有没有意义。</p><p>落到具体操作上，它就变成一件很朴素的事：<strong>做过的、读过的、写下的东西里，多大比例还能指回一个具体的来源。</strong></p><p>指得到，就是实的。指不到的部分，管它是书、是文章、是记忆，都不构成我做过的事，只构成一堆看起来像事的字。</p><p>mem-md 是这个比例最难看的一次呈现。召回命中率长期在一成上下。存进去的东西是真存进去了，要用的时候捞不出来，捞不出来的部分跟没存没有区别。<strong>写进去九成，用的时候捞不出来九成，中间那段忙碌等于没发生。</strong></p><h2 id="拿什么去减少它"><a class="markdownIt-Anchor" href="#拿什么去减少它"></a> 拿什么去减少它</h2><p>三件事，都不玄：</p><p>一，<strong>第一人称只写指得到出处的地方。</strong> 博客、读书笔记、对外说的话，第一人称的段落里出现的场景，要么是我真做过的，要么标清楚是虚构。我这一篇讲删掉的那篇，属于前者。</p><p>二，<strong>管线只准用我的真实素材。</strong> 今天起给自动发文那条管线加了一份作者素材清单，写清楚我实际有哪些项目、哪些书、哪些数据。哲学类文章没有事实依据可查，它要的第一人称场景就从这份清单里挑，挑不到就写推理，不许自己补一段亲人。</p><p>三，<strong>下游产物当成书单来管。</strong> 精华摘要 11 份、笔记 31 篇、skill 1 个，这是真留下来的。其余六百本，我不再假装它们算读过。</p><h2 id="还没想清楚的地方"><a class="markdownIt-Anchor" href="#还没想清楚的地方"></a> 还没想清楚的地方</h2><p>虚无不是被消灭的，是被重新划界。划完之后，新的问题立刻冒出来：如果大部分事都指不到出处，那我到底该按什么来评价自己 —— 按做过的量，还是按指得到的量？</p><p>这两个数差得很远。我现在用的还是前一个。</p><p>而且我怀疑，换成后一个也未必更好。指得到出处，只说明那件事发生过；发生过的事值不值得做，是另一个问题，那本《金钱进化论》里叫它第二天的事。</p><p>今天这篇能指到的东西有：一个日志时间戳、一串文件数量、一个 404、一个一成。</p><p>其余的，等它活过一阵子再看指不指得到。</p>]]></content>
+    
+    
+    <summary type="html">今天早上我删掉了自己一篇文章 十一月十一号九点零一分，博客的自动管线启动。九点零二分写盘，九点零六分上线，一轮三篇，两篇热点一篇哲学类。 其中那篇哲学类叫《我整理祖父遗物时删掉遗言软件》。开头写我整理祖父遗物，删掉一个记录最后话语的软件，两百多条语音，四十多页转写，最后一页写于他去世前 11 天。</summary>
+    
+    
+    
+    <category term="宇宙观" scheme="https://nilw.rm-rf.ink/categories/%E5%AE%87%E5%AE%99%E8%A7%82/"/>
+    
+    
+    <category term="宇宙观" scheme="https://nilw.rm-rf.ink/tags/%E5%AE%87%E5%AE%99%E8%A7%82/"/>
+    
+    <category term="写作" scheme="https://nilw.rm-rf.ink/tags/%E5%86%99%E4%BD%9C/"/>
+    
+  </entry>
   
   <entry>
     <title>AI 原生数据库的关键不是快而是理解意图</title>
@@ -443,96 +529,6 @@
     <category term="系列" scheme="https://nilw.rm-rf.ink/tags/%E7%B3%BB%E5%88%97/"/>
     
     <category term="大模型入门" scheme="https://nilw.rm-rf.ink/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%85%A5%E9%97%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>大模型入门：从猜下一个字，到接进业务流程</title>
-    <link href="https://nilw.rm-rf.ink/AI/7b3f9a21.html"/>
-    <id>https://nilw.rm-rf.ink/AI/7b3f9a21.html</id>
-    <published>2026-11-10T03:00:00.000Z</published>
-    <updated>2026-11-10T03:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote><p><strong>本页是「大模型入门」系列的总览与目录索引</strong>，共 14 集。每一集都有独立正文，页内嵌当集配图与可交互动画。</p></blockquote><h2 id="这套系列讲什么"><a class="markdownIt-Anchor" href="#这套系列讲什么"></a> 这套系列讲什么</h2><p>这套东西原本是十几集独立的动画，一集只回答一个问题：它是什么、里面怎么转、指令链怎么拼、工程上怎么不出事、怎么变成能上线的东西。单独看每一集都成立，但连起来看才有一条完整的线——从「猜下一个字」这个动作出发，一路走到「接进业务流程」这件事上。</p><p>所以这里把它整理成一套 14 集的系列：每集一篇正文，配一张配图和一段可交互动画。动画按章节推进，可以暂停、可以按左右方向键跳章，也可以点进度条直接落到某一节；正文是同一份内容的文字版，细节比动画里的屏内文字更多一些。本页是全系列的简介与目录。</p><p>全篇只讲一件事的两面：模型本身的能力边界在哪里，以及围绕它叠出来的工程系统怎么做才不至于翻车。这两件事经常被混在一起谈，混在一起谈的结果就是：模型换了一版，产品还是一样难用；提示词改了几十遍，效果还是不稳。这篇文章试图把这条界线划清楚——哪些是模型天生做不到的，哪些是你在外面少做了一步。</p><p>动画里的语气偏口语，正文里的表述会紧一些。两者内容一致，不冲突。</p><span id="more"></span><h2 id="怎么用这套系列"><a class="markdownIt-Anchor" href="#怎么用这套系列"></a> 怎么用这套系列</h2><ul class="lvl-0"><li class="lvl-2"><p><strong>顺序读</strong>：01 → 14。后面的结论多数建立在前面的铺垫上——第六集的成本结构，前提是第三集讲的「消息拼接」；第四集的上下文预算，前提是第二集讲的工作台容量。</p></li><li class="lvl-2"><p><strong>挑着读</strong>：每集独立成篇，只关心一个具体问题。目录里每集下面都有一句话摘要，先扫一遍再决定看哪集。</p></li><li class="lvl-2"><p><strong>只看动画</strong>：每集正文顶部内嵌同主题的 Canvas 动画，空格暂停、←→ 切章、点进度条跳转，也可从文末「动画直链」单独打开。</p></li></ul><h2 id="十四集目录"><a class="markdownIt-Anchor" href="#十四集目录"></a> 十四集目录</h2><h3 id="01-大模型到底是个啥"><a class="markdownIt-Anchor" href="#01-大模型到底是个啥"></a> 01 · 大模型到底是个啥</h3><p><strong>一个把接下一个字练到极致的高手</strong></p><p>不讲「会思考的机器」，讲「把接下一个字练到极致」。写作、翻译、答问、补代码都是同一个动作在不同输入上的重复，它没有「先理解再作答」的阶段。</p><blockquote><p>原来如此：大模型就是一个读过全世界文字、把「猜下一个字」练到极致的高手。它很会说话——但它并不知道自己在说什么。</p></blockquote><p><a href="/AI/llm101-01.html">读第 01 集 →</a></p><h3 id="02-往深一层"><a class="markdownIt-Anchor" href="#02-往深一层"></a> 02 · 往深一层</h3><p><strong>字怎么变成数字，注意力怎么算</strong></p><p>token 怎么变成向量、注意力怎么算、八十层为什么不会崩、它到底怎么学出来的、出结果时你能拧哪几个旋钮、记不住和不会动手分别怎么办。</p><blockquote><p>原来如此：聊天是给建议，Agent 是动手办。动手就要担责，设计必须更保守。</p></blockquote><p><a href="/AI/llm101-02.html">读第 02 集 →</a></p><h3 id="03-prompt-thinking-function-calling"><a class="markdownIt-Anchor" href="#03-prompt-thinking-function-calling"></a> 03 · Prompt、Thinking、Function Calling</h3><p><strong>三块拼图拼成一条链</strong></p><p>三块拼图：你给它看什么（Prompt）、它想几步再答（Thinking）、它能动手做什么（Function Calling）。拼成一条链，才叫一次完整的请求。</p><blockquote><p>原来如此：Prompt 决定它看得见什么，Thinking 决定它想几步，Function Calling 决定它能动手到什么程度。三者共同的上限，都是同一件事：上下文里到底有什么。</p></blockquote><p><a href="/AI/llm101-03.html">读第 03 集 →</a></p><h3 id="04-上下文工程与-agent-可靠性"><a class="markdownIt-Anchor" href="#04-上下文工程与-agent-可靠性"></a> 04 · 上下文工程与 Agent 可靠性</h3><p><strong>让它稳定干活的那些事</strong></p><p>放什么、放多少、按什么序、何时清——四个问题决定 Agent 稳不稳。写在外面的约束，比写在提示词里的约束可靠得多。</p><blockquote><p>原来如此：写在外面的约束，比写在提示词里的约束可靠。</p></blockquote><p><a href="/AI/llm101-04.html">读第 04 集 →</a></p><h3 id="05-微调"><a class="markdownIt-Anchor" href="#05-微调"></a> 05 · 微调</h3><p><strong>把通用模型练成你的专属模型</strong></p><p>动手前先分诊：你缺的是知识、手艺，还是上下文长度。三种缺口三种解法，用错一个，钱和时间都白花。</p><blockquote><p>原来如此：知识会过期，手艺不会。所以知识交给检索，手艺才值得练进去。</p></blockquote><p><a href="/AI/llm101-05.html">读第 05 集 →</a></p><h3 id="06-token-与账单"><a class="markdownIt-Anchor" href="#06-token-与账单"></a> 06 · Token 与账单</h3><p><strong>一次对话到底花了多少钱</strong></p><p>输出比输入贵三到五倍、缓存命中能打到骨折、多轮工具调用在放大总输入——三句话解释八成的账单。</p><blockquote><p>原来如此：成本是设计出来的，不是省出来的。上线前算一遍，比上线后砍一半容易得多。</p></blockquote><p><a href="/AI/llm101-06.html">读第 06 集 →</a></p><h3 id="07-量化与端侧推理"><a class="markdownIt-Anchor" href="#07-量化与端侧推理"></a> 07 · 量化与端侧推理</h3><p><strong>一个几百亿参数的模型怎么塞进手机</strong></p><p>把每个数字压窄、少读内存所以快、最后装进设备。量化不改架构也不加参数，只是把 32 位的写法砍到 4 位。</p><blockquote><p>原来如此：量化不改架构、不加参数，只是把每个数的写法从 32 位砍到 4 位——同一张成绩单换个写法。</p></blockquote><p><a href="/AI/llm101-07.html">读第 07 集 →</a></p><h3 id="08-多模态"><a class="markdownIt-Anchor" href="#08-多模态"></a> 08 · 多模态</h3><p><strong>图片和声音怎么变成模型能读的字符</strong></p><p>模型的世界从头到尾只有一串数字。所谓多模态，不是给它装眼睛，是给图片造一套翻译；翻译做得好不好，决定它「看」得准不准。</p><blockquote><p>原来如此：所谓多模态，不是给模型装眼睛，是给图片造一套翻译。翻译做得好不好，决定了它「看」得准不准——后面所有缺陷都源于这一步。</p></blockquote><p><a href="/AI/llm101-08.html">读第 08 集 →</a></p><h3 id="09-检索"><a class="markdownIt-Anchor" href="#09-检索"></a> 09 · 检索</h3><p><strong>为什么你的知识库总也搜不准</strong></p><p>答不好，八成不在模型。切段入库、按问题找最像的几段、把段落和问题一起交给模型——三个环节各自会翻车。</p><blockquote><p>原来如此：Embedding 不认字，只认意思。这是它比关键词强的地方，也是它翻车的地方。</p></blockquote><p><a href="/AI/llm101-09.html">读第 09 集 →</a></p><h3 id="10-把话说明白"><a class="markdownIt-Anchor" href="#10-把话说明白"></a> 10 · 把话说明白</h3><p><strong>提示词的实用写法</strong></p><p>全是能直接抄走用的写法，核心只有一句：你要交办给一个聪明但完全没有背景的新同事。</p><blockquote><p>原来如此：你觉得「不用说也懂」的部分，恰恰是模型最需要的那部分。</p></blockquote><p><a href="/AI/llm101-10.html">读第 10 集 →</a></p><h3 id="11-上线前的那些坑"><a class="markdownIt-Anchor" href="#11-上线前的那些坑"></a> 11 · 上线前的那些坑</h3><p><strong>流式、限流与重试</strong></p><p>本地跑通只是及格。流式、限流、重试、超时降级，四个不处理就不能上线的问题。</p><blockquote><p>原来如此：用户抱怨「慢」，抱怨的其实不是总时长，是那几秒什么都没发生。流式不改变实际速度，只是把等待摊薄了。</p></blockquote><p><a href="/AI/llm101-11.html">读第 11 集 →</a></p><h3 id="12-记忆"><a class="markdownIt-Anchor" href="#12-记忆"></a> 12 · 记忆</h3><p><strong>为什么它昨天还记得，今天就忘了</strong></p><p>最反直觉的一句：模型本身没有记忆。难点不是「记住」，而是「在该想起的时候想起」，九成工作在检索侧。</p><blockquote><p>原来如此：记忆系统真正的难点不是「记住」，而是「在该想起的时候想起」。前者是存储问题，后者是检索问题——而后面这个才是 90% 的失败所在。</p></blockquote><p><a href="/AI/llm101-12.html">读第 12 集 →</a></p><h3 id="13-从能跑到好用"><a class="markdownIt-Anchor" href="#13-从能跑到好用"></a> 13 · 从能跑到好用</h3><p><strong>把大模型接进业务流程</strong></p><p>会调 API 的人很多，能把模型接进业务流程、稳定创造价值的人很少。中间隔的不是技术，是产品判断。</p><blockquote><p>原来如此：模型能力决定下限，场景选择决定上限。选错场景，再强的模型也只是玩具。</p></blockquote><p><a href="/AI/llm101-13.html">读第 13 集 →</a></p><h3 id="14-从提示词到像素"><a class="markdownIt-Anchor" href="#14-从提示词到像素"></a> 14 · 从提示词到像素</h3><p><strong>扩散模型怎么把字变成图</strong></p><p>前面讲的模型都在「读」，这一集讲它怎么「画」。扩散模型不是在画图，是在一步一步擦掉噪声。</p><blockquote><p>原来如此：模型不是在「画图」，是在「擦掉噪声」，每一步只擦一点点。</p></blockquote><p><a href="/AI/llm101-14.html">读第 14 集 →</a></p><h2 id="速查表"><a class="markdownIt-Anchor" href="#速查表"></a> 速查表</h2><table><thead><tr><th>#</th><th>集</th><th>它回答的问题</th></tr></thead><tbody><tr><td>01</td><td><a href="/AI/llm101-01.html">大模型到底是个啥</a></td><td>它到底是什么，凭什么厉害</td></tr><tr><td>02</td><td><a href="/AI/llm101-02.html">往深一层</a></td><td>内部怎么转，你能拧哪些旋钮</td></tr><tr><td>03</td><td><a href="/AI/llm101-03.html">Prompt、Thinking、Function Calling</a></td><td>一条完整的请求由哪三块拼成</td></tr><tr><td>04</td><td><a href="/AI/llm101-04.html">上下文工程与 Agent 可靠性</a></td><td>怎么让它稳定干活而不是翻车</td></tr><tr><td>05</td><td><a href="/AI/llm101-05.html">微调</a></td><td>什么时候该微调，什么时候不该</td></tr><tr><td>06</td><td><a href="/AI/llm101-06.html">Token 与账单</a></td><td>钱花在哪，怎么在设计阶段省</td></tr><tr><td>07</td><td><a href="/AI/llm101-07.html">量化与端侧推理</a></td><td>几百亿参数怎么跑在手机上</td></tr><tr><td>08</td><td><a href="/AI/llm101-08.html">多模态</a></td><td>图片和声音怎么被模型读进去</td></tr><tr><td>09</td><td><a href="/AI/llm101-09.html">检索</a></td><td>知识库为什么总搜不准</td></tr><tr><td>10</td><td><a href="/AI/llm101-10.html">把话说明白</a></td><td>提示词怎么写才算说明白</td></tr><tr><td>11</td><td><a href="/AI/llm101-11.html">上线前的那些坑</a></td><td>流式、限流、重试这些上线必踩的坑</td></tr><tr><td>12</td><td><a href="/AI/llm101-12.html">记忆</a></td><td>它没有记忆，那记忆系统怎么做</td></tr><tr><td>13</td><td><a href="/AI/llm101-13.html">从能跑到好用</a></td><td>从 Demo 到产品的距离在哪</td></tr><tr><td>14</td><td><a href="/AI/llm101-14.html">从提示词到像素</a></td><td>文字怎么变成图</td></tr></tbody></table><h2 id="动画直链"><a class="markdownIt-Anchor" href="#动画直链"></a> 动画直链</h2><p>十四段动画都是单文件 Canvas，可单独打开全屏观看：</p><p><a href="/slide/llm-explained.html">01</a> · <a href="/slide/llm-advanced.html">02</a> · <a href="/slide/llm-agent-core.html">03</a> · <a href="/slide/llm-context-engineering.html">04</a> · <a href="/slide/llm-finetune.html">05</a> · <a href="/slide/llm-token-cost.html">06</a> · <a href="/slide/llm-quantization.html">07</a> · <a href="/slide/llm-multimodal.html">08</a> · <a href="/slide/llm-retrieval.html">09</a> · <a href="/slide/llm-prompt-craft.html">10</a> · <a href="/slide/llm-stream-ops.html">11</a> · <a href="/slide/llm-memory.html">12</a> · <a href="/slide/llm-to-product.html">13</a> · <a href="/slide/prompt-to-pixels.html">14</a></p><hr />]]></content>
-    
-    
-    <summary type="html">「大模型入门」系列总览与目录：14 集从猜下一个字讲到接进业务流程，每集配一张配图、一段可交互动画和一篇正文，附一句话摘要与速查表。</summary>
-    
-    
-    
-    <category term="AI" scheme="https://nilw.rm-rf.ink/categories/AI/"/>
-    
-    
-    <category term="大模型" scheme="https://nilw.rm-rf.ink/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
-    
-    <category term="科普" scheme="https://nilw.rm-rf.ink/tags/%E7%A7%91%E6%99%AE/"/>
-    
-    <category term="系列" scheme="https://nilw.rm-rf.ink/tags/%E7%B3%BB%E5%88%97/"/>
-    
-    <category term="大模型入门" scheme="https://nilw.rm-rf.ink/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%85%A5%E9%97%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>AI 工具正把个人创意游戏推向可交付</title>
-    <link href="https://nilw.rm-rf.ink/AI/8f3e15bd.html"/>
-    <id>https://nilw.rm-rf.ink/AI/8f3e15bd.html</id>
-    <published>2026-11-10T01:00:00.000Z</published>
-    <updated>2026-11-10T01:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="fable-把个人创意推到了可交付"><a class="markdownIt-Anchor" href="#fable-把个人创意推到了可交付"></a> Fable 把个人创意推到了可交付</h2><p>AI 正在把独立开发从“会写代码的人才能做”，推向“能把想法做完整的人”。变化不只在写代码。需求拆解、原型、测试、素材处理和发行准备，正在被同一个工具链接起来。</p><p>我最初把这类产品看成代码补全器。它能生成函数、处理报错，偶尔搭出完整页面，却很难支撑一个人做完游戏。后来看到 Fable 5.2 的新模型说明，我修正了判断：评价重点该从“能不能写”，转向“能不能持续交付”。</p><p>Anthropic 最近公布了“5.2, our new models for the hardest technical challenges”。Fable 5.2 sets a new bar，后面还出现了“5.2, which”和“5.2, we”这样的官方表述。模型名称本身不能证明成品质量，但至少说明厂商已经把目标放在复杂任务上。</p><blockquote><p>从原型到发行，一个人需要跨越的障碍，往往比写出一段可运行代码更难。</p></blockquote><p>这类文章真正值得看的地方，不在演示视频里出现了什么效果，而在一个人能否独立完成一条完整流程。素材是否可替换，构建是否可重复，错误能否定位，发布后能否更新。每一项都会决定作品是停在文件夹里，还是成为玩家能够下载和评价的产品。</p><h2 id="一人开发的关键是减少交接"><a class="markdownIt-Anchor" href="#一人开发的关键是减少交接"></a> 一人开发的关键是减少交接</h2><p>个人开发者最大的限制通常只有三项：时间、精力和知识边界。AI 可以压缩前两项，也能在第三项里替人完成一部分探索。</p><p>Fable 5.2 面向“hardest technical challenges”，意味着它更适合承担连续任务，而非一次问答。独立开发者可以让它先阅读现有项目，再提出修改计划，随后执行局部改动，并运行测试检查结果。这个顺序比直接要求“帮我做一个游戏”更可靠。</p><p><span class="hl">AI 降低的是执行成本，没有自动消除产品判断。</span></p><p>创意游戏最容易失控的地方，是功能越加越多。开发者被模型的新能力带着走，一周内加入登录、商城、赛季和排行榜，最后连最初的核心玩法都没有打磨。工具越强，这个问题越明显。</p><p>我的做法是把范围写进验收条件。先定义玩家在 10 分钟内体验什么，再列出必须完成的 3 项功能。可交付版本应当能安装、能启动、能通关或结束。每增加一个系统，都说明它服务哪段核心体验。没有答案的功能先不写。</p><blockquote><p>一份合格的交付清单，比十个“很酷”的功能描述更有用。</p></blockquote><p>这类清单也能限制 AI。它不再接受宽泛目标，而要围绕具体文件、输入和输出工作。项目越小，修改越容易验证。作者也更容易发现，答案虽然能运行，却没有解决原问题。</p><h2 id="游戏发行暴露了工具链短板"><a class="markdownIt-Anchor" href="#游戏发行暴露了工具链短板"></a> 游戏发行暴露了工具链短板</h2><p>游戏能否做完，只是交付的第一道门。平台打包、商店页面、截图、预告片、版本说明和更新流程，都需要不同能力。代码模型做得再漂亮，也不会自动补齐这些工作。</p><p>这里正是我仍保留怀疑的地方。Fable 展示出的内容生成能力很强，但“可生成”和“可发布”之间仍有距离。游戏需要稳定帧率、清晰操作、版权明确的素材，以及愿意点击下载的封面。这些环节很难只靠一次生成完成。</p><p>9 月 2 日发布的相关资料提到 Claude Fable 5.1，并给出 $10 的价格口径。它能说明产品已经进入明确的使用成本体系，却无法替代我对真实成品的测试。</p><blockquote><p>发布页上的生成速度很快，玩家实际离开游戏的时刻更慢。</p></blockquote><p>一款创意游戏的价值，取决于核心体验是否成立。画面负责把人带来，机制负责把人留下。我更愿意把 Fable 用在重复且可检查的工作上，例如生成测试样例、整理资源、修复构建错误。核心玩法的取舍仍由作者负责。</p><p>这也延续了我在《Rust与WebGPU正在重塑三维开源工具链》里的看法。底层工具确实能降低专业应用的构建成本，但工具可用与作品成熟之间，还隔着产品设计。Rust 和 WebGPU 改变的是三维应用的工程条件，AI 改变的是自然语言到软件之间的转换效率。</p><h2 id="我会怎样把创意变成游戏"><a class="markdownIt-Anchor" href="#我会怎样把创意变成游戏"></a> 我会怎样把创意变成游戏</h2><p>我准备采用一条短流程：先写出核心循环，再做可玩的灰色原型，然后补齐 3 组内容，最后生成发行材料。Fable 5.2 可以参与每一步，但每次只交付能被验证的结果。</p><p>一篇来自 RSS 原始摘要的案例题为“fable-5-2-one-shot-my-nephews-dream-game”，对应讨论编号 50433659，页面记录为 66 Points，Comments 为 36。讨论热度说明开发者关心这种实践。它不能单独证明一次生成就能完成商业游戏，却适合用来观察别人踩过哪些坑。</p><blockquote><p>66 Points 和 36 条评论，证明大家都在问同一个问题：AI 生成的代码，最后由谁维护？</p></blockquote><p>我的答案很明确：由创造者维护。Fable 可以把门槛降到个人可承受的范围，却不会替作者承担质量责任。独立开发从零代码起步并不可怕。真正需要警惕的是，作者因为工具变强，就误以为自己也能同时负责设计、编程、美术、测试和发行。</p><p><span class="hl">可交付的标准只有一个：陌生玩家拿到作品后，可以独立完成一次完整体验。</span></p><p>我到现在也没搞明白，Fable 5.2 最终会把独立游戏推向哪一类作品。也许是更精致的小品，也许是大量同质化生成物。下一次评测，我会少看演示，多看下载量、留存和更新记录。工具已经打开入口，接下来要由作者证明作品值得走进去。</p>]]></content>
-    
-    
-    <summary type="html">Fable 把个人创意推到了可交付 AI 正在把独立开发从“会写代码的人才能做”，推向“能把想法做完整的人”。变化不只在写代码。需求拆解、原型、测试、素材处理和发行准备，正在被同一个工具链接起来。 我最初把这类产品看成代码补全器。它能生成函数、处理报错，偶尔搭出完整页面，却很难支撑一个人做完游戏。</summary>
-    
-    
-    
-    <category term="AI" scheme="https://nilw.rm-rf.ink/categories/AI/"/>
-    
-    
-    <category term="AI" scheme="https://nilw.rm-rf.ink/tags/AI/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>模型竞争进入交付能力比拼，AI 产品重塑独立开发门槛</title>
-    <link href="https://nilw.rm-rf.ink/AI/5043f8e8.html"/>
-    <id>https://nilw.rm-rf.ink/AI/5043f8e8.html</id>
-    <published>2026-11-10T01:00:00.000Z</published>
-    <updated>2026-11-10T01:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="fable-把创意接到了交付端"><a class="markdownIt-Anchor" href="#fable-把创意接到了交付端"></a> Fable 把创意接到了交付端</h2><p>AI 工具正在降低独立开发门槛，但代码生成只解决了其中一段。</p><p>我最初关注 Fable，是因为它擅长处理复杂的软件工程问题。一个独立开发者遇到技术难点，通常会卡在架构、调试和系统整合上。可交付产品还需要需求拆解、界面设计、测试、素材处理与发行准备，这些工作挤在同一条时间线上，工具能力必须接得上。</p><p>RSS 原始摘要提到，Anthropic 发布了 Claude Fable 5.2 和 Claude Mythos 5.2，称两款新模型在编码、推理和视觉方面有所改进，生成速度也快于 5.1 版本。Fable 5.2 还能组织代理团队，处理长期项目，并解决包括两个开放理论物理问题在内的复杂科学问题。</p><blockquote><p>Anthropic 公布的版本名为 <span class="hl">Claude Fable 5.2</span>，摘要中还保留了版本串 <span class="hl">5.2, which</span>。</p></blockquote><p>这些信息让我重新评估了 AI 工具的边界。它已经开始接近完整的工作链，而非某个具体功能。</p><h2 id="独立开发缺的是连续交付能力"><a class="markdownIt-Anchor" href="#独立开发缺的是连续交付能力"></a> 独立开发缺的是连续交付能力</h2><p>独立开发者最稀缺的资源是连续注意力。需求还没确定，原型先做了；功能刚跑通，测试环境已经过时；代码基本完成，素材和发行又被推到一边。每个环节单独看都不陌生，连在一起却足以拖垮项目。</p><p>代码补全工具可以省下几小时，却无法判断一个功能是否值得做，也无法替开发者整理散落的任务。真正影响上线的，常常是这些不显眼的工作。</p><p>Fable 5.2 强调复杂软件工程、代理团队协作和长期项目，这三个方向恰好对应独立开发中的连续性问题。模型需要在较长时间里保留目标，调用不同工具执行任务，还要把结果交回下一环节。</p><p>我在《AI 工具正把个人创意游戏推向可交付》（2026-11-10）中写过，AI 正在把独立开发从“会写代码的人才能做”，推向“能把想法做完整的人”。这次的新信息让我补充了一点：工具价值正在从局部生成，转向跨环节协作。</p><blockquote><p>如果一次演示只展示生成速度，它仍无法回答：需求能否落地，测试能否通过，产品能否发行？</p></blockquote><p>我关心的不是代理数量。代理越多，任务拆分和结果验收越重要。把工作交给更多角色，不会自动得到更好的产品。</p><h2 id="交付链会重新划分开发工作"><a class="markdownIt-Anchor" href="#交付链会重新划分开发工作"></a> 交付链会重新划分开发工作</h2><p>独立开发者需要亲自决定产品做什么、哪些取舍不能交给模型。这个判断构成产品边界，也构成责任边界。</p><p>Fable 若能连接创意整理、原型、编码、测试与发行准备，开发者的主要工作会转向定义问题和验收结果。表达想法的能力仍然重要，提出可验证目标的能力会变得更直接。</p><p>这里也有我的担忧。链条越长，错误越可能藏在中间环节。界面看起来完整，不等于核心功能可用；代码通过测试，不等于需求得到满足；素材已经生成，不等于风格保持一致。</p><blockquote><p>交付能力可以缩短开发周期，也可能把模糊目标更快地制造成返工。</p></blockquote><p>因此，我会把完整链路和可靠交付分开评价。完整链路说明工具能走多远。可靠交付还要看它能否指出遗漏、保留约束，并在出错时定位原因。</p><p>这也是 Fable 的能力说明最值得关注的部分。长期项目与代理团队并不新鲜，但若它们确实能稳定协作，AI 工具的评价标准就会改变。开发者会少问“它能不能写”，多问“它能不能把事情做完”。</p><p>我到现在也没搞明白，代理团队最终会形成新的开发规范，还是只让生成过程变得更复杂。答案可能取决于验收机制，而不取决于模型名单。</p>]]></content>
-    
-    
-    <summary type="html">Fable 把创意接到了交付端 AI 工具正在降低独立开发门槛，但代码生成只解决了其中一段。 我最初关注 Fable，是因为它擅长处理复杂的软件工程问题。一个独立开发者遇到技术难点，通常会卡在架构、调试和系统整合上。</summary>
-    
-    
-    
-    <category term="AI" scheme="https://nilw.rm-rf.ink/categories/AI/"/>
-    
-    
-    <category term="AI" scheme="https://nilw.rm-rf.ink/tags/AI/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>不再追求不浪费时间后，我开始故意浪费下午</title>
-    <link href="https://nilw.rm-rf.ink/%E4%BA%BA%E7%94%9F%E8%A7%82/5b3bdaf6.html"/>
-    <id>https://nilw.rm-rf.ink/%E4%BA%BA%E7%94%9F%E8%A7%82/5b3bdaf6.html</id>
-    <published>2026-11-10T01:00:00.000Z</published>
-    <updated>2026-11-10T01:00:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="我曾经把每一分钟都交给计划"><a class="markdownIt-Anchor" href="#我曾经把每一分钟都交给计划"></a> 我曾经把每一分钟都交给计划</h2><p>我曾经把“不浪费时间”当成人生纪律。</p><p>早上起床后，我会在备忘录里写下当天要做的事。工作、阅读、锻炼、购物，每一项都有预计时间。下午两点到三点原本写着“学习前端”，如果提前完成，我就去处理下一项。清单没有划完，这一天就算有缺口。</p><p>现在回头看，我追求的其实是可见的进度。</p><p>完成一项任务，可以在清单里划掉一个框。学习半小时，可以记下时长。读完一本书，可以把页数填进表格。那些数字让人安心，也容易比较。今天学了60分钟，明天学了45分钟，差距清清楚楚。</p><p>可有些下午，无论我怎么安排，最后都会留下一种没有产出的感觉。</p><p>我到现在也没完全解决这个问题。我只是不再急着消灭这种感觉。</p><h2 id="一次没有目的的发呆"><a class="markdownIt-Anchor" href="#一次没有目的的发呆"></a> 一次没有目的的发呆</h2><p>上周二下午两点左右，我刚结束一次线上沟通。</p><p>具体聊什么已经不记得了。我只记得接下来没有会议，也没有必须回复的消息。桌面上开着两个代码编辑器，左边是待重构的代码，右边是刚写完的博客草稿。</p><p>我原本准备继续改一个函数。需求很明确，改完再跑一遍测试，前后不会超过半小时。可我打开文件后，突然不想看了。</p><p>我把椅子往后挪了一点，盯着窗外。</p><p>楼下的树被风吹得来回摆。有人在路边打电话，声音隔着玻璃传进来，只剩几个模糊的词。桌角那杯水已经凉了。</p><p>我没有起身换水，也没有刷消息。就那样坐了将近1小时。</p><p>前20分钟，我有点焦躁。脑子里不断冒出“本可以做点什么”。到了第30分钟左右，那些念头慢慢少了。我开始注意到树影的变化，也听见空调出风口轻微的响声。</p><p>那一小时没有给我带来任何答案。</p><p>代码没有多写一行，文章也没有多写一段。第二天醒来，我甚至记不清自己具体想了什么。</p><p>可我记得那种松弛。</p><p><span class="hl">空耗并不一定等于失败。只要那一小时没有持续折磨我，它也可以是一段生活。</span></p><p>我开始怀疑，过去那套时间管理究竟是在帮我生活，还是在逼我持续证明自己没有虚度。</p><h2 id="给下午留一段没有任务的空白"><a class="markdownIt-Anchor" href="#给下午留一段没有任务的空白"></a> 给下午留一段没有任务的空白</h2><p>我现在的做法很简单。</p><p>一周里，我会留出一段不做计划的时间。有时是周二下午，有时是周四晚上。没有固定长度，也不要求每次都发呆。我只要求这段时间不承载明确任务。</p><p>起点可以很小。</p><p>比如忙完午饭，我先不打开工作群。杯子空了就续水，手机扣在桌上。站在窗边看10分钟，或者绕着小区走一圈。若当时正好有灵感，我会写两句话。若没有，就等那阵劲过去。</p><blockquote><p>真正困难的不是安排休息，而是允许休息不产生任何可以展示的结果。</p></blockquote><p>这和我写过的《笔记1-《统计思维：程序员数学之概率统计》程序员的统计思维》有一点关系。那篇讲概率、统计和计算，重点是把数据变成知识。读那本书时，我习惯给行动寻找指标。锻炼看组数，阅读看页数，学习看分钟数。</p><p>后来我发现，有些经历无法为了统计而制造。</p><p>发呆就是很典型的一种。你不能规定自己必须想通什么，也不能为了记录而硬凑出感受。可它仍然会改变接下来半小时的状态。那种改变很安静，甚至不能写进复盘表。</p><p>我也重新理解了《前端定时器》里那些定时器。代码里的计时器需要在确定的时间触发，而人的注意力并不是另一个等待回调的函数。它会飘走，会卡住，会突然停住。很多时候，正是这段没有安排的空白，让后面的专注重新出现。</p><p>这里的代价也很具体。</p><p>我少了1段可以写进周报的时间，也少了一些“今天完成了6件事”的满足感。可下班后，我不再总惦记哪块时间被浪费。下一次坐下来写代码时，也没那么急躁。</p><p><span class="hl">我不再要求所有时间都通向结果。我只希望其中一部分能带我回到自己身上。</span></p><h2 id="也许我只是想拥有自己的下午"><a class="markdownIt-Anchor" href="#也许我只是想拥有自己的下午"></a> 也许我只是想拥有自己的下午</h2><p>我还没有一个满意的解释。</p><p>为什么是下午？工作日里的上午常常被切得很碎，早会、消息、临时需求，一件接一件。晚上的时间又属于家人、朋友和各种安排。下午夹在中间，反而有一点无人认领的空隙。</p><p>过去我会抢下这块空隙。别人休息了，我继续推进项目。别人刷剧了，我整理知识。看起来很自律，也确实完成过不少事。</p><p>现在我会偶尔让它空着。</p><p>这并不适合所有日子。有些下午，我依然会主动工作，也会把手头的项目推进得更快。还有些下午，我只是走神、发呆、看云影，等回过神来，再决定接下来做什么。</p><p>我不再把后一种下午视作需要纠正的错误。</p><blockquote><p>一个下午如果必须持续证明自己有价值，它就很难成为真正属于自己的时间。</p></blockquote><p>我开始允许自己拥有一些没有用途的下午。它们不提供灵感，不解决难题，也不保证第二天效率更高。它们可能只是让某个原本绷紧的人，松开一点。</p><p>如果把人生只按产出计算，这种下午会被删掉。可人生并非一张任务清单。生活本身也包括无所事事，包括一段没有目的的等候，包括坐下来看树影移动。</p><p>我还没想清楚，空耗究竟能带来多少价值。</p><p>也许答案就在那些没有答案的下午里。</p>]]></content>
-    
-    
-    <summary type="html">我曾经把每一分钟都交给计划 我曾经把“不浪费时间”当成人生纪律。 早上起床后，我会在备忘录里写下当天要做的事。工作、阅读、锻炼、购物，每一项都有预计时间。下午两点到三点原本写着“学习前端”，如果提前完成，我就去处理下一项。清单没有划完，这一天就算有缺口。 现在回头看，我追求的其实是可见的进度。</summary>
-    
-    
-    
-    <category term="人生观" scheme="https://nilw.rm-rf.ink/categories/%E4%BA%BA%E7%94%9F%E8%A7%82/"/>
-    
-    
-    <category term="人生观" scheme="https://nilw.rm-rf.ink/tags/%E4%BA%BA%E7%94%9F%E8%A7%82/"/>
     
   </entry>
   

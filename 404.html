@@ -5,47 +5,97 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>404 页面不存在 | Nil W</title>
 <meta name="robots" content="noindex,follow">
-<meta name="description" content="页面不存在，返回首页或使用站内搜索。">
+<meta name="description" content="页面不存在。这里是最新文章与站点导航。">
+<meta name="referrer" content="strict-origin-when-cross-origin">
+<!-- 与站点其它页面同一条 CSP（GitHub Pages 不支持响应头，只能走 meta） -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://unpkg.com https://cdnjs.cloudflare.com https://fonts.googleapis.com; img-src 'self' data: https:; font-src 'self' data: https://fonts.gstatic.com; connect-src 'self' https:; frame-src 'self' https://www.slideshare.net https://player.bilibili.com; media-src 'self' https:; object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'self'">
+<link rel="icon" type="image/png" sizes="32x32" href="/images/favicon.ico">
+<link rel="apple-touch-icon" sizes="180x180" href="/images/favicon.ico">
+<link rel="stylesheet" href="/css/bundle.css">
 <style>
-  body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
-       font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft YaHei",sans-serif;
-       background:#fafafa;color:#212121}
-  .w{max-width:560px;padding:24px;text-align:center}
-  h1{font-size:64px;margin:0;letter-spacing:-2px;color:#b5c8cf}
-  p{color:#666;line-height:1.8}
-  a{color:#4a7d8c;text-decoration:none}
-  a:hover{text-decoration:underline}
-  .box{margin:24px 0;padding:18px;background:#fff;border-radius:8px;
-       box-shadow:0 1px 3px rgba(0,0,0,.08)}
-  .box a{display:inline-block;margin:4px 8px}
-  input{width:100%;padding:10px 12px;border:1px solid #ddd;border-radius:6px;font-size:14px}
-  button{margin-top:10px;padding:10px 22px;border:0;border-radius:6px;background:#4a7d8c;
-         color:#fff;cursor:pointer;font-size:14px}
-  footer{margin-top:28px;font-size:12px;color:#999}
+  /* 仅 404 专属排版；字体与配色全部取自主题 CSS 变量，随站点暗色模式联动 */
+  .nf-code {
+    font-family: var(--title-stack);
+    font-size: 3.2em;
+    font-weight: 900;
+    letter-spacing: 0.05em;
+    line-height: 1;
+    margin: 0 0 0.2em;
+    color: var(--link-color);
+  }
+  .nf-latest {
+    list-style: none;
+    margin: 1em 0 0;
+    padding: 0;
+  }
+  .nf-latest li {
+    margin: 0.5em 0;
+  }
+  .nf-date {
+    color: var(--secondary-color);
+    margin-right: 0.9em;
+  }
 </style>
 </head>
 <body>
-<div class="w">
-  <h1>404</h1>
-  <p>页面不存在。可能是链接失效，或者文章已被移动。</p>
-
-  <div class="box">
-    <form action="https://nilw.rm-rf.ink/search/" method="get">
-      <input type="text" name="q" placeholder="站内搜索…" aria-label="站内搜索">
-      <button type="submit">搜索</button>
-    </form>
+  <div id="wrapper">
+    <div id="content">
+      <div class="article">
+        <div class="article-header">
+          <p class="nf-code">404</p>
+          <h1 class="article-title">页面不存在</h1>
+        </div>
+        <div class="article-entry">
+          <p>这个地址没有对应的页面，可能是链接已失效，或者文章被移动过。</p>
+          <p>下面是最近写的东西：</p>
+          <ul class="nf-latest">
+            <li><span class="nf-date">2026-11-12</span><a href="https://nilw.rm-rf.ink/%E6%8A%80%E6%9C%AF/124f865b.html">编程早已面目全非，AI 正重写开发者的价值边界</a></li>
+            <li><span class="nf-date">2026-11-12</span><a href="https://nilw.rm-rf.ink/AI/96f42dea.html">低成本模型冲击正在重写AI应用成本结构</a></li>
+            <li><span class="nf-date">2026-11-12</span><a href="https://nilw.rm-rf.ink/%E4%BA%BA%E7%94%9F%E8%A7%82/349de850.html">三十岁后，我开始提前给下班后的自己发消息</a></li>
+            <li><span class="nf-date">2026-11-11</span><a href="https://nilw.rm-rf.ink/%E5%AE%87%E5%AE%99%E8%A7%82/dadb4374.html">能指出来源的部分，才算发生过</a></li>
+            <li><span class="nf-date">2026-11-11</span><a href="https://nilw.rm-rf.ink/AI/e0bea174.html">AI 原生数据库的关键不是快而是理解意图</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <header id="header">
+      <nav>
+        <div class="header-nav-links">
+          <a class="nav-link-first" href="/">Nil W</a>
+          <span class="nav-spacer"></span>
+          <a class="nav-link" href="/archives">文章</a>
+          <span class="nav-spacer"> </span>
+          <a class="nav-link" href="/categories">分类</a>
+          <span class="nav-spacer"> </span>
+          <a class="nav-link" href="/about">关于我</a>
+        </div>
+      </nav>
+    </header>
   </div>
-
-  <div class="box">
-    <a href="https://nilw.rm-rf.ink/">首页</a>
-    <a href="https://nilw.rm-rf.ink/archives/">归档</a>
-    <a href="https://nilw.rm-rf.ink/categories/">分类</a>
-    <a href="https://nilw.rm-rf.ink/tags/">标签</a>
-    <a href="https://nilw.rm-rf.ink/about/">关于</a>
-    <a href="https://nilw.rm-rf.ink/atom.xml">RSS</a>
-  </div>
-
-  <footer>Nil W</footer>
-</div>
+<script>
+  // 与站点共用偏好键：s = 0/1/2 明暗模式，n = 1/2 无衬线/衬线
+  (function () {
+    var style = document.documentElement.style;
+    var set = style.setProperty.bind(style);
+    var s = localStorage.getItem('s');
+    var sysDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    var dark = s === '2' || (s !== '1' && sysDark);
+    if (dark) {
+      set('--bg-color', '#212121');
+      set('--code-bg-color', '#292929');
+      set('--text-color', '#fff');
+      set('--secondary-color', '#c0c0c0');
+      set('--tertiary-color', '#8f8f8f');
+      set('--link-color', '#5c8089');
+      set('--link-hover-color', '#a9c6d0');
+      set('--link-text-color', '#a9c6d0');
+      set('--link-bg-color', '#5d828e');
+      set('--selection-color', '#acc1c9');
+    }
+    if (localStorage.getItem('n') === '1') {
+      set('--body-stack', '"Lato", "Lato Fallback", "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "Verdana", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", sans-serif');
+    }
+  })();
+</script>
 </body>
 </html>
