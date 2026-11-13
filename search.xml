@@ -751,12 +751,12 @@
     <title>路</title>
     <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-        <div id="aplayer-tYDoObju" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-qEGAKYrx" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-tYDoObju"),
+            element: document.getElementById("aplayer-qEGAKYrx"),
             narrow: false,
             autoplay: true,
             showlrc: false,
@@ -41088,6 +41088,88 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
       </categories>
       <tags>
         <tag>技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>所有客户凭据与代币被盗，暴露的是加密钱包的系统性信任危机</title>
+    <url>/%E9%87%91%E8%9E%8D/24f59ff1.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="凭据失守让个人资产暴露在信任链条上"><a class="markdownIt-Anchor" href="#凭据失守让个人资产暴露在信任链条上"></a> 凭据失守让个人资产暴露在信任链条上</h2>
+<p>一起被称为“多线网络攻击”的事件，同时出现了 AI 代理和路径上的数据窃取。现有事实没有给出受害者数量、损失金额或攻击范围，因此无法判断它是否是一场横扫行业的大规模事故。</p>
+<p>但有一点很清楚：加密钱包的风险已经从“私钥会不会泄露”，扩展到了“你的身份能否被验证，你的权限能否被隔离，你的交易环境能否被信任”。</p>
+<p>我更在意的不是某家公司怎样描述事故。身份认证、权限隔离和自托管环境，任何一环失效，都可能把攻击者送进资产控制层。</p>
+<h2 id="身份认证必须独立于资产操作"><a class="markdownIt-Anchor" href="#身份认证必须独立于资产操作"></a> 身份认证必须独立于资产操作</h2>
+<p>钱包安全经常被简化成一句“保管好私钥”。这句话并不完整。私钥解决的是签名问题，身份认证解决的是“谁能发起操作”，权限隔离解决的是“一个账号失守后还能拿走多少”。</p>
+<p>如果登录凭据与交易授权共用同一套入口，攻击者无需破解密码学，就能先接管账户。企业系统里的单点登录、弱恢复流程和共享管理员权限，都会把这种风险带进钱包服务。</p>
+<p><span class="hl">私钥没有泄露，不代表钱包里的资产没有被控制。</span></p>
+<p>多因素认证只能说明某个登录动作通过了验证。它无法阻止恢复邮箱被接管，也无法阻止攻击者借合法会话修改收款地址。对高价值账户而言，恢复流程需要独立验证，敏感操作应有延迟确认和额度边界。</p>
+<blockquote>
+<p>凭据是门禁记录，私钥才是资产控制权。两套入口失守，后果完全不同。</p>
+</blockquote>
+<p>攻击者还可能利用路径上的数据窃取，截取尚未进入加密链路的会话信息。AI 代理扩大了自动操作范围，也让“机器替人确认安全”显得更脆弱。代理可以检查风险，却不应独自拥有最终提款权。</p>
+<h2 id="权限隔离比单点防护更重要"><a class="markdownIt-Anchor" href="#权限隔离比单点防护更重要"></a> 权限隔离比单点防护更重要</h2>
+<p>我以前做权限管理和流程引擎时，很容易把问题理解成“谁拥有哪个菜单”。进入资产场景后，我才意识到，权限真正的对象是动作和额度。</p>
+<p>管理员能查看地址，不等于能修改收款地址；客服能处理申诉，不等于能发起签名；代运营者能调用受限接口，也不该拥有无限提现能力。角色名称可以相同，隔离边界必须不同。</p>
+<p><span class="hl">资产操作需要按额度、用途和时间分别授权。</span></p>
+<p>这类设计会增加日常工作的麻烦，也需要更多验证流程。但事故发生后，限制损失范围比证明系统“本来很安全”更有价值。</p>
+<p>自托管钱包也不能自动获得安全优势。它减少了平台托管这一层，却把密钥备份、设备安全和升级责任交给个人。硬件钱包能隔离签名，恶意插件仍可能在你确认前篡改交易信息。屏幕上的地址必须与设备独立显示的内容核对。</p>
+<blockquote>
+<p>硬件设备负责签名，浏览器负责展示。两者都可信，才构成完整信任。</p>
+</blockquote>
+<p>多签也不是人数越多越好。它可以降低单人失守的影响，却无法消除签名设备、协作流程和恢复方案中的共同风险。共同点越少，隔离越有效。</p>
+<h2 id="钱包安全需要可验证的信任"><a class="markdownIt-Anchor" href="#钱包安全需要可验证的信任"></a> 钱包安全需要可验证的信任</h2>
+<p>这次事件最值得警惕的地方，在于攻击路径同时触及身份、数据和自动化代理。现有公开依据没有披露完整攻击链，不能把所有环节都归因于同一种漏洞。但这种组合提醒我，资产安全不能依赖某个产品的安全承诺。</p>
+<p>Chainalysis 提供区块链数据、AI 软件和调查服务，服务对象包括政府机构、加密企业及金融机构。它的业务依赖链上记录，也处理大量平台侧风险信息。这类机构参与追查和治理，不等于个人用户可以把安全责任外包给分析平台。</p>
+<p>我更愿意把安全目标写成可以验证的问题：谁能登录，谁能签名，谁能改地址，一次异常能损失多少，恢复过程需要几项独立证据。只要答案含糊，所谓“系统可信”就没有落到操作层。</p>
+<p>过去写《333个Tor出口被劫持暴露匿名网络信任危机》时，我关注的是链路加密与出口节点之间的边界。这次加密钱包暴露了另一条边界：链下身份与链上资产之间，也需要权限隔离。</p>
+<p>开放的问题是：个人最终该把多少控制权交给钱包服务，又该保留多少在自己的设备里？这个比例很难统一，但它必须由每个人明确选择，而不是由注册页面的默认设置替你决定。</p>
+]]></content>
+      <categories>
+        <category>金融</category>
+      </categories>
+      <tags>
+        <tag>金融</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AI 修 Bug 的边界不在效率而在责任归属</title>
+    <url>/AI/57832a73.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="修完-bug代码归谁负责"><a class="markdownIt-Anchor" href="#修完-bug代码归谁负责"></a> 修完 Bug，代码归谁负责</h2>
+<p>AI 修 Bug 已经进入真实开发流程。争议也进入了公开审查。</p>
+<p>House House 为《Big Walk》修复性能问题时，咨询 Unity 工程师后仍未解决。后来，团队向生成式 AI 工具询问办法，再自行写出用于最终产品的 10 行代码。改动很小，责任却没有变小。</p>
+<p>我最初以为，反对者主要在意效率损失。游戏开发者 Brendan Keogh 的提醒让我意识到，零容忍政策可能把问题推入地下。若开发者普遍使用，却选择隐瞒，审查者看到的使用率会失真。</p>
+<p><span class="hl">AI 辅助代码一旦合入产品，责任仍由发布者承担。</span></p>
+<p>这条线应当写进代码审查，而不是留在工具选择清单里。</p>
+<h2 id="审查重点应落在提交记录"><a class="markdownIt-Anchor" href="#审查重点应落在提交记录"></a> 审查重点应落在提交记录</h2>
+<p>House House 的做法引发 IGF 评委团多名成员联合反对，Steam 平台也出现差评。争议的核心很具体：最终代码来自模型建议，开发团队仍进行了选择、修改和提交。</p>
+<p>代码审查至少要回答三个问题。</p>
+<p>第一，开发者能否解释改动。第二，测试覆盖了哪些风险。第三，出错后由谁接收用户反馈。</p>
+<blockquote>
+<p>Unity 工程师无法解决，模型提供了修复思路，最终进入产品的是 10 行代码。</p>
+</blockquote>
+<p>若这 10 行代码没有自然语言说明，审查者很难区分生成内容与人工设计。Git 提交记录若只保留最终差异，也会丢失判断过程。</p>
+<p>我以前写《gitlab &amp; OKR 进行项目管理》（2023），关注需求如何进入流程。缺陷修复同样需要留下记录：问题如何复现，方案如何比较，测试如何确认。AI 参与后，记录范围应当扩大。</p>
+<p><span class="hl">模型可以参与生成代码，提交者不能外包解释责任。</span></p>
+<p>开源项目还多一层问题。许可证允许使用，并不等于社区接受相关训练数据、生成代码或项目立场。Issue、Pull Request 和发布说明，都应记录 AI 辅助的使用情况。</p>
+<h2 id="开源治理需要留下可追溯的痕迹"><a class="markdownIt-Anchor" href="#开源治理需要留下可追溯的痕迹"></a> 开源治理需要留下可追溯的痕迹</h2>
+<p>全面禁止会促使开发者隐瞒。完全放任又会让用户失去判断依据。更稳妥的办法，是公开使用范围，同时让关键环节由人负责。</p>
+<p>开源仓库可以要求提交者标注 AI 辅助类型。核心架构、安全改动和许可证相关内容，需要明确的人工确认。发布说明可以说明哪些环节使用过模型辅助。</p>
+<p>这些措施会增加一点工作，却比事后争论“到底用了多少”更可靠。治理也不能只看最终代码大小。少量代码同样可能改动关键逻辑。</p>
+<p>我仍在犹豫政策应落在项目、基金会还是发行平台。按项目自治最尊重维护者，却容易形成参差标准。按平台统一执行能减少发行差异，也可能越界干预创作。</p>
+<blockquote>
+<p>同一句“AI 帮助修 Bug”，放在个人工具和 Steam 商店里，需要接受完全相同的审查吗？</p>
+</blockquote>
+<p>政策至少应明确谁有披露义务、谁审查记录、谁处理违规。责任主体若不清晰，规则很容易停留在声明层面。</p>
+<h2 id="结尾"><a class="markdownIt-Anchor" href="#结尾"></a> 结尾</h2>
+<p>AI 修 Bug 的可用性，最终要由责任链是否清楚来检验。工具能给出代码，人仍要判断能否合入。</p>
+<p>我把《AI 代理订餐的关键是交易闭环而非搜索能力》（2026-10-31）里那个判断借过来：搜索结果离真实交易，还差一次负责人的确认。修 Bug 也一样。模型给出方案只是搜索，代码进入产品才是交易。</p>
+<p>到 2026 年 11 月 13 日，我仍没想清楚开源社区该由谁制定统一尺度。也许下一步不该先争论禁令，而应让每个项目先回答：这段代码为何这样改，测试覆盖了什么，出了错找谁。</p>
+<p>读者会接受怎样的披露方式？完整日志、指定字段，还是只公开关键改动？</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
       </tags>
   </entry>
 </search>
