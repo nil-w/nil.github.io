@@ -6,7 +6,7 @@
   <link href="https://nilw.rm-rf.ink/atom.xml" rel="self"/>
   
   <link href="https://nilw.rm-rf.ink/"/>
-  <updated>2026-11-13T01:00:00.000Z</updated>
+  <updated>2026-11-14T01:00:00.000Z</updated>
   <id>https://nilw.rm-rf.ink/</id>
   
   <author>
@@ -15,6 +15,48 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>FAA全国停飞揭示航空系统韧性缺口</title>
+    <link href="https://nilw.rm-rf.ink/%E6%8A%80%E6%9C%AF/f56de167.html"/>
+    <id>https://nilw.rm-rf.ink/%E6%8A%80%E6%9C%AF/f56de167.html</id>
+    <published>2026-11-14T01:00:00.000Z</published>
+    <updated>2026-11-14T01:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="停飞暴露的是系统冗余问题"><a class="markdownIt-Anchor" href="#停飞暴露的是系统冗余问题"></a> 停飞暴露的是系统冗余问题</h2><p>全国停飞的影响，不止于航班取消。</p><p>我最初把它理解成一次临时管制：通信或导航系统出故障，维修完成后恢复运行。这个判断太简单。空域停用牵涉空管、机场、航空公司和旅客，任何一环恢复得不一致，局部恢复也难形成运力。</p><p>RSS 原始摘要指向 grounds.top，评论数为 0，Points 6。这个热度本身说明信息很少。缺乏公开细节时，我无法断言故障究竟出在哪套系统，也无法列出受影响机场。</p><p>但可以确认一点：<span class="hl">一次局部异常能够放大成全国级中断，说明系统缺少足够清晰的降级边界。</span> 如果只有单个节点故障，调度本应绕开它。真正昂贵的部分，是故障范围无法快速确认，影响无法立即隔离。</p><p>这也是航空系统与普通软件系统最不一样的地方。网站报错，用户可以刷新。飞行器进入错误的空域状态，后果不会因此重来。</p><blockquote><p>公开摘要只留下 50491545 这个条目编号和 6 个 Points。没有更细的故障记录，结论就只能停在系统边界这一层。</p></blockquote><h2 id="影响来自无法压缩的等待链条"><a class="markdownIt-Anchor" href="#影响来自无法压缩的等待链条"></a> 影响来自无法压缩的等待链条</h2><p>航班取消只是最先出现的数字。它后面还有机组重新排班、飞机调回、旅客改签、行李重新装载，以及机场时刻表重排。</p><p>我以前写权限管理、流程引擎和 WBS 时，很容易把系统看成节点与状态。停飞提醒我，航空运行不能只按流程图计算。每个状态转换都需要真实资源，而且这些资源有位置、时间与冲突关系。</p><p>比如，飞机抵达原机场后，如果旅客改签到另一座机场，重新起飞的时点可能受机组休息、航路容量和地面保障共同限制。系统给出一个“可执行”结果，不代表现场有足够条件执行。</p><p>这里也涉及美国基础设施的地域尺度。USPS 的寄送说明中出现了 48 states，所指是美国本土 48 个州。它不能直接说明航空网络怎样运行，却能提供一个尺度：跨州运输面对的并非单一城市系统。</p><blockquote><p>一架飞机可以飞得很快，等待却不能被压缩。航班表上的 1 小时延误，可能牵动数小时的后续安排。</p></blockquote><p>我仍然没搞清停飞持续了多久，也无法判断系统真正恢复时是否已有航班按原计划放行。缺少时间线和受令范围，评估损失会偏向印象，而非可核验的结果。</p><h2 id="预警应先回答恢复边界"><a class="markdownIt-Anchor" href="#预警应先回答恢复边界"></a> 预警应先回答恢复边界</h2><p>航空预警最有价值的部分，不是更早说“可能停飞”，而是说明哪些服务会继续、哪些会暂停，以及恢复需要满足什么条件。</p><p>这和我做 Hermes Agent 时面对的问题相似。外部服务失效后，系统需要明确降级方式。记忆召回命中率约 9%，这个已知痛点限制了 mem-md 的实用性。若没有清晰标记哪部分结果可信，调用者会把所有输出当成同等可靠。</p><p>空管系统也需要同一种边界标记。故障节点尚未确认时，应按已知受影响范围限流；确认后，再逐步恢复容量。每个阶段都要有可核对的指标：通信状态、导航可用性、空域分配结果，以及机场实际放行能力。</p><p>我关注预警机制，是因为公众通常只拿到“全面停飞”这一层信息。它足以解释不便，却不足以帮助各环节准备。航空公司需要知道降级规则，空管需要划定限制区，旅客需要知道何时可以重订。</p><p><span class="hl">有效预警应提供可执行的分区、降级路径和恢复条件，不能只给一个笼统的停飞标签。</span> 这套原则也适用于任何跨地区基础设施。</p><p>RSS 页面还列出 Comments URL，对应新闻条目 50491545。评论为 0，说明这个来源尚未形成可供交叉核验的讨论。技术文章最怕把沉默当成共识。</p><p>下一次系统异常发生时，我更想看到四类信息：故障起点、隔离进度、恢复门槛和未解决风险。它们比一句“已恢复”更能检验韧性。</p>]]></content>
+    
+    
+    <summary type="html">停飞暴露的是系统冗余问题 全国停飞的影响，不止于航班取消。 我最初把它理解成一次临时管制：通信或导航系统出故障，维修完成后恢复运行。这个判断太简单。空域停用牵涉空管、机场、航空公司和旅客，任何一环恢复得不一致，局部恢复也难形成运力。 RSS 原始摘要指向 grounds.top，评论数为 0，Points 6。</summary>
+    
+    
+    
+    <category term="技术" scheme="https://nilw.rm-rf.ink/categories/%E6%8A%80%E6%9C%AF/"/>
+    
+    
+    <category term="技术" scheme="https://nilw.rm-rf.ink/tags/%E6%8A%80%E6%9C%AF/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>AI并未自主发现未知玛雅遗址</title>
+    <link href="https://nilw.rm-rf.ink/AI/cd6c819c.html"/>
+    <id>https://nilw.rm-rf.ink/AI/cd6c819c.html</id>
+    <published>2026-11-14T01:00:00.000Z</published>
+    <updated>2026-11-14T01:00:00.000Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="这次发现已经有论文在先"><a class="markdownIt-Anchor" href="#这次发现已经有论文在先"></a> 这次“发现”，已经有论文在先</h2><p>AI 智能体发现未知玛雅遗址，这个标题很抓人。Pietro Miotti 也确实在自己的博客里写得很兴奋：团队里的智能体找到许多村落，以及看起来像房屋或建筑的规则形状。</p><p>但关键事实紧跟着出现了：所谓“尚未绘制”的遗址，已经在去年发表过学术论文。换句话说，智能体找到的并非一个学界完全不知道的新地点，而是一个已被记录、尚未被公众充分注意的地点。</p><p>我看到这段时，第一反应不是“AI 真神了”。更直接的问题是：<span class="hl">一个发现是否成立，要看它相对已有知识增加了什么。</span></p><p>这个判断对智能体、考古项目，甚至我正在做的一人公司都适用。漂亮的截图、密集的任务日志和“发现了大量目标”，只能证明系统处理了很多信息。它们无法单独证明这些信息是新知识。</p><blockquote><p>地点早已被发表，论文就在那里。新的只是发现者的无知，以及叙事的发布时间。</p></blockquote><h2 id="智能体的价值在缩小搜索范围"><a class="markdownIt-Anchor" href="#智能体的价值在缩小搜索范围"></a> 智能体的价值在缩小搜索范围</h2><p>我并不想因此否定 AI 辅助考古。遥感影像、形状识别和大规模筛查，本来就适合交给计算系统。人在有限时间里不可能逐张检查所有影像，模型可以先圈出可疑区域，再让考古学家核对。</p><p>真正有价值的流程应该是：模型提出候选地点，研究人员查文献、现场记录和已有数据库，最后由能够承担责任的人确认结论。Pietro Miotti 这次的问题，恰恰发生在最后确认之前。</p><p>这也让我想到 Hermes Atlas 知识库。我做它的目标之一，就是让信息差更容易被调用：先找到人们已经在寻找、购买或讨论的东西，再判断它是否值得包装成产品。但到 2026 年，我卡住的三个问题仍然没解决：解决什么问题、谁付钱、怎么收钱。</p><p><span class="hl">能找到一个看起来有价值的线索，不等于找到了一个可交付、可收费、可持续的发现。</span></p><p>如果只按“模型发现了多少个形状”汇报，项目很容易显得成功。可一旦追问这些形状有多少进入了论文，有多少能被复核，有多少产生了后续行动，答案马上会变得克制。</p><blockquote><p>搜索范围扩大，不等于知识边界向外移动。候选点增加，也不等于有效发现增加。</p></blockquote><h2 id="商业叙事会替证据补全"><a class="markdownIt-Anchor" href="#商业叙事会替证据补全"></a> 商业叙事会替证据补全</h2><p>这次事件还暴露出另一个问题：科学发现与商业传播使用几乎相同的语言。</p><p>“智能体自主发现遗址”有传播力。它把复杂流程压缩成一句话：AI 睡了一觉，醒来后发现了人类没找到的东西。技术演示喜欢这种结构，读者也容易记住。可“自主”这个词一旦被放进标题，谁负责检查既有文献、谁判断模型是否理解遗址、谁承担误报成本，往往就消失了。</p><p>我写博客已经 8 年多。2018 年开始写，到现在有 216 个 Markdown 文件，其中 60 个是小说。写到 2026 年，我反而更警惕“看起来很厉害”的故事。博客里已有自建的 AI 味检测器，也有 Writing DNA 蒸馏工具。它们能处理措辞，却不能替我核实事实。</p><p>商业上同样如此。我现在推的方向是信息差套利，但信息差并非越快发布越好。若发布者没有独家来源、验证过程和交付能力，所谓“发现”很快会变成人人都能复制的标题。</p><blockquote><p>“AI 发现了”回答了谁在做；“人类因此多知道了什么”才回答价值。</p></blockquote><p>一项智能体研究真正值得讨论的指标，可能不是候选点数量，也不是地图上出现了多少标记，而是其中多少经得起文献与专业复核。这个事件里，已经有论文在先。它没有制造未知遗址，却让我们看清了未知常怎样被包装成新闻。</p><p>我到现在也没想明白，公众为什么更愿意接受“AI 独自醒来并发现秘密”这样的故事。也许因为这种故事省去了检索、争论和责任，也因为我们既期待机器超越人类，又不愿真正审查它做出的判断。</p><p>下一次看到“智能体发现”四个字，我准备先问三个问题：它发现了什么，相对已有研究新增了什么，又由谁完成验证？这三个问题也许不够有传播力，却足以决定一个发现究竟属于科学，还是属于营销。</p>]]></content>
+    
+    
+    <summary type="html">这次“发现”，已经有论文在先 AI 智能体发现未知玛雅遗址，这个标题很抓人。Pietro Miotti 也确实在自己的博客里写得很兴奋：团队里的智能体找到许多村落，以及看起来像房屋或建筑的规则形状。 但关键事实紧跟着出现了：所谓“尚未绘制”的遗址，已经在去年发表过学术论文。</summary>
+    
+    
+    
+    <category term="AI" scheme="https://nilw.rm-rf.ink/categories/AI/"/>
+    
+    
+    <category term="AI" scheme="https://nilw.rm-rf.ink/tags/AI/"/>
+    
+  </entry>
   
   <entry>
     <title>所有客户凭据与代币被盗，暴露的是加密钱包的系统性信任危机</title>
@@ -432,60 +474,6 @@
     
     
     <summary type="html">先说一个容易被忽略的事实：模型的整个世界，从头到尾只有一串数字。</summary>
-    
-    
-    
-    <category term="AI" scheme="https://nilw.rm-rf.ink/categories/AI/"/>
-    
-    
-    <category term="大模型" scheme="https://nilw.rm-rf.ink/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
-    
-    <category term="科普" scheme="https://nilw.rm-rf.ink/tags/%E7%A7%91%E6%99%AE/"/>
-    
-    <category term="系列" scheme="https://nilw.rm-rf.ink/tags/%E7%B3%BB%E5%88%97/"/>
-    
-    <category term="大模型入门" scheme="https://nilw.rm-rf.ink/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%85%A5%E9%97%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>大模型入门 07｜量化与端侧推理</title>
-    <link href="https://nilw.rm-rf.ink/AI/llm101-07.html"/>
-    <id>https://nilw.rm-rf.ink/AI/llm101-07.html</id>
-    <published>2026-11-10T03:07:00.000Z</published>
-    <updated>2026-11-10T03:07:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote><p><strong>大模型入门系列</strong> · 共 14 集 · 本集为第 7 集<br />上一集：<a href="/AI/llm101-06.html">六、Token 与账单</a> ｜ 下一集：<a href="/AI/llm101-08.html">八、多模态</a> ｜ <a href="/AI/7b3f9a21.html">系列总览</a></p></blockquote><p><img src="/images/llm-101/llm-quantization.png" alt="llm-quantization" /></p><iframe src="/slide/llm-quantization.html" style="width:100%;height:520px;border:0;border-radius:8px" loading="lazy" allowfullscreen></iframe><p>一个几百亿参数的模型，怎么塞进一台手机？三件事合起来：把每个数字压窄、少读内存所以快、最后装进设备。这三件事合起来叫量化（Quantization）。</p><p>先算一笔账，公式只有一条：模型大小等于参数个数乘每个参数占几个字节。FP32 是四字节，每个数三十二位，最精确也最占地方；FP16 是两字节，半精度，训练后的默认体重；INT8 是一字节，只用两百五十六个整数档位；INT4 是零点五字节，只剩十六个档位，手机上跑得动。</p><p>代进 7B 模型：FP16 大约十四 GB，INT8 大约七 GB，INT4 大约三点五 GB。而手机可用内存大约四 GB，笔记本十六 GB。结论立刻清楚：要上手机，必须走到 4bit。</p><blockquote><p><strong>原来如此</strong>：量化不改架构、不加参数，只是把每个数的写法从 32 位砍到 4 位——同一张成绩单换个写法。</p></blockquote><h3 id="量化到底动了什么"><a class="markdownIt-Anchor" href="#量化到底动了什么"></a> 量化到底动了什么</h3><p>把一把刻度极细的尺子，换成一把刻度很粗的尺子。连续值想多细就多细；FP16 有六万五千多档；INT4 只剩十六档。</p><p>刻度少了，相邻两个数会被压成同一个格子，这就是精度损失。做法是引入一个缩放因子：scale 等于最大值减最小值，除以二的位数次方减一。所有数先除以这个 scale，四舍五入成整数存起来，用时再乘回去。一个缩放因子，决定整组数的精度。</p><p>所以量化的核心问题从来不是「要不要量化」，而是「怎么分组」。这句话是整节的重点。</p><h3 id="直接一刀切会出事离群值"><a class="markdownIt-Anchor" href="#直接一刀切会出事离群值"></a> 直接一刀切会出事：离群值</h3><p>一组数里只要有一个离群值，其他全被它连累。</p><p>场景是这样：一整层权重大概率都在正负一之间，但有一个值是 15.8。如果整层共用一把尺子，缩放因子被拉到 0.124，其余三十一个数本来有两百五十六分之一的分辨率，现在只剩正负八个整数格——精度全毁，模型行为直接崩。</p><p>做法 A 是整层共用一把尺子，也就是上面这个悲剧。做法 B 是分组量化：每三十二个数一组，各用各的尺子。含离群值的那组保留 FP16，其余组正常量化，精度得以保住。</p><p>由此形成「三件套」：分组更细（三十二甚至十六个一组）；离群值单独留高精度；重要性高的层用更高位宽。这就是 Q4_K_M 里那两个字母的含义。</p><p>量化做得好不好，看的不是平均值，而是最差的那一组能到什么程度。所以工程上很少用整层量化，都是分组加混合精度。</p><h3 id="文件名里的密码"><a class="markdownIt-Anchor" href="#文件名里的密码"></a> 文件名里的密码</h3><p>下载模型时看到的 Q4_K_M，是三个信息压成四个字符。Q 表示量化过的，4 表示每个数四位，K 表示分组式量化，M 表示中等混合精度，即关键层混更高精度。</p><p>同样是 7B，不同量化的体积差别很大：Q2 系列压得最狠但损失明显，Q4 大约三点五到四 GB，Q8 接近七 GB。Q4 是社区公认的甜点——体积约三分之一，效果损失很小。这也解释了为什么本地部署的默认推荐永远是 Q4_K_M 而不是更小的 Q2。</p><p>至于怎么跑起来：GGUF 就是一个「打包格式」，把权重、元数据、分词器打成一个包，谁都能读。端侧生态能起来，靠的就是这个格式统一——手机 App、桌面端、嵌入式，同一个文件到处能跑。</p><h3 id="速度够用就行"><a class="markdownIt-Anchor" href="#速度够用就行"></a> 速度：够用就行</h3><p>衡量体验只有一个指标：每秒吐几个字。云端 70B 级能力最强，但要联网、要付 token 费。笔记本上的 7B Q4，M 系列芯片或独显，日常够用、离线可用，速度大致在每秒十几到几十个 token。手机上的 3B 到 4B 走 NPU，大约刚好赶上人的阅读速度，低端机跑更小的模型反而快，但脑子简单。</p><p>人类阅读大约每秒八个字，超过八到十个 token 每秒，人就不觉得卡了。所以端侧小模型的速度焦虑，大半是心理焦虑——真正让人不满的不是速度，是答得不对。</p><h3 id="量化还买了一张门票硬件加速"><a class="markdownIt-Anchor" href="#量化还买了一张门票硬件加速"></a> 量化还买了一张门票：硬件加速</h3><p>手机里真正干活的不是 CPU。CPU 什么都能算，但慢、费电；GPU 并行算力强，快但很费电；NPU 专为神经网络设计，最快最省电，但它只认整数。</p><p>所以模型必须被量化成整数，才能被 NPU 接住。这就是量化的第二个好处，常被忽略，但它才是端侧体验的分水岭：省内存让你装得下，能上 NPU 让速度和功耗直接降一个数量级。各家手机的加速入口不同，高通有 QNN、华为有 CANN、苹果有 Core ML，但共同前提都是整数化。</p><h3 id="内存墙账还没算完"><a class="markdownIt-Anchor" href="#内存墙账还没算完"></a> 内存墙：账还没算完</h3><p>权重只是入场费，运行时还要租两间房。</p><p>第一间是模型权重，7B 乘 4bit，约三点五 GB，固定不变，跟着模型走。第二间是 KV cache，上下文 4K 时的对话记忆，随上下文长度线性增长——聊得越久越吃内存。第三间是运行时开销，中间结果加框架自身，也要占一份。</p><p>三者加起来就是内存墙。虚线是手机可用内存上限约四 GB。所以手机上跑 7B 要么缩上下文，要么继续降到 3B。标称四 GB 的模型，真正跑起来通常要六 GB 以上。决定端侧能不能跑的，不是「模型多大」，是三者加起来多大。</p><h3 id="端侧还是云五个约束的权衡"><a class="markdownIt-Anchor" href="#端侧还是云五个约束的权衡"></a> 端侧还是云：五个约束的权衡</h3><p>这不是技术偏好问题。端侧赢在：数据不出设备、飞机上也能用、没有网络往返、不按 token 付费。云赢在：大模型才够聪明、数据要上传、断网即失效、一段网络往返、每千 token 计费、最大最强。</p><p>实际产品的答案是混合：端侧小模型先接住敏感信息、简单任务、离线场景；加一个路由判断；不确定或需要推理的再上云；云端兜底复杂任务和需要最新知识的请求。端侧不是云的替代品，是云的前置过滤器——九成的简单请求在设备上就消化掉了。</p><p>量化不是「廉价版模型」，它是让模型离开机房、走进日常设备的那一步。体积、精度、速度三者之间那条线，就是工程经验。</p><hr /><blockquote><p>上一集：<a href="/AI/llm101-06.html">六、Token 与账单</a> ｜ 下一集：<a href="/AI/llm101-08.html">八、多模态</a> ｜ <a href="/AI/7b3f9a21.html">系列总览</a></p></blockquote>]]></content>
-    
-    
-    <summary type="html">一个几百亿参数的模型，怎么塞进一台手机？三件事合起来：把每个数字压窄、少读内存所以快、最后装进设备。</summary>
-    
-    
-    
-    <category term="AI" scheme="https://nilw.rm-rf.ink/categories/AI/"/>
-    
-    
-    <category term="大模型" scheme="https://nilw.rm-rf.ink/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B/"/>
-    
-    <category term="科普" scheme="https://nilw.rm-rf.ink/tags/%E7%A7%91%E6%99%AE/"/>
-    
-    <category term="系列" scheme="https://nilw.rm-rf.ink/tags/%E7%B3%BB%E5%88%97/"/>
-    
-    <category term="大模型入门" scheme="https://nilw.rm-rf.ink/tags/%E5%A4%A7%E6%A8%A1%E5%9E%8B%E5%85%A5%E9%97%A8/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>大模型入门 06｜Token 与账单</title>
-    <link href="https://nilw.rm-rf.ink/AI/llm101-06.html"/>
-    <id>https://nilw.rm-rf.ink/AI/llm101-06.html</id>
-    <published>2026-11-10T03:06:00.000Z</published>
-    <updated>2026-11-10T03:06:00.000Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote><p><strong>大模型入门系列</strong> · 共 14 集 · 本集为第 6 集<br />上一集：<a href="/AI/llm101-05.html">五、微调</a> ｜ 下一集：<a href="/AI/llm101-07.html">七、量化与端侧推理</a> ｜ <a href="/AI/7b3f9a21.html">系列总览</a></p></blockquote><p><img src="/images/llm-101/llm-token-cost.png" alt="llm-token-cost" /></p><iframe src="/slide/llm-token-cost.html" style="width:100%;height:520px;border:0;border-radius:8px" loading="lazy" allowfullscreen></iframe><p>账单为什么会这么高？三句话能解释八成的话费：输出比输入贵三到五倍；缓存命中能打到骨折；多轮工具调用在放大总输入。这三条都不涉及单价谈判，全是结构问题，而结构是你自己设计的。</p><p>第一个误区是 Token 不等于字数。它不是按字切，是按子词切。一句「请问这个订单什么时候发货」，大约六到九个 token，大致一个字等于一点几 token；纯英文大约四字符一个 token；而一段二十三字符的混合串可能被切成八个 token——符号和数字最费。按字数估 token，会差出一倍以上。中文、英文、代码、JSON、日志，同样长度花的钱完全不同。</p><p>准确估算法只有一个：用官方 tokenizer 实测，别用字数除以二。这一步省下的都是真金白银，因为它决定了你后面所有预算判断是否成立。</p><h3 id="一张账单其实是四档不同的价"><a class="markdownIt-Anchor" href="#一张账单其实是四档不同的价"></a> 一张账单其实是四档不同的价</h3><p>把输入价记为 1，相对关系大体如下。普通输入是你发给它的所有内容。缓存命中是前缀和上次完全一样时直接复用算过的结果，价格大约是十分之一。缓存写入是第一次建立缓存，比正常输入还贵一点。输出是它生成的每一个字，包括思考过程，价格是三到五倍。</p><p>记住这组比例就够了：输出一个字的钱，够你输入十个字。所以「限制输出长度」是最直接的省钱操作，比任何单价优化都立竿见影。</p><h3 id="为什么输出贵四倍"><a class="markdownIt-Anchor" href="#为什么输出贵四倍"></a> 为什么输出贵四倍</h3><p>因为它是「一个一个蹦出来的」。同样一千个 token，输入和输出的计算方式完全不同。输入是一次前向全部算完，GPU 并行吃满，效率极高，耗时大致一个单位。输出是每生成一个字都要跑一次完整前向，而且必须等上一个出来才能算下一个，一千字就是一千个单位。</p><p>所以输入是并行的，输出是串行的。贵的那部分，买的是串行的算力时间，不是 token 的「信息量」。推论很反直觉：让模型「少想一点再答」并不会省钱，因为思考 token 也按输出算价，嘴上省了，账上没省。</p><h3 id="最被低估的一档缓存命中"><a class="markdownIt-Anchor" href="#最被低估的一档缓存命中"></a> 最被低估的一档：缓存命中</h3><p>同样是发一段系统提示词，第二次发的时候可能便宜十倍。</p><p>算一笔：不开缓存，两千 token 乘 1.0，等于两千单位。开缓存且前缀没变，两百 token 乘 1.0 加一千八百 token 乘 0.1，等于三百八十单位。差了五倍多。</p><p>命中条件很苛刻：前缀一个字都不能变；必须放在最前面；中间不能插时间戳、随机 ID。三个常见破坏源：系统提示里写了「当前时间」；每轮都重新生成工具列表；提示词拼接顺序每次不同。修法只有一条：不变的放前面，会变的放后面。这是投入产出比最高的一次重构。</p><h3 id="真正的成本黑洞多轮工具调用"><a class="markdownIt-Anchor" href="#真正的成本黑洞多轮工具调用"></a> 真正的成本黑洞：多轮工具调用</h3><p>模型是无状态的，每一轮它都要把前面所有内容重新发一遍。</p><p>第 1 轮，系统提示 500 加用户 50。第 2 轮，加上次回复 80 加工具结果 200。第 3 轮，再加上次回复 80 加工具结果 300。第 4 轮，再加 80 加 250。结果四轮任务，输入成本是单次发送的 7.5 倍，而真实情况更糟：一个 Agent 任务十五到三十轮是常态，每轮都在为全部历史付费，输入 token 线性累加，总成本按三角形增长。</p><p>所以省钱的第一刀，永远砍在「塞进上下文的工具结果」。把工具返回的整个 JSON 原样塞进去，是新手最贵的习惯。只留用得上的字段——这一刀通常能砍掉三到五成输入。</p><h3 id="把它算成一道公式"><a class="markdownIt-Anchor" href="#把它算成一道公式"></a> 把它算成一道公式</h3><p>单次任务成本等于每轮输入 token 乘输入价之和，加上每轮输出 token 乘输出价之和。不用记单价，记住这个结构就够了。</p><p>代入一个中等规模的 Agent 任务：输入合计 6000 单位，输出合计 3200 单位，总计 9200 单位。注意分布——输出只占 token 数的百分之十二，却吃掉了百分之三十五的钱。</p><p>结论：想省大钱，改结构；想省小钱，改措辞。上线前先用 tokenizer 量一遍典型任务的 token 数，乘以单价。很多项目不是被模型能力卡住的，是被第一次月度账单卡住的。</p><h3 id="六个开关按性价比排序"><a class="markdownIt-Anchor" href="#六个开关按性价比排序"></a> 六个开关，按性价比排序</h3><p>提示词缓存：把系统提示固定放最前，别掺变量。限制输出：设 max_tokens，明确要求简洁、不要复述。工具结果裁剪：只回传需要的字段。模型路由：简单任务给小模型，难的才给大模型。上下文压缩：历史太长就总结，别硬塞。批处理接口：非实时的活攒起来走离线队列。至于流式输出，它不是省钱手段，只是体感手段，下一节还会再提。</p><p>优先级很简单：先动上下文，再动轮数，最后才考虑换供应商。</p><h3 id="便宜模型不一定便宜"><a class="markdownIt-Anchor" href="#便宜模型不一定便宜"></a> 便宜模型不一定便宜</h3><p>看的是「完成一件事的总成本」，不是「名义单价」。</p><p>一个小模型标价确实只有十分之一，但基础单价要乘上步数变多（三倍）、输出更啰嗦（一点五倍）、失败重试的损耗——实际总成本可能只是便宜了四分之三，而大模型两步搞定、一次就对。</p><p>所以正确做法是路由，不是全用便宜模型。让大模型反复救小模型的场，是账单上最难看的一种。还有一笔隐性成本别忘：失败任务要有人兜底，人工一分钟，比几万 token 贵得多。</p><blockquote><p><strong>原来如此</strong>：成本是设计出来的，不是省出来的。上线前算一遍，比上线后砍一半容易得多。</p></blockquote><hr /><blockquote><p>上一集：<a href="/AI/llm101-05.html">五、微调</a> ｜ 下一集：<a href="/AI/llm101-07.html">七、量化与端侧推理</a> ｜ <a href="/AI/7b3f9a21.html">系列总览</a></p></blockquote>]]></content>
-    
-    
-    <summary type="html">账单为什么会这么高？三句话能解释八成的话费：输出比输入贵三到五倍；缓存命中能打到骨折；多轮工具调用在放大总输入。</summary>
     
     
     
