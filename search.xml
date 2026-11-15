@@ -225,6 +225,39 @@
       </tags>
   </entry>
   <entry>
+    <title>一次gogs采坑之旅</title>
+    <url>/%E6%9C%8D%E5%8A%A1%E5%99%A8/53577de6.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>一定要按照操作步骤走</p>
+<span id="more"></span>
+<p>1.创建用户，一定要记住密码</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo adduser git</span><br><span class="line">su git</span><br><span class="line">cd ~</span><br></pre></td></tr></table></figure>
+<p>2.下载并解压安装包</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget https://dl.gogs.io/0.11.43/gogs_0.11.43_linux_amd64.zip</span><br><span class="line">unzip gogs_0.11.43_linux_amd64.zip</span><br></pre></td></tr></table></figure>
+<p>3.拷贝启动项到系统下</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp /home/xx/gogs/scripts/init/debian/gogs /etc/init.d/</span><br><span class="line">chmod +x /etc/init.d/gogs</span><br></pre></td></tr></table></figure>
+<p>4.安装 mysql</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt install mysql-server</span><br><span class="line">mysql -u root -p &lt; /home/xx/gogs/scripts/mysql.sql</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mysql -u root -p</span><br><span class="line">&gt; # （输入密码）</span><br><span class="line">&gt; create user &#x27;gogs&#x27;@&#x27;localhost&#x27; identified by &#x27;密码&#x27;;</span><br><span class="line">&gt; grant all privileges on gogs.* to &#x27;gogs&#x27;@&#x27;localhost&#x27;;</span><br><span class="line">&gt; flush privileges;</span><br><span class="line">&gt; exit;</span><br></pre></td></tr></table></figure>
+<p>5.启动 gogs</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">service gogs start</span><br><span class="line">curl -I http://localhost:3000  =&gt; HTTP OK 200</span><br></pre></td></tr></table></figure>
+<p>6.nginx 配置</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">      listen       80;</span><br><span class="line">      server_name  www.example.com;</span><br><span class="line">      location / &#123;</span><br><span class="line">          proxy_pass http://localhost:3000/;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>7.访问 <a href="http://www.example.com/install">www.example.com/install</a> 进行初始化</p>
+<p>8.你可能遇到的问题</p>
+<p><a href="https://blog.csdn.net/u013710784/article/details/78778044">Gogs 与 Linux 主机共享 SSH22 端口</a></p>
+<p><a href="https://blog.csdn.net/bigsea622/article/details/53956786">装 Gogs 后 ssh 无法和远程登录同时使用的解决方案</a></p>
+]]></content>
+      <categories>
+        <category>服务器</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+        <tag>aliyun</tag>
+        <tag>阿里云</tag>
+        <tag>gogs</tag>
+        <tag>ubuntu 14.04</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>一次ios网页样式问题排查心路历程</title>
     <url>/css/8e7d0c8.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h4 id="我的开发环境macbook-pro-iphone手机端页面使用-vue-scss-本次出现的问题是一个-css-样式在-iphone-手机端无法正常显示"><a class="markdownIt-Anchor" href="#我的开发环境macbook-pro-iphone手机端页面使用-vue-scss-本次出现的问题是一个-css-样式在-iphone-手机端无法正常显示"></a> 我的开发环境：Macbook pro 、iphone,手机端页面使用 vue、scss。本次出现的问题是一个 css 样式在 iphone 手机端无法正常显示。</h4>
@@ -263,39 +296,6 @@
         <tag>ios</tag>
         <tag>macbook pro</tag>
         <tag>vue</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>一次gogs采坑之旅</title>
-    <url>/%E6%9C%8D%E5%8A%A1%E5%99%A8/53577de6.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>一定要按照操作步骤走</p>
-<span id="more"></span>
-<p>1.创建用户，一定要记住密码</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo adduser git</span><br><span class="line">su git</span><br><span class="line">cd ~</span><br></pre></td></tr></table></figure>
-<p>2.下载并解压安装包</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">wget https://dl.gogs.io/0.11.43/gogs_0.11.43_linux_amd64.zip</span><br><span class="line">unzip gogs_0.11.43_linux_amd64.zip</span><br></pre></td></tr></table></figure>
-<p>3.拷贝启动项到系统下</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cp /home/xx/gogs/scripts/init/debian/gogs /etc/init.d/</span><br><span class="line">chmod +x /etc/init.d/gogs</span><br></pre></td></tr></table></figure>
-<p>4.安装 mysql</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">apt update</span><br><span class="line">apt install mysql-server</span><br><span class="line">mysql -u root -p &lt; /home/xx/gogs/scripts/mysql.sql</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mysql -u root -p</span><br><span class="line">&gt; # （输入密码）</span><br><span class="line">&gt; create user &#x27;gogs&#x27;@&#x27;localhost&#x27; identified by &#x27;密码&#x27;;</span><br><span class="line">&gt; grant all privileges on gogs.* to &#x27;gogs&#x27;@&#x27;localhost&#x27;;</span><br><span class="line">&gt; flush privileges;</span><br><span class="line">&gt; exit;</span><br></pre></td></tr></table></figure>
-<p>5.启动 gogs</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">service gogs start</span><br><span class="line">curl -I http://localhost:3000  =&gt; HTTP OK 200</span><br></pre></td></tr></table></figure>
-<p>6.nginx 配置</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">      listen       80;</span><br><span class="line">      server_name  www.example.com;</span><br><span class="line">      location / &#123;</span><br><span class="line">          proxy_pass http://localhost:3000/;</span><br><span class="line">      &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>7.访问 <a href="http://www.example.com/install">www.example.com/install</a> 进行初始化</p>
-<p>8.你可能遇到的问题</p>
-<p><a href="https://blog.csdn.net/u013710784/article/details/78778044">Gogs 与 Linux 主机共享 SSH22 端口</a></p>
-<p><a href="https://blog.csdn.net/bigsea622/article/details/53956786">装 Gogs 后 ssh 无法和远程登录同时使用的解决方案</a></p>
-]]></content>
-      <categories>
-        <category>服务器</category>
-      </categories>
-      <tags>
-        <tag>git</tag>
-        <tag>aliyun</tag>
-        <tag>阿里云</tag>
-        <tag>gogs</tag>
-        <tag>ubuntu 14.04</tag>
       </tags>
   </entry>
   <entry>
@@ -463,6 +463,43 @@
       </tags>
   </entry>
   <entry>
+    <title>程序员数学1</title>
+    <url>/%E5%AD%A6%E4%B9%A0/2cd67ed1.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="学习列表"><a class="markdownIt-Anchor" href="#学习列表"></a> 学习列表:</h2>
+<span id="more"></span>
+<h3 id="2-进制"><a class="markdownIt-Anchor" href="#2-进制"></a> 2 进制:</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2503</span><br><span class="line">1251  余  1  ==&gt; 1</span><br><span class="line">625   余  1  ==&gt; 1</span><br><span class="line">312   余  1  ==&gt; 1</span><br><span class="line"></span><br><span class="line">156   余  0  ==&gt; 0</span><br><span class="line">78    余  0  ==&gt; 0</span><br><span class="line">39    余  0  ==&gt; 0</span><br><span class="line"></span><br><span class="line">19    余  1  ==&gt; 1</span><br><span class="line">9     余  1  ==&gt; 1</span><br><span class="line">4     余  1  ==&gt; 1</span><br><span class="line"></span><br><span class="line">2     余  0  ==&gt; 0</span><br><span class="line">1     余  0  ==&gt; 0</span><br><span class="line">0     余  1  ==&gt; 1</span><br><span class="line"></span><br><span class="line">111 000 111 001</span><br></pre></td></tr></table></figure>
+<h3 id="指数"><a class="markdownIt-Anchor" href="#指数"></a> 指数:</h3>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">10 ** 3 = 1000</span><br><span class="line">10 ** 2 = 100 	 (1000 * 1/10)</span><br><span class="line">10 ** 1 = 10  	 (100 * 1/10)</span><br><span class="line">10 ** 0 = ？ 	 (10 * 1/10)</span><br><span class="line">10 ** -1 = (1/10)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>指数每减 1，数字就变为原来的十分之一。</p>
+</blockquote>
+<blockquote>
+<h2 id="指数法则"><a class="markdownIt-Anchor" href="#指数法则"></a> 指数法则:</h2>
+</blockquote>
+<blockquote>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">N ** a + N ** b = N ** (a + b)      N &gt; 0</span><br></pre></td></tr></table></figure>
+</blockquote>
+<h2 id="0-所起的作用"><a class="markdownIt-Anchor" href="#0-所起的作用"></a> 0 所起的作用:</h2>
+<blockquote>
+<h3 id="0-的作用-占位"><a class="markdownIt-Anchor" href="#0-的作用-占位"></a> 0 的作用: 占位</h3>
+</blockquote>
+<blockquote>
+<p>​ 2503 中 0 如果省略，那就变成 253.数值放生了变化，所以 0 不能省略。</p>
+</blockquote>
+<blockquote>
+<h2 id=""><a class="markdownIt-Anchor" href="#"></a> </h2>
+</blockquote>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>数学</tag>
+        <tag>程序员</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>英语学习</title>
     <url>/%E5%AD%A6%E4%B9%A0/3f43dc72.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>App: <code>duolinguo(多邻国)</code></p>
@@ -562,41 +599,6 @@
       </tags>
   </entry>
   <entry>
-    <title>Cas Server 本地部署</title>
-    <url>/Cas/6e8cb24c.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="cas"><a class="markdownIt-Anchor" href="#cas"></a> Cas</h2>
-<blockquote>
-<p><strong><a href="https://github.com/apereo/cas">Cas</a></strong> 中心认证服务。Cas 是一种面向 Web 的企业级、多语言单点登录解决方案，它是满足身份验证和授权管理的综合平台</p>
-</blockquote>
-<span id="more"></span>
-<blockquote>
-<p>Cas 是一种开放优秀的身份验证协议。</p>
-</blockquote>
-<p><img src="https://user-images.githubusercontent.com/1205228/30969994-e2fe6bf0-a470-11e7-80f9-d54d1e4d348e.png" alt="1205228/30969994-e2fe6bf0-a470-11e7-80f9-d54d1e4d348e" /></p>
-<p>我在本地部署的是**<a href="https://github.com/apereo/cas-overlay-template">cas-overlay-template</a>** 分支 5.2</p>
-<h2 id="部署-cas-server"><a class="markdownIt-Anchor" href="#部署-cas-server"></a> 部署 Cas Server</h2>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/apereo/cas<span class="literal">-overlay-template</span>.git</span><br><span class="line"><span class="built_in">cd</span> cas<span class="literal">-overlay-template</span></span><br><span class="line">git checkout <span class="number">5.2</span></span><br><span class="line">mvn package //因为本地jdk1.<span class="number">8</span> <span class="number">5.2</span>版本支持</span><br><span class="line"></span><br><span class="line">mkdir <span class="literal">-p</span> src/main/resources</span><br><span class="line">mkdir <span class="literal">-p</span> src/main/resources/services</span><br><span class="line"><span class="built_in">cp</span> /target/cas/WEB<span class="literal">-INF</span>/classes/application.prpperties src/main/resources/application.prpperties</span><br><span class="line"><span class="built_in">cp</span> /target/cas/WEB<span class="literal">-INF</span>/classes/services/HTTPSandIMAPS<span class="literal">-10000001</span>.json src/main/resources/services/HTTPSandIMAPS<span class="literal">-10000001</span>.json</span><br></pre></td></tr></table></figure>
-<h4 id="applicationproperties"><a class="markdownIt-Anchor" href="#applicationproperties"></a> application.properties</h4>
-<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="comment"># CAS Server Context Configuration</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">server.context<span class="literal">-path</span>=/cas</span><br><span class="line">server.port=<span class="number">8443</span></span><br><span class="line"></span><br><span class="line">cas.tgc.secure=false</span><br><span class="line">cas.serviceRegistry.initFromJson=true</span><br><span class="line">server.ssl.enabled=false <span class="comment">#禁用https访问</span></span><br><span class="line"><span class="comment">#...省略</span></span><br><span class="line">cas.authn.accept.users=admin::admin <span class="comment">#静态访问用户名密码 admin/admin</span></span><br></pre></td></tr></table></figure>
-<h4 id="serviceshttpsandimaps-10000001json"><a class="markdownIt-Anchor" href="#serviceshttpsandimaps-10000001json"></a> services/HTTPSandIMAPS-10000001.json</h4>
-<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;@class&quot;</span><span class="punctuation">:</span> <span class="string">&quot;org.apereo.cas.services.RegexRegisteredService&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;serviceId&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^(https|imaps|http)://.*&quot;</span><span class="punctuation">,</span> <span class="comment">//增加http访问规则</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;HTTPS and IMAPS&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">10000001</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;This service definition authorizes all application urls that support HTTPS and IMAPS protocols.&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;evaluationOrder&quot;</span><span class="punctuation">:</span> <span class="number">10000</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
-<p>以上操作按照顺序执行</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./build.sh run</span><br></pre></td></tr></table></figure>
-<p>打开浏览器访问 <a href="http://cas.simple.org:8443/cas" target="_blank">http://cas.simple.org:8443/cas</a></p>
-<p>Cas Server 已经 setup 起来了。</p>
-<p>明天继续更新 Cas Client 与 Spring boot 集成，并实现 Cas Server 的用户存储数据库。</p>
-]]></content>
-      <categories>
-        <category>Cas</category>
-      </categories>
-      <tags>
-        <tag>spring boot</tag>
-        <tag>cas client</tag>
-        <tag>cas server</tag>
-        <tag>sso</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>nginx 负载均衡</title>
     <url>/nginx/59cc1bd2.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="nginx-是什么"><a class="markdownIt-Anchor" href="#nginx-是什么"></a> nginx 是什么？</h2>
@@ -647,40 +649,38 @@
       </tags>
   </entry>
   <entry>
-    <title>程序员数学1</title>
-    <url>/%E5%AD%A6%E4%B9%A0/2cd67ed1.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="学习列表"><a class="markdownIt-Anchor" href="#学习列表"></a> 学习列表:</h2>
+    <title>Cas Server 本地部署</title>
+    <url>/Cas/6e8cb24c.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="cas"><a class="markdownIt-Anchor" href="#cas"></a> Cas</h2>
+<blockquote>
+<p><strong><a href="https://github.com/apereo/cas">Cas</a></strong> 中心认证服务。Cas 是一种面向 Web 的企业级、多语言单点登录解决方案，它是满足身份验证和授权管理的综合平台</p>
+</blockquote>
 <span id="more"></span>
-<h3 id="2-进制"><a class="markdownIt-Anchor" href="#2-进制"></a> 2 进制:</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">2503</span><br><span class="line">1251  余  1  ==&gt; 1</span><br><span class="line">625   余  1  ==&gt; 1</span><br><span class="line">312   余  1  ==&gt; 1</span><br><span class="line"></span><br><span class="line">156   余  0  ==&gt; 0</span><br><span class="line">78    余  0  ==&gt; 0</span><br><span class="line">39    余  0  ==&gt; 0</span><br><span class="line"></span><br><span class="line">19    余  1  ==&gt; 1</span><br><span class="line">9     余  1  ==&gt; 1</span><br><span class="line">4     余  1  ==&gt; 1</span><br><span class="line"></span><br><span class="line">2     余  0  ==&gt; 0</span><br><span class="line">1     余  0  ==&gt; 0</span><br><span class="line">0     余  1  ==&gt; 1</span><br><span class="line"></span><br><span class="line">111 000 111 001</span><br></pre></td></tr></table></figure>
-<h3 id="指数"><a class="markdownIt-Anchor" href="#指数"></a> 指数:</h3>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">10 ** 3 = 1000</span><br><span class="line">10 ** 2 = 100 	 (1000 * 1/10)</span><br><span class="line">10 ** 1 = 10  	 (100 * 1/10)</span><br><span class="line">10 ** 0 = ？ 	 (10 * 1/10)</span><br><span class="line">10 ** -1 = (1/10)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
 <blockquote>
-<p>指数每减 1，数字就变为原来的十分之一。</p>
+<p>Cas 是一种开放优秀的身份验证协议。</p>
 </blockquote>
-<blockquote>
-<h2 id="指数法则"><a class="markdownIt-Anchor" href="#指数法则"></a> 指数法则:</h2>
-</blockquote>
-<blockquote>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">N ** a + N ** b = N ** (a + b)      N &gt; 0</span><br></pre></td></tr></table></figure>
-</blockquote>
-<h2 id="0-所起的作用"><a class="markdownIt-Anchor" href="#0-所起的作用"></a> 0 所起的作用:</h2>
-<blockquote>
-<h3 id="0-的作用-占位"><a class="markdownIt-Anchor" href="#0-的作用-占位"></a> 0 的作用: 占位</h3>
-</blockquote>
-<blockquote>
-<p>​ 2503 中 0 如果省略，那就变成 253.数值放生了变化，所以 0 不能省略。</p>
-</blockquote>
-<blockquote>
-<h2 id=""><a class="markdownIt-Anchor" href="#"></a> </h2>
-</blockquote>
+<p><img src="https://user-images.githubusercontent.com/1205228/30969994-e2fe6bf0-a470-11e7-80f9-d54d1e4d348e.png" alt="1205228/30969994-e2fe6bf0-a470-11e7-80f9-d54d1e4d348e" /></p>
+<p>我在本地部署的是**<a href="https://github.com/apereo/cas-overlay-template">cas-overlay-template</a>** 分支 5.2</p>
+<h2 id="部署-cas-server"><a class="markdownIt-Anchor" href="#部署-cas-server"></a> 部署 Cas Server</h2>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/apereo/cas<span class="literal">-overlay-template</span>.git</span><br><span class="line"><span class="built_in">cd</span> cas<span class="literal">-overlay-template</span></span><br><span class="line">git checkout <span class="number">5.2</span></span><br><span class="line">mvn package //因为本地jdk1.<span class="number">8</span> <span class="number">5.2</span>版本支持</span><br><span class="line"></span><br><span class="line">mkdir <span class="literal">-p</span> src/main/resources</span><br><span class="line">mkdir <span class="literal">-p</span> src/main/resources/services</span><br><span class="line"><span class="built_in">cp</span> /target/cas/WEB<span class="literal">-INF</span>/classes/application.prpperties src/main/resources/application.prpperties</span><br><span class="line"><span class="built_in">cp</span> /target/cas/WEB<span class="literal">-INF</span>/classes/services/HTTPSandIMAPS<span class="literal">-10000001</span>.json src/main/resources/services/HTTPSandIMAPS<span class="literal">-10000001</span>.json</span><br></pre></td></tr></table></figure>
+<h4 id="applicationproperties"><a class="markdownIt-Anchor" href="#applicationproperties"></a> application.properties</h4>
+<figure class="highlight powershell"><table><tr><td class="code"><pre><span class="line"><span class="comment">##</span></span><br><span class="line"><span class="comment"># CAS Server Context Configuration</span></span><br><span class="line"><span class="comment">#</span></span><br><span class="line">server.context<span class="literal">-path</span>=/cas</span><br><span class="line">server.port=<span class="number">8443</span></span><br><span class="line"></span><br><span class="line">cas.tgc.secure=false</span><br><span class="line">cas.serviceRegistry.initFromJson=true</span><br><span class="line">server.ssl.enabled=false <span class="comment">#禁用https访问</span></span><br><span class="line"><span class="comment">#...省略</span></span><br><span class="line">cas.authn.accept.users=admin::admin <span class="comment">#静态访问用户名密码 admin/admin</span></span><br></pre></td></tr></table></figure>
+<h4 id="serviceshttpsandimaps-10000001json"><a class="markdownIt-Anchor" href="#serviceshttpsandimaps-10000001json"></a> services/HTTPSandIMAPS-10000001.json</h4>
+<figure class="highlight json"><table><tr><td class="code"><pre><span class="line"><span class="punctuation">&#123;</span></span><br><span class="line">  <span class="attr">&quot;@class&quot;</span><span class="punctuation">:</span> <span class="string">&quot;org.apereo.cas.services.RegexRegisteredService&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;serviceId&quot;</span><span class="punctuation">:</span> <span class="string">&quot;^(https|imaps|http)://.*&quot;</span><span class="punctuation">,</span> <span class="comment">//增加http访问规则</span></span><br><span class="line">  <span class="attr">&quot;name&quot;</span><span class="punctuation">:</span> <span class="string">&quot;HTTPS and IMAPS&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;id&quot;</span><span class="punctuation">:</span> <span class="number">10000001</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;description&quot;</span><span class="punctuation">:</span> <span class="string">&quot;This service definition authorizes all application urls that support HTTPS and IMAPS protocols.&quot;</span><span class="punctuation">,</span></span><br><span class="line">  <span class="attr">&quot;evaluationOrder&quot;</span><span class="punctuation">:</span> <span class="number">10000</span></span><br><span class="line"><span class="punctuation">&#125;</span></span><br></pre></td></tr></table></figure>
+<p>以上操作按照顺序执行</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./build.sh run</span><br></pre></td></tr></table></figure>
+<p>打开浏览器访问 <a href="http://cas.simple.org:8443/cas" target="_blank">http://cas.simple.org:8443/cas</a></p>
+<p>Cas Server 已经 setup 起来了。</p>
+<p>明天继续更新 Cas Client 与 Spring boot 集成，并实现 Cas Server 的用户存储数据库。</p>
 ]]></content>
       <categories>
-        <category>学习</category>
+        <category>Cas</category>
       </categories>
       <tags>
-        <tag>数学</tag>
-        <tag>程序员</tag>
+        <tag>spring boot</tag>
+        <tag>cas client</tag>
+        <tag>cas server</tag>
+        <tag>sso</tag>
       </tags>
   </entry>
   <entry>
@@ -745,75 +745,6 @@
         <tag>点灯的人</tag>
         <tag>狐狸</tag>
         <tag>独一无二</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>路</title>
-    <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-        <div id="aplayer-PMaEIGPu" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
-            <pre class="aplayer-lrc-content"></pre>
-        </div>
-        <script>
-          var ap = new APlayer({
-            element: document.getElementById("aplayer-PMaEIGPu"),
-            narrow: false,
-            autoplay: true,
-            showlrc: false,
-            music: {
-              title: "The Lion Sleeps Tonight",
-              author: "The Tokens",
-              url: "/music/The Lion Sleeps Tonight.mp3",
-              pic: "",
-              lrc: ""
-            }
-          });
-          window.aplayers || (window.aplayers = []);
-          window.aplayers.push(ap);
-        </script>
-<span id="more"></span>
-<blockquote>
-<p>如果你能在下午四点来，那么在三点的时候，我就会开始感到幸福了。<br />
-                       --《小王子》</p>
-</blockquote>
-<p>  大多时候无法静下心来做好一件事，比如这篇拖了很多天的日志。还有每天早晨起床锻炼身体、按时喝水…</p>
-<!--more-->
-<p>  写这篇日志的想法来自于上周六，早饭后，和老婆商量着带孩子出去感受一下春暖花开，疫情持续了两个月的时间，也让小家伙待在家里两个月，不能见小朋友、不能去游乐场。以至于最近出门以后，小家伙变的很拘束、对外面的世界也很陌生。<br />
-​<br />
-  小家伙已经两岁三个月了，会背很多首唐诗。如果你剩饭剩菜的话，小家伙会说:“谁知盘中餐，粒粒皆辛苦。”。有次晚上和老婆带着小家伙出门散步，刮起一阵风，树上的叶子沙沙响，“夜来风雨声，花落知多少。”</p>
-<p>  一个周六的上午，坐在马桶上，熟练的掏出手机，开始搜索适合踏青的地方，<s>如意湖</s>、<s>森林公园</s>、<s>郑州之林</s>、最后我选了特别冷门的<a href="https://map.baidu.com/poi/%E9%BE%99%E6%B3%89%E6%B9%BF%E5%9C%B0%E5%85%AC%E5%9B%AD/@1264607135.35301,408408639.5094941,21z,87t#panoid=c3596d067083c715f90cad67&amp;panotype=inter&amp;heading=355&amp;pitch=0&amp;l=21&amp;tn=B_NORMAL_MAP&amp;sc=0&amp;newmap=1&amp;shareurl=1&amp;pid=1002890000150427124704361IN&amp;iid=c3596d067083c715f90cad67&amp;psp=%7B%22PanoIndoorPoiModule%22%3A%7B%22uid%22%3A%225b8c96862988758e2fb90853%22%7D%7D">龙泉湿地公园</a> ，然而这并没有结束，跑了将近 30 公里，去到的是一个荒废了的公园。也或者是因为长时间封闭状态，看起来很旧，基本没什么人来。让我满怀期待的出发，最终又满怀失望的回了家。</p>
-<p>  现在是周二的晚上08:20，小家伙下午没睡觉，早早的已经睡下了。我和老婆吃着火锅喝着啤酒，大聊人生。是这三年多以来，为数不多的能够静下心来一起吃饭畅谈人生，我们依然会充满希望.</p>
-<p>  人生难免会走上曲曲折折的道路，但是不要担心，这些路的那头一定会有美丽的风景。</p>
-<p>  路，是人走出来的。</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>生活</tag>
-        <tag>书</tag>
-        <tag>路</tag>
-        <tag>有趣</tag>
-        <tag>人生</tag>
-        <tag>春天</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>我们不像诗歌</title>
-    <url>/%E7%94%9F%E6%B4%BB/340466787.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
-<p>我们不像诗歌</p>
-<p> --才华横溢,</p>
-<p>我们拒绝押韵。</p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>少年</tag>
-        <tag>年轻</tag>
-        <tag>诗歌</tag>
       </tags>
   </entry>
   <entry>
@@ -940,6 +871,75 @@
       <tags>
         <tag>进制</tag>
         <tag>计数法</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>路</title>
+    <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
+        <div id="aplayer-sBnyMPjT" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+            <pre class="aplayer-lrc-content"></pre>
+        </div>
+        <script>
+          var ap = new APlayer({
+            element: document.getElementById("aplayer-sBnyMPjT"),
+            narrow: false,
+            autoplay: true,
+            showlrc: false,
+            music: {
+              title: "The Lion Sleeps Tonight",
+              author: "The Tokens",
+              url: "/music/The Lion Sleeps Tonight.mp3",
+              pic: "",
+              lrc: ""
+            }
+          });
+          window.aplayers || (window.aplayers = []);
+          window.aplayers.push(ap);
+        </script>
+<span id="more"></span>
+<blockquote>
+<p>如果你能在下午四点来，那么在三点的时候，我就会开始感到幸福了。<br />
+                       --《小王子》</p>
+</blockquote>
+<p>  大多时候无法静下心来做好一件事，比如这篇拖了很多天的日志。还有每天早晨起床锻炼身体、按时喝水…</p>
+<!--more-->
+<p>  写这篇日志的想法来自于上周六，早饭后，和老婆商量着带孩子出去感受一下春暖花开，疫情持续了两个月的时间，也让小家伙待在家里两个月，不能见小朋友、不能去游乐场。以至于最近出门以后，小家伙变的很拘束、对外面的世界也很陌生。<br />
+​<br />
+  小家伙已经两岁三个月了，会背很多首唐诗。如果你剩饭剩菜的话，小家伙会说:“谁知盘中餐，粒粒皆辛苦。”。有次晚上和老婆带着小家伙出门散步，刮起一阵风，树上的叶子沙沙响，“夜来风雨声，花落知多少。”</p>
+<p>  一个周六的上午，坐在马桶上，熟练的掏出手机，开始搜索适合踏青的地方，<s>如意湖</s>、<s>森林公园</s>、<s>郑州之林</s>、最后我选了特别冷门的<a href="https://map.baidu.com/poi/%E9%BE%99%E6%B3%89%E6%B9%BF%E5%9C%B0%E5%85%AC%E5%9B%AD/@1264607135.35301,408408639.5094941,21z,87t#panoid=c3596d067083c715f90cad67&amp;panotype=inter&amp;heading=355&amp;pitch=0&amp;l=21&amp;tn=B_NORMAL_MAP&amp;sc=0&amp;newmap=1&amp;shareurl=1&amp;pid=1002890000150427124704361IN&amp;iid=c3596d067083c715f90cad67&amp;psp=%7B%22PanoIndoorPoiModule%22%3A%7B%22uid%22%3A%225b8c96862988758e2fb90853%22%7D%7D">龙泉湿地公园</a> ，然而这并没有结束，跑了将近 30 公里，去到的是一个荒废了的公园。也或者是因为长时间封闭状态，看起来很旧，基本没什么人来。让我满怀期待的出发，最终又满怀失望的回了家。</p>
+<p>  现在是周二的晚上08:20，小家伙下午没睡觉，早早的已经睡下了。我和老婆吃着火锅喝着啤酒，大聊人生。是这三年多以来，为数不多的能够静下心来一起吃饭畅谈人生，我们依然会充满希望.</p>
+<p>  人生难免会走上曲曲折折的道路，但是不要担心，这些路的那头一定会有美丽的风景。</p>
+<p>  路，是人走出来的。</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>生活</tag>
+        <tag>书</tag>
+        <tag>路</tag>
+        <tag>有趣</tag>
+        <tag>人生</tag>
+        <tag>春天</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>我们不像诗歌</title>
+    <url>/%E7%94%9F%E6%B4%BB/340466787.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
+<p>我们不像诗歌</p>
+<p> --才华横溢,</p>
+<p>我们拒绝押韵。</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>少年</tag>
+        <tag>年轻</tag>
+        <tag>诗歌</tag>
       </tags>
   </entry>
   <entry>
@@ -3995,6 +3995,49 @@ ExcelUtil --> RecordHandler</pre>
       </tags>
   </entry>
   <entry>
+    <title>Transformer模型</title>
+    <url>/%E5%AD%A6%E4%B9%A0/e4b8a22b.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>  Transformer模型最早是由Google的研究团队在2017年提出的，并在论文《Attention is All You Need》<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> 中进行了详细的介绍。这个模型是为了解决自然语言处理（NLP）任务中的一些问题而设计的，特别是为了克服传统循环神经网络（RNN）和长短期记忆网络（LSTM）在处理长序列时的局限性，如梯度消失或梯度爆炸问题。</p>
+<p>  Transformer模型的核心思想是使用自注意力机制（Self-Attention Mechanism）来捕捉输入序列中的依赖关系。这种机制允许模型在处理每个输入元素时，都能够关注到输入序列中的所有其他元素，从而能够捕捉到更长的依赖关系。此外，Transformer模型还采用了位置编码（Positional Encoding）来弥补模型本身不具备处理序列顺序的能力。</p>
+<p>  Transformer模型由两部分组成：编码器（Encoder）和解码器（Decoder）。编码器负责将输入序列转换为一系列向量表示，而解码器则负责根据这些向量表示生成输出序列。这两部分都由多个相同的层堆叠而成，每一层都包含一个多头自注意力子层和一个简单的全连接前馈神经网络。</p>
+<p>  由于Transformer模型不依赖RNN的顺序结构，因此它可以实现高效的并行化训练，这使得它在处理大规模数据集时具有显著的优势。此外，Transformer模型的强大表示能力和灵活性使得它在多个NLP任务上都取得了显著的效果，成为了自然语言处理领域的一种主流模型。</p>
+<p>  总的来说，Transformer模型是Google研究团队在2017年提出的一种基于自注意力机制的深度学习模型，它的出现为自然语言处理领域的发展带来了革命性的突破。</p>
+<p>引用:</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><a href="https://zhuanlan.zhihu.com/p/647249972">Text-to-SQL小白入门（一）</a></p>
+</li>
+<li class="lvl-2">
+<p><a href="https://zhuanlan.zhihu.com/p/650407036">Text-to-SQL小白入门（二）</a></p>
+</li>
+</ul>
+<p>原论文:</p>
+
+
+	<div class="row">
+    <embed src="/images/1706.03762.pdf" width="100%" height="550" type="application/pdf">
+	</div>
+
+
+
+<hr class="footnotes-sep" />
+<section class="footnotes">
+<ol class="footnotes-list">
+<li id="fn1" class="footnote-item"><p>《Attention is All You Need》 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
+</li>
+</ol>
+</section>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>机器学习</tag>
+        <tag>NLP</tag>
+        <tag>text2sql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记6-《程序员的数学》按位计数法与指数法则</title>
     <url>/%E5%AD%A6%E4%B9%A0/d47b2e95.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="第一章-0-的故事按位计数法"><a class="markdownIt-Anchor" href="#第一章-0-的故事按位计数法"></a> 第一章 0 的故事–按位计数法</h2>
@@ -4156,49 +4199,6 @@ ExcelUtil --> RecordHandler</pre>
       <tags>
         <tag>进制</tag>
         <tag>数学</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Transformer模型</title>
-    <url>/%E5%AD%A6%E4%B9%A0/e4b8a22b.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>  Transformer模型最早是由Google的研究团队在2017年提出的，并在论文《Attention is All You Need》<sup class="footnote-ref"><a href="#fn1" id="fnref1">[1]</a></sup> 中进行了详细的介绍。这个模型是为了解决自然语言处理（NLP）任务中的一些问题而设计的，特别是为了克服传统循环神经网络（RNN）和长短期记忆网络（LSTM）在处理长序列时的局限性，如梯度消失或梯度爆炸问题。</p>
-<p>  Transformer模型的核心思想是使用自注意力机制（Self-Attention Mechanism）来捕捉输入序列中的依赖关系。这种机制允许模型在处理每个输入元素时，都能够关注到输入序列中的所有其他元素，从而能够捕捉到更长的依赖关系。此外，Transformer模型还采用了位置编码（Positional Encoding）来弥补模型本身不具备处理序列顺序的能力。</p>
-<p>  Transformer模型由两部分组成：编码器（Encoder）和解码器（Decoder）。编码器负责将输入序列转换为一系列向量表示，而解码器则负责根据这些向量表示生成输出序列。这两部分都由多个相同的层堆叠而成，每一层都包含一个多头自注意力子层和一个简单的全连接前馈神经网络。</p>
-<p>  由于Transformer模型不依赖RNN的顺序结构，因此它可以实现高效的并行化训练，这使得它在处理大规模数据集时具有显著的优势。此外，Transformer模型的强大表示能力和灵活性使得它在多个NLP任务上都取得了显著的效果，成为了自然语言处理领域的一种主流模型。</p>
-<p>  总的来说，Transformer模型是Google研究团队在2017年提出的一种基于自注意力机制的深度学习模型，它的出现为自然语言处理领域的发展带来了革命性的突破。</p>
-<p>引用:</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><a href="https://zhuanlan.zhihu.com/p/647249972">Text-to-SQL小白入门（一）</a></p>
-</li>
-<li class="lvl-2">
-<p><a href="https://zhuanlan.zhihu.com/p/650407036">Text-to-SQL小白入门（二）</a></p>
-</li>
-</ul>
-<p>原论文:</p>
-
-
-	<div class="row">
-    <embed src="/images/1706.03762.pdf" width="100%" height="550" type="application/pdf">
-	</div>
-
-
-
-<hr class="footnotes-sep" />
-<section class="footnotes">
-<ol class="footnotes-list">
-<li id="fn1" class="footnote-item"><p>《Attention is All You Need》 <a href="#fnref1" class="footnote-backref">↩︎</a></p>
-</li>
-</ol>
-</section>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>机器学习</tag>
-        <tag>NLP</tag>
-        <tag>text2sql</tag>
       </tags>
   </entry>
   <entry>
@@ -5750,6 +5750,26 @@ ExcelUtil --> RecordHandler</pre>
       </tags>
   </entry>
   <entry>
+    <title>rust-方法语法</title>
+    <url>/%E5%AD%A6%E4%B9%A0/d1274d86.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="方法语法"><a class="markdownIt-Anchor" href="#方法语法"></a> 方法语法</h2>
+<blockquote>
+<p><strong>方法</strong>（method）与函数类似：它们使用 <code>fn</code> 关键字和名称声明，可以拥有参数和返回值，同时包含在某处调用该方法时会执行的代码。不过方法与函数是不同的，因为它们在结构体的上下文中被定义（或者是枚举或 trait 对象的上下文，并且它们第一个参数总是 <code>self</code>，它代表调用该方法的结构体实例。</p>
+</blockquote>
+<h2 id="方法定义"><a class="markdownIt-Anchor" href="#方法定义"></a> 方法定义</h2>
+<p>使用<code>impl</code>块为结构定义方法；</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Rectangle</span> &#123;</span><br><span class="line">    width: <span class="type">u32</span>,</span><br><span class="line">    height: <span class="type">u32</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Rectangle</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">area</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> <span class="type">u32</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.width * <span class="keyword">self</span>.height</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  	<span class="keyword">fn</span> <span class="title function_">can_hold</span>(&amp;<span class="keyword">self</span>,target: &amp;Rectangle ) <span class="punctuation">-&gt;</span> <span class="type">bool</span> &#123;</span><br><span class="line">      <span class="keyword">self</span>.width &gt; target.width &amp;&amp; <span class="keyword">self</span>.height &gt; target.height</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  	<span class="comment">// 关联函数经常被用作返回一个结构体新实例的构造函数。</span></span><br><span class="line">  	<span class="comment">// 这些函数的名称通常为 new ，但 new 并不是一个关键字。</span></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">square</span>(size: <span class="type">u32</span>) <span class="punctuation">-&gt;</span> <span class="keyword">Self</span>&#123;</span><br><span class="line">        <span class="keyword">Self</span> &#123;</span><br><span class="line">            width: size,</span><br><span class="line">            height: size,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">rect</span> = Rectangle::<span class="title function_ invoke__">square</span>(<span class="number">30</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">rect1</span> = Rectangle &#123; width: <span class="number">10</span>, height: <span class="number">30</span> &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">rect2</span> = Rectangle &#123; width: <span class="number">60</span>, height: <span class="number">80</span> &#125;;</span><br><span class="line">    dbg!(&amp;rect);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;The area of the rectangle is &#123;&#125; square pixels.&quot;</span>, rect.<span class="title function_ invoke__">area</span>());</span><br><span class="line">  	<span class="built_in">println!</span>(<span class="string">&quot;Can rect hold rect1? &#123;&#125;&quot;</span>, rect.<span class="title function_ invoke__">can_hold</span>(&amp;rect1));</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Can rect hold rect2? &#123;&#125;&quot;</span>, rect.<span class="title function_ invoke__">can_hold</span>(&amp;rect2));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>rust</tag>
+        <tag>method</tag>
+        <tag>syntax</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>rust入门</title>
     <url>/%E5%AD%A6%E4%B9%A0/94fe59ce.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="cargo是什么"><a class="markdownIt-Anchor" href="#cargo是什么"></a> Cargo是什么？</h2>
@@ -5999,26 +6019,6 @@ ExcelUtil --> RecordHandler</pre>
         <tag>cargo</tag>
         <tag>rustc</tag>
         <tag>rustup</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>rust-方法语法</title>
-    <url>/%E5%AD%A6%E4%B9%A0/d1274d86.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="方法语法"><a class="markdownIt-Anchor" href="#方法语法"></a> 方法语法</h2>
-<blockquote>
-<p><strong>方法</strong>（method）与函数类似：它们使用 <code>fn</code> 关键字和名称声明，可以拥有参数和返回值，同时包含在某处调用该方法时会执行的代码。不过方法与函数是不同的，因为它们在结构体的上下文中被定义（或者是枚举或 trait 对象的上下文，并且它们第一个参数总是 <code>self</code>，它代表调用该方法的结构体实例。</p>
-</blockquote>
-<h2 id="方法定义"><a class="markdownIt-Anchor" href="#方法定义"></a> 方法定义</h2>
-<p>使用<code>impl</code>块为结构定义方法；</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Rectangle</span> &#123;</span><br><span class="line">    width: <span class="type">u32</span>,</span><br><span class="line">    height: <span class="type">u32</span>,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">Rectangle</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">area</span>(&amp;<span class="keyword">self</span>) <span class="punctuation">-&gt;</span> <span class="type">u32</span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.width * <span class="keyword">self</span>.height</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  	<span class="keyword">fn</span> <span class="title function_">can_hold</span>(&amp;<span class="keyword">self</span>,target: &amp;Rectangle ) <span class="punctuation">-&gt;</span> <span class="type">bool</span> &#123;</span><br><span class="line">      <span class="keyword">self</span>.width &gt; target.width &amp;&amp; <span class="keyword">self</span>.height &gt; target.height</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">  	<span class="comment">// 关联函数经常被用作返回一个结构体新实例的构造函数。</span></span><br><span class="line">  	<span class="comment">// 这些函数的名称通常为 new ，但 new 并不是一个关键字。</span></span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">square</span>(size: <span class="type">u32</span>) <span class="punctuation">-&gt;</span> <span class="keyword">Self</span>&#123;</span><br><span class="line">        <span class="keyword">Self</span> &#123;</span><br><span class="line">            width: size,</span><br><span class="line">            height: size,</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">rect</span> = Rectangle::<span class="title function_ invoke__">square</span>(<span class="number">30</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">rect1</span> = Rectangle &#123; width: <span class="number">10</span>, height: <span class="number">30</span> &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">rect2</span> = Rectangle &#123; width: <span class="number">60</span>, height: <span class="number">80</span> &#125;;</span><br><span class="line">    dbg!(&amp;rect);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;The area of the rectangle is &#123;&#125; square pixels.&quot;</span>, rect.<span class="title function_ invoke__">area</span>());</span><br><span class="line">  	<span class="built_in">println!</span>(<span class="string">&quot;Can rect hold rect1? &#123;&#125;&quot;</span>, rect.<span class="title function_ invoke__">can_hold</span>(&amp;rect1));</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Can rect hold rect2? &#123;&#125;&quot;</span>, rect.<span class="title function_ invoke__">can_hold</span>(&amp;rect2));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>rust</tag>
-        <tag>method</tag>
-        <tag>syntax</tag>
       </tags>
   </entry>
   <entry>
@@ -6354,6 +6354,28 @@ ExcelUtil --> RecordHandler</pre>
       </tags>
   </entry>
   <entry>
+    <title>redis主从-哨兵模式</title>
+    <url>/%E5%B7%A5%E4%BD%9C/8f0491a1.html</url>
+    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
+  <script id="hbeData" type="hbeData" data-hmacdigest="d3d974b29008aff606283f0e4978d7bf8e58543d1d3a787740a0ae1e7049f1ed">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d01c1c94262bdc858905a4d80759515d1db386e90b995b088a668ce7196174ca5a1b9fde0d6c59e81ace0635b7e811b6eb4</script>
+  <div class="hbe hbe-content">
+    <div class="hbe hbe-input hbe-input-wave">
+      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
+      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
+        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
+      </label>
+      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
+        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
+      </svg>
+    </div>
+  </div>
+</div>
+<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
+      <categories>
+        <category>工作</category>
+      </categories>
+  </entry>
+  <entry>
     <title>rust-智能指针</title>
     <url>/%E5%AD%A6%E4%B9%A0/92f6c3d8.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="智能指针"><a class="markdownIt-Anchor" href="#智能指针"></a> 智能指针</h2>
@@ -6417,28 +6439,6 @@ ExcelUtil --> RecordHandler</pre>
         <tag>box</tag>
         <tag>smart-pointer</tag>
       </tags>
-  </entry>
-  <entry>
-    <title>redis主从-哨兵模式</title>
-    <url>/%E5%B7%A5%E4%BD%9C/8f0491a1.html</url>
-    <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
-  <script id="hbeData" type="hbeData" data-hmacdigest="d3d974b29008aff606283f0e4978d7bf8e58543d1d3a787740a0ae1e7049f1ed">89730641517f40fad9fb11d8e72e80bf06c939f51e30e9318348e356012ae93802623e7e7460999b3f7e8ba755c0d29599ae788f4544e2d8c77419f7d87eed449b7d6813e006fe13f540d0d66182fef8c50ebd9d211e40be206647f7e00fd685b86946fa705ad4651c18ab2a320b4a69699ab0980126725a179cb3c64faa8f2509c4dddd4adebe64d5cd4207643b74cb951ade33149cd6cd51d669bce78e7df026fe1abb945332d7c0a9e2f0c8bc51b46617f418a10ed53af1ad8a5de091ee7b9161a36c5a28454693301b254151eaad572fe3718480827cbcb2b29cbbe2dd52029dfad21eac08db5c648820175597abb4a0c5ff69693595d1d3fe51de4c4f9c4194b77a63e7b407560fa73f56328d3cbee56843f26b4272acb3eeeaa0e46d01c1c94262bdc858905a4d80759515d1db386e90b995b088a668ce7196174ca5a1b9fde0d6c59e81ace0635b7e811b6eb4</script>
-  <div class="hbe hbe-content">
-    <div class="hbe hbe-input hbe-input-wave">
-      <input class="hbe hbe-input-field hbe-input-field-wave" type="password" id="hbePass">
-      <label class="hbe hbe-input-label hbe-input-label-wave" for="hbePass">
-        <span class="hbe hbe-input-label-content hbe-input-label-content-wave">输入密码查看内容</span>
-      </label>
-      <svg class="hbe hbe-graphic hbe-graphic-wave" width="300%" height="100%" viewBox="0 0 1200 60" preserveAspectRatio="none">
-        <path d="M0,56.5c0,0,298.666,0,399.333,0C448.336,56.5,513.994,46,597,46c77.327,0,135,10.5,200.999,10.5c95.996,0,402.001,0,402.001,0"></path>
-      </svg>
-    </div>
-  </div>
-</div>
-<script data-pjax src="/lib/hbe.js"></script><link href="/css/hbe.style.css" rel="stylesheet" type="text/css">]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
   </entry>
   <entry>
     <title>OpenClaw 0</title>
@@ -21817,467 +21817,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
-    <title>慢车 18：十一秒</title>
-    <url>/%E5%B0%8F%E8%AF%B4/66cb7b9f.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>陈渡把音量旋钮拧到第三格。</p>
-<p>他把左边那根音频线拔下来，插头还带着一点温。插孔里有一层黑灰，是磁带机常年通电留下的。桌上那杯水已经放凉，杯壁贴着一圈白印。他把杯子往外挪，给空出来的桌面铺上一张维修用的硬纸板。</p>
-<p>磁带机里先出来一段底噪。</p>
-<p>嘶……嘶……</p>
-<p>硬纸板是装电容的包装盒，印着「2200 微法／耐压 25V」。中间一道折痕把字断成两截。</p>
-<p>他看着转盘上的数字。计数器跳到七。</p>
-<p>他把速度降下来，按住暂停键，把录音笔推到一边。那十一秒已经被他拷进小录音笔，来回听了四十七遍。</p>
-<p>磁带机后面还接着一条线。线的外皮已经发硬，靠近接口的地方裂开一条缝，铜丝没有露出来。陈渡用指甲拨了拨，按回原位，再用黑胶布缠了两圈。</p>
-<p>前七遍，他只听见底噪。</p>
-<p>第八遍，他听见了远处的风。</p>
-<p>陈渡把磁带机推到桌角，腾出一块地方放工具。螺丝刀、尖嘴钳、镊子，三样东西按大小排开。刀柄上有一道旧裂口，握胶松了一圈，他用胶布缠了两道。</p>
-<p>胶布边沿起毛。他从抽屉里剪下一小截，贴在上面。</p>
-<p>第九遍，风下面有金属门碰撞的声音。</p>
-<p>第十遍，底噪右边多了一道很轻的哼声。</p>
-<p>电脑音箱里的女声又循环了一遍。</p>
-<p>第十一遍，他把录音笔的波形放大。</p>
-<p>那道声音从第八秒开始，到了第十一秒断开。</p>
-<p>升上去。</p>
-<p>十二赫兹。</p>
-<p>不，不止。</p>
-<p>落下来。</p>
-<p>陈渡把采样率降到四万八千赫兹，又升回去。</p>
-<p>楼上又响了一下。不是水管，是椅子腿拖过地面。他抬头看了一眼天花板，没动。</p>
-<p>那道哼声有两种波形。</p>
-<p>陈渡把声音关掉，只留波形。屏幕上的横线很细，像桌缝里的一根灰。他把时间轴拉回第七秒，在起点处标了一个红点。第十秒再标一个。两点之间的距离，鼠标读数是两点九九秒。</p>
-<p>一道平，像一根拉直的线。</p>
-<p>陈渡拉开磁带机底部的抽屉。抽屉里没有备用磁带，只有一本巴掌大的硬皮记录本，封面被螺丝刀划出几道白印。他把本子倒过来抖了两下，一枚生锈的垫片落进工具盒。</p>
-<p>另一道在下面，细，跟着第一道走。</p>
-<p>他打开采样信息。</p>
-<p>他把机器上的磁带倒回去，重新播放。</p>
-<p>第十一秒。</p>
-<p>四万八千赫兹。</p>
-<p>他把音量推上去。</p>
-<p>第一道声音从右边进来。</p>
-<p>单声道。</p>
-<p>手机屏幕还亮着。沈未没有再发消息。</p>
-<p>第二个声音在下面，低了六分贝左右。</p>
-<p>不是空白。</p>
-<p>十六位。</p>
-<p>他把耳机摘下来，换成录音笔的小喇叭。</p>
-<p>还是那两下。</p>
-<p>不是磁带机的原生规格。录音笔把磁带线路的信号转成了数字，又被采样、量化。那两点起伏经过一次转换，可能被削平，也可能被挤到了原来的频率下面。</p>
-<p>一声女声。</p>
-<p>再一声男声。</p>
-<p>他把处理软件关掉。</p>
-<p>男声更轻。</p>
-<p>陈渡把磁带机停了。</p>
-<p>他重新打开波形，把低切关掉。那两秒被女声压着，峰值贴在底线上，贴着铁皮背面那道旧划痕的走向。他把音量降下来，给磁带倒到第七秒，自己数着拍子。</p>
-<p>原始文件重新打开。</p>
-<p>屋里只剩转盘停住后的余响。</p>
-<p>他看了一眼桌面。那本记事本摊在左边，纸页上有折痕。右边是录音笔、耳机、螺丝刀和一只拆开的磁带机后盖。</p>
-<p>波形还在。</p>
-<p>他把磁带倒到零。</p>
-<p>重新播放。</p>
-<p>他翻到第四十七行。</p>
-<p>他把频率轴从二十赫兹拉到二十千赫兹。那两点几乎贴着横线，像沉在河底的沙。只要把增益往上推，它们就会出来。可增益每加三格，女声的底噪也跟着抬起来。</p>
-<p>这一次，他没有从头听。</p>
-<p>他等到第七秒，把录音笔的录音键按下去，又用另一根线接进磁带机的耳机孔。</p>
-<p>陈渡在界面上加了三个标记。</p>
-<p>四十三赫兹。</p>
-<p>一，二，三。</p>
-<p>七十八赫兹。</p>
-<p>「08.0」。</p>
-<p>他把波形放大到最大。</p>
-<p>那道女声在中间。</p>
-<p>「10.0」。</p>
-<p>那道男声在下面。</p>
-<p>他听第二遍。</p>
-<p>「11.0」。</p>
-<p>还是。</p>
-<p>第三遍。</p>
-<p>他把这三个数字写在硬纸板背面，又在「10.0」旁边画了一条短线。</p>
-<p>第八秒，女声进来。</p>
-<p>他把耳机戴上，把音量旋到第四格。</p>
-<p>底噪里，两个声音叠在一起。</p>
-<p>画完，他捏住铅笔，笔尖在纸面上停了两秒。</p>
-<p>叠音，是两段声音共用一条磁带，录在同一时间。磁带只能沿着一条轨迹走，后来的声音会盖住前面的声音。但盖住不等于抹掉。</p>
-<p>如果把频率分开，弱的还在。</p>
-<p>楼上的水管响了一声。</p>
-<p>陈渡把录音笔放在桌角，拆开后盖。</p>
-<p>里面的接口板很窄，左边是话筒输入，右边是磁带线路。他拿出一根细铜线，刮掉绝缘层，接上其中一个针脚。</p>
-<p>陈渡抬头看天花板。</p>
-<p>那一页记着更换元件的参数：日期，接线位置，阻值，还有一句没写完的话。「她哼的那句」下面压着半截被磁带标签盖住的纸边。陈渡用镊子挑开标签，露出下面一行小字：「07:12，跟不上。」</p>
-<p>「原声。」</p>
-<p>他对着空房间说了一声。</p>
-<p>他没跟着哼。</p>
-<p>水声持续了四秒，停了。随后，隔壁房间有人推椅子。椅脚擦过地面，声音穿过墙，又薄了一层。</p>
-<p>录音笔的红色指示灯亮着。</p>
-<p>他没有再说话，只把磁带机重新启动。</p>
-<p>他把铅笔放下，给「08—10_沈未.wav」单独建了一个文件夹。</p>
-<p>磁带转起来。</p>
-<p>女声先出现。</p>
-<p>文件夹命名后，屏幕上出现三个名称。</p>
-<p>男声贴着它的下沿。</p>
-<p>陈渡把磁带机的录音旋钮压下。</p>
-<p>「08—10_沈未」。</p>
-<p>第一次录音。</p>
-<p>第十秒，男声跟进来。</p>
-<p>他按停止，把录音笔接到电脑上。文件只有八秒。</p>
-<p>「10—11」。</p>
-<p>「再录。」</p>
-<p>第二次，他把磁带倒回七秒。</p>
-<p>「10—11_男声_提取」。</p>
-<p>这次录了九秒。</p>
-<p>打开文件，只剩底噪。</p>
-<p>他看着这三个名字，把第三个文件夹里的文件拖进第二个。提示框弹出，问是否保留原文件。</p>
-<p>陈渡盯着屏幕，把指针拖到波形最下面。</p>
-<p>两点之间，有一道几乎贴着横线的起伏。</p>
-<p>他点了「否」。</p>
-<p>第十二秒，磁带到头，转盘空转，发出连续的底噪。</p>
-<p>他把标签撕开。标签背面粘着一小段透明胶，胶上粘着半截黑色磁带。磁带边缘有剪口，编号只剩「B-1」。他把那截带子对着灯照，里面没有白色带基，只剩一层棕色氧化物。</p>
-<p>他把音量推到最大。</p>
-<p>耳机里传来一声很短的男声。</p>
-<p>删除完成后，第二个文件夹空了。</p>
-<p>很轻。</p>
-<p>像有人在门后清嗓子。</p>
-<p>陈渡又按了一次撤销。</p>
-<p>他把这一段截出来，另存为「7—9」。</p>
-<p>然后继续。</p>
-<p>文件回到原处。</p>
-<p>第十秒，男声出现。</p>
-<p>第十一秒，声音断掉。</p>
-<p>陈渡按下停止，重新倒带。倒到一半，他又停住，把耳机摘下一边，贴近磁带机外壳。外壳里有一层薄薄的灰，靠近变压器的地方带着焊锡受热后的味道。</p>
-<p>他重新把提取文件放进去，给文件夹命名为「2009.4.17」。</p>
-<p>第二段文件保存为「10—11」。</p>
-<p>两个文件。</p>
-<p>再点开属性。</p>
-<p>一个九秒。</p>
-<p>一个一秒。</p>
-<p>创建时间被系统写成今天。</p>
-<p>陈渡把「7—9」打开，把低频提升三格。</p>
-<p>耳机里的女声变粗，男声被推到前面。</p>
-<p>他看了一会儿，在旁边新建一个文本文件，把内容改回二〇〇九年四月十七日。</p>
-<p>那是沈未。</p>
-<p>他拿起棉签，擦过磁头。</p>
-<p>她在哼一句没有词的歌。</p>
-<p>保存。</p>
-<p>调子很短，升上去，又落下来。</p>
-<p>他拿出那盘贴着「2009.4.17」的空白磁带，放在旁边。两盘带子的直径差一毫米，轮毂缺口却相同。他把螺丝刀插进磁带机侧面的检修孔，拨开一只卡扣。里面掉出一片薄薄的塑料片，上面刻着「B-17」，旁边还留着一道胶痕。</p>
-<p>男声在第三拍跟了进去。</p>
-<p>桌角的粉笔滚了一下，碰到「男：2秒。被盖住。」那行字，停在数字「二」旁边。</p>
-<p>低一点。</p>
-<p>慢半拍。</p>
-<p>陈渡伸手把粉笔捡起来。</p>
-<p>然后停住。</p>
-<p>陈渡摘下耳机。</p>
-<p>粉笔头已经磨得很圆。他拿小刀削掉两毫米，放在磁带机旁。</p>
-<p>棉签头上有一小片褐色氧化物。</p>
-<p>他记得那是 2009 年。</p>
-<p>殡仪馆的储物间只有六平方米，靠墙三排铁架，中间摆一张木桌。机器架在桌上，电源线从墙上的插线板拉下来。沈未在隔壁。</p>
-<p>桌上的电话又响了一声。</p>
-<p>那天她值夜班。</p>
-<p>陈渡把磁带机带来，试一段新的拾音线。线接好后，机器能录下门外的脚步，却录不下他站在话筒前的哼声。</p>
-<p>不是沈未。</p>
-<p>他当时以为线路坏了。</p>
-<p>后来他把线拆下来，换了一个电容，又测了一遍。</p>
-<p>是自动售货机掉货的提示音。每周二晚上，楼下那台机器都会误触一次。陈渡没去管。</p>
-<p>沈未在隔壁哼歌。</p>
-<p>那是他第一次听见她哼。</p>
-<p>他没有立刻擦第二下。他把磁头盖重新扣好，倒回七秒，按下播放。第十秒，男声还在。他把棉签放在桌边，签头朝外。</p>
-<p>他把磁带机的带速从正常拨到慢放。</p>
-<p>他站在桌边，没有出声。</p>
-<p>她的声音穿过储物间的薄墙，落进磁带机。</p>
-<p>计数器一格一格往后退。</p>
-<p>然后他跟着哼了一句。</p>
-<p>只哼了半拍。</p>
-<p>他用镊子夹出塑料片，和那截磁带并排放在桌面上。塑料片背面粘着一点褐色纤维，长度不到一厘米。</p>
-<p>第十一秒的尾音被拉长。</p>
-<p>后面的声音留在磁带里，他自己当时没有听出来。</p>
-<p>陈渡把两个文件拖进同一轨。</p>
-<p>耳机里先是一阵很细的摩擦声。拖到第四秒时，尾音裂成两层：一层往上走，另一层留在下面。</p>
-<p>左边是「7—9」，右边是「10—11」。</p>
-<p>这次，沈未发来一张图片。</p>
-<p>波形叠在一起。</p>
-<p>陈渡按下停止，把播放键改成逐帧。</p>
-<p>女声从第八秒进入，男声从第十秒进入。</p>
-<p>他用音量旋钮一格一格地降。</p>
-<p>画面停在第十一秒。</p>
-<p>女声先下去。</p>
-<p>男声还在。</p>
-<p>他往前退一帧。</p>
-<p>他再降。</p>
-<p>男声也沉到边缘。</p>
-<p>男声的波形只露出半个峰。</p>
-<p>图片拍得很近，只有一只手和一块黑色封皮。封皮上的字被手掌遮住，只露出一个「B」和半个「1」。下方压着一张白纸，纸上有一栏表头，姓名、日期、材料编号，后面的格线被折痕截断。</p>
-<p>他把旋钮拧到底。</p>
-<p>只剩电流声。</p>
-<p>再退一帧。</p>
-<p>再拧回一格。</p>
-<p>男声重新出现。</p>
-<p>只剩底噪。</p>
-<p>陈渡把文件拉回起点，按空格键。</p>
-<p>磁带机里传出当年的底噪。</p>
-<p>他把这半帧复制出来，放大。</p>
-<p>陈渡打开手机里沈未发来的照片，把亮度调高。照片上的黑色记事本旁边有一支圆珠笔，笔帽有咬痕。桌面右下角的钢制包角上，留着一小片褐色纸屑。</p>
-<p>门外的脚步，远处水管里的水声，沈未在隔壁哼歌。</p>
-<p>他的声音在那下面。</p>
-<p>陈渡点开放大。</p>
-<p>两个频率标出来。</p>
-<p>不是空白。</p>
-<p>被盖住了。</p>
-<p>二百八十七赫兹。</p>
-<p>他把耳机摘下来，盯着屏幕上的波形。</p>
-<p>波形最下面那一条，几乎与横线重合。</p>
-<p>三百一十三赫兹。</p>
-<p>如果只听混音，听不见。</p>
-<p>如果只看磁带轨，也会以为那里没有东西。</p>
-<p>差二十六赫兹。</p>
-<p>但它在。</p>
-<p>纸张边缘有一块深色水渍。沈未的手指甲很短，无名指侧面沾着一点蓝墨水。</p>
-<p>他打开频谱。</p>
-<p>陈渡把机器的带速恢复。磁带退到第七秒，他重新播放。第十秒，男声进来。第十一秒，断开。</p>
-<p>峰值挤在女声的下方，集中在二百八十到三百二十赫兹之间。男声不在原来的位置。</p>
-<p>是被女声压下去的。</p>
-<p>他摘下一边耳机，把耳朵贴近机器外壳。</p>
-<p>陈渡把时间轴放大。</p>
-<p>第十秒，男声只有两个起伏。</p>
-<p>外壳里有磁头、放大器和供电变压器。声音经过线圈，再进入磁带。那两秒不可能由线路凭空长出来，除非当时就有一道电流被写进去。</p>
-<p>第十一秒，只剩一声很短的尾音。</p>
-<p>他用粉笔在桌角写：</p>
-<p>如果是底噪，频谱会散。</p>
-<p>他回：「拍全。」</p>
-<p>他把照片缩小，又放大。纸屑的位置和长度，与桌上的塑料片背面那点纤维相近。</p>
-<p>「男：2秒。被盖住。」</p>
-<p>写完，他把粉笔横放在数字旁边。</p>
-<p>如果是机械震动，峰值会跟着转盘周期重复。</p>
-<p>窗外的货车经过，车轮压过接缝，声音从窗框传进来。</p>
-<p>陈渡没有关窗。</p>
-<p>三百一十三赫兹没有重复。</p>
-<p>他把录音笔音量旋钮拧到第一格，重新听了一遍。</p>
-<p>这次，他把女声关掉。</p>
-<p>它只出现在第十秒。</p>
-<p>房间里只剩底噪。</p>
-<p>第八秒开始，男声单独浮出来。</p>
-<p>过了十几秒，图片撤回。</p>
-<p>陈渡打开磁带机的检修孔。里面没有别的拾音设备，只有原装磁头、改过的线路板和一个贴着黄色胶布的旧元件。胶布边缘写着「2K2」。</p>
-<p>很近。</p>
-<p>像他就站在磁带机旁边。</p>
-<p>他把灯凑近。</p>
-<p>第十一秒，那声音落下去。</p>
-<p>陈渡按下停止键。</p>
-<p>元件的一脚已经弯了。</p>
-<p>他又听第二遍。</p>
-<p>男声还是在那里。</p>
-<p>陈渡用镊子把它扶正，没有碰线路上的其他部分。</p>
-<p>第一遍，他以为听错了。</p>
-<p>沈未发来一句：「不能拍。」</p>
-<p>第二遍，他把波形和频谱同时打开。</p>
-<p>这时，手机屏幕又亮起来。</p>
-<p>频谱上有一段清楚的窄带，中心在三百一十赫兹。声音很弱，峰值比底噪高出十一个分贝。</p>
-<p>陈渡打开录音软件，把「08—10_沈未.wav」拖进时间轴。第十秒，沈未的哼声落下；他在第十秒前加了半拍空白，又把频率拉低。男声的位置只剩一段窄窄的起伏，和那截磁带的长度对不上。</p>
-<p>不是没有。</p>
-<p>沈未发了一张照片。</p>
-<p>是低。</p>
-<p>陈渡坐了一会儿，把电脑屏幕往自己这边拉。</p>
-<p>照片里是一本黑色记事本。封皮右下角磨起一块，露出里面的纸页。她只拍到桌面，照片边缘有半只白手套。</p>
-<p>桌角那本记事本被带得翻开一页。</p>
-<p>他看见自己的字。</p>
-<p>没有正文。</p>
-<p>陈渡把手机扣在桌上，拿起螺丝刀，把磁带机后盖上那颗一字螺丝重新拧了一遍。刀口已经磨亮，螺丝头多出一道竖向划痕。他用指甲刮了刮划痕，刮不掉。</p>
-<p>「录不进自己的声音，先看磁头。」</p>
-<p>下面是一行日期。</p>
-<p>陈渡放大图片。</p>
-<p>2009 年 4 月 17 日。</p>
-<p>那行字很淡，墨水已经洇开。</p>
-<p>白手套旁边放着一支圆珠笔，笔帽咬痕深浅不一。桌面右下角露出殡仪馆工作台的钢制包角。</p>
-<p>他翻回前面。</p>
-<p>那一页是殡仪馆的工作安排。沈未写得很整齐。日期、姓名、房间、处理时间，一行一行排下去。</p>
-<p>他截了图，退出相册。</p>
-<p>旁边没有人说话。</p>
-<p>陈渡盯着那页看了很久。</p>
-<p>他打开抽屉，找到一张旧收据。收据背面印着一家设备行的电话，号码中间缺了两位。他把它压在手机下面，没有拨。</p>
-<p>「照片里是当天那本？」</p>
-<p>他记得那天沈未就在隔壁。</p>
-<p>他记得她哼过一句。</p>
-<p>发送。</p>
-<p>他没有听她哼完。</p>
-<p>他也没有告诉她，机器录下了。</p>
-<p>他换了一盘磁带。按下播放，倒数到七秒。男声从耳机里出来时，磁带机右侧的灯闪了一下。</p>
-<p>沈未回：</p>
-<p>他把记事本合上。</p>
-<p>桌上的小录音笔跳到「00:00」。</p>
-<p>「本子还在，但不在我这里。」</p>
-<p>陈渡没有立刻再放。</p>
-<p>磁带机继续走带。转盘每转一圈，窗上的指示点便跳一下。</p>
-<p>他拿起那台苏式磁带机，把后盖重新扣好。四颗螺丝，三颗十字，一颗一字。那颗一字螺丝的刀口已经被他磨过，边缘发亮。</p>
-<p>陈渡看着这句话，手指停在屏幕上方。</p>
-<p>他用手动螺丝刀拧紧。</p>
-<p>一圈。</p>
-<p>「在哪？」</p>
-<p>两圈。</p>
-<p>第三圈时，螺丝滑了一下。</p>
-<p>这一次，回复隔了四十多秒。</p>
-<p>他停住，把刀口重新压进槽里。</p>
-<p>然后继续。</p>
-<p>「家属接待处把它当旧登记本用了。夹在待补材料里，编号 B-17。」</p>
-<p>沈未发来第三条消息：</p>
-<p>机器放回桌中央。</p>
-<p>他打开电源。</p>
-<p>陈渡记下编号。</p>
-<p>指示灯亮着。</p>
-<p>转盘没有转动。</p>
-<p>沈未又发来一句：</p>
-<p>陈渡把磁带装上，按下播放。</p>
-<p>底噪起来。</p>
-<p>「要开箱单才能查。」</p>
-<p>陈渡把录音笔贴近磁带机后盖，沿着外壳摸到一块凸起的塑料。抠开后盖，里面夹着一张折叠的纸。纸上是他的字，只有一行：</p>
-<p>他等数字跳到七。</p>
-<p>耳机里的女声出现。</p>
-<p>「登记表上是沈九斤。」</p>
-<p>他打字。</p>
-<p>他把音量推到第三格。</p>
-<p>男声在下面。</p>
-<p>「先查位置。」</p>
-<p>两次。</p>
-<p>都是两次。</p>
-<p>「不急。」</p>
-<p>陈渡把耳机摘下，放到桌上。</p>
-<p>他打开抽屉，找出一盘空白磁带。标签上写着「2009.4.17」。</p>
-<p>陈渡把手机放下，看向那盘贴有「2009.4.17」的空白磁带。</p>
-<p>标签已经发黄，边缘卷起来。</p>
-<p>陈渡看着那四个字，拇指停在屏幕上方。</p>
-<p>这是当年那盘磁带的编号。</p>
-<p>标签边缘卷起，露出下面一层旧标签。旧标签上有一道压痕，像有人写过一串号码，后来用透明胶盖住。</p>
-<p>他把空白盘放在机器旁边，没有装。</p>
-<p>手机在桌上亮了一下。</p>
-<p>他用指甲抠开透明胶的一角。</p>
-<p>陈渡看了一眼。</p>
-<p>沈未发来消息。</p>
-<p>底下露出「B-17」。</p>
-<p>「机器还在响？」</p>
-<p>他打字。</p>
-<p>三个字符。</p>
-<p>他没有问沈未。</p>
-<p>「她哼的那句：升上去。落下来。第二遍没跟。」</p>
-<p>「在。」</p>
-<p>停了几秒，又删掉。</p>
-<p>后面还有两个被磨掉的数字。</p>
-<p>重新打。</p>
-<p>「找到两秒。」</p>
-<p>陈渡把标签完全揭开。胶纸粘住纸面，撕开时带下一层纤维。</p>
-<p>发送。</p>
-<p>沈未没有马上回。</p>
-<p>底下是周隼的字。</p>
-<p>陈渡把磁带停在七秒的位置，又播放了一遍。</p>
-<p>第三个词打完时，手机震了一下。</p>
-<p>他先点开周隼的号码，听筒里传来两声空响，随后被挂断。再打，仍是忙音。</p>
-<p>「已回」。</p>
-<p>「什么两秒？」</p>
-<p>他打字。</p>
-<p>后面画了一道横线。</p>
-<p>「2009 年那两秒。」</p>
-<p>消息发出去后，他把手机扣在桌上。</p>
-<p>陈渡把磁带机后盖上的四颗螺丝重新检查了一遍。三颗十字螺丝没有滑痕。那颗一字螺丝的刀口被他磨过，边缘发亮，螺丝头多出一道竖向划痕。</p>
-<p>屏幕朝下。</p>
-<p>房间里只剩磁带机的底噪。</p>
-<p>不是今天留下的。</p>
-<p>过了十几秒，手机又震。</p>
-<p>桌上的磁带倒回七秒。</p>
-<p>陈渡翻过来。</p>
-<p>他把螺丝刀贴在划痕上，比了比角度。</p>
-<p>沈未说：「我那天哼的是哪一句？」</p>
-<p>他把纸条压到硬纸板下，又拿起那截「B-1」磁带，放到转盘上。带子转了半圈，计数器没有动。磁头落下，里面只有一声很轻的咔响。</p>
-<p>他没有回。</p>
-<p>门外过了一辆电动车。灯光从门缝扫进来，桌面上多了一条白线，很快退掉。</p>
-<p>他把录音倒到七秒，戴上耳机，等到女声出现。</p>
-<p>一句。</p>
-<p>陈渡打开手机通讯录，找到周隼的号码。</p>
-<p>升上去。</p>
-<p>落下来。</p>
-<p>号码下面，最后一次通话时间是四个月前。</p>
-<p>他播放到第十秒，把音量拧到第二格。男声在耳机里贴着女声的下方浮出来，短，闷，像隔着一层铁皮。</p>
-<p>他打字。</p>
-<p>「这句。」</p>
-<p>他按了拨号。</p>
-<p>停了停。</p>
-<p>「你哼了另一句。」</p>
-<p>听音响了两声，被按掉。</p>
-<p>发送。</p>
-<p>这次沈未回得很快。</p>
-<p>陈渡没有再拨。他点开短信，输入：</p>
-<p>「我不记得。」</p>
-<p>陈渡把手机放下。</p>
-<p>陈渡拿起铅笔，在硬纸板背面写下：</p>
-<p>「B-17 是哪本？」</p>
-<p>他盯着那行字。</p>
-<p>她不记得。</p>
-<p>发送。</p>
-<p>她记得那天有人在隔壁试机器。</p>
-<p>记得门外有人走过。</p>
-<p>陈渡拿起铅笔，在硬纸板背面添了一行：「B-1，与B-17不是同一盘。」</p>
-<p>屏幕上出现转圈标志。</p>
-<p>记得储物间的灯泡接触不良。</p>
-<p>不记得自己哼过一句。</p>
-<p>五秒后，沈未发来一条新消息。</p>
-<p>陈渡又听了一遍。</p>
-<p>「沈九斤——B-17。」</p>
-<p>男声在第十秒进来。</p>
-<p>「开箱单上写的不是编号。是人名。」</p>
-<p>低六分贝。</p>
-<p>他的手指停在播放键上，没有按下去。</p>
-<p>陈渡把手机横放在硬纸板旁。</p>
-<p>他想起自己当时站在话筒后面。</p>
-<p>没有唱。</p>
-<p>「谁？」</p>
-<p>只是跟着沈未的调子出了半声。</p>
-<p>那半声被录进去了。</p>
-<p>沈未没有立刻回答。</p>
-<p>写完，他又在下面添了一行：</p>
-<p>不是后来改机器以后。</p>
-<p>不是空白。</p>
-<p>阁楼上的钟响了一下。二十一点十五分。</p>
-<p>不是没有。</p>
-<p>陈渡把耳机重新戴上，把「10—11」文件拖到播放器。</p>
-<p>白手套的照片还停在手机里。陈渡把它关掉，重新打开，把亮度调到最低。</p>
-<p>这一次，他把频段的低切打开。</p>
-<p>两百六十赫兹。</p>
-<p>硬纸板背面，那三个标记还在。</p>
-<p>他将纸条翻到背面，纸角露出一个被裁掉一半的日期。剩下的数字是「04.17」。</p>
-<p>再听。</p>
-<p>男声清楚了一些。</p>
-<p>「1998.4.11。」</p>
-<p>「08.0」。</p>
-<p>他又关掉低切，把增益降低两格。</p>
-<p>男声还在。</p>
-<p>「10.0」。</p>
-<p>最后，他把原文件和处理后的文件同时播放。</p>
-<p>一边是底噪下的两点起伏。</p>
-<p>「11.0」。</p>
-<p>一边是被提起来以后露出的两个音节。</p>
-<p>陈渡没有唱。</p>
-<p>他拿起铅笔，在「11.0」后面添了半行字：</p>
-<p>他只在耳机里听。</p>
-<p>他看了看，把铅笔横放在两行字之间。</p>
-<p>第二遍。</p>
-<p>「B-17——」</p>
-<p>第三遍。</p>
-<p>两秒。</p>
-<p>后面的名字还空着。</p>
-<p>他将处理后的文件命名：</p>
-<p>「10—11_男声_提取.wav」</p>
-<p>又给另一段命名：</p>
-<p>「08—10_沈未.wav」</p>
-<p>文件名上的字打完，他把鼠标停在保存键上。</p>
-<p>窗外又一辆货车经过。</p>
-<p>车轮压过接缝。</p>
-<p>一下。</p>
-<p>两下。</p>
-<p>第三下时，电脑右下角的时钟跳到二十一点十四分。</p>
-]]></content>
-      <categories>
-        <category>小说</category>
-      </categories>
-      <tags>
-        <tag>慢车</tag>
-        <tag>小说</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>慢车 19：她也有那台机器</title>
     <url>/%E5%B0%8F%E8%AF%B4/fb52e6fb.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>「你这台机器的输入级是被人改过的。」</p>
@@ -22978,288 +22517,457 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
-    <title>慢车 21：换一台</title>
-    <url>/%E5%B0%8F%E8%AF%B4/d15e7048.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>五金市场的卷帘门刚拉开一半，里面就响起电钻声。</p>
-<p>他把短接用的导线从焊盘上挑起来，剪下靠近烙铁的一段。线头还带着锡，落到桌面上，滚到记录本旁边。</p>
-<p>陈渡站在门口等了几秒，等声音停了，才侧身进去。柜台后面摆着两排电容，透明塑料壳里挤满褐色、蓝色和黑色。老板娘正拿螺丝刀撬一只纸箱。</p>
-<p>陈渡伸手按住线头，扔进桌上的空焊锡盒。</p>
-<p>楼上有人拖动椅子，椅脚刮过水泥地。陈渡把机器侧盖往桌边推了半寸，腾出一块地方，翻看拆下来的零件。</p>
-<p>「买什么？」她问。</p>
-<p>盒子底部有一层细碎的锡渣。他用螺丝刀拨了拨，线头在里面翻了两下，露出一截发黑的铜丝。</p>
-<p>「录音机的零件。」</p>
-<p>台灯照在那条焊点上。两个孔之间的锡已经冷了，表面有轻微的皱。他用镊子碰了碰，没动。再碰一下，焊点旁边翘起一片薄薄的锡皮。</p>
-<p>那只鼓包电容的引脚已经发黑。他用镊子夹住外壳，针尖一碰，电容表面就留下一个凹坑。</p>
-<p>「哪种机？」</p>
-<p>「没烧。」他说。</p>
-<p>陈渡从帆布包里拿出一张折过四次的纸，摊在柜台上。上面列了十二项名称，后面标着数量。型号一栏空着。</p>
-<p>这句话是说给机器听的。机器没有回答，只在桌上压出一块铁灰色的影子。外壳右侧有一处凹痕，边缘被手磨得发亮。那是每次拆装时螺丝刀蹭出来的。凹痕旁边贴着一小块褪色标签，只剩「11」两个数字，后面的漆掉在桌缝里。</p>
-<p>门缝外有人停住。</p>
-<p>「苏式，编号末三位一一七。」他说，「原来的电路我拆过。现在要换一批。」</p>
-<p>陈渡把标签抠下来，底下粘着一层胶。胶里卡着几粒灰。他用刀尖刮掉，重新贴回去。</p>
-<p>老板娘扫了一眼：「这么老，现在没人修这个。」</p>
-<p>记录本上，第48次那一行下面空着。他没有继续写。笔放在本子边，笔帽朝着墙。</p>
-<p>「小陈？」老板娘在楼道里喊，「你落下东西了。」</p>
-<p>「有。」</p>
-<p>楼下有人拖动铁桶。桶底沿水泥地擦过，声音从门缝底下钻进来。陈渡等声音远了，才把万用表从桌上拿下来。</p>
-<p>「哪里修？」</p>
-<p>表的电池刚换过，屏幕右下角还有一点反光。他拨到直流电压档，先测机器外壳对地，再测输入孔对地。</p>
-<p>陈渡打开门。老板娘站在门外，手里捏着一卷黑色胶布。</p>
-<p>「我自己修。」</p>
-<p>表笔碰到输入孔时，数值停在零。</p>
-<p>她把纸推回来：「买齐了也未必能用。」</p>
-<p>他换了表笔，黑笔接地，笔尖在输入孔边缘刮出很轻的响声。随后数值升到零点几，跳了两下，停在 0.3。</p>
-<p>「你买的这个，不是屏蔽线。」</p>
-<p>「先买齐。」</p>
-<p>「三百毫伏。」</p>
-<p>陈渡又从包里拿出一只旧放大镜，镜框用胶带缠过。他蹲下身，查看柜台下面堆放的元件。纸箱底部受潮，几只电容外壳上有水印。</p>
-<p>机器的电源插头还插在墙上的排插里。排插旁边是一只塑料脸盆，盆里泡着两块电路板，水面上浮着一层细灰。陈渡看了一眼，把排插上的插头拔了。</p>
-<p>陈渡接过来，用指甲刮了刮线皮。表面掉下一层灰，芯线也没有绞合，只是一根黑塑料包着的单股铜丝。</p>
-<p>「这几只不要。」他指着箱子，「日期太早。国产的也行，只要不是翻新。」</p>
-<p>屏幕上的数值退到零。</p>
-<p>「翻新怎么认？」</p>
-<p>他拔下话筒线，线头的金属部分露出来。话筒外壳是黑色塑料，靠近网罩的地方裂了一道缝，里面几根铜丝被胶带缠住。胶带已经发黄，边缘起了毛。</p>
-<p>「多少钱？」</p>
-<p>「看底部。翻新的字印浅。」</p>
-<p>陈渡用指甲抠下一小块胶带。</p>
-<p>老板娘笑了一声：「你比采购还难伺候。」</p>
-<p>里面没有断线。</p>
-<p>「按屏蔽线算的。」</p>
-<p>「买错一次，全坏。」</p>
-<p>他把胶带按回去，拿细砂纸在话筒线上磨了几下。砂纸粗糙，磨过的地方起了一层白毛。线外皮有六处压印，最深的一处落在桌边。</p>
-<p>她从货架上拿下几只盒子，逐个摆到纸上。陈渡拿起万用表，拨到电阻档。表笔碰到引脚，数字跳了两下，停住。</p>
-<p>他顺着线往下摸，摸到插头根部的胶布。</p>
-<p>他将线头放进台灯下，剥开两厘米。里面没有编织层，只有几根平行的铜丝，中间留着缝。</p>
-<p>「一百八十七千欧。」他说，「标一百九十。差一点。」</p>
-<p>胶布下鼓起一小团。</p>
-<p>「这批次。」</p>
-<p>陈渡拆开胶布。</p>
-<p>「这个不能接话筒线。」</p>
-<p>「换。」</p>
-<p>里面的铜丝断了两根。</p>
-<p>老板娘又拿来三只。陈渡逐一测量，留下其中一只。他把电阻放进纸箱，又去拿二极管。</p>
-<p>他把断口对着台灯看。铜丝断口发黑，不是从中间齐断的，是被拧过。旁边压着一小片白色塑料屑，像插头外壳里的绝缘垫。</p>
-<p>「能通就行。」</p>
-<p>纸箱上标着「整流」，每袋二十只。他没有立刻拆袋，先看封口。封口胶带颜色一致，没有二次拆封的痕迹。</p>
-<p>他拿出万用表，把话筒线的两头夹在测试夹上，拨到通断档。</p>
-<p>「拿两袋。」</p>
-<p>屏幕上显示开路。</p>
-<p>老板娘把胶布递给他：「那我不退了。」</p>
-<p>「录音机还缺这个？」</p>
-<p>陈渡把话筒线放到桌面上，拆掉整段胶布。线皮裂口比看上去大，里面还剩三根线能用。红色那根被压断，绿色那根弯折发白，黑色那根完整。</p>
-<p>「电源部分要换。」</p>
-<p>他从零件箱里找出一截屏蔽线，又找出一只旧插头。旧插头的金属杆有一道纵向划痕，拧紧后容易漏接。</p>
-<p>陈渡把胶布接过来，拇指在封口处按了一下。胶布已经开封，粘性还在，边缘沾着细灰。</p>
-<p>「电源坏了，你直接换整块板子更快。」</p>
-<p>他没有马上接线。</p>
-<p>「型号不明。」</p>
-<p>桌上那只小放大镜被他推到一边。镜面映出一截台灯灯罩，灯罩边缘有一圈黑灰。陈渡用棉签蘸了酒精，先擦话筒网罩，再擦裂开的塑料外壳。酒精从缝里流进去一滴，他用布接住。</p>
-<p>「多少钱？」</p>
-<p>「你这张纸上不都写了吗？」</p>
-<p>「话筒坏了，也不会正好没有声音。」他说。</p>
-<p>陈渡把放大镜放下：「只写功能，不写位置。原厂板子拆下来才知道。」</p>
-<p>说完，他抬头看了看窗台。</p>
-<p>「送你了。」</p>
-<p>二极管、电阻、瓷片电容、铝电解电容、变压器、磁头、按键开关，他一样一样往纸箱里放。买到变压器时，老板娘说只有 220 伏和 110 伏两种。</p>
-<p>窗台上放着一只搪瓷杯，杯口缺了一小块。杯里没有水，只有一圈干掉的白印。陈渡把杯盖翻过来，扣在话筒外壳上。</p>
-<p>「这批是 220。」</p>
-<p>话筒接进机器。</p>
-<p>他把胶布放在桌角，又拿起那卷线。</p>
-<p>「我那边能用。」</p>
-<p>他重新通电，按下录音键。耳机里出现底噪，比刚才薄了一层。风扇声还在，水管声还在。自己的呼吸贴着耳膜过去，仍旧没有留下人声。</p>
-<p>「保险丝呢？」</p>
-<p>陈渡把录音键松开，拿起耳机听。</p>
-<p>「先测。」</p>
-<p>「一起拿。」</p>
-<p>喇叭里的底噪像一层细砂。他调到 3kHz 左右，风扇的叶片声被放大，机器内部某个接点的轻响也清楚了。</p>
-<p>他买了两只保险丝，一卷耐热线，一盒焊锡。柜台上的计算器不停跳，最后停在 286 元。</p>
-<p>他把音量压低。</p>
-<p>陈渡接上短接用的测试夹，把线的一端夹住，拨到通断档。屏幕亮了一下，显示开路。他换了一端，还是开路。</p>
-<p>老板娘用手指敲了敲计算器：「两百八十六。」</p>
-<p>再按录音。</p>
-<p>陈渡从钱包里抽出三张一百块。</p>
-<p>耳机里传出磁带倒转的摩擦声。那是磁头离开磁带时，卷轴反向带动的细响。接着是桌面被手肘碰到的轻响。</p>
-<p>「中间断了。」</p>
-<p>「找不开。」</p>
-<p>没有声音。</p>
-<p>「那就找十四。」</p>
-<p>陈渡把耳机摘下一边，只留一只耳朵贴在机器外壳上。外壳有震动。变压器在工作，频率很低，手指贴上去只能感觉到轻微的嗡。</p>
-<p>老板娘探头看了一眼：「一根线也测？」</p>
-<p>「一块。」</p>
-<p>他用螺丝刀敲了敲外壳。</p>
-<p>「今天没有。」</p>
-<p>耳机里的底噪跟着跳了一下。</p>
-<p>「先通电。」</p>
-<p>「那就两块。」</p>
-<p>「磁头没有贴紧。」他说。</p>
-<p>老板娘从抽屉里摸出两个一块硬币。陈渡接过来，放进上衣口袋。</p>
-<p>他打开侧盖，找到压带轮。轮子的胶圈已经发硬，表面有两道细裂。压带轮旁边的弹簧少了一圈弹性，螺杆上抹了厚厚一层黑色润滑脂。</p>
-<p>他把线放到一边，另从零件箱里找出一只测线器。金属触点有些发黑，他用酒精擦过，夹住线头。表针没有动。</p>
-<p>「还缺什么？」她问。</p>
-<p>陈渡用棉签把旧脂擦掉，换了新脂。胶圈被压下去时发出很小的吱声。</p>
-<p>「不缺。」</p>
-<p>他重新装好磁带，倒回起点，按下录音键。</p>
-<p>陈渡拆开胶布，重新压紧。线皮裂到铜丝，铜丝断口发白。他把断处接上，焊锡太少，锡只包住一侧。</p>
-<p>「你每次都说买齐了，回头又来。」</p>
-<p>这次耳机里多出一声很轻的咔哒。</p>
-<p>「这次不。」</p>
-<p>不是话。</p>
-<p>「换一个。」</p>
-<p>他抱起纸箱，箱子底部压住箱子边角。走到卷帘门下时，里面又响起电钻声。他侧着身出去，纸箱擦过门框，掉下一颗螺母。</p>
-<p>是磁头压带前，机械开关的触点合上。</p>
-<p>他蹲下捡起那颗螺母，看了看螺纹。没问题，放进口袋。</p>
-<p>陈渡看着录音键，等磁带转过五秒。他抬手摸了一下喉咙，又把手放下。</p>
-<p>老板娘从柜台下面拿出一卷新线。</p>
-<p>出租屋在五金市场后面一栋楼里，四楼。门口堆着两只坏风扇，楼上住户把煤炉放在过道上，炉口还亮着。陈渡侧身进门，鞋底带进一层灰。</p>
-<p>喉结旁有一小块旧伤，是小时候被自行车把手磕的，碰到时皮肤发硬。</p>
-<p>他没开大灯，只拧亮桌上那盏 40 瓦台灯。</p>
-<p>他打开记录本，在第48次后面另起一行，写下：「话筒线断。换线后复测。无变化。」</p>
-<p>这卷线外皮印着白色规格，边缘没有毛刺。陈渡抽出一截，剥开线头。里面的铜丝颜色均匀，捻距约两毫米。</p>
-<p>磁带机放在桌角，编号末三位一一七。外壳已经拆过，四颗螺丝放在一只烟盒盖里。机器左侧接着一只话筒，话筒线从桌边垂到地上，插头裹着黑胶布。</p>
-<p>笔尖停住。</p>
-<p>陈渡把零件纸箱搬到地上，按清单一项项往桌面摆。</p>
-<p>他把「复测」划掉，改成「第49次」。</p>
-<p>他用测试器夹住两端。表针先归零，再抬到中段，停住。</p>
-<p>他先取下磁头，用螺丝刀碰了两下。磁头表面有一道细痕，录音时经过那一段，声音会发闷。他拿白棉签蘸酒精，擦了三遍。</p>
-<p>这一行只写了日期、故障和换件。最后留下一个空格。</p>
-<p>酒精的气味散开。桌上的电烙铁还热着。他把烙铁架好，拿铜丝清理烙铁头。</p>
-<p>空格里没有字。</p>
-<p>「通的。」</p>
-<p>焊锡在烙铁头上化开，落成一小颗。陈渡吹了吹。</p>
-<p>陈渡把笔放下，去洗刚才用过的棉签。水龙头在走廊尽头，水管先吐出一股带铁锈色的水。他等颜色变清，才把棉签冲干净。池底有一圈白碱，积得很厚。</p>
-<p>「一百二十赫兹……」</p>
-<p>回来时，桌上的记录本多了一处水印。</p>
-<p>「那你早说。」</p>
-<p>他打开机器外壳，逐点检查旧电路。功率管旁边有一片炭黑。电解电容顶部鼓起，最高的一只已经裂出白印。两只电阻发黄，颜色不匀。</p>
-<p>他把本子拿到灯下。</p>
-<p>「二百……三百……」</p>
-<p>水印没有碰到字，只洇开了刚才空着的那一格。他用袖口吸掉边缘的水。</p>
-<p>陈渡把新线绕在旧测试夹上，拧紧。夹口太窄，铜丝被压出一道折痕。他换了鳄鱼夹，重新夹住。</p>
-<p>万用表的红表笔接测试点，黑表笔接地。数值在屏幕上跳。</p>
-<p>楼下铁桶又拖了一次。</p>
-<p>他记下位置，换下第一只鼓包电容。镊子夹住引脚，烙铁从背面加热。旧电容拔出来时，板子上留下两个圆形焊点。</p>
-<p>陈渡看向门口，门缝下没有光。走廊的声控灯坏了，只能从楼梯间的窗户看见一块灰白色。他把门带上，插销没有扣紧，留了一指宽。</p>
-<p>表针仍停在中段。</p>
-<p>新电容比旧的矮。他转了两次方向，确认极性，再把引脚插回去。锡化开，铺满焊盘。他没有立刻剪短，剪到留出三毫米，弯折，压平。</p>
-<p>回到桌前，他把那卷记录纸摊平。纸角已经卷起，用一只旧打火机压住。</p>
-<p>第二只是电源滤波电容。容量一样，耐压不同。原厂用的是 400 伏，他买的是 450 伏。</p>
-<p>打火机外壳缺了一块漆。煤油味从盖缝里出来，混着烙铁留下的松香味。</p>
-<p>「能用就行。」</p>
-<p>「先通电。」</p>
-<p>他重新拿起短接线。</p>
-<p>他没有立刻测整机，而是把新装的电容单独放到测试夹上。直流电源调到 12 伏，表笔接两端。数值从零慢慢升到 11.8，停了。</p>
-<p>这回他没有把它接到焊盘上，而是剪成两段，分别夹在万用表的两根表线上。表笔前端有鳄鱼夹，夹口很窄，他用镊子把线头压扁，再夹紧。</p>
-<p>他把测试线装进纸箱，拿记号笔在旧线外皮上画了一道。线头短，只够试一次。旧线放回箱底，新线留在手边。</p>
-<p>「能用就行。」</p>
-<p>一只鳄鱼夹接输入孔，另一只接地。</p>
-<p>桌角那台苏式磁带机没有电源指示灯。陈渡按下播放键，机械部分开始走带。卷轴转得很慢，磁带经过磁头时发出细响。</p>
-<p>耳机接到机器上。</p>
-<p>台灯下的焊盘有两个亮点。他拿起镊子，夹住短接线的铜丝，送到焊盘上方。烙铁的温度计指着三百二十度，锡丝靠近便开始发亮。</p>
-<p>他把声音录进自己的耳朵。</p>
-<p>「先通电。」</p>
-<p>没有说话声。</p>
-<p>电流表没有明显变化。机器的输入端仍然只有 0.3 伏的底噪。</p>
-<p>他停了一下。</p>
-<p>他取下磁带，换上一盘空白带。按下录音键，话筒线接在输入孔上。他清了清嗓子，又试了一次。</p>
-<p>陈渡用另一根导线碰了一下输入端。</p>
-<p>房间里只有磁头压住磁带的声音。</p>
-<p>耳机里出现一声短促的啪。</p>
-<p>楼下铁桶擦过水泥地。声音到门口时变轻，到了楼梯口又清楚起来。陈渡把烙铁放下，等那声音走远，才把铜丝压进第一个焊点。</p>
-<p>他没有换线，也没有立刻动烙铁。他把录音键松开，倒回去，戴上耳机，按下播放。</p>
-<p>不是声音。</p>
-<p>耳机里先是一段底噪。接着是风扇叶片擦过外壳的声音，远处有水管响。再往后，是他自己按录音键时布料摩擦的动静。</p>
-<p>是线路里某处被碰断了。</p>
-<p>旧电阻被拆在桌角。两根引脚弯向一侧，中段有一道细裂。他用镊子碰了碰，裂口没有继续张开。</p>
-<p>人声轨还是空的。</p>
-<p>他把导线拿开，检查输入孔。孔口内侧有一圈黑色氧化物，夹子接触不良。他用细砂纸磨掉一点，再夹紧。</p>
-<p>陈渡把耳机摘下来，放在桌面。</p>
-<p>耳机里的啪声消失。</p>
-<p>短接线没有立刻接上。</p>
-<p>磁带走到尾端，自动停机。他把带子倒回去，又听了一遍。</p>
-<p>陈渡按住录音键，等磁带转过十秒。表上的数值缓慢上升，停在 0.7。</p>
-<p>第二遍没有发现新东西。</p>
-<p>他松手。</p>
-<p>他拿起那张线路图，对着灯看。纸背印着几行俄文，字号很小。电容符号旁边标着电压，电阻符号旁边只有一个短横。</p>
-<p>他拿出记录本。前面记着四十七次试验，每一行都差不多。</p>
-<p>数值回落。</p>
-<p>「第47次：换输入电容。无变化。」</p>
-<p>「接地还是不对。」他说。</p>
-<p>那截黑线仍压在胶下面。</p>
-<p>他写完，在下一行写「第48次」。</p>
-<p>他将机器侧面的接地螺丝松开。螺丝下面压着一根编织铜线，线头已经散了，铜丝分成几股，夹在金属片下面。</p>
-<p>笔尖停在纸上。</p>
-<p>陈渡用小号尖嘴钳把铜丝拉直，重新压进金属片。螺丝拧到一半时，底壳和线路板之间露出一小段灰白色胶。</p>
-<p>陈渡把线路图折回原样，用旧打火机压住折角。火机盖上的煤油味又散出来。他拿烙铁在焊盘上补了一点锡，锡面铺平，边缘没有连到旁边的铜箔。</p>
-<p>机器里的电阻还在。录音线路中有一只电阻，是原厂留下的。陈渡拆过几次，知道它装在话筒输入的前级，作用是限制信号进入下一级。</p>
-<p>他停手。</p>
-<p>他把线路图从机器底部翻出来。纸已经发脆，折痕处断开一块。图上只标了元件位置，没有完整参数。</p>
-<p>那截胶已经老化，边缘翘起。里面压着一根很细的黑色线。</p>
-<p>桌面上，两只测试夹之间还夹着一段断线。</p>
-<p>维修铺的周隼曾经看过这张图。</p>
-<p>陈渡没有碰它。</p>
-<p>那一次，周隼拆开机器，手没有停。他只说：「东西都有它来的地方。」</p>
-<p>他把螺丝退回半圈，用镊子把翘起的胶边压回去。黑色线仍被夹在原处，只露出不到两毫米的一截。</p>
-<p>陈渡把断线取下来，放进零件箱最底层。线皮上的白印朝上，旁边压着一只废弃的电容。</p>
-<p>陈渡没有问这只电阻是谁装的。</p>
-<p>他继续拧紧螺丝，测试接地。</p>
-<p>现在他把原厂电阻拆下来。焊点烧得发黑，拆的时候有一小股烟。烟贴着台灯往上走，碰到灯罩后散开。</p>
-<p>输入端数值降到 0.1。</p>
-<p>他拿起新线，先测了三次。通。</p>
-<p>他盯着线路板上两个空焊点。</p>
-<p>耳机里底噪变小，远处的水管声几乎没了。磁带转动时，机械结构的声音变得更清楚。</p>
-<p>原厂电阻是设计。</p>
-<p>陈渡按下录音键。</p>
-<p>然后把机器推回灯下。</p>
-<p>陈渡在纸上写下这句话，后面画了一道横线。他又在旁边写：「设计缺陷。」</p>
-<p>房间里只有磁带向前走的细响。</p>
-<p>划掉。</p>
-<p>他等磁带走到尽头，摘下耳机，倒回去，戴上。</p>
-<p>再写：「可绕开。」</p>
-<p>底噪之后，是台灯镇流器的嗡声。</p>
-<p>他从零件箱里找出一段短导线，量好长度。短接，是把原本经过电阻的两个位置直接接在一起，让信号不再经过这个限流元件。导线的阻值接近零。</p>
-<p>随后，他听见自己呼吸时，衣领擦过下巴。</p>
-<p>陈渡把导线两端上锡，压到两个焊点上。</p>
-<p>那一下也被录进去了。</p>
-<p>烙铁离开时，焊点边缘冒出一圈烟。</p>
-<p>陈渡看向话筒。话筒离他的嘴还有两米，刚才他没有靠近。</p>
-<p>他接通电源，把空白带装进去，按下录音键。</p>
-<p>他把磁带倒回起点，走到话筒前。</p>
-<p>尖锐的声音从机器里冲出来。</p>
-<p>「一、二、三、四。」</p>
-<p>啸叫，不是人声。那是高频信号在电路里绕了一圈，又从话筒位置返回输入端，形成反馈。声音越走越高，刺得陈渡眉骨发紧。</p>
-<p>按键。</p>
-<p>他拔掉电源。</p>
-<p>声音没有进磁带。</p>
-<p>啸叫停了。</p>
-<p>他退回桌边，重新检查接地线。数值稳定，输入端没有啸叫。</p>
-<p>桌上的台灯亮着，灯罩里的镇流器发出很轻的嗡声。陈渡等了几秒，确认电路没有烧。</p>
-<p>他拿螺丝刀碰了碰那只被夹住的黑线。线没有动，胶也没有脱落。</p>
-<p>第一次短接，失败。磁带上留下的是巨大的啸叫。</p>
-<p>磁带机的卷轴还在慢慢转。陈渡按住停止键，拆下耳机，把刚才那盘带子放进纸盒。盒子外侧写着日期：2024年11月7日。</p>
-<p>他把磁带倒回去，戴上耳机，只听了两秒，按下停止。磁带上的啸叫被削成一道尖线，刺耳程度没有降低。</p>
-<p>他在标签下面又添了一行：「第49次，接地线重新压接。」</p>
-<p>他拆掉短接线，重新装上原厂电阻。</p>
-<p>纸盒盖没有盖严，留下一道缝。里面的磁带从缝里露出一截，边缘有一道浅浅的白色划痕。</p>
-<p>烙铁刚离开焊点，他又停住。</p>
-<p>「原来是这个。」他说。</p>
-<p>他看了一眼桌上的记录本，又把刚焊好的电阻拆下来。</p>
-<p>第二次短接，他换了一个位置。没有把整段线路都短接，只绕过那只电阻。焊点一边接触良好，另一边留了不到半毫米的缝。</p>
-<p>通电。</p>
-<p>没有啸叫。</p>
-<p>陈渡按住录音键，等磁带转过五秒。他没有说话，只看着转轴。等带子走到尽头，机器自动停下。</p>
-<p>他把磁带倒回去。</p>
-<p>耳机里是底噪。</p>
-<p>有风扇声，有台灯镇流器，有他的手碰到机器外壳的轻响。</p>
-<p>没有人声。</p>
-<p>陈渡摘下耳机，量了量刚才那段线路的电压。数值比第一次稳定。短接没有让输入级彻底失控，可磁带上的声音仍停在原来的位置。</p>
-<p>他把记录本翻开，在「第48次」后面写：「短接。失败。啸叫。」</p>
-<p>墨水在「啸叫」两个字上多停了一瞬。</p>
-<p>他没有翻页。</p>
-<p>那一页原先每行都以日期、次数和故障开头。设备参数占了十七行，剩下的是磁带型号、焊点位置、电压数值。他从二十七岁开始记，一直记到今天。</p>
-<p>陈渡把笔移到下一行。</p>
-<p>写完「第48次」后，他又添了几个字。</p>
-<p>「如果它天生这样，那我这七年是在跟谁较劲。」</p>
-<p>笔画比前面的记录慢。最后一个句号落在纸面右下角，圆得很小。</p>
+    <title>慢车 18：十一秒</title>
+    <url>/%E5%B0%8F%E8%AF%B4/66cb7b9f.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>陈渡把音量旋钮拧到第三格。</p>
+<p>他把左边那根音频线拔下来，插头还带着一点温。插孔里有一层黑灰，是磁带机常年通电留下的。桌上那杯水已经放凉，杯壁贴着一圈白印。他把杯子往外挪，给空出来的桌面铺上一张维修用的硬纸板。</p>
+<p>磁带机里先出来一段底噪。</p>
+<p>嘶……嘶……</p>
+<p>硬纸板是装电容的包装盒，印着「2200 微法／耐压 25V」。中间一道折痕把字断成两截。</p>
+<p>他看着转盘上的数字。计数器跳到七。</p>
+<p>他把速度降下来，按住暂停键，把录音笔推到一边。那十一秒已经被他拷进小录音笔，来回听了四十七遍。</p>
+<p>磁带机后面还接着一条线。线的外皮已经发硬，靠近接口的地方裂开一条缝，铜丝没有露出来。陈渡用指甲拨了拨，按回原位，再用黑胶布缠了两圈。</p>
+<p>前七遍，他只听见底噪。</p>
+<p>第八遍，他听见了远处的风。</p>
+<p>陈渡把磁带机推到桌角，腾出一块地方放工具。螺丝刀、尖嘴钳、镊子，三样东西按大小排开。刀柄上有一道旧裂口，握胶松了一圈，他用胶布缠了两道。</p>
+<p>胶布边沿起毛。他从抽屉里剪下一小截，贴在上面。</p>
+<p>第九遍，风下面有金属门碰撞的声音。</p>
+<p>第十遍，底噪右边多了一道很轻的哼声。</p>
+<p>电脑音箱里的女声又循环了一遍。</p>
+<p>第十一遍，他把录音笔的波形放大。</p>
+<p>那道声音从第八秒开始，到了第十一秒断开。</p>
+<p>升上去。</p>
+<p>十二赫兹。</p>
+<p>不，不止。</p>
+<p>落下来。</p>
+<p>陈渡把采样率降到四万八千赫兹，又升回去。</p>
+<p>楼上又响了一下。不是水管，是椅子腿拖过地面。他抬头看了一眼天花板，没动。</p>
+<p>那道哼声有两种波形。</p>
+<p>陈渡把声音关掉，只留波形。屏幕上的横线很细，像桌缝里的一根灰。他把时间轴拉回第七秒，在起点处标了一个红点。第十秒再标一个。两点之间的距离，鼠标读数是两点九九秒。</p>
+<p>一道平，像一根拉直的线。</p>
+<p>陈渡拉开磁带机底部的抽屉。抽屉里没有备用磁带，只有一本巴掌大的硬皮记录本，封面被螺丝刀划出几道白印。他把本子倒过来抖了两下，一枚生锈的垫片落进工具盒。</p>
+<p>另一道在下面，细，跟着第一道走。</p>
+<p>他打开采样信息。</p>
+<p>他把机器上的磁带倒回去，重新播放。</p>
+<p>第十一秒。</p>
+<p>四万八千赫兹。</p>
+<p>他把音量推上去。</p>
+<p>第一道声音从右边进来。</p>
+<p>单声道。</p>
+<p>手机屏幕还亮着。沈未没有再发消息。</p>
+<p>第二个声音在下面，低了六分贝左右。</p>
+<p>不是空白。</p>
+<p>十六位。</p>
+<p>他把耳机摘下来，换成录音笔的小喇叭。</p>
+<p>还是那两下。</p>
+<p>不是磁带机的原生规格。录音笔把磁带线路的信号转成了数字，又被采样、量化。那两点起伏经过一次转换，可能被削平，也可能被挤到了原来的频率下面。</p>
+<p>一声女声。</p>
+<p>再一声男声。</p>
+<p>他把处理软件关掉。</p>
+<p>男声更轻。</p>
+<p>陈渡把磁带机停了。</p>
+<p>他重新打开波形，把低切关掉。那两秒被女声压着，峰值贴在底线上，贴着铁皮背面那道旧划痕的走向。他把音量降下来，给磁带倒到第七秒，自己数着拍子。</p>
+<p>原始文件重新打开。</p>
+<p>屋里只剩转盘停住后的余响。</p>
+<p>他看了一眼桌面。那本记事本摊在左边，纸页上有折痕。右边是录音笔、耳机、螺丝刀和一只拆开的磁带机后盖。</p>
+<p>波形还在。</p>
+<p>他把磁带倒到零。</p>
+<p>重新播放。</p>
+<p>他翻到第四十七行。</p>
+<p>他把频率轴从二十赫兹拉到二十千赫兹。那两点几乎贴着横线，像沉在河底的沙。只要把增益往上推，它们就会出来。可增益每加三格，女声的底噪也跟着抬起来。</p>
+<p>这一次，他没有从头听。</p>
+<p>他等到第七秒，把录音笔的录音键按下去，又用另一根线接进磁带机的耳机孔。</p>
+<p>陈渡在界面上加了三个标记。</p>
+<p>四十三赫兹。</p>
+<p>一，二，三。</p>
+<p>七十八赫兹。</p>
+<p>「08.0」。</p>
+<p>他把波形放大到最大。</p>
+<p>那道女声在中间。</p>
+<p>「10.0」。</p>
+<p>那道男声在下面。</p>
+<p>他听第二遍。</p>
+<p>「11.0」。</p>
+<p>还是。</p>
+<p>第三遍。</p>
+<p>他把这三个数字写在硬纸板背面，又在「10.0」旁边画了一条短线。</p>
+<p>第八秒，女声进来。</p>
+<p>他把耳机戴上，把音量旋到第四格。</p>
+<p>底噪里，两个声音叠在一起。</p>
+<p>画完，他捏住铅笔，笔尖在纸面上停了两秒。</p>
+<p>叠音，是两段声音共用一条磁带，录在同一时间。磁带只能沿着一条轨迹走，后来的声音会盖住前面的声音。但盖住不等于抹掉。</p>
+<p>如果把频率分开，弱的还在。</p>
+<p>楼上的水管响了一声。</p>
+<p>陈渡把录音笔放在桌角，拆开后盖。</p>
+<p>里面的接口板很窄，左边是话筒输入，右边是磁带线路。他拿出一根细铜线，刮掉绝缘层，接上其中一个针脚。</p>
+<p>陈渡抬头看天花板。</p>
+<p>那一页记着更换元件的参数：日期，接线位置，阻值，还有一句没写完的话。「她哼的那句」下面压着半截被磁带标签盖住的纸边。陈渡用镊子挑开标签，露出下面一行小字：「07:12，跟不上。」</p>
+<p>「原声。」</p>
+<p>他对着空房间说了一声。</p>
+<p>他没跟着哼。</p>
+<p>水声持续了四秒，停了。随后，隔壁房间有人推椅子。椅脚擦过地面，声音穿过墙，又薄了一层。</p>
+<p>录音笔的红色指示灯亮着。</p>
+<p>他没有再说话，只把磁带机重新启动。</p>
+<p>他把铅笔放下，给「08—10_沈未.wav」单独建了一个文件夹。</p>
+<p>磁带转起来。</p>
+<p>女声先出现。</p>
+<p>文件夹命名后，屏幕上出现三个名称。</p>
+<p>男声贴着它的下沿。</p>
+<p>陈渡把磁带机的录音旋钮压下。</p>
+<p>「08—10_沈未」。</p>
+<p>第一次录音。</p>
+<p>第十秒，男声跟进来。</p>
+<p>他按停止，把录音笔接到电脑上。文件只有八秒。</p>
+<p>「10—11」。</p>
+<p>「再录。」</p>
+<p>第二次，他把磁带倒回七秒。</p>
+<p>「10—11_男声_提取」。</p>
+<p>这次录了九秒。</p>
+<p>打开文件，只剩底噪。</p>
+<p>他看着这三个名字，把第三个文件夹里的文件拖进第二个。提示框弹出，问是否保留原文件。</p>
+<p>陈渡盯着屏幕，把指针拖到波形最下面。</p>
+<p>两点之间，有一道几乎贴着横线的起伏。</p>
+<p>他点了「否」。</p>
+<p>第十二秒，磁带到头，转盘空转，发出连续的底噪。</p>
+<p>他把标签撕开。标签背面粘着一小段透明胶，胶上粘着半截黑色磁带。磁带边缘有剪口，编号只剩「B-1」。他把那截带子对着灯照，里面没有白色带基，只剩一层棕色氧化物。</p>
+<p>他把音量推到最大。</p>
+<p>耳机里传来一声很短的男声。</p>
+<p>删除完成后，第二个文件夹空了。</p>
+<p>很轻。</p>
+<p>像有人在门后清嗓子。</p>
+<p>陈渡又按了一次撤销。</p>
+<p>他把这一段截出来，另存为「7—9」。</p>
+<p>然后继续。</p>
+<p>文件回到原处。</p>
+<p>第十秒，男声出现。</p>
+<p>第十一秒，声音断掉。</p>
+<p>陈渡按下停止，重新倒带。倒到一半，他又停住，把耳机摘下一边，贴近磁带机外壳。外壳里有一层薄薄的灰，靠近变压器的地方带着焊锡受热后的味道。</p>
+<p>他重新把提取文件放进去，给文件夹命名为「2009.4.17」。</p>
+<p>第二段文件保存为「10—11」。</p>
+<p>两个文件。</p>
+<p>再点开属性。</p>
+<p>一个九秒。</p>
+<p>一个一秒。</p>
+<p>创建时间被系统写成今天。</p>
+<p>陈渡把「7—9」打开，把低频提升三格。</p>
+<p>耳机里的女声变粗，男声被推到前面。</p>
+<p>他看了一会儿，在旁边新建一个文本文件，把内容改回二〇〇九年四月十七日。</p>
+<p>那是沈未。</p>
+<p>他拿起棉签，擦过磁头。</p>
+<p>她在哼一句没有词的歌。</p>
+<p>保存。</p>
+<p>调子很短，升上去，又落下来。</p>
+<p>他拿出那盘贴着「2009.4.17」的空白磁带，放在旁边。两盘带子的直径差一毫米，轮毂缺口却相同。他把螺丝刀插进磁带机侧面的检修孔，拨开一只卡扣。里面掉出一片薄薄的塑料片，上面刻着「B-17」，旁边还留着一道胶痕。</p>
+<p>男声在第三拍跟了进去。</p>
+<p>桌角的粉笔滚了一下，碰到「男：2秒。被盖住。」那行字，停在数字「二」旁边。</p>
+<p>低一点。</p>
+<p>慢半拍。</p>
+<p>陈渡伸手把粉笔捡起来。</p>
+<p>然后停住。</p>
+<p>陈渡摘下耳机。</p>
+<p>粉笔头已经磨得很圆。他拿小刀削掉两毫米，放在磁带机旁。</p>
+<p>棉签头上有一小片褐色氧化物。</p>
+<p>他记得那是 2009 年。</p>
+<p>殡仪馆的储物间只有六平方米，靠墙三排铁架，中间摆一张木桌。机器架在桌上，电源线从墙上的插线板拉下来。沈未在隔壁。</p>
+<p>桌上的电话又响了一声。</p>
+<p>那天她值夜班。</p>
+<p>陈渡把磁带机带来，试一段新的拾音线。线接好后，机器能录下门外的脚步，却录不下他站在话筒前的哼声。</p>
+<p>不是沈未。</p>
+<p>他当时以为线路坏了。</p>
+<p>后来他把线拆下来，换了一个电容，又测了一遍。</p>
+<p>是自动售货机掉货的提示音。每周二晚上，楼下那台机器都会误触一次。陈渡没去管。</p>
+<p>沈未在隔壁哼歌。</p>
+<p>那是他第一次听见她哼。</p>
+<p>他没有立刻擦第二下。他把磁头盖重新扣好，倒回七秒，按下播放。第十秒，男声还在。他把棉签放在桌边，签头朝外。</p>
+<p>他把磁带机的带速从正常拨到慢放。</p>
+<p>他站在桌边，没有出声。</p>
+<p>她的声音穿过储物间的薄墙，落进磁带机。</p>
+<p>计数器一格一格往后退。</p>
+<p>然后他跟着哼了一句。</p>
+<p>只哼了半拍。</p>
+<p>他用镊子夹出塑料片，和那截磁带并排放在桌面上。塑料片背面粘着一点褐色纤维，长度不到一厘米。</p>
+<p>第十一秒的尾音被拉长。</p>
+<p>后面的声音留在磁带里，他自己当时没有听出来。</p>
+<p>陈渡把两个文件拖进同一轨。</p>
+<p>耳机里先是一阵很细的摩擦声。拖到第四秒时，尾音裂成两层：一层往上走，另一层留在下面。</p>
+<p>左边是「7—9」，右边是「10—11」。</p>
+<p>这次，沈未发来一张图片。</p>
+<p>波形叠在一起。</p>
+<p>陈渡按下停止，把播放键改成逐帧。</p>
+<p>女声从第八秒进入，男声从第十秒进入。</p>
+<p>他用音量旋钮一格一格地降。</p>
+<p>画面停在第十一秒。</p>
+<p>女声先下去。</p>
+<p>男声还在。</p>
+<p>他往前退一帧。</p>
+<p>他再降。</p>
+<p>男声也沉到边缘。</p>
+<p>男声的波形只露出半个峰。</p>
+<p>图片拍得很近，只有一只手和一块黑色封皮。封皮上的字被手掌遮住，只露出一个「B」和半个「1」。下方压着一张白纸，纸上有一栏表头，姓名、日期、材料编号，后面的格线被折痕截断。</p>
+<p>他把旋钮拧到底。</p>
+<p>只剩电流声。</p>
+<p>再退一帧。</p>
+<p>再拧回一格。</p>
+<p>男声重新出现。</p>
+<p>只剩底噪。</p>
+<p>陈渡把文件拉回起点，按空格键。</p>
+<p>磁带机里传出当年的底噪。</p>
+<p>他把这半帧复制出来，放大。</p>
+<p>陈渡打开手机里沈未发来的照片，把亮度调高。照片上的黑色记事本旁边有一支圆珠笔，笔帽有咬痕。桌面右下角的钢制包角上，留着一小片褐色纸屑。</p>
+<p>门外的脚步，远处水管里的水声，沈未在隔壁哼歌。</p>
+<p>他的声音在那下面。</p>
+<p>陈渡点开放大。</p>
+<p>两个频率标出来。</p>
+<p>不是空白。</p>
+<p>被盖住了。</p>
+<p>二百八十七赫兹。</p>
+<p>他把耳机摘下来，盯着屏幕上的波形。</p>
+<p>波形最下面那一条，几乎与横线重合。</p>
+<p>三百一十三赫兹。</p>
+<p>如果只听混音，听不见。</p>
+<p>如果只看磁带轨，也会以为那里没有东西。</p>
+<p>差二十六赫兹。</p>
+<p>但它在。</p>
+<p>纸张边缘有一块深色水渍。沈未的手指甲很短，无名指侧面沾着一点蓝墨水。</p>
+<p>他打开频谱。</p>
+<p>陈渡把机器的带速恢复。磁带退到第七秒，他重新播放。第十秒，男声进来。第十一秒，断开。</p>
+<p>峰值挤在女声的下方，集中在二百八十到三百二十赫兹之间。男声不在原来的位置。</p>
+<p>是被女声压下去的。</p>
+<p>他摘下一边耳机，把耳朵贴近机器外壳。</p>
+<p>陈渡把时间轴放大。</p>
+<p>第十秒，男声只有两个起伏。</p>
+<p>外壳里有磁头、放大器和供电变压器。声音经过线圈，再进入磁带。那两秒不可能由线路凭空长出来，除非当时就有一道电流被写进去。</p>
+<p>第十一秒，只剩一声很短的尾音。</p>
+<p>他用粉笔在桌角写：</p>
+<p>如果是底噪，频谱会散。</p>
+<p>他回：「拍全。」</p>
+<p>他把照片缩小，又放大。纸屑的位置和长度，与桌上的塑料片背面那点纤维相近。</p>
+<p>「男：2秒。被盖住。」</p>
+<p>写完，他把粉笔横放在数字旁边。</p>
+<p>如果是机械震动，峰值会跟着转盘周期重复。</p>
+<p>窗外的货车经过，车轮压过接缝，声音从窗框传进来。</p>
+<p>陈渡没有关窗。</p>
+<p>三百一十三赫兹没有重复。</p>
+<p>他把录音笔音量旋钮拧到第一格，重新听了一遍。</p>
+<p>这次，他把女声关掉。</p>
+<p>它只出现在第十秒。</p>
+<p>房间里只剩底噪。</p>
+<p>第八秒开始，男声单独浮出来。</p>
+<p>过了十几秒，图片撤回。</p>
+<p>陈渡打开磁带机的检修孔。里面没有别的拾音设备，只有原装磁头、改过的线路板和一个贴着黄色胶布的旧元件。胶布边缘写着「2K2」。</p>
+<p>很近。</p>
+<p>像他就站在磁带机旁边。</p>
+<p>他把灯凑近。</p>
+<p>第十一秒，那声音落下去。</p>
+<p>陈渡按下停止键。</p>
+<p>元件的一脚已经弯了。</p>
+<p>他又听第二遍。</p>
+<p>男声还是在那里。</p>
+<p>陈渡用镊子把它扶正，没有碰线路上的其他部分。</p>
+<p>第一遍，他以为听错了。</p>
+<p>沈未发来一句：「不能拍。」</p>
+<p>第二遍，他把波形和频谱同时打开。</p>
+<p>这时，手机屏幕又亮起来。</p>
+<p>频谱上有一段清楚的窄带，中心在三百一十赫兹。声音很弱，峰值比底噪高出十一个分贝。</p>
+<p>陈渡打开录音软件，把「08—10_沈未.wav」拖进时间轴。第十秒，沈未的哼声落下；他在第十秒前加了半拍空白，又把频率拉低。男声的位置只剩一段窄窄的起伏，和那截磁带的长度对不上。</p>
+<p>不是没有。</p>
+<p>沈未发了一张照片。</p>
+<p>是低。</p>
+<p>陈渡坐了一会儿，把电脑屏幕往自己这边拉。</p>
+<p>照片里是一本黑色记事本。封皮右下角磨起一块，露出里面的纸页。她只拍到桌面，照片边缘有半只白手套。</p>
+<p>桌角那本记事本被带得翻开一页。</p>
+<p>他看见自己的字。</p>
+<p>没有正文。</p>
+<p>陈渡把手机扣在桌上，拿起螺丝刀，把磁带机后盖上那颗一字螺丝重新拧了一遍。刀口已经磨亮，螺丝头多出一道竖向划痕。他用指甲刮了刮划痕，刮不掉。</p>
+<p>「录不进自己的声音，先看磁头。」</p>
+<p>下面是一行日期。</p>
+<p>陈渡放大图片。</p>
+<p>2009 年 4 月 17 日。</p>
+<p>那行字很淡，墨水已经洇开。</p>
+<p>白手套旁边放着一支圆珠笔，笔帽咬痕深浅不一。桌面右下角露出殡仪馆工作台的钢制包角。</p>
+<p>他翻回前面。</p>
+<p>那一页是殡仪馆的工作安排。沈未写得很整齐。日期、姓名、房间、处理时间，一行一行排下去。</p>
+<p>他截了图，退出相册。</p>
+<p>旁边没有人说话。</p>
+<p>陈渡盯着那页看了很久。</p>
+<p>他打开抽屉，找到一张旧收据。收据背面印着一家设备行的电话，号码中间缺了两位。他把它压在手机下面，没有拨。</p>
+<p>「照片里是当天那本？」</p>
+<p>他记得那天沈未就在隔壁。</p>
+<p>他记得她哼过一句。</p>
+<p>发送。</p>
+<p>他没有听她哼完。</p>
+<p>他也没有告诉她，机器录下了。</p>
+<p>他换了一盘磁带。按下播放，倒数到七秒。男声从耳机里出来时，磁带机右侧的灯闪了一下。</p>
+<p>沈未回：</p>
+<p>他把记事本合上。</p>
+<p>桌上的小录音笔跳到「00:00」。</p>
+<p>「本子还在，但不在我这里。」</p>
+<p>陈渡没有立刻再放。</p>
+<p>磁带机继续走带。转盘每转一圈，窗上的指示点便跳一下。</p>
+<p>他拿起那台苏式磁带机，把后盖重新扣好。四颗螺丝，三颗十字，一颗一字。那颗一字螺丝的刀口已经被他磨过，边缘发亮。</p>
+<p>陈渡看着这句话，手指停在屏幕上方。</p>
+<p>他用手动螺丝刀拧紧。</p>
+<p>一圈。</p>
+<p>「在哪？」</p>
+<p>两圈。</p>
+<p>第三圈时，螺丝滑了一下。</p>
+<p>这一次，回复隔了四十多秒。</p>
+<p>他停住，把刀口重新压进槽里。</p>
+<p>然后继续。</p>
+<p>「家属接待处把它当旧登记本用了。夹在待补材料里，编号 B-17。」</p>
+<p>沈未发来第三条消息：</p>
+<p>机器放回桌中央。</p>
+<p>他打开电源。</p>
+<p>陈渡记下编号。</p>
+<p>指示灯亮着。</p>
+<p>转盘没有转动。</p>
+<p>沈未又发来一句：</p>
+<p>陈渡把磁带装上，按下播放。</p>
+<p>底噪起来。</p>
+<p>「要开箱单才能查。」</p>
+<p>陈渡把录音笔贴近磁带机后盖，沿着外壳摸到一块凸起的塑料。抠开后盖，里面夹着一张折叠的纸。纸上是他的字，只有一行：</p>
+<p>他等数字跳到七。</p>
+<p>耳机里的女声出现。</p>
+<p>「登记表上是沈九斤。」</p>
+<p>他打字。</p>
+<p>他把音量推到第三格。</p>
+<p>男声在下面。</p>
+<p>「先查位置。」</p>
+<p>两次。</p>
+<p>都是两次。</p>
+<p>「不急。」</p>
+<p>陈渡把耳机摘下，放到桌上。</p>
+<p>他打开抽屉，找出一盘空白磁带。标签上写着「2009.4.17」。</p>
+<p>陈渡把手机放下，看向那盘贴有「2009.4.17」的空白磁带。</p>
+<p>标签已经发黄，边缘卷起来。</p>
+<p>陈渡看着那四个字，拇指停在屏幕上方。</p>
+<p>这是当年那盘磁带的编号。</p>
+<p>标签边缘卷起，露出下面一层旧标签。旧标签上有一道压痕，像有人写过一串号码，后来用透明胶盖住。</p>
+<p>他把空白盘放在机器旁边，没有装。</p>
+<p>手机在桌上亮了一下。</p>
+<p>他用指甲抠开透明胶的一角。</p>
+<p>陈渡看了一眼。</p>
+<p>沈未发来消息。</p>
+<p>底下露出「B-17」。</p>
+<p>「机器还在响？」</p>
+<p>他打字。</p>
+<p>三个字符。</p>
+<p>他没有问沈未。</p>
+<p>「她哼的那句：升上去。落下来。第二遍没跟。」</p>
+<p>「在。」</p>
+<p>停了几秒，又删掉。</p>
+<p>后面还有两个被磨掉的数字。</p>
+<p>重新打。</p>
+<p>「找到两秒。」</p>
+<p>陈渡把标签完全揭开。胶纸粘住纸面，撕开时带下一层纤维。</p>
+<p>发送。</p>
+<p>沈未没有马上回。</p>
+<p>底下是周隼的字。</p>
+<p>陈渡把磁带停在七秒的位置，又播放了一遍。</p>
+<p>第三个词打完时，手机震了一下。</p>
+<p>他先点开周隼的号码，听筒里传来两声空响，随后被挂断。再打，仍是忙音。</p>
+<p>「已回」。</p>
+<p>「什么两秒？」</p>
+<p>他打字。</p>
+<p>后面画了一道横线。</p>
+<p>「2009 年那两秒。」</p>
+<p>消息发出去后，他把手机扣在桌上。</p>
+<p>陈渡把磁带机后盖上的四颗螺丝重新检查了一遍。三颗十字螺丝没有滑痕。那颗一字螺丝的刀口被他磨过，边缘发亮，螺丝头多出一道竖向划痕。</p>
+<p>屏幕朝下。</p>
+<p>房间里只剩磁带机的底噪。</p>
+<p>不是今天留下的。</p>
+<p>过了十几秒，手机又震。</p>
+<p>桌上的磁带倒回七秒。</p>
+<p>陈渡翻过来。</p>
+<p>他把螺丝刀贴在划痕上，比了比角度。</p>
+<p>沈未说：「我那天哼的是哪一句？」</p>
+<p>他把纸条压到硬纸板下，又拿起那截「B-1」磁带，放到转盘上。带子转了半圈，计数器没有动。磁头落下，里面只有一声很轻的咔响。</p>
+<p>他没有回。</p>
+<p>门外过了一辆电动车。灯光从门缝扫进来，桌面上多了一条白线，很快退掉。</p>
+<p>他把录音倒到七秒，戴上耳机，等到女声出现。</p>
+<p>一句。</p>
+<p>陈渡打开手机通讯录，找到周隼的号码。</p>
+<p>升上去。</p>
+<p>落下来。</p>
+<p>号码下面，最后一次通话时间是四个月前。</p>
+<p>他播放到第十秒，把音量拧到第二格。男声在耳机里贴着女声的下方浮出来，短，闷，像隔着一层铁皮。</p>
+<p>他打字。</p>
+<p>「这句。」</p>
+<p>他按了拨号。</p>
+<p>停了停。</p>
+<p>「你哼了另一句。」</p>
+<p>听音响了两声，被按掉。</p>
+<p>发送。</p>
+<p>这次沈未回得很快。</p>
+<p>陈渡没有再拨。他点开短信，输入：</p>
+<p>「我不记得。」</p>
+<p>陈渡把手机放下。</p>
+<p>陈渡拿起铅笔，在硬纸板背面写下：</p>
+<p>「B-17 是哪本？」</p>
+<p>他盯着那行字。</p>
+<p>她不记得。</p>
+<p>发送。</p>
+<p>她记得那天有人在隔壁试机器。</p>
+<p>记得门外有人走过。</p>
+<p>陈渡拿起铅笔，在硬纸板背面添了一行：「B-1，与B-17不是同一盘。」</p>
+<p>屏幕上出现转圈标志。</p>
+<p>记得储物间的灯泡接触不良。</p>
+<p>不记得自己哼过一句。</p>
+<p>五秒后，沈未发来一条新消息。</p>
+<p>陈渡又听了一遍。</p>
+<p>「沈九斤——B-17。」</p>
+<p>男声在第十秒进来。</p>
+<p>「开箱单上写的不是编号。是人名。」</p>
+<p>低六分贝。</p>
+<p>他的手指停在播放键上，没有按下去。</p>
+<p>陈渡把手机横放在硬纸板旁。</p>
+<p>他想起自己当时站在话筒后面。</p>
+<p>没有唱。</p>
+<p>「谁？」</p>
+<p>只是跟着沈未的调子出了半声。</p>
+<p>那半声被录进去了。</p>
+<p>沈未没有立刻回答。</p>
+<p>写完，他又在下面添了一行：</p>
+<p>不是后来改机器以后。</p>
+<p>不是空白。</p>
+<p>阁楼上的钟响了一下。二十一点十五分。</p>
+<p>不是没有。</p>
+<p>陈渡把耳机重新戴上，把「10—11」文件拖到播放器。</p>
+<p>白手套的照片还停在手机里。陈渡把它关掉，重新打开，把亮度调到最低。</p>
+<p>这一次，他把频段的低切打开。</p>
+<p>两百六十赫兹。</p>
+<p>硬纸板背面，那三个标记还在。</p>
+<p>他将纸条翻到背面，纸角露出一个被裁掉一半的日期。剩下的数字是「04.17」。</p>
+<p>再听。</p>
+<p>男声清楚了一些。</p>
+<p>「1998.4.11。」</p>
+<p>「08.0」。</p>
+<p>他又关掉低切，把增益降低两格。</p>
+<p>男声还在。</p>
+<p>「10.0」。</p>
+<p>最后，他把原文件和处理后的文件同时播放。</p>
+<p>一边是底噪下的两点起伏。</p>
+<p>「11.0」。</p>
+<p>一边是被提起来以后露出的两个音节。</p>
+<p>陈渡没有唱。</p>
+<p>他拿起铅笔，在「11.0」后面添了半行字：</p>
+<p>他只在耳机里听。</p>
+<p>他看了看，把铅笔横放在两行字之间。</p>
+<p>第二遍。</p>
+<p>「B-17——」</p>
+<p>第三遍。</p>
+<p>两秒。</p>
+<p>后面的名字还空着。</p>
+<p>他将处理后的文件命名：</p>
+<p>「10—11_男声_提取.wav」</p>
+<p>又给另一段命名：</p>
+<p>「08—10_沈未.wav」</p>
+<p>文件名上的字打完，他把鼠标停在保存键上。</p>
+<p>窗外又一辆货车经过。</p>
+<p>车轮压过接缝。</p>
+<p>一下。</p>
+<p>两下。</p>
+<p>第三下时，电脑右下角的时钟跳到二十一点十四分。</p>
 ]]></content>
       <categories>
         <category>小说</category>
@@ -23879,6 +23587,298 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>磁带停在零位。</p>
 <p>标签贴在底板上。</p>
 <p><code>1979，原厂设计。</code></p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>慢车</tag>
+        <tag>小说</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>慢车 21：换一台</title>
+    <url>/%E5%B0%8F%E8%AF%B4/d15e7048.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>五金市场的卷帘门刚拉开一半，里面就响起电钻声。</p>
+<p>他把短接用的导线从焊盘上挑起来，剪下靠近烙铁的一段。线头还带着锡，落到桌面上，滚到记录本旁边。</p>
+<p>陈渡站在门口等了几秒，等声音停了，才侧身进去。柜台后面摆着两排电容，透明塑料壳里挤满褐色、蓝色和黑色。老板娘正拿螺丝刀撬一只纸箱。</p>
+<p>陈渡伸手按住线头，扔进桌上的空焊锡盒。</p>
+<p>楼上有人拖动椅子，椅脚刮过水泥地。陈渡把机器侧盖往桌边推了半寸，腾出一块地方，翻看拆下来的零件。</p>
+<p>「买什么？」她问。</p>
+<p>盒子底部有一层细碎的锡渣。他用螺丝刀拨了拨，线头在里面翻了两下，露出一截发黑的铜丝。</p>
+<p>「录音机的零件。」</p>
+<p>台灯照在那条焊点上。两个孔之间的锡已经冷了，表面有轻微的皱。他用镊子碰了碰，没动。再碰一下，焊点旁边翘起一片薄薄的锡皮。</p>
+<p>那只鼓包电容的引脚已经发黑。他用镊子夹住外壳，针尖一碰，电容表面就留下一个凹坑。</p>
+<p>「哪种机？」</p>
+<p>「没烧。」他说。</p>
+<p>陈渡从帆布包里拿出一张折过四次的纸，摊在柜台上。上面列了十二项名称，后面标着数量。型号一栏空着。</p>
+<p>这句话是说给机器听的。机器没有回答，只在桌上压出一块铁灰色的影子。外壳右侧有一处凹痕，边缘被手磨得发亮。那是每次拆装时螺丝刀蹭出来的。凹痕旁边贴着一小块褪色标签，只剩「11」两个数字，后面的漆掉在桌缝里。</p>
+<p>门缝外有人停住。</p>
+<p>「苏式，编号末三位一一七。」他说，「原来的电路我拆过。现在要换一批。」</p>
+<p>陈渡把标签抠下来，底下粘着一层胶。胶里卡着几粒灰。他用刀尖刮掉，重新贴回去。</p>
+<p>老板娘扫了一眼：「这么老，现在没人修这个。」</p>
+<p>记录本上，第48次那一行下面空着。他没有继续写。笔放在本子边，笔帽朝着墙。</p>
+<p>「小陈？」老板娘在楼道里喊，「你落下东西了。」</p>
+<p>「有。」</p>
+<p>楼下有人拖动铁桶。桶底沿水泥地擦过，声音从门缝底下钻进来。陈渡等声音远了，才把万用表从桌上拿下来。</p>
+<p>「哪里修？」</p>
+<p>表的电池刚换过，屏幕右下角还有一点反光。他拨到直流电压档，先测机器外壳对地，再测输入孔对地。</p>
+<p>陈渡打开门。老板娘站在门外，手里捏着一卷黑色胶布。</p>
+<p>「我自己修。」</p>
+<p>表笔碰到输入孔时，数值停在零。</p>
+<p>她把纸推回来：「买齐了也未必能用。」</p>
+<p>他换了表笔，黑笔接地，笔尖在输入孔边缘刮出很轻的响声。随后数值升到零点几，跳了两下，停在 0.3。</p>
+<p>「你买的这个，不是屏蔽线。」</p>
+<p>「先买齐。」</p>
+<p>「三百毫伏。」</p>
+<p>陈渡又从包里拿出一只旧放大镜，镜框用胶带缠过。他蹲下身，查看柜台下面堆放的元件。纸箱底部受潮，几只电容外壳上有水印。</p>
+<p>机器的电源插头还插在墙上的排插里。排插旁边是一只塑料脸盆，盆里泡着两块电路板，水面上浮着一层细灰。陈渡看了一眼，把排插上的插头拔了。</p>
+<p>陈渡接过来，用指甲刮了刮线皮。表面掉下一层灰，芯线也没有绞合，只是一根黑塑料包着的单股铜丝。</p>
+<p>「这几只不要。」他指着箱子，「日期太早。国产的也行，只要不是翻新。」</p>
+<p>屏幕上的数值退到零。</p>
+<p>「翻新怎么认？」</p>
+<p>他拔下话筒线，线头的金属部分露出来。话筒外壳是黑色塑料，靠近网罩的地方裂了一道缝，里面几根铜丝被胶带缠住。胶带已经发黄，边缘起了毛。</p>
+<p>「多少钱？」</p>
+<p>「看底部。翻新的字印浅。」</p>
+<p>陈渡用指甲抠下一小块胶带。</p>
+<p>老板娘笑了一声：「你比采购还难伺候。」</p>
+<p>里面没有断线。</p>
+<p>「按屏蔽线算的。」</p>
+<p>「买错一次，全坏。」</p>
+<p>他把胶带按回去，拿细砂纸在话筒线上磨了几下。砂纸粗糙，磨过的地方起了一层白毛。线外皮有六处压印，最深的一处落在桌边。</p>
+<p>她从货架上拿下几只盒子，逐个摆到纸上。陈渡拿起万用表，拨到电阻档。表笔碰到引脚，数字跳了两下，停住。</p>
+<p>他顺着线往下摸，摸到插头根部的胶布。</p>
+<p>他将线头放进台灯下，剥开两厘米。里面没有编织层，只有几根平行的铜丝，中间留着缝。</p>
+<p>「一百八十七千欧。」他说，「标一百九十。差一点。」</p>
+<p>胶布下鼓起一小团。</p>
+<p>「这批次。」</p>
+<p>陈渡拆开胶布。</p>
+<p>「这个不能接话筒线。」</p>
+<p>「换。」</p>
+<p>里面的铜丝断了两根。</p>
+<p>老板娘又拿来三只。陈渡逐一测量，留下其中一只。他把电阻放进纸箱，又去拿二极管。</p>
+<p>他把断口对着台灯看。铜丝断口发黑，不是从中间齐断的，是被拧过。旁边压着一小片白色塑料屑，像插头外壳里的绝缘垫。</p>
+<p>「能通就行。」</p>
+<p>纸箱上标着「整流」，每袋二十只。他没有立刻拆袋，先看封口。封口胶带颜色一致，没有二次拆封的痕迹。</p>
+<p>他拿出万用表，把话筒线的两头夹在测试夹上，拨到通断档。</p>
+<p>「拿两袋。」</p>
+<p>屏幕上显示开路。</p>
+<p>老板娘把胶布递给他：「那我不退了。」</p>
+<p>「录音机还缺这个？」</p>
+<p>陈渡把话筒线放到桌面上，拆掉整段胶布。线皮裂口比看上去大，里面还剩三根线能用。红色那根被压断，绿色那根弯折发白，黑色那根完整。</p>
+<p>「电源部分要换。」</p>
+<p>他从零件箱里找出一截屏蔽线，又找出一只旧插头。旧插头的金属杆有一道纵向划痕，拧紧后容易漏接。</p>
+<p>陈渡把胶布接过来，拇指在封口处按了一下。胶布已经开封，粘性还在，边缘沾着细灰。</p>
+<p>「电源坏了，你直接换整块板子更快。」</p>
+<p>他没有马上接线。</p>
+<p>「型号不明。」</p>
+<p>桌上那只小放大镜被他推到一边。镜面映出一截台灯灯罩，灯罩边缘有一圈黑灰。陈渡用棉签蘸了酒精，先擦话筒网罩，再擦裂开的塑料外壳。酒精从缝里流进去一滴，他用布接住。</p>
+<p>「多少钱？」</p>
+<p>「你这张纸上不都写了吗？」</p>
+<p>「话筒坏了，也不会正好没有声音。」他说。</p>
+<p>陈渡把放大镜放下：「只写功能，不写位置。原厂板子拆下来才知道。」</p>
+<p>说完，他抬头看了看窗台。</p>
+<p>「送你了。」</p>
+<p>二极管、电阻、瓷片电容、铝电解电容、变压器、磁头、按键开关，他一样一样往纸箱里放。买到变压器时，老板娘说只有 220 伏和 110 伏两种。</p>
+<p>窗台上放着一只搪瓷杯，杯口缺了一小块。杯里没有水，只有一圈干掉的白印。陈渡把杯盖翻过来，扣在话筒外壳上。</p>
+<p>「这批是 220。」</p>
+<p>话筒接进机器。</p>
+<p>他把胶布放在桌角，又拿起那卷线。</p>
+<p>「我那边能用。」</p>
+<p>他重新通电，按下录音键。耳机里出现底噪，比刚才薄了一层。风扇声还在，水管声还在。自己的呼吸贴着耳膜过去，仍旧没有留下人声。</p>
+<p>「保险丝呢？」</p>
+<p>陈渡把录音键松开，拿起耳机听。</p>
+<p>「先测。」</p>
+<p>「一起拿。」</p>
+<p>喇叭里的底噪像一层细砂。他调到 3kHz 左右，风扇的叶片声被放大，机器内部某个接点的轻响也清楚了。</p>
+<p>他买了两只保险丝，一卷耐热线，一盒焊锡。柜台上的计算器不停跳，最后停在 286 元。</p>
+<p>他把音量压低。</p>
+<p>陈渡接上短接用的测试夹，把线的一端夹住，拨到通断档。屏幕亮了一下，显示开路。他换了一端，还是开路。</p>
+<p>老板娘用手指敲了敲计算器：「两百八十六。」</p>
+<p>再按录音。</p>
+<p>陈渡从钱包里抽出三张一百块。</p>
+<p>耳机里传出磁带倒转的摩擦声。那是磁头离开磁带时，卷轴反向带动的细响。接着是桌面被手肘碰到的轻响。</p>
+<p>「中间断了。」</p>
+<p>「找不开。」</p>
+<p>没有声音。</p>
+<p>「那就找十四。」</p>
+<p>陈渡把耳机摘下一边，只留一只耳朵贴在机器外壳上。外壳有震动。变压器在工作，频率很低，手指贴上去只能感觉到轻微的嗡。</p>
+<p>老板娘探头看了一眼：「一根线也测？」</p>
+<p>「一块。」</p>
+<p>他用螺丝刀敲了敲外壳。</p>
+<p>「今天没有。」</p>
+<p>耳机里的底噪跟着跳了一下。</p>
+<p>「先通电。」</p>
+<p>「那就两块。」</p>
+<p>「磁头没有贴紧。」他说。</p>
+<p>老板娘从抽屉里摸出两个一块硬币。陈渡接过来，放进上衣口袋。</p>
+<p>他打开侧盖，找到压带轮。轮子的胶圈已经发硬，表面有两道细裂。压带轮旁边的弹簧少了一圈弹性，螺杆上抹了厚厚一层黑色润滑脂。</p>
+<p>他把线放到一边，另从零件箱里找出一只测线器。金属触点有些发黑，他用酒精擦过，夹住线头。表针没有动。</p>
+<p>「还缺什么？」她问。</p>
+<p>陈渡用棉签把旧脂擦掉，换了新脂。胶圈被压下去时发出很小的吱声。</p>
+<p>「不缺。」</p>
+<p>他重新装好磁带，倒回起点，按下录音键。</p>
+<p>陈渡拆开胶布，重新压紧。线皮裂到铜丝，铜丝断口发白。他把断处接上，焊锡太少，锡只包住一侧。</p>
+<p>「你每次都说买齐了，回头又来。」</p>
+<p>这次耳机里多出一声很轻的咔哒。</p>
+<p>「这次不。」</p>
+<p>不是话。</p>
+<p>「换一个。」</p>
+<p>他抱起纸箱，箱子底部压住箱子边角。走到卷帘门下时，里面又响起电钻声。他侧着身出去，纸箱擦过门框，掉下一颗螺母。</p>
+<p>是磁头压带前，机械开关的触点合上。</p>
+<p>他蹲下捡起那颗螺母，看了看螺纹。没问题，放进口袋。</p>
+<p>陈渡看着录音键，等磁带转过五秒。他抬手摸了一下喉咙，又把手放下。</p>
+<p>老板娘从柜台下面拿出一卷新线。</p>
+<p>出租屋在五金市场后面一栋楼里，四楼。门口堆着两只坏风扇，楼上住户把煤炉放在过道上，炉口还亮着。陈渡侧身进门，鞋底带进一层灰。</p>
+<p>喉结旁有一小块旧伤，是小时候被自行车把手磕的，碰到时皮肤发硬。</p>
+<p>他没开大灯，只拧亮桌上那盏 40 瓦台灯。</p>
+<p>他打开记录本，在第48次后面另起一行，写下：「话筒线断。换线后复测。无变化。」</p>
+<p>这卷线外皮印着白色规格，边缘没有毛刺。陈渡抽出一截，剥开线头。里面的铜丝颜色均匀，捻距约两毫米。</p>
+<p>磁带机放在桌角，编号末三位一一七。外壳已经拆过，四颗螺丝放在一只烟盒盖里。机器左侧接着一只话筒，话筒线从桌边垂到地上，插头裹着黑胶布。</p>
+<p>笔尖停住。</p>
+<p>陈渡把零件纸箱搬到地上，按清单一项项往桌面摆。</p>
+<p>他把「复测」划掉，改成「第49次」。</p>
+<p>他用测试器夹住两端。表针先归零，再抬到中段，停住。</p>
+<p>他先取下磁头，用螺丝刀碰了两下。磁头表面有一道细痕，录音时经过那一段，声音会发闷。他拿白棉签蘸酒精，擦了三遍。</p>
+<p>这一行只写了日期、故障和换件。最后留下一个空格。</p>
+<p>酒精的气味散开。桌上的电烙铁还热着。他把烙铁架好，拿铜丝清理烙铁头。</p>
+<p>空格里没有字。</p>
+<p>「通的。」</p>
+<p>焊锡在烙铁头上化开，落成一小颗。陈渡吹了吹。</p>
+<p>陈渡把笔放下，去洗刚才用过的棉签。水龙头在走廊尽头，水管先吐出一股带铁锈色的水。他等颜色变清，才把棉签冲干净。池底有一圈白碱，积得很厚。</p>
+<p>「一百二十赫兹……」</p>
+<p>回来时，桌上的记录本多了一处水印。</p>
+<p>「那你早说。」</p>
+<p>他打开机器外壳，逐点检查旧电路。功率管旁边有一片炭黑。电解电容顶部鼓起，最高的一只已经裂出白印。两只电阻发黄，颜色不匀。</p>
+<p>他把本子拿到灯下。</p>
+<p>「二百……三百……」</p>
+<p>水印没有碰到字，只洇开了刚才空着的那一格。他用袖口吸掉边缘的水。</p>
+<p>陈渡把新线绕在旧测试夹上，拧紧。夹口太窄，铜丝被压出一道折痕。他换了鳄鱼夹，重新夹住。</p>
+<p>万用表的红表笔接测试点，黑表笔接地。数值在屏幕上跳。</p>
+<p>楼下铁桶又拖了一次。</p>
+<p>他记下位置，换下第一只鼓包电容。镊子夹住引脚，烙铁从背面加热。旧电容拔出来时，板子上留下两个圆形焊点。</p>
+<p>陈渡看向门口，门缝下没有光。走廊的声控灯坏了，只能从楼梯间的窗户看见一块灰白色。他把门带上，插销没有扣紧，留了一指宽。</p>
+<p>表针仍停在中段。</p>
+<p>新电容比旧的矮。他转了两次方向，确认极性，再把引脚插回去。锡化开，铺满焊盘。他没有立刻剪短，剪到留出三毫米，弯折，压平。</p>
+<p>回到桌前，他把那卷记录纸摊平。纸角已经卷起，用一只旧打火机压住。</p>
+<p>第二只是电源滤波电容。容量一样，耐压不同。原厂用的是 400 伏，他买的是 450 伏。</p>
+<p>打火机外壳缺了一块漆。煤油味从盖缝里出来，混着烙铁留下的松香味。</p>
+<p>「能用就行。」</p>
+<p>「先通电。」</p>
+<p>他重新拿起短接线。</p>
+<p>他没有立刻测整机，而是把新装的电容单独放到测试夹上。直流电源调到 12 伏，表笔接两端。数值从零慢慢升到 11.8，停了。</p>
+<p>这回他没有把它接到焊盘上，而是剪成两段，分别夹在万用表的两根表线上。表笔前端有鳄鱼夹，夹口很窄，他用镊子把线头压扁，再夹紧。</p>
+<p>他把测试线装进纸箱，拿记号笔在旧线外皮上画了一道。线头短，只够试一次。旧线放回箱底，新线留在手边。</p>
+<p>「能用就行。」</p>
+<p>一只鳄鱼夹接输入孔，另一只接地。</p>
+<p>桌角那台苏式磁带机没有电源指示灯。陈渡按下播放键，机械部分开始走带。卷轴转得很慢，磁带经过磁头时发出细响。</p>
+<p>耳机接到机器上。</p>
+<p>台灯下的焊盘有两个亮点。他拿起镊子，夹住短接线的铜丝，送到焊盘上方。烙铁的温度计指着三百二十度，锡丝靠近便开始发亮。</p>
+<p>他把声音录进自己的耳朵。</p>
+<p>「先通电。」</p>
+<p>没有说话声。</p>
+<p>电流表没有明显变化。机器的输入端仍然只有 0.3 伏的底噪。</p>
+<p>他停了一下。</p>
+<p>他取下磁带，换上一盘空白带。按下录音键，话筒线接在输入孔上。他清了清嗓子，又试了一次。</p>
+<p>陈渡用另一根导线碰了一下输入端。</p>
+<p>房间里只有磁头压住磁带的声音。</p>
+<p>耳机里出现一声短促的啪。</p>
+<p>楼下铁桶擦过水泥地。声音到门口时变轻，到了楼梯口又清楚起来。陈渡把烙铁放下，等那声音走远，才把铜丝压进第一个焊点。</p>
+<p>他没有换线，也没有立刻动烙铁。他把录音键松开，倒回去，戴上耳机，按下播放。</p>
+<p>不是声音。</p>
+<p>耳机里先是一段底噪。接着是风扇叶片擦过外壳的声音，远处有水管响。再往后，是他自己按录音键时布料摩擦的动静。</p>
+<p>是线路里某处被碰断了。</p>
+<p>旧电阻被拆在桌角。两根引脚弯向一侧，中段有一道细裂。他用镊子碰了碰，裂口没有继续张开。</p>
+<p>人声轨还是空的。</p>
+<p>他把导线拿开，检查输入孔。孔口内侧有一圈黑色氧化物，夹子接触不良。他用细砂纸磨掉一点，再夹紧。</p>
+<p>陈渡把耳机摘下来，放在桌面。</p>
+<p>耳机里的啪声消失。</p>
+<p>短接线没有立刻接上。</p>
+<p>磁带走到尾端，自动停机。他把带子倒回去，又听了一遍。</p>
+<p>陈渡按住录音键，等磁带转过十秒。表上的数值缓慢上升，停在 0.7。</p>
+<p>第二遍没有发现新东西。</p>
+<p>他松手。</p>
+<p>他拿起那张线路图，对着灯看。纸背印着几行俄文，字号很小。电容符号旁边标着电压，电阻符号旁边只有一个短横。</p>
+<p>他拿出记录本。前面记着四十七次试验，每一行都差不多。</p>
+<p>数值回落。</p>
+<p>「第47次：换输入电容。无变化。」</p>
+<p>「接地还是不对。」他说。</p>
+<p>那截黑线仍压在胶下面。</p>
+<p>他写完，在下一行写「第48次」。</p>
+<p>他将机器侧面的接地螺丝松开。螺丝下面压着一根编织铜线，线头已经散了，铜丝分成几股，夹在金属片下面。</p>
+<p>笔尖停在纸上。</p>
+<p>陈渡用小号尖嘴钳把铜丝拉直，重新压进金属片。螺丝拧到一半时，底壳和线路板之间露出一小段灰白色胶。</p>
+<p>陈渡把线路图折回原样，用旧打火机压住折角。火机盖上的煤油味又散出来。他拿烙铁在焊盘上补了一点锡，锡面铺平，边缘没有连到旁边的铜箔。</p>
+<p>机器里的电阻还在。录音线路中有一只电阻，是原厂留下的。陈渡拆过几次，知道它装在话筒输入的前级，作用是限制信号进入下一级。</p>
+<p>他停手。</p>
+<p>他把线路图从机器底部翻出来。纸已经发脆，折痕处断开一块。图上只标了元件位置，没有完整参数。</p>
+<p>那截胶已经老化，边缘翘起。里面压着一根很细的黑色线。</p>
+<p>桌面上，两只测试夹之间还夹着一段断线。</p>
+<p>维修铺的周隼曾经看过这张图。</p>
+<p>陈渡没有碰它。</p>
+<p>那一次，周隼拆开机器，手没有停。他只说：「东西都有它来的地方。」</p>
+<p>他把螺丝退回半圈，用镊子把翘起的胶边压回去。黑色线仍被夹在原处，只露出不到两毫米的一截。</p>
+<p>陈渡把断线取下来，放进零件箱最底层。线皮上的白印朝上，旁边压着一只废弃的电容。</p>
+<p>陈渡没有问这只电阻是谁装的。</p>
+<p>他继续拧紧螺丝，测试接地。</p>
+<p>现在他把原厂电阻拆下来。焊点烧得发黑，拆的时候有一小股烟。烟贴着台灯往上走，碰到灯罩后散开。</p>
+<p>输入端数值降到 0.1。</p>
+<p>他拿起新线，先测了三次。通。</p>
+<p>他盯着线路板上两个空焊点。</p>
+<p>耳机里底噪变小，远处的水管声几乎没了。磁带转动时，机械结构的声音变得更清楚。</p>
+<p>原厂电阻是设计。</p>
+<p>陈渡按下录音键。</p>
+<p>然后把机器推回灯下。</p>
+<p>陈渡在纸上写下这句话，后面画了一道横线。他又在旁边写：「设计缺陷。」</p>
+<p>房间里只有磁带向前走的细响。</p>
+<p>划掉。</p>
+<p>他等磁带走到尽头，摘下耳机，倒回去，戴上。</p>
+<p>再写：「可绕开。」</p>
+<p>底噪之后，是台灯镇流器的嗡声。</p>
+<p>他从零件箱里找出一段短导线，量好长度。短接，是把原本经过电阻的两个位置直接接在一起，让信号不再经过这个限流元件。导线的阻值接近零。</p>
+<p>随后，他听见自己呼吸时，衣领擦过下巴。</p>
+<p>陈渡把导线两端上锡，压到两个焊点上。</p>
+<p>那一下也被录进去了。</p>
+<p>烙铁离开时，焊点边缘冒出一圈烟。</p>
+<p>陈渡看向话筒。话筒离他的嘴还有两米，刚才他没有靠近。</p>
+<p>他接通电源，把空白带装进去，按下录音键。</p>
+<p>他把磁带倒回起点，走到话筒前。</p>
+<p>尖锐的声音从机器里冲出来。</p>
+<p>「一、二、三、四。」</p>
+<p>啸叫，不是人声。那是高频信号在电路里绕了一圈，又从话筒位置返回输入端，形成反馈。声音越走越高，刺得陈渡眉骨发紧。</p>
+<p>按键。</p>
+<p>他拔掉电源。</p>
+<p>声音没有进磁带。</p>
+<p>啸叫停了。</p>
+<p>他退回桌边，重新检查接地线。数值稳定，输入端没有啸叫。</p>
+<p>桌上的台灯亮着，灯罩里的镇流器发出很轻的嗡声。陈渡等了几秒，确认电路没有烧。</p>
+<p>他拿螺丝刀碰了碰那只被夹住的黑线。线没有动，胶也没有脱落。</p>
+<p>第一次短接，失败。磁带上留下的是巨大的啸叫。</p>
+<p>磁带机的卷轴还在慢慢转。陈渡按住停止键，拆下耳机，把刚才那盘带子放进纸盒。盒子外侧写着日期：2024年11月7日。</p>
+<p>他把磁带倒回去，戴上耳机，只听了两秒，按下停止。磁带上的啸叫被削成一道尖线，刺耳程度没有降低。</p>
+<p>他在标签下面又添了一行：「第49次，接地线重新压接。」</p>
+<p>他拆掉短接线，重新装上原厂电阻。</p>
+<p>纸盒盖没有盖严，留下一道缝。里面的磁带从缝里露出一截，边缘有一道浅浅的白色划痕。</p>
+<p>烙铁刚离开焊点，他又停住。</p>
+<p>「原来是这个。」他说。</p>
+<p>他看了一眼桌上的记录本，又把刚焊好的电阻拆下来。</p>
+<p>第二次短接，他换了一个位置。没有把整段线路都短接，只绕过那只电阻。焊点一边接触良好，另一边留了不到半毫米的缝。</p>
+<p>通电。</p>
+<p>没有啸叫。</p>
+<p>陈渡按住录音键，等磁带转过五秒。他没有说话，只看着转轴。等带子走到尽头，机器自动停下。</p>
+<p>他把磁带倒回去。</p>
+<p>耳机里是底噪。</p>
+<p>有风扇声，有台灯镇流器，有他的手碰到机器外壳的轻响。</p>
+<p>没有人声。</p>
+<p>陈渡摘下耳机，量了量刚才那段线路的电压。数值比第一次稳定。短接没有让输入级彻底失控，可磁带上的声音仍停在原来的位置。</p>
+<p>他把记录本翻开，在「第48次」后面写：「短接。失败。啸叫。」</p>
+<p>墨水在「啸叫」两个字上多停了一瞬。</p>
+<p>他没有翻页。</p>
+<p>那一页原先每行都以日期、次数和故障开头。设备参数占了十七行，剩下的是磁带型号、焊点位置、电压数值。他从二十七岁开始记，一直记到今天。</p>
+<p>陈渡把笔移到下一行。</p>
+<p>写完「第48次」后，他又添了几个字。</p>
+<p>「如果它天生这样，那我这七年是在跟谁较劲。」</p>
+<p>笔画比前面的记录慢。最后一个句号落在纸面右下角，圆得很小。</p>
 ]]></content>
       <categories>
         <category>小说</category>
@@ -38259,132 +38259,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
-    <title>重学算法 00：开篇——为什么重学，以及怎么学</title>
-    <url>/%E5%AD%A6%E4%B9%A0/81f2d735.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="为什么是重学"><a class="markdownIt-Anchor" href="#为什么是重学"></a> 为什么是「重学」</h2>
-<p>先交代动机，因为动机决定路线。</p>
-<p>我见过太多人（包括我自己）掉进同一个坑：<strong>把「认得」当成「会了」</strong>。</p>
-<p>看到「二分查找」点头，看到「红黑树」点头，看到「动态规划」也点头。真到要写，二分查找的边界能错三个地方；红黑树只记得「它是平衡的」；动态规划永远想不出状态怎么定义。</p>
-<p>问题出在：<strong>第一次学的时候，是在「知道有这个东西」的层面过的关，而不是在「能用它解决问题」的层面。</strong></p>
-<p>所以这次重学，我给自己立了三条规矩，也当作这个系列的写作原则：</p>
-<ol>
-<li class="lvl-3">
-<p><strong>每个结构都自己实现一遍</strong>，不用现成库。不自己写一次，你永远不知道它的代价在哪。</p>
-</li>
-<li class="lvl-3">
-<p><strong>每个结论都要有可运行的证据</strong>。这一系列的代码都在仓库的 <code>ds-course/</code> 目录下，<code>npx tsx</code> 就能跑。我说「O(n²) 翻倍会慢 4 倍」，就得有实测数字摆在那。</p>
-</li>
-<li class="lvl-3">
-<p><strong>分清「观察到的」「推断的」「不知道的」</strong>。静态分析没看到执行，就不能说它运行时会怎样。这一条是我做逆向分析的老本行，放在学算法上一样成立——大部分「我以为我懂了」，都是把推断当成了事实。</p>
-</li>
-</ol>
-<h2 id="为什么用-typescript"><a class="markdownIt-Anchor" href="#为什么用-typescript"></a> 为什么用 TypeScript</h2>
-<p>不是因为它最适合讲算法——那个位置属于 C。选 TypeScript 有三个很实际的理由：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><strong>泛型是真的泛型</strong>。写一个 <code>Stack&lt;T&gt;</code>，类型系统会帮你把「这个栈里放的是什么」钉死，不用像 C 那样每换一个类型重写一遍，也不用像 Python 那样全靠自觉。</p>
-</li>
-<li class="lvl-2">
-<p><strong>严格模式能当静态检查用</strong>。开了 <code>strict</code> 和 <code>noUncheckedIndexedAccess</code>，<code>arr[i]</code> 的类型是 <code>T | undefined</code> 而不是 <code>T</code>——这一个设置就能拦掉一大堆「我以为不会越界」的 bug。</p>
-</li>
-<li class="lvl-2">
-<p><strong>它离工程近</strong>。学的目的是用。在 TypeScript 里踩到的坑（类型收窄、联合类型、结构兼容），和工作里写代码踩的是同一批。</p>
-</li>
-</ul>
-<p>代价也说清楚：TypeScript/JavaScript 的数组是动态的，<code>number</code> 是双精度浮点。讲到位运算、讲整数溢出时，我会明确标出这些和 C/Java 的差异，不含糊过去。</p>
-<h2 id="路线图"><a class="markdownIt-Anchor" href="#路线图"></a> 路线图</h2>
-<p>按「先有衡量标准，再谈结构」的顺序走。顺序不是随便排的——没有复杂度分析当尺子，学结构就变成背性质。</p>
-<table>
-<thead>
-<tr>
-<th>阶段</th>
-<th>内容</th>
-<th>核心问题</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>复杂度分析</td>
-<td>怎么衡量一个做法的好坏？</td>
-</tr>
-<tr>
-<td>1</td>
-<td>数组、动态数组、链表</td>
-<td>连续内存和离散节点，各自付出了什么代价？</td>
-</tr>
-<tr>
-<td>2</td>
-<td>栈与队列</td>
-<td>两种最受限的线性结构，限才对</td>
-</tr>
-<tr>
-<td>3</td>
-<td>哈希表</td>
-<td>怎么用 O(1) 换一份不确定性？</td>
-</tr>
-<tr>
-<td>4</td>
-<td>树与二叉树</td>
-<td>怎么把 O(n) 的查找砍成 O(log n)？</td>
-</tr>
-<tr>
-<td>5</td>
-<td>二叉搜索树与平衡树</td>
-<td>树退化成链表怎么办？</td>
-</tr>
-<tr>
-<td>6</td>
-<td>堆与优先队列</td>
-<td>怎么只取最值，而不付全排序的代价？</td>
-</tr>
-<tr>
-<td>7</td>
-<td>并查集与字典树</td>
-<td>两个「为一类问题而生」的结构</td>
-</tr>
-<tr>
-<td>8</td>
-<td>图</td>
-<td>关系型数据的通用表示</td>
-</tr>
-<tr>
-<td>9</td>
-<td>排序</td>
-<td>从 O(n²) 到 O(n log n) 再到 O(n)</td>
-</tr>
-<tr>
-<td>10</td>
-<td>算法范式</td>
-<td>分治、贪心、动态规划、回溯</td>
-</tr>
-</tbody>
-</table>
-<p>每一篇的固定结构：<strong>动机 → 自己实现 → 复杂度分析（带实测）→ 易错点 → 练习</strong>。</p>
-<p>练习我不给标准答案，给「怎么验证自己对了」的方法。这个比答案重要。</p>
-<h2 id="代码在哪"><a class="markdownIt-Anchor" href="#代码在哪"></a> 代码在哪</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nil.github.io/</span><br><span class="line">└── ds-course/</span><br><span class="line">    ├── package.json</span><br><span class="line">    ├── tsconfig.json      # strict + noUncheckedIndexedAccess</span><br><span class="line">    └── src/</span><br><span class="line">        └── 01-complexity.ts</span><br></pre></td></tr></table></figure>
-<p>跑起来：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ds-course</span><br><span class="line">npx tsx src/01-complexity.ts</span><br></pre></td></tr></table></figure>
-<p>没有全局依赖污染，<code>npx</code> 现装现跑。</p>
-<h2 id="怎么学才不白学"><a class="markdownIt-Anchor" href="#怎么学才不白学"></a> 怎么学才不白学</h2>
-<p>三条，都是踩过坑换来的：</p>
-<p><strong>一，先自己写一遍，再看答案。</strong> 顺序反了，你会产生「我看懂了」的错觉。看懂和能写出来之间隔着一次真实的思考过程。</p>
-<p><strong>二，复杂度要能口算。</strong> 不是背表，是看到一段代码能数出来。这个技能比记住任何单个结构都值钱，因为它能让你在写代码的时候就避开 O(n²)。</p>
-<p><strong>三，接受「暂时不懂」。</strong> 动态规划、平衡树这些，第一次学不懂是正常的。我的做法是标记下来，继续往前走，很多时候后面的内容会把前面的照亮。卡死在一处不动，是最低效的路径。</p>
-<p>下一篇从<strong>复杂度分析</strong>开始——一切的衡量标准。</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>typescript</tag>
-        <tag>重学算法</tag>
-        <tag>数据结构</tag>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>第800小时 20：第800小时</title>
     <url>/%E5%B0%8F%E8%AF%B4/7bc32b1.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>五月九号，岚城郊外的旧厂房，第一堂课六点开始。</p>
@@ -38618,6 +38492,132 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       <tags>
         <tag>小说</tag>
         <tag>第800小时</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>重学算法 00：开篇——为什么重学，以及怎么学</title>
+    <url>/%E5%AD%A6%E4%B9%A0/81f2d735.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="为什么是重学"><a class="markdownIt-Anchor" href="#为什么是重学"></a> 为什么是「重学」</h2>
+<p>先交代动机，因为动机决定路线。</p>
+<p>我见过太多人（包括我自己）掉进同一个坑：<strong>把「认得」当成「会了」</strong>。</p>
+<p>看到「二分查找」点头，看到「红黑树」点头，看到「动态规划」也点头。真到要写，二分查找的边界能错三个地方；红黑树只记得「它是平衡的」；动态规划永远想不出状态怎么定义。</p>
+<p>问题出在：<strong>第一次学的时候，是在「知道有这个东西」的层面过的关，而不是在「能用它解决问题」的层面。</strong></p>
+<p>所以这次重学，我给自己立了三条规矩，也当作这个系列的写作原则：</p>
+<ol>
+<li class="lvl-3">
+<p><strong>每个结构都自己实现一遍</strong>，不用现成库。不自己写一次，你永远不知道它的代价在哪。</p>
+</li>
+<li class="lvl-3">
+<p><strong>每个结论都要有可运行的证据</strong>。这一系列的代码都在仓库的 <code>ds-course/</code> 目录下，<code>npx tsx</code> 就能跑。我说「O(n²) 翻倍会慢 4 倍」，就得有实测数字摆在那。</p>
+</li>
+<li class="lvl-3">
+<p><strong>分清「观察到的」「推断的」「不知道的」</strong>。静态分析没看到执行，就不能说它运行时会怎样。这一条是我做逆向分析的老本行，放在学算法上一样成立——大部分「我以为我懂了」，都是把推断当成了事实。</p>
+</li>
+</ol>
+<h2 id="为什么用-typescript"><a class="markdownIt-Anchor" href="#为什么用-typescript"></a> 为什么用 TypeScript</h2>
+<p>不是因为它最适合讲算法——那个位置属于 C。选 TypeScript 有三个很实际的理由：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>泛型是真的泛型</strong>。写一个 <code>Stack&lt;T&gt;</code>，类型系统会帮你把「这个栈里放的是什么」钉死，不用像 C 那样每换一个类型重写一遍，也不用像 Python 那样全靠自觉。</p>
+</li>
+<li class="lvl-2">
+<p><strong>严格模式能当静态检查用</strong>。开了 <code>strict</code> 和 <code>noUncheckedIndexedAccess</code>，<code>arr[i]</code> 的类型是 <code>T | undefined</code> 而不是 <code>T</code>——这一个设置就能拦掉一大堆「我以为不会越界」的 bug。</p>
+</li>
+<li class="lvl-2">
+<p><strong>它离工程近</strong>。学的目的是用。在 TypeScript 里踩到的坑（类型收窄、联合类型、结构兼容），和工作里写代码踩的是同一批。</p>
+</li>
+</ul>
+<p>代价也说清楚：TypeScript/JavaScript 的数组是动态的，<code>number</code> 是双精度浮点。讲到位运算、讲整数溢出时，我会明确标出这些和 C/Java 的差异，不含糊过去。</p>
+<h2 id="路线图"><a class="markdownIt-Anchor" href="#路线图"></a> 路线图</h2>
+<p>按「先有衡量标准，再谈结构」的顺序走。顺序不是随便排的——没有复杂度分析当尺子，学结构就变成背性质。</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>内容</th>
+<th>核心问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>复杂度分析</td>
+<td>怎么衡量一个做法的好坏？</td>
+</tr>
+<tr>
+<td>1</td>
+<td>数组、动态数组、链表</td>
+<td>连续内存和离散节点，各自付出了什么代价？</td>
+</tr>
+<tr>
+<td>2</td>
+<td>栈与队列</td>
+<td>两种最受限的线性结构，限才对</td>
+</tr>
+<tr>
+<td>3</td>
+<td>哈希表</td>
+<td>怎么用 O(1) 换一份不确定性？</td>
+</tr>
+<tr>
+<td>4</td>
+<td>树与二叉树</td>
+<td>怎么把 O(n) 的查找砍成 O(log n)？</td>
+</tr>
+<tr>
+<td>5</td>
+<td>二叉搜索树与平衡树</td>
+<td>树退化成链表怎么办？</td>
+</tr>
+<tr>
+<td>6</td>
+<td>堆与优先队列</td>
+<td>怎么只取最值，而不付全排序的代价？</td>
+</tr>
+<tr>
+<td>7</td>
+<td>并查集与字典树</td>
+<td>两个「为一类问题而生」的结构</td>
+</tr>
+<tr>
+<td>8</td>
+<td>图</td>
+<td>关系型数据的通用表示</td>
+</tr>
+<tr>
+<td>9</td>
+<td>排序</td>
+<td>从 O(n²) 到 O(n log n) 再到 O(n)</td>
+</tr>
+<tr>
+<td>10</td>
+<td>算法范式</td>
+<td>分治、贪心、动态规划、回溯</td>
+</tr>
+</tbody>
+</table>
+<p>每一篇的固定结构：<strong>动机 → 自己实现 → 复杂度分析（带实测）→ 易错点 → 练习</strong>。</p>
+<p>练习我不给标准答案，给「怎么验证自己对了」的方法。这个比答案重要。</p>
+<h2 id="代码在哪"><a class="markdownIt-Anchor" href="#代码在哪"></a> 代码在哪</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nil.github.io/</span><br><span class="line">└── ds-course/</span><br><span class="line">    ├── package.json</span><br><span class="line">    ├── tsconfig.json      # strict + noUncheckedIndexedAccess</span><br><span class="line">    └── src/</span><br><span class="line">        └── 01-complexity.ts</span><br></pre></td></tr></table></figure>
+<p>跑起来：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ds-course</span><br><span class="line">npx tsx src/01-complexity.ts</span><br></pre></td></tr></table></figure>
+<p>没有全局依赖污染，<code>npx</code> 现装现跑。</p>
+<h2 id="怎么学才不白学"><a class="markdownIt-Anchor" href="#怎么学才不白学"></a> 怎么学才不白学</h2>
+<p>三条，都是踩过坑换来的：</p>
+<p><strong>一，先自己写一遍，再看答案。</strong> 顺序反了，你会产生「我看懂了」的错觉。看懂和能写出来之间隔着一次真实的思考过程。</p>
+<p><strong>二，复杂度要能口算。</strong> 不是背表，是看到一段代码能数出来。这个技能比记住任何单个结构都值钱，因为它能让你在写代码的时候就避开 O(n²)。</p>
+<p><strong>三，接受「暂时不懂」。</strong> 动态规划、平衡树这些，第一次学不懂是正常的。我的做法是标记下来，继续往前走，很多时候后面的内容会把前面的照亮。卡死在一处不动，是最低效的路径。</p>
+<p>下一篇从<strong>复杂度分析</strong>开始——一切的衡量标准。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>typescript</tag>
+        <tag>重学算法</tag>
+        <tag>数据结构</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -39210,6 +39210,208 @@ n = 10000：A 做 1000 万次，B 做 1 亿次。<strong>A 快 10 倍。</strong
       </tags>
   </entry>
   <entry>
+    <title>大模型入门 02｜往深一层</title>
+    <url>/AI/llm101-02.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
+<p><strong>大模型入门系列</strong> · 共 14 集 · 本集为第 2 集<br />
+上一集：<a href="/AI/llm101-01.html">一、大模型到底是个啥</a> ｜ 下一集：<a href="/AI/llm101-03.html">三、Prompt、Thinking、Function Calling</a> ｜ <a href="/AI/7b3f9a21.html">系列总览</a></p>
+</blockquote>
+<p><img src="/images/llm-101/llm-advanced.png" alt="llm-advanced" /></p>
+<iframe src="/slide/llm-advanced.html" style="width:100%;height:520px;border:0;border-radius:8px" loading="lazy" allowfullscreen></iframe>
+<p>第一集讲的是「它是什么」，这一节讲「它内部怎么转，以及怎么用」。要拆的部分有六块：字怎么变成数字、注意力怎么算、八十层为什么不会崩、它到底怎么学会的、出结果时你能拧哪个旋钮、记不住和不会动手分别怎么办。</p>
+<p>第一步是把字变成一串数字，机器不认识汉字，只认识数字，中间有两次转换。以「今天天气不错，适合出门」为例：先切成小块（token），再把每个小块变成一整排数字，也就是向量，几百到几千个数。这些数字组成坐标，意思越近坐标越近——「猫」的坐标天然挨着「狗」，离「汽车」很远。这是后面一切语义能力的基础，也是后面所有翻车（比如编号认不出来）的根源。</p>
+<p>还要再加一层「位置」。不加位置的话，「猫吃鱼」和「鱼吃猫」在它眼里完全一样，因为集合没变。位置编码的作用就是让顺序成为信息的一部分。这一步很便宜，但去掉它模型立刻废掉。</p>
+<p>第二步是注意力，也就是它怎么「读上下文」。机制不复杂：每个词都发出一个提问（Q）——「你们谁跟我有关系」；同时每个词亮出一张名片（K）——「我是啥」；配对成功之后，把内容（V）交出去。问、对、取，三个动作。真正的信息在 V 里，Q 和 K 只负责决定「取谁的」。</p>
+<p>而且不是只开一组，是同时开很多组，八到一百二十八个小组一起看。有的组管语法，有的组管指代，有的组管「谁修饰谁」。最后把各组的结论拼起来，理解就立体了。这叫多头注意力。</p>
+<p>还有一个强约束：不许偷看后面。生成的时候只能看已经出现的词，后面的必须遮住。不遮住就等于考试时偷看答案，模型学不会任何东西——它只要抄下一个词就行了，永远不需要真正预测。这个遮罩叫因果掩码（Causal Mask），是大模型能一个字一个字往下写的制度基础。</p>
+<h3 id="凭什么能叠八十层还不崩"><a class="markdownIt-Anchor" href="#凭什么能叠八十层还不崩"></a> 凭什么能叠八十层还不崩</h3>
+<p>关键在一个很小的设计：每层只「补一点」，不推翻重来。具体做法是每层算完之后，把输入原样抄一份加回去，学名叫残差连接。如果不做这个加法、直接覆盖，层数一多数值就乱，直接爆掉；加上这一份「原样抄一份」，八十层也稳。</p>
+<p>打个比方，像传话游戏：每个人只负责补充一两个细节，不重新讲一遍，传一百个人故事还在。另外还有一个配套动作：每算完一次，把数值拉回固定范围，也就是归一化。不然数字越乘越大，机器直接算炸。这两个设计看起来是工程细节，实际上是深层模型能训练起来的前提。</p>
+<h3 id="它到底是怎么学会的"><a class="markdownIt-Anchor" href="#它到底是怎么学会的"></a> 它到底是怎么「学会」的</h3>
+<p>四个字可以概括：猜、对答案、算差多少、把旋钮拧一点点。看到「一只猫坐在」，猜下一个字是「窗」；标准答案是「前」，猜错了；差距就是损失（loss），差得越多罚得越重；然后反推是哪些旋钮导致了这次猜错，每个拧一丁点。重复几万亿次，就这么朴素。</p>
+<p>值得强调的是最后半句：每一个旋钮都只被拧了极小的一下。「学习」的全部含义，就是这几万亿次微调。它从没被教过「什么是对的」，它只在学「怎么接得更像人类写的」。这两件事不一样，这是理解它所有缺陷的出发点。</p>
+<h3 id="出结果时你能拧的那个旋钮温度"><a class="markdownIt-Anchor" href="#出结果时你能拧的那个旋钮温度"></a> 出结果时你能拧的那个旋钮：温度</h3>
+<p>模型给出的不是一个字，是每个字的概率。温度决定你多大胆地使用这些概率。温度调低，概率分布变成一根高高的尖峰，几乎每次选同一个，稳定但死板，像考试只选最有把握的答案。温度调高，分布变成一堆矮胖柱子，敢选冷门词，写法有变化，但也会把「跑掉」这种词选出来。中间档最常用。</p>
+<p>还有一个配套的 top-p：只从累计占九成的那些词里选，长尾直接砍掉，防止胡说。温度和 top-p 都不改变模型的判断，只改变你怎么从它的判断里采样。这一点很重要——很多人以为调温度能让模型变聪明，实际上它只让输出变稳或变野。</p>
+<h3 id="记不住资料和不会动手是两件事"><a class="markdownIt-Anchor" href="#记不住资料和不会动手是两件事"></a> 记不住资料，和不会动手，是两件事</h3>
+<p>它记不住你们公司的资料，解法不是「再教它一遍」，而是每次提问时把资料翻出来给它看。原因是它的工作台（上下文窗口）就这么大：你说的话、它的回答、给的资料、对话历史，全挤在同一块地方，塞满了前面的就得扔掉。所以长对话它会「忘了开头」，这不是它在偷懒，是物理容量。</p>
+<p>做法是让它先去翻书：把你的文档切块、算相似度、取最像的三块、塞进工作台，和问题一起交给模型，它照着资料回答，就有了依据。这就是 RAG。这里有两个高频的坑：一是切块切坏了，一句话被切成两半，检索到半句，答案就跑偏；二是资料太长会「中间塌陷」，塞进去十万字，它往往只看开头和结尾，中间那段被忽略。所以给资料要短、要分段、要点明「请根据以下内容回答」——这不是玄学，是在帮它分配注意力。</p>
+<p>从「只会说」到「会动手」靠的是 Agent：给它装工具。它想、调工具、看结果、再想，一直转，直到它认为任务完成。注意它输出的不是「帮我搜一下」这种自然语言，而是一段结构化指令，真正执行的是你的程序。Agent 比聊天更容易翻车，因为一步偏、后面全偏，错误会累积还越走越远。所以实用的 Agent 都这么设计：关键动作要人确认、每步留痕可回滚、拆小任务别一次做完。</p>
+<blockquote>
+<p><strong>原来如此</strong>：聊天是给建议，Agent 是动手办。动手就要担责，设计必须更保守。</p>
+</blockquote>
+<h3 id="端侧-中杯-旗舰怎么选"><a class="markdownIt-Anchor" href="#端侧-中杯-旗舰怎么选"></a> 端侧、中杯、旗舰：怎么选</h3>
+<p>按规模粗分三档。端侧小模型十亿到八十亿参数，跑在手机和笔记本上，快、免费、离线、隐私好，但复杂推理不行。中杯通用两百亿到七百亿参数，公司一台服务器能跑，能力够用且数据不出内网，贵一点、部署要点功夫。旗舰闭源上千亿，只给接口，云端调用，推理和长文能力最强，但最贵、数据要出内网。</p>
+<p>怎么选的原则只有一句：能力不是越高越好，是「刚好够用」最划算。大多数公司的默认选择是中杯。至于怎么评，别信排行榜——拿你自己二十条真实问题做一套小测跑一遍，这份小测比任何榜单都准。顺带一提，模型输出不稳定，同一个问题问十次答案都可能不同，你需要的是「十次里有几次能用」，不是「某一次很惊艳」。成本也要按公式算：单价乘用量乘重试次数，真实账单常常比预估高好几倍，因为没人一开始就想到要重试。</p>
+<p>两节看下来其实就几句话：字变数字，数字在注意力里互相交换信息，一层层微调往上叠；猜错就拧旋钮，拧几万亿次，它学会了像人一样接话；记不住就查资料，不会做就装工具，拿不准就调温度。</p>
+<blockquote>
+<p><strong>原来如此</strong>：它是个极好的助手，但不是权威。它给出的每个字都「很像」，不等于「正确」。重要的事，永远自己核一遍。</p>
+</blockquote>
+<hr />
+<blockquote>
+<p>上一集：<a href="/AI/llm101-01.html">一、大模型到底是个啥</a> ｜ 下一集：<a href="/AI/llm101-03.html">三、Prompt、Thinking、Function Calling</a> ｜ <a href="/AI/7b3f9a21.html">系列总览</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>大模型</tag>
+        <tag>科普</tag>
+        <tag>系列</tag>
+        <tag>大模型入门</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>大模型入门 01｜大模型到底是个啥</title>
+    <url>/AI/llm101-01.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
+<p><strong>大模型入门系列</strong> · 共 14 集 · 本集为第 1 集<br />
+下一集：<a href="/AI/llm101-02.html">二、往深一层</a> ｜ <a href="/AI/7b3f9a21.html">系列总览</a></p>
+</blockquote>
+<h2 id="这套系列讲什么"><a class="markdownIt-Anchor" href="#这套系列讲什么"></a> 这套系列讲什么</h2>
+<p>这套东西原本是十几集独立的动画，一集只回答一个问题：它是什么、里面怎么转、指令链怎么拼、工程上怎么不出事、怎么变成能上线的东西。单独看每一集都成立，但连起来看才有一条完整的线——从「猜下一个字」这个动作出发，一路走到「接进业务流程」这件事上。</p>
+<p>所以这里把它整理成一套 14 集的系列。每一节前面挂一张配图和一段可交互动画，动画按章节推进，可以暂停、可以按左右方向键跳章，也可以点进度条直接落到某一节；下面正文是同一份内容的文字版，细节比动画里的屏内文字更多一些。读的顺序建议就按排列顺序来，因为后面的很多结论是前面几节推出来的——比如第六集的成本结构，前提是第三集讲的「消息拼接」；第四集的上下文预算，前提是第二集讲的工作台容量。</p>
+<p>全篇只讲一件事的两面：模型本身的能力边界在哪里，以及围绕它叠出来的工程系统怎么做才不至于翻车。这两件事经常被混在一起谈，混在一起谈的结果就是：模型换了一版，产品还是一样难用；提示词改了几十遍，效果还是不稳。这篇文章试图把这条界线划清楚——哪些是模型天生做不到的，哪些是你在外面少做了一步。</p>
+<p>动画里的语气偏口语，正文里的表述会紧一些。两者内容一致，不冲突。</p>
+<span id="more"></span>
+<h2 id="系列目录"><a class="markdownIt-Anchor" href="#系列目录"></a> 系列目录</h2>
+<ol>
+<li class="lvl-3">
+<p><a href="/AI/llm101-01.html">一、大模型到底是个啥</a> ← 本集</p>
+</li>
+<li class="lvl-3">
+<p><a href="/AI/llm101-02.html">二、往深一层</a></p>
+</li>
+<li class="lvl-3">
+<p><a href="/AI/llm101-03.html">三、Prompt、Thinking、Function Calling</a></p>
+</li>
+<li class="lvl-3">
+<p><a href="/AI/llm101-04.html">四、上下文工程与 Agent 可靠性</a></p>
+</li>
+<li class="lvl-3">
+<p><a href="/AI/llm101-05.html">五、微调</a></p>
+</li>
+<li class="lvl-3">
+<p><a href="/AI/llm101-06.html">六、Token 与账单</a></p>
+</li>
+<li class="lvl-3">
+<p><a href="/AI/llm101-07.html">七、量化与端侧推理</a></p>
+</li>
+<li class="lvl-3">
+<p><a href="/AI/llm101-08.html">八、多模态</a></p>
+</li>
+<li class="lvl-3">
+<p><a href="/AI/llm101-09.html">九、检索</a></p>
+</li>
+<li class="lvl-4">
+<p><a href="/AI/llm101-10.html">十、把话说明白</a></p>
+</li>
+<li class="lvl-4">
+<p><a href="/AI/llm101-11.html">十一、上线前的那些坑</a></p>
+</li>
+<li class="lvl-4">
+<p><a href="/AI/llm101-12.html">十二、记忆</a></p>
+</li>
+<li class="lvl-4">
+<p><a href="/AI/llm101-13.html">十三、从能跑到好用</a></p>
+</li>
+<li class="lvl-4">
+<p><a href="/AI/llm101-14.html">十四、从提示词到像素</a></p>
+</li>
+</ol>
+<hr />
+<p><img src="/images/llm-101/llm-explained.png" alt="llm-explained" /></p>
+<iframe src="/slide/llm-explained.html" style="width:100%;height:520px;border:0;border-radius:8px" loading="lazy" allowfullscreen></iframe>
+<p>如果只允许用一句话解释大模型，最准确的说法不是「会思考的机器」，而是「一个把接下一个字练到极致的高手」。你给它半句话，它算出下一个字最可能是什么，填进去，再把新的半句话交还给自己，继续算。写文章、做翻译、回答提问、补全代码，全部是这同一个动作在不同输入上的重复。它并不存在一个「理解问题然后作答」的额外阶段。</p>
+<p>这里的「字」不是汉字，是 token。一个汉字通常算一到两个 token，英文长词会被切成几块，比如 unbelievable 会变成 un / believ / able 三段。所以业内说「下一个 token 预测」，说的就是这件事，不是什么更高深的机制。</p>
+<p>举个具体的例子。输入是「一只猫坐在」，它不会先去想象一只猫，而是给所有候选字打分：窗、地、沙、桌、椅，分数高的被选中，填进空格。它不是「懂」猫，而是读过的语料里「猫坐在窗台」「猫坐在地上」这类句子出现得足够多，于是这些接法在它的参数里被反复加强。猜得准不准，取决于它读得多不多、见得多不多。这句话听起来像废话，但它是整套技术的全部前提。</p>
+<p>常被问的第二个问题是「它凭什么厉害」。答案同样朴素：三个「大」同时加上去——脑子大、书读得多、练得久。脑子大指的是参数特别多，几十亿到上万亿个；每被纠正一次，就有大量参数被微调一下。书读得多指的是训练语料几乎覆盖了整个互联网的文字。练得久值得拿几万张显卡连着跑几个月，电费是天文数字。三样缺一不可，就像养学生：只聪明不读书不行，只读书不练也不行。而三者同时放大的时候，能力增长呈现出可预测的斜率——这就是 Scaling Law，规模翻倍，错误率按固定斜率往下掉。这条规律是整个行业敢于投入巨额算力的唯一理由。</p>
+<p>再往里扒一层，结构上没有任何花招：同一块积木重复叠八十次。所谓积木，就是一层里只做两个动作。第一个动作是「看看谁跟谁有关系」——读到「它」的时候回头找「它」指谁，读到「猫」的时候知道后面该跟动词，学名叫注意力机制（Self-Attention）。第二个动作是「翻记忆找知识」——想到「猫」就把关于猫的一堆常识调出来：会喵、怕水、爱吃鱼，学名叫前馈层（FFN），这里也是吃参数最多的地方。就这两个动作反反复复八十次，所有的「聪明」都是从这里长出来的。</p>
+<p>它被教出来的过程分三堂课，顺序不能乱。第一课是海量读书，读的时候一直在做练习：遮住下一个字自己猜，猜错就拧一下旋钮，重复几万亿次；学的是怎么说话、世界上都有什么，这一课叫预训练（Pretraining）。第二课是老师示范，人写几万条问答让它照抄；它原本只会接着往下写，不会「回答问题」，看了几万条示范才学会你问我答，这一课叫监督微调（SFT）。第三课是按喜好打分，同一个问题让它答十个版本，人来排序哪个更好，它就朝着人更喜欢的方向调整，这一课叫人类反馈强化学习（RLHF）。</p>
+<h3 id="一次回答的两段速度"><a class="markdownIt-Anchor" href="#一次回答的两段速度"></a> 一次回答的两段速度</h3>
+<p>它回你话的时候分两步，快慢完全不一样。第一步是把你说的话整段读一遍，很快——所有字一起处理，一次算完；这一步在工程上叫 prefill。第二步是一个字一个字往外蹦，很慢——每蹦一个字，都要把整个脑子从头过一遍；这一步叫 decode。所以你看到字一个一个「打」出来，不是特效，是真的在一个一个算。</p>
+<p>中间它会把刚说过的每个字记在一张草稿上，省得反复重算，这张草稿就是 KV cache。但草稿只在这一次请求里有效，聊完就扔，不会带进下一段对话。这也解释了长对话为什么慢：草稿越来越长，每蹦一个字要翻的家当越来越多。慢的原因不是算不动，是「翻得慢」。</p>
+<h3 id="为什么它会一本正经地胡说"><a class="markdownIt-Anchor" href="#为什么它会一本正经地胡说"></a> 为什么它会一本正经地胡说</h3>
+<p>因为它要的是「顺口」，不是「正确」。接得顺嘴就吐出来，不管真假，所以会一本正经地胡说八道。这是出身决定的，不是坏了：它的训练目标函数只奖励「像人写的下一句」，从不奖励「符合事实」。此外它的记性只有这一段对话，聊完就忘；它什么都懂一点、什么都不精，常识很行，专业细节容易翻车，尤其是很窄、很少见的领域；它只会说，不会做——不能上网、不能查库、不能点按钮，要动手得别人给它装手脚。</p>
+<h3 id="三个衍生概念别搞混"><a class="markdownIt-Anchor" href="#三个衍生概念别搞混"></a> 三个衍生概念，别搞混</h3>
+<p>经常被混在一起的几个名字，其实分工很清楚。小模型是专门训练出来干一件事的程序，比如只认人脸，大模型则是一个顶一堆。知识库是一堆资料、能按关键词查出来，大模型记不住细节，得靠它现查，这个组合叫 RAG。Agent 是给大模型装上的手脚，让它能真去点按钮、发邮件、调接口。至于画图模型，那是另一个流派：靠擦噪点作画，一个猜字、一个擦噪点，两回事。</p>
+<p>记住这个比喻就够了：大模型是「嘴」，其余都是给它配的「眼睛、手和笔记本」。</p>
+<blockquote>
+<p><strong>原来如此</strong>：大模型就是一个读过全世界文字、把「猜下一个字」练到极致的高手。它很会说话——但它并不知道自己在说什么。</p>
+</blockquote>
+<p>怎么判断一个东西是不是大模型，三个特征：参数规模几十亿以上；什么都能干，不是只会一件事；靠接龙（或擦噪点）出结果。三条都符合，才是同一类东西。</p>
+<hr />
+<blockquote>
+<p>下一集：<a href="/AI/llm101-02.html">二、往深一层</a> ｜ <a href="/AI/7b3f9a21.html">系列总览</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>大模型</tag>
+        <tag>科普</tag>
+        <tag>系列</tag>
+        <tag>大模型入门</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>大模型入门 03｜Prompt、Thinking、Function Calling</title>
+    <url>/AI/llm101-03.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
+<p><strong>大模型入门系列</strong> · 共 14 集 · 本集为第 3 集<br />
+上一集：<a href="/AI/llm101-02.html">二、往深一层</a> ｜ 下一集：<a href="/AI/llm101-04.html">四、上下文工程与 Agent 可靠性</a> ｜ <a href="/AI/7b3f9a21.html">系列总览</a></p>
+</blockquote>
+<p><img src="/images/llm-101/llm-agent-core.png" alt="llm-agent-core" /></p>
+<iframe src="/slide/llm-agent-core.html" style="width:100%;height:520px;border:0;border-radius:8px" loading="lazy" allowfullscreen></iframe>
+<p>把一次请求拆开，会看到三件互不相同的事：你给它看什么（Prompt）、它想几步再答（Thinking）、它能动手做什么（Function Calling）。这三件事常被当成三个技巧分别讨论，实际上它们是一条链上的三段，而且拼的是同一个东西——上下文里到底有什么。</p>
+<p>先说 Prompt。它不是咒语，作用是「把它的注意力拨过去」。你写的每个词，都会变成它在上下文里重点盯住的地方。你写「你是资深法务，请逐条核对合同里的风险点，只输出一张表格，不要解释」，模型内部的注意力就被拨动了三处：「资深法务」调用法律知识，「逐条核对」促使它一条条展开，「只输出表格」把输出概率往表格这个形状上推。</p>
+<p>这三处其实对应三类句子，值得分开记。身份句换脑子，告诉它这件事该调用哪一块知识——同一句话，法务身份和程序员身份，答案完全不同。动作句换做法，说的是「做什么类型的活」：核对、总结、翻译、挑错，要用动词，不要用形容词。格式句卡形状，把输出概率往某个形状上推：表格、JSON、不超过一百字，这一句最省钱也最有效，因为它同时压缩了输出长度和歧义空间。</p>
+<p>换个说法更容易理解：Prompt 不是在对模型下命令，模型也不会「服从」，它只是改了你给它的上下文，于是它接下去写的字就变了。所谓提示词工程，本质是设计上下文，让它的注意力落在你要的地方。</p>
+<h3 id="你发的三条消息其实会被拼成一整段文字"><a class="markdownIt-Anchor" href="#你发的三条消息其实会被拼成一整段文字"></a> 你发的三条消息，其实会被拼成一整段文字</h3>
+<p>界面上看到的是 system、user、assistant 三种角色分开的消息，但到了模型那里，它们会被拼成一整段连续的文本，用特殊标记分隔：<code>&lt;system&gt; &lt;user&gt; &lt;assistant&gt;</code>，靠这些标记区分「谁说的」。这个事实解释了三件事。</p>
+<p>第一，模型是无状态的：它不记得上一次聊天，所以每次都得把全部历史重新发一遍。每一次请求，这一整条都要重新算一遍——这就是为什么聊得越久越慢、越贵。第二，顺序就是权重：放在最后的指令，通常比开头的更被重视。第三，越长越贵：输入按 token 计费，历史越长，每轮都更贵。实用结论很直接：长对话要主动总结压缩，别指望它记得住几十轮之前的细节。</p>
+<h3 id="function-calling它其实一次都没执行过代码"><a class="markdownIt-Anchor" href="#function-calling它其实一次都没执行过代码"></a> Function Calling：它其实一次都没执行过代码</h3>
+<p>这是被误解最深的一处。模型唯一会做的事是「写字」。所谓调工具，是它把「要调什么」写出来了，仅此而已。</p>
+<p>流程是这样：你先给一份「说明书」，写明工具名、作用、参数，随请求一起发过去；它读完之后输出一段结构化文字，比如要查天气的城市名，包在一个约定的 JSON 结构里。到这一步为止，模型什么都没执行，它只是生成了一串长得像指令的字符。真正去查天气的，是你写在程序里的代码——执行的永远是你，不是它。</p>
+<p>由此推出三条实践纪律。说明书就是 prompt，写得含糊它就挑错工具，这是最常见的故障来源。参数容易编，你没给范围，它可能编一个不存在的城市，所以枚举、格式、例子都要写死。工具别给太多，一次给三十个工具，选错的概率直线上升，按场景分组，每次五到八个。</p>
+<h3 id="一次完整的工具调用怎么转"><a class="markdownIt-Anchor" href="#一次完整的工具调用怎么转"></a> 一次完整的工具调用怎么转</h3>
+<p>四步，两次调用模型。第一步，程序拼好消息列表、带上工具清单，发出请求。第二步，模型读全部消息，决定是直接答还是调工具，返回文字或 JSON 指令。第三步，程序执行——查数据库、调接口——把结果写回消息列表。第四步，模型读到结果，给出最终回答。</p>
+<p>整个过程中模型被调用了两次：第一次决定做什么，第二次把结果组织成人话。中间那段真正干活的，全是你的代码。它也在这个过程中证明了自己不保存任何记忆：每一轮都是重新读一遍全部消息。</p>
+<p>所以 Agent 的强弱，一半看模型，一半看你的工具写得好不好、结果喂得干不干净。这句话在后面的第四集和第六集会反复出现，因为工具结果的格式直接决定了成本和质量两件事。</p>
+<h3 id="thinking为什么写出来就变准了"><a class="markdownIt-Anchor" href="#thinking为什么写出来就变准了"></a> Thinking：为什么写出来就变准了</h3>
+<p>先看一道题：一个班三十人，六成会游泳，会游泳的人里三分之一会蛙泳，问会蛙泳的几个人。直接答，很多模型会说十五人——它跳过了中间步骤，在没算出十八的情况下直接给了结论，而正确答案是六。</p>
+<p>如果让它先打草稿：三十乘六成等于十八，十八乘三分之一等于六，所以答案是六，它就对。差别不在「想得多有诚意」，而在它只能看见已经写出来的字。十八这个中间结果被写进上下文之后，后面每个字都能直接用它；不写出来，就等于让它一步跨完三级台阶，算错一步就再也补不回来。</p>
+<p>所以思考的本质是：把中间过程写进上下文，给自己造出更多「可以踩的台阶」。这顺便解释了为什么思考要花 token、要变慢——台阶是字，字是钱。</p>
+<h3 id="三种制造台阶的做法"><a class="markdownIt-Anchor" href="#三种制造台阶的做法"></a> 三种制造台阶的做法</h3>
+<p>不是三种技术，是三种实现成本的取舍。</p>
+<p>提示词式：加一句「请一步步思考」，最便宜，任何模型都能用，本质是命令它多写中间步骤，适合日常分析、算数、推理题。原生推理模型：训练时就学会了长思考，有独立的思考预算，会自动展开很长的推理再作答，思考 token 照样收费，适合难题、代码、数学。工具化思考：边想边做，用结果纠正思路，走的是 ReAct 式的循环——想一步、查一下、看结果、再想，成本是多次调用加往返延迟，适合需要外部事实的复杂任务。</p>
+<p>别忽略账单：思考内容也算 token，还占上下文。让模型对「今天星期几」想两千字，纯属浪费。经验法则是——问题越需要多步推算，思考越值；越需要查事实，越该去做工具调用而不是硬想。</p>
+<blockquote>
+<p><strong>原来如此</strong>：Prompt 决定它看得见什么，Thinking 决定它想几步，Function Calling 决定它能动手到什么程度。三者共同的上限，都是同一件事：上下文里到底有什么。</p>
+</blockquote>
+<h3 id="三个最常见的坑"><a class="markdownIt-Anchor" href="#三个最常见的坑"></a> 三个最常见的坑</h3>
+<p>第一，否定式指令反而更容易触发。写「不要编造、不要用术语」，结果它偏偏提到了。原因是那个词本身也进了上下文，也在占注意力。改成正向指令：只使用资料里的内容；用日常词。</p>
+<p>第二，工具给太多，它就挑错。一次挂三十个工具，明明该查订单，它去查了物流。本质是分类问题：候选越多，选错概率越大。按场景分组，每次只给五到八个，描述里写清「什么时候该用」。</p>
+<p>第三，简单问题也硬让它想。今天星期几这种事，想太多等于台阶造太多，走岔路的概率也变大。简单任务关掉长思考，难题才开，分级处理。</p>
+<p>通用解药只有一条：把「不许做什么」改写成「应该做什么」。这也是为什么真正好用的 Agent 产品，看起来都很啰嗦——大量具体规则，而不是一段万能咒语。</p>
+<hr />
+<blockquote>
+<p>上一集：<a href="/AI/llm101-02.html">二、往深一层</a> ｜ 下一集：<a href="/AI/llm101-04.html">四、上下文工程与 Agent 可靠性</a> ｜ <a href="/AI/7b3f9a21.html">系列总览</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>大模型</tag>
+        <tag>科普</tag>
+        <tag>系列</tag>
+        <tag>大模型入门</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>datart-vite 开发历程：把 CRA 时代的 BI 前端搬到 Vite</title>
     <url>/%E6%8A%80%E6%9C%AF/datart-vite.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="datart-vite-开发历程把-cra-时代的-bi-前端搬到-vite"><a class="markdownIt-Anchor" href="#datart-vite-开发历程把-cra-时代的-bi-前端搬到-vite"></a> datart-vite 开发历程：把 CRA 时代的 BI 前端搬到 Vite</h2>
@@ -39594,208 +39796,6 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
         <tag>前端工程化</tag>
         <tag>BI</tag>
         <tag>antd</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>大模型入门 01｜大模型到底是个啥</title>
-    <url>/AI/llm101-01.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
-<p><strong>大模型入门系列</strong> · 共 14 集 · 本集为第 1 集<br />
-下一集：<a href="/AI/llm101-02.html">二、往深一层</a> ｜ <a href="/AI/7b3f9a21.html">系列总览</a></p>
-</blockquote>
-<h2 id="这套系列讲什么"><a class="markdownIt-Anchor" href="#这套系列讲什么"></a> 这套系列讲什么</h2>
-<p>这套东西原本是十几集独立的动画，一集只回答一个问题：它是什么、里面怎么转、指令链怎么拼、工程上怎么不出事、怎么变成能上线的东西。单独看每一集都成立，但连起来看才有一条完整的线——从「猜下一个字」这个动作出发，一路走到「接进业务流程」这件事上。</p>
-<p>所以这里把它整理成一套 14 集的系列。每一节前面挂一张配图和一段可交互动画，动画按章节推进，可以暂停、可以按左右方向键跳章，也可以点进度条直接落到某一节；下面正文是同一份内容的文字版，细节比动画里的屏内文字更多一些。读的顺序建议就按排列顺序来，因为后面的很多结论是前面几节推出来的——比如第六集的成本结构，前提是第三集讲的「消息拼接」；第四集的上下文预算，前提是第二集讲的工作台容量。</p>
-<p>全篇只讲一件事的两面：模型本身的能力边界在哪里，以及围绕它叠出来的工程系统怎么做才不至于翻车。这两件事经常被混在一起谈，混在一起谈的结果就是：模型换了一版，产品还是一样难用；提示词改了几十遍，效果还是不稳。这篇文章试图把这条界线划清楚——哪些是模型天生做不到的，哪些是你在外面少做了一步。</p>
-<p>动画里的语气偏口语，正文里的表述会紧一些。两者内容一致，不冲突。</p>
-<span id="more"></span>
-<h2 id="系列目录"><a class="markdownIt-Anchor" href="#系列目录"></a> 系列目录</h2>
-<ol>
-<li class="lvl-3">
-<p><a href="/AI/llm101-01.html">一、大模型到底是个啥</a> ← 本集</p>
-</li>
-<li class="lvl-3">
-<p><a href="/AI/llm101-02.html">二、往深一层</a></p>
-</li>
-<li class="lvl-3">
-<p><a href="/AI/llm101-03.html">三、Prompt、Thinking、Function Calling</a></p>
-</li>
-<li class="lvl-3">
-<p><a href="/AI/llm101-04.html">四、上下文工程与 Agent 可靠性</a></p>
-</li>
-<li class="lvl-3">
-<p><a href="/AI/llm101-05.html">五、微调</a></p>
-</li>
-<li class="lvl-3">
-<p><a href="/AI/llm101-06.html">六、Token 与账单</a></p>
-</li>
-<li class="lvl-3">
-<p><a href="/AI/llm101-07.html">七、量化与端侧推理</a></p>
-</li>
-<li class="lvl-3">
-<p><a href="/AI/llm101-08.html">八、多模态</a></p>
-</li>
-<li class="lvl-3">
-<p><a href="/AI/llm101-09.html">九、检索</a></p>
-</li>
-<li class="lvl-4">
-<p><a href="/AI/llm101-10.html">十、把话说明白</a></p>
-</li>
-<li class="lvl-4">
-<p><a href="/AI/llm101-11.html">十一、上线前的那些坑</a></p>
-</li>
-<li class="lvl-4">
-<p><a href="/AI/llm101-12.html">十二、记忆</a></p>
-</li>
-<li class="lvl-4">
-<p><a href="/AI/llm101-13.html">十三、从能跑到好用</a></p>
-</li>
-<li class="lvl-4">
-<p><a href="/AI/llm101-14.html">十四、从提示词到像素</a></p>
-</li>
-</ol>
-<hr />
-<p><img src="/images/llm-101/llm-explained.png" alt="llm-explained" /></p>
-<iframe src="/slide/llm-explained.html" style="width:100%;height:520px;border:0;border-radius:8px" loading="lazy" allowfullscreen></iframe>
-<p>如果只允许用一句话解释大模型，最准确的说法不是「会思考的机器」，而是「一个把接下一个字练到极致的高手」。你给它半句话，它算出下一个字最可能是什么，填进去，再把新的半句话交还给自己，继续算。写文章、做翻译、回答提问、补全代码，全部是这同一个动作在不同输入上的重复。它并不存在一个「理解问题然后作答」的额外阶段。</p>
-<p>这里的「字」不是汉字，是 token。一个汉字通常算一到两个 token，英文长词会被切成几块，比如 unbelievable 会变成 un / believ / able 三段。所以业内说「下一个 token 预测」，说的就是这件事，不是什么更高深的机制。</p>
-<p>举个具体的例子。输入是「一只猫坐在」，它不会先去想象一只猫，而是给所有候选字打分：窗、地、沙、桌、椅，分数高的被选中，填进空格。它不是「懂」猫，而是读过的语料里「猫坐在窗台」「猫坐在地上」这类句子出现得足够多，于是这些接法在它的参数里被反复加强。猜得准不准，取决于它读得多不多、见得多不多。这句话听起来像废话，但它是整套技术的全部前提。</p>
-<p>常被问的第二个问题是「它凭什么厉害」。答案同样朴素：三个「大」同时加上去——脑子大、书读得多、练得久。脑子大指的是参数特别多，几十亿到上万亿个；每被纠正一次，就有大量参数被微调一下。书读得多指的是训练语料几乎覆盖了整个互联网的文字。练得久值得拿几万张显卡连着跑几个月，电费是天文数字。三样缺一不可，就像养学生：只聪明不读书不行，只读书不练也不行。而三者同时放大的时候，能力增长呈现出可预测的斜率——这就是 Scaling Law，规模翻倍，错误率按固定斜率往下掉。这条规律是整个行业敢于投入巨额算力的唯一理由。</p>
-<p>再往里扒一层，结构上没有任何花招：同一块积木重复叠八十次。所谓积木，就是一层里只做两个动作。第一个动作是「看看谁跟谁有关系」——读到「它」的时候回头找「它」指谁，读到「猫」的时候知道后面该跟动词，学名叫注意力机制（Self-Attention）。第二个动作是「翻记忆找知识」——想到「猫」就把关于猫的一堆常识调出来：会喵、怕水、爱吃鱼，学名叫前馈层（FFN），这里也是吃参数最多的地方。就这两个动作反反复复八十次，所有的「聪明」都是从这里长出来的。</p>
-<p>它被教出来的过程分三堂课，顺序不能乱。第一课是海量读书，读的时候一直在做练习：遮住下一个字自己猜，猜错就拧一下旋钮，重复几万亿次；学的是怎么说话、世界上都有什么，这一课叫预训练（Pretraining）。第二课是老师示范，人写几万条问答让它照抄；它原本只会接着往下写，不会「回答问题」，看了几万条示范才学会你问我答，这一课叫监督微调（SFT）。第三课是按喜好打分，同一个问题让它答十个版本，人来排序哪个更好，它就朝着人更喜欢的方向调整，这一课叫人类反馈强化学习（RLHF）。</p>
-<h3 id="一次回答的两段速度"><a class="markdownIt-Anchor" href="#一次回答的两段速度"></a> 一次回答的两段速度</h3>
-<p>它回你话的时候分两步，快慢完全不一样。第一步是把你说的话整段读一遍，很快——所有字一起处理，一次算完；这一步在工程上叫 prefill。第二步是一个字一个字往外蹦，很慢——每蹦一个字，都要把整个脑子从头过一遍；这一步叫 decode。所以你看到字一个一个「打」出来，不是特效，是真的在一个一个算。</p>
-<p>中间它会把刚说过的每个字记在一张草稿上，省得反复重算，这张草稿就是 KV cache。但草稿只在这一次请求里有效，聊完就扔，不会带进下一段对话。这也解释了长对话为什么慢：草稿越来越长，每蹦一个字要翻的家当越来越多。慢的原因不是算不动，是「翻得慢」。</p>
-<h3 id="为什么它会一本正经地胡说"><a class="markdownIt-Anchor" href="#为什么它会一本正经地胡说"></a> 为什么它会一本正经地胡说</h3>
-<p>因为它要的是「顺口」，不是「正确」。接得顺嘴就吐出来，不管真假，所以会一本正经地胡说八道。这是出身决定的，不是坏了：它的训练目标函数只奖励「像人写的下一句」，从不奖励「符合事实」。此外它的记性只有这一段对话，聊完就忘；它什么都懂一点、什么都不精，常识很行，专业细节容易翻车，尤其是很窄、很少见的领域；它只会说，不会做——不能上网、不能查库、不能点按钮，要动手得别人给它装手脚。</p>
-<h3 id="三个衍生概念别搞混"><a class="markdownIt-Anchor" href="#三个衍生概念别搞混"></a> 三个衍生概念，别搞混</h3>
-<p>经常被混在一起的几个名字，其实分工很清楚。小模型是专门训练出来干一件事的程序，比如只认人脸，大模型则是一个顶一堆。知识库是一堆资料、能按关键词查出来，大模型记不住细节，得靠它现查，这个组合叫 RAG。Agent 是给大模型装上的手脚，让它能真去点按钮、发邮件、调接口。至于画图模型，那是另一个流派：靠擦噪点作画，一个猜字、一个擦噪点，两回事。</p>
-<p>记住这个比喻就够了：大模型是「嘴」，其余都是给它配的「眼睛、手和笔记本」。</p>
-<blockquote>
-<p><strong>原来如此</strong>：大模型就是一个读过全世界文字、把「猜下一个字」练到极致的高手。它很会说话——但它并不知道自己在说什么。</p>
-</blockquote>
-<p>怎么判断一个东西是不是大模型，三个特征：参数规模几十亿以上；什么都能干，不是只会一件事；靠接龙（或擦噪点）出结果。三条都符合，才是同一类东西。</p>
-<hr />
-<blockquote>
-<p>下一集：<a href="/AI/llm101-02.html">二、往深一层</a> ｜ <a href="/AI/7b3f9a21.html">系列总览</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-      <tags>
-        <tag>大模型</tag>
-        <tag>科普</tag>
-        <tag>系列</tag>
-        <tag>大模型入门</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>大模型入门 02｜往深一层</title>
-    <url>/AI/llm101-02.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
-<p><strong>大模型入门系列</strong> · 共 14 集 · 本集为第 2 集<br />
-上一集：<a href="/AI/llm101-01.html">一、大模型到底是个啥</a> ｜ 下一集：<a href="/AI/llm101-03.html">三、Prompt、Thinking、Function Calling</a> ｜ <a href="/AI/7b3f9a21.html">系列总览</a></p>
-</blockquote>
-<p><img src="/images/llm-101/llm-advanced.png" alt="llm-advanced" /></p>
-<iframe src="/slide/llm-advanced.html" style="width:100%;height:520px;border:0;border-radius:8px" loading="lazy" allowfullscreen></iframe>
-<p>第一集讲的是「它是什么」，这一节讲「它内部怎么转，以及怎么用」。要拆的部分有六块：字怎么变成数字、注意力怎么算、八十层为什么不会崩、它到底怎么学会的、出结果时你能拧哪个旋钮、记不住和不会动手分别怎么办。</p>
-<p>第一步是把字变成一串数字，机器不认识汉字，只认识数字，中间有两次转换。以「今天天气不错，适合出门」为例：先切成小块（token），再把每个小块变成一整排数字，也就是向量，几百到几千个数。这些数字组成坐标，意思越近坐标越近——「猫」的坐标天然挨着「狗」，离「汽车」很远。这是后面一切语义能力的基础，也是后面所有翻车（比如编号认不出来）的根源。</p>
-<p>还要再加一层「位置」。不加位置的话，「猫吃鱼」和「鱼吃猫」在它眼里完全一样，因为集合没变。位置编码的作用就是让顺序成为信息的一部分。这一步很便宜，但去掉它模型立刻废掉。</p>
-<p>第二步是注意力，也就是它怎么「读上下文」。机制不复杂：每个词都发出一个提问（Q）——「你们谁跟我有关系」；同时每个词亮出一张名片（K）——「我是啥」；配对成功之后，把内容（V）交出去。问、对、取，三个动作。真正的信息在 V 里，Q 和 K 只负责决定「取谁的」。</p>
-<p>而且不是只开一组，是同时开很多组，八到一百二十八个小组一起看。有的组管语法，有的组管指代，有的组管「谁修饰谁」。最后把各组的结论拼起来，理解就立体了。这叫多头注意力。</p>
-<p>还有一个强约束：不许偷看后面。生成的时候只能看已经出现的词，后面的必须遮住。不遮住就等于考试时偷看答案，模型学不会任何东西——它只要抄下一个词就行了，永远不需要真正预测。这个遮罩叫因果掩码（Causal Mask），是大模型能一个字一个字往下写的制度基础。</p>
-<h3 id="凭什么能叠八十层还不崩"><a class="markdownIt-Anchor" href="#凭什么能叠八十层还不崩"></a> 凭什么能叠八十层还不崩</h3>
-<p>关键在一个很小的设计：每层只「补一点」，不推翻重来。具体做法是每层算完之后，把输入原样抄一份加回去，学名叫残差连接。如果不做这个加法、直接覆盖，层数一多数值就乱，直接爆掉；加上这一份「原样抄一份」，八十层也稳。</p>
-<p>打个比方，像传话游戏：每个人只负责补充一两个细节，不重新讲一遍，传一百个人故事还在。另外还有一个配套动作：每算完一次，把数值拉回固定范围，也就是归一化。不然数字越乘越大，机器直接算炸。这两个设计看起来是工程细节，实际上是深层模型能训练起来的前提。</p>
-<h3 id="它到底是怎么学会的"><a class="markdownIt-Anchor" href="#它到底是怎么学会的"></a> 它到底是怎么「学会」的</h3>
-<p>四个字可以概括：猜、对答案、算差多少、把旋钮拧一点点。看到「一只猫坐在」，猜下一个字是「窗」；标准答案是「前」，猜错了；差距就是损失（loss），差得越多罚得越重；然后反推是哪些旋钮导致了这次猜错，每个拧一丁点。重复几万亿次，就这么朴素。</p>
-<p>值得强调的是最后半句：每一个旋钮都只被拧了极小的一下。「学习」的全部含义，就是这几万亿次微调。它从没被教过「什么是对的」，它只在学「怎么接得更像人类写的」。这两件事不一样，这是理解它所有缺陷的出发点。</p>
-<h3 id="出结果时你能拧的那个旋钮温度"><a class="markdownIt-Anchor" href="#出结果时你能拧的那个旋钮温度"></a> 出结果时你能拧的那个旋钮：温度</h3>
-<p>模型给出的不是一个字，是每个字的概率。温度决定你多大胆地使用这些概率。温度调低，概率分布变成一根高高的尖峰，几乎每次选同一个，稳定但死板，像考试只选最有把握的答案。温度调高，分布变成一堆矮胖柱子，敢选冷门词，写法有变化，但也会把「跑掉」这种词选出来。中间档最常用。</p>
-<p>还有一个配套的 top-p：只从累计占九成的那些词里选，长尾直接砍掉，防止胡说。温度和 top-p 都不改变模型的判断，只改变你怎么从它的判断里采样。这一点很重要——很多人以为调温度能让模型变聪明，实际上它只让输出变稳或变野。</p>
-<h3 id="记不住资料和不会动手是两件事"><a class="markdownIt-Anchor" href="#记不住资料和不会动手是两件事"></a> 记不住资料，和不会动手，是两件事</h3>
-<p>它记不住你们公司的资料，解法不是「再教它一遍」，而是每次提问时把资料翻出来给它看。原因是它的工作台（上下文窗口）就这么大：你说的话、它的回答、给的资料、对话历史，全挤在同一块地方，塞满了前面的就得扔掉。所以长对话它会「忘了开头」，这不是它在偷懒，是物理容量。</p>
-<p>做法是让它先去翻书：把你的文档切块、算相似度、取最像的三块、塞进工作台，和问题一起交给模型，它照着资料回答，就有了依据。这就是 RAG。这里有两个高频的坑：一是切块切坏了，一句话被切成两半，检索到半句，答案就跑偏；二是资料太长会「中间塌陷」，塞进去十万字，它往往只看开头和结尾，中间那段被忽略。所以给资料要短、要分段、要点明「请根据以下内容回答」——这不是玄学，是在帮它分配注意力。</p>
-<p>从「只会说」到「会动手」靠的是 Agent：给它装工具。它想、调工具、看结果、再想，一直转，直到它认为任务完成。注意它输出的不是「帮我搜一下」这种自然语言，而是一段结构化指令，真正执行的是你的程序。Agent 比聊天更容易翻车，因为一步偏、后面全偏，错误会累积还越走越远。所以实用的 Agent 都这么设计：关键动作要人确认、每步留痕可回滚、拆小任务别一次做完。</p>
-<blockquote>
-<p><strong>原来如此</strong>：聊天是给建议，Agent 是动手办。动手就要担责，设计必须更保守。</p>
-</blockquote>
-<h3 id="端侧-中杯-旗舰怎么选"><a class="markdownIt-Anchor" href="#端侧-中杯-旗舰怎么选"></a> 端侧、中杯、旗舰：怎么选</h3>
-<p>按规模粗分三档。端侧小模型十亿到八十亿参数，跑在手机和笔记本上，快、免费、离线、隐私好，但复杂推理不行。中杯通用两百亿到七百亿参数，公司一台服务器能跑，能力够用且数据不出内网，贵一点、部署要点功夫。旗舰闭源上千亿，只给接口，云端调用，推理和长文能力最强，但最贵、数据要出内网。</p>
-<p>怎么选的原则只有一句：能力不是越高越好，是「刚好够用」最划算。大多数公司的默认选择是中杯。至于怎么评，别信排行榜——拿你自己二十条真实问题做一套小测跑一遍，这份小测比任何榜单都准。顺带一提，模型输出不稳定，同一个问题问十次答案都可能不同，你需要的是「十次里有几次能用」，不是「某一次很惊艳」。成本也要按公式算：单价乘用量乘重试次数，真实账单常常比预估高好几倍，因为没人一开始就想到要重试。</p>
-<p>两节看下来其实就几句话：字变数字，数字在注意力里互相交换信息，一层层微调往上叠；猜错就拧旋钮，拧几万亿次，它学会了像人一样接话；记不住就查资料，不会做就装工具，拿不准就调温度。</p>
-<blockquote>
-<p><strong>原来如此</strong>：它是个极好的助手，但不是权威。它给出的每个字都「很像」，不等于「正确」。重要的事，永远自己核一遍。</p>
-</blockquote>
-<hr />
-<blockquote>
-<p>上一集：<a href="/AI/llm101-01.html">一、大模型到底是个啥</a> ｜ 下一集：<a href="/AI/llm101-03.html">三、Prompt、Thinking、Function Calling</a> ｜ <a href="/AI/7b3f9a21.html">系列总览</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-      <tags>
-        <tag>大模型</tag>
-        <tag>科普</tag>
-        <tag>系列</tag>
-        <tag>大模型入门</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>大模型入门 03｜Prompt、Thinking、Function Calling</title>
-    <url>/AI/llm101-03.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
-<p><strong>大模型入门系列</strong> · 共 14 集 · 本集为第 3 集<br />
-上一集：<a href="/AI/llm101-02.html">二、往深一层</a> ｜ 下一集：<a href="/AI/llm101-04.html">四、上下文工程与 Agent 可靠性</a> ｜ <a href="/AI/7b3f9a21.html">系列总览</a></p>
-</blockquote>
-<p><img src="/images/llm-101/llm-agent-core.png" alt="llm-agent-core" /></p>
-<iframe src="/slide/llm-agent-core.html" style="width:100%;height:520px;border:0;border-radius:8px" loading="lazy" allowfullscreen></iframe>
-<p>把一次请求拆开，会看到三件互不相同的事：你给它看什么（Prompt）、它想几步再答（Thinking）、它能动手做什么（Function Calling）。这三件事常被当成三个技巧分别讨论，实际上它们是一条链上的三段，而且拼的是同一个东西——上下文里到底有什么。</p>
-<p>先说 Prompt。它不是咒语，作用是「把它的注意力拨过去」。你写的每个词，都会变成它在上下文里重点盯住的地方。你写「你是资深法务，请逐条核对合同里的风险点，只输出一张表格，不要解释」，模型内部的注意力就被拨动了三处：「资深法务」调用法律知识，「逐条核对」促使它一条条展开，「只输出表格」把输出概率往表格这个形状上推。</p>
-<p>这三处其实对应三类句子，值得分开记。身份句换脑子，告诉它这件事该调用哪一块知识——同一句话，法务身份和程序员身份，答案完全不同。动作句换做法，说的是「做什么类型的活」：核对、总结、翻译、挑错，要用动词，不要用形容词。格式句卡形状，把输出概率往某个形状上推：表格、JSON、不超过一百字，这一句最省钱也最有效，因为它同时压缩了输出长度和歧义空间。</p>
-<p>换个说法更容易理解：Prompt 不是在对模型下命令，模型也不会「服从」，它只是改了你给它的上下文，于是它接下去写的字就变了。所谓提示词工程，本质是设计上下文，让它的注意力落在你要的地方。</p>
-<h3 id="你发的三条消息其实会被拼成一整段文字"><a class="markdownIt-Anchor" href="#你发的三条消息其实会被拼成一整段文字"></a> 你发的三条消息，其实会被拼成一整段文字</h3>
-<p>界面上看到的是 system、user、assistant 三种角色分开的消息，但到了模型那里，它们会被拼成一整段连续的文本，用特殊标记分隔：<code>&lt;system&gt; &lt;user&gt; &lt;assistant&gt;</code>，靠这些标记区分「谁说的」。这个事实解释了三件事。</p>
-<p>第一，模型是无状态的：它不记得上一次聊天，所以每次都得把全部历史重新发一遍。每一次请求，这一整条都要重新算一遍——这就是为什么聊得越久越慢、越贵。第二，顺序就是权重：放在最后的指令，通常比开头的更被重视。第三，越长越贵：输入按 token 计费，历史越长，每轮都更贵。实用结论很直接：长对话要主动总结压缩，别指望它记得住几十轮之前的细节。</p>
-<h3 id="function-calling它其实一次都没执行过代码"><a class="markdownIt-Anchor" href="#function-calling它其实一次都没执行过代码"></a> Function Calling：它其实一次都没执行过代码</h3>
-<p>这是被误解最深的一处。模型唯一会做的事是「写字」。所谓调工具，是它把「要调什么」写出来了，仅此而已。</p>
-<p>流程是这样：你先给一份「说明书」，写明工具名、作用、参数，随请求一起发过去；它读完之后输出一段结构化文字，比如要查天气的城市名，包在一个约定的 JSON 结构里。到这一步为止，模型什么都没执行，它只是生成了一串长得像指令的字符。真正去查天气的，是你写在程序里的代码——执行的永远是你，不是它。</p>
-<p>由此推出三条实践纪律。说明书就是 prompt，写得含糊它就挑错工具，这是最常见的故障来源。参数容易编，你没给范围，它可能编一个不存在的城市，所以枚举、格式、例子都要写死。工具别给太多，一次给三十个工具，选错的概率直线上升，按场景分组，每次五到八个。</p>
-<h3 id="一次完整的工具调用怎么转"><a class="markdownIt-Anchor" href="#一次完整的工具调用怎么转"></a> 一次完整的工具调用怎么转</h3>
-<p>四步，两次调用模型。第一步，程序拼好消息列表、带上工具清单，发出请求。第二步，模型读全部消息，决定是直接答还是调工具，返回文字或 JSON 指令。第三步，程序执行——查数据库、调接口——把结果写回消息列表。第四步，模型读到结果，给出最终回答。</p>
-<p>整个过程中模型被调用了两次：第一次决定做什么，第二次把结果组织成人话。中间那段真正干活的，全是你的代码。它也在这个过程中证明了自己不保存任何记忆：每一轮都是重新读一遍全部消息。</p>
-<p>所以 Agent 的强弱，一半看模型，一半看你的工具写得好不好、结果喂得干不干净。这句话在后面的第四集和第六集会反复出现，因为工具结果的格式直接决定了成本和质量两件事。</p>
-<h3 id="thinking为什么写出来就变准了"><a class="markdownIt-Anchor" href="#thinking为什么写出来就变准了"></a> Thinking：为什么写出来就变准了</h3>
-<p>先看一道题：一个班三十人，六成会游泳，会游泳的人里三分之一会蛙泳，问会蛙泳的几个人。直接答，很多模型会说十五人——它跳过了中间步骤，在没算出十八的情况下直接给了结论，而正确答案是六。</p>
-<p>如果让它先打草稿：三十乘六成等于十八，十八乘三分之一等于六，所以答案是六，它就对。差别不在「想得多有诚意」，而在它只能看见已经写出来的字。十八这个中间结果被写进上下文之后，后面每个字都能直接用它；不写出来，就等于让它一步跨完三级台阶，算错一步就再也补不回来。</p>
-<p>所以思考的本质是：把中间过程写进上下文，给自己造出更多「可以踩的台阶」。这顺便解释了为什么思考要花 token、要变慢——台阶是字，字是钱。</p>
-<h3 id="三种制造台阶的做法"><a class="markdownIt-Anchor" href="#三种制造台阶的做法"></a> 三种制造台阶的做法</h3>
-<p>不是三种技术，是三种实现成本的取舍。</p>
-<p>提示词式：加一句「请一步步思考」，最便宜，任何模型都能用，本质是命令它多写中间步骤，适合日常分析、算数、推理题。原生推理模型：训练时就学会了长思考，有独立的思考预算，会自动展开很长的推理再作答，思考 token 照样收费，适合难题、代码、数学。工具化思考：边想边做，用结果纠正思路，走的是 ReAct 式的循环——想一步、查一下、看结果、再想，成本是多次调用加往返延迟，适合需要外部事实的复杂任务。</p>
-<p>别忽略账单：思考内容也算 token，还占上下文。让模型对「今天星期几」想两千字，纯属浪费。经验法则是——问题越需要多步推算，思考越值；越需要查事实，越该去做工具调用而不是硬想。</p>
-<blockquote>
-<p><strong>原来如此</strong>：Prompt 决定它看得见什么，Thinking 决定它想几步，Function Calling 决定它能动手到什么程度。三者共同的上限，都是同一件事：上下文里到底有什么。</p>
-</blockquote>
-<h3 id="三个最常见的坑"><a class="markdownIt-Anchor" href="#三个最常见的坑"></a> 三个最常见的坑</h3>
-<p>第一，否定式指令反而更容易触发。写「不要编造、不要用术语」，结果它偏偏提到了。原因是那个词本身也进了上下文，也在占注意力。改成正向指令：只使用资料里的内容；用日常词。</p>
-<p>第二，工具给太多，它就挑错。一次挂三十个工具，明明该查订单，它去查了物流。本质是分类问题：候选越多，选错概率越大。按场景分组，每次只给五到八个，描述里写清「什么时候该用」。</p>
-<p>第三，简单问题也硬让它想。今天星期几这种事，想太多等于台阶造太多，走岔路的概率也变大。简单任务关掉长思考，难题才开，分级处理。</p>
-<p>通用解药只有一条：把「不许做什么」改写成「应该做什么」。这也是为什么真正好用的 Agent 产品，看起来都很啰嗦——大量具体规则，而不是一段万能咒语。</p>
-<hr />
-<blockquote>
-<p>上一集：<a href="/AI/llm101-02.html">二、往深一层</a> ｜ 下一集：<a href="/AI/llm101-04.html">四、上下文工程与 Agent 可靠性</a> ｜ <a href="/AI/7b3f9a21.html">系列总览</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-      <tags>
-        <tag>大模型</tag>
-        <tag>科普</tag>
-        <tag>系列</tag>
-        <tag>大模型入门</tag>
       </tags>
   </entry>
   <entry>
@@ -41251,7 +41251,7 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
     <title>AI编程代理泄密敲响警报，独立开发者须给权限上锁</title>
     <url>/AI/3ad49b58.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="暴露面从代码生成转向运行权限"><a class="markdownIt-Anchor" href="#暴露面从代码生成转向运行权限"></a> 暴露面从代码生成转向运行权限</h2>
-<p>AI 编程代理正在把开发门槛继续往下压。Grok Build 于 2026 年 7 月 14 日以 Apache-2.0 协议开源，相关教程很快积累到“2 万”Star。它能读代码、改文件、运行命令，也能接入模型的 Agent 循环。</p>
+<p>AI 编程代理正在把开发门槛继续往下压。Grok Build 于 2026 年 7 月 14 日以 Apache-2.0 协议开源，仓库很快积累到 2 万 Star。它能读代码、改文件、运行命令，也能接入模型的 Agent 循环。</p>
 <p>我最初把这类工具看成开发效率工具。权限嘛，能跑就行。后来看到 RSS 原始摘要里的“35,000 Grok Build apps wide open to anyone who looked for them”，我的判断变了。问题不再只是代理会不会写代码，而是它被允许做什么。</p>
 <p>独立开发者最容易忽略这一点。一个人维护的小项目，通常同时连着 Git 仓库、云服务器、数据库和第三方 API。为了让代理修好问题，开发者常会一次性授予目录读写、终端执行和密钥访问权。</p>
 <blockquote>
@@ -41294,28 +41294,29 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
   <entry>
     <title>数月策划的加密劫案暴露链上安全盲区</title>
     <url>/%E6%8A%80%E6%9C%AF/a89e0e09.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="潜伏链比入口更值得防"><a class="markdownIt-Anchor" href="#潜伏链比入口更值得防"></a> 潜伏链比入口更值得防</h2>
-<p>攻击成功靠的是潜伏链。<span class="hl">单一入口的防护强度，取决于攻击者绕开它需要付出多少代价。</span></p>
-<p>现有摘要只确认了三种手法：感染笔记本、污染内部工具、伪造求职面试。它们看似分散，实际都指向同一类风险：可信身份与可信终端被逐步替换。</p>
-<p>我最初把重点放在入口认证。笔记本感染像外部突破，伪造面试像社会工程，两者不该放进同一条技术防线。后来再看内部工具污染，我改变了看法。</p>
-<p>攻击者无需正面突破一处强认证。他们可以先污染日常路径，再等待员工沿用已有权限。链上的每一步都可能很普通，普通到不会触发告警。</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="入口在链下损失落在链上"><a class="markdownIt-Anchor" href="#入口在链下损失落在链上"></a> 入口在链下，损失落在链上</h2>
+<p>63.4 亿美元的目标，28.5 亿美元已被冻结或拦截。FBI 与 TRM Security 都把这次攻击指向朝鲜行为体。Binance 说，攻击者最晚从 6 月就开始动手，随后在一个星期四收网——那一步是成功拿下了一名工程师的笔记本，然后从几个钱包里提走资产。</p>
+<p>这些数字里最要紧的是时间跨度。数月准备，收网只用了一个晚上。</p>
+<p>我最初以为重点在入口认证。笔记本感染像外部突破，伪造求职面试像社会工程，两者不该放进同一条技术防线。后来再看内部工具被污染，我改变了看法。</p>
+<p>攻击者不需要正面突破一处强认证。他们可以先污染日常路径，再等员工沿用已有权限。攻击链上的每一步都可能很普通，普通到不会触发告警。</p>
 <blockquote>
 <p>感染笔记本、污染内部工具、伪造求职面试，都利用了信任的连续性。</p>
 </blockquote>
-<p>这也是去中心化风控最尴尬的地方。每个节点只看见局部动作。终端报毒、权限系统放行、面试流程验真，单看都没有明显异常。</p>
-<p>风险在跨系统拼接后才显形。问题是，多数系统没有保存这种拼接所需的状态。</p>
-<h2 id="链上痕迹藏在关系里"><a class="markdownIt-Anchor" href="#链上痕迹藏在关系里"></a> 链上痕迹藏在关系里</h2>
+<p>这也是这次风控最尴尬的地方。每个节点只看见局部动作。终端报毒、权限系统放行、面试流程验真，单看都没有明显异常。</p>
+<p>风险在跨系统拼接后才显形。问题在于，多数系统没有保存这种拼接所需的状态。</p>
+<h2 id="痕迹藏在关系变化里"><a class="markdownIt-Anchor" href="#痕迹藏在关系变化里"></a> 痕迹藏在关系变化里</h2>
 <p>排查这类攻击，不能只找恶意文件。更有价值的是追踪身份、设备、工具和任务之间的关系。</p>
 <p>如果一台笔记本在短时间接触多个敏感环境，它是否仍是孤立设备？如果内部工具的发布来源与惯用流程不同，谁有权限放行？如果一次远程面试要求临时开放测试环境，验证是否覆盖了申请之外的资源？</p>
 <p>这些不是抽象问题。我的工作经历集中在低代码平台、权限管理、流程引擎和组织管理。回头看，我更熟悉系统如何记录动作，也更清楚系统通常记录不了什么。</p>
-<p>日志能记录“谁调用了什么”，却不必然记录“这个人当时为何被信任”。内部工具被替换后，原有账号与合法权限仍是原样。链上痕迹因此藏在关系变化里。</p>
+<p>日志能记录“谁调用了什么”，却不必然记录“这个人当时为何被信任”。内部工具被替换后，原有账号与合法权限仍是原样。痕迹因此藏在关系变化里。</p>
 <blockquote>
 <p>一条访问日志正常，只能证明调用合法，不能证明调用环境可信。</p>
 </blockquote>
-<p>链上分析需要把时间线放到一起。谁先出现，谁随后被信任，哪一步制造了新的关联。原始摘要没有给出攻击持续多久、波及多少系统，也没有可核验的损失数据。</p>
+<p>关联分析需要把时间线放到一起。谁先出现，谁随后被信任，哪一步制造了新的关联。Binance 给出的三个手法恰好构成一条完整的信任链：终端、内部工具、人。<span class="hl">入口在链下，损失落在链上，中间那段信任才是真正的攻击面。</span></p>
+<p>我还注意到一个量级问题。28.5 亿美元被冻结或拦截，说明追赃能力确实起作用了。但这依赖交易所自己有钱、有链上追踪能力、有冻结通道。换一家规模更小、动作更快的交易所，同样的潜伏期未必换来同样的拦截率。</p>
 <p>这些口径缺失，我不能补写。可确定的是，入口告警若没有跨节点上下文，很难解释一条安静却关键的路径。</p>
-<h2 id="风控失效在处置边界"><a class="markdownIt-Anchor" href="#风控失效在处置边界"></a> 风控失效在处置边界</h2>
-<p>去中心化风控的问题，不只是告警分散。更难处理的是发现异常以后，谁有权停止整条链。</p>
+<h2 id="失效点在处置边界"><a class="markdownIt-Anchor" href="#失效点在处置边界"></a> 失效点在处置边界</h2>
+<p>风控最难的环节在处置权：发现异常以后，谁有权停止整条链。</p>
 <p>终端团队可以隔离设备。内部工具团队可以暂停发布。权限团队可以冻结账号。安全团队可以提出关联分析。各方分别行动，攻击链却不会等待会议结束。</p>
 <p><span class="hl">风控的核心产出应是可执行的处置权，而非更多彼此隔离的告警。</span></p>
 <p>我平时维护权限管理、流程引擎和研发工具链，习惯从字段、事件和操作入口设计控制。做 Hermes 时，我也在处理 Memory Provider、MemPalace 和每日三问的定时调用。越靠近自动化，越容易忽略另一个问题：谁可以撤销一次自动决策，谁能看到决策依据。</p>
@@ -41323,7 +41324,7 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
 <blockquote>
 <p>告警负责指出异常，处置权负责阻止异常继续传递。</p>
 </blockquote>
-<p>攻击潜伏多久、攻击者何时进入、哪些节点曾被污染，现有事实没有回答。我到现在也没搞明白，这类事件中更关键的短板究竟在日志采集、跨系统关联，还是响应组织。</p>
+<p>这次攻击从 6 月持续到收网那天，朝鲜行为体的归属来自 FBI 和 TRM 的判断，不是币安自己的结论。我到现在也没搞明白，这类事件中更关键的短板究竟在日志采集、跨系统关联，还是响应组织。</p>
 <p>也许答案不在更强的单点认证里。它更可能出现在一个很朴素的问题上：发现链上异常后，我们是否能在下一条信任关系生效前，及时切断它。</p>
 ]]></content>
       <categories>
