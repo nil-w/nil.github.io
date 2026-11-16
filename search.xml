@@ -463,6 +463,23 @@
       </tags>
   </entry>
   <entry>
+    <title>英语学习</title>
+    <url>/%E5%AD%A6%E4%B9%A0/3f43dc72.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>App: <code>duolinguo(多邻国)</code></p>
+<span id="more"></span>
+<p>你使用 Duolingo 的时候你不单单是在学外语，你还是个译者。Duolingo 里面还有一个 Strength（力量）的概念，所有学过的内容在一开始是满血状态的，但是随着时间流逝和你在其它相关练习犯错误，你的 strength 就会不断降低，这时候你就需要通过复习来保持满血状态，这就是我上面提到的，通过一个复习系统将学到的知识从短期记忆放到长期记忆里面，Duolingo 提供了一个非常科学有效的复习管理系统。</p>
+<p>语法手册《无敌英语语法终身学习版(最新修订)》</p>
+<p>待补充…</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>英语单词</tag>
+        <tag>入门</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>程序员数学1</title>
     <url>/%E5%AD%A6%E4%B9%A0/2cd67ed1.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="学习列表"><a class="markdownIt-Anchor" href="#学习列表"></a> 学习列表:</h2>
@@ -497,23 +514,6 @@
       <tags>
         <tag>数学</tag>
         <tag>程序员</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>英语学习</title>
-    <url>/%E5%AD%A6%E4%B9%A0/3f43dc72.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>App: <code>duolinguo(多邻国)</code></p>
-<span id="more"></span>
-<p>你使用 Duolingo 的时候你不单单是在学外语，你还是个译者。Duolingo 里面还有一个 Strength（力量）的概念，所有学过的内容在一开始是满血状态的，但是随着时间流逝和你在其它相关练习犯错误，你的 strength 就会不断降低，这时候你就需要通过复习来保持满血状态，这就是我上面提到的，通过一个复习系统将学到的知识从短期记忆放到长期记忆里面，Duolingo 提供了一个非常科学有效的复习管理系统。</p>
-<p>语法手册《无敌英语语法终身学习版(最新修订)》</p>
-<p>待补充…</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>英语单词</tag>
-        <tag>入门</tag>
       </tags>
   </entry>
   <entry>
@@ -751,12 +751,12 @@
     <title>路</title>
     <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-        <div id="aplayer-PnUSKjPp" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-MCdEfGWi" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-PnUSKjPp"),
+            element: document.getElementById("aplayer-MCdEfGWi"),
             narrow: false,
             autoplay: true,
             showlrc: false,
@@ -2702,65 +2702,6 @@ ExcelUtil --> RecordHandler</pre>
       </tags>
   </entry>
   <entry>
-    <title>mysql count函数正确使用姿势</title>
-    <url>/%E5%B7%A5%E4%BD%9C/9f600c63.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>  <code>count()</code> 是<code>mysql</code>聚合函数，返回指定匹配条件的行数。开发中常用来统计表中数据，全部数据，不为null数据，或者去重数据。</p>
-<span id="more"></span>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 统计表中数据包括null</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="number">1</span>) <span class="keyword">from</span> zs_access_log;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 统计表中数据包括null</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="operator">*</span>) <span class="keyword">from</span> zs_access_log;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 统计表中指定列不为null的数据</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(id) <span class="keyword">from</span> zs_access_log;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 统计表中指定列去重不为null的数据</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="keyword">distinct</span> id) <span class="keyword">from</span> zs_access_log;</span><br></pre></td></tr></table></figure>
-<h2 id="1-背景"><a class="markdownIt-Anchor" href="#1-背景"></a> 1. 背景</h2>
-<p>  生产环境使用 <code>mysql: 8.0.18 Innodb</code>，  <code>mybatis</code>分页查询由两次查询完成，第一次获取总的记录行数，再次获取具体分页数据。<br />
-  以下查询可以看到<code>count</code>是存在性能问题的，接口的响应<code>&gt; 800ms</code>  <code>&lt; 4s</code>，但是该如何优化呢？</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(*) from zs_access_log;</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">|    37485 |</span><br><span class="line">+----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.53 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">select</span> * from zs_access_log  <span class="built_in">limit</span> 0,10;</span><br><span class="line">10 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="2-count性能对比"><a class="markdownIt-Anchor" href="#2-count性能对比"></a> 2. count性能对比</h2>
-<p>​		对比 <code>count</code> 几种使用姿势，在<code>InnoDB</code>和<code>MyISAM</code>引擎的性能对比。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; show engines;</span><br><span class="line">+--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</span><br><span class="line">| Engine             | Support | Comment                                                        | Transactions | XA   | Savepoints |</span><br><span class="line">+--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</span><br><span class="line">| FEDERATED          | NO      | Federated MySQL storage engine                                 | NULL         | NULL | NULL       |</span><br><span class="line">| MEMORY             | YES     | Hash based, stored <span class="keyword">in</span> memory, useful <span class="keyword">for</span> temporary tables      | NO           | NO   | NO         |</span><br><span class="line">| InnoDB             | DEFAULT | Supports transactions, row-level locking, and foreign keys     | YES          | YES  | YES        |</span><br><span class="line">| PERFORMANCE_SCHEMA | YES     | Performance Schema                                             | NO           | NO   | NO         |</span><br><span class="line">| MyISAM             | YES     | MyISAM storage engine                                          | NO           | NO   | NO         |</span><br><span class="line">| MRG_MYISAM         | YES     | Collection of identical MyISAM tables                          | NO           | NO   | NO         |</span><br><span class="line">| BLACKHOLE          | YES     | /dev/null storage engine (anything you write to it disappears) | NO           | NO   | NO         |</span><br><span class="line">| CSV                | YES     | CSV storage engine                                             | NO           | NO   | NO         |</span><br><span class="line">| ARCHIVE            | YES     | Archive storage engine                                         | NO           | NO   | NO         |</span><br><span class="line">+--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</span><br><span class="line">9 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>​		数据表 <code>zs_access_log</code> 和 <code>zs_access_log_myisam</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> TABLE_NAME , ENGINE from information_schema.tables <span class="built_in">where</span> TABLE_SCHEMA = <span class="string">&#x27;unified-form&#x27;</span> and TABLE_NAME like <span class="string">&#x27;%zs_access%&#x27;</span>;</span><br><span class="line">+----------------------+--------+</span><br><span class="line">| TABLE_NAME           | ENGINE |</span><br><span class="line">+----------------------+--------+</span><br><span class="line">| zs_access_log        | InnoDB |</span><br><span class="line">| zs_access_log_myisam | MyISAM |</span><br><span class="line">+----------------------+--------+</span><br><span class="line">2 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h2 id="21-innodb"><a class="markdownIt-Anchor" href="#21-innodb"></a> 2.1 InnoDB</h2>
-<h3 id="211-count1"><a class="markdownIt-Anchor" href="#211-count1"></a> 2.1.1 count(1)</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(1) from zs_access_log;</span><br><span class="line">+----------+</span><br><span class="line">| count(1) |</span><br><span class="line">+----------+</span><br><span class="line">|    37485 |</span><br><span class="line">+----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.53 sec)</span><br></pre></td></tr></table></figure>
-<h3 id="212-count"><a class="markdownIt-Anchor" href="#212-count"></a> 2.1.2 count(*)</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(*) from zs_access_log;</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">|    37485 |</span><br><span class="line">+----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.52 sec)</span><br></pre></td></tr></table></figure>
-<h3 id="213-countcolumn"><a class="markdownIt-Anchor" href="#213-countcolumn"></a> 2.1.3 count(column)</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(<span class="built_in">id</span>) from zs_access_log;</span><br><span class="line">+-----------+</span><br><span class="line">| count(<span class="built_in">id</span>) |</span><br><span class="line">+-----------+</span><br><span class="line">|     37485 |</span><br><span class="line">+-----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.50 sec)</span><br></pre></td></tr></table></figure>
-<p>​		数据表明以上几种方式查询效率相差无几，为什么会出现这样的问题呢？</p>
-<h2 id="22-myisam"><a class="markdownIt-Anchor" href="#22-myisam"></a> 2.2 MyISAM</h2>
-<h3 id="211-count1-2"><a class="markdownIt-Anchor" href="#211-count1-2"></a> 2.1.1 count(1)</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(1) from zs_access_log_myisam;</span><br><span class="line">+----------+</span><br><span class="line">| count(1) |</span><br><span class="line">+----------+</span><br><span class="line">|    37485 |</span><br><span class="line">+----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h3 id="212-count-2"><a class="markdownIt-Anchor" href="#212-count-2"></a> 2.1.2 count(*)</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(*) from zs_access_log_myisam;</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">|    37485 |</span><br><span class="line">+----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h3 id="213-countcolumn-2"><a class="markdownIt-Anchor" href="#213-countcolumn-2"></a> 2.1.3 count(column)</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(<span class="built_in">id</span>) from zs_access_log_myisam;</span><br><span class="line">+-----------+</span><br><span class="line">| count(<span class="built_in">id</span>) |</span><br><span class="line">+-----------+</span><br><span class="line">|     37485 |</span><br><span class="line">+-----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>​		数据表明以上几种方式在<code>InnoDB</code>和<code>MyISAM</code>引擎中，查询效率差别很大。</p>
-<p>​		<code>MyISAM</code>把总行数存在磁盘(<code>information_schema.partitions</code>)中，<code>count(*)</code>和<code>count(1)</code>的性能会好很多。</p>
-<p>​		<code>InnoDB</code>获取所有数据，并逐行计算总行数，<code>count(*)</code>和<code>count(1)</code>的性能会差很多。`</p>
-<p><a href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_count">mysql文档原文</a></p>
-<h2 id="3-性能优化"><a class="markdownIt-Anchor" href="#3-性能优化"></a> 3. 性能优化</h2>
-<p>​		在实际开发过程中，业务系统的数据表均使用<code>InnoDB</code>支持事务。</p>
-<p>​		该如何优化<code>InnoDB</code>中<code>count</code>的性能？</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>使用<code>redis</code>记录数据行数</p>
-</li>
-<li class="lvl-2">
-<p>使用除了<code>主键</code>以外索引列</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(<span class="built_in">id</span>) from zs_access_log;</span><br><span class="line">+-----------+</span><br><span class="line">| count(<span class="built_in">id</span>) |</span><br><span class="line">+-----------+</span><br><span class="line">|     37485 |</span><br><span class="line">+-----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.54 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">select</span> count(action) from zs_access_log;</span><br><span class="line">+---------------+</span><br><span class="line">| count(action) |</span><br><span class="line">+---------------+</span><br><span class="line">|         37485 |</span><br><span class="line">+---------------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.01 sec)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-        <tag>mybatis</tag>
-        <tag>count</tag>
-        <tag>聚合函数</tag>
-        <tag>InnoDB</tag>
-        <tag>MyISAM</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>芝麻叶糊涂面</title>
     <url>/%E8%8F%9C%E8%B0%B1/1d180e51.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>芝麻叶面条是河南的家常面食，喜不喜欢面食，吃上一次就会想第二次。</p>
@@ -2850,6 +2791,65 @@ ExcelUtil --> RecordHandler</pre>
         <tag>糊涂</tag>
         <tag>河南</tag>
         <tag>美食</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>mysql count函数正确使用姿势</title>
+    <url>/%E5%B7%A5%E4%BD%9C/9f600c63.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>  <code>count()</code> 是<code>mysql</code>聚合函数，返回指定匹配条件的行数。开发中常用来统计表中数据，全部数据，不为null数据，或者去重数据。</p>
+<span id="more"></span>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 统计表中数据包括null</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="number">1</span>) <span class="keyword">from</span> zs_access_log;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 统计表中数据包括null</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="operator">*</span>) <span class="keyword">from</span> zs_access_log;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 统计表中指定列不为null的数据</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(id) <span class="keyword">from</span> zs_access_log;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 统计表中指定列去重不为null的数据</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="keyword">distinct</span> id) <span class="keyword">from</span> zs_access_log;</span><br></pre></td></tr></table></figure>
+<h2 id="1-背景"><a class="markdownIt-Anchor" href="#1-背景"></a> 1. 背景</h2>
+<p>  生产环境使用 <code>mysql: 8.0.18 Innodb</code>，  <code>mybatis</code>分页查询由两次查询完成，第一次获取总的记录行数，再次获取具体分页数据。<br />
+  以下查询可以看到<code>count</code>是存在性能问题的，接口的响应<code>&gt; 800ms</code>  <code>&lt; 4s</code>，但是该如何优化呢？</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(*) from zs_access_log;</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">|    37485 |</span><br><span class="line">+----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.53 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">select</span> * from zs_access_log  <span class="built_in">limit</span> 0,10;</span><br><span class="line">10 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="2-count性能对比"><a class="markdownIt-Anchor" href="#2-count性能对比"></a> 2. count性能对比</h2>
+<p>​		对比 <code>count</code> 几种使用姿势，在<code>InnoDB</code>和<code>MyISAM</code>引擎的性能对比。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; show engines;</span><br><span class="line">+--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</span><br><span class="line">| Engine             | Support | Comment                                                        | Transactions | XA   | Savepoints |</span><br><span class="line">+--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</span><br><span class="line">| FEDERATED          | NO      | Federated MySQL storage engine                                 | NULL         | NULL | NULL       |</span><br><span class="line">| MEMORY             | YES     | Hash based, stored <span class="keyword">in</span> memory, useful <span class="keyword">for</span> temporary tables      | NO           | NO   | NO         |</span><br><span class="line">| InnoDB             | DEFAULT | Supports transactions, row-level locking, and foreign keys     | YES          | YES  | YES        |</span><br><span class="line">| PERFORMANCE_SCHEMA | YES     | Performance Schema                                             | NO           | NO   | NO         |</span><br><span class="line">| MyISAM             | YES     | MyISAM storage engine                                          | NO           | NO   | NO         |</span><br><span class="line">| MRG_MYISAM         | YES     | Collection of identical MyISAM tables                          | NO           | NO   | NO         |</span><br><span class="line">| BLACKHOLE          | YES     | /dev/null storage engine (anything you write to it disappears) | NO           | NO   | NO         |</span><br><span class="line">| CSV                | YES     | CSV storage engine                                             | NO           | NO   | NO         |</span><br><span class="line">| ARCHIVE            | YES     | Archive storage engine                                         | NO           | NO   | NO         |</span><br><span class="line">+--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</span><br><span class="line">9 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>​		数据表 <code>zs_access_log</code> 和 <code>zs_access_log_myisam</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> TABLE_NAME , ENGINE from information_schema.tables <span class="built_in">where</span> TABLE_SCHEMA = <span class="string">&#x27;unified-form&#x27;</span> and TABLE_NAME like <span class="string">&#x27;%zs_access%&#x27;</span>;</span><br><span class="line">+----------------------+--------+</span><br><span class="line">| TABLE_NAME           | ENGINE |</span><br><span class="line">+----------------------+--------+</span><br><span class="line">| zs_access_log        | InnoDB |</span><br><span class="line">| zs_access_log_myisam | MyISAM |</span><br><span class="line">+----------------------+--------+</span><br><span class="line">2 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h2 id="21-innodb"><a class="markdownIt-Anchor" href="#21-innodb"></a> 2.1 InnoDB</h2>
+<h3 id="211-count1"><a class="markdownIt-Anchor" href="#211-count1"></a> 2.1.1 count(1)</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(1) from zs_access_log;</span><br><span class="line">+----------+</span><br><span class="line">| count(1) |</span><br><span class="line">+----------+</span><br><span class="line">|    37485 |</span><br><span class="line">+----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.53 sec)</span><br></pre></td></tr></table></figure>
+<h3 id="212-count"><a class="markdownIt-Anchor" href="#212-count"></a> 2.1.2 count(*)</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(*) from zs_access_log;</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">|    37485 |</span><br><span class="line">+----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.52 sec)</span><br></pre></td></tr></table></figure>
+<h3 id="213-countcolumn"><a class="markdownIt-Anchor" href="#213-countcolumn"></a> 2.1.3 count(column)</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(<span class="built_in">id</span>) from zs_access_log;</span><br><span class="line">+-----------+</span><br><span class="line">| count(<span class="built_in">id</span>) |</span><br><span class="line">+-----------+</span><br><span class="line">|     37485 |</span><br><span class="line">+-----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.50 sec)</span><br></pre></td></tr></table></figure>
+<p>​		数据表明以上几种方式查询效率相差无几，为什么会出现这样的问题呢？</p>
+<h2 id="22-myisam"><a class="markdownIt-Anchor" href="#22-myisam"></a> 2.2 MyISAM</h2>
+<h3 id="211-count1-2"><a class="markdownIt-Anchor" href="#211-count1-2"></a> 2.1.1 count(1)</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(1) from zs_access_log_myisam;</span><br><span class="line">+----------+</span><br><span class="line">| count(1) |</span><br><span class="line">+----------+</span><br><span class="line">|    37485 |</span><br><span class="line">+----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h3 id="212-count-2"><a class="markdownIt-Anchor" href="#212-count-2"></a> 2.1.2 count(*)</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(*) from zs_access_log_myisam;</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">|    37485 |</span><br><span class="line">+----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h3 id="213-countcolumn-2"><a class="markdownIt-Anchor" href="#213-countcolumn-2"></a> 2.1.3 count(column)</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(<span class="built_in">id</span>) from zs_access_log_myisam;</span><br><span class="line">+-----------+</span><br><span class="line">| count(<span class="built_in">id</span>) |</span><br><span class="line">+-----------+</span><br><span class="line">|     37485 |</span><br><span class="line">+-----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>​		数据表明以上几种方式在<code>InnoDB</code>和<code>MyISAM</code>引擎中，查询效率差别很大。</p>
+<p>​		<code>MyISAM</code>把总行数存在磁盘(<code>information_schema.partitions</code>)中，<code>count(*)</code>和<code>count(1)</code>的性能会好很多。</p>
+<p>​		<code>InnoDB</code>获取所有数据，并逐行计算总行数，<code>count(*)</code>和<code>count(1)</code>的性能会差很多。`</p>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_count">mysql文档原文</a></p>
+<h2 id="3-性能优化"><a class="markdownIt-Anchor" href="#3-性能优化"></a> 3. 性能优化</h2>
+<p>​		在实际开发过程中，业务系统的数据表均使用<code>InnoDB</code>支持事务。</p>
+<p>​		该如何优化<code>InnoDB</code>中<code>count</code>的性能？</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>使用<code>redis</code>记录数据行数</p>
+</li>
+<li class="lvl-2">
+<p>使用除了<code>主键</code>以外索引列</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(<span class="built_in">id</span>) from zs_access_log;</span><br><span class="line">+-----------+</span><br><span class="line">| count(<span class="built_in">id</span>) |</span><br><span class="line">+-----------+</span><br><span class="line">|     37485 |</span><br><span class="line">+-----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.54 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">select</span> count(action) from zs_access_log;</span><br><span class="line">+---------------+</span><br><span class="line">| count(action) |</span><br><span class="line">+---------------+</span><br><span class="line">|         37485 |</span><br><span class="line">+---------------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.01 sec)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>工作</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>mybatis</tag>
+        <tag>count</tag>
+        <tag>聚合函数</tag>
+        <tag>InnoDB</tag>
+        <tag>MyISAM</tag>
       </tags>
   </entry>
   <entry>
@@ -21223,467 +21223,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
-    <title>慢车 18：十一秒</title>
-    <url>/%E5%B0%8F%E8%AF%B4/66cb7b9f.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>陈渡把音量旋钮拧到第三格。</p>
-<p>他把左边那根音频线拔下来，插头还带着一点温。插孔里有一层黑灰，是磁带机常年通电留下的。桌上那杯水已经放凉，杯壁贴着一圈白印。他把杯子往外挪，给空出来的桌面铺上一张维修用的硬纸板。</p>
-<p>磁带机里先出来一段底噪。</p>
-<p>嘶……嘶……</p>
-<p>硬纸板是装电容的包装盒，印着「2200 微法／耐压 25V」。中间一道折痕把字断成两截。</p>
-<p>他看着转盘上的数字。计数器跳到七。</p>
-<p>他把速度降下来，按住暂停键，把录音笔推到一边。那十一秒已经被他拷进小录音笔，来回听了四十七遍。</p>
-<p>磁带机后面还接着一条线。线的外皮已经发硬，靠近接口的地方裂开一条缝，铜丝没有露出来。陈渡用指甲拨了拨，按回原位，再用黑胶布缠了两圈。</p>
-<p>前七遍，他只听见底噪。</p>
-<p>第八遍，他听见了远处的风。</p>
-<p>陈渡把磁带机推到桌角，腾出一块地方放工具。螺丝刀、尖嘴钳、镊子，三样东西按大小排开。刀柄上有一道旧裂口，握胶松了一圈，他用胶布缠了两道。</p>
-<p>胶布边沿起毛。他从抽屉里剪下一小截，贴在上面。</p>
-<p>第九遍，风下面有金属门碰撞的声音。</p>
-<p>第十遍，底噪右边多了一道很轻的哼声。</p>
-<p>电脑音箱里的女声又循环了一遍。</p>
-<p>第十一遍，他把录音笔的波形放大。</p>
-<p>那道声音从第八秒开始，到了第十一秒断开。</p>
-<p>升上去。</p>
-<p>十二赫兹。</p>
-<p>不，不止。</p>
-<p>落下来。</p>
-<p>陈渡把采样率降到四万八千赫兹，又升回去。</p>
-<p>楼上又响了一下。不是水管，是椅子腿拖过地面。他抬头看了一眼天花板，没动。</p>
-<p>那道哼声有两种波形。</p>
-<p>陈渡把声音关掉，只留波形。屏幕上的横线很细，像桌缝里的一根灰。他把时间轴拉回第七秒，在起点处标了一个红点。第十秒再标一个。两点之间的距离，鼠标读数是两点九九秒。</p>
-<p>一道平，像一根拉直的线。</p>
-<p>陈渡拉开磁带机底部的抽屉。抽屉里没有备用磁带，只有一本巴掌大的硬皮记录本，封面被螺丝刀划出几道白印。他把本子倒过来抖了两下，一枚生锈的垫片落进工具盒。</p>
-<p>另一道在下面，细，跟着第一道走。</p>
-<p>他打开采样信息。</p>
-<p>他把机器上的磁带倒回去，重新播放。</p>
-<p>第十一秒。</p>
-<p>四万八千赫兹。</p>
-<p>他把音量推上去。</p>
-<p>第一道声音从右边进来。</p>
-<p>单声道。</p>
-<p>手机屏幕还亮着。沈未没有再发消息。</p>
-<p>第二个声音在下面，低了六分贝左右。</p>
-<p>不是空白。</p>
-<p>十六位。</p>
-<p>他把耳机摘下来，换成录音笔的小喇叭。</p>
-<p>还是那两下。</p>
-<p>不是磁带机的原生规格。录音笔把磁带线路的信号转成了数字，又被采样、量化。那两点起伏经过一次转换，可能被削平，也可能被挤到了原来的频率下面。</p>
-<p>一声女声。</p>
-<p>再一声男声。</p>
-<p>他把处理软件关掉。</p>
-<p>男声更轻。</p>
-<p>陈渡把磁带机停了。</p>
-<p>他重新打开波形，把低切关掉。那两秒被女声压着，峰值贴在底线上，贴着铁皮背面那道旧划痕的走向。他把音量降下来，给磁带倒到第七秒，自己数着拍子。</p>
-<p>原始文件重新打开。</p>
-<p>屋里只剩转盘停住后的余响。</p>
-<p>他看了一眼桌面。那本记事本摊在左边，纸页上有折痕。右边是录音笔、耳机、螺丝刀和一只拆开的磁带机后盖。</p>
-<p>波形还在。</p>
-<p>他把磁带倒到零。</p>
-<p>重新播放。</p>
-<p>他翻到第四十七行。</p>
-<p>他把频率轴从二十赫兹拉到二十千赫兹。那两点几乎贴着横线，像沉在河底的沙。只要把增益往上推，它们就会出来。可增益每加三格，女声的底噪也跟着抬起来。</p>
-<p>这一次，他没有从头听。</p>
-<p>他等到第七秒，把录音笔的录音键按下去，又用另一根线接进磁带机的耳机孔。</p>
-<p>陈渡在界面上加了三个标记。</p>
-<p>四十三赫兹。</p>
-<p>一，二，三。</p>
-<p>七十八赫兹。</p>
-<p>「08.0」。</p>
-<p>他把波形放大到最大。</p>
-<p>那道女声在中间。</p>
-<p>「10.0」。</p>
-<p>那道男声在下面。</p>
-<p>他听第二遍。</p>
-<p>「11.0」。</p>
-<p>还是。</p>
-<p>第三遍。</p>
-<p>他把这三个数字写在硬纸板背面，又在「10.0」旁边画了一条短线。</p>
-<p>第八秒，女声进来。</p>
-<p>他把耳机戴上，把音量旋到第四格。</p>
-<p>底噪里，两个声音叠在一起。</p>
-<p>画完，他捏住铅笔，笔尖在纸面上停了两秒。</p>
-<p>叠音，是两段声音共用一条磁带，录在同一时间。磁带只能沿着一条轨迹走，后来的声音会盖住前面的声音。但盖住不等于抹掉。</p>
-<p>如果把频率分开，弱的还在。</p>
-<p>楼上的水管响了一声。</p>
-<p>陈渡把录音笔放在桌角，拆开后盖。</p>
-<p>里面的接口板很窄，左边是话筒输入，右边是磁带线路。他拿出一根细铜线，刮掉绝缘层，接上其中一个针脚。</p>
-<p>陈渡抬头看天花板。</p>
-<p>那一页记着更换元件的参数：日期，接线位置，阻值，还有一句没写完的话。「她哼的那句」下面压着半截被磁带标签盖住的纸边。陈渡用镊子挑开标签，露出下面一行小字：「07:12，跟不上。」</p>
-<p>「原声。」</p>
-<p>他对着空房间说了一声。</p>
-<p>他没跟着哼。</p>
-<p>水声持续了四秒，停了。随后，隔壁房间有人推椅子。椅脚擦过地面，声音穿过墙，又薄了一层。</p>
-<p>录音笔的红色指示灯亮着。</p>
-<p>他没有再说话，只把磁带机重新启动。</p>
-<p>他把铅笔放下，给「08—10_沈未.wav」单独建了一个文件夹。</p>
-<p>磁带转起来。</p>
-<p>女声先出现。</p>
-<p>文件夹命名后，屏幕上出现三个名称。</p>
-<p>男声贴着它的下沿。</p>
-<p>陈渡把磁带机的录音旋钮压下。</p>
-<p>「08—10_沈未」。</p>
-<p>第一次录音。</p>
-<p>第十秒，男声跟进来。</p>
-<p>他按停止，把录音笔接到电脑上。文件只有八秒。</p>
-<p>「10—11」。</p>
-<p>「再录。」</p>
-<p>第二次，他把磁带倒回七秒。</p>
-<p>「10—11_男声_提取」。</p>
-<p>这次录了九秒。</p>
-<p>打开文件，只剩底噪。</p>
-<p>他看着这三个名字，把第三个文件夹里的文件拖进第二个。提示框弹出，问是否保留原文件。</p>
-<p>陈渡盯着屏幕，把指针拖到波形最下面。</p>
-<p>两点之间，有一道几乎贴着横线的起伏。</p>
-<p>他点了「否」。</p>
-<p>第十二秒，磁带到头，转盘空转，发出连续的底噪。</p>
-<p>他把标签撕开。标签背面粘着一小段透明胶，胶上粘着半截黑色磁带。磁带边缘有剪口，编号只剩「B-1」。他把那截带子对着灯照，里面没有白色带基，只剩一层棕色氧化物。</p>
-<p>他把音量推到最大。</p>
-<p>耳机里传来一声很短的男声。</p>
-<p>删除完成后，第二个文件夹空了。</p>
-<p>很轻。</p>
-<p>像有人在门后清嗓子。</p>
-<p>陈渡又按了一次撤销。</p>
-<p>他把这一段截出来，另存为「7—9」。</p>
-<p>然后继续。</p>
-<p>文件回到原处。</p>
-<p>第十秒，男声出现。</p>
-<p>第十一秒，声音断掉。</p>
-<p>陈渡按下停止，重新倒带。倒到一半，他又停住，把耳机摘下一边，贴近磁带机外壳。外壳里有一层薄薄的灰，靠近变压器的地方带着焊锡受热后的味道。</p>
-<p>他重新把提取文件放进去，给文件夹命名为「2009.4.17」。</p>
-<p>第二段文件保存为「10—11」。</p>
-<p>两个文件。</p>
-<p>再点开属性。</p>
-<p>一个九秒。</p>
-<p>一个一秒。</p>
-<p>创建时间被系统写成今天。</p>
-<p>陈渡把「7—9」打开，把低频提升三格。</p>
-<p>耳机里的女声变粗，男声被推到前面。</p>
-<p>他看了一会儿，在旁边新建一个文本文件，把内容改回二〇〇九年四月十七日。</p>
-<p>那是沈未。</p>
-<p>他拿起棉签，擦过磁头。</p>
-<p>她在哼一句没有词的歌。</p>
-<p>保存。</p>
-<p>调子很短，升上去，又落下来。</p>
-<p>他拿出那盘贴着「2009.4.17」的空白磁带，放在旁边。两盘带子的直径差一毫米，轮毂缺口却相同。他把螺丝刀插进磁带机侧面的检修孔，拨开一只卡扣。里面掉出一片薄薄的塑料片，上面刻着「B-17」，旁边还留着一道胶痕。</p>
-<p>男声在第三拍跟了进去。</p>
-<p>桌角的粉笔滚了一下，碰到「男：2秒。被盖住。」那行字，停在数字「二」旁边。</p>
-<p>低一点。</p>
-<p>慢半拍。</p>
-<p>陈渡伸手把粉笔捡起来。</p>
-<p>然后停住。</p>
-<p>陈渡摘下耳机。</p>
-<p>粉笔头已经磨得很圆。他拿小刀削掉两毫米，放在磁带机旁。</p>
-<p>棉签头上有一小片褐色氧化物。</p>
-<p>他记得那是 2009 年。</p>
-<p>殡仪馆的储物间只有六平方米，靠墙三排铁架，中间摆一张木桌。机器架在桌上，电源线从墙上的插线板拉下来。沈未在隔壁。</p>
-<p>桌上的电话又响了一声。</p>
-<p>那天她值夜班。</p>
-<p>陈渡把磁带机带来，试一段新的拾音线。线接好后，机器能录下门外的脚步，却录不下他站在话筒前的哼声。</p>
-<p>不是沈未。</p>
-<p>他当时以为线路坏了。</p>
-<p>后来他把线拆下来，换了一个电容，又测了一遍。</p>
-<p>是自动售货机掉货的提示音。每周二晚上，楼下那台机器都会误触一次。陈渡没去管。</p>
-<p>沈未在隔壁哼歌。</p>
-<p>那是他第一次听见她哼。</p>
-<p>他没有立刻擦第二下。他把磁头盖重新扣好，倒回七秒，按下播放。第十秒，男声还在。他把棉签放在桌边，签头朝外。</p>
-<p>他把磁带机的带速从正常拨到慢放。</p>
-<p>他站在桌边，没有出声。</p>
-<p>她的声音穿过储物间的薄墙，落进磁带机。</p>
-<p>计数器一格一格往后退。</p>
-<p>然后他跟着哼了一句。</p>
-<p>只哼了半拍。</p>
-<p>他用镊子夹出塑料片，和那截磁带并排放在桌面上。塑料片背面粘着一点褐色纤维，长度不到一厘米。</p>
-<p>第十一秒的尾音被拉长。</p>
-<p>后面的声音留在磁带里，他自己当时没有听出来。</p>
-<p>陈渡把两个文件拖进同一轨。</p>
-<p>耳机里先是一阵很细的摩擦声。拖到第四秒时，尾音裂成两层：一层往上走，另一层留在下面。</p>
-<p>左边是「7—9」，右边是「10—11」。</p>
-<p>这次，沈未发来一张图片。</p>
-<p>波形叠在一起。</p>
-<p>陈渡按下停止，把播放键改成逐帧。</p>
-<p>女声从第八秒进入，男声从第十秒进入。</p>
-<p>他用音量旋钮一格一格地降。</p>
-<p>画面停在第十一秒。</p>
-<p>女声先下去。</p>
-<p>男声还在。</p>
-<p>他往前退一帧。</p>
-<p>他再降。</p>
-<p>男声也沉到边缘。</p>
-<p>男声的波形只露出半个峰。</p>
-<p>图片拍得很近，只有一只手和一块黑色封皮。封皮上的字被手掌遮住，只露出一个「B」和半个「1」。下方压着一张白纸，纸上有一栏表头，姓名、日期、材料编号，后面的格线被折痕截断。</p>
-<p>他把旋钮拧到底。</p>
-<p>只剩电流声。</p>
-<p>再退一帧。</p>
-<p>再拧回一格。</p>
-<p>男声重新出现。</p>
-<p>只剩底噪。</p>
-<p>陈渡把文件拉回起点，按空格键。</p>
-<p>磁带机里传出当年的底噪。</p>
-<p>他把这半帧复制出来，放大。</p>
-<p>陈渡打开手机里沈未发来的照片，把亮度调高。照片上的黑色记事本旁边有一支圆珠笔，笔帽有咬痕。桌面右下角的钢制包角上，留着一小片褐色纸屑。</p>
-<p>门外的脚步，远处水管里的水声，沈未在隔壁哼歌。</p>
-<p>他的声音在那下面。</p>
-<p>陈渡点开放大。</p>
-<p>两个频率标出来。</p>
-<p>不是空白。</p>
-<p>被盖住了。</p>
-<p>二百八十七赫兹。</p>
-<p>他把耳机摘下来，盯着屏幕上的波形。</p>
-<p>波形最下面那一条，几乎与横线重合。</p>
-<p>三百一十三赫兹。</p>
-<p>如果只听混音，听不见。</p>
-<p>如果只看磁带轨，也会以为那里没有东西。</p>
-<p>差二十六赫兹。</p>
-<p>但它在。</p>
-<p>纸张边缘有一块深色水渍。沈未的手指甲很短，无名指侧面沾着一点蓝墨水。</p>
-<p>他打开频谱。</p>
-<p>陈渡把机器的带速恢复。磁带退到第七秒，他重新播放。第十秒，男声进来。第十一秒，断开。</p>
-<p>峰值挤在女声的下方，集中在二百八十到三百二十赫兹之间。男声不在原来的位置。</p>
-<p>是被女声压下去的。</p>
-<p>他摘下一边耳机，把耳朵贴近机器外壳。</p>
-<p>陈渡把时间轴放大。</p>
-<p>第十秒，男声只有两个起伏。</p>
-<p>外壳里有磁头、放大器和供电变压器。声音经过线圈，再进入磁带。那两秒不可能由线路凭空长出来，除非当时就有一道电流被写进去。</p>
-<p>第十一秒，只剩一声很短的尾音。</p>
-<p>他用粉笔在桌角写：</p>
-<p>如果是底噪，频谱会散。</p>
-<p>他回：「拍全。」</p>
-<p>他把照片缩小，又放大。纸屑的位置和长度，与桌上的塑料片背面那点纤维相近。</p>
-<p>「男：2秒。被盖住。」</p>
-<p>写完，他把粉笔横放在数字旁边。</p>
-<p>如果是机械震动，峰值会跟着转盘周期重复。</p>
-<p>窗外的货车经过，车轮压过接缝，声音从窗框传进来。</p>
-<p>陈渡没有关窗。</p>
-<p>三百一十三赫兹没有重复。</p>
-<p>他把录音笔音量旋钮拧到第一格，重新听了一遍。</p>
-<p>这次，他把女声关掉。</p>
-<p>它只出现在第十秒。</p>
-<p>房间里只剩底噪。</p>
-<p>第八秒开始，男声单独浮出来。</p>
-<p>过了十几秒，图片撤回。</p>
-<p>陈渡打开磁带机的检修孔。里面没有别的拾音设备，只有原装磁头、改过的线路板和一个贴着黄色胶布的旧元件。胶布边缘写着「2K2」。</p>
-<p>很近。</p>
-<p>像他就站在磁带机旁边。</p>
-<p>他把灯凑近。</p>
-<p>第十一秒，那声音落下去。</p>
-<p>陈渡按下停止键。</p>
-<p>元件的一脚已经弯了。</p>
-<p>他又听第二遍。</p>
-<p>男声还是在那里。</p>
-<p>陈渡用镊子把它扶正，没有碰线路上的其他部分。</p>
-<p>第一遍，他以为听错了。</p>
-<p>沈未发来一句：「不能拍。」</p>
-<p>第二遍，他把波形和频谱同时打开。</p>
-<p>这时，手机屏幕又亮起来。</p>
-<p>频谱上有一段清楚的窄带，中心在三百一十赫兹。声音很弱，峰值比底噪高出十一个分贝。</p>
-<p>陈渡打开录音软件，把「08—10_沈未.wav」拖进时间轴。第十秒，沈未的哼声落下；他在第十秒前加了半拍空白，又把频率拉低。男声的位置只剩一段窄窄的起伏，和那截磁带的长度对不上。</p>
-<p>不是没有。</p>
-<p>沈未发了一张照片。</p>
-<p>是低。</p>
-<p>陈渡坐了一会儿，把电脑屏幕往自己这边拉。</p>
-<p>照片里是一本黑色记事本。封皮右下角磨起一块，露出里面的纸页。她只拍到桌面，照片边缘有半只白手套。</p>
-<p>桌角那本记事本被带得翻开一页。</p>
-<p>他看见自己的字。</p>
-<p>没有正文。</p>
-<p>陈渡把手机扣在桌上，拿起螺丝刀，把磁带机后盖上那颗一字螺丝重新拧了一遍。刀口已经磨亮，螺丝头多出一道竖向划痕。他用指甲刮了刮划痕，刮不掉。</p>
-<p>「录不进自己的声音，先看磁头。」</p>
-<p>下面是一行日期。</p>
-<p>陈渡放大图片。</p>
-<p>2009 年 4 月 17 日。</p>
-<p>那行字很淡，墨水已经洇开。</p>
-<p>白手套旁边放着一支圆珠笔，笔帽咬痕深浅不一。桌面右下角露出殡仪馆工作台的钢制包角。</p>
-<p>他翻回前面。</p>
-<p>那一页是殡仪馆的工作安排。沈未写得很整齐。日期、姓名、房间、处理时间，一行一行排下去。</p>
-<p>他截了图，退出相册。</p>
-<p>旁边没有人说话。</p>
-<p>陈渡盯着那页看了很久。</p>
-<p>他打开抽屉，找到一张旧收据。收据背面印着一家设备行的电话，号码中间缺了两位。他把它压在手机下面，没有拨。</p>
-<p>「照片里是当天那本？」</p>
-<p>他记得那天沈未就在隔壁。</p>
-<p>他记得她哼过一句。</p>
-<p>发送。</p>
-<p>他没有听她哼完。</p>
-<p>他也没有告诉她，机器录下了。</p>
-<p>他换了一盘磁带。按下播放，倒数到七秒。男声从耳机里出来时，磁带机右侧的灯闪了一下。</p>
-<p>沈未回：</p>
-<p>他把记事本合上。</p>
-<p>桌上的小录音笔跳到「00:00」。</p>
-<p>「本子还在，但不在我这里。」</p>
-<p>陈渡没有立刻再放。</p>
-<p>磁带机继续走带。转盘每转一圈，窗上的指示点便跳一下。</p>
-<p>他拿起那台苏式磁带机，把后盖重新扣好。四颗螺丝，三颗十字，一颗一字。那颗一字螺丝的刀口已经被他磨过，边缘发亮。</p>
-<p>陈渡看着这句话，手指停在屏幕上方。</p>
-<p>他用手动螺丝刀拧紧。</p>
-<p>一圈。</p>
-<p>「在哪？」</p>
-<p>两圈。</p>
-<p>第三圈时，螺丝滑了一下。</p>
-<p>这一次，回复隔了四十多秒。</p>
-<p>他停住，把刀口重新压进槽里。</p>
-<p>然后继续。</p>
-<p>「家属接待处把它当旧登记本用了。夹在待补材料里，编号 B-17。」</p>
-<p>沈未发来第三条消息：</p>
-<p>机器放回桌中央。</p>
-<p>他打开电源。</p>
-<p>陈渡记下编号。</p>
-<p>指示灯亮着。</p>
-<p>转盘没有转动。</p>
-<p>沈未又发来一句：</p>
-<p>陈渡把磁带装上，按下播放。</p>
-<p>底噪起来。</p>
-<p>「要开箱单才能查。」</p>
-<p>陈渡把录音笔贴近磁带机后盖，沿着外壳摸到一块凸起的塑料。抠开后盖，里面夹着一张折叠的纸。纸上是他的字，只有一行：</p>
-<p>他等数字跳到七。</p>
-<p>耳机里的女声出现。</p>
-<p>「登记表上是沈九斤。」</p>
-<p>他打字。</p>
-<p>他把音量推到第三格。</p>
-<p>男声在下面。</p>
-<p>「先查位置。」</p>
-<p>两次。</p>
-<p>都是两次。</p>
-<p>「不急。」</p>
-<p>陈渡把耳机摘下，放到桌上。</p>
-<p>他打开抽屉，找出一盘空白磁带。标签上写着「2009.4.17」。</p>
-<p>陈渡把手机放下，看向那盘贴有「2009.4.17」的空白磁带。</p>
-<p>标签已经发黄，边缘卷起来。</p>
-<p>陈渡看着那四个字，拇指停在屏幕上方。</p>
-<p>这是当年那盘磁带的编号。</p>
-<p>标签边缘卷起，露出下面一层旧标签。旧标签上有一道压痕，像有人写过一串号码，后来用透明胶盖住。</p>
-<p>他把空白盘放在机器旁边，没有装。</p>
-<p>手机在桌上亮了一下。</p>
-<p>他用指甲抠开透明胶的一角。</p>
-<p>陈渡看了一眼。</p>
-<p>沈未发来消息。</p>
-<p>底下露出「B-17」。</p>
-<p>「机器还在响？」</p>
-<p>他打字。</p>
-<p>三个字符。</p>
-<p>他没有问沈未。</p>
-<p>「她哼的那句：升上去。落下来。第二遍没跟。」</p>
-<p>「在。」</p>
-<p>停了几秒，又删掉。</p>
-<p>后面还有两个被磨掉的数字。</p>
-<p>重新打。</p>
-<p>「找到两秒。」</p>
-<p>陈渡把标签完全揭开。胶纸粘住纸面，撕开时带下一层纤维。</p>
-<p>发送。</p>
-<p>沈未没有马上回。</p>
-<p>底下是周隼的字。</p>
-<p>陈渡把磁带停在七秒的位置，又播放了一遍。</p>
-<p>第三个词打完时，手机震了一下。</p>
-<p>他先点开周隼的号码，听筒里传来两声空响，随后被挂断。再打，仍是忙音。</p>
-<p>「已回」。</p>
-<p>「什么两秒？」</p>
-<p>他打字。</p>
-<p>后面画了一道横线。</p>
-<p>「2009 年那两秒。」</p>
-<p>消息发出去后，他把手机扣在桌上。</p>
-<p>陈渡把磁带机后盖上的四颗螺丝重新检查了一遍。三颗十字螺丝没有滑痕。那颗一字螺丝的刀口被他磨过，边缘发亮，螺丝头多出一道竖向划痕。</p>
-<p>屏幕朝下。</p>
-<p>房间里只剩磁带机的底噪。</p>
-<p>不是今天留下的。</p>
-<p>过了十几秒，手机又震。</p>
-<p>桌上的磁带倒回七秒。</p>
-<p>陈渡翻过来。</p>
-<p>他把螺丝刀贴在划痕上，比了比角度。</p>
-<p>沈未说：「我那天哼的是哪一句？」</p>
-<p>他把纸条压到硬纸板下，又拿起那截「B-1」磁带，放到转盘上。带子转了半圈，计数器没有动。磁头落下，里面只有一声很轻的咔响。</p>
-<p>他没有回。</p>
-<p>门外过了一辆电动车。灯光从门缝扫进来，桌面上多了一条白线，很快退掉。</p>
-<p>他把录音倒到七秒，戴上耳机，等到女声出现。</p>
-<p>一句。</p>
-<p>陈渡打开手机通讯录，找到周隼的号码。</p>
-<p>升上去。</p>
-<p>落下来。</p>
-<p>号码下面，最后一次通话时间是四个月前。</p>
-<p>他播放到第十秒，把音量拧到第二格。男声在耳机里贴着女声的下方浮出来，短，闷，像隔着一层铁皮。</p>
-<p>他打字。</p>
-<p>「这句。」</p>
-<p>他按了拨号。</p>
-<p>停了停。</p>
-<p>「你哼了另一句。」</p>
-<p>听音响了两声，被按掉。</p>
-<p>发送。</p>
-<p>这次沈未回得很快。</p>
-<p>陈渡没有再拨。他点开短信，输入：</p>
-<p>「我不记得。」</p>
-<p>陈渡把手机放下。</p>
-<p>陈渡拿起铅笔，在硬纸板背面写下：</p>
-<p>「B-17 是哪本？」</p>
-<p>他盯着那行字。</p>
-<p>她不记得。</p>
-<p>发送。</p>
-<p>她记得那天有人在隔壁试机器。</p>
-<p>记得门外有人走过。</p>
-<p>陈渡拿起铅笔，在硬纸板背面添了一行：「B-1，与B-17不是同一盘。」</p>
-<p>屏幕上出现转圈标志。</p>
-<p>记得储物间的灯泡接触不良。</p>
-<p>不记得自己哼过一句。</p>
-<p>五秒后，沈未发来一条新消息。</p>
-<p>陈渡又听了一遍。</p>
-<p>「沈九斤——B-17。」</p>
-<p>男声在第十秒进来。</p>
-<p>「开箱单上写的不是编号。是人名。」</p>
-<p>低六分贝。</p>
-<p>他的手指停在播放键上，没有按下去。</p>
-<p>陈渡把手机横放在硬纸板旁。</p>
-<p>他想起自己当时站在话筒后面。</p>
-<p>没有唱。</p>
-<p>「谁？」</p>
-<p>只是跟着沈未的调子出了半声。</p>
-<p>那半声被录进去了。</p>
-<p>沈未没有立刻回答。</p>
-<p>写完，他又在下面添了一行：</p>
-<p>不是后来改机器以后。</p>
-<p>不是空白。</p>
-<p>阁楼上的钟响了一下。二十一点十五分。</p>
-<p>不是没有。</p>
-<p>陈渡把耳机重新戴上，把「10—11」文件拖到播放器。</p>
-<p>白手套的照片还停在手机里。陈渡把它关掉，重新打开，把亮度调到最低。</p>
-<p>这一次，他把频段的低切打开。</p>
-<p>两百六十赫兹。</p>
-<p>硬纸板背面，那三个标记还在。</p>
-<p>他将纸条翻到背面，纸角露出一个被裁掉一半的日期。剩下的数字是「04.17」。</p>
-<p>再听。</p>
-<p>男声清楚了一些。</p>
-<p>「1998.4.11。」</p>
-<p>「08.0」。</p>
-<p>他又关掉低切，把增益降低两格。</p>
-<p>男声还在。</p>
-<p>「10.0」。</p>
-<p>最后，他把原文件和处理后的文件同时播放。</p>
-<p>一边是底噪下的两点起伏。</p>
-<p>「11.0」。</p>
-<p>一边是被提起来以后露出的两个音节。</p>
-<p>陈渡没有唱。</p>
-<p>他拿起铅笔，在「11.0」后面添了半行字：</p>
-<p>他只在耳机里听。</p>
-<p>他看了看，把铅笔横放在两行字之间。</p>
-<p>第二遍。</p>
-<p>「B-17——」</p>
-<p>第三遍。</p>
-<p>两秒。</p>
-<p>后面的名字还空着。</p>
-<p>他将处理后的文件命名：</p>
-<p>「10—11_男声_提取.wav」</p>
-<p>又给另一段命名：</p>
-<p>「08—10_沈未.wav」</p>
-<p>文件名上的字打完，他把鼠标停在保存键上。</p>
-<p>窗外又一辆货车经过。</p>
-<p>车轮压过接缝。</p>
-<p>一下。</p>
-<p>两下。</p>
-<p>第三下时，电脑右下角的时钟跳到二十一点十四分。</p>
-]]></content>
-      <categories>
-        <category>小说</category>
-      </categories>
-      <tags>
-        <tag>慢车</tag>
-        <tag>小说</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>慢车 17：那年我十九</title>
     <url>/%E5%B0%8F%E8%AF%B4/cf841ded.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>电话那头响了十一秒。</p>
@@ -22268,6 +21807,467 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>是一个陌生号码。</p>
 <p>短信只有一行：</p>
 <p>「十二台不在厂里。问一个人：郑霖。」</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>慢车</tag>
+        <tag>小说</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>慢车 18：十一秒</title>
+    <url>/%E5%B0%8F%E8%AF%B4/66cb7b9f.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>陈渡把音量旋钮拧到第三格。</p>
+<p>他把左边那根音频线拔下来，插头还带着一点温。插孔里有一层黑灰，是磁带机常年通电留下的。桌上那杯水已经放凉，杯壁贴着一圈白印。他把杯子往外挪，给空出来的桌面铺上一张维修用的硬纸板。</p>
+<p>磁带机里先出来一段底噪。</p>
+<p>嘶……嘶……</p>
+<p>硬纸板是装电容的包装盒，印着「2200 微法／耐压 25V」。中间一道折痕把字断成两截。</p>
+<p>他看着转盘上的数字。计数器跳到七。</p>
+<p>他把速度降下来，按住暂停键，把录音笔推到一边。那十一秒已经被他拷进小录音笔，来回听了四十七遍。</p>
+<p>磁带机后面还接着一条线。线的外皮已经发硬，靠近接口的地方裂开一条缝，铜丝没有露出来。陈渡用指甲拨了拨，按回原位，再用黑胶布缠了两圈。</p>
+<p>前七遍，他只听见底噪。</p>
+<p>第八遍，他听见了远处的风。</p>
+<p>陈渡把磁带机推到桌角，腾出一块地方放工具。螺丝刀、尖嘴钳、镊子，三样东西按大小排开。刀柄上有一道旧裂口，握胶松了一圈，他用胶布缠了两道。</p>
+<p>胶布边沿起毛。他从抽屉里剪下一小截，贴在上面。</p>
+<p>第九遍，风下面有金属门碰撞的声音。</p>
+<p>第十遍，底噪右边多了一道很轻的哼声。</p>
+<p>电脑音箱里的女声又循环了一遍。</p>
+<p>第十一遍，他把录音笔的波形放大。</p>
+<p>那道声音从第八秒开始，到了第十一秒断开。</p>
+<p>升上去。</p>
+<p>十二赫兹。</p>
+<p>不，不止。</p>
+<p>落下来。</p>
+<p>陈渡把采样率降到四万八千赫兹，又升回去。</p>
+<p>楼上又响了一下。不是水管，是椅子腿拖过地面。他抬头看了一眼天花板，没动。</p>
+<p>那道哼声有两种波形。</p>
+<p>陈渡把声音关掉，只留波形。屏幕上的横线很细，像桌缝里的一根灰。他把时间轴拉回第七秒，在起点处标了一个红点。第十秒再标一个。两点之间的距离，鼠标读数是两点九九秒。</p>
+<p>一道平，像一根拉直的线。</p>
+<p>陈渡拉开磁带机底部的抽屉。抽屉里没有备用磁带，只有一本巴掌大的硬皮记录本，封面被螺丝刀划出几道白印。他把本子倒过来抖了两下，一枚生锈的垫片落进工具盒。</p>
+<p>另一道在下面，细，跟着第一道走。</p>
+<p>他打开采样信息。</p>
+<p>他把机器上的磁带倒回去，重新播放。</p>
+<p>第十一秒。</p>
+<p>四万八千赫兹。</p>
+<p>他把音量推上去。</p>
+<p>第一道声音从右边进来。</p>
+<p>单声道。</p>
+<p>手机屏幕还亮着。沈未没有再发消息。</p>
+<p>第二个声音在下面，低了六分贝左右。</p>
+<p>不是空白。</p>
+<p>十六位。</p>
+<p>他把耳机摘下来，换成录音笔的小喇叭。</p>
+<p>还是那两下。</p>
+<p>不是磁带机的原生规格。录音笔把磁带线路的信号转成了数字，又被采样、量化。那两点起伏经过一次转换，可能被削平，也可能被挤到了原来的频率下面。</p>
+<p>一声女声。</p>
+<p>再一声男声。</p>
+<p>他把处理软件关掉。</p>
+<p>男声更轻。</p>
+<p>陈渡把磁带机停了。</p>
+<p>他重新打开波形，把低切关掉。那两秒被女声压着，峰值贴在底线上，贴着铁皮背面那道旧划痕的走向。他把音量降下来，给磁带倒到第七秒，自己数着拍子。</p>
+<p>原始文件重新打开。</p>
+<p>屋里只剩转盘停住后的余响。</p>
+<p>他看了一眼桌面。那本记事本摊在左边，纸页上有折痕。右边是录音笔、耳机、螺丝刀和一只拆开的磁带机后盖。</p>
+<p>波形还在。</p>
+<p>他把磁带倒到零。</p>
+<p>重新播放。</p>
+<p>他翻到第四十七行。</p>
+<p>他把频率轴从二十赫兹拉到二十千赫兹。那两点几乎贴着横线，像沉在河底的沙。只要把增益往上推，它们就会出来。可增益每加三格，女声的底噪也跟着抬起来。</p>
+<p>这一次，他没有从头听。</p>
+<p>他等到第七秒，把录音笔的录音键按下去，又用另一根线接进磁带机的耳机孔。</p>
+<p>陈渡在界面上加了三个标记。</p>
+<p>四十三赫兹。</p>
+<p>一，二，三。</p>
+<p>七十八赫兹。</p>
+<p>「08.0」。</p>
+<p>他把波形放大到最大。</p>
+<p>那道女声在中间。</p>
+<p>「10.0」。</p>
+<p>那道男声在下面。</p>
+<p>他听第二遍。</p>
+<p>「11.0」。</p>
+<p>还是。</p>
+<p>第三遍。</p>
+<p>他把这三个数字写在硬纸板背面，又在「10.0」旁边画了一条短线。</p>
+<p>第八秒，女声进来。</p>
+<p>他把耳机戴上，把音量旋到第四格。</p>
+<p>底噪里，两个声音叠在一起。</p>
+<p>画完，他捏住铅笔，笔尖在纸面上停了两秒。</p>
+<p>叠音，是两段声音共用一条磁带，录在同一时间。磁带只能沿着一条轨迹走，后来的声音会盖住前面的声音。但盖住不等于抹掉。</p>
+<p>如果把频率分开，弱的还在。</p>
+<p>楼上的水管响了一声。</p>
+<p>陈渡把录音笔放在桌角，拆开后盖。</p>
+<p>里面的接口板很窄，左边是话筒输入，右边是磁带线路。他拿出一根细铜线，刮掉绝缘层，接上其中一个针脚。</p>
+<p>陈渡抬头看天花板。</p>
+<p>那一页记着更换元件的参数：日期，接线位置，阻值，还有一句没写完的话。「她哼的那句」下面压着半截被磁带标签盖住的纸边。陈渡用镊子挑开标签，露出下面一行小字：「07:12，跟不上。」</p>
+<p>「原声。」</p>
+<p>他对着空房间说了一声。</p>
+<p>他没跟着哼。</p>
+<p>水声持续了四秒，停了。随后，隔壁房间有人推椅子。椅脚擦过地面，声音穿过墙，又薄了一层。</p>
+<p>录音笔的红色指示灯亮着。</p>
+<p>他没有再说话，只把磁带机重新启动。</p>
+<p>他把铅笔放下，给「08—10_沈未.wav」单独建了一个文件夹。</p>
+<p>磁带转起来。</p>
+<p>女声先出现。</p>
+<p>文件夹命名后，屏幕上出现三个名称。</p>
+<p>男声贴着它的下沿。</p>
+<p>陈渡把磁带机的录音旋钮压下。</p>
+<p>「08—10_沈未」。</p>
+<p>第一次录音。</p>
+<p>第十秒，男声跟进来。</p>
+<p>他按停止，把录音笔接到电脑上。文件只有八秒。</p>
+<p>「10—11」。</p>
+<p>「再录。」</p>
+<p>第二次，他把磁带倒回七秒。</p>
+<p>「10—11_男声_提取」。</p>
+<p>这次录了九秒。</p>
+<p>打开文件，只剩底噪。</p>
+<p>他看着这三个名字，把第三个文件夹里的文件拖进第二个。提示框弹出，问是否保留原文件。</p>
+<p>陈渡盯着屏幕，把指针拖到波形最下面。</p>
+<p>两点之间，有一道几乎贴着横线的起伏。</p>
+<p>他点了「否」。</p>
+<p>第十二秒，磁带到头，转盘空转，发出连续的底噪。</p>
+<p>他把标签撕开。标签背面粘着一小段透明胶，胶上粘着半截黑色磁带。磁带边缘有剪口，编号只剩「B-1」。他把那截带子对着灯照，里面没有白色带基，只剩一层棕色氧化物。</p>
+<p>他把音量推到最大。</p>
+<p>耳机里传来一声很短的男声。</p>
+<p>删除完成后，第二个文件夹空了。</p>
+<p>很轻。</p>
+<p>像有人在门后清嗓子。</p>
+<p>陈渡又按了一次撤销。</p>
+<p>他把这一段截出来，另存为「7—9」。</p>
+<p>然后继续。</p>
+<p>文件回到原处。</p>
+<p>第十秒，男声出现。</p>
+<p>第十一秒，声音断掉。</p>
+<p>陈渡按下停止，重新倒带。倒到一半，他又停住，把耳机摘下一边，贴近磁带机外壳。外壳里有一层薄薄的灰，靠近变压器的地方带着焊锡受热后的味道。</p>
+<p>他重新把提取文件放进去，给文件夹命名为「2009.4.17」。</p>
+<p>第二段文件保存为「10—11」。</p>
+<p>两个文件。</p>
+<p>再点开属性。</p>
+<p>一个九秒。</p>
+<p>一个一秒。</p>
+<p>创建时间被系统写成今天。</p>
+<p>陈渡把「7—9」打开，把低频提升三格。</p>
+<p>耳机里的女声变粗，男声被推到前面。</p>
+<p>他看了一会儿，在旁边新建一个文本文件，把内容改回二〇〇九年四月十七日。</p>
+<p>那是沈未。</p>
+<p>他拿起棉签，擦过磁头。</p>
+<p>她在哼一句没有词的歌。</p>
+<p>保存。</p>
+<p>调子很短，升上去，又落下来。</p>
+<p>他拿出那盘贴着「2009.4.17」的空白磁带，放在旁边。两盘带子的直径差一毫米，轮毂缺口却相同。他把螺丝刀插进磁带机侧面的检修孔，拨开一只卡扣。里面掉出一片薄薄的塑料片，上面刻着「B-17」，旁边还留着一道胶痕。</p>
+<p>男声在第三拍跟了进去。</p>
+<p>桌角的粉笔滚了一下，碰到「男：2秒。被盖住。」那行字，停在数字「二」旁边。</p>
+<p>低一点。</p>
+<p>慢半拍。</p>
+<p>陈渡伸手把粉笔捡起来。</p>
+<p>然后停住。</p>
+<p>陈渡摘下耳机。</p>
+<p>粉笔头已经磨得很圆。他拿小刀削掉两毫米，放在磁带机旁。</p>
+<p>棉签头上有一小片褐色氧化物。</p>
+<p>他记得那是 2009 年。</p>
+<p>殡仪馆的储物间只有六平方米，靠墙三排铁架，中间摆一张木桌。机器架在桌上，电源线从墙上的插线板拉下来。沈未在隔壁。</p>
+<p>桌上的电话又响了一声。</p>
+<p>那天她值夜班。</p>
+<p>陈渡把磁带机带来，试一段新的拾音线。线接好后，机器能录下门外的脚步，却录不下他站在话筒前的哼声。</p>
+<p>不是沈未。</p>
+<p>他当时以为线路坏了。</p>
+<p>后来他把线拆下来，换了一个电容，又测了一遍。</p>
+<p>是自动售货机掉货的提示音。每周二晚上，楼下那台机器都会误触一次。陈渡没去管。</p>
+<p>沈未在隔壁哼歌。</p>
+<p>那是他第一次听见她哼。</p>
+<p>他没有立刻擦第二下。他把磁头盖重新扣好，倒回七秒，按下播放。第十秒，男声还在。他把棉签放在桌边，签头朝外。</p>
+<p>他把磁带机的带速从正常拨到慢放。</p>
+<p>他站在桌边，没有出声。</p>
+<p>她的声音穿过储物间的薄墙，落进磁带机。</p>
+<p>计数器一格一格往后退。</p>
+<p>然后他跟着哼了一句。</p>
+<p>只哼了半拍。</p>
+<p>他用镊子夹出塑料片，和那截磁带并排放在桌面上。塑料片背面粘着一点褐色纤维，长度不到一厘米。</p>
+<p>第十一秒的尾音被拉长。</p>
+<p>后面的声音留在磁带里，他自己当时没有听出来。</p>
+<p>陈渡把两个文件拖进同一轨。</p>
+<p>耳机里先是一阵很细的摩擦声。拖到第四秒时，尾音裂成两层：一层往上走，另一层留在下面。</p>
+<p>左边是「7—9」，右边是「10—11」。</p>
+<p>这次，沈未发来一张图片。</p>
+<p>波形叠在一起。</p>
+<p>陈渡按下停止，把播放键改成逐帧。</p>
+<p>女声从第八秒进入，男声从第十秒进入。</p>
+<p>他用音量旋钮一格一格地降。</p>
+<p>画面停在第十一秒。</p>
+<p>女声先下去。</p>
+<p>男声还在。</p>
+<p>他往前退一帧。</p>
+<p>他再降。</p>
+<p>男声也沉到边缘。</p>
+<p>男声的波形只露出半个峰。</p>
+<p>图片拍得很近，只有一只手和一块黑色封皮。封皮上的字被手掌遮住，只露出一个「B」和半个「1」。下方压着一张白纸，纸上有一栏表头，姓名、日期、材料编号，后面的格线被折痕截断。</p>
+<p>他把旋钮拧到底。</p>
+<p>只剩电流声。</p>
+<p>再退一帧。</p>
+<p>再拧回一格。</p>
+<p>男声重新出现。</p>
+<p>只剩底噪。</p>
+<p>陈渡把文件拉回起点，按空格键。</p>
+<p>磁带机里传出当年的底噪。</p>
+<p>他把这半帧复制出来，放大。</p>
+<p>陈渡打开手机里沈未发来的照片，把亮度调高。照片上的黑色记事本旁边有一支圆珠笔，笔帽有咬痕。桌面右下角的钢制包角上，留着一小片褐色纸屑。</p>
+<p>门外的脚步，远处水管里的水声，沈未在隔壁哼歌。</p>
+<p>他的声音在那下面。</p>
+<p>陈渡点开放大。</p>
+<p>两个频率标出来。</p>
+<p>不是空白。</p>
+<p>被盖住了。</p>
+<p>二百八十七赫兹。</p>
+<p>他把耳机摘下来，盯着屏幕上的波形。</p>
+<p>波形最下面那一条，几乎与横线重合。</p>
+<p>三百一十三赫兹。</p>
+<p>如果只听混音，听不见。</p>
+<p>如果只看磁带轨，也会以为那里没有东西。</p>
+<p>差二十六赫兹。</p>
+<p>但它在。</p>
+<p>纸张边缘有一块深色水渍。沈未的手指甲很短，无名指侧面沾着一点蓝墨水。</p>
+<p>他打开频谱。</p>
+<p>陈渡把机器的带速恢复。磁带退到第七秒，他重新播放。第十秒，男声进来。第十一秒，断开。</p>
+<p>峰值挤在女声的下方，集中在二百八十到三百二十赫兹之间。男声不在原来的位置。</p>
+<p>是被女声压下去的。</p>
+<p>他摘下一边耳机，把耳朵贴近机器外壳。</p>
+<p>陈渡把时间轴放大。</p>
+<p>第十秒，男声只有两个起伏。</p>
+<p>外壳里有磁头、放大器和供电变压器。声音经过线圈，再进入磁带。那两秒不可能由线路凭空长出来，除非当时就有一道电流被写进去。</p>
+<p>第十一秒，只剩一声很短的尾音。</p>
+<p>他用粉笔在桌角写：</p>
+<p>如果是底噪，频谱会散。</p>
+<p>他回：「拍全。」</p>
+<p>他把照片缩小，又放大。纸屑的位置和长度，与桌上的塑料片背面那点纤维相近。</p>
+<p>「男：2秒。被盖住。」</p>
+<p>写完，他把粉笔横放在数字旁边。</p>
+<p>如果是机械震动，峰值会跟着转盘周期重复。</p>
+<p>窗外的货车经过，车轮压过接缝，声音从窗框传进来。</p>
+<p>陈渡没有关窗。</p>
+<p>三百一十三赫兹没有重复。</p>
+<p>他把录音笔音量旋钮拧到第一格，重新听了一遍。</p>
+<p>这次，他把女声关掉。</p>
+<p>它只出现在第十秒。</p>
+<p>房间里只剩底噪。</p>
+<p>第八秒开始，男声单独浮出来。</p>
+<p>过了十几秒，图片撤回。</p>
+<p>陈渡打开磁带机的检修孔。里面没有别的拾音设备，只有原装磁头、改过的线路板和一个贴着黄色胶布的旧元件。胶布边缘写着「2K2」。</p>
+<p>很近。</p>
+<p>像他就站在磁带机旁边。</p>
+<p>他把灯凑近。</p>
+<p>第十一秒，那声音落下去。</p>
+<p>陈渡按下停止键。</p>
+<p>元件的一脚已经弯了。</p>
+<p>他又听第二遍。</p>
+<p>男声还是在那里。</p>
+<p>陈渡用镊子把它扶正，没有碰线路上的其他部分。</p>
+<p>第一遍，他以为听错了。</p>
+<p>沈未发来一句：「不能拍。」</p>
+<p>第二遍，他把波形和频谱同时打开。</p>
+<p>这时，手机屏幕又亮起来。</p>
+<p>频谱上有一段清楚的窄带，中心在三百一十赫兹。声音很弱，峰值比底噪高出十一个分贝。</p>
+<p>陈渡打开录音软件，把「08—10_沈未.wav」拖进时间轴。第十秒，沈未的哼声落下；他在第十秒前加了半拍空白，又把频率拉低。男声的位置只剩一段窄窄的起伏，和那截磁带的长度对不上。</p>
+<p>不是没有。</p>
+<p>沈未发了一张照片。</p>
+<p>是低。</p>
+<p>陈渡坐了一会儿，把电脑屏幕往自己这边拉。</p>
+<p>照片里是一本黑色记事本。封皮右下角磨起一块，露出里面的纸页。她只拍到桌面，照片边缘有半只白手套。</p>
+<p>桌角那本记事本被带得翻开一页。</p>
+<p>他看见自己的字。</p>
+<p>没有正文。</p>
+<p>陈渡把手机扣在桌上，拿起螺丝刀，把磁带机后盖上那颗一字螺丝重新拧了一遍。刀口已经磨亮，螺丝头多出一道竖向划痕。他用指甲刮了刮划痕，刮不掉。</p>
+<p>「录不进自己的声音，先看磁头。」</p>
+<p>下面是一行日期。</p>
+<p>陈渡放大图片。</p>
+<p>2009 年 4 月 17 日。</p>
+<p>那行字很淡，墨水已经洇开。</p>
+<p>白手套旁边放着一支圆珠笔，笔帽咬痕深浅不一。桌面右下角露出殡仪馆工作台的钢制包角。</p>
+<p>他翻回前面。</p>
+<p>那一页是殡仪馆的工作安排。沈未写得很整齐。日期、姓名、房间、处理时间，一行一行排下去。</p>
+<p>他截了图，退出相册。</p>
+<p>旁边没有人说话。</p>
+<p>陈渡盯着那页看了很久。</p>
+<p>他打开抽屉，找到一张旧收据。收据背面印着一家设备行的电话，号码中间缺了两位。他把它压在手机下面，没有拨。</p>
+<p>「照片里是当天那本？」</p>
+<p>他记得那天沈未就在隔壁。</p>
+<p>他记得她哼过一句。</p>
+<p>发送。</p>
+<p>他没有听她哼完。</p>
+<p>他也没有告诉她，机器录下了。</p>
+<p>他换了一盘磁带。按下播放，倒数到七秒。男声从耳机里出来时，磁带机右侧的灯闪了一下。</p>
+<p>沈未回：</p>
+<p>他把记事本合上。</p>
+<p>桌上的小录音笔跳到「00:00」。</p>
+<p>「本子还在，但不在我这里。」</p>
+<p>陈渡没有立刻再放。</p>
+<p>磁带机继续走带。转盘每转一圈，窗上的指示点便跳一下。</p>
+<p>他拿起那台苏式磁带机，把后盖重新扣好。四颗螺丝，三颗十字，一颗一字。那颗一字螺丝的刀口已经被他磨过，边缘发亮。</p>
+<p>陈渡看着这句话，手指停在屏幕上方。</p>
+<p>他用手动螺丝刀拧紧。</p>
+<p>一圈。</p>
+<p>「在哪？」</p>
+<p>两圈。</p>
+<p>第三圈时，螺丝滑了一下。</p>
+<p>这一次，回复隔了四十多秒。</p>
+<p>他停住，把刀口重新压进槽里。</p>
+<p>然后继续。</p>
+<p>「家属接待处把它当旧登记本用了。夹在待补材料里，编号 B-17。」</p>
+<p>沈未发来第三条消息：</p>
+<p>机器放回桌中央。</p>
+<p>他打开电源。</p>
+<p>陈渡记下编号。</p>
+<p>指示灯亮着。</p>
+<p>转盘没有转动。</p>
+<p>沈未又发来一句：</p>
+<p>陈渡把磁带装上，按下播放。</p>
+<p>底噪起来。</p>
+<p>「要开箱单才能查。」</p>
+<p>陈渡把录音笔贴近磁带机后盖，沿着外壳摸到一块凸起的塑料。抠开后盖，里面夹着一张折叠的纸。纸上是他的字，只有一行：</p>
+<p>他等数字跳到七。</p>
+<p>耳机里的女声出现。</p>
+<p>「登记表上是沈九斤。」</p>
+<p>他打字。</p>
+<p>他把音量推到第三格。</p>
+<p>男声在下面。</p>
+<p>「先查位置。」</p>
+<p>两次。</p>
+<p>都是两次。</p>
+<p>「不急。」</p>
+<p>陈渡把耳机摘下，放到桌上。</p>
+<p>他打开抽屉，找出一盘空白磁带。标签上写着「2009.4.17」。</p>
+<p>陈渡把手机放下，看向那盘贴有「2009.4.17」的空白磁带。</p>
+<p>标签已经发黄，边缘卷起来。</p>
+<p>陈渡看着那四个字，拇指停在屏幕上方。</p>
+<p>这是当年那盘磁带的编号。</p>
+<p>标签边缘卷起，露出下面一层旧标签。旧标签上有一道压痕，像有人写过一串号码，后来用透明胶盖住。</p>
+<p>他把空白盘放在机器旁边，没有装。</p>
+<p>手机在桌上亮了一下。</p>
+<p>他用指甲抠开透明胶的一角。</p>
+<p>陈渡看了一眼。</p>
+<p>沈未发来消息。</p>
+<p>底下露出「B-17」。</p>
+<p>「机器还在响？」</p>
+<p>他打字。</p>
+<p>三个字符。</p>
+<p>他没有问沈未。</p>
+<p>「她哼的那句：升上去。落下来。第二遍没跟。」</p>
+<p>「在。」</p>
+<p>停了几秒，又删掉。</p>
+<p>后面还有两个被磨掉的数字。</p>
+<p>重新打。</p>
+<p>「找到两秒。」</p>
+<p>陈渡把标签完全揭开。胶纸粘住纸面，撕开时带下一层纤维。</p>
+<p>发送。</p>
+<p>沈未没有马上回。</p>
+<p>底下是周隼的字。</p>
+<p>陈渡把磁带停在七秒的位置，又播放了一遍。</p>
+<p>第三个词打完时，手机震了一下。</p>
+<p>他先点开周隼的号码，听筒里传来两声空响，随后被挂断。再打，仍是忙音。</p>
+<p>「已回」。</p>
+<p>「什么两秒？」</p>
+<p>他打字。</p>
+<p>后面画了一道横线。</p>
+<p>「2009 年那两秒。」</p>
+<p>消息发出去后，他把手机扣在桌上。</p>
+<p>陈渡把磁带机后盖上的四颗螺丝重新检查了一遍。三颗十字螺丝没有滑痕。那颗一字螺丝的刀口被他磨过，边缘发亮，螺丝头多出一道竖向划痕。</p>
+<p>屏幕朝下。</p>
+<p>房间里只剩磁带机的底噪。</p>
+<p>不是今天留下的。</p>
+<p>过了十几秒，手机又震。</p>
+<p>桌上的磁带倒回七秒。</p>
+<p>陈渡翻过来。</p>
+<p>他把螺丝刀贴在划痕上，比了比角度。</p>
+<p>沈未说：「我那天哼的是哪一句？」</p>
+<p>他把纸条压到硬纸板下，又拿起那截「B-1」磁带，放到转盘上。带子转了半圈，计数器没有动。磁头落下，里面只有一声很轻的咔响。</p>
+<p>他没有回。</p>
+<p>门外过了一辆电动车。灯光从门缝扫进来，桌面上多了一条白线，很快退掉。</p>
+<p>他把录音倒到七秒，戴上耳机，等到女声出现。</p>
+<p>一句。</p>
+<p>陈渡打开手机通讯录，找到周隼的号码。</p>
+<p>升上去。</p>
+<p>落下来。</p>
+<p>号码下面，最后一次通话时间是四个月前。</p>
+<p>他播放到第十秒，把音量拧到第二格。男声在耳机里贴着女声的下方浮出来，短，闷，像隔着一层铁皮。</p>
+<p>他打字。</p>
+<p>「这句。」</p>
+<p>他按了拨号。</p>
+<p>停了停。</p>
+<p>「你哼了另一句。」</p>
+<p>听音响了两声，被按掉。</p>
+<p>发送。</p>
+<p>这次沈未回得很快。</p>
+<p>陈渡没有再拨。他点开短信，输入：</p>
+<p>「我不记得。」</p>
+<p>陈渡把手机放下。</p>
+<p>陈渡拿起铅笔，在硬纸板背面写下：</p>
+<p>「B-17 是哪本？」</p>
+<p>他盯着那行字。</p>
+<p>她不记得。</p>
+<p>发送。</p>
+<p>她记得那天有人在隔壁试机器。</p>
+<p>记得门外有人走过。</p>
+<p>陈渡拿起铅笔，在硬纸板背面添了一行：「B-1，与B-17不是同一盘。」</p>
+<p>屏幕上出现转圈标志。</p>
+<p>记得储物间的灯泡接触不良。</p>
+<p>不记得自己哼过一句。</p>
+<p>五秒后，沈未发来一条新消息。</p>
+<p>陈渡又听了一遍。</p>
+<p>「沈九斤——B-17。」</p>
+<p>男声在第十秒进来。</p>
+<p>「开箱单上写的不是编号。是人名。」</p>
+<p>低六分贝。</p>
+<p>他的手指停在播放键上，没有按下去。</p>
+<p>陈渡把手机横放在硬纸板旁。</p>
+<p>他想起自己当时站在话筒后面。</p>
+<p>没有唱。</p>
+<p>「谁？」</p>
+<p>只是跟着沈未的调子出了半声。</p>
+<p>那半声被录进去了。</p>
+<p>沈未没有立刻回答。</p>
+<p>写完，他又在下面添了一行：</p>
+<p>不是后来改机器以后。</p>
+<p>不是空白。</p>
+<p>阁楼上的钟响了一下。二十一点十五分。</p>
+<p>不是没有。</p>
+<p>陈渡把耳机重新戴上，把「10—11」文件拖到播放器。</p>
+<p>白手套的照片还停在手机里。陈渡把它关掉，重新打开，把亮度调到最低。</p>
+<p>这一次，他把频段的低切打开。</p>
+<p>两百六十赫兹。</p>
+<p>硬纸板背面，那三个标记还在。</p>
+<p>他将纸条翻到背面，纸角露出一个被裁掉一半的日期。剩下的数字是「04.17」。</p>
+<p>再听。</p>
+<p>男声清楚了一些。</p>
+<p>「1998.4.11。」</p>
+<p>「08.0」。</p>
+<p>他又关掉低切，把增益降低两格。</p>
+<p>男声还在。</p>
+<p>「10.0」。</p>
+<p>最后，他把原文件和处理后的文件同时播放。</p>
+<p>一边是底噪下的两点起伏。</p>
+<p>「11.0」。</p>
+<p>一边是被提起来以后露出的两个音节。</p>
+<p>陈渡没有唱。</p>
+<p>他拿起铅笔，在「11.0」后面添了半行字：</p>
+<p>他只在耳机里听。</p>
+<p>他看了看，把铅笔横放在两行字之间。</p>
+<p>第二遍。</p>
+<p>「B-17——」</p>
+<p>第三遍。</p>
+<p>两秒。</p>
+<p>后面的名字还空着。</p>
+<p>他将处理后的文件命名：</p>
+<p>「10—11_男声_提取.wav」</p>
+<p>又给另一段命名：</p>
+<p>「08—10_沈未.wav」</p>
+<p>文件名上的字打完，他把鼠标停在保存键上。</p>
+<p>窗外又一辆货车经过。</p>
+<p>车轮压过接缝。</p>
+<p>一下。</p>
+<p>两下。</p>
+<p>第三下时，电脑右下角的时钟跳到二十一点十四分。</p>
 ]]></content>
       <categories>
         <category>小说</category>
@@ -34270,173 +34270,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
-    <title>第800小时 01：颁证日</title>
-    <url>/%E5%B0%8F%E8%AF%B4/89b77ed7.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>陶砚用左手把今天的第一块金牌挂上墙。</p>
-<p>金牌很薄，边缘硌手。他把两块牌之间的缝对齐——三厘米，宽度一致，十年前他自己定的标准。去年一个新来的教练挂歪了半厘米，他当着三十个人把牌摘下来重挂。今天没有人挂歪。</p>
-<p>牌留在墙上。带走的是证书。这条规矩是基地建馆那年定的，牌留墙，名字留墙，年份留墙。学员毕业那天拿到的那张纸只有三行：编号、时数、教练签名。有人十年后回来，在墙上一块一块找自己的那一块，从左往右数。</p>
-<p>大厅在基地东侧，层高七米。三百多张折叠椅分六区排开，椅背包着蓝绒布，从 A 区排到 F 区，最后一排空了一半。台侧一张长桌铺着白布，桌上三本台账摞着，最上面那本翻在今年的页，页眉印着「年度时数认证」。空调出风口正对白布中间，把纸吹起一角，苏芮用一支笔压住。</p>
-<p>墙上挂的是时数墙。基地建馆时留的那面墙，两米四高，按年份从左往右排，最右边最新。牌是铜的，表面镀金，边上压印一行编号，背面刻着累计训练小时数，正面刻姓名。青铜和白银的牌小一号，挂在墙的下半截；黄金以上是这块整的，三百多张牌里最亮的那几张，都在这面墙上。</p>
-<p>认证是按时数分级的。青铜 3,000，白银 6,000，黄金 10,000。学员的每一次训练时长由计时器自动记入系统，够线了，运营部核数、刻牌、装袋，年底一次性挂到这面墙上。</p>
-<p>刚才挂上去的第一块是郑维的，10,112 小时。他接牌的时候翻到背面找编号，找到自己教练的那行小字，用指腹蹭了一下，没蹭掉。现在他站在台下第一排边上，证书折成两折塞在裤兜里，手在裤兜外面按着。</p>
-<p>苏芮在台账上写了一行，笔尖没有停顿。</p>
-<p>「主持人有一段词。」她抬起头，「一分半，在颁第二块之前。」</p>
-<p>「念。」</p>
-<p>「写的是『一万小时，改变命运』。」</p>
-<p>「念数字。」</p>
-<p>苏芮看了他两秒。</p>
-<p>「这句话今年还能用，我们就可以把它印在下一批学员的协议扉页上。如果不能用，协议得重写，已经付费还没开课的那批人也要重新寄一份。」</p>
-<p>「协议上写他们买了多少小时，钱进了哪个账户。」</p>
-<p>「但他们买的时候，墙上挂的就是这一句。」</p>
-<p>陶砚没有立刻回答。他把台面上那块白布的角又压了压。</p>
-<p>「念数字。」</p>
-<p>苏芮低下头，在台账边角写了一个词。他隔着两米看不清写的什么，但他认得那种笔尖划过纸面、一路不顿的写法。</p>
-<p>主持人接过话，把那段词删了。剩下的是基地名字、认证年份和三句欢迎。</p>
-<p>「第二位，周昕，10,240 小时。」</p>
-<p>陶砚从盘子里取出金牌，双手递过去。</p>
-<p>周昕二十九岁，练攀岩，指腹上的茧比陶砚还厚。接牌的时候手指在抖。</p>
-<p>「谢谢陶教练。」</p>
-<p>「12 月 3 号那条线路，你练了四十一分钟。」</p>
-<p>「岩点上有水。」</p>
-<p>「水不算理由。你那天其他五条线路，最长的用了八分钟。」</p>
-<p>「我记不清了。」</p>
-<p>「我看了录像。」</p>
-<p>周昕低头看牌。牌沿的漆磕掉一小块，露出底下的铜。她把牌放回盘子里，接过证书，双手捧着。</p>
-<p>陶砚把第二块牌挂上墙。缝还是三厘米。</p>
-<p>台下一片快门声。一个挂着工牌的年轻人举着相机挤到台侧。</p>
-<p>「陶教练，合个影。颁完证到墙前站一张，特写。」</p>
-<p>「金牌挂在墙上。」</p>
-<p>「宣传要特写。人手里拿着牌，比空着手站好看。」</p>
-<p>「牌已经给学员了。」</p>
-<p>年轻人愣了一下，退到一边。陶砚空着手站到时数墙左侧，两脚并拢，肩线平。摄影的人在墙对面蹲下，拍了四张。</p>
-<p>陶砚重新走回台边。第三块牌在他右手边，牌面朝下。他胸前别着工牌，T-07。</p>
-<p>台侧那本台账翻到了名单页。陶砚伸手过去，把纸按平。</p>
-<p>「今年过线的三个。」</p>
-<p>「对。」苏芮说，「如果按去年的口径，应该是四个。多出来的那一位，系统里是 9,989，差 11 小时。」</p>
-<p>「差 11 小时，不算过线。」</p>
-<p>「如果我们现在给他补一场认证，墙上的数字就更好看。如果我们现在不补，他明年还得再来一次。」</p>
-<p>「不补。」</p>
-<p>「如果不补，他 11 月会回来问第二年的价格。他续费的时候，我们就可以把明年的金牌门槛先告诉他。」</p>
-<p>「门槛是 10,000。」</p>
-<p>「我知道门槛是 10,000。」苏芮把台账往自己这边收了一点，「卢总上个月问过我，为什么墙上一年的金牌比一年少。他说今年他把认证大会的直播推给了平台，流量比去年高三倍，如果金牌比一年少，转化页会被投诉。」</p>
-<p>「那就在转化页上写清楚今年过了三个。」</p>
-<p>「写清楚，转化页的数据就会掉。」</p>
-<p>「掉就掉。」</p>
-<p>苏芮没有再争。她在名单页的三个名字底下画了三条横线，笔尖在第三条上多停了一秒。</p>
-<p>「陶教练，」她说，「如果明年过线的是两个人，我们还办这个会吗。」</p>
-<p>「办。」</p>
-<p>「两个人也挂墙。」</p>
-<p>「墙是给人看的，不是给数字看的。」</p>
-<p>苏芮把这一句记下来了。她写字的时候不看他，只看纸。</p>
-<p>就在他把第三块牌拿起来的时候，他看见第一排靠过道的位置上坐着一个人。</p>
-<p>那人大约二十七八岁，穿一件洗得发白的深蓝外套，膝上摊着一张纸，没有应援的灯牌，也没有鼓掌。他从进场起就没看过台上。观众看的是某一块金牌，他看的是整面墙，从左往右，数到某一块停一下，再往右。</p>
-<p>陶砚见过这种数法。他刚进省体校那几年也这么数过，只不过数的是靶纸上的环数。</p>
-<p>「第三位，赵砚青，12,400 小时。」</p>
-<p>掌声起来了。</p>
-<p>赵砚青从最后一排的过道走过来。三十六岁，教练服左胸的口袋插着两支笔，笔帽咬得发白。他走路的时候肩膀不动，像怕多走半步。</p>
-<p>主持人说：「赵砚青，12,400 小时。基地最高时数纪录保持者。」</p>
-<p>陶砚把金牌递过去。赵砚青双手接。</p>
-<p>「师父。」</p>
-<p>「三号馆的灯坏了两盏。」</p>
-<p>「9 号靶位那盏照度不够，上周我提过。」</p>
-<p>「下午换。」</p>
-<p>「换完还是不够。9 号靶位到 25 米线中间被器材柜挡了一块。」</p>
-<p>「我知道。」</p>
-<p>赵砚青把牌翻到背面，看了很久。</p>
-<p>「我系统里是 12,400。」</p>
-<p>「牌上也是 12,400。」</p>
-<p>「牌上没刻我教练的编号。」</p>
-<p>「墙记的是时数。」</p>
-<p>「我十六岁进来，墙上我那一块旁边什么都没有。没有名字后面的编号，也没有年份以外的东西。」</p>
-<p>「墙记的是时数，不是师承。」</p>
-<p>赵砚青把牌翻回正面，没再说话。他把证书接过去，折成两折，放进外套内袋，拉链拉到底。</p>
-<p>陶砚没走开。颁证的队伍往下接上去了，他站在原地。</p>
-<p>「今年练了多少小时。」</p>
-<p>「261。」</p>
-<p>「上个月呢。」</p>
-<p>「94。」</p>
-<p>陶砚点了一下头。不到三小时一天，十二年，一枪不多，一枪不少。他知道赵砚青不会来跟他要第二个数字，也知道这个人能把任何话听成一句「再来八千小时」。</p>
-<p>「12,400 小时。」陶砚说。</p>
-<p>赵砚青抬起头。</p>
-<p>「你今年最差的一枪。」</p>
-<p>赵砚青的嘴动了一下。工作人员在台侧报下一位学员的名字，他没动。</p>
-<p>「去年 9 月 3 号那一组，第八发，7.8 环。」</p>
-<p>「那天之后我加练了两小时。」</p>
-<p>「加练了两小时。」陶砚重复了一遍，「今天也加？」</p>
-<p>「今天加了四个小时。」</p>
-<p>主持人从侧面挤过来，把话筒递向陶砚。</p>
-<p>「陶教练，给最高纪录保持者两句评语，镜头要切到您。」</p>
-<p>陶砚接过话筒。</p>
-<p>「12,400 小时，全基地第一。」</p>
-<p>主持人等了三秒，镜头还对着他。</p>
-<p>「今年到三月，261 小时，2,180 发。去年同期 220 小时，1,906 发。」陶砚说。</p>
-<p>他把话筒交回去。主持人笑了一下，把这半句扩成了三句，说的是坚持，说的是十年磨一剑，说的是岚城基地让普通人也有机会。台下的掌声比刚才响。</p>
-<p>赵砚青站在台侧，一直没有坐下。他的拇指在金牌边缘来回蹭，蹭了十几下，把那层薄漆蹭出一道浅白的痕。</p>
-<p>陶砚把第三块牌挂上墙。缝还是三厘米。</p>
-<p>他退开一步，从左往右看了一遍。今年的位置上是三块。旁边有一块金牌的漆磨掉了，露出铜底。三年前一个练短跑的学员留下的。那人练到第三年走了，证书没领，牌一直挂在这儿。</p>
-<p>一个背着运动包的年轻教练在墙边停下，掏出手机，对着墙拍了一张。</p>
-<p>「拍墙做什么。」</p>
-<p>「我们教练让拍的，说发朋友圈。」</p>
-<p>「拍墙里的人。」</p>
-<p>「那拍哪张。」</p>
-<p>陶砚指了一下赵砚青的那一块。</p>
-<p>「拍这块。墙正中那块。媒体每年都要它。」</p>
-<p>那年轻教练看了他一眼，把手机举起来，对准赵砚青的方向。赵砚青站在台侧没有动，眼睛落在地砖的缝上。</p>
-<p>「墙是给人看的，不是给数字看的。」陶砚说，「牌是铜的。」</p>
-<p>「我知道是铜的。」那年轻教练说，「但墙上写着一万两千四百小时。」</p>
-<p>陶砚没再说话。他把台面白布重新铺平，让第三块牌留下的压痕散开。</p>
-<p>颁证结束。人群往前排涌，椅子腿在地上刮出声音，最后一排有人剥橘子，橘皮味飘到台侧。苏芮合上台账，把三本摞齐，用手掌压了压本子的边。</p>
-<p>台下第一排靠过道的位置空着两个。</p>
-<p>那个年轻男人还坐着，没动。他把膝上那张纸折成两折，塞进外套口袋，站起来。</p>
-<p>然后他抬了手。</p>
-<p>「请问您的一万小时里，有多少小时是失败的？」</p>
-<p>主持人愣了半秒。他把这句话听成了下一个环节的提问。</p>
-<p>问题不大，也不小。</p>
-<p>陶砚听懂了。</p>
-<p>后排有人笑了一声，很短，接着被人按住。主持人举着话筒愣在原地，嘴张着，等一个可以接上去的话。</p>
-<p>「这位朋友，」主持人说，「可能是想说……关于一万小时的训练心得，我们稍后可以在——」</p>
-<p>「他问的是失败。」陶砚说。</p>
-<p>主持人的话断在半截。</p>
-<p>台侧有人往这边走。陶砚把手里剩下的东西交给助理，转身下台。走过第一排的时候，他走的是那条空出来的过道，没有停，也没有看那个人。</p>
-<p>大厅里一共来了三百多人。那个问题只被问了一次。</p>
-<p>台阶下面有风。他站住，把助理手里那叠多余的宣传单接过来，夹在腋下，又放回给助理。</p>
-<p>「陶教练。」一个去年拿过白银的学员追出来，「那个人是谁？」</p>
-<p>「不知道。」</p>
-<p>「我看他坐了一个小时。」</p>
-<p>「我知道。」</p>
-<p>「那他——」</p>
-<p>「他没问你问题。」陶砚说，「他问的是我。」</p>
-<p>那学员还想再说什么，摄影组的人在台阶那头喊集合。陶砚走过去，走之前回头看了一眼大厅。</p>
-<p>第一排空着的两个位置上，一个位置还放着一瓶没拆封的水，是主办方发给贵宾的，瓶身凝着一层水珠。另一个位置有一张被折成两折的纸，掉在椅垫下面，露出一个角。</p>
-<p>他没有下去捡。</p>
-<p>「陶教练，主持人问要不要补一句。」苏芮跟到台边，把台账夹在腋下，「如果补，我们就把『改变命运』那一段加进主持词。如果不补，明天会有人把这个问题发到基地的公开账号下面。」</p>
-<p>「不回。」</p>
-<p>「那如果公开账号下面有三千条评论，我们也可以一条都不回。」</p>
-<p>「一条都不回。」</p>
-<p>苏芮把台账重新摊开，翻到最后一页。</p>
-<p>「那我记一下。」</p>
-<p>「记什么。」</p>
-<p>「提问的人是谁。」她把笔尖点在纸上，「如果后面有人问起，我可以答『这个问题被问过，提问者的名字在这里』。名字要不要写全。」</p>
-<p>陶砚没答。</p>
-<p>他走出大厅，站在台阶上，从口袋里掏出那本黑色硬壳本子，翻开。里面每一页只有两栏：日期，和当天要复查的项目。</p>
-<p>他往后翻。2025 年的那一页，他自己做的记录里没有「失败」这两个字。</p>
-<p>他翻过 2024 年，2023 年，2022 年。</p>
-<p>没有。</p>
-<p>二十年，他记下的是日期、时数、动作、偏差、备注。哪一天练了多少小时，偏差多少，备注一栏永远是「无」。</p>
-<p>那个问题在他这里没有对应的一栏。</p>
-<p>风从台阶下面吹上来，他把本子合上。封面磨得发白，右下角卷起来，是常年在口袋里放出来的形状。</p>
-<p>他重新翻开，在今天这一页的日期下面，写了两个字。</p>
-<p>林野。</p>
-]]></content>
-      <categories>
-        <category>小说</category>
-      </categories>
-      <tags>
-        <tag>小说</tag>
-        <tag>第800小时</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>慢车 40：慢车</title>
     <url>/%E5%B0%8F%E8%AF%B4/1d505e47.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>两台117号磁带机并排放在工作台上。</p>
@@ -35073,6 +34906,173 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>「陶教练。」林野说，「我还想看一样东西。」</p>
 <p>「说。」</p>
 <p>「我想看您自己的训练录像。不是教学录像，是您自己练的那部分。」</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>小说</tag>
+        <tag>第800小时</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第800小时 01：颁证日</title>
+    <url>/%E5%B0%8F%E8%AF%B4/89b77ed7.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>陶砚用左手把今天的第一块金牌挂上墙。</p>
+<p>金牌很薄，边缘硌手。他把两块牌之间的缝对齐——三厘米，宽度一致，十年前他自己定的标准。去年一个新来的教练挂歪了半厘米，他当着三十个人把牌摘下来重挂。今天没有人挂歪。</p>
+<p>牌留在墙上。带走的是证书。这条规矩是基地建馆那年定的，牌留墙，名字留墙，年份留墙。学员毕业那天拿到的那张纸只有三行：编号、时数、教练签名。有人十年后回来，在墙上一块一块找自己的那一块，从左往右数。</p>
+<p>大厅在基地东侧，层高七米。三百多张折叠椅分六区排开，椅背包着蓝绒布，从 A 区排到 F 区，最后一排空了一半。台侧一张长桌铺着白布，桌上三本台账摞着，最上面那本翻在今年的页，页眉印着「年度时数认证」。空调出风口正对白布中间，把纸吹起一角，苏芮用一支笔压住。</p>
+<p>墙上挂的是时数墙。基地建馆时留的那面墙，两米四高，按年份从左往右排，最右边最新。牌是铜的，表面镀金，边上压印一行编号，背面刻着累计训练小时数，正面刻姓名。青铜和白银的牌小一号，挂在墙的下半截；黄金以上是这块整的，三百多张牌里最亮的那几张，都在这面墙上。</p>
+<p>认证是按时数分级的。青铜 3,000，白银 6,000，黄金 10,000。学员的每一次训练时长由计时器自动记入系统，够线了，运营部核数、刻牌、装袋，年底一次性挂到这面墙上。</p>
+<p>刚才挂上去的第一块是郑维的，10,112 小时。他接牌的时候翻到背面找编号，找到自己教练的那行小字，用指腹蹭了一下，没蹭掉。现在他站在台下第一排边上，证书折成两折塞在裤兜里，手在裤兜外面按着。</p>
+<p>苏芮在台账上写了一行，笔尖没有停顿。</p>
+<p>「主持人有一段词。」她抬起头，「一分半，在颁第二块之前。」</p>
+<p>「念。」</p>
+<p>「写的是『一万小时，改变命运』。」</p>
+<p>「念数字。」</p>
+<p>苏芮看了他两秒。</p>
+<p>「这句话今年还能用，我们就可以把它印在下一批学员的协议扉页上。如果不能用，协议得重写，已经付费还没开课的那批人也要重新寄一份。」</p>
+<p>「协议上写他们买了多少小时，钱进了哪个账户。」</p>
+<p>「但他们买的时候，墙上挂的就是这一句。」</p>
+<p>陶砚没有立刻回答。他把台面上那块白布的角又压了压。</p>
+<p>「念数字。」</p>
+<p>苏芮低下头，在台账边角写了一个词。他隔着两米看不清写的什么，但他认得那种笔尖划过纸面、一路不顿的写法。</p>
+<p>主持人接过话，把那段词删了。剩下的是基地名字、认证年份和三句欢迎。</p>
+<p>「第二位，周昕，10,240 小时。」</p>
+<p>陶砚从盘子里取出金牌，双手递过去。</p>
+<p>周昕二十九岁，练攀岩，指腹上的茧比陶砚还厚。接牌的时候手指在抖。</p>
+<p>「谢谢陶教练。」</p>
+<p>「12 月 3 号那条线路，你练了四十一分钟。」</p>
+<p>「岩点上有水。」</p>
+<p>「水不算理由。你那天其他五条线路，最长的用了八分钟。」</p>
+<p>「我记不清了。」</p>
+<p>「我看了录像。」</p>
+<p>周昕低头看牌。牌沿的漆磕掉一小块，露出底下的铜。她把牌放回盘子里，接过证书，双手捧着。</p>
+<p>陶砚把第二块牌挂上墙。缝还是三厘米。</p>
+<p>台下一片快门声。一个挂着工牌的年轻人举着相机挤到台侧。</p>
+<p>「陶教练，合个影。颁完证到墙前站一张，特写。」</p>
+<p>「金牌挂在墙上。」</p>
+<p>「宣传要特写。人手里拿着牌，比空着手站好看。」</p>
+<p>「牌已经给学员了。」</p>
+<p>年轻人愣了一下，退到一边。陶砚空着手站到时数墙左侧，两脚并拢，肩线平。摄影的人在墙对面蹲下，拍了四张。</p>
+<p>陶砚重新走回台边。第三块牌在他右手边，牌面朝下。他胸前别着工牌，T-07。</p>
+<p>台侧那本台账翻到了名单页。陶砚伸手过去，把纸按平。</p>
+<p>「今年过线的三个。」</p>
+<p>「对。」苏芮说，「如果按去年的口径，应该是四个。多出来的那一位，系统里是 9,989，差 11 小时。」</p>
+<p>「差 11 小时，不算过线。」</p>
+<p>「如果我们现在给他补一场认证，墙上的数字就更好看。如果我们现在不补，他明年还得再来一次。」</p>
+<p>「不补。」</p>
+<p>「如果不补，他 11 月会回来问第二年的价格。他续费的时候，我们就可以把明年的金牌门槛先告诉他。」</p>
+<p>「门槛是 10,000。」</p>
+<p>「我知道门槛是 10,000。」苏芮把台账往自己这边收了一点，「卢总上个月问过我，为什么墙上一年的金牌比一年少。他说今年他把认证大会的直播推给了平台，流量比去年高三倍，如果金牌比一年少，转化页会被投诉。」</p>
+<p>「那就在转化页上写清楚今年过了三个。」</p>
+<p>「写清楚，转化页的数据就会掉。」</p>
+<p>「掉就掉。」</p>
+<p>苏芮没有再争。她在名单页的三个名字底下画了三条横线，笔尖在第三条上多停了一秒。</p>
+<p>「陶教练，」她说，「如果明年过线的是两个人，我们还办这个会吗。」</p>
+<p>「办。」</p>
+<p>「两个人也挂墙。」</p>
+<p>「墙是给人看的，不是给数字看的。」</p>
+<p>苏芮把这一句记下来了。她写字的时候不看他，只看纸。</p>
+<p>就在他把第三块牌拿起来的时候，他看见第一排靠过道的位置上坐着一个人。</p>
+<p>那人大约二十七八岁，穿一件洗得发白的深蓝外套，膝上摊着一张纸，没有应援的灯牌，也没有鼓掌。他从进场起就没看过台上。观众看的是某一块金牌，他看的是整面墙，从左往右，数到某一块停一下，再往右。</p>
+<p>陶砚见过这种数法。他刚进省体校那几年也这么数过，只不过数的是靶纸上的环数。</p>
+<p>「第三位，赵砚青，12,400 小时。」</p>
+<p>掌声起来了。</p>
+<p>赵砚青从最后一排的过道走过来。三十六岁，教练服左胸的口袋插着两支笔，笔帽咬得发白。他走路的时候肩膀不动，像怕多走半步。</p>
+<p>主持人说：「赵砚青，12,400 小时。基地最高时数纪录保持者。」</p>
+<p>陶砚把金牌递过去。赵砚青双手接。</p>
+<p>「师父。」</p>
+<p>「三号馆的灯坏了两盏。」</p>
+<p>「9 号靶位那盏照度不够，上周我提过。」</p>
+<p>「下午换。」</p>
+<p>「换完还是不够。9 号靶位到 25 米线中间被器材柜挡了一块。」</p>
+<p>「我知道。」</p>
+<p>赵砚青把牌翻到背面，看了很久。</p>
+<p>「我系统里是 12,400。」</p>
+<p>「牌上也是 12,400。」</p>
+<p>「牌上没刻我教练的编号。」</p>
+<p>「墙记的是时数。」</p>
+<p>「我十六岁进来，墙上我那一块旁边什么都没有。没有名字后面的编号，也没有年份以外的东西。」</p>
+<p>「墙记的是时数，不是师承。」</p>
+<p>赵砚青把牌翻回正面，没再说话。他把证书接过去，折成两折，放进外套内袋，拉链拉到底。</p>
+<p>陶砚没走开。颁证的队伍往下接上去了，他站在原地。</p>
+<p>「今年练了多少小时。」</p>
+<p>「261。」</p>
+<p>「上个月呢。」</p>
+<p>「94。」</p>
+<p>陶砚点了一下头。不到三小时一天，十二年，一枪不多，一枪不少。他知道赵砚青不会来跟他要第二个数字，也知道这个人能把任何话听成一句「再来八千小时」。</p>
+<p>「12,400 小时。」陶砚说。</p>
+<p>赵砚青抬起头。</p>
+<p>「你今年最差的一枪。」</p>
+<p>赵砚青的嘴动了一下。工作人员在台侧报下一位学员的名字，他没动。</p>
+<p>「去年 9 月 3 号那一组，第八发，7.8 环。」</p>
+<p>「那天之后我加练了两小时。」</p>
+<p>「加练了两小时。」陶砚重复了一遍，「今天也加？」</p>
+<p>「今天加了四个小时。」</p>
+<p>主持人从侧面挤过来，把话筒递向陶砚。</p>
+<p>「陶教练，给最高纪录保持者两句评语，镜头要切到您。」</p>
+<p>陶砚接过话筒。</p>
+<p>「12,400 小时，全基地第一。」</p>
+<p>主持人等了三秒，镜头还对着他。</p>
+<p>「今年到三月，261 小时，2,180 发。去年同期 220 小时，1,906 发。」陶砚说。</p>
+<p>他把话筒交回去。主持人笑了一下，把这半句扩成了三句，说的是坚持，说的是十年磨一剑，说的是岚城基地让普通人也有机会。台下的掌声比刚才响。</p>
+<p>赵砚青站在台侧，一直没有坐下。他的拇指在金牌边缘来回蹭，蹭了十几下，把那层薄漆蹭出一道浅白的痕。</p>
+<p>陶砚把第三块牌挂上墙。缝还是三厘米。</p>
+<p>他退开一步，从左往右看了一遍。今年的位置上是三块。旁边有一块金牌的漆磨掉了，露出铜底。三年前一个练短跑的学员留下的。那人练到第三年走了，证书没领，牌一直挂在这儿。</p>
+<p>一个背着运动包的年轻教练在墙边停下，掏出手机，对着墙拍了一张。</p>
+<p>「拍墙做什么。」</p>
+<p>「我们教练让拍的，说发朋友圈。」</p>
+<p>「拍墙里的人。」</p>
+<p>「那拍哪张。」</p>
+<p>陶砚指了一下赵砚青的那一块。</p>
+<p>「拍这块。墙正中那块。媒体每年都要它。」</p>
+<p>那年轻教练看了他一眼，把手机举起来，对准赵砚青的方向。赵砚青站在台侧没有动，眼睛落在地砖的缝上。</p>
+<p>「墙是给人看的，不是给数字看的。」陶砚说，「牌是铜的。」</p>
+<p>「我知道是铜的。」那年轻教练说，「但墙上写着一万两千四百小时。」</p>
+<p>陶砚没再说话。他把台面白布重新铺平，让第三块牌留下的压痕散开。</p>
+<p>颁证结束。人群往前排涌，椅子腿在地上刮出声音，最后一排有人剥橘子，橘皮味飘到台侧。苏芮合上台账，把三本摞齐，用手掌压了压本子的边。</p>
+<p>台下第一排靠过道的位置空着两个。</p>
+<p>那个年轻男人还坐着，没动。他把膝上那张纸折成两折，塞进外套口袋，站起来。</p>
+<p>然后他抬了手。</p>
+<p>「请问您的一万小时里，有多少小时是失败的？」</p>
+<p>主持人愣了半秒。他把这句话听成了下一个环节的提问。</p>
+<p>问题不大，也不小。</p>
+<p>陶砚听懂了。</p>
+<p>后排有人笑了一声，很短，接着被人按住。主持人举着话筒愣在原地，嘴张着，等一个可以接上去的话。</p>
+<p>「这位朋友，」主持人说，「可能是想说……关于一万小时的训练心得，我们稍后可以在——」</p>
+<p>「他问的是失败。」陶砚说。</p>
+<p>主持人的话断在半截。</p>
+<p>台侧有人往这边走。陶砚把手里剩下的东西交给助理，转身下台。走过第一排的时候，他走的是那条空出来的过道，没有停，也没有看那个人。</p>
+<p>大厅里一共来了三百多人。那个问题只被问了一次。</p>
+<p>台阶下面有风。他站住，把助理手里那叠多余的宣传单接过来，夹在腋下，又放回给助理。</p>
+<p>「陶教练。」一个去年拿过白银的学员追出来，「那个人是谁？」</p>
+<p>「不知道。」</p>
+<p>「我看他坐了一个小时。」</p>
+<p>「我知道。」</p>
+<p>「那他——」</p>
+<p>「他没问你问题。」陶砚说，「他问的是我。」</p>
+<p>那学员还想再说什么，摄影组的人在台阶那头喊集合。陶砚走过去，走之前回头看了一眼大厅。</p>
+<p>第一排空着的两个位置上，一个位置还放着一瓶没拆封的水，是主办方发给贵宾的，瓶身凝着一层水珠。另一个位置有一张被折成两折的纸，掉在椅垫下面，露出一个角。</p>
+<p>他没有下去捡。</p>
+<p>「陶教练，主持人问要不要补一句。」苏芮跟到台边，把台账夹在腋下，「如果补，我们就把『改变命运』那一段加进主持词。如果不补，明天会有人把这个问题发到基地的公开账号下面。」</p>
+<p>「不回。」</p>
+<p>「那如果公开账号下面有三千条评论，我们也可以一条都不回。」</p>
+<p>「一条都不回。」</p>
+<p>苏芮把台账重新摊开，翻到最后一页。</p>
+<p>「那我记一下。」</p>
+<p>「记什么。」</p>
+<p>「提问的人是谁。」她把笔尖点在纸上，「如果后面有人问起，我可以答『这个问题被问过，提问者的名字在这里』。名字要不要写全。」</p>
+<p>陶砚没答。</p>
+<p>他走出大厅，站在台阶上，从口袋里掏出那本黑色硬壳本子，翻开。里面每一页只有两栏：日期，和当天要复查的项目。</p>
+<p>他往后翻。2025 年的那一页，他自己做的记录里没有「失败」这两个字。</p>
+<p>他翻过 2024 年，2023 年，2022 年。</p>
+<p>没有。</p>
+<p>二十年，他记下的是日期、时数、动作、偏差、备注。哪一天练了多少小时，偏差多少，备注一栏永远是「无」。</p>
+<p>那个问题在他这里没有对应的一栏。</p>
+<p>风从台阶下面吹上来，他把本子合上。封面磨得发白，右下角卷起来，是常年在口袋里放出来的形状。</p>
+<p>他重新翻开，在今天这一页的日期下面，写了两个字。</p>
+<p>林野。</p>
 ]]></content>
       <categories>
         <category>小说</category>
@@ -41401,42 +41401,35 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
       </tags>
   </entry>
   <entry>
-    <title>科技没有停止，只是从改变世界退化为确定性副产品</title>
-    <url>/AI/7d06aa50.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="我最初把科技停止看成了怀旧"><a class="markdownIt-Anchor" href="#我最初把科技停止看成了怀旧"></a> 我最初把“科技停止”看成了怀旧</h2>
-<p>我最初读到《科技停止于21世纪初》时，理解成怀旧。回到那几年，人工智能还没普及，智能手机也没吞掉日常，手机只是工具，互联网也没成为所有人生活的底座。</p>
-<p>那篇文章停在2007年6月，恰好让我重新想了一遍这个问题。科技仍在向前，但它正在失去改造生活的目标。我开始怀疑，自己过去对技术进步的判断，可能过于依赖“它能做更多事”这个标准。</p>
-<p>这篇文章的出发点很直接。网上流行一道题：如果可以穿越，你愿意生活在哪个朝代？作者却明确希望回到21世纪开始的那几年，让人类文明停在那里。他认为，技术需要与人的生活保持平衡。再往后发展，技术开始控制社会，人反而成了附庸。</p>
-<p>其中最具体的判断停在2007年6月。原文目前给出的内容并不完整，但这并不妨碍核心问题成立：我们究竟用什么判断一项技术是否成功？</p>
-<p>我过去主要看它能不能创造新能力。写博客、做知识库、折腾工具链时，我最关心的也是“还能实现什么”。效率当然重要，只是容易被当成次要结果。</p>
+    <title>AI先接管确定性工作人转向定义问题和担责</title>
+    <url>/AI/5d7e6b88.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="企业为确定性付钱人转向定义问题和担责"><a class="markdownIt-Anchor" href="#企业为确定性付钱人转向定义问题和担责"></a> 企业为确定性付钱，人转向定义问题和担责</h2>
+<p>AI 在企业里的第一笔收入，来自结果确定、输出可检查的活。</p>
+<p>我过去把 AI 放在能力增长的位置。它能写代码、总结资料、整理文档、生成图像，每出现一项新能力，我就容易把产品机会理解成再加一个功能。现在我更愿意先拆任务：哪些步骤结果确定，规则清楚，输出可以检查。分类、提取、格式化、检索、汇总，这些活不必理解生活，只需稳定地把输入变成可用结果。</p>
+<p><span class="hl">企业买 AI 通常不是想得到一个新世界，而是想让已有流程更便宜、出错更少。</span></p>
+<p>这也解释了确定性工作为什么先被接管。原创型工作难以提前定义验收标准，确定性工作却有清晰的对错。</p>
+<p>我做的 Hermes Atlas 知识库方向是信息差套利，卡点一直很具体：解决什么问题，谁付钱，怎么收钱。这三个问题都不靠模型更聪明解决。它们要求先找到一项重复、明确、有人愿意付费的工作，再判断 AI 能替我承担多少。</p>
 <blockquote>
-<p>写作于2018年5月开始的我，到了2026年11月，已经积累了225个md文件。工具越来越顺手，生活是否因此更有主导权？</p>
+<p>我做一人公司，白天是白领。Hermes Atlas 只能放在业余时间推进。</p>
 </blockquote>
-<h2 id="ai最先改变的是工作里的确定性部分"><a class="markdownIt-Anchor" href="#ai最先改变的是工作里的确定性部分"></a> AI最先改变的，是工作里的确定性部分</h2>
-<p>我改看法的过程，发生在自己做“一 人公司”的时候。</p>
-<p>我的方向是信息差套利，具体载体是Hermes Atlas知识库。这个项目最大的卡点仍然没有变：解决什么问题，谁付钱，怎么收钱。</p>
-<p>这三个问题都不靠炫技解决。它们要求我先找到一项重复、明确、有人愿意付费的工作，再判断AI能替我承担多少。</p>
-<p>过去我会把AI放在能力增长的位置。它能写代码、总结资料、整理文档、生成图像，每出现一项新能力，我都容易把产品机会理解成“再加一个功能”。现在我更愿意先拆任务：其中哪些步骤结果确定，规则清楚，输出可以检查。</p>
-<p>这类任务正适合交给AI。它不需要理解生活的全部意义，只需稳定地把输入变成可用结果。分类、提取、格式化、检索、汇总，原本就是软件与组织流程追求了很久的确定性副产品。</p>
-<p><span class="hl">AI最有商业价值的阶段，常常不是替人发现新方向，而是把已有方向做得更便宜、更稳定。</span></p>
-<p>这也解释了为什么AI会从创新引擎变成利润与效率工具。企业购买它，通常不是为了得到一个无法定义的新世界，而是为了减少处理成本、缩短交付链路、降低出错概率。</p>
-<p>我的博客里另一篇《中层技术经理要么重学技术或退休》写过，AI会接手信息汇总、任务拆解、文档生成和跨团队同步。如果一名中层经理的主要价值只是搬运信息，他的价格会下降。</p>
-<p>那次我关注的是组织位置。这次我关注的是产品结构。两者都在说明同一件事：AI率先吞下的，是工作中可描述、可验收、可重复的部分。</p>
+<p>我一开始以为产品机会来自新增功能。现在看，先被自动化吃掉的是执行环节，人被推向问题定义、目标判断和责任承担。</p>
+<h2 id="主导权跟着验收标准走"><a class="markdownIt-Anchor" href="#主导权跟着验收标准走"></a> 主导权跟着验收标准走</h2>
+<p>11 月 9 日同一份周刊我写过《科技停止于21世纪初，AI将沦为确定性副产品》（2026-11-09），那篇讲的是技术为什么没停。这次换个角度：技术停不停是一回事，先被拿走的是哪些活，是另一回事。</p>
+<p>阮一峰在科技爱好者周刊第 418 期里转述过一篇文章，作者希望回到 2007 年 6 月 29 日之前，最佳时期约在 2003 年前后。理由是技术需要跟人保持平衡，人要留住生活的主导权。那天苹果发布 iPhone，之后功能机时代结束。</p>
+<p>原文提到功能机打电话、发短信、玩贪吃蛇、浏览简单网页，摄像头很烂但拍出的照片也能看。更有意思的是那台机器不会让人上瘾，不会每隔几十秒就忍不住低头滑一下屏。古人那边更极端：调料只有盐，没有糖，没有冰箱只能腌制烟熏，晚上点油灯，平均寿命 30 多岁。</p>
 <blockquote>
-<p>原创型工作难以提前定义验收标准，确定性工作却可以。</p>
+<p>那期周刊的留言区有 41 条评论。有人写道：二十一世纪初大概是西方吃高科技剪刀差吃的最爽的时候，他们当然怀念了。</p>
 </blockquote>
-<p>这类变化很容易被误解成“AI创新结束了”。创新没有停止。只是创新的经济收益，开始更多地落在流程改造上。模型能力仍在提高，公司却会先把它装进已有业务：客服、审核、检索、运营支持、代码辅助。</p>
-<h2 id="确定性副产品会反过来塑造创新"><a class="markdownIt-Anchor" href="#确定性副产品会反过来塑造创新"></a> 确定性副产品会反过来塑造创新</h2>
-<p>一旦组织习惯为确定性付费，人的位置也会被重新安排。</p>
-<p>最容易被替代的，是执行路径已经写好、结果能够自动检查的环节。人要做的，转向问题定义、目标判断和责任承担。</p>
-<p>这对一人公司尤其现实。我的白天工作是白领，Hermes Atlas只能放在业余时间推进。若AI先帮我完成资料整理、版本对比和内容归档，我仍要自己回答那三个问题。自动化可以压缩执行时间，却无法替我决定应该服务谁。</p>
-<p>这可能也是“科技停止于21世纪初”真正令人不安的地方。2007年时，技术主要作为工具延伸人的意图。后来，技术开始塑造人的欲望、注意力与行为节奏。推荐系统决定看见什么，平台决定什么能够传播，自动化系统决定哪些工作值得保留。</p>
-<p><span class="hl">当技术既能替人做事，也能替人选择做什么，主导权就离开了工具的使用者。</span></p>
-<p>我仍然认为技术比退回过去好。古代普通人不会因为古代人缺少冰箱，就认为现代不值得选择。但“现代更好”不能自动推出“继续加速总是更好”。我们现在需要的也许不是让技术停下，而是重新划定边界：哪些可以自动执行，哪些必须由人确认；哪些决定可以交给模型，哪些必须留下责任主体。</p>
+<p><span class="hl">谁定义验收标准，谁就掌握了这项工作的主导权。</span></p>
+<p>这话放在软件公司里最直白。测试用例怎么写，决定了什么叫完成；什么叫完成，决定了谁有资格说交付。而这一层恰恰是模型最不擅长的，它需要有人承担判断的后果。</p>
+<p>我自己的记忆系统 mem-md 召回命中率约 9%。这个数字我从不拿来当卖点，它只说明一件事：我做的检索还远没到能替我做判断的程度。</p>
+<h2 id="我还没想清楚的部分"><a class="markdownIt-Anchor" href="#我还没想清楚的部分"></a> 我还没想清楚的部分</h2>
+<p>工具替我执行得越多，我就越要自己回答该服务谁、该做什么。</p>
+<p>有一件事我到现在也没想明白：被自动化压缩掉的冗余由谁承担。企业为确定性付钱之后，省下来的时间和随之而来的责任落在谁身上，制度通常不回答。</p>
+<p>我下一次做产品判断时，还是会先问那句老问题——这件事到底是谁在为结果负责。</p>
 <blockquote>
-<p>技术没有停止。真正停止的，可能是我们把“更多能力”当成唯一进步尺度的那段时期。</p>
+<p>写作于 2018 年 5 月开始的我，到了 2026 年 11 月，博客里已经有 229 个 md 文件，其中 60 个是小说。</p>
 </blockquote>
-<p>我仍未想清楚，企业利润从AI创新转向效率收益后，谁会承担被压缩掉的冗余、被改写的职业，以及新的依赖风险。下一次模型能力跃升时，我也会继续追问同一个问题：它打开了多少新可能，又把多少旧可能变成了默认设置？</p>
 ]]></content>
       <categories>
         <category>AI</category>
