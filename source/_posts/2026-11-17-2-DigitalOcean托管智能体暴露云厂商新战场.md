@@ -1,12 +1,13 @@
 ---
 title: DigitalOcean托管智能体暴露云厂商新战场
-date: 2026-11-17 09:00:00
 categories:
   - AI
 tags:
   - AI
 toc: true
 comments: true
+abbrlink: a768a68b
+date: 2026-11-17 09:00:00
 ---
 
 ## 托管智能体把创业成本拆成了几段
