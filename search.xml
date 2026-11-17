@@ -463,23 +463,6 @@
       </tags>
   </entry>
   <entry>
-    <title>英语学习</title>
-    <url>/%E5%AD%A6%E4%B9%A0/3f43dc72.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>App: <code>duolinguo(多邻国)</code></p>
-<span id="more"></span>
-<p>你使用 Duolingo 的时候你不单单是在学外语，你还是个译者。Duolingo 里面还有一个 Strength（力量）的概念，所有学过的内容在一开始是满血状态的，但是随着时间流逝和你在其它相关练习犯错误，你的 strength 就会不断降低，这时候你就需要通过复习来保持满血状态，这就是我上面提到的，通过一个复习系统将学到的知识从短期记忆放到长期记忆里面，Duolingo 提供了一个非常科学有效的复习管理系统。</p>
-<p>语法手册《无敌英语语法终身学习版(最新修订)》</p>
-<p>待补充…</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>英语单词</tag>
-        <tag>入门</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>程序员数学1</title>
     <url>/%E5%AD%A6%E4%B9%A0/2cd67ed1.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="学习列表"><a class="markdownIt-Anchor" href="#学习列表"></a> 学习列表:</h2>
@@ -514,6 +497,23 @@
       <tags>
         <tag>数学</tag>
         <tag>程序员</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>英语学习</title>
+    <url>/%E5%AD%A6%E4%B9%A0/3f43dc72.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>App: <code>duolinguo(多邻国)</code></p>
+<span id="more"></span>
+<p>你使用 Duolingo 的时候你不单单是在学外语，你还是个译者。Duolingo 里面还有一个 Strength（力量）的概念，所有学过的内容在一开始是满血状态的，但是随着时间流逝和你在其它相关练习犯错误，你的 strength 就会不断降低，这时候你就需要通过复习来保持满血状态，这就是我上面提到的，通过一个复习系统将学到的知识从短期记忆放到长期记忆里面，Duolingo 提供了一个非常科学有效的复习管理系统。</p>
+<p>语法手册《无敌英语语法终身学习版(最新修订)》</p>
+<p>待补充…</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>英语单词</tag>
+        <tag>入门</tag>
       </tags>
   </entry>
   <entry>
@@ -751,12 +751,12 @@
     <title>路</title>
     <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-        <div id="aplayer-MCdEfGWi" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-RwbYCdhh" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-MCdEfGWi"),
+            element: document.getElementById("aplayer-RwbYCdhh"),
             narrow: false,
             autoplay: true,
             showlrc: false,
@@ -1788,18 +1788,6 @@
       </tags>
   </entry>
   <entry>
-    <title>航空港区-兴港-沟通</title>
-    <url>/uncategorized/ae0adc94.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><ol>
-<li class="lvl-3">
-<p>航空港区 水务</p>
-</li>
-<li class="lvl-3">
-</li>
-</ol>
-]]></content>
-  </entry>
-  <entry>
     <title>鲁迅先生写道: 父母存在的意义</title>
     <url>/%E7%94%9F%E6%B4%BB/2375039249.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
@@ -1814,6 +1802,18 @@
         <tag>鲁迅先生</tag>
         <tag>父母</tag>
       </tags>
+  </entry>
+  <entry>
+    <title>航空港区-兴港-沟通</title>
+    <url>/uncategorized/ae0adc94.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><ol>
+<li class="lvl-3">
+<p>航空港区 水务</p>
+</li>
+<li class="lvl-3">
+</li>
+</ol>
+]]></content>
   </entry>
   <entry>
     <title>搭建maven私库</title>
@@ -2276,121 +2276,6 @@
       </tags>
   </entry>
   <entry>
-    <title>1. 低代码</title>
-    <url>/%E5%B7%A5%E4%BD%9C/2967963195.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>代码技术路线，整体功能介绍。</p>
-<span id="more"></span>
-<h2 id="0技术路线"><a class="markdownIt-Anchor" href="#0技术路线"></a> 0.技术路线</h2>
-<table>
-<thead>
-<tr>
-<th>服务端</th>
-<th>前端</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Java</td>
-<td>react</td>
-</tr>
-<tr>
-<td>springboot</td>
-<td>ant-design</td>
-</tr>
-<tr>
-<td>shenyu</td>
-<td>formily</td>
-</tr>
-<tr>
-<td>redis</td>
-<td>Form-render</td>
-</tr>
-<tr>
-<td>mysql</td>
-<td>Designable</td>
-</tr>
-<tr>
-<td>magic-api</td>
-<td></td>
-</tr>
-<tr>
-<td>dataway</td>
-<td></td>
-</tr>
-<tr>
-<td>es(全文检索)</td>
-<td></td>
-</tr>
-<tr>
-<td>flowable</td>
-<td></td>
-</tr>
-<tr>
-<td>Paddle</td>
-<td></td>
-</tr>
-</tbody>
-</table>
-<h2 id="1功能"><a class="markdownIt-Anchor" href="#1功能"></a> 1.功能</h2>
-<table>
-<thead>
-<tr>
-<th>名称</th>
-<th>描述</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>系统权限</td>
-<td>用户管理、菜单管理、角色管理、权限管理、系统字典…</td>
-</tr>
-<tr>
-<td>组织机构</td>
-<td>行政区域、机构、部门、职位、人员…</td>
-</tr>
-<tr>
-<td>流程引擎</td>
-<td>流程设计器、表单、按钮、流程事务、流程监控、钉钉通知…</td>
-</tr>
-<tr>
-<td>开发者工具</td>
-<td>数据库维护、代码生成、数据源、模板管理、任务调度、git提交…</td>
-</tr>
-<tr>
-<td>页面设计器</td>
-<td>api接口维护、业务逻辑编辑、中后台页面拖拽设计…待开发（流程页面拖拽设计、小程序页面拖拽设计、前台页面拖拽设计）</td>
-</tr>
-</tbody>
-</table>
-<h2 id="2介绍"><a class="markdownIt-Anchor" href="#2介绍"></a> 2.介绍</h2>
-<h5 id="系统"><a class="markdownIt-Anchor" href="#系统"></a> 系统</h5>
-<p><img src="/images/image-20240109101551889.png" alt="image-20240109101551889" /></p>
-<p><img src="/images/image-20240109101856167.png" alt="image-20240109101856167" /></p>
-<h4 id="工作流"><a class="markdownIt-Anchor" href="#工作流"></a> 工作流</h4>
-<p><img src="/images/image-20240109102001046.png" alt="image-20240109102001046" /></p>
-<p><img src="/images/image-20240109102023589.png" alt="image-20240109102023589" /></p>
-<h4 id="开发者"><a class="markdownIt-Anchor" href="#开发者"></a> 开发者</h4>
-<p><img src="/images/image-20240109102152348.png" alt="image-20240109102152348" /></p>
-<h4 id="页面设计"><a class="markdownIt-Anchor" href="#页面设计"></a> 页面设计</h4>
-<p><img src="/images/image-20240109101322427.png" alt="image-20240109101322427" /></p>
-<p><img src="/images/image-20240109101351478.png" alt="image-20240109101351478" /></p>
-<p><img src="/images/image-20240109102332963.png" alt="image-20240109102332963" /></p>
-]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-      <tags>
-        <tag>国立软件</tag>
-        <tag>低代码</tag>
-        <tag>权限管理</tag>
-        <tag>流程引擎</tag>
-        <tag>组织管理</tag>
-        <tag>flowable</tag>
-        <tag>bpmn</tag>
-        <tag>lowcode</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>gitlab &amp; OKR 进行项目管理 </title>
     <url>/%E5%B7%A5%E4%BD%9C/2050102104.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
@@ -2579,6 +2464,121 @@ section 运维阶段
       </tags>
   </entry>
   <entry>
+    <title>1. 低代码</title>
+    <url>/%E5%B7%A5%E4%BD%9C/2967963195.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>代码技术路线，整体功能介绍。</p>
+<span id="more"></span>
+<h2 id="0技术路线"><a class="markdownIt-Anchor" href="#0技术路线"></a> 0.技术路线</h2>
+<table>
+<thead>
+<tr>
+<th>服务端</th>
+<th>前端</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Java</td>
+<td>react</td>
+</tr>
+<tr>
+<td>springboot</td>
+<td>ant-design</td>
+</tr>
+<tr>
+<td>shenyu</td>
+<td>formily</td>
+</tr>
+<tr>
+<td>redis</td>
+<td>Form-render</td>
+</tr>
+<tr>
+<td>mysql</td>
+<td>Designable</td>
+</tr>
+<tr>
+<td>magic-api</td>
+<td></td>
+</tr>
+<tr>
+<td>dataway</td>
+<td></td>
+</tr>
+<tr>
+<td>es(全文检索)</td>
+<td></td>
+</tr>
+<tr>
+<td>flowable</td>
+<td></td>
+</tr>
+<tr>
+<td>Paddle</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="1功能"><a class="markdownIt-Anchor" href="#1功能"></a> 1.功能</h2>
+<table>
+<thead>
+<tr>
+<th>名称</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>系统权限</td>
+<td>用户管理、菜单管理、角色管理、权限管理、系统字典…</td>
+</tr>
+<tr>
+<td>组织机构</td>
+<td>行政区域、机构、部门、职位、人员…</td>
+</tr>
+<tr>
+<td>流程引擎</td>
+<td>流程设计器、表单、按钮、流程事务、流程监控、钉钉通知…</td>
+</tr>
+<tr>
+<td>开发者工具</td>
+<td>数据库维护、代码生成、数据源、模板管理、任务调度、git提交…</td>
+</tr>
+<tr>
+<td>页面设计器</td>
+<td>api接口维护、业务逻辑编辑、中后台页面拖拽设计…待开发（流程页面拖拽设计、小程序页面拖拽设计、前台页面拖拽设计）</td>
+</tr>
+</tbody>
+</table>
+<h2 id="2介绍"><a class="markdownIt-Anchor" href="#2介绍"></a> 2.介绍</h2>
+<h5 id="系统"><a class="markdownIt-Anchor" href="#系统"></a> 系统</h5>
+<p><img src="/images/image-20240109101551889.png" alt="image-20240109101551889" /></p>
+<p><img src="/images/image-20240109101856167.png" alt="image-20240109101856167" /></p>
+<h4 id="工作流"><a class="markdownIt-Anchor" href="#工作流"></a> 工作流</h4>
+<p><img src="/images/image-20240109102001046.png" alt="image-20240109102001046" /></p>
+<p><img src="/images/image-20240109102023589.png" alt="image-20240109102023589" /></p>
+<h4 id="开发者"><a class="markdownIt-Anchor" href="#开发者"></a> 开发者</h4>
+<p><img src="/images/image-20240109102152348.png" alt="image-20240109102152348" /></p>
+<h4 id="页面设计"><a class="markdownIt-Anchor" href="#页面设计"></a> 页面设计</h4>
+<p><img src="/images/image-20240109101322427.png" alt="image-20240109101322427" /></p>
+<p><img src="/images/image-20240109101351478.png" alt="image-20240109101351478" /></p>
+<p><img src="/images/image-20240109102332963.png" alt="image-20240109102332963" /></p>
+]]></content>
+      <categories>
+        <category>工作</category>
+      </categories>
+      <tags>
+        <tag>国立软件</tag>
+        <tag>低代码</tag>
+        <tag>权限管理</tag>
+        <tag>流程引擎</tag>
+        <tag>组织管理</tag>
+        <tag>flowable</tag>
+        <tag>bpmn</tag>
+        <tag>lowcode</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>4月份wbs</title>
     <url>/%E5%B7%A5%E4%BD%9C/c2cb16de.html</url>
     <content><![CDATA[<div class="hbe hbe-container" id="hexo-blog-encrypt" data-wpm="糟糕！密码错误了." data-whm="OOPS, these decrypted content may changed, but you can still have a look.">
@@ -2702,6 +2702,65 @@ ExcelUtil --> RecordHandler</pre>
       </tags>
   </entry>
   <entry>
+    <title>mysql count函数正确使用姿势</title>
+    <url>/%E5%B7%A5%E4%BD%9C/9f600c63.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>  <code>count()</code> 是<code>mysql</code>聚合函数，返回指定匹配条件的行数。开发中常用来统计表中数据，全部数据，不为null数据，或者去重数据。</p>
+<span id="more"></span>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 统计表中数据包括null</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="number">1</span>) <span class="keyword">from</span> zs_access_log;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 统计表中数据包括null</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="operator">*</span>) <span class="keyword">from</span> zs_access_log;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 统计表中指定列不为null的数据</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(id) <span class="keyword">from</span> zs_access_log;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 统计表中指定列去重不为null的数据</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="keyword">distinct</span> id) <span class="keyword">from</span> zs_access_log;</span><br></pre></td></tr></table></figure>
+<h2 id="1-背景"><a class="markdownIt-Anchor" href="#1-背景"></a> 1. 背景</h2>
+<p>  生产环境使用 <code>mysql: 8.0.18 Innodb</code>，  <code>mybatis</code>分页查询由两次查询完成，第一次获取总的记录行数，再次获取具体分页数据。<br />
+  以下查询可以看到<code>count</code>是存在性能问题的，接口的响应<code>&gt; 800ms</code>  <code>&lt; 4s</code>，但是该如何优化呢？</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(*) from zs_access_log;</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">|    37485 |</span><br><span class="line">+----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.53 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">select</span> * from zs_access_log  <span class="built_in">limit</span> 0,10;</span><br><span class="line">10 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="2-count性能对比"><a class="markdownIt-Anchor" href="#2-count性能对比"></a> 2. count性能对比</h2>
+<p>​		对比 <code>count</code> 几种使用姿势，在<code>InnoDB</code>和<code>MyISAM</code>引擎的性能对比。</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; show engines;</span><br><span class="line">+--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</span><br><span class="line">| Engine             | Support | Comment                                                        | Transactions | XA   | Savepoints |</span><br><span class="line">+--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</span><br><span class="line">| FEDERATED          | NO      | Federated MySQL storage engine                                 | NULL         | NULL | NULL       |</span><br><span class="line">| MEMORY             | YES     | Hash based, stored <span class="keyword">in</span> memory, useful <span class="keyword">for</span> temporary tables      | NO           | NO   | NO         |</span><br><span class="line">| InnoDB             | DEFAULT | Supports transactions, row-level locking, and foreign keys     | YES          | YES  | YES        |</span><br><span class="line">| PERFORMANCE_SCHEMA | YES     | Performance Schema                                             | NO           | NO   | NO         |</span><br><span class="line">| MyISAM             | YES     | MyISAM storage engine                                          | NO           | NO   | NO         |</span><br><span class="line">| MRG_MYISAM         | YES     | Collection of identical MyISAM tables                          | NO           | NO   | NO         |</span><br><span class="line">| BLACKHOLE          | YES     | /dev/null storage engine (anything you write to it disappears) | NO           | NO   | NO         |</span><br><span class="line">| CSV                | YES     | CSV storage engine                                             | NO           | NO   | NO         |</span><br><span class="line">| ARCHIVE            | YES     | Archive storage engine                                         | NO           | NO   | NO         |</span><br><span class="line">+--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</span><br><span class="line">9 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>​		数据表 <code>zs_access_log</code> 和 <code>zs_access_log_myisam</code></p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> TABLE_NAME , ENGINE from information_schema.tables <span class="built_in">where</span> TABLE_SCHEMA = <span class="string">&#x27;unified-form&#x27;</span> and TABLE_NAME like <span class="string">&#x27;%zs_access%&#x27;</span>;</span><br><span class="line">+----------------------+--------+</span><br><span class="line">| TABLE_NAME           | ENGINE |</span><br><span class="line">+----------------------+--------+</span><br><span class="line">| zs_access_log        | InnoDB |</span><br><span class="line">| zs_access_log_myisam | MyISAM |</span><br><span class="line">+----------------------+--------+</span><br><span class="line">2 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h2 id="21-innodb"><a class="markdownIt-Anchor" href="#21-innodb"></a> 2.1 InnoDB</h2>
+<h3 id="211-count1"><a class="markdownIt-Anchor" href="#211-count1"></a> 2.1.1 count(1)</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(1) from zs_access_log;</span><br><span class="line">+----------+</span><br><span class="line">| count(1) |</span><br><span class="line">+----------+</span><br><span class="line">|    37485 |</span><br><span class="line">+----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.53 sec)</span><br></pre></td></tr></table></figure>
+<h3 id="212-count"><a class="markdownIt-Anchor" href="#212-count"></a> 2.1.2 count(*)</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(*) from zs_access_log;</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">|    37485 |</span><br><span class="line">+----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.52 sec)</span><br></pre></td></tr></table></figure>
+<h3 id="213-countcolumn"><a class="markdownIt-Anchor" href="#213-countcolumn"></a> 2.1.3 count(column)</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(<span class="built_in">id</span>) from zs_access_log;</span><br><span class="line">+-----------+</span><br><span class="line">| count(<span class="built_in">id</span>) |</span><br><span class="line">+-----------+</span><br><span class="line">|     37485 |</span><br><span class="line">+-----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.50 sec)</span><br></pre></td></tr></table></figure>
+<p>​		数据表明以上几种方式查询效率相差无几，为什么会出现这样的问题呢？</p>
+<h2 id="22-myisam"><a class="markdownIt-Anchor" href="#22-myisam"></a> 2.2 MyISAM</h2>
+<h3 id="211-count1-2"><a class="markdownIt-Anchor" href="#211-count1-2"></a> 2.1.1 count(1)</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(1) from zs_access_log_myisam;</span><br><span class="line">+----------+</span><br><span class="line">| count(1) |</span><br><span class="line">+----------+</span><br><span class="line">|    37485 |</span><br><span class="line">+----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h3 id="212-count-2"><a class="markdownIt-Anchor" href="#212-count-2"></a> 2.1.2 count(*)</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(*) from zs_access_log_myisam;</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">|    37485 |</span><br><span class="line">+----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+<h3 id="213-countcolumn-2"><a class="markdownIt-Anchor" href="#213-countcolumn-2"></a> 2.1.3 count(column)</h3>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(<span class="built_in">id</span>) from zs_access_log_myisam;</span><br><span class="line">+-----------+</span><br><span class="line">| count(<span class="built_in">id</span>) |</span><br><span class="line">+-----------+</span><br><span class="line">|     37485 |</span><br><span class="line">+-----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
+<p>​		数据表明以上几种方式在<code>InnoDB</code>和<code>MyISAM</code>引擎中，查询效率差别很大。</p>
+<p>​		<code>MyISAM</code>把总行数存在磁盘(<code>information_schema.partitions</code>)中，<code>count(*)</code>和<code>count(1)</code>的性能会好很多。</p>
+<p>​		<code>InnoDB</code>获取所有数据，并逐行计算总行数，<code>count(*)</code>和<code>count(1)</code>的性能会差很多。`</p>
+<p><a href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_count">mysql文档原文</a></p>
+<h2 id="3-性能优化"><a class="markdownIt-Anchor" href="#3-性能优化"></a> 3. 性能优化</h2>
+<p>​		在实际开发过程中，业务系统的数据表均使用<code>InnoDB</code>支持事务。</p>
+<p>​		该如何优化<code>InnoDB</code>中<code>count</code>的性能？</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>使用<code>redis</code>记录数据行数</p>
+</li>
+<li class="lvl-2">
+<p>使用除了<code>主键</code>以外索引列</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(<span class="built_in">id</span>) from zs_access_log;</span><br><span class="line">+-----------+</span><br><span class="line">| count(<span class="built_in">id</span>) |</span><br><span class="line">+-----------+</span><br><span class="line">|     37485 |</span><br><span class="line">+-----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.54 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">select</span> count(action) from zs_access_log;</span><br><span class="line">+---------------+</span><br><span class="line">| count(action) |</span><br><span class="line">+---------------+</span><br><span class="line">|         37485 |</span><br><span class="line">+---------------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.01 sec)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>工作</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+        <tag>mybatis</tag>
+        <tag>count</tag>
+        <tag>聚合函数</tag>
+        <tag>InnoDB</tag>
+        <tag>MyISAM</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>芝麻叶糊涂面</title>
     <url>/%E8%8F%9C%E8%B0%B1/1d180e51.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>芝麻叶面条是河南的家常面食，喜不喜欢面食，吃上一次就会想第二次。</p>
@@ -2791,65 +2850,6 @@ ExcelUtil --> RecordHandler</pre>
         <tag>糊涂</tag>
         <tag>河南</tag>
         <tag>美食</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>mysql count函数正确使用姿势</title>
-    <url>/%E5%B7%A5%E4%BD%9C/9f600c63.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>  <code>count()</code> 是<code>mysql</code>聚合函数，返回指定匹配条件的行数。开发中常用来统计表中数据，全部数据，不为null数据，或者去重数据。</p>
-<span id="more"></span>
-<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="comment">-- 统计表中数据包括null</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="number">1</span>) <span class="keyword">from</span> zs_access_log;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 统计表中数据包括null</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="operator">*</span>) <span class="keyword">from</span> zs_access_log;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 统计表中指定列不为null的数据</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(id) <span class="keyword">from</span> zs_access_log;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 统计表中指定列去重不为null的数据</span></span><br><span class="line"><span class="keyword">select</span> <span class="built_in">count</span>(<span class="keyword">distinct</span> id) <span class="keyword">from</span> zs_access_log;</span><br></pre></td></tr></table></figure>
-<h2 id="1-背景"><a class="markdownIt-Anchor" href="#1-背景"></a> 1. 背景</h2>
-<p>  生产环境使用 <code>mysql: 8.0.18 Innodb</code>，  <code>mybatis</code>分页查询由两次查询完成，第一次获取总的记录行数，再次获取具体分页数据。<br />
-  以下查询可以看到<code>count</code>是存在性能问题的，接口的响应<code>&gt; 800ms</code>  <code>&lt; 4s</code>，但是该如何优化呢？</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(*) from zs_access_log;</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">|    37485 |</span><br><span class="line">+----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.53 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">select</span> * from zs_access_log  <span class="built_in">limit</span> 0,10;</span><br><span class="line">10 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<h2 id="2-count性能对比"><a class="markdownIt-Anchor" href="#2-count性能对比"></a> 2. count性能对比</h2>
-<p>​		对比 <code>count</code> 几种使用姿势，在<code>InnoDB</code>和<code>MyISAM</code>引擎的性能对比。</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; show engines;</span><br><span class="line">+--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</span><br><span class="line">| Engine             | Support | Comment                                                        | Transactions | XA   | Savepoints |</span><br><span class="line">+--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</span><br><span class="line">| FEDERATED          | NO      | Federated MySQL storage engine                                 | NULL         | NULL | NULL       |</span><br><span class="line">| MEMORY             | YES     | Hash based, stored <span class="keyword">in</span> memory, useful <span class="keyword">for</span> temporary tables      | NO           | NO   | NO         |</span><br><span class="line">| InnoDB             | DEFAULT | Supports transactions, row-level locking, and foreign keys     | YES          | YES  | YES        |</span><br><span class="line">| PERFORMANCE_SCHEMA | YES     | Performance Schema                                             | NO           | NO   | NO         |</span><br><span class="line">| MyISAM             | YES     | MyISAM storage engine                                          | NO           | NO   | NO         |</span><br><span class="line">| MRG_MYISAM         | YES     | Collection of identical MyISAM tables                          | NO           | NO   | NO         |</span><br><span class="line">| BLACKHOLE          | YES     | /dev/null storage engine (anything you write to it disappears) | NO           | NO   | NO         |</span><br><span class="line">| CSV                | YES     | CSV storage engine                                             | NO           | NO   | NO         |</span><br><span class="line">| ARCHIVE            | YES     | Archive storage engine                                         | NO           | NO   | NO         |</span><br><span class="line">+--------------------+---------+----------------------------------------------------------------+--------------+------+------------+</span><br><span class="line">9 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>​		数据表 <code>zs_access_log</code> 和 <code>zs_access_log_myisam</code></p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> TABLE_NAME , ENGINE from information_schema.tables <span class="built_in">where</span> TABLE_SCHEMA = <span class="string">&#x27;unified-form&#x27;</span> and TABLE_NAME like <span class="string">&#x27;%zs_access%&#x27;</span>;</span><br><span class="line">+----------------------+--------+</span><br><span class="line">| TABLE_NAME           | ENGINE |</span><br><span class="line">+----------------------+--------+</span><br><span class="line">| zs_access_log        | InnoDB |</span><br><span class="line">| zs_access_log_myisam | MyISAM |</span><br><span class="line">+----------------------+--------+</span><br><span class="line">2 rows <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h2 id="21-innodb"><a class="markdownIt-Anchor" href="#21-innodb"></a> 2.1 InnoDB</h2>
-<h3 id="211-count1"><a class="markdownIt-Anchor" href="#211-count1"></a> 2.1.1 count(1)</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(1) from zs_access_log;</span><br><span class="line">+----------+</span><br><span class="line">| count(1) |</span><br><span class="line">+----------+</span><br><span class="line">|    37485 |</span><br><span class="line">+----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.53 sec)</span><br></pre></td></tr></table></figure>
-<h3 id="212-count"><a class="markdownIt-Anchor" href="#212-count"></a> 2.1.2 count(*)</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(*) from zs_access_log;</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">|    37485 |</span><br><span class="line">+----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.52 sec)</span><br></pre></td></tr></table></figure>
-<h3 id="213-countcolumn"><a class="markdownIt-Anchor" href="#213-countcolumn"></a> 2.1.3 count(column)</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(<span class="built_in">id</span>) from zs_access_log;</span><br><span class="line">+-----------+</span><br><span class="line">| count(<span class="built_in">id</span>) |</span><br><span class="line">+-----------+</span><br><span class="line">|     37485 |</span><br><span class="line">+-----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.50 sec)</span><br></pre></td></tr></table></figure>
-<p>​		数据表明以上几种方式查询效率相差无几，为什么会出现这样的问题呢？</p>
-<h2 id="22-myisam"><a class="markdownIt-Anchor" href="#22-myisam"></a> 2.2 MyISAM</h2>
-<h3 id="211-count1-2"><a class="markdownIt-Anchor" href="#211-count1-2"></a> 2.1.1 count(1)</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(1) from zs_access_log_myisam;</span><br><span class="line">+----------+</span><br><span class="line">| count(1) |</span><br><span class="line">+----------+</span><br><span class="line">|    37485 |</span><br><span class="line">+----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h3 id="212-count-2"><a class="markdownIt-Anchor" href="#212-count-2"></a> 2.1.2 count(*)</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(*) from zs_access_log_myisam;</span><br><span class="line">+----------+</span><br><span class="line">| count(*) |</span><br><span class="line">+----------+</span><br><span class="line">|    37485 |</span><br><span class="line">+----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
-<h3 id="213-countcolumn-2"><a class="markdownIt-Anchor" href="#213-countcolumn-2"></a> 2.1.3 count(column)</h3>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(<span class="built_in">id</span>) from zs_access_log_myisam;</span><br><span class="line">+-----------+</span><br><span class="line">| count(<span class="built_in">id</span>) |</span><br><span class="line">+-----------+</span><br><span class="line">|     37485 |</span><br><span class="line">+-----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.00 sec)</span><br></pre></td></tr></table></figure>
-<p>​		数据表明以上几种方式在<code>InnoDB</code>和<code>MyISAM</code>引擎中，查询效率差别很大。</p>
-<p>​		<code>MyISAM</code>把总行数存在磁盘(<code>information_schema.partitions</code>)中，<code>count(*)</code>和<code>count(1)</code>的性能会好很多。</p>
-<p>​		<code>InnoDB</code>获取所有数据，并逐行计算总行数，<code>count(*)</code>和<code>count(1)</code>的性能会差很多。`</p>
-<p><a href="https://dev.mysql.com/doc/refman/8.0/en/aggregate-functions.html#function_count">mysql文档原文</a></p>
-<h2 id="3-性能优化"><a class="markdownIt-Anchor" href="#3-性能优化"></a> 3. 性能优化</h2>
-<p>​		在实际开发过程中，业务系统的数据表均使用<code>InnoDB</code>支持事务。</p>
-<p>​		该如何优化<code>InnoDB</code>中<code>count</code>的性能？</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>使用<code>redis</code>记录数据行数</p>
-</li>
-<li class="lvl-2">
-<p>使用除了<code>主键</code>以外索引列</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql&gt; <span class="keyword">select</span> count(<span class="built_in">id</span>) from zs_access_log;</span><br><span class="line">+-----------+</span><br><span class="line">| count(<span class="built_in">id</span>) |</span><br><span class="line">+-----------+</span><br><span class="line">|     37485 |</span><br><span class="line">+-----------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.54 sec)</span><br><span class="line"></span><br><span class="line">mysql&gt; <span class="keyword">select</span> count(action) from zs_access_log;</span><br><span class="line">+---------------+</span><br><span class="line">| count(action) |</span><br><span class="line">+---------------+</span><br><span class="line">|         37485 |</span><br><span class="line">+---------------+</span><br><span class="line">1 row <span class="keyword">in</span> <span class="built_in">set</span> (0.01 sec)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>工作</category>
-      </categories>
-      <tags>
-        <tag>mysql</tag>
-        <tag>mybatis</tag>
-        <tag>count</tag>
-        <tag>聚合函数</tag>
-        <tag>InnoDB</tag>
-        <tag>MyISAM</tag>
       </tags>
   </entry>
   <entry>
@@ -34736,6 +34736,173 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
+    <title>第800小时 01：颁证日</title>
+    <url>/%E5%B0%8F%E8%AF%B4/89b77ed7.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>陶砚用左手把今天的第一块金牌挂上墙。</p>
+<p>金牌很薄，边缘硌手。他把两块牌之间的缝对齐——三厘米，宽度一致，十年前他自己定的标准。去年一个新来的教练挂歪了半厘米，他当着三十个人把牌摘下来重挂。今天没有人挂歪。</p>
+<p>牌留在墙上。带走的是证书。这条规矩是基地建馆那年定的，牌留墙，名字留墙，年份留墙。学员毕业那天拿到的那张纸只有三行：编号、时数、教练签名。有人十年后回来，在墙上一块一块找自己的那一块，从左往右数。</p>
+<p>大厅在基地东侧，层高七米。三百多张折叠椅分六区排开，椅背包着蓝绒布，从 A 区排到 F 区，最后一排空了一半。台侧一张长桌铺着白布，桌上三本台账摞着，最上面那本翻在今年的页，页眉印着「年度时数认证」。空调出风口正对白布中间，把纸吹起一角，苏芮用一支笔压住。</p>
+<p>墙上挂的是时数墙。基地建馆时留的那面墙，两米四高，按年份从左往右排，最右边最新。牌是铜的，表面镀金，边上压印一行编号，背面刻着累计训练小时数，正面刻姓名。青铜和白银的牌小一号，挂在墙的下半截；黄金以上是这块整的，三百多张牌里最亮的那几张，都在这面墙上。</p>
+<p>认证是按时数分级的。青铜 3,000，白银 6,000，黄金 10,000。学员的每一次训练时长由计时器自动记入系统，够线了，运营部核数、刻牌、装袋，年底一次性挂到这面墙上。</p>
+<p>刚才挂上去的第一块是郑维的，10,112 小时。他接牌的时候翻到背面找编号，找到自己教练的那行小字，用指腹蹭了一下，没蹭掉。现在他站在台下第一排边上，证书折成两折塞在裤兜里，手在裤兜外面按着。</p>
+<p>苏芮在台账上写了一行，笔尖没有停顿。</p>
+<p>「主持人有一段词。」她抬起头，「一分半，在颁第二块之前。」</p>
+<p>「念。」</p>
+<p>「写的是『一万小时，改变命运』。」</p>
+<p>「念数字。」</p>
+<p>苏芮看了他两秒。</p>
+<p>「这句话今年还能用，我们就可以把它印在下一批学员的协议扉页上。如果不能用，协议得重写，已经付费还没开课的那批人也要重新寄一份。」</p>
+<p>「协议上写他们买了多少小时，钱进了哪个账户。」</p>
+<p>「但他们买的时候，墙上挂的就是这一句。」</p>
+<p>陶砚没有立刻回答。他把台面上那块白布的角又压了压。</p>
+<p>「念数字。」</p>
+<p>苏芮低下头，在台账边角写了一个词。他隔着两米看不清写的什么，但他认得那种笔尖划过纸面、一路不顿的写法。</p>
+<p>主持人接过话，把那段词删了。剩下的是基地名字、认证年份和三句欢迎。</p>
+<p>「第二位，周昕，10,240 小时。」</p>
+<p>陶砚从盘子里取出金牌，双手递过去。</p>
+<p>周昕二十九岁，练攀岩，指腹上的茧比陶砚还厚。接牌的时候手指在抖。</p>
+<p>「谢谢陶教练。」</p>
+<p>「12 月 3 号那条线路，你练了四十一分钟。」</p>
+<p>「岩点上有水。」</p>
+<p>「水不算理由。你那天其他五条线路，最长的用了八分钟。」</p>
+<p>「我记不清了。」</p>
+<p>「我看了录像。」</p>
+<p>周昕低头看牌。牌沿的漆磕掉一小块，露出底下的铜。她把牌放回盘子里，接过证书，双手捧着。</p>
+<p>陶砚把第二块牌挂上墙。缝还是三厘米。</p>
+<p>台下一片快门声。一个挂着工牌的年轻人举着相机挤到台侧。</p>
+<p>「陶教练，合个影。颁完证到墙前站一张，特写。」</p>
+<p>「金牌挂在墙上。」</p>
+<p>「宣传要特写。人手里拿着牌，比空着手站好看。」</p>
+<p>「牌已经给学员了。」</p>
+<p>年轻人愣了一下，退到一边。陶砚空着手站到时数墙左侧，两脚并拢，肩线平。摄影的人在墙对面蹲下，拍了四张。</p>
+<p>陶砚重新走回台边。第三块牌在他右手边，牌面朝下。他胸前别着工牌，T-07。</p>
+<p>台侧那本台账翻到了名单页。陶砚伸手过去，把纸按平。</p>
+<p>「今年过线的三个。」</p>
+<p>「对。」苏芮说，「如果按去年的口径，应该是四个。多出来的那一位，系统里是 9,989，差 11 小时。」</p>
+<p>「差 11 小时，不算过线。」</p>
+<p>「如果我们现在给他补一场认证，墙上的数字就更好看。如果我们现在不补，他明年还得再来一次。」</p>
+<p>「不补。」</p>
+<p>「如果不补，他 11 月会回来问第二年的价格。他续费的时候，我们就可以把明年的金牌门槛先告诉他。」</p>
+<p>「门槛是 10,000。」</p>
+<p>「我知道门槛是 10,000。」苏芮把台账往自己这边收了一点，「卢总上个月问过我，为什么墙上一年的金牌比一年少。他说今年他把认证大会的直播推给了平台，流量比去年高三倍，如果金牌比一年少，转化页会被投诉。」</p>
+<p>「那就在转化页上写清楚今年过了三个。」</p>
+<p>「写清楚，转化页的数据就会掉。」</p>
+<p>「掉就掉。」</p>
+<p>苏芮没有再争。她在名单页的三个名字底下画了三条横线，笔尖在第三条上多停了一秒。</p>
+<p>「陶教练，」她说，「如果明年过线的是两个人，我们还办这个会吗。」</p>
+<p>「办。」</p>
+<p>「两个人也挂墙。」</p>
+<p>「墙是给人看的，不是给数字看的。」</p>
+<p>苏芮把这一句记下来了。她写字的时候不看他，只看纸。</p>
+<p>就在他把第三块牌拿起来的时候，他看见第一排靠过道的位置上坐着一个人。</p>
+<p>那人大约二十七八岁，穿一件洗得发白的深蓝外套，膝上摊着一张纸，没有应援的灯牌，也没有鼓掌。他从进场起就没看过台上。观众看的是某一块金牌，他看的是整面墙，从左往右，数到某一块停一下，再往右。</p>
+<p>陶砚见过这种数法。他刚进省体校那几年也这么数过，只不过数的是靶纸上的环数。</p>
+<p>「第三位，赵砚青，12,400 小时。」</p>
+<p>掌声起来了。</p>
+<p>赵砚青从最后一排的过道走过来。三十六岁，教练服左胸的口袋插着两支笔，笔帽咬得发白。他走路的时候肩膀不动，像怕多走半步。</p>
+<p>主持人说：「赵砚青，12,400 小时。基地最高时数纪录保持者。」</p>
+<p>陶砚把金牌递过去。赵砚青双手接。</p>
+<p>「师父。」</p>
+<p>「三号馆的灯坏了两盏。」</p>
+<p>「9 号靶位那盏照度不够，上周我提过。」</p>
+<p>「下午换。」</p>
+<p>「换完还是不够。9 号靶位到 25 米线中间被器材柜挡了一块。」</p>
+<p>「我知道。」</p>
+<p>赵砚青把牌翻到背面，看了很久。</p>
+<p>「我系统里是 12,400。」</p>
+<p>「牌上也是 12,400。」</p>
+<p>「牌上没刻我教练的编号。」</p>
+<p>「墙记的是时数。」</p>
+<p>「我十六岁进来，墙上我那一块旁边什么都没有。没有名字后面的编号，也没有年份以外的东西。」</p>
+<p>「墙记的是时数，不是师承。」</p>
+<p>赵砚青把牌翻回正面，没再说话。他把证书接过去，折成两折，放进外套内袋，拉链拉到底。</p>
+<p>陶砚没走开。颁证的队伍往下接上去了，他站在原地。</p>
+<p>「今年练了多少小时。」</p>
+<p>「261。」</p>
+<p>「上个月呢。」</p>
+<p>「94。」</p>
+<p>陶砚点了一下头。不到三小时一天，十二年，一枪不多，一枪不少。他知道赵砚青不会来跟他要第二个数字，也知道这个人能把任何话听成一句「再来八千小时」。</p>
+<p>「12,400 小时。」陶砚说。</p>
+<p>赵砚青抬起头。</p>
+<p>「你今年最差的一枪。」</p>
+<p>赵砚青的嘴动了一下。工作人员在台侧报下一位学员的名字，他没动。</p>
+<p>「去年 9 月 3 号那一组，第八发，7.8 环。」</p>
+<p>「那天之后我加练了两小时。」</p>
+<p>「加练了两小时。」陶砚重复了一遍，「今天也加？」</p>
+<p>「今天加了四个小时。」</p>
+<p>主持人从侧面挤过来，把话筒递向陶砚。</p>
+<p>「陶教练，给最高纪录保持者两句评语，镜头要切到您。」</p>
+<p>陶砚接过话筒。</p>
+<p>「12,400 小时，全基地第一。」</p>
+<p>主持人等了三秒，镜头还对着他。</p>
+<p>「今年到三月，261 小时，2,180 发。去年同期 220 小时，1,906 发。」陶砚说。</p>
+<p>他把话筒交回去。主持人笑了一下，把这半句扩成了三句，说的是坚持，说的是十年磨一剑，说的是岚城基地让普通人也有机会。台下的掌声比刚才响。</p>
+<p>赵砚青站在台侧，一直没有坐下。他的拇指在金牌边缘来回蹭，蹭了十几下，把那层薄漆蹭出一道浅白的痕。</p>
+<p>陶砚把第三块牌挂上墙。缝还是三厘米。</p>
+<p>他退开一步，从左往右看了一遍。今年的位置上是三块。旁边有一块金牌的漆磨掉了，露出铜底。三年前一个练短跑的学员留下的。那人练到第三年走了，证书没领，牌一直挂在这儿。</p>
+<p>一个背着运动包的年轻教练在墙边停下，掏出手机，对着墙拍了一张。</p>
+<p>「拍墙做什么。」</p>
+<p>「我们教练让拍的，说发朋友圈。」</p>
+<p>「拍墙里的人。」</p>
+<p>「那拍哪张。」</p>
+<p>陶砚指了一下赵砚青的那一块。</p>
+<p>「拍这块。墙正中那块。媒体每年都要它。」</p>
+<p>那年轻教练看了他一眼，把手机举起来，对准赵砚青的方向。赵砚青站在台侧没有动，眼睛落在地砖的缝上。</p>
+<p>「墙是给人看的，不是给数字看的。」陶砚说，「牌是铜的。」</p>
+<p>「我知道是铜的。」那年轻教练说，「但墙上写着一万两千四百小时。」</p>
+<p>陶砚没再说话。他把台面白布重新铺平，让第三块牌留下的压痕散开。</p>
+<p>颁证结束。人群往前排涌，椅子腿在地上刮出声音，最后一排有人剥橘子，橘皮味飘到台侧。苏芮合上台账，把三本摞齐，用手掌压了压本子的边。</p>
+<p>台下第一排靠过道的位置空着两个。</p>
+<p>那个年轻男人还坐着，没动。他把膝上那张纸折成两折，塞进外套口袋，站起来。</p>
+<p>然后他抬了手。</p>
+<p>「请问您的一万小时里，有多少小时是失败的？」</p>
+<p>主持人愣了半秒。他把这句话听成了下一个环节的提问。</p>
+<p>问题不大，也不小。</p>
+<p>陶砚听懂了。</p>
+<p>后排有人笑了一声，很短，接着被人按住。主持人举着话筒愣在原地，嘴张着，等一个可以接上去的话。</p>
+<p>「这位朋友，」主持人说，「可能是想说……关于一万小时的训练心得，我们稍后可以在——」</p>
+<p>「他问的是失败。」陶砚说。</p>
+<p>主持人的话断在半截。</p>
+<p>台侧有人往这边走。陶砚把手里剩下的东西交给助理，转身下台。走过第一排的时候，他走的是那条空出来的过道，没有停，也没有看那个人。</p>
+<p>大厅里一共来了三百多人。那个问题只被问了一次。</p>
+<p>台阶下面有风。他站住，把助理手里那叠多余的宣传单接过来，夹在腋下，又放回给助理。</p>
+<p>「陶教练。」一个去年拿过白银的学员追出来，「那个人是谁？」</p>
+<p>「不知道。」</p>
+<p>「我看他坐了一个小时。」</p>
+<p>「我知道。」</p>
+<p>「那他——」</p>
+<p>「他没问你问题。」陶砚说，「他问的是我。」</p>
+<p>那学员还想再说什么，摄影组的人在台阶那头喊集合。陶砚走过去，走之前回头看了一眼大厅。</p>
+<p>第一排空着的两个位置上，一个位置还放着一瓶没拆封的水，是主办方发给贵宾的，瓶身凝着一层水珠。另一个位置有一张被折成两折的纸，掉在椅垫下面，露出一个角。</p>
+<p>他没有下去捡。</p>
+<p>「陶教练，主持人问要不要补一句。」苏芮跟到台边，把台账夹在腋下，「如果补，我们就把『改变命运』那一段加进主持词。如果不补，明天会有人把这个问题发到基地的公开账号下面。」</p>
+<p>「不回。」</p>
+<p>「那如果公开账号下面有三千条评论，我们也可以一条都不回。」</p>
+<p>「一条都不回。」</p>
+<p>苏芮把台账重新摊开，翻到最后一页。</p>
+<p>「那我记一下。」</p>
+<p>「记什么。」</p>
+<p>「提问的人是谁。」她把笔尖点在纸上，「如果后面有人问起，我可以答『这个问题被问过，提问者的名字在这里』。名字要不要写全。」</p>
+<p>陶砚没答。</p>
+<p>他走出大厅，站在台阶上，从口袋里掏出那本黑色硬壳本子，翻开。里面每一页只有两栏：日期，和当天要复查的项目。</p>
+<p>他往后翻。2025 年的那一页，他自己做的记录里没有「失败」这两个字。</p>
+<p>他翻过 2024 年，2023 年，2022 年。</p>
+<p>没有。</p>
+<p>二十年，他记下的是日期、时数、动作、偏差、备注。哪一天练了多少小时，偏差多少，备注一栏永远是「无」。</p>
+<p>那个问题在他这里没有对应的一栏。</p>
+<p>风从台阶下面吹上来，他把本子合上。封面磨得发白，右下角卷起来，是常年在口袋里放出来的形状。</p>
+<p>他重新翻开，在今天这一页的日期下面，写了两个字。</p>
+<p>林野。</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>小说</tag>
+        <tag>第800小时</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>第800小时 02：第一个失败样本</title>
     <url>/%E5%B0%8F%E8%AF%B4/8f5b3a9a.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>十发打完，电子计分屏上跳出一行数：平均 9.8。</p>
@@ -34906,173 +35073,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>「陶教练。」林野说，「我还想看一样东西。」</p>
 <p>「说。」</p>
 <p>「我想看您自己的训练录像。不是教学录像，是您自己练的那部分。」</p>
-]]></content>
-      <categories>
-        <category>小说</category>
-      </categories>
-      <tags>
-        <tag>小说</tag>
-        <tag>第800小时</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>第800小时 01：颁证日</title>
-    <url>/%E5%B0%8F%E8%AF%B4/89b77ed7.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>陶砚用左手把今天的第一块金牌挂上墙。</p>
-<p>金牌很薄，边缘硌手。他把两块牌之间的缝对齐——三厘米，宽度一致，十年前他自己定的标准。去年一个新来的教练挂歪了半厘米，他当着三十个人把牌摘下来重挂。今天没有人挂歪。</p>
-<p>牌留在墙上。带走的是证书。这条规矩是基地建馆那年定的，牌留墙，名字留墙，年份留墙。学员毕业那天拿到的那张纸只有三行：编号、时数、教练签名。有人十年后回来，在墙上一块一块找自己的那一块，从左往右数。</p>
-<p>大厅在基地东侧，层高七米。三百多张折叠椅分六区排开，椅背包着蓝绒布，从 A 区排到 F 区，最后一排空了一半。台侧一张长桌铺着白布，桌上三本台账摞着，最上面那本翻在今年的页，页眉印着「年度时数认证」。空调出风口正对白布中间，把纸吹起一角，苏芮用一支笔压住。</p>
-<p>墙上挂的是时数墙。基地建馆时留的那面墙，两米四高，按年份从左往右排，最右边最新。牌是铜的，表面镀金，边上压印一行编号，背面刻着累计训练小时数，正面刻姓名。青铜和白银的牌小一号，挂在墙的下半截；黄金以上是这块整的，三百多张牌里最亮的那几张，都在这面墙上。</p>
-<p>认证是按时数分级的。青铜 3,000，白银 6,000，黄金 10,000。学员的每一次训练时长由计时器自动记入系统，够线了，运营部核数、刻牌、装袋，年底一次性挂到这面墙上。</p>
-<p>刚才挂上去的第一块是郑维的，10,112 小时。他接牌的时候翻到背面找编号，找到自己教练的那行小字，用指腹蹭了一下，没蹭掉。现在他站在台下第一排边上，证书折成两折塞在裤兜里，手在裤兜外面按着。</p>
-<p>苏芮在台账上写了一行，笔尖没有停顿。</p>
-<p>「主持人有一段词。」她抬起头，「一分半，在颁第二块之前。」</p>
-<p>「念。」</p>
-<p>「写的是『一万小时，改变命运』。」</p>
-<p>「念数字。」</p>
-<p>苏芮看了他两秒。</p>
-<p>「这句话今年还能用，我们就可以把它印在下一批学员的协议扉页上。如果不能用，协议得重写，已经付费还没开课的那批人也要重新寄一份。」</p>
-<p>「协议上写他们买了多少小时，钱进了哪个账户。」</p>
-<p>「但他们买的时候，墙上挂的就是这一句。」</p>
-<p>陶砚没有立刻回答。他把台面上那块白布的角又压了压。</p>
-<p>「念数字。」</p>
-<p>苏芮低下头，在台账边角写了一个词。他隔着两米看不清写的什么，但他认得那种笔尖划过纸面、一路不顿的写法。</p>
-<p>主持人接过话，把那段词删了。剩下的是基地名字、认证年份和三句欢迎。</p>
-<p>「第二位，周昕，10,240 小时。」</p>
-<p>陶砚从盘子里取出金牌，双手递过去。</p>
-<p>周昕二十九岁，练攀岩，指腹上的茧比陶砚还厚。接牌的时候手指在抖。</p>
-<p>「谢谢陶教练。」</p>
-<p>「12 月 3 号那条线路，你练了四十一分钟。」</p>
-<p>「岩点上有水。」</p>
-<p>「水不算理由。你那天其他五条线路，最长的用了八分钟。」</p>
-<p>「我记不清了。」</p>
-<p>「我看了录像。」</p>
-<p>周昕低头看牌。牌沿的漆磕掉一小块，露出底下的铜。她把牌放回盘子里，接过证书，双手捧着。</p>
-<p>陶砚把第二块牌挂上墙。缝还是三厘米。</p>
-<p>台下一片快门声。一个挂着工牌的年轻人举着相机挤到台侧。</p>
-<p>「陶教练，合个影。颁完证到墙前站一张，特写。」</p>
-<p>「金牌挂在墙上。」</p>
-<p>「宣传要特写。人手里拿着牌，比空着手站好看。」</p>
-<p>「牌已经给学员了。」</p>
-<p>年轻人愣了一下，退到一边。陶砚空着手站到时数墙左侧，两脚并拢，肩线平。摄影的人在墙对面蹲下，拍了四张。</p>
-<p>陶砚重新走回台边。第三块牌在他右手边，牌面朝下。他胸前别着工牌，T-07。</p>
-<p>台侧那本台账翻到了名单页。陶砚伸手过去，把纸按平。</p>
-<p>「今年过线的三个。」</p>
-<p>「对。」苏芮说，「如果按去年的口径，应该是四个。多出来的那一位，系统里是 9,989，差 11 小时。」</p>
-<p>「差 11 小时，不算过线。」</p>
-<p>「如果我们现在给他补一场认证，墙上的数字就更好看。如果我们现在不补，他明年还得再来一次。」</p>
-<p>「不补。」</p>
-<p>「如果不补，他 11 月会回来问第二年的价格。他续费的时候，我们就可以把明年的金牌门槛先告诉他。」</p>
-<p>「门槛是 10,000。」</p>
-<p>「我知道门槛是 10,000。」苏芮把台账往自己这边收了一点，「卢总上个月问过我，为什么墙上一年的金牌比一年少。他说今年他把认证大会的直播推给了平台，流量比去年高三倍，如果金牌比一年少，转化页会被投诉。」</p>
-<p>「那就在转化页上写清楚今年过了三个。」</p>
-<p>「写清楚，转化页的数据就会掉。」</p>
-<p>「掉就掉。」</p>
-<p>苏芮没有再争。她在名单页的三个名字底下画了三条横线，笔尖在第三条上多停了一秒。</p>
-<p>「陶教练，」她说，「如果明年过线的是两个人，我们还办这个会吗。」</p>
-<p>「办。」</p>
-<p>「两个人也挂墙。」</p>
-<p>「墙是给人看的，不是给数字看的。」</p>
-<p>苏芮把这一句记下来了。她写字的时候不看他，只看纸。</p>
-<p>就在他把第三块牌拿起来的时候，他看见第一排靠过道的位置上坐着一个人。</p>
-<p>那人大约二十七八岁，穿一件洗得发白的深蓝外套，膝上摊着一张纸，没有应援的灯牌，也没有鼓掌。他从进场起就没看过台上。观众看的是某一块金牌，他看的是整面墙，从左往右，数到某一块停一下，再往右。</p>
-<p>陶砚见过这种数法。他刚进省体校那几年也这么数过，只不过数的是靶纸上的环数。</p>
-<p>「第三位，赵砚青，12,400 小时。」</p>
-<p>掌声起来了。</p>
-<p>赵砚青从最后一排的过道走过来。三十六岁，教练服左胸的口袋插着两支笔，笔帽咬得发白。他走路的时候肩膀不动，像怕多走半步。</p>
-<p>主持人说：「赵砚青，12,400 小时。基地最高时数纪录保持者。」</p>
-<p>陶砚把金牌递过去。赵砚青双手接。</p>
-<p>「师父。」</p>
-<p>「三号馆的灯坏了两盏。」</p>
-<p>「9 号靶位那盏照度不够，上周我提过。」</p>
-<p>「下午换。」</p>
-<p>「换完还是不够。9 号靶位到 25 米线中间被器材柜挡了一块。」</p>
-<p>「我知道。」</p>
-<p>赵砚青把牌翻到背面，看了很久。</p>
-<p>「我系统里是 12,400。」</p>
-<p>「牌上也是 12,400。」</p>
-<p>「牌上没刻我教练的编号。」</p>
-<p>「墙记的是时数。」</p>
-<p>「我十六岁进来，墙上我那一块旁边什么都没有。没有名字后面的编号，也没有年份以外的东西。」</p>
-<p>「墙记的是时数，不是师承。」</p>
-<p>赵砚青把牌翻回正面，没再说话。他把证书接过去，折成两折，放进外套内袋，拉链拉到底。</p>
-<p>陶砚没走开。颁证的队伍往下接上去了，他站在原地。</p>
-<p>「今年练了多少小时。」</p>
-<p>「261。」</p>
-<p>「上个月呢。」</p>
-<p>「94。」</p>
-<p>陶砚点了一下头。不到三小时一天，十二年，一枪不多，一枪不少。他知道赵砚青不会来跟他要第二个数字，也知道这个人能把任何话听成一句「再来八千小时」。</p>
-<p>「12,400 小时。」陶砚说。</p>
-<p>赵砚青抬起头。</p>
-<p>「你今年最差的一枪。」</p>
-<p>赵砚青的嘴动了一下。工作人员在台侧报下一位学员的名字，他没动。</p>
-<p>「去年 9 月 3 号那一组，第八发，7.8 环。」</p>
-<p>「那天之后我加练了两小时。」</p>
-<p>「加练了两小时。」陶砚重复了一遍，「今天也加？」</p>
-<p>「今天加了四个小时。」</p>
-<p>主持人从侧面挤过来，把话筒递向陶砚。</p>
-<p>「陶教练，给最高纪录保持者两句评语，镜头要切到您。」</p>
-<p>陶砚接过话筒。</p>
-<p>「12,400 小时，全基地第一。」</p>
-<p>主持人等了三秒，镜头还对着他。</p>
-<p>「今年到三月，261 小时，2,180 发。去年同期 220 小时，1,906 发。」陶砚说。</p>
-<p>他把话筒交回去。主持人笑了一下，把这半句扩成了三句，说的是坚持，说的是十年磨一剑，说的是岚城基地让普通人也有机会。台下的掌声比刚才响。</p>
-<p>赵砚青站在台侧，一直没有坐下。他的拇指在金牌边缘来回蹭，蹭了十几下，把那层薄漆蹭出一道浅白的痕。</p>
-<p>陶砚把第三块牌挂上墙。缝还是三厘米。</p>
-<p>他退开一步，从左往右看了一遍。今年的位置上是三块。旁边有一块金牌的漆磨掉了，露出铜底。三年前一个练短跑的学员留下的。那人练到第三年走了，证书没领，牌一直挂在这儿。</p>
-<p>一个背着运动包的年轻教练在墙边停下，掏出手机，对着墙拍了一张。</p>
-<p>「拍墙做什么。」</p>
-<p>「我们教练让拍的，说发朋友圈。」</p>
-<p>「拍墙里的人。」</p>
-<p>「那拍哪张。」</p>
-<p>陶砚指了一下赵砚青的那一块。</p>
-<p>「拍这块。墙正中那块。媒体每年都要它。」</p>
-<p>那年轻教练看了他一眼，把手机举起来，对准赵砚青的方向。赵砚青站在台侧没有动，眼睛落在地砖的缝上。</p>
-<p>「墙是给人看的，不是给数字看的。」陶砚说，「牌是铜的。」</p>
-<p>「我知道是铜的。」那年轻教练说，「但墙上写着一万两千四百小时。」</p>
-<p>陶砚没再说话。他把台面白布重新铺平，让第三块牌留下的压痕散开。</p>
-<p>颁证结束。人群往前排涌，椅子腿在地上刮出声音，最后一排有人剥橘子，橘皮味飘到台侧。苏芮合上台账，把三本摞齐，用手掌压了压本子的边。</p>
-<p>台下第一排靠过道的位置空着两个。</p>
-<p>那个年轻男人还坐着，没动。他把膝上那张纸折成两折，塞进外套口袋，站起来。</p>
-<p>然后他抬了手。</p>
-<p>「请问您的一万小时里，有多少小时是失败的？」</p>
-<p>主持人愣了半秒。他把这句话听成了下一个环节的提问。</p>
-<p>问题不大，也不小。</p>
-<p>陶砚听懂了。</p>
-<p>后排有人笑了一声，很短，接着被人按住。主持人举着话筒愣在原地，嘴张着，等一个可以接上去的话。</p>
-<p>「这位朋友，」主持人说，「可能是想说……关于一万小时的训练心得，我们稍后可以在——」</p>
-<p>「他问的是失败。」陶砚说。</p>
-<p>主持人的话断在半截。</p>
-<p>台侧有人往这边走。陶砚把手里剩下的东西交给助理，转身下台。走过第一排的时候，他走的是那条空出来的过道，没有停，也没有看那个人。</p>
-<p>大厅里一共来了三百多人。那个问题只被问了一次。</p>
-<p>台阶下面有风。他站住，把助理手里那叠多余的宣传单接过来，夹在腋下，又放回给助理。</p>
-<p>「陶教练。」一个去年拿过白银的学员追出来，「那个人是谁？」</p>
-<p>「不知道。」</p>
-<p>「我看他坐了一个小时。」</p>
-<p>「我知道。」</p>
-<p>「那他——」</p>
-<p>「他没问你问题。」陶砚说，「他问的是我。」</p>
-<p>那学员还想再说什么，摄影组的人在台阶那头喊集合。陶砚走过去，走之前回头看了一眼大厅。</p>
-<p>第一排空着的两个位置上，一个位置还放着一瓶没拆封的水，是主办方发给贵宾的，瓶身凝着一层水珠。另一个位置有一张被折成两折的纸，掉在椅垫下面，露出一个角。</p>
-<p>他没有下去捡。</p>
-<p>「陶教练，主持人问要不要补一句。」苏芮跟到台边，把台账夹在腋下，「如果补，我们就把『改变命运』那一段加进主持词。如果不补，明天会有人把这个问题发到基地的公开账号下面。」</p>
-<p>「不回。」</p>
-<p>「那如果公开账号下面有三千条评论，我们也可以一条都不回。」</p>
-<p>「一条都不回。」</p>
-<p>苏芮把台账重新摊开，翻到最后一页。</p>
-<p>「那我记一下。」</p>
-<p>「记什么。」</p>
-<p>「提问的人是谁。」她把笔尖点在纸上，「如果后面有人问起，我可以答『这个问题被问过，提问者的名字在这里』。名字要不要写全。」</p>
-<p>陶砚没答。</p>
-<p>他走出大厅，站在台阶上，从口袋里掏出那本黑色硬壳本子，翻开。里面每一页只有两栏：日期，和当天要复查的项目。</p>
-<p>他往后翻。2025 年的那一页，他自己做的记录里没有「失败」这两个字。</p>
-<p>他翻过 2024 年，2023 年，2022 年。</p>
-<p>没有。</p>
-<p>二十年，他记下的是日期、时数、动作、偏差、备注。哪一天练了多少小时，偏差多少，备注一栏永远是「无」。</p>
-<p>那个问题在他这里没有对应的一栏。</p>
-<p>风从台阶下面吹上来，他把本子合上。封面磨得发白，右下角卷起来，是常年在口袋里放出来的形状。</p>
-<p>他重新翻开，在今天这一页的日期下面，写了两个字。</p>
-<p>林野。</p>
 ]]></content>
       <categories>
         <category>小说</category>
@@ -36417,174 +36417,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
-    <title>第800小时 10：一封推荐信</title>
-    <url>/%E5%B0%8F%E8%AF%B4/72065ce8.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>「您的材料我们上周五收到的。」</p>
-<p>邱岸把一张纸推过桌面，纸边对着陶砚。</p>
-<p>「三栏。体系名称，首次成型年份，签字人。前两栏只能您自己填。第三栏，我填。」</p>
-<p>「溯源是什么。」</p>
-<p>「认证委员会要求黄金级教练交代自己的训练体系是从哪儿来的。出一份材料，证明这套东西有出处。」邱岸拧开笔帽，把笔放在纸的右上角，「出处要有一个人在体系里头待过，由这个人签字。这个人能说出您最早那几年在哪儿，跟谁练。」</p>
-<p>「从哪儿来不重要。」陶砚说，「重要的是谁能证明。」</p>
-<p>「那您就找能证明的人。」</p>
-<p>邱岸说这句话的时候没有抬头。他在纸上写「岚城突破训练基地」几个字，写得慢，每个字都压着笔画。</p>
-<p>陶砚在十四楼等了两个多小时。前台的登记本要填姓名、单位、事由三栏，单位的章是基地的行政章，红色，骑缝盖了两次。事由那一栏他写的是「溯源材料」，四个字，写完把笔帽扣上，扣了两下才扣紧。邱岸从里间出来接他，手里拿着一支笔，边走边把笔在手指间转半圈，转的方向始终一样。</p>
-<p>陶砚从岚城过来三个半小时。高速公路上堵了四十分钟，他把这三栏在心里过了七遍。前两栏他填得出来。体系名称是「一万小时认证与记录方法」，首次成型年份填 2003 年。</p>
-<p>2002 年底他在南方一个训练营租了一间房，教第一批学员怎么记时数，那套格子就是那时候定下来的。填 2003 年，是因为委员会要看的是一个体系，不是一个人。</p>
-<p>那间房在番禺，二楼的一室一厅，房东按月收钱，不问用途。第一个学员是广西人，二十三岁，练短跑，第一天把时数记错了，自己没发现。陶砚让他把那一页重抄一遍，抄完在旁边写清楚错在哪。学员问算不算数，陶砚说算，从头算。</p>
-<p>那套格子是他在省体校的第二个冬天自己排出来的。前四列抄队里的格式，第五列备注是他加的，1998 年 10 月加的。师父当时没让他加，也没让他去掉。</p>
-<p>第三栏他填不了。</p>
-<p>前台后面的墙上挂着一块样品牌，青铜、白银、黄金三档，每块牌面上只刻两样东西：编号，和累计时数。样品牌旁边贴着一张《突破类训练机构认证分级办法》，塑封的，右下角卷起来翘着。玻璃隔断把办公区隔成六块，四个人的工位空着两个。桌面上摆着一台修表用的放大镜，铜杆，固定在一个小木座上，镜片边缘有划痕。</p>
-<p>邱岸把笔搁下，把陶砚的黄金认证证书拿过去，放到放大镜底下。他一只手扶着纸，另一只手调木座的角度，看了大概二十秒。</p>
-<p>「编号我抄一下。」他说，「签发日期在下面那一行。」</p>
-<p>抄完，他写进自己那本摊开的记录簿。</p>
-<p>「有件事我想问。」陶砚说。</p>
-<p>「您说。」</p>
-<p>「上周三下午，一个陌生号码给我发了一条短信。六个字。」</p>
-<p>邱岸把放大镜的镜盖合上。</p>
-<p>「812 我也记着。」</p>
-<p>「您回拨过。」</p>
-<p>「回拨了。空号。」</p>
-<p>「空号是临时的。」邱岸把证书推回来，「也可能发完就注销了。」</p>
-<p>「您知道是谁发的吗。」</p>
-<p>「不知道。」</p>
-<p>他没有问那六个字是什么。陶砚在心里记下这一条。</p>
-<p>「那条短信几点到的。」陶砚说。</p>
-<p>「3 月 4 日，下午 4 点 26 分。」</p>
-<p>「4 点 26 分我在高速上。」陶砚说，「那个姓邱的人，我当天下午才第一次听人提起。」</p>
-<p>邱岸没有说话。他把那支笔又转了半圈，转的方向还是那个方向。「那个号码您还留着吗。」</p>
-<p>「留着。」</p>
-<p>「我不问。」邱岸说，「我要是发的，不会用那个号码。」</p>
-<p>「2002 年我在射击队待到 12 月。」陶砚说。</p>
-<p>「陈守拙教您。」</p>
-<p>「是。」</p>
-<p>「教了多久。」</p>
-<p>「四年三个月。」</p>
-<p>「1998 年 9 月到 2002 年 12 月。」邱岸写下来，笔尖在纸上顿了一下，「他 2011 年走的。」</p>
-<p>「是。」</p>
-<p>「我跟了他五年。」邱岸说，「他给我的评价是四个字。」</p>
-<p>「什么。」</p>
-<p>「有天赋，但偷懒。」</p>
-<p>玻璃隔断外面有人走动，鞋跟在地板上敲出两下，然后停了。邱岸等那两下走远，才接着往下写。</p>
-<p>「您那本记录本，五栏。」</p>
-<p>「日期，时数，动作，偏差，备注。」</p>
-<p>「没有’成功’。」</p>
-<p>陶砚看着他。</p>
-<p>「1998 年 9 月他发给我们的本子，封面上印着体校的队徽，第一页印着表头。」邱岸说，「五栏，跟您说的一样。'成功’那一栏从一开始就没有。他说过一句：本子里不许有两种结果。」</p>
-<p>「他说的是别的。」</p>
-<p>「那您记着。」邱岸把笔帽扣上，「材料我只写我看见的。」</p>
-<p>陶砚没有接这句。他记得 1999 年冬天的一件事：连着五天，他每天打四百发。第五天晚上手抖得扣不动扳机，坐在靶位后面的木凳上没起来。师父走过来，没有问他打了多少发，问的是今天哪一发最差。他说了发数。师父说，不是发数。那五天的日志上，他只写了时数，八小时。</p>
-<p>「五栏里没有’成功’。」邱岸说，「也没有’最差’。」</p>
-<p>「签字之前我再核一遍编号。」</p>
-<p>邱岸把证书要了回去，摊在放大镜底下。他把木座往自己这边推了两公分，镜片边缘那道划痕正好切过证书的左上角。他用食指把木座转了半圈，让光从另一个角度过来。</p>
-<p>「签发日期。」</p>
-<p>「2019 年 11 月 27 日。」</p>
-<p>「钢印压得比 2018 年那批浅。」</p>
-<p>「您在比钢印。」</p>
-<p>「章面平，压出来就浅。」邱岸把脸凑到十几公分，「这张是真的。」</p>
-<p>「编号您刚才抄过。」</p>
-<p>「抄过。」他直起身，「我说一件事。2019 年那批一共十九张，发到第七张，是我签的字。」</p>
-<p>「您在窗口后面。」</p>
-<p>「我在。」邱岸说，「我跟陈守拙五年。从他手里出来的人不多，抄走他那张表的就我一个。」</p>
-<p>「这张表不是我跟您要的。」</p>
-<p>「我知道。」邱岸把证书推回桌面中间，「我抄过，所以我敢签。」</p>
-<p>他从抽屉里抽出一张打印好的纸，抬头是中心的名字，右上角有一行编号，下面是空白的正文。他把纸铺在吸墨纸上，拧开笔帽，开始写。</p>
-<p>陶砚把椅子往前挪了两厘米。</p>
-<p>邱岸写了三行，停下来，把纸转过来，推到桌子中间。</p>
-<blockquote>
-<p>兹证明：陶砚同志自 1998 年 9 月至 2002 年 12 月在省体校射击队受训，其训练记录体例（五栏：日期、时数、动作、偏差、备注）出自该队总教练陈守拙自 1988 年起统一使用的训练日志格式。陶砚同志 2002 年 12 月离职后，于南方三处训练营及岚城突破训练基地继续使用该体例，并据以建立学员时数记录与结算制度。</p>
-</blockquote>
-<p>第二段：</p>
-<blockquote>
-<p>本人建议贵委员会在采信本材料时，同时调阅申请人 2002 年度的原始训练记录。</p>
-</blockquote>
-<p>陶砚把两段读完，抬眼。</p>
-<p>「第二段不在我给您的三栏里。」</p>
-<p>「第一段是溯源。第二段是核验。」邱岸说，「您签了字，我签了字。委员会凭这两段决定您的黄金认证是转’待复核’还是保住。'待复核’的意思是牌子从墙上摘下来，下一年的时数包卖不动。」</p>
-<p>「谁定的调阅。」</p>
-<p>「我。」</p>
-<p>「依据什么。」</p>
-<p>「依据第一段。」邱岸说，「我证明这套东西的出处是 1998 年的省体校。那我就得核一次它有没有变过。」</p>
-<p>陶砚把那张纸拿近了一点。第一段里的每一个字都是真的。他确实在射击队待了四年三个月，确实用五栏记了四年三个月。他确实从南方那间租来的房子开始把格子变成制度。真话放在纸上，纸上就没地方放别的东西。他放下纸，把手指在桌沿上按了一下。</p>
-<p>「2011 年到现在，我一共带过二百四十七名学员。」他说，「其中十一个拿过省冠军以上。我签了二百四十七份学员成绩认定。」</p>
-<p>「这份材料里没有成绩。」</p>
-<p>「我知道。」</p>
-<p>「所以我建议委员会调阅原始记录。」邱岸说，「不是查您。查那套格子。」</p>
-<p>「如果原始记录里没有呢。」</p>
-<p>「那委员会自己会看见。」</p>
-<p>「如果原始记录里有。」</p>
-<p>「那就一起看见。」</p>
-<p>「调阅是几个人。」</p>
-<p>「两个。我不去。」邱岸说，「委员会一个，我们中心一个。逐本对，对系统里的记录，对折算表，对签字。」</p>
-<p>「缺页怎么办。」</p>
-<p>「出说明。说明里写清缺在哪一页、什么时候发现、什么时候报。」邱岸说，「说明要您签字。」</p>
-<p>「那一页要是找不回来。」</p>
-<p>「那一年就空着。」</p>
-<p>邱岸把吸墨纸上的笔拿起来，笔尖在砚台边上刮了两下。他不急。他等这句话等了很久，这一点陶砚看出来了——不是从他的脸上看出来的，是从他写字的速度看出来的。整个下午他写字都很稳，写到「训练记录体例」五个字的时候笔压重了一点。</p>
-<p>「签字可以。」邱岸说，「但我要看您从 2002 年到今天的全部训练日志。一页都不能少。」</p>
-<p>陶砚没有立刻回答。</p>
-<p>全部。他知道全部是什么意思。二十四本，一年一本，从 2003 年到今天，2026 年的这本还没写完。</p>
-<p>他知道那些本子里有什么。时数栏一格不空，每一格都能对上系统里的记录。折算表上那 1,860 小时的示范，两栏数字对得上。</p>
-<p>跨项目的等待、器械调试、教练在休息室坐着的四十分钟，都填在折算表的第二行到第十一行。二十六年的备注栏，空着。</p>
-<p>空着的那些不是漏了。他从来不写失败。</p>
-<p>他把这些念头过了一遍，像过一遍训练计划的负荷表，哪一段该加，哪一段该减。结论是：数据不会骗人。他这二十四本里没有一个数字是他编的。他要是把它们交出去，交出去的是二十六年的实打实的时数，是二百四十七个学员一页一页攒出来的东西。这些数字站得住。</p>
-<p>这些数字也拆得开。他知道。</p>
-<p>他抬起头。</p>
-<p>「全部。」他说，「一页不少。」</p>
-<p>他左手搭在膝盖上，手指在裤缝上点了三下。</p>
-<p>「多少本。」</p>
-<p>「二十四本。」</p>
-<p>「一本多少页。」</p>
-<p>「三十六页起，六十几页不等。」</p>
-<p>邱岸把笔帽扣上。「从 2003 年到今天，二十三年。」</p>
-<p>「二十六年的格式。」</p>
-<p>陶砚在心里翻到 2003 年的第十七页。那天记的是四小时二十分，动作栏两个字：等风。备注栏空着，白纸，从上到下一直空到底。</p>
-<p>二十四本。他翻到哪一页，那一栏都是空的。</p>
-<p>「二〇二六年这本，写到哪儿了。」</p>
-<p>「三月十六。」</p>
-<p>「为什么停在十六。」</p>
-<p>「那天雨。」</p>
-<p>「雨天也记。」</p>
-<p>「记了。时数八小时。动作栏三个字，擦靶纸。」</p>
-<p>补是补得上的。二十三天，每本一本地补，备注栏写清楚这些年练过什么、错过什么，字迹仿一仿，委员会看不出来。</p>
-<p>陶砚把这个念头过了一遍，像过一遍负荷表。它算得通。他把它放下了。</p>
-<p>邱岸把笔帽拧开，在材料右下角填日期。</p>
-<p>「2026 年 3 月 6 日。」他写完，签名，「邱岸」。签完把笔放下，用两只手把那张纸推正，纸边对齐桌沿。</p>
-<p>「4 月 20 号之前给我。」他说，「委员会 4 月 30 号收材料。」</p>
-<p>「我 4 月 18 号送过来。」</p>
-<p>「可以。」</p>
-<p>「折算表也给我。」邱岸说。</p>
-<p>「在每一本后面。」</p>
-<p>「我要原件。」</p>
-<p>「原件。」</p>
-<p>「打出来的复印件不算。」</p>
-<p>「我送原件。」</p>
-<p>陶砚想起苏芮的话。卢兆丰每年都要一个数贴在背景板上，挂三块牌还是五块牌都要。牌要是转成「待复核」，今年的数就少一位。他没有因为这个改任何计划。他只是把「4 月 18 号」在心里念了一遍。</p>
-<p>陶砚站起来。他把证书收回内袋，走到门口的时候回头看了一眼桌上那张纸。邱岸在收那张纸，两只手，纸不能折，折了角不好归档。</p>
-<p>邱岸跟着他出来，走到电梯口。楼道里没有别人，脚步声是两个人的，一重一轻。</p>
-<p>从十四楼到停车场是四十七级台阶，陶砚数过。他在第九级上停了两秒，把今天听到的东西排了一遍：三栏、全部、一页不少。</p>
-<p>「四十七级。」陶砚说。</p>
-<p>「您数过。」</p>
-<p>「今天数了两遍。」</p>
-<p>「您 2002 年走的时候，带走了什么。」</p>
-<p>数到第三十四级，他想起 2002 年 12 月离开射击队的那天。日志本放在陈守拙办公室的桌角，钥匙压着封面的一角。陈守拙从抽屉里拿出一张移交单，让他签字，签完在日志的最后一页画了一道横线，说：以后自己记。</p>
-<p>「一本日志。」陶砚说，「一支笔。」</p>
-<p>「就这些。」</p>
-<p>「就这些。」</p>
-<p>那一页的备注栏是空的。</p>
-<p>他后来每一本的第一页，都画过同一条线。</p>
-<p>「陶教练。」</p>
-<p>「您知道 3,100 这个数字吗。」</p>
-<p>陶砚停在门口。</p>
-]]></content>
-      <categories>
-        <category>小说</category>
-      </categories>
-      <tags>
-        <tag>小说</tag>
-        <tag>第800小时</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>第800小时 11：缺的那一页</title>
     <url>/%E5%B0%8F%E8%AF%B4/fc7a66d4.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>蓝封的日志少了一页。</p>
@@ -36747,6 +36579,174 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>他用指甲把折角挑开。里面是一张对折过两次的旧纸，比日志的纸更旧，边缘毛糙，折痕发白。他把纸摊开在方向盘上。</p>
 <p>纸上只有一行手写的数字：</p>
 <p>3,100。</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>小说</tag>
+        <tag>第800小时</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第800小时 10：一封推荐信</title>
+    <url>/%E5%B0%8F%E8%AF%B4/72065ce8.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>「您的材料我们上周五收到的。」</p>
+<p>邱岸把一张纸推过桌面，纸边对着陶砚。</p>
+<p>「三栏。体系名称，首次成型年份，签字人。前两栏只能您自己填。第三栏，我填。」</p>
+<p>「溯源是什么。」</p>
+<p>「认证委员会要求黄金级教练交代自己的训练体系是从哪儿来的。出一份材料，证明这套东西有出处。」邱岸拧开笔帽，把笔放在纸的右上角，「出处要有一个人在体系里头待过，由这个人签字。这个人能说出您最早那几年在哪儿，跟谁练。」</p>
+<p>「从哪儿来不重要。」陶砚说，「重要的是谁能证明。」</p>
+<p>「那您就找能证明的人。」</p>
+<p>邱岸说这句话的时候没有抬头。他在纸上写「岚城突破训练基地」几个字，写得慢，每个字都压着笔画。</p>
+<p>陶砚在十四楼等了两个多小时。前台的登记本要填姓名、单位、事由三栏，单位的章是基地的行政章，红色，骑缝盖了两次。事由那一栏他写的是「溯源材料」，四个字，写完把笔帽扣上，扣了两下才扣紧。邱岸从里间出来接他，手里拿着一支笔，边走边把笔在手指间转半圈，转的方向始终一样。</p>
+<p>陶砚从岚城过来三个半小时。高速公路上堵了四十分钟，他把这三栏在心里过了七遍。前两栏他填得出来。体系名称是「一万小时认证与记录方法」，首次成型年份填 2003 年。</p>
+<p>2002 年底他在南方一个训练营租了一间房，教第一批学员怎么记时数，那套格子就是那时候定下来的。填 2003 年，是因为委员会要看的是一个体系，不是一个人。</p>
+<p>那间房在番禺，二楼的一室一厅，房东按月收钱，不问用途。第一个学员是广西人，二十三岁，练短跑，第一天把时数记错了，自己没发现。陶砚让他把那一页重抄一遍，抄完在旁边写清楚错在哪。学员问算不算数，陶砚说算，从头算。</p>
+<p>那套格子是他在省体校的第二个冬天自己排出来的。前四列抄队里的格式，第五列备注是他加的，1998 年 10 月加的。师父当时没让他加，也没让他去掉。</p>
+<p>第三栏他填不了。</p>
+<p>前台后面的墙上挂着一块样品牌，青铜、白银、黄金三档，每块牌面上只刻两样东西：编号，和累计时数。样品牌旁边贴着一张《突破类训练机构认证分级办法》，塑封的，右下角卷起来翘着。玻璃隔断把办公区隔成六块，四个人的工位空着两个。桌面上摆着一台修表用的放大镜，铜杆，固定在一个小木座上，镜片边缘有划痕。</p>
+<p>邱岸把笔搁下，把陶砚的黄金认证证书拿过去，放到放大镜底下。他一只手扶着纸，另一只手调木座的角度，看了大概二十秒。</p>
+<p>「编号我抄一下。」他说，「签发日期在下面那一行。」</p>
+<p>抄完，他写进自己那本摊开的记录簿。</p>
+<p>「有件事我想问。」陶砚说。</p>
+<p>「您说。」</p>
+<p>「上周三下午，一个陌生号码给我发了一条短信。六个字。」</p>
+<p>邱岸把放大镜的镜盖合上。</p>
+<p>「812 我也记着。」</p>
+<p>「您回拨过。」</p>
+<p>「回拨了。空号。」</p>
+<p>「空号是临时的。」邱岸把证书推回来，「也可能发完就注销了。」</p>
+<p>「您知道是谁发的吗。」</p>
+<p>「不知道。」</p>
+<p>他没有问那六个字是什么。陶砚在心里记下这一条。</p>
+<p>「那条短信几点到的。」陶砚说。</p>
+<p>「3 月 4 日，下午 4 点 26 分。」</p>
+<p>「4 点 26 分我在高速上。」陶砚说，「那个姓邱的人，我当天下午才第一次听人提起。」</p>
+<p>邱岸没有说话。他把那支笔又转了半圈，转的方向还是那个方向。「那个号码您还留着吗。」</p>
+<p>「留着。」</p>
+<p>「我不问。」邱岸说，「我要是发的，不会用那个号码。」</p>
+<p>「2002 年我在射击队待到 12 月。」陶砚说。</p>
+<p>「陈守拙教您。」</p>
+<p>「是。」</p>
+<p>「教了多久。」</p>
+<p>「四年三个月。」</p>
+<p>「1998 年 9 月到 2002 年 12 月。」邱岸写下来，笔尖在纸上顿了一下，「他 2011 年走的。」</p>
+<p>「是。」</p>
+<p>「我跟了他五年。」邱岸说，「他给我的评价是四个字。」</p>
+<p>「什么。」</p>
+<p>「有天赋，但偷懒。」</p>
+<p>玻璃隔断外面有人走动，鞋跟在地板上敲出两下，然后停了。邱岸等那两下走远，才接着往下写。</p>
+<p>「您那本记录本，五栏。」</p>
+<p>「日期，时数，动作，偏差，备注。」</p>
+<p>「没有’成功’。」</p>
+<p>陶砚看着他。</p>
+<p>「1998 年 9 月他发给我们的本子，封面上印着体校的队徽，第一页印着表头。」邱岸说，「五栏，跟您说的一样。'成功’那一栏从一开始就没有。他说过一句：本子里不许有两种结果。」</p>
+<p>「他说的是别的。」</p>
+<p>「那您记着。」邱岸把笔帽扣上，「材料我只写我看见的。」</p>
+<p>陶砚没有接这句。他记得 1999 年冬天的一件事：连着五天，他每天打四百发。第五天晚上手抖得扣不动扳机，坐在靶位后面的木凳上没起来。师父走过来，没有问他打了多少发，问的是今天哪一发最差。他说了发数。师父说，不是发数。那五天的日志上，他只写了时数，八小时。</p>
+<p>「五栏里没有’成功’。」邱岸说，「也没有’最差’。」</p>
+<p>「签字之前我再核一遍编号。」</p>
+<p>邱岸把证书要了回去，摊在放大镜底下。他把木座往自己这边推了两公分，镜片边缘那道划痕正好切过证书的左上角。他用食指把木座转了半圈，让光从另一个角度过来。</p>
+<p>「签发日期。」</p>
+<p>「2019 年 11 月 27 日。」</p>
+<p>「钢印压得比 2018 年那批浅。」</p>
+<p>「您在比钢印。」</p>
+<p>「章面平，压出来就浅。」邱岸把脸凑到十几公分，「这张是真的。」</p>
+<p>「编号您刚才抄过。」</p>
+<p>「抄过。」他直起身，「我说一件事。2019 年那批一共十九张，发到第七张，是我签的字。」</p>
+<p>「您在窗口后面。」</p>
+<p>「我在。」邱岸说，「我跟陈守拙五年。从他手里出来的人不多，抄走他那张表的就我一个。」</p>
+<p>「这张表不是我跟您要的。」</p>
+<p>「我知道。」邱岸把证书推回桌面中间，「我抄过，所以我敢签。」</p>
+<p>他从抽屉里抽出一张打印好的纸，抬头是中心的名字，右上角有一行编号，下面是空白的正文。他把纸铺在吸墨纸上，拧开笔帽，开始写。</p>
+<p>陶砚把椅子往前挪了两厘米。</p>
+<p>邱岸写了三行，停下来，把纸转过来，推到桌子中间。</p>
+<blockquote>
+<p>兹证明：陶砚同志自 1998 年 9 月至 2002 年 12 月在省体校射击队受训，其训练记录体例（五栏：日期、时数、动作、偏差、备注）出自该队总教练陈守拙自 1988 年起统一使用的训练日志格式。陶砚同志 2002 年 12 月离职后，于南方三处训练营及岚城突破训练基地继续使用该体例，并据以建立学员时数记录与结算制度。</p>
+</blockquote>
+<p>第二段：</p>
+<blockquote>
+<p>本人建议贵委员会在采信本材料时，同时调阅申请人 2002 年度的原始训练记录。</p>
+</blockquote>
+<p>陶砚把两段读完，抬眼。</p>
+<p>「第二段不在我给您的三栏里。」</p>
+<p>「第一段是溯源。第二段是核验。」邱岸说，「您签了字，我签了字。委员会凭这两段决定您的黄金认证是转’待复核’还是保住。'待复核’的意思是牌子从墙上摘下来，下一年的时数包卖不动。」</p>
+<p>「谁定的调阅。」</p>
+<p>「我。」</p>
+<p>「依据什么。」</p>
+<p>「依据第一段。」邱岸说，「我证明这套东西的出处是 1998 年的省体校。那我就得核一次它有没有变过。」</p>
+<p>陶砚把那张纸拿近了一点。第一段里的每一个字都是真的。他确实在射击队待了四年三个月，确实用五栏记了四年三个月。他确实从南方那间租来的房子开始把格子变成制度。真话放在纸上，纸上就没地方放别的东西。他放下纸，把手指在桌沿上按了一下。</p>
+<p>「2011 年到现在，我一共带过二百四十七名学员。」他说，「其中十一个拿过省冠军以上。我签了二百四十七份学员成绩认定。」</p>
+<p>「这份材料里没有成绩。」</p>
+<p>「我知道。」</p>
+<p>「所以我建议委员会调阅原始记录。」邱岸说，「不是查您。查那套格子。」</p>
+<p>「如果原始记录里没有呢。」</p>
+<p>「那委员会自己会看见。」</p>
+<p>「如果原始记录里有。」</p>
+<p>「那就一起看见。」</p>
+<p>「调阅是几个人。」</p>
+<p>「两个。我不去。」邱岸说，「委员会一个，我们中心一个。逐本对，对系统里的记录，对折算表，对签字。」</p>
+<p>「缺页怎么办。」</p>
+<p>「出说明。说明里写清缺在哪一页、什么时候发现、什么时候报。」邱岸说，「说明要您签字。」</p>
+<p>「那一页要是找不回来。」</p>
+<p>「那一年就空着。」</p>
+<p>邱岸把吸墨纸上的笔拿起来，笔尖在砚台边上刮了两下。他不急。他等这句话等了很久，这一点陶砚看出来了——不是从他的脸上看出来的，是从他写字的速度看出来的。整个下午他写字都很稳，写到「训练记录体例」五个字的时候笔压重了一点。</p>
+<p>「签字可以。」邱岸说，「但我要看您从 2002 年到今天的全部训练日志。一页都不能少。」</p>
+<p>陶砚没有立刻回答。</p>
+<p>全部。他知道全部是什么意思。二十四本，一年一本，从 2003 年到今天，2026 年的这本还没写完。</p>
+<p>他知道那些本子里有什么。时数栏一格不空，每一格都能对上系统里的记录。折算表上那 1,860 小时的示范，两栏数字对得上。</p>
+<p>跨项目的等待、器械调试、教练在休息室坐着的四十分钟，都填在折算表的第二行到第十一行。二十六年的备注栏，空着。</p>
+<p>空着的那些不是漏了。他从来不写失败。</p>
+<p>他把这些念头过了一遍，像过一遍训练计划的负荷表，哪一段该加，哪一段该减。结论是：数据不会骗人。他这二十四本里没有一个数字是他编的。他要是把它们交出去，交出去的是二十六年的实打实的时数，是二百四十七个学员一页一页攒出来的东西。这些数字站得住。</p>
+<p>这些数字也拆得开。他知道。</p>
+<p>他抬起头。</p>
+<p>「全部。」他说，「一页不少。」</p>
+<p>他左手搭在膝盖上，手指在裤缝上点了三下。</p>
+<p>「多少本。」</p>
+<p>「二十四本。」</p>
+<p>「一本多少页。」</p>
+<p>「三十六页起，六十几页不等。」</p>
+<p>邱岸把笔帽扣上。「从 2003 年到今天，二十三年。」</p>
+<p>「二十六年的格式。」</p>
+<p>陶砚在心里翻到 2003 年的第十七页。那天记的是四小时二十分，动作栏两个字：等风。备注栏空着，白纸，从上到下一直空到底。</p>
+<p>二十四本。他翻到哪一页，那一栏都是空的。</p>
+<p>「二〇二六年这本，写到哪儿了。」</p>
+<p>「三月十六。」</p>
+<p>「为什么停在十六。」</p>
+<p>「那天雨。」</p>
+<p>「雨天也记。」</p>
+<p>「记了。时数八小时。动作栏三个字，擦靶纸。」</p>
+<p>补是补得上的。二十三天，每本一本地补，备注栏写清楚这些年练过什么、错过什么，字迹仿一仿，委员会看不出来。</p>
+<p>陶砚把这个念头过了一遍，像过一遍负荷表。它算得通。他把它放下了。</p>
+<p>邱岸把笔帽拧开，在材料右下角填日期。</p>
+<p>「2026 年 3 月 6 日。」他写完，签名，「邱岸」。签完把笔放下，用两只手把那张纸推正，纸边对齐桌沿。</p>
+<p>「4 月 20 号之前给我。」他说，「委员会 4 月 30 号收材料。」</p>
+<p>「我 4 月 18 号送过来。」</p>
+<p>「可以。」</p>
+<p>「折算表也给我。」邱岸说。</p>
+<p>「在每一本后面。」</p>
+<p>「我要原件。」</p>
+<p>「原件。」</p>
+<p>「打出来的复印件不算。」</p>
+<p>「我送原件。」</p>
+<p>陶砚想起苏芮的话。卢兆丰每年都要一个数贴在背景板上，挂三块牌还是五块牌都要。牌要是转成「待复核」，今年的数就少一位。他没有因为这个改任何计划。他只是把「4 月 18 号」在心里念了一遍。</p>
+<p>陶砚站起来。他把证书收回内袋，走到门口的时候回头看了一眼桌上那张纸。邱岸在收那张纸，两只手，纸不能折，折了角不好归档。</p>
+<p>邱岸跟着他出来，走到电梯口。楼道里没有别人，脚步声是两个人的，一重一轻。</p>
+<p>从十四楼到停车场是四十七级台阶，陶砚数过。他在第九级上停了两秒，把今天听到的东西排了一遍：三栏、全部、一页不少。</p>
+<p>「四十七级。」陶砚说。</p>
+<p>「您数过。」</p>
+<p>「今天数了两遍。」</p>
+<p>「您 2002 年走的时候，带走了什么。」</p>
+<p>数到第三十四级，他想起 2002 年 12 月离开射击队的那天。日志本放在陈守拙办公室的桌角，钥匙压着封面的一角。陈守拙从抽屉里拿出一张移交单，让他签字，签完在日志的最后一页画了一道横线，说：以后自己记。</p>
+<p>「一本日志。」陶砚说，「一支笔。」</p>
+<p>「就这些。」</p>
+<p>「就这些。」</p>
+<p>那一页的备注栏是空的。</p>
+<p>他后来每一本的第一页，都画过同一条线。</p>
+<p>「陶教练。」</p>
+<p>「您知道 3,100 这个数字吗。」</p>
+<p>陶砚停在门口。</p>
 ]]></content>
       <categories>
         <category>小说</category>
@@ -41430,6 +41430,129 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
 <blockquote>
 <p>写作于 2018 年 5 月开始的我，到了 2026 年 11 月，博客里已经有 229 个 md 文件，其中 60 个是小说。</p>
 </blockquote>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>DigitalOcean托管智能体暴露云厂商新战场</title>
+    <url>/AI/a768a68b.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="托管智能体把创业成本拆成了几段"><a class="markdownIt-Anchor" href="#托管智能体把创业成本拆成了几段"></a> 托管智能体把创业成本拆成了几段</h2>
+<p>托管智能体正在改变独立开发者评估 AI 基础设施的方式。我最初关注 DigitalOcean，主要是把它当作老牌 VPS 厂商。现在看，Managed Agents 瞄准了更具体的环节：应用运行、扩缩容和智能体部署。</p>
+<p>这项变化值得看。独立开发者做 AI 产品，难点已经从“能不能调用模型”转向“怎样持续运行”。模型接口可以替换，代码也会由代理生成。代理一旦涉及工具调用、记忆、任务队列和外部服务，部署与运维就会占用大量时间。</p>
+<p>DigitalOcean 对自己的定位是“AI-native cloud”。Managed Agents 的核心卖点，是每个智能体都能由托管服务运行。开发者不用先拼出一套容器编排和监控体系。</p>
+<blockquote>
+<p>托管服务的价值，在于减少上线前必须自己搭好的零件。</p>
+</blockquote>
+<p>我更关心价格。DigitalOcean 的 VPS 托管方案从 <code>$4</code> 起，Droplets 也从 <code>$4</code> 起。前者是计算入口，后者是完整应用运行环境。它们不能证明托管智能体的最终成本，却给出了一个清楚的成本基准。</p>
+<p><span class="hl">创业成本不再只是服务器账单，而是开发者被占用的时间。</span></p>
+<p>如果一个托管智能体省下几天部署工作，即使月费高于普通 VPS，也可能更划算。反过来，若产品仍处于验证阶段，复杂代理还没有必要常驻，昂贵托管同样会拖慢迭代。</p>
+<h2 id="云厂商正在接管智能体的运行层"><a class="markdownIt-Anchor" href="#云厂商正在接管智能体的运行层"></a> 云厂商正在接管智能体的运行层</h2>
+<p>传统云厂商的优势，不只是提供服务器。它们手里已有数据库、对象存储、网络、安全和账单体系。Managed Agents 把智能体放进这套体系后，客户购买的是多个服务之间的连接。</p>
+<p>DigitalOcean 的界面允许用户直接升级、增加或删除虚拟服务器。Droplets 提供 Basic、General Purpose、Memory-Optimized 和 CPU-Optimized 等实例类型。开发者仍能控制底层资源，同时把智能体交给托管服务管理。</p>
+<p>这套组合适合两类项目。第一类是已有 Web 产品的 AI 功能，需要在现有应用旁增加代理。第二类是结构清楚、任务重复的代理，例如定时处理资料、调用工具并保存状态。</p>
+<p>我不认同把“托管”直接等同于“更先进”。托管会隐藏一部分技术细节，也会增加平台依赖。供应商更换、接口调整和费用变化，都会进入项目成本。独立开发者如果只看到演示顺利，很难提前发现这些问题。</p>
+<blockquote>
+<p>简单界面降低了第一次部署难度，却没有消除长期迁移成本。</p>
+</blockquote>
+<p>我在《模型竞争进入交付能力比拼，AI 产品重塑独立开发门槛》（2026-11-10）中写过，代码生成只解决交付的一段。智能体托管补上了运行层，但产品判断、权限边界和付费验证仍然留在开发者手里。</p>
+<h2 id="独立开发者需要计算完整成本"><a class="markdownIt-Anchor" href="#独立开发者需要计算完整成本"></a> 独立开发者需要计算完整成本</h2>
+<p>我推“一人公司”时，白天仍是白领。Hermes Atlas 也在推进，但三个问题还没答出来：解决什么问题、谁付钱、怎么收钱。托管服务能让我更快上线，却不能替我回答这三个问题。</p>
+<p>这正是我最警惕的地方。AI 基础设施变便宜，会让更多未经验证的产品被部署出来。服务器从每月几美元起步，智能体平台再提供一键运行，很容易制造一种错觉：产品已经接近完成。</p>
+<p>我更愿意先计算三笔账。第一笔是持续账单，包括计算、存储、网络和日志。第二笔是维护账单，包括升级、排错和供应商迁移。第三笔是注意力账单，开发者每天要确认代理有没有完成真正的任务。</p>
+<blockquote>
+<p>一个代理运行成功，不等于一个产品有人付钱。</p>
+</blockquote>
+<p><span class="hl">托管服务压缩了试错时间，也压缩了拖延验证的理由。</span></p>
+<p>DigitalOcean 已提供多种实例和按小时计费，也让小规模试验更容易控制。可选方案越多，开发者越需要先确定负载，再挑服务。围绕产品问题直接选择架构，通常比先研究几十种云配置更有效。</p>
+<p>我还没决定 Atlas 是否应该使用 Managed Agents。它目前更接近知识库与记录系统，还没有稳定到需要独立代理运行。若需求成立，我会把托管服务放进完整成本里比较，而不是因为部署界面简单就作决定。</p>
+<p>到 2026 年 11 月 17 日，AI 基础设施的一个新变化已经很清楚：构建能力正在向云平台迁移。独立开发者真正要判断的，是平台替自己承担了多少日常运维，又留下了多少无法外包的产品问题。</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Mac 航拍壁纸也有最佳使用时刻</title>
+    <url>/%E6%8A%80%E6%9C%AF/d1e2714a.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="航拍壁纸不该只负责好看"><a class="markdownIt-Anchor" href="#航拍壁纸不该只负责好看"></a> 航拍壁纸不该只负责好看</h2>
+<p>Mac 的航拍壁纸适合展示空间，却很难参与日常节奏。Apple 已经把同一个地方从早到晚拍了一遍，我们看到的仍是一组静态风景。</p>
+<p>我最初以为，按时切换只是自动化的小功能：给不同壁纸排个时间表，工作日一套，周末另一套就够了。后来我发现，真正值得设计的是桌面产品与一天之间的对应关系。</p>
+<p>场景调度会影响桌面产品的节律设计。打开电脑、开始工作、午休、进入会议、结束一天，每个场景都需要合适的视觉环境。壁纸可以参与这种切换。</p>
+<p>Aerial Switcher 把这件事落到了菜单栏：它会按照预设时间，在 Mac 的航拍壁纸之间切换。工具本身很轻，GitHub 项目采用 MIT 许可证，也提供了 Releases 下载方式。</p>
+<blockquote>
+<p>安装并不复杂：下载、解压，再把应用拖入“应用程序”文件夹。</p>
+</blockquote>
+<p>这类工具的价值不在壁纸库。它让 macOS 原生能力多出了一种使用方式。</p>
+<h2 id="场景切换比随机轮播更合适"><a class="markdownIt-Anchor" href="#场景切换比随机轮播更合适"></a> 场景切换比随机轮播更合适</h2>
+<p>桌面产品常见的节律设计，是根据用户状态改变信息密度。开发时收起通知，工作时突出任务，休息时减少打扰。壁纸也可以加入同一套调度。</p>
+<p>午休时换成明亮的海岸，会议时换成安静的城市，傍晚回到光线柔和的街景。这些安排很直观。</p>
+<p>但我更在意日程能否持续运行。Aerial Switcher 是菜单栏应用，也支持按时间自动切换。定时规则一旦稳定，桌面就会随一天自然变化。用户省掉了手动挑选壁纸的操作。</p>
+<blockquote>
+<p>壁纸切换解决的是视觉变化，排程解决的是变化时机。</p>
+</blockquote>
+<p>这也是桌面节律设计里常被忽略的一层。开发者喜欢安排通知、焦点和快捷操作，却很少考虑窗口背后的画面是否也在争夺注意力。静态壁纸占据一个固定区域，动态变化则不断制造新的视觉事件。</p>
+<p><span class="hl">并非所有定时切换都能形成节律，切换频率和场景连续性同样重要。</span></p>
+<p>如果短时间连续变化，桌面会显得躁动。合适的设计应当让每次切换对应真实场景变化，同时保留一段稳定的使用时间。</p>
+<h2 id="我更关心它是否安静地工作"><a class="markdownIt-Anchor" href="#我更关心它是否安静地工作"></a> 我更关心它是否安静地工作</h2>
+<p>这类小工具最容易被做成展示能力强的应用。壁纸列表、时间表、菜单栏控制，都可以逐项展开。但工具栏本身没有必要成为另一个信息中心。</p>
+<p>我偏向更克制的实现：设置完成后，让它留在菜单栏，按时间执行切换。发生调整时，用户能够找到入口就够了。</p>
+<p>这也和《飞桨OCR硬件清单》提到的环境约束形成对照。那篇文章讨论操作系统、处理器架构等条件，判断很直接。桌面小工具同样受运行环境约束。系统集成方式、权限范围、安装路径和后台稳定性，都会影响它能否长期工作。</p>
+<p>Aerial Switcher 的 GitHub Releases 页面提供了应用包。项目公开，也采用 MIT 许可证。这让普通用户能够直接获取，开发者也能检查实现方式。</p>
+<blockquote>
+<p>工具越靠近系统入口，越需要清楚说明它会改什么、何时执行。</p>
+</blockquote>
+<p>我认为，桌面产品的节律设计应该少一点炫技，多一点可预测。用户需要知道画面为什么变了，也需要能临时退出安排。菜单栏入口承担了这两项职责。</p>
+<p><span class="hl">最佳使用时刻来自真实日程，自动切换只负责把视觉场景及时送达。</span></p>
+<p>今天我仍未决定自己的完整排程。不同日期的工作节奏变化明显，固定规则未必一直合适。也许工作日采用稳定的上午场景，午后留给阅读，晚上再回到安静的夜景。</p>
+<p>开放式问题留在这里：桌面产品究竟应该主动适应一天，还是安静地等待用户主动选择？</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AI 摘要冲击正在重塑 Reddit 流量与社区生态</title>
+    <url>/AI/c32f521.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="流量下滑只是结果reddit-正在失去免费分发"><a class="markdownIt-Anchor" href="#流量下滑只是结果reddit-正在失去免费分发"></a> 流量下滑只是结果，Reddit 正在失去免费分发</h2>
+<p>我最初把 Reddit 的流量变化理解成搜索引擎的一次算法波动。AI 摘要普及后，用户更少点击原始链接，平台自然承压。看完 Similarweb 的数据，我改变了看法：Reddit 已经从“搜索引擎流量承压”，走到“访问机制也被迫收紧”。</p>
+<blockquote>
+<p>2025 年 10 月至 2026 年 10 月，Reddit 全球访问量下滑了 13%。</p>
+</blockquote>
+<p>13% 不是单次波动。它覆盖整整 12 个月，又出现在 Reddit 准备强制所有访客登录的节点上。Google 搜索带来的访问减少，平台却选择提高进入门槛。Reddit 正把内容价值留在站内，把外部流量挡在门外。</p>
+<p>这件事与 AI 摘要形成了一种奇怪的循环。摘要系统引用 Reddit 内容完成回答，用户获得答案后离开。Reddit 为补充训练与授权收益，允许内容被使用，却失去了原本依赖搜索结果获得的访问与互动。</p>
+<p><span class="hl">Reddit 为 AI 提供了内容，AI 减少了 Reddit 的访客。</span></p>
+<p>这是一种共生关系。平台贡献结构化讨论，模型获得训练材料，搜索产品提高回答效率。Reddit 得到授权收入和市场关注，却逐渐失去流量入口与社区成员的即时反馈。</p>
+<p>我尤其在意“强制登录”带来的后果。搜索引擎带来的用户原本可能只读一个帖子，如今要先注册、登录，再决定是否加入社区。转化门槛上升，外部链接继续被 AI 截留，Reddit 的访问量可能继续下滑。</p>
+<h2 id="创作者不会立刻离开但价值链已经松动"><a class="markdownIt-Anchor" href="#创作者不会立刻离开但价值链已经松动"></a> 创作者不会立刻离开，但价值链已经松动</h2>
+<p>Reddit 的麻烦不只发生在平台层面。创作者过去依赖搜索流量获得阅读、订阅与社区关系，现在需要重新计算这条路径。</p>
+<p>2024 年，Reddit 与 Google 达成协议，授权后者使用平台内容训练 AI。协议发生时，Reddit 正受益于 Google 搜索流量激增。平台以为自己找到了新的内容价值：讨论可以被模型吸收，不必只靠广告与点击。</p>
+<blockquote>
+<p>2023 年 5 月至 2024 年 5 月，Reddit 流量增长了 39%。</p>
+</blockquote>
+<p>这组数据说明当时的外部入口仍在扩张。后来 AI Overviews 变得常见且实用，搜索流量开始下滑。Reddit 的内容价值没有消失，进入内容的路径却缩短了。</p>
+<p>创作者获得的回报因此出现变化。讨论被摘要引用，可能扩大话题影响，也可能让原帖失去访问。授权收益由平台掌握，创作者通常拿不到与流量下降对应的补偿。更麻烦的是，用户看到摘要后未必知道原讨论来自哪里。</p>
+<p><span class="hl">内容被使用得越多，访问与变现之间的断裂可能越深。</span></p>
+<p>短期看，创作者仍有动力留在 Reddit。真实讨论、版块文化与历史内容难以复制。长期看，如果摘要只能带走观点，无法带回读者，创作会逐渐变成平台之间交换内容授权的投入。</p>
+<p>这跟我做一人公司时碰到的产品问题很像。Hermes Atlas 的卡点仍是三个：解决什么问题、谁付钱、怎么收钱。Reddit 创作者面对的版本则更尖锐：内容已经有人使用，使用价值由谁获得，经济回报如何分配？</p>
+<p>如果答案只剩平台与模型公司，那么创作者会重新评估投入。社区也会从“讨论发生的地方”，变成“给模型准备材料的资料库”。</p>
+<h2 id="搜索式-ai-不会终结社区只会重新分配入口"><a class="markdownIt-Anchor" href="#搜索式-ai-不会终结社区只会重新分配入口"></a> 搜索式 AI 不会终结社区，只会重新分配入口</h2>
+<p>我不认为 Reddit 的问题可以通过恢复旧式搜索排名解决。AI Overviews 的优势恰恰是直接给出答案，让用户减少打开链接的步骤。搜索引擎也在主动优化这种交互。</p>
+<p>Google 与 Reddit 仍是共生关系。Reddit 提供真实世界中的讨论样本，Google 借助这些材料改善搜索与摘要。Reddit 获得授权和合作价值，Google 获得更丰富的答案来源。问题出在利益分配与反馈回路。</p>
+<p><span class="hl">搜索式 AI 不会消灭内容需求，只会削弱内容与访问之间的旧连接。</span></p>
+<p>对 Reddit 来说，关键选择在于能否把“被摘要引用”改造成新的社区入口。引用来源、原帖链接、主题订阅与贡献者追踪，都可能影响摘要用户是否回到原讨论。登录门槛则可能把更多潜在用户挡在外面。</p>
+<p>强制登录也许能换取用户数据、广告展示与更稳定的社区身份，但无法自动补回消失的搜索访问。平台还要回答一个更难的问题：如果用户只在摘要里接触 Reddit 内容，Reddit 还能不能建立新的讨论网络？</p>
+<p>我到现在也没搞明白，Reddit 应该把自己定位成答案的来源，还是答案之后仍然有人继续追问的社区。前者适配搜索式 AI，后者需要承担更高的访问成本。Reddit 正在选择前一条路，同时也必须证明社区没有因此失去未来。</p>
 ]]></content>
       <categories>
         <category>AI</category>
