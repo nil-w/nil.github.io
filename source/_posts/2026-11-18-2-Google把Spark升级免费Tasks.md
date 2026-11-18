@@ -1,12 +1,13 @@
 ---
 title: Google把Spark升级免费Tasks
-date: 2026-11-18 09:00:00
 categories:
   - AI
 tags:
   - AI
 toc: true
 comments: true
+abbrlink: 889bb647
+date: 2026-11-18 09:00:00
 ---
 
 ## 免费降低试用门槛，平台锁定仍然存在
