@@ -89,13 +89,13 @@ lazyload:
 giscus:
   enable: true
   repo: nil-w/nil.github.io
-  repoId: ""            # ← 待填：giscus.app 给出的 data-repo-id（形如 R_kgDOxxxxxx）
+  repoId: "MDEwOlJlcG9zaXRvcnk2NTQyNjM4OA=="            # ← giscus.app 给出的 data-repo-id
   category: "Announcements"
-  categoryId: ""        # ← 待填：giscus.app 给出的 data-category-id（形如 DIC_kwDOxxxxxx）
+  categoryId: "DIC_kwDOA-ZT1M4DLebF"        # ← giscus.app 给出的 data-category-id
   mapping: pathname
   strict: 0
   reactionsEnabled: 1
-  inputPosition: top
+  inputPosition: bottom
   theme: preferred_color_scheme
   lang: zh-CN
 

@@ -84,7 +84,7 @@
   const _isEncryptedPost = !!(post.password && String(post.password).trim()) ||
     post.encrypt === true || post.encrypt === 'true';
   %>
-  <% if (!_isEncryptedPost){ %>
+  <% if (!_isEncryptedPost && post.layout === 'post'){ %>
     <%- partial('post/giscus') %>
   <% } %>
   <% if(theme.gitalk.enable){ %>
