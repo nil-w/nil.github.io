@@ -152,42 +152,6 @@
       </tags>
   </entry>
   <entry>
-    <title>给博客增加评论功能</title>
-    <url>/Jekyll/2d764bfc.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="首先感谢imsun大神的插件gitment"><a class="markdownIt-Anchor" href="#首先感谢imsun大神的插件gitment"></a> 首先感谢<a href="https://github.com/imsun">@imsun</a>大神的插件<a href="https://imsun.github.io/gitment/">Gitment</a></h3>
-<span id="more"></span>
-<p>插件本身默认支持英文，所以我下载了源码进行一部分改造。以下是源码：<a href="yqwoe.space/yqwoe.github.io/static/js/gitment.js">giment.js</a> 、 <a href="yqwoe.space/yqwoe.github.io/static/css/gitment.css">giement.css</a></p>
-<p>下边是操作步骤，不是技术同学先参考一下<a href="https://imsun.github.io/gitment/">Gitment Demo Page</a> 再进行操作。</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><a href="https://www.jekyll.com.cn/docs/home/">Jekyll 教程</a></p>
-</li>
-<li class="lvl-2">
-<p><a href="https://github.com/imsun/gitment">Gitment Readme</a></p>
-</li>
-</ul>
-<h3 id="基本使用"><a class="markdownIt-Anchor" href="#基本使用"></a> 基本使用</h3>
-<h4 id="1-注册-oauth-application"><a class="markdownIt-Anchor" href="#1-注册-oauth-application"></a> 1. 注册 OAuth Application</h4>
-<p><a href="https://github.com/settings/applications/new">New OAuth</a> ，填写内容时候确保 callback URL 与你的博客地址域名一致。</p>
-<h4 id="2引入-js-css-到文章页面"><a class="markdownIt-Anchor" href="#2引入-js-css-到文章页面"></a> 2.引入 js、css 到文章页面</h4>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;container&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://yqwoe.space/yqwoe.github.io/static/css/gitment.css&quot;&gt;</span><br><span class="line">&lt;script src=&quot;https://yqwoe.space/yqwoe.github.io/static/js/gitment.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">/**</span><br><span class="line">*第一个坑，默认id是填入完整的url，而issue的label长度限制为50，所以url必然会超长。</span><br><span class="line">*/</span><br><span class="line">var paths = location.pathname.split(&#x27;/&#x27;)</span><br><span class="line">var id = decodeURI(paths[paths.length - 1 ]))</span><br><span class="line">var gitment = new Gitment(&#123;</span><br><span class="line">  id: id, // 必填，不然评论信息不会加载成功！</span><br><span class="line">  owner: &#x27;你的 GitHub ID&#x27;,</span><br><span class="line">  repo: &#x27;存储评论的 repo&#x27;,</span><br><span class="line">  oauth: &#123;</span><br><span class="line">    client_id: &#x27;你注册 OAuth 的 client ID&#x27;,</span><br><span class="line">    client_secret: &#x27;你注册 OAuth 的 client secret&#x27;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line">gitment.render(&#x27;container&#x27;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="3-初始化评论"><a class="markdownIt-Anchor" href="#3-初始化评论"></a> 3. 初始化评论</h4>
-<p>页面发布后，你需要访问页面并使用你的 GitHub 账号登录（请确保你的账号是第二步所填 repo 的 owner），点击初始化按钮。</p>
-<h4 id="敲黑板下一篇博客会介绍-jekyll-admin-插件的使用方法和一些填坑技巧"><a class="markdownIt-Anchor" href="#敲黑板下一篇博客会介绍-jekyll-admin-插件的使用方法和一些填坑技巧"></a> 敲黑板，下一篇博客会介绍 《<strong>Jekyll-Admin 插件的使用方法</strong>》和一些填坑技巧。</h4>
-<p>我的博客评论功能目前只支持全球最大<s>同性</s>交友网站<a href="github.com/nil-w">Github</a>的账号，以后会慢慢扩展。<br />
-以上是我的分享，谢谢！！</p>
-]]></content>
-      <categories>
-        <category>Jekyll</category>
-      </categories>
-      <tags>
-        <tag>技巧</tag>
-        <tag>gitment</tag>
-        <tag>git</tag>
-        <tag>Jekyll</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>过六一的&quot;儿童&quot;们</title>
     <url>/%E7%94%9F%E6%B4%BB/1bc5f237.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
@@ -222,6 +186,42 @@
         <tag>六一</tag>
         <tag>巨婴</tag>
         <tag>孩子</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>给博客增加评论功能</title>
+    <url>/Jekyll/2d764bfc.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="首先感谢imsun大神的插件gitment"><a class="markdownIt-Anchor" href="#首先感谢imsun大神的插件gitment"></a> 首先感谢<a href="https://github.com/imsun">@imsun</a>大神的插件<a href="https://imsun.github.io/gitment/">Gitment</a></h3>
+<span id="more"></span>
+<p>插件本身默认支持英文，所以我下载了源码进行一部分改造。以下是源码：<a href="yqwoe.space/yqwoe.github.io/static/js/gitment.js">giment.js</a> 、 <a href="yqwoe.space/yqwoe.github.io/static/css/gitment.css">giement.css</a></p>
+<p>下边是操作步骤，不是技术同学先参考一下<a href="https://imsun.github.io/gitment/">Gitment Demo Page</a> 再进行操作。</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><a href="https://www.jekyll.com.cn/docs/home/">Jekyll 教程</a></p>
+</li>
+<li class="lvl-2">
+<p><a href="https://github.com/imsun/gitment">Gitment Readme</a></p>
+</li>
+</ul>
+<h3 id="基本使用"><a class="markdownIt-Anchor" href="#基本使用"></a> 基本使用</h3>
+<h4 id="1-注册-oauth-application"><a class="markdownIt-Anchor" href="#1-注册-oauth-application"></a> 1. 注册 OAuth Application</h4>
+<p><a href="https://github.com/settings/applications/new">New OAuth</a> ，填写内容时候确保 callback URL 与你的博客地址域名一致。</p>
+<h4 id="2引入-js-css-到文章页面"><a class="markdownIt-Anchor" href="#2引入-js-css-到文章页面"></a> 2.引入 js、css 到文章页面</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;container&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://yqwoe.space/yqwoe.github.io/static/css/gitment.css&quot;&gt;</span><br><span class="line">&lt;script src=&quot;https://yqwoe.space/yqwoe.github.io/static/js/gitment.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">/**</span><br><span class="line">*第一个坑，默认id是填入完整的url，而issue的label长度限制为50，所以url必然会超长。</span><br><span class="line">*/</span><br><span class="line">var paths = location.pathname.split(&#x27;/&#x27;)</span><br><span class="line">var id = decodeURI(paths[paths.length - 1 ]))</span><br><span class="line">var gitment = new Gitment(&#123;</span><br><span class="line">  id: id, // 必填，不然评论信息不会加载成功！</span><br><span class="line">  owner: &#x27;你的 GitHub ID&#x27;,</span><br><span class="line">  repo: &#x27;存储评论的 repo&#x27;,</span><br><span class="line">  oauth: &#123;</span><br><span class="line">    client_id: &#x27;你注册 OAuth 的 client ID&#x27;,</span><br><span class="line">    client_secret: &#x27;你注册 OAuth 的 client secret&#x27;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line">gitment.render(&#x27;container&#x27;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="3-初始化评论"><a class="markdownIt-Anchor" href="#3-初始化评论"></a> 3. 初始化评论</h4>
+<p>页面发布后，你需要访问页面并使用你的 GitHub 账号登录（请确保你的账号是第二步所填 repo 的 owner），点击初始化按钮。</p>
+<h4 id="敲黑板下一篇博客会介绍-jekyll-admin-插件的使用方法和一些填坑技巧"><a class="markdownIt-Anchor" href="#敲黑板下一篇博客会介绍-jekyll-admin-插件的使用方法和一些填坑技巧"></a> 敲黑板，下一篇博客会介绍 《<strong>Jekyll-Admin 插件的使用方法</strong>》和一些填坑技巧。</h4>
+<p>我的博客评论功能目前只支持全球最大<s>同性</s>交友网站<a href="github.com/nil-w">Github</a>的账号，以后会慢慢扩展。<br />
+以上是我的分享，谢谢！！</p>
+]]></content>
+      <categories>
+        <category>Jekyll</category>
+      </categories>
+      <tags>
+        <tag>技巧</tag>
+        <tag>gitment</tag>
+        <tag>git</tag>
+        <tag>Jekyll</tag>
       </tags>
   </entry>
   <entry>
@@ -335,30 +335,6 @@
       </tags>
   </entry>
   <entry>
-    <title>阿里云mysql外网访问</title>
-    <url>/%E6%9C%8D%E5%8A%A1%E5%99%A8/b4b628e2.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>转载原文评论: <a href="https://segmentfault.com/q/1010000009603559?sort=created">阿里云 ecs 上安装了 mysql 但是外网访问不了</a></p>
-<span id="more"></span>
-<p>1.阿里云 ECS 有安全组防火墙.默认只开了 ICMP,22,3389. 在服务器控制台找到 安全组-配置规则-添加安全组规则</p>
-<p><img src="/images/1950746143-596a46107163e_articlex.png" alt="1950746143-596a46107163e_articlex" /></p>
-<p>2.如果是用 root 登录 MySQL,在登陆后 use mysql, user 表 root 对应的 localhost 改为%</p>
-<p>3.mysql 默认只能自本机访问</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line">#bind-address = 127.0.0.1</span><br><span class="line"></span><br><span class="line">service mysql restart</span><br></pre></td></tr></table></figure>
-<p>4.检查是不是在监听状态</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netstat -ntpl |grep 3306</span><br></pre></td></tr></table></figure>
-<p>5.防火墙是否对 mysql 端口限制,设置防火墙</p>
-]]></content>
-      <categories>
-        <category>服务器</category>
-      </categories>
-      <tags>
-        <tag>aliyun</tag>
-        <tag>阿里云</tag>
-        <tag>ubuntu 14.04</tag>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>生活计划</title>
     <url>/%E7%94%9F%E6%B4%BB/a5f172c4.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>有段没有更新博客了，最近身体状态堪忧，加上忙碌，孩子生病，我也支气管炎，怎么吃药都不见好。<br />
@@ -434,6 +410,30 @@
       </tags>
   </entry>
   <entry>
+    <title>阿里云mysql外网访问</title>
+    <url>/%E6%9C%8D%E5%8A%A1%E5%99%A8/b4b628e2.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>转载原文评论: <a href="https://segmentfault.com/q/1010000009603559?sort=created">阿里云 ecs 上安装了 mysql 但是外网访问不了</a></p>
+<span id="more"></span>
+<p>1.阿里云 ECS 有安全组防火墙.默认只开了 ICMP,22,3389. 在服务器控制台找到 安全组-配置规则-添加安全组规则</p>
+<p><img src="/images/1950746143-596a46107163e_articlex.png" alt="1950746143-596a46107163e_articlex" /></p>
+<p>2.如果是用 root 登录 MySQL,在登陆后 use mysql, user 表 root 对应的 localhost 改为%</p>
+<p>3.mysql 默认只能自本机访问</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line">#bind-address = 127.0.0.1</span><br><span class="line"></span><br><span class="line">service mysql restart</span><br></pre></td></tr></table></figure>
+<p>4.检查是不是在监听状态</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netstat -ntpl |grep 3306</span><br></pre></td></tr></table></figure>
+<p>5.防火墙是否对 mysql 端口限制,设置防火墙</p>
+]]></content>
+      <categories>
+        <category>服务器</category>
+      </categories>
+      <tags>
+        <tag>aliyun</tag>
+        <tag>阿里云</tag>
+        <tag>ubuntu 14.04</tag>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记0-《程序员的数学》进制与指数法则</title>
     <url>/%E5%AD%A6%E4%B9%A0/752254673.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="学习列表"><a class="markdownIt-Anchor" href="#学习列表"></a> 学习列表:</h2>
@@ -500,23 +500,6 @@
       </tags>
   </entry>
   <entry>
-    <title>英语学习</title>
-    <url>/%E5%AD%A6%E4%B9%A0/3f43dc72.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>App: <code>duolinguo(多邻国)</code></p>
-<span id="more"></span>
-<p>你使用 Duolingo 的时候你不单单是在学外语，你还是个译者。Duolingo 里面还有一个 Strength（力量）的概念，所有学过的内容在一开始是满血状态的，但是随着时间流逝和你在其它相关练习犯错误，你的 strength 就会不断降低，这时候你就需要通过复习来保持满血状态，这就是我上面提到的，通过一个复习系统将学到的知识从短期记忆放到长期记忆里面，Duolingo 提供了一个非常科学有效的复习管理系统。</p>
-<p>语法手册《无敌英语语法终身学习版(最新修订)》</p>
-<p>待补充…</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>英语单词</tag>
-        <tag>入门</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>ruby 爬虫 一</title>
     <url>/%E7%88%AC%E8%99%AB/71e8d967.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>​ 拖延了半个多月，把之前写的东西整理一下发现，好多内容都在脑子里，没有形成转化后的内容，所以，吃过晚饭就决定写完在睡觉。</p>
@@ -565,6 +548,23 @@
         <tag>Python</tag>
         <tag>java</tag>
         <tag>kimurai</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>英语学习</title>
+    <url>/%E5%AD%A6%E4%B9%A0/3f43dc72.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>App: <code>duolinguo(多邻国)</code></p>
+<span id="more"></span>
+<p>你使用 Duolingo 的时候你不单单是在学外语，你还是个译者。Duolingo 里面还有一个 Strength（力量）的概念，所有学过的内容在一开始是满血状态的，但是随着时间流逝和你在其它相关练习犯错误，你的 strength 就会不断降低，这时候你就需要通过复习来保持满血状态，这就是我上面提到的，通过一个复习系统将学到的知识从短期记忆放到长期记忆里面，Duolingo 提供了一个非常科学有效的复习管理系统。</p>
+<p>语法手册《无敌英语语法终身学习版(最新修订)》</p>
+<p>待补充…</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>英语单词</tag>
+        <tag>入门</tag>
       </tags>
   </entry>
   <entry>
@@ -751,12 +751,12 @@
     <title>路</title>
     <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-        <div id="aplayer-HuDxlKyy" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-UGzVSVUv" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-HuDxlKyy"),
+            element: document.getElementById("aplayer-UGzVSVUv"),
             narrow: false,
             autoplay: true,
             showlrc: false,
@@ -8097,6 +8097,150 @@ ExcelUtil --> RecordHandler</pre>
       </tags>
   </entry>
   <entry>
+    <title>霍金的时间箭头，和我们要在黑暗里走多久</title>
+    <url>/%E7%94%9F%E6%B4%BB/e8d63c15.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="霍金的时间箭头和我们要在黑暗里走多久"><a class="markdownIt-Anchor" href="#霍金的时间箭头和我们要在黑暗里走多久"></a> 霍金的时间箭头，和我们要在黑暗里走多久</h2>
+<blockquote>
+<p>我们对宇宙最初五分钟的理解也许是对的。</p>
+<p>—— 霍金《时间简史》</p>
+</blockquote>
+<p>有个问题，读《时间简史》的时候一直缠着我：<strong>霍金把宇宙的起点算到了最初五分钟，把终点推到了几百亿亿亿年之后，那么中间这段，人类的处境是什么？</strong></p>
+<p>这本书给的是方程和推论，不给处境。所以我试着自己把几个尺度算出来：一个银河年有多长，一颗太阳还能烧多久，一个黑洞要蒸发到什么时候。这三个数字叠在一起，人类的处境会自动浮现。</p>
+<h2 id="先定位我们在哪儿"><a class="markdownIt-Anchor" href="#先定位我们在哪儿"></a> 先定位：我们在哪儿</h2>
+<p>第一个数字：太阳绕银河系中心转一圈，大约 2.25 亿到 2.5 亿年。天文学界管这个周期叫一个<strong>银河年</strong>。</p>
+<p>太阳的年龄是 46 亿年，所以它已经绕着银心走了 20 到 25 圈。也就是说，2.25 亿年前太阳系绕银心回到今天这个坐标时，地球上没有人类，没有城市，没有火，没有象形文字。那时候统治地球的是蜥蜴。</p>
+<p>第二个数字更贴近日常：地球到太阳的平均距离是 1.496 亿公里，光跑完这段路要 8 分 19 秒。这个数字人人都会背，但真正的含义是：<strong>太阳光是最快的信使，而它要 8 分钟才能到</strong>。</p>
+<p>把两者放一起，处境就显出形状了。银河系直径 10 万光年，太阳以每秒 220 公里绕银心跑。银河系里绝大多数恒星彼此相距几光年到几十光年，而我们能造出来的任何飞船，跨越这个距离都是一个跨越物种纪元的工程。</p>
+<p>这是我们的起跑线。位置不算坏，但筹码很少。</p>
+<h2 id="我们有多少时间"><a class="markdownIt-Anchor" href="#我们有多少时间"></a> 我们有多少时间</h2>
+<p>既然谈「走多久」，先得知道手里的时间够不够。</p>
+<p>《时间简史》里霍金讲过一句话：太阳是一个巨大的核反应炉，每秒把大约 600 万吨氢转成氦，其中 400 万吨的质量转化成能量。</p>
+<p>这个数字需要停一下。每秒 400 万吨物质湮灭成纯能量，一年 3.15 亿秒，一年就是 1.26 × 10^14 千克。46 亿年下来，太阳已经烧掉大约 100 个地球的质量，占它总质量的 <strong>0.03%</strong>。</p>
+<p>这才是重点。太阳不是一颗炸弹，是一根正在慢慢烧的蜡烛，而它已经烧掉了自己质量的万分之三。核聚变的效率高得离谱，四百万吨氢消失换来相当于人类一年全球能耗的几十倍，可太阳的质量基数太大，这点消耗听起来微不足道。</p>
+<p>光在路上还有延迟。核心产生的光子要穿过辐射层才能跑到表面，在那之前会被电子和原子核反复吸收、随机再发射。斯坦福教材说，一个核心生成的光子穿过辐射层可能要 17 万年。太阳光从核心里出来，是一场跨越十几万年的接力赛。</p>
+<p>这引出一个我们不太愿意正视的事实：<strong>我们看到的太阳，是 17 万年前离开它核心的光</strong>。如果太阳今天熄灭，我们还会继续看到它 8 分 19 秒，然后才知道。</p>
+<p>把账算完，太阳还剩大约 50 亿年的主序寿命。</p>
+<h2 id="上限在哪儿"><a class="markdownIt-Anchor" href="#上限在哪儿"></a> 上限在哪儿</h2>
+<p>50 亿年是「我们还有多久」，但「上限」要问的是恒星的物理终点在哪。</p>
+<p>太阳是 G2V 型主序星，也就是黄矮星。这类恒星的主序寿命大约 100 亿年，太阳 46 亿岁，正处在中点。别的恒星差别很大：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>主序寿命</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>红矮星（0.1 M☉）</td>
+<td>6 万亿到 12 万亿年</td>
+</tr>
+<tr>
+<td>黄矮星（太阳）</td>
+<td>约 100 亿年</td>
+</tr>
+<tr>
+<td>O 型大质量星</td>
+<td>几百万年</td>
+</tr>
+</tbody>
+</table>
+<p>这张表有个残酷的读法：<strong>质量越大的恒星死得越快</strong>。O 型星几百万年就烧完燃料，坍缩成中子星或黑洞，然后爆炸成超新星，把重元素撒进星际介质。地球上的铁、金、铀全是这种爆炸的遗产，你手腕上的金镯子是某颗恒星死掉时吐出来的。</p>
+<p>而红矮星能烧 12 万亿年，宇宙现在才 138 亿岁，它连主序都还没走完。</p>
+<p>质量还决定终点。0.8 到 10 倍太阳质量的恒星会膨胀成红巨星，抛掉外层，留下一颗白矮星；10 倍以上则核心坍缩成中子星或黑洞。太阳自己会膨胀到大约 0.75 AU（1.1 亿公里）的半径，吞掉水星和金星。</p>
+<p>地球的轨道半径是 1 AU。红巨星阶段太阳的外层正好涨到 0.75 AU，地球就在这个边界上。海洋蒸干，地表温度几百度。</p>
+<p><strong>50 亿年后。</strong> 50 亿年前地球上刚有真核细胞，50 亿年后人类文明不存在了，除非我们不在这里。</p>
+<p>到这里为止，所有的故事都由引力决定：引力的强弱决定天体的寿命，也决定恒星的死法。而引力还有更极端的形式。</p>
+<h2 id="引力的尽头黑洞"><a class="markdownIt-Anchor" href="#引力的尽头黑洞"></a> 引力的尽头：黑洞</h2>
+<p>霍金 1974 年做的推论，是整个现代物理里最反直觉的一个。</p>
+<p>他考虑的是量子场论里的真空。真空不是「空无一物」，而是充满了虚粒子的涨落。虚粒子对通常瞬间湮灭，但在事件视界附近，强烈的引力潮汐力把它们强行拉开，一个掉进去，一个逃出来。逃出来的成了实粒子，带着正能量；掉进去的带着负能量。净效果是黑洞<strong>通过发光损失质量</strong>。</p>
+<p>这就是霍金辐射。</p>
+<p>温度公式：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mi>H</mi></msub><mo>=</mo><mfrac><mrow><mi mathvariant="normal">ℏ</mi><msup><mi>c</mi><mn>3</mn></msup></mrow><mrow><mn>8</mn><mi>π</mi><mi>G</mi><mi>M</mi><msub><mi>k</mi><mi>B</mi></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">T_H = \frac{\hbar c^3}{8 \pi G M k_B}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.08125em;">H</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.327108em;vertical-align:-0.8360000000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.3139999999999996em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">8</span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="mord mathdefault">G</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">ℏ</span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8360000000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>三个结果：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>温度与质量成<strong>反比</strong>。黑洞越小越热，越热蒸发越快，越快就越热。这是热力学上的不稳定，但它不会立刻爆炸，因为热得慢。</p>
+</li>
+<li class="lvl-2">
+<p>一个太阳质量的黑洞，霍金温度约 10^{-7} K，远低于宇宙微波背景辐射的 2.7 K。所以在今天的宇宙里，太阳质量的黑洞<strong>不蒸发，反而在吸收背景辐射而增长</strong>。</p>
+</li>
+<li class="lvl-2">
+<p>黑洞的熵正比于视界面积：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>=</mo><mfrac><mrow><mi>k</mi><msup><mi>c</mi><mn>3</mn></msup><mi>A</mi></mrow><mrow><mn>4</mn><mi>G</mi><mi mathvariant="normal">ℏ</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">S = \frac{k c^3 A}{4 G \hbar}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.36292em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01792em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mathdefault mtight">G</span><span class="mord mtight">ℏ</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mord mtight"><span class="mord mathdefault mtight">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913142857142857em;"><span style="top:-2.931em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mord mathdefault mtight">A</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>。贝肯斯坦猜的系数，霍金定的。</p>
+</li>
+</ul>
+<p>蒸发时间：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mo>≈</mo><mfrac><mrow><mn>5120</mn><mi>π</mi><msup><mi>G</mi><mn>2</mn></msup><msup><mi>M</mi><mn>3</mn></msup></mrow><mrow><mi mathvariant="normal">ℏ</mi><msup><mi>c</mi><mn>4</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">t \approx \frac{5120 \pi G^2 M^3}{\hbar c^4}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.177108em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">ℏ</span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">5</span><span class="mord">1</span><span class="mord">2</span><span class="mord">0</span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>太阳质量的黑洞蒸发完需要大约 10^{67} 年。宇宙年龄是 1.38 × 10^{10} 年。差 57 个数量级。</p>
+<p>也就是说，<strong>今天宇宙里每一个大质量黑洞，都比宇宙本身古老得多，还差着无数个数量级才会消失</strong>。而质子可能早就衰变了，如果它真的衰变（实验上还没观测到），那么在那之前，宇宙的物质基础本身就已经被拆干净。</p>
+<p>《时间简史》里霍金问过一个很冷的问题：宇宙的历史会不会终结于大挤压，所有恒星都烧完，所有黑洞都蒸发，所有物质在超大质量黑洞附近慢慢下沉，几十亿亿亿年之后只剩一个无限小、无限密的点？</p>
+<p>他给了三种可能：永远膨胀下去、膨胀速度渐渐减到零然后停住、或者收缩回去。他倾向第一种，同时说不排除前两种。</p>
+<p>到这里，尺度已经推到头了。但这个 10^{67} 年逼出了一个更根本的问题：<strong>时间为什么有方向？</strong></p>
+<h2 id="时间箭头"><a class="markdownIt-Anchor" href="#时间箭头"></a> 时间箭头</h2>
+<p>霍金在《时间简史》里把「为什么时间有方向」拆成两类问题。</p>
+<p>一类是<strong>热力学时间箭头</strong>：为什么熵总是增加？</p>
+<p>另一类是<strong>心理时间箭头</strong>：为什么我们记得过去，而不是未来？</p>
+<p>他的论证原则上相当素朴。把宇宙的初态和末态做比较，如果熵在末态比初态低，那就违反了热力学第二定律。而「我们记得的是过去而不是未来」这件事本身，等价于「我们处于一个熵低的态」。这听起来是循环论证，但霍金的处理是：既然我们观察到的是低熵态，那就倒推初态必然也是低熵的。<strong>我们之所以能存在，正是因为宇宙以极低熵开始。</strong></p>
+<p>低熵初态从哪来？他没有答案，只说「这正是我们研究的方向」。</p>
+<p>我读到这里的感觉是：霍金把「时间有方向」从一个哲学问题变成了一个技术问题。他没有解释时间箭头，他只是把箭头需要满足的条件写清楚了。</p>
+<p>而低熵初态这件事，今天有一个更具体、更冷的解释：<strong>暴胀</strong>。</p>
+<p>暴胀理论认为，宇宙在诞生后的极短瞬间（大约 10^{-30} 秒）经历了一次指数级膨胀，空间从一个量子涨落的大小膨胀到至少今天的尺度。这个过程在极短时间内把熵稀释掉了。总熵在增加，但观测到的宇宙里熵极低。我们就是那个低熵角落里的幸存者。</p>
+<p>《时间简史》出版于 1988 年。暴胀理论正是那前后提出的，霍金本人是主要推动者之一。</p>
+<p>于是整个链条闭合了。宇宙给了一个方向，我们在这个方向上只有很短的一段。短到什么程度，下面这个数字可以量化。</p>
+<h2 id="把尺度合起来"><a class="markdownIt-Anchor" href="#把尺度合起来"></a> 把尺度合起来</h2>
+<p>银河年 2.25 亿年。太阳剩余寿命 50 亿年，大约 0.22 个银河年。人类文明史 1 万年，是银河年的 4.4 × 10^{-5}。物种存在史 30 万年，是银河年的 0.13%。</p>
+<p><strong>一个银河年，人类文明连它的万分之零点五都占不到。</strong></p>
+<p>这个数字通常被用来感叹人类的渺小，但它还有另一层意思。太阳系不在银河系边缘，它在猎户臂内缘，距银心约 2.7 万光年，那里是<strong>宜居带</strong>。银河系中心是超大质量黑洞人马座 A*，约 400 万个太阳质量，它离我们 2.7 万光年，强大到足以让整个星系绕它转圈，但不足以让我们活不下去。</p>
+<p>我们在一个<strong>稳定</strong>的位置上。太阳系绕银心的轨道是椭圆的，会受旋臂扰动，但没人知道这个扰动会不会引发地球的生态剧变。有说法认为地球的大灭绝周期与银河年相关，但这条链条的证据强度是弱的，我不打算把它当结论用。</p>
+<p>位置好，筹码少。接下来就是那个最实际的问题：凭这点筹码，能走多远。</p>
+<h2 id="星际航行三个硬约束"><a class="markdownIt-Anchor" href="#星际航行三个硬约束"></a> 星际航行：三个硬约束</h2>
+<p>《时间简史》成书于 1988 年。那时候的星际旅行想象基本靠「曲速引擎」和「虫洞」这类概念道具，霍金自己在书里也承认这些东西没有物理依据。</p>
+<p>现在的图景更冷，但也更具体。三个硬约束。</p>
+<p><strong>约束一：光速。</strong> 任何带质量的东西都不可能超过光速。这不是工程问题，是洛伦兹变换写进物质本性的。半人马座 α 星 4.37 光年，在 20% 光速下需要 20 到 30 年。</p>
+<p><strong>约束二：加速。</strong> 加速本身就是成本。而且加速过程里的时间膨胀对你有利、对地球不利，你返航时地球已经过了几百年。</p>
+<p><strong>约束三：能量。</strong> 这条最容易被忽略，也最致命。</p>
+<p>Breakthrough Starshot（2016 年由尤里·米尔纳、霍金和扎克伯格发起）设想用地面激光阵列推动光帆达到光速的 15% 到 20%，20 到 30 年抵达半人马座。方案本身很美：上千个克级「星芯片」，4m × 4m 的光帆，10 分钟内加速完成，平均加速度 100 km/s²（约 10000 g）。</p>
+<p>但 2021 年美国天文学会的研究笔记《The “Breakthrough” Proposal for Laser-accelerated Spacecraft is not Feasible》直接说这个方案<strong>不自洽</strong>。问题不在激光阵列的工程难度，在于能量账根本平不了。让 1 克重的载荷达到 0.2c，动能约 1.8 × 10^13 J，而激光穿过 4m 光帆时几乎全部被反射掉，实际转化效率极低。</p>
+<p>另一份分析给出的数是：100 GW 功率持续 4000 秒，总能量约 10^14 J。这个量级已经是人类全部发电能力的量级，<strong>全部烧掉，用来推一克东西</strong>。</p>
+<p>而 0.2c 本身也够不着。相对论动量 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mo>=</mo><mi>γ</mi><mi>m</mi><mi>v</mi></mrow><annotation encoding="application/x-tex">p = \gamma m v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05556em;">γ</span><span class="mord mathdefault">m</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span> 在高速时非线性增长，光帆反射激光的有效推力效率下降，峰值速度压不到 0.2c。</p>
+<p>所以真正的答案可能是：<strong>光帆本身才是极限，不是激光</strong>。激光帆是「唯一可能」的物理路径，但它在工程上不成立。</p>
+<h2 id="那么走哪条路"><a class="markdownIt-Anchor" href="#那么走哪条路"></a> 那么走哪条路</h2>
+<p>把可能性排一遍。</p>
+<p><strong>核裂变。</strong> 化学火箭的比冲 450 秒，裂变能到 30000 秒量级，差两个数量级。土星五号能把人送上月球，是因为近地轨道只需 400 km。星际不是这个量级的跳跃。</p>
+<p><strong>核聚变。</strong> 氘氚聚变 3.4 × 10^{14} J/kg，Isp 可到 30000 秒以上，但需要 1 亿度以上的等离子体。维持这个状态本身就是难题，而目前最大的困难是维持，不是产能。</p>
+<p><strong>反物质。</strong> 湮灭的比能最高，但反物质的制造和储存是当前工程的绝对瓶颈。物理上极漂亮，前提是你能造出并约束它。</p>
+<p><strong>激光帆。</strong> 物理上最干净，工程上最不成立。</p>
+<p><strong>曲速驱动。</strong> 需要负能量密度，也就是《时间简史》里霍金提到的那种「违反正定条件」的场论构造。所有已知的 GR 定理都不允许。即使有了 warp bubble，负能量密度带来的稳定性问题至今没人解决。</p>
+<p><strong>代达罗斯计划</strong>（英国 SETI，1978 年）：无人探测器，核聚变推进，速度 12% 光速，40 年飞抵巴纳德星。这是<strong>唯一一个完整做过工程设计的星际方案</strong>，而且它不违反任何物理定律。代价是造它需要一整个国家的工业能力，而且没人愿意批这个预算。</p>
+<h2 id="结论不是我们出不去"><a class="markdownIt-Anchor" href="#结论不是我们出不去"></a> 结论不是「我们出不去」</h2>
+<p>数字排完，有两件事是确定的。</p>
+<p><strong>第一，人类的时间尺度相对于宇宙的结构尺度，短到毫无意义。</strong> 100 年对银河年 2.25 亿年。我们是那个「永远看不到一次完整银河公转」的物种。</p>
+<p><strong>第二，但我们的位置是好的。</strong> 宜居带，稳定轨道，还有一颗还能烧 50 亿年的恒星。银河系 1000 亿到 4000 亿颗恒星，绝大多数永远不会有文明，它们只是核反应的机器。而我们恰好在一个能问「这是不是唯一一次」的位置上。</p>
+<p>这两件事同时成立，才构成一个值得写下来的判断：<strong>星际航行大概率不是人类先突破的</strong>。能量约束太硬，代达罗斯那样的方案需要的工业投入超出任何单一国家的承受范围。它更可能是几百年后、或者由某个我们无法想象的组织完成的。在那之前，人类的疆界扩展方向是<strong>内太阳系</strong>，不是往外跑，是往里挖。月球、小行星带、火星、木星系统。</p>
+<p>至于黑洞，那是一个更远的问题。人类大概率会在有生之年把探测器送进太阳系所有值得去的地方，但要把探测器送进事件视界并且拿回任何数据，需要一个我们还没造出来的技术层级。而即使送进去了，数据也传不回来。这是《时间简史》里霍金留给读者的一道题：<strong>你能接收到的信息，只来自你视界之外。</strong></p>
+<p>那道题到今天还没解。</p>
+<hr />
+<h2 id="几个可以自己验的数字"><a class="markdownIt-Anchor" href="#几个可以自己验的数字"></a> 几个可以自己验的数字</h2>
+<p>关于光速和距离的直觉很容易出错，可以自己算一遍：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 光年、AU 与飞行时间的换算</span></span><br><span class="line">C = <span class="number">299_792_458</span>          <span class="comment"># m/s</span></span><br><span class="line">AU = <span class="number">149_597_870_700</span>     <span class="comment"># m，1 天文单位</span></span><br><span class="line">LY = <span class="number">9.4607e15</span>           <span class="comment"># m，1 光年</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">travel_years</span>(<span class="params">dist_ly, speed_c</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;按地球参考系的距离算航行时间（年）&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> dist_ly / speed_c</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> c <span class="keyword">in</span> [<span class="number">0.01</span>, <span class="number">0.1</span>, <span class="number">0.2</span>, <span class="number">0.5</span>, <span class="number">0.9</span>]:</span><br><span class="line">    t = travel_years(<span class="number">4.37</span>, c)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;c:&gt;<span class="number">4.0</span>%&#125;</span> 光速 → 半人马座 α 需 <span class="subst">&#123;t:&gt;<span class="number">8.1</span>f&#125;</span> 年&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 太阳光到地球</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;\n阳光到地球：<span class="subst">&#123;AU / C / <span class="number">60</span>:<span class="number">.2</span>f&#125;</span> 分钟&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 银河年 vs 人类文明史</span></span><br><span class="line">galactic_year = <span class="number">2.25e8</span></span><br><span class="line">civilization = <span class="number">1e4</span></span><br><span class="line">species = <span class="number">3e5</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;文明史占银河年：<span class="subst">&#123;civilization / galactic_year:<span class="number">.2</span>e&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;物种史占银河年：<span class="subst">&#123;species / galactic_year:<span class="number">.2</span>e&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 太阳质量黑洞的霍金温度</span></span><br><span class="line">G = <span class="number">6.674e-11</span></span><br><span class="line">h_bar = <span class="number">1.0545718e-34</span></span><br><span class="line">k_B = <span class="number">1.380649e-23</span></span><br><span class="line">M_sun = <span class="number">1.989e30</span></span><br><span class="line">T_H = h_bar * C**<span class="number">3</span> / (<span class="number">8</span> * <span class="number">3.14159265</span> * G * M_sun * k_B)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;\n太阳质量黑洞霍金温度：<span class="subst">&#123;T_H:<span class="number">.3</span>e&#125;</span> K&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;宇宙微波背景温度：      2.7 K&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;蒸发所需时间量级：      1e67 年&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;宇宙年龄：              1.38e10 年&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1% 光速 → 半人马座 α 需    437.0 年</span><br><span class="line"> 10% 光速 → 半人马座 α 需     43.7 年</span><br><span class="line"> 20% 光速 → 半人马座 α 需     21.8 年</span><br><span class="line"> 50% 光速 → 半人马座 α 需      8.7 年</span><br><span class="line"> 90% 光速 → 半人马座 α 需      4.9 年</span><br><span class="line"></span><br><span class="line">阳光到地球：8.32 分钟</span><br><span class="line">文明史占银河年：4.44e-05</span><br><span class="line">物种史占银河年：1.33e-03</span><br><span class="line"></span><br><span class="line">太阳质量黑洞霍金温度：6.169e-08 K</span><br><span class="line">宇宙微波背景温度：      2.7 K</span><br><span class="line">蒸发所需时间量级：      1e67 年</span><br><span class="line">宇宙年龄：              1.38e10 年</span><br></pre></td></tr></table></figure>
+<p>那个 6.169e-08 K 比 2.7 K 小了 8 个数量级，这就是为什么太阳质量的黑洞在今天的宇宙里根本不会蒸发，反而在吸积背景辐射长大。要让它开始蒸发，得先把它周围的辐射环境清空。</p>
+<p>而那个 4.44e-05，人类文明史占一个银河年的万分之零点四四，是这篇文章里唯一一个我希望你记住的数字。</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>宇宙</tag>
+        <tag>黑洞</tag>
+        <tag>时间简史</tag>
+        <tag>霍金</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记1-《程序员的数学3：线性代数》向量与空间</title>
     <url>/%E5%AD%A6%E4%B9%A0/8c4d2f17.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="向量与空间"><a class="markdownIt-Anchor" href="#向量与空间"></a> 向量与空间</h2>
@@ -8260,150 +8404,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
-    <title>霍金的时间箭头，和我们要在黑暗里走多久</title>
-    <url>/%E7%94%9F%E6%B4%BB/e8d63c15.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="霍金的时间箭头和我们要在黑暗里走多久"><a class="markdownIt-Anchor" href="#霍金的时间箭头和我们要在黑暗里走多久"></a> 霍金的时间箭头，和我们要在黑暗里走多久</h2>
-<blockquote>
-<p>我们对宇宙最初五分钟的理解也许是对的。</p>
-<p>—— 霍金《时间简史》</p>
-</blockquote>
-<p>有个问题，读《时间简史》的时候一直缠着我：<strong>霍金把宇宙的起点算到了最初五分钟，把终点推到了几百亿亿亿年之后，那么中间这段，人类的处境是什么？</strong></p>
-<p>这本书给的是方程和推论，不给处境。所以我试着自己把几个尺度算出来：一个银河年有多长，一颗太阳还能烧多久，一个黑洞要蒸发到什么时候。这三个数字叠在一起，人类的处境会自动浮现。</p>
-<h2 id="先定位我们在哪儿"><a class="markdownIt-Anchor" href="#先定位我们在哪儿"></a> 先定位：我们在哪儿</h2>
-<p>第一个数字：太阳绕银河系中心转一圈，大约 2.25 亿到 2.5 亿年。天文学界管这个周期叫一个<strong>银河年</strong>。</p>
-<p>太阳的年龄是 46 亿年，所以它已经绕着银心走了 20 到 25 圈。也就是说，2.25 亿年前太阳系绕银心回到今天这个坐标时，地球上没有人类，没有城市，没有火，没有象形文字。那时候统治地球的是蜥蜴。</p>
-<p>第二个数字更贴近日常：地球到太阳的平均距离是 1.496 亿公里，光跑完这段路要 8 分 19 秒。这个数字人人都会背，但真正的含义是：<strong>太阳光是最快的信使，而它要 8 分钟才能到</strong>。</p>
-<p>把两者放一起，处境就显出形状了。银河系直径 10 万光年，太阳以每秒 220 公里绕银心跑。银河系里绝大多数恒星彼此相距几光年到几十光年，而我们能造出来的任何飞船，跨越这个距离都是一个跨越物种纪元的工程。</p>
-<p>这是我们的起跑线。位置不算坏，但筹码很少。</p>
-<h2 id="我们有多少时间"><a class="markdownIt-Anchor" href="#我们有多少时间"></a> 我们有多少时间</h2>
-<p>既然谈「走多久」，先得知道手里的时间够不够。</p>
-<p>《时间简史》里霍金讲过一句话：太阳是一个巨大的核反应炉，每秒把大约 600 万吨氢转成氦，其中 400 万吨的质量转化成能量。</p>
-<p>这个数字需要停一下。每秒 400 万吨物质湮灭成纯能量，一年 3.15 亿秒，一年就是 1.26 × 10^14 千克。46 亿年下来，太阳已经烧掉大约 100 个地球的质量，占它总质量的 <strong>0.03%</strong>。</p>
-<p>这才是重点。太阳不是一颗炸弹，是一根正在慢慢烧的蜡烛，而它已经烧掉了自己质量的万分之三。核聚变的效率高得离谱，四百万吨氢消失换来相当于人类一年全球能耗的几十倍，可太阳的质量基数太大，这点消耗听起来微不足道。</p>
-<p>光在路上还有延迟。核心产生的光子要穿过辐射层才能跑到表面，在那之前会被电子和原子核反复吸收、随机再发射。斯坦福教材说，一个核心生成的光子穿过辐射层可能要 17 万年。太阳光从核心里出来，是一场跨越十几万年的接力赛。</p>
-<p>这引出一个我们不太愿意正视的事实：<strong>我们看到的太阳，是 17 万年前离开它核心的光</strong>。如果太阳今天熄灭，我们还会继续看到它 8 分 19 秒，然后才知道。</p>
-<p>把账算完，太阳还剩大约 50 亿年的主序寿命。</p>
-<h2 id="上限在哪儿"><a class="markdownIt-Anchor" href="#上限在哪儿"></a> 上限在哪儿</h2>
-<p>50 亿年是「我们还有多久」，但「上限」要问的是恒星的物理终点在哪。</p>
-<p>太阳是 G2V 型主序星，也就是黄矮星。这类恒星的主序寿命大约 100 亿年，太阳 46 亿岁，正处在中点。别的恒星差别很大：</p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>主序寿命</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>红矮星（0.1 M☉）</td>
-<td>6 万亿到 12 万亿年</td>
-</tr>
-<tr>
-<td>黄矮星（太阳）</td>
-<td>约 100 亿年</td>
-</tr>
-<tr>
-<td>O 型大质量星</td>
-<td>几百万年</td>
-</tr>
-</tbody>
-</table>
-<p>这张表有个残酷的读法：<strong>质量越大的恒星死得越快</strong>。O 型星几百万年就烧完燃料，坍缩成中子星或黑洞，然后爆炸成超新星，把重元素撒进星际介质。地球上的铁、金、铀全是这种爆炸的遗产，你手腕上的金镯子是某颗恒星死掉时吐出来的。</p>
-<p>而红矮星能烧 12 万亿年，宇宙现在才 138 亿岁，它连主序都还没走完。</p>
-<p>质量还决定终点。0.8 到 10 倍太阳质量的恒星会膨胀成红巨星，抛掉外层，留下一颗白矮星；10 倍以上则核心坍缩成中子星或黑洞。太阳自己会膨胀到大约 0.75 AU（1.1 亿公里）的半径，吞掉水星和金星。</p>
-<p>地球的轨道半径是 1 AU。红巨星阶段太阳的外层正好涨到 0.75 AU，地球就在这个边界上。海洋蒸干，地表温度几百度。</p>
-<p><strong>50 亿年后。</strong> 50 亿年前地球上刚有真核细胞，50 亿年后人类文明不存在了，除非我们不在这里。</p>
-<p>到这里为止，所有的故事都由引力决定：引力的强弱决定天体的寿命，也决定恒星的死法。而引力还有更极端的形式。</p>
-<h2 id="引力的尽头黑洞"><a class="markdownIt-Anchor" href="#引力的尽头黑洞"></a> 引力的尽头：黑洞</h2>
-<p>霍金 1974 年做的推论，是整个现代物理里最反直觉的一个。</p>
-<p>他考虑的是量子场论里的真空。真空不是「空无一物」，而是充满了虚粒子的涨落。虚粒子对通常瞬间湮灭，但在事件视界附近，强烈的引力潮汐力把它们强行拉开，一个掉进去，一个逃出来。逃出来的成了实粒子，带着正能量；掉进去的带着负能量。净效果是黑洞<strong>通过发光损失质量</strong>。</p>
-<p>这就是霍金辐射。</p>
-<p>温度公式：</p>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mi>H</mi></msub><mo>=</mo><mfrac><mrow><mi mathvariant="normal">ℏ</mi><msup><mi>c</mi><mn>3</mn></msup></mrow><mrow><mn>8</mn><mi>π</mi><mi>G</mi><mi>M</mi><msub><mi>k</mi><mi>B</mi></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">T_H = \frac{\hbar c^3}{8 \pi G M k_B}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.08125em;">H</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.327108em;vertical-align:-0.8360000000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.3139999999999996em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">8</span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="mord mathdefault">G</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">ℏ</span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8360000000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
-<p>三个结果：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>温度与质量成<strong>反比</strong>。黑洞越小越热，越热蒸发越快，越快就越热。这是热力学上的不稳定，但它不会立刻爆炸，因为热得慢。</p>
-</li>
-<li class="lvl-2">
-<p>一个太阳质量的黑洞，霍金温度约 10^{-7} K，远低于宇宙微波背景辐射的 2.7 K。所以在今天的宇宙里，太阳质量的黑洞<strong>不蒸发，反而在吸收背景辐射而增长</strong>。</p>
-</li>
-<li class="lvl-2">
-<p>黑洞的熵正比于视界面积：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>=</mo><mfrac><mrow><mi>k</mi><msup><mi>c</mi><mn>3</mn></msup><mi>A</mi></mrow><mrow><mn>4</mn><mi>G</mi><mi mathvariant="normal">ℏ</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">S = \frac{k c^3 A}{4 G \hbar}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.36292em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01792em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mathdefault mtight">G</span><span class="mord mtight">ℏ</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mord mtight"><span class="mord mathdefault mtight">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913142857142857em;"><span style="top:-2.931em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mord mathdefault mtight">A</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>。贝肯斯坦猜的系数，霍金定的。</p>
-</li>
-</ul>
-<p>蒸发时间：</p>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mo>≈</mo><mfrac><mrow><mn>5120</mn><mi>π</mi><msup><mi>G</mi><mn>2</mn></msup><msup><mi>M</mi><mn>3</mn></msup></mrow><mrow><mi mathvariant="normal">ℏ</mi><msup><mi>c</mi><mn>4</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">t \approx \frac{5120 \pi G^2 M^3}{\hbar c^4}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.177108em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">ℏ</span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">5</span><span class="mord">1</span><span class="mord">2</span><span class="mord">0</span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
-<p>太阳质量的黑洞蒸发完需要大约 10^{67} 年。宇宙年龄是 1.38 × 10^{10} 年。差 57 个数量级。</p>
-<p>也就是说，<strong>今天宇宙里每一个大质量黑洞，都比宇宙本身古老得多，还差着无数个数量级才会消失</strong>。而质子可能早就衰变了，如果它真的衰变（实验上还没观测到），那么在那之前，宇宙的物质基础本身就已经被拆干净。</p>
-<p>《时间简史》里霍金问过一个很冷的问题：宇宙的历史会不会终结于大挤压，所有恒星都烧完，所有黑洞都蒸发，所有物质在超大质量黑洞附近慢慢下沉，几十亿亿亿年之后只剩一个无限小、无限密的点？</p>
-<p>他给了三种可能：永远膨胀下去、膨胀速度渐渐减到零然后停住、或者收缩回去。他倾向第一种，同时说不排除前两种。</p>
-<p>到这里，尺度已经推到头了。但这个 10^{67} 年逼出了一个更根本的问题：<strong>时间为什么有方向？</strong></p>
-<h2 id="时间箭头"><a class="markdownIt-Anchor" href="#时间箭头"></a> 时间箭头</h2>
-<p>霍金在《时间简史》里把「为什么时间有方向」拆成两类问题。</p>
-<p>一类是<strong>热力学时间箭头</strong>：为什么熵总是增加？</p>
-<p>另一类是<strong>心理时间箭头</strong>：为什么我们记得过去，而不是未来？</p>
-<p>他的论证原则上相当素朴。把宇宙的初态和末态做比较，如果熵在末态比初态低，那就违反了热力学第二定律。而「我们记得的是过去而不是未来」这件事本身，等价于「我们处于一个熵低的态」。这听起来是循环论证，但霍金的处理是：既然我们观察到的是低熵态，那就倒推初态必然也是低熵的。<strong>我们之所以能存在，正是因为宇宙以极低熵开始。</strong></p>
-<p>低熵初态从哪来？他没有答案，只说「这正是我们研究的方向」。</p>
-<p>我读到这里的感觉是：霍金把「时间有方向」从一个哲学问题变成了一个技术问题。他没有解释时间箭头，他只是把箭头需要满足的条件写清楚了。</p>
-<p>而低熵初态这件事，今天有一个更具体、更冷的解释：<strong>暴胀</strong>。</p>
-<p>暴胀理论认为，宇宙在诞生后的极短瞬间（大约 10^{-30} 秒）经历了一次指数级膨胀，空间从一个量子涨落的大小膨胀到至少今天的尺度。这个过程在极短时间内把熵稀释掉了。总熵在增加，但观测到的宇宙里熵极低。我们就是那个低熵角落里的幸存者。</p>
-<p>《时间简史》出版于 1988 年。暴胀理论正是那前后提出的，霍金本人是主要推动者之一。</p>
-<p>于是整个链条闭合了。宇宙给了一个方向，我们在这个方向上只有很短的一段。短到什么程度，下面这个数字可以量化。</p>
-<h2 id="把尺度合起来"><a class="markdownIt-Anchor" href="#把尺度合起来"></a> 把尺度合起来</h2>
-<p>银河年 2.25 亿年。太阳剩余寿命 50 亿年，大约 0.22 个银河年。人类文明史 1 万年，是银河年的 4.4 × 10^{-5}。物种存在史 30 万年，是银河年的 0.13%。</p>
-<p><strong>一个银河年，人类文明连它的万分之零点五都占不到。</strong></p>
-<p>这个数字通常被用来感叹人类的渺小，但它还有另一层意思。太阳系不在银河系边缘，它在猎户臂内缘，距银心约 2.7 万光年，那里是<strong>宜居带</strong>。银河系中心是超大质量黑洞人马座 A*，约 400 万个太阳质量，它离我们 2.7 万光年，强大到足以让整个星系绕它转圈，但不足以让我们活不下去。</p>
-<p>我们在一个<strong>稳定</strong>的位置上。太阳系绕银心的轨道是椭圆的，会受旋臂扰动，但没人知道这个扰动会不会引发地球的生态剧变。有说法认为地球的大灭绝周期与银河年相关，但这条链条的证据强度是弱的，我不打算把它当结论用。</p>
-<p>位置好，筹码少。接下来就是那个最实际的问题：凭这点筹码，能走多远。</p>
-<h2 id="星际航行三个硬约束"><a class="markdownIt-Anchor" href="#星际航行三个硬约束"></a> 星际航行：三个硬约束</h2>
-<p>《时间简史》成书于 1988 年。那时候的星际旅行想象基本靠「曲速引擎」和「虫洞」这类概念道具，霍金自己在书里也承认这些东西没有物理依据。</p>
-<p>现在的图景更冷，但也更具体。三个硬约束。</p>
-<p><strong>约束一：光速。</strong> 任何带质量的东西都不可能超过光速。这不是工程问题，是洛伦兹变换写进物质本性的。半人马座 α 星 4.37 光年，在 20% 光速下需要 20 到 30 年。</p>
-<p><strong>约束二：加速。</strong> 加速本身就是成本。而且加速过程里的时间膨胀对你有利、对地球不利，你返航时地球已经过了几百年。</p>
-<p><strong>约束三：能量。</strong> 这条最容易被忽略，也最致命。</p>
-<p>Breakthrough Starshot（2016 年由尤里·米尔纳、霍金和扎克伯格发起）设想用地面激光阵列推动光帆达到光速的 15% 到 20%，20 到 30 年抵达半人马座。方案本身很美：上千个克级「星芯片」，4m × 4m 的光帆，10 分钟内加速完成，平均加速度 100 km/s²（约 10000 g）。</p>
-<p>但 2021 年美国天文学会的研究笔记《The “Breakthrough” Proposal for Laser-accelerated Spacecraft is not Feasible》直接说这个方案<strong>不自洽</strong>。问题不在激光阵列的工程难度，在于能量账根本平不了。让 1 克重的载荷达到 0.2c，动能约 1.8 × 10^13 J，而激光穿过 4m 光帆时几乎全部被反射掉，实际转化效率极低。</p>
-<p>另一份分析给出的数是：100 GW 功率持续 4000 秒，总能量约 10^14 J。这个量级已经是人类全部发电能力的量级，<strong>全部烧掉，用来推一克东西</strong>。</p>
-<p>而 0.2c 本身也够不着。相对论动量 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mo>=</mo><mi>γ</mi><mi>m</mi><mi>v</mi></mrow><annotation encoding="application/x-tex">p = \gamma m v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05556em;">γ</span><span class="mord mathdefault">m</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span> 在高速时非线性增长，光帆反射激光的有效推力效率下降，峰值速度压不到 0.2c。</p>
-<p>所以真正的答案可能是：<strong>光帆本身才是极限，不是激光</strong>。激光帆是「唯一可能」的物理路径，但它在工程上不成立。</p>
-<h2 id="那么走哪条路"><a class="markdownIt-Anchor" href="#那么走哪条路"></a> 那么走哪条路</h2>
-<p>把可能性排一遍。</p>
-<p><strong>核裂变。</strong> 化学火箭的比冲 450 秒，裂变能到 30000 秒量级，差两个数量级。土星五号能把人送上月球，是因为近地轨道只需 400 km。星际不是这个量级的跳跃。</p>
-<p><strong>核聚变。</strong> 氘氚聚变 3.4 × 10^{14} J/kg，Isp 可到 30000 秒以上，但需要 1 亿度以上的等离子体。维持这个状态本身就是难题，而目前最大的困难是维持，不是产能。</p>
-<p><strong>反物质。</strong> 湮灭的比能最高，但反物质的制造和储存是当前工程的绝对瓶颈。物理上极漂亮，前提是你能造出并约束它。</p>
-<p><strong>激光帆。</strong> 物理上最干净，工程上最不成立。</p>
-<p><strong>曲速驱动。</strong> 需要负能量密度，也就是《时间简史》里霍金提到的那种「违反正定条件」的场论构造。所有已知的 GR 定理都不允许。即使有了 warp bubble，负能量密度带来的稳定性问题至今没人解决。</p>
-<p><strong>代达罗斯计划</strong>（英国 SETI，1978 年）：无人探测器，核聚变推进，速度 12% 光速，40 年飞抵巴纳德星。这是<strong>唯一一个完整做过工程设计的星际方案</strong>，而且它不违反任何物理定律。代价是造它需要一整个国家的工业能力，而且没人愿意批这个预算。</p>
-<h2 id="结论不是我们出不去"><a class="markdownIt-Anchor" href="#结论不是我们出不去"></a> 结论不是「我们出不去」</h2>
-<p>数字排完，有两件事是确定的。</p>
-<p><strong>第一，人类的时间尺度相对于宇宙的结构尺度，短到毫无意义。</strong> 100 年对银河年 2.25 亿年。我们是那个「永远看不到一次完整银河公转」的物种。</p>
-<p><strong>第二，但我们的位置是好的。</strong> 宜居带，稳定轨道，还有一颗还能烧 50 亿年的恒星。银河系 1000 亿到 4000 亿颗恒星，绝大多数永远不会有文明，它们只是核反应的机器。而我们恰好在一个能问「这是不是唯一一次」的位置上。</p>
-<p>这两件事同时成立，才构成一个值得写下来的判断：<strong>星际航行大概率不是人类先突破的</strong>。能量约束太硬，代达罗斯那样的方案需要的工业投入超出任何单一国家的承受范围。它更可能是几百年后、或者由某个我们无法想象的组织完成的。在那之前，人类的疆界扩展方向是<strong>内太阳系</strong>，不是往外跑，是往里挖。月球、小行星带、火星、木星系统。</p>
-<p>至于黑洞，那是一个更远的问题。人类大概率会在有生之年把探测器送进太阳系所有值得去的地方，但要把探测器送进事件视界并且拿回任何数据，需要一个我们还没造出来的技术层级。而即使送进去了，数据也传不回来。这是《时间简史》里霍金留给读者的一道题：<strong>你能接收到的信息，只来自你视界之外。</strong></p>
-<p>那道题到今天还没解。</p>
-<hr />
-<h2 id="几个可以自己验的数字"><a class="markdownIt-Anchor" href="#几个可以自己验的数字"></a> 几个可以自己验的数字</h2>
-<p>关于光速和距离的直觉很容易出错，可以自己算一遍：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 光年、AU 与飞行时间的换算</span></span><br><span class="line">C = <span class="number">299_792_458</span>          <span class="comment"># m/s</span></span><br><span class="line">AU = <span class="number">149_597_870_700</span>     <span class="comment"># m，1 天文单位</span></span><br><span class="line">LY = <span class="number">9.4607e15</span>           <span class="comment"># m，1 光年</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">travel_years</span>(<span class="params">dist_ly, speed_c</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;按地球参考系的距离算航行时间（年）&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> dist_ly / speed_c</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> c <span class="keyword">in</span> [<span class="number">0.01</span>, <span class="number">0.1</span>, <span class="number">0.2</span>, <span class="number">0.5</span>, <span class="number">0.9</span>]:</span><br><span class="line">    t = travel_years(<span class="number">4.37</span>, c)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;c:&gt;<span class="number">4.0</span>%&#125;</span> 光速 → 半人马座 α 需 <span class="subst">&#123;t:&gt;<span class="number">8.1</span>f&#125;</span> 年&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 太阳光到地球</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;\n阳光到地球：<span class="subst">&#123;AU / C / <span class="number">60</span>:<span class="number">.2</span>f&#125;</span> 分钟&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 银河年 vs 人类文明史</span></span><br><span class="line">galactic_year = <span class="number">2.25e8</span></span><br><span class="line">civilization = <span class="number">1e4</span></span><br><span class="line">species = <span class="number">3e5</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;文明史占银河年：<span class="subst">&#123;civilization / galactic_year:<span class="number">.2</span>e&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;物种史占银河年：<span class="subst">&#123;species / galactic_year:<span class="number">.2</span>e&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 太阳质量黑洞的霍金温度</span></span><br><span class="line">G = <span class="number">6.674e-11</span></span><br><span class="line">h_bar = <span class="number">1.0545718e-34</span></span><br><span class="line">k_B = <span class="number">1.380649e-23</span></span><br><span class="line">M_sun = <span class="number">1.989e30</span></span><br><span class="line">T_H = h_bar * C**<span class="number">3</span> / (<span class="number">8</span> * <span class="number">3.14159265</span> * G * M_sun * k_B)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;\n太阳质量黑洞霍金温度：<span class="subst">&#123;T_H:<span class="number">.3</span>e&#125;</span> K&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;宇宙微波背景温度：      2.7 K&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;蒸发所需时间量级：      1e67 年&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;宇宙年龄：              1.38e10 年&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1% 光速 → 半人马座 α 需    437.0 年</span><br><span class="line"> 10% 光速 → 半人马座 α 需     43.7 年</span><br><span class="line"> 20% 光速 → 半人马座 α 需     21.8 年</span><br><span class="line"> 50% 光速 → 半人马座 α 需      8.7 年</span><br><span class="line"> 90% 光速 → 半人马座 α 需      4.9 年</span><br><span class="line"></span><br><span class="line">阳光到地球：8.32 分钟</span><br><span class="line">文明史占银河年：4.44e-05</span><br><span class="line">物种史占银河年：1.33e-03</span><br><span class="line"></span><br><span class="line">太阳质量黑洞霍金温度：6.169e-08 K</span><br><span class="line">宇宙微波背景温度：      2.7 K</span><br><span class="line">蒸发所需时间量级：      1e67 年</span><br><span class="line">宇宙年龄：              1.38e10 年</span><br></pre></td></tr></table></figure>
-<p>那个 6.169e-08 K 比 2.7 K 小了 8 个数量级，这就是为什么太阳质量的黑洞在今天的宇宙里根本不会蒸发，反而在吸积背景辐射长大。要让它开始蒸发，得先把它周围的辐射环境清空。</p>
-<p>而那个 4.44e-05，人类文明史占一个银河年的万分之零点四四，是这篇文章里唯一一个我希望你记住的数字。</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>宇宙</tag>
-        <tag>黑洞</tag>
-        <tag>时间简史</tag>
-        <tag>霍金</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>AI提效未变利润，瓶颈在组织与分配</title>
     <url>/AI/22dcb90b.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="员工提效没有变成利润分配环节承接了大部分收益"><a class="markdownIt-Anchor" href="#员工提效没有变成利润分配环节承接了大部分收益"></a> 员工提效没有变成利润，分配环节承接了大部分收益</h2>
@@ -8523,6 +8523,77 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
+    <title>rust-错误处理</title>
+    <url>/%E5%AD%A6%E4%B9%A0/b7ffbc2c.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="错误处理"><a class="markdownIt-Anchor" href="#错误处理"></a> 错误处理</h2>
+<p>Rust 把错误分成两类：<strong>可恢复的</strong>和<strong>不可恢复的</strong>。前者返回给调用方，后者直接终止程序。这个划分不是约定俗成，是类型系统强制的。</p>
+<h2 id="result-和-option"><a class="markdownIt-Anchor" href="#result-和-option"></a> Result 和 Option</h2>
+<p><code>Result&lt;T, E&gt;</code> 表示一个可能成功的值和一个可能的错误，<code>Option&lt;T&gt;</code> 表示一个可能存在的值。</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">ok</span>: <span class="type">Result</span>&lt;<span class="type">i32</span>, <span class="type">String</span>&gt; = <span class="title function_ invoke__">Ok</span>(<span class="number">42</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">err</span>: <span class="type">Result</span>&lt;<span class="type">i32</span>, <span class="type">String</span>&gt; = <span class="title function_ invoke__">Err</span>(<span class="string">&quot;出错了&quot;</span>.<span class="title function_ invoke__">to_string</span>());</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">some</span>: <span class="type">Option</span>&lt;<span class="type">i32</span>&gt; = <span class="title function_ invoke__">Some</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">none</span>: <span class="type">Option</span>&lt;<span class="type">i32</span>&gt; = <span class="literal">None</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125; &#123;:?&#125; &#123;:?&#125; &#123;:?&#125;&quot;</span>, ok, err, some, none);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Ok(42) Err(&quot;出错了&quot;) Some(1) None</span><br></pre></td></tr></table></figure>
+<p>Rust 没有异常，<code>Result</code> 的所有值都必须被处理。<code>match</code> 是最直接的方式：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">parse_port</span>(s: &amp;<span class="type">str</span>) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;<span class="type">u16</span>, <span class="type">String</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">match</span> s.parse::&lt;<span class="type">u16</span>&gt;() &#123;</span><br><span class="line">        <span class="title function_ invoke__">Ok</span>(p) =&gt; <span class="title function_ invoke__">Ok</span>(p),</span><br><span class="line">        <span class="title function_ invoke__">Err</span>(e) =&gt; <span class="title function_ invoke__">Err</span>(<span class="built_in">format!</span>(<span class="string">&quot;端口解析失败: &#123;&#125;&quot;</span>, e)),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">s</span> <span class="keyword">in</span> [<span class="string">&quot;8080&quot;</span>, <span class="string">&quot;abc&quot;</span>, <span class="string">&quot;99999&quot;</span>] &#123;</span><br><span class="line">        <span class="keyword">match</span> <span class="title function_ invoke__">parse_port</span>(s) &#123;</span><br><span class="line">            <span class="title function_ invoke__">Ok</span>(p) =&gt; <span class="built_in">println!</span>(<span class="string">&quot;端口: &#123;&#125;&quot;</span>, p),</span><br><span class="line">            <span class="title function_ invoke__">Err</span>(e) =&gt; <span class="built_in">println!</span>(<span class="string">&quot;错误: &#123;&#125;&quot;</span>, e),</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">端口: 8080</span><br><span class="line">错误: 端口解析失败: invalid digit found in string</span><br><span class="line">错误: 端口解析失败: number too large to fit in target type</span><br></pre></td></tr></table></figure>
+<p>注意 <code>Ok</code> 和 <code>Err</code> 里的值类型不同，分支不能混用。这就是编译器在帮你检查「错误是否被处理」。</p>
+<h2 id="option-的取法"><a class="markdownIt-Anchor" href="#option-的取法"></a> Option 的取法</h2>
+<p><code>Option</code> 只有两态，处理方式比 <code>Result</code> 简单。常用的是 <code>unwrap_or</code> 给个默认值：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">v</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, v.<span class="title function_ invoke__">first</span>());</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, v.<span class="title function_ invoke__">get</span>(<span class="number">5</span>));</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, v.<span class="title function_ invoke__">first</span>().<span class="title function_ invoke__">unwrap_or</span>(&amp;<span class="number">0</span>));</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, v.<span class="title function_ invoke__">get</span>(<span class="number">5</span>).<span class="title function_ invoke__">unwrap_or</span>(&amp;<span class="number">0</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Some(1)</span><br><span class="line">None</span><br><span class="line">1</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<p><code>unwrap_or</code> 不消耗 <code>Option</code>，因为它拿到的是引用。<code>unwrap_or_else</code> 接受闭包，参数是 <code>Option</code> 本身：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">v</span>: <span class="type">Vec</span>&lt;<span class="type">i32</span>&gt; = <span class="built_in">vec!</span>[];</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, v.<span class="title function_ invoke__">first</span>().<span class="title function_ invoke__">unwrap_or_else</span>(|| &amp;<span class="number">0</span>));</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, v.<span class="title function_ invoke__">first</span>().<span class="title function_ invoke__">copied</span>().<span class="title function_ invoke__">unwrap_or_default</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">0</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<p><code>unwrap_or_default</code> 要求类型实现 <code>Default</code>。这里 <code>v.first()</code> 返回 <code>Option&lt;&amp;i32&gt;</code>，而 <code>&amp;i32</code> 没实现 <code>Default</code>，编译器会直接拒绝：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">error[E0277]: the trait bound `&amp;i32: Default` is not satisfied</span><br><span class="line"> --&gt; t5.rs:4:32</span><br><span class="line">  |</span><br><span class="line">4 |     println!(&quot;&#123;:?&#125;&quot;, v.first().unwrap_or_default());</span><br><span class="line">  |                                ^^^^^^^^^^^^^^^^^ the trait `Default` is not implemented for `&amp;i32`</span><br><span class="line">help: the trait `Default` is implemented for `i32`</span><br><span class="line"> --&gt; /rustc/31fca3adb283cc9dfd56b49cdee9a96eb9c96ffd/library/core/src/default.rs:154:8</span><br></pre></td></tr></table></figure>
+<p>所以先 <code>.copied()</code> 把引用变成值，再交给 <code>unwrap_or_default</code>。这个细节在写的时候很容易忘，编译器能挡住。</p>
+<h2 id="运算符"><a class="markdownIt-Anchor" href="#运算符"></a> ? 运算符</h2>
+<p><code>match</code> 写多了会很啰嗦。<code>?</code> 运算符把「成功就取值，失败就提前返回」压成一行：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> std::num::ParseIntError;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">parse_two</span>(a: &amp;<span class="type">str</span>, b: &amp;<span class="type">str</span>) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;<span class="type">i32</span>, ParseIntError&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">x</span> = a.parse::&lt;<span class="type">i32</span>&gt;()?;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">y</span> = b.parse::&lt;<span class="type">i32</span>&gt;()?;</span><br><span class="line">    <span class="title function_ invoke__">Ok</span>(x + y)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, <span class="title function_ invoke__">parse_two</span>(<span class="string">&quot;10&quot;</span>, <span class="string">&quot;32&quot;</span>));</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, <span class="title function_ invoke__">parse_two</span>(<span class="string">&quot;10&quot;</span>, <span class="string">&quot;ab&quot;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Ok(42)</span><br><span class="line">Err(ParseIntError &#123; kind: InvalidDigit &#125;)</span><br></pre></td></tr></table></figure>
+<p><code>?</code> 的行为是：值是 <code>Ok(x)</code> 就取出 <code>x</code> 继续，值是 <code>Err(e)</code> 就立刻 <code>return Err(e)</code>。上面第二行里 <code>a.parse::&lt;i32&gt;()?</code> 失败，函数直接返回 <code>Err</code>，<code>b</code> 那行根本没执行。</p>
+<p>关键在类型：<code>?</code> 要求错误类型能转成函数的错误类型。这叫「错误转换」，靠 <code>From</code> trait 实现：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> std::fmt;</span><br><span class="line"><span class="keyword">use</span> std::num::ParseIntError;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">AppError</span> &#123;</span><br><span class="line">    <span class="title function_ invoke__">Parse</span>(ParseIntError),</span><br><span class="line">    <span class="title function_ invoke__">Missing</span>(&amp;<span class="symbol">&#x27;static</span> <span class="type">str</span>),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">fmt</span>::Display <span class="keyword">for</span> <span class="title class_">AppError</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">fmt</span>(&amp;<span class="keyword">self</span>, f: &amp;<span class="keyword">mut</span> fmt::Formatter) <span class="punctuation">-&gt;</span> fmt::<span class="type">Result</span> &#123;</span><br><span class="line">        <span class="keyword">match</span> <span class="keyword">self</span> &#123;</span><br><span class="line">            AppError::<span class="title function_ invoke__">Parse</span>(e) =&gt; <span class="built_in">write!</span>(f, <span class="string">&quot;解析失败: &#123;&#125;&quot;</span>, e),</span><br><span class="line">            AppError::<span class="title function_ invoke__">Missing</span>(s) =&gt; <span class="built_in">write!</span>(f, <span class="string">&quot;缺少字段: &#123;&#125;&quot;</span>, s),</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">std</span>::error::Error <span class="keyword">for</span> <span class="title class_">AppError</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">From</span>&lt;ParseIntError&gt; <span class="keyword">for</span> <span class="title class_">AppError</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">from</span>(e: ParseIntError) <span class="punctuation">-&gt;</span> <span class="keyword">Self</span> &#123;</span><br><span class="line">        AppError::<span class="title function_ invoke__">Parse</span>(e)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">parse_port</span>(s: &amp;<span class="type">str</span>) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;<span class="type">u16</span>, AppError&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> s.<span class="title function_ invoke__">is_empty</span>() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_ invoke__">Err</span>(AppError::<span class="title function_ invoke__">Missing</span>(<span class="string">&quot;port&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_ invoke__">Ok</span>(s.parse::&lt;<span class="type">u16</span>&gt;()?)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">s</span> <span class="keyword">in</span> [<span class="string">&quot;8080&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;99999&quot;</span>] &#123;</span><br><span class="line">        <span class="keyword">match</span> <span class="title function_ invoke__">parse_port</span>(s) &#123;</span><br><span class="line">            <span class="title function_ invoke__">Ok</span>(p) =&gt; <span class="built_in">println!</span>(<span class="string">&quot;端口: &#123;&#125;&quot;</span>, p),</span><br><span class="line">            <span class="title function_ invoke__">Err</span>(e) =&gt; <span class="built_in">println!</span>(<span class="string">&quot;错误: &#123;&#125;&quot;</span>, e),</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">端口: 8080</span><br><span class="line">错误: 缺少字段: port</span><br><span class="line">错误: 解析失败: number too large to fit in target type</span><br></pre></td></tr></table></figure>
+<p><code>Ok(s.parse::&lt;u16&gt;()?)</code> 里的 <code>?</code> 走 <code>From&lt;ParseIntError&gt; for AppError</code>，把底层错误包进 <code>AppError::Parse</code>。这就是自定义错误类型的标准写法：定义枚举，实现 <code>Display</code> 和 <code>Error</code>，再为每个可能的底层错误实现 <code>From</code>。</p>
+<h2 id="panic-与-unwrap"><a class="markdownIt-Anchor" href="#panic-与-unwrap"></a> panic 与 unwrap</h2>
+<p><code>unwrap</code> 遇到 <code>None</code> 会 panic，程序终止：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">n</span>: <span class="type">i32</span> = <span class="string">&quot;42&quot;</span>.<span class="title function_ invoke__">parse</span>().<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;解析成功: &#123;&#125;&quot;</span>, n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">opt</span>: <span class="type">Option</span>&lt;<span class="type">i32</span>&gt; = <span class="literal">None</span>;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, opt.<span class="title function_ invoke__">expect</span>(<span class="string">&quot;配置里没有这个键&quot;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出（stdout）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">解析成功: 42</span><br></pre></td></tr></table></figure>
+<p>stderr：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">thread &#x27;main&#x27; (687536) panicked at t4.rs:6:39:</span><br><span class="line">配置里没有这个键</span><br><span class="line">note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace</span><br></pre></td></tr></table></figure>
+<p>panic 信息走 stderr，不走 stdout，退出码 101。</p>
+<p><code>expect</code> 和 <code>unwrap</code> 一样会 panic，区别是能带一句说明。这句说明在 panic 时才出现，所以它是给<strong>看日志的人</strong>看的，不是给编译器看的。</p>
+<p>用 <code>expect</code> 而不是 <code>unwrap</code> 的实际价值：出问题时日志里能直接看出是哪个环节炸的。</p>
+<p>索引越界也是 panic：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">v</span>: <span class="type">Vec</span>&lt;<span class="type">i32</span>&gt; = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, v[<span class="number">5</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出（stderr，退出码 101）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">thread &#x27;main&#x27; (687583) panicked at t3.rs:3:21:</span><br><span class="line">index out of bounds: the len is 3 but the index is 5</span><br><span class="line">note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace</span><br></pre></td></tr></table></figure>
+<p>注意这行是<strong>运行时</strong>错误，编译能过。编译期能抓的类型错误是另一个：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">x</span>: <span class="type">i32</span> = <span class="string">&quot;42&quot;</span>;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">error[E0308]: mismatched types</span><br><span class="line"> --&gt; e1.rs:2:18</span><br><span class="line">  |</span><br><span class="line">2 |     let x: i32 = &quot;42&quot;;</span><br><span class="line">  |            ---   ^^^^ expected `i32`, found `&amp;str`</span><br><span class="line">  |            |</span><br><span class="line">  |            expected due to this</span><br><span class="line"></span><br><span class="line">error: aborting due to 1 previous error</span><br><span class="line"></span><br><span class="line">For more information about this error, try `rustc --explain E0308`.</span><br></pre></td></tr></table></figure>
+<p><code>Result</code> 存在就是为了让「可能失败」这件事进到类型里，让编译器逼你处理。<code>unwrap</code> 是主动放弃这个检查，代价是运行时炸。</p>
+<h2 id="什么时候-panic什么时候返回错误"><a class="markdownIt-Anchor" href="#什么时候-panic什么时候返回错误"></a> 什么时候 panic，什么时候返回错误</h2>
+<p>判断标准很简单：<strong>调用方有没有办法恢复</strong>。</p>
+<p>配置读错了、文件不存在、网络超时 —— 调用方可以重试、可以给用户提示、可以换个值，这些都该返回 <code>Err</code>。</p>
+<p>数组越界、内部状态被破坏、不变量被违反 —— 这类 bug 修复不了，重试只会重复崩溃，该 panic。</p>
+<p><code>unwrap</code> 和 <code>expect</code> 在库代码里几乎不该出现，在应用代码的启动阶段（读配置、初始化全局状态）可以接受，因为那时候失败就该直接停。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+        <tag>error-handling</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>rust-模块与测试</title>
     <url>/%E5%AD%A6%E4%B9%A0/2d9a7d08.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="模块与测试"><a class="markdownIt-Anchor" href="#模块与测试"></a> 模块与测试</h2>
@@ -8620,77 +8691,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
         <tag>Rust</tag>
         <tag>module</tag>
         <tag>test</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>rust-错误处理</title>
-    <url>/%E5%AD%A6%E4%B9%A0/b7ffbc2c.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="错误处理"><a class="markdownIt-Anchor" href="#错误处理"></a> 错误处理</h2>
-<p>Rust 把错误分成两类：<strong>可恢复的</strong>和<strong>不可恢复的</strong>。前者返回给调用方，后者直接终止程序。这个划分不是约定俗成，是类型系统强制的。</p>
-<h2 id="result-和-option"><a class="markdownIt-Anchor" href="#result-和-option"></a> Result 和 Option</h2>
-<p><code>Result&lt;T, E&gt;</code> 表示一个可能成功的值和一个可能的错误，<code>Option&lt;T&gt;</code> 表示一个可能存在的值。</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">ok</span>: <span class="type">Result</span>&lt;<span class="type">i32</span>, <span class="type">String</span>&gt; = <span class="title function_ invoke__">Ok</span>(<span class="number">42</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">err</span>: <span class="type">Result</span>&lt;<span class="type">i32</span>, <span class="type">String</span>&gt; = <span class="title function_ invoke__">Err</span>(<span class="string">&quot;出错了&quot;</span>.<span class="title function_ invoke__">to_string</span>());</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">some</span>: <span class="type">Option</span>&lt;<span class="type">i32</span>&gt; = <span class="title function_ invoke__">Some</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">none</span>: <span class="type">Option</span>&lt;<span class="type">i32</span>&gt; = <span class="literal">None</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125; &#123;:?&#125; &#123;:?&#125; &#123;:?&#125;&quot;</span>, ok, err, some, none);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Ok(42) Err(&quot;出错了&quot;) Some(1) None</span><br></pre></td></tr></table></figure>
-<p>Rust 没有异常，<code>Result</code> 的所有值都必须被处理。<code>match</code> 是最直接的方式：</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">parse_port</span>(s: &amp;<span class="type">str</span>) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;<span class="type">u16</span>, <span class="type">String</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">match</span> s.parse::&lt;<span class="type">u16</span>&gt;() &#123;</span><br><span class="line">        <span class="title function_ invoke__">Ok</span>(p) =&gt; <span class="title function_ invoke__">Ok</span>(p),</span><br><span class="line">        <span class="title function_ invoke__">Err</span>(e) =&gt; <span class="title function_ invoke__">Err</span>(<span class="built_in">format!</span>(<span class="string">&quot;端口解析失败: &#123;&#125;&quot;</span>, e)),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">s</span> <span class="keyword">in</span> [<span class="string">&quot;8080&quot;</span>, <span class="string">&quot;abc&quot;</span>, <span class="string">&quot;99999&quot;</span>] &#123;</span><br><span class="line">        <span class="keyword">match</span> <span class="title function_ invoke__">parse_port</span>(s) &#123;</span><br><span class="line">            <span class="title function_ invoke__">Ok</span>(p) =&gt; <span class="built_in">println!</span>(<span class="string">&quot;端口: &#123;&#125;&quot;</span>, p),</span><br><span class="line">            <span class="title function_ invoke__">Err</span>(e) =&gt; <span class="built_in">println!</span>(<span class="string">&quot;错误: &#123;&#125;&quot;</span>, e),</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">端口: 8080</span><br><span class="line">错误: 端口解析失败: invalid digit found in string</span><br><span class="line">错误: 端口解析失败: number too large to fit in target type</span><br></pre></td></tr></table></figure>
-<p>注意 <code>Ok</code> 和 <code>Err</code> 里的值类型不同，分支不能混用。这就是编译器在帮你检查「错误是否被处理」。</p>
-<h2 id="option-的取法"><a class="markdownIt-Anchor" href="#option-的取法"></a> Option 的取法</h2>
-<p><code>Option</code> 只有两态，处理方式比 <code>Result</code> 简单。常用的是 <code>unwrap_or</code> 给个默认值：</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">v</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, v.<span class="title function_ invoke__">first</span>());</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, v.<span class="title function_ invoke__">get</span>(<span class="number">5</span>));</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, v.<span class="title function_ invoke__">first</span>().<span class="title function_ invoke__">unwrap_or</span>(&amp;<span class="number">0</span>));</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, v.<span class="title function_ invoke__">get</span>(<span class="number">5</span>).<span class="title function_ invoke__">unwrap_or</span>(&amp;<span class="number">0</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Some(1)</span><br><span class="line">None</span><br><span class="line">1</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
-<p><code>unwrap_or</code> 不消耗 <code>Option</code>，因为它拿到的是引用。<code>unwrap_or_else</code> 接受闭包，参数是 <code>Option</code> 本身：</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">v</span>: <span class="type">Vec</span>&lt;<span class="type">i32</span>&gt; = <span class="built_in">vec!</span>[];</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, v.<span class="title function_ invoke__">first</span>().<span class="title function_ invoke__">unwrap_or_else</span>(|| &amp;<span class="number">0</span>));</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, v.<span class="title function_ invoke__">first</span>().<span class="title function_ invoke__">copied</span>().<span class="title function_ invoke__">unwrap_or_default</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">0</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
-<p><code>unwrap_or_default</code> 要求类型实现 <code>Default</code>。这里 <code>v.first()</code> 返回 <code>Option&lt;&amp;i32&gt;</code>，而 <code>&amp;i32</code> 没实现 <code>Default</code>，编译器会直接拒绝：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">error[E0277]: the trait bound `&amp;i32: Default` is not satisfied</span><br><span class="line"> --&gt; t5.rs:4:32</span><br><span class="line">  |</span><br><span class="line">4 |     println!(&quot;&#123;:?&#125;&quot;, v.first().unwrap_or_default());</span><br><span class="line">  |                                ^^^^^^^^^^^^^^^^^ the trait `Default` is not implemented for `&amp;i32`</span><br><span class="line">help: the trait `Default` is implemented for `i32`</span><br><span class="line"> --&gt; /rustc/31fca3adb283cc9dfd56b49cdee9a96eb9c96ffd/library/core/src/default.rs:154:8</span><br></pre></td></tr></table></figure>
-<p>所以先 <code>.copied()</code> 把引用变成值，再交给 <code>unwrap_or_default</code>。这个细节在写的时候很容易忘，编译器能挡住。</p>
-<h2 id="运算符"><a class="markdownIt-Anchor" href="#运算符"></a> ? 运算符</h2>
-<p><code>match</code> 写多了会很啰嗦。<code>?</code> 运算符把「成功就取值，失败就提前返回」压成一行：</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> std::num::ParseIntError;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">parse_two</span>(a: &amp;<span class="type">str</span>, b: &amp;<span class="type">str</span>) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;<span class="type">i32</span>, ParseIntError&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">x</span> = a.parse::&lt;<span class="type">i32</span>&gt;()?;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">y</span> = b.parse::&lt;<span class="type">i32</span>&gt;()?;</span><br><span class="line">    <span class="title function_ invoke__">Ok</span>(x + y)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, <span class="title function_ invoke__">parse_two</span>(<span class="string">&quot;10&quot;</span>, <span class="string">&quot;32&quot;</span>));</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, <span class="title function_ invoke__">parse_two</span>(<span class="string">&quot;10&quot;</span>, <span class="string">&quot;ab&quot;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Ok(42)</span><br><span class="line">Err(ParseIntError &#123; kind: InvalidDigit &#125;)</span><br></pre></td></tr></table></figure>
-<p><code>?</code> 的行为是：值是 <code>Ok(x)</code> 就取出 <code>x</code> 继续，值是 <code>Err(e)</code> 就立刻 <code>return Err(e)</code>。上面第二行里 <code>a.parse::&lt;i32&gt;()?</code> 失败，函数直接返回 <code>Err</code>，<code>b</code> 那行根本没执行。</p>
-<p>关键在类型：<code>?</code> 要求错误类型能转成函数的错误类型。这叫「错误转换」，靠 <code>From</code> trait 实现：</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> std::fmt;</span><br><span class="line"><span class="keyword">use</span> std::num::ParseIntError;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">AppError</span> &#123;</span><br><span class="line">    <span class="title function_ invoke__">Parse</span>(ParseIntError),</span><br><span class="line">    <span class="title function_ invoke__">Missing</span>(&amp;<span class="symbol">&#x27;static</span> <span class="type">str</span>),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">fmt</span>::Display <span class="keyword">for</span> <span class="title class_">AppError</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">fmt</span>(&amp;<span class="keyword">self</span>, f: &amp;<span class="keyword">mut</span> fmt::Formatter) <span class="punctuation">-&gt;</span> fmt::<span class="type">Result</span> &#123;</span><br><span class="line">        <span class="keyword">match</span> <span class="keyword">self</span> &#123;</span><br><span class="line">            AppError::<span class="title function_ invoke__">Parse</span>(e) =&gt; <span class="built_in">write!</span>(f, <span class="string">&quot;解析失败: &#123;&#125;&quot;</span>, e),</span><br><span class="line">            AppError::<span class="title function_ invoke__">Missing</span>(s) =&gt; <span class="built_in">write!</span>(f, <span class="string">&quot;缺少字段: &#123;&#125;&quot;</span>, s),</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">std</span>::error::Error <span class="keyword">for</span> <span class="title class_">AppError</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">From</span>&lt;ParseIntError&gt; <span class="keyword">for</span> <span class="title class_">AppError</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">from</span>(e: ParseIntError) <span class="punctuation">-&gt;</span> <span class="keyword">Self</span> &#123;</span><br><span class="line">        AppError::<span class="title function_ invoke__">Parse</span>(e)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">parse_port</span>(s: &amp;<span class="type">str</span>) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;<span class="type">u16</span>, AppError&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> s.<span class="title function_ invoke__">is_empty</span>() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_ invoke__">Err</span>(AppError::<span class="title function_ invoke__">Missing</span>(<span class="string">&quot;port&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_ invoke__">Ok</span>(s.parse::&lt;<span class="type">u16</span>&gt;()?)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">s</span> <span class="keyword">in</span> [<span class="string">&quot;8080&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;99999&quot;</span>] &#123;</span><br><span class="line">        <span class="keyword">match</span> <span class="title function_ invoke__">parse_port</span>(s) &#123;</span><br><span class="line">            <span class="title function_ invoke__">Ok</span>(p) =&gt; <span class="built_in">println!</span>(<span class="string">&quot;端口: &#123;&#125;&quot;</span>, p),</span><br><span class="line">            <span class="title function_ invoke__">Err</span>(e) =&gt; <span class="built_in">println!</span>(<span class="string">&quot;错误: &#123;&#125;&quot;</span>, e),</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">端口: 8080</span><br><span class="line">错误: 缺少字段: port</span><br><span class="line">错误: 解析失败: number too large to fit in target type</span><br></pre></td></tr></table></figure>
-<p><code>Ok(s.parse::&lt;u16&gt;()?)</code> 里的 <code>?</code> 走 <code>From&lt;ParseIntError&gt; for AppError</code>，把底层错误包进 <code>AppError::Parse</code>。这就是自定义错误类型的标准写法：定义枚举，实现 <code>Display</code> 和 <code>Error</code>，再为每个可能的底层错误实现 <code>From</code>。</p>
-<h2 id="panic-与-unwrap"><a class="markdownIt-Anchor" href="#panic-与-unwrap"></a> panic 与 unwrap</h2>
-<p><code>unwrap</code> 遇到 <code>None</code> 会 panic，程序终止：</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">n</span>: <span class="type">i32</span> = <span class="string">&quot;42&quot;</span>.<span class="title function_ invoke__">parse</span>().<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;解析成功: &#123;&#125;&quot;</span>, n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">opt</span>: <span class="type">Option</span>&lt;<span class="type">i32</span>&gt; = <span class="literal">None</span>;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, opt.<span class="title function_ invoke__">expect</span>(<span class="string">&quot;配置里没有这个键&quot;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出（stdout）：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">解析成功: 42</span><br></pre></td></tr></table></figure>
-<p>stderr：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">thread &#x27;main&#x27; (687536) panicked at t4.rs:6:39:</span><br><span class="line">配置里没有这个键</span><br><span class="line">note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace</span><br></pre></td></tr></table></figure>
-<p>panic 信息走 stderr，不走 stdout，退出码 101。</p>
-<p><code>expect</code> 和 <code>unwrap</code> 一样会 panic，区别是能带一句说明。这句说明在 panic 时才出现，所以它是给<strong>看日志的人</strong>看的，不是给编译器看的。</p>
-<p>用 <code>expect</code> 而不是 <code>unwrap</code> 的实际价值：出问题时日志里能直接看出是哪个环节炸的。</p>
-<p>索引越界也是 panic：</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">v</span>: <span class="type">Vec</span>&lt;<span class="type">i32</span>&gt; = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, v[<span class="number">5</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出（stderr，退出码 101）：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">thread &#x27;main&#x27; (687583) panicked at t3.rs:3:21:</span><br><span class="line">index out of bounds: the len is 3 but the index is 5</span><br><span class="line">note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace</span><br></pre></td></tr></table></figure>
-<p>注意这行是<strong>运行时</strong>错误，编译能过。编译期能抓的类型错误是另一个：</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">x</span>: <span class="type">i32</span> = <span class="string">&quot;42&quot;</span>;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编译输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">error[E0308]: mismatched types</span><br><span class="line"> --&gt; e1.rs:2:18</span><br><span class="line">  |</span><br><span class="line">2 |     let x: i32 = &quot;42&quot;;</span><br><span class="line">  |            ---   ^^^^ expected `i32`, found `&amp;str`</span><br><span class="line">  |            |</span><br><span class="line">  |            expected due to this</span><br><span class="line"></span><br><span class="line">error: aborting due to 1 previous error</span><br><span class="line"></span><br><span class="line">For more information about this error, try `rustc --explain E0308`.</span><br></pre></td></tr></table></figure>
-<p><code>Result</code> 存在就是为了让「可能失败」这件事进到类型里，让编译器逼你处理。<code>unwrap</code> 是主动放弃这个检查，代价是运行时炸。</p>
-<h2 id="什么时候-panic什么时候返回错误"><a class="markdownIt-Anchor" href="#什么时候-panic什么时候返回错误"></a> 什么时候 panic，什么时候返回错误</h2>
-<p>判断标准很简单：<strong>调用方有没有办法恢复</strong>。</p>
-<p>配置读错了、文件不存在、网络超时 —— 调用方可以重试、可以给用户提示、可以换个值，这些都该返回 <code>Err</code>。</p>
-<p>数组越界、内部状态被破坏、不变量被违反 —— 这类 bug 修复不了，重试只会重复崩溃，该 panic。</p>
-<p><code>unwrap</code> 和 <code>expect</code> 在库代码里几乎不该出现，在应用代码的启动阶段（读配置、初始化全局状态）可以接受，因为那时候失败就该直接停。</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>Rust</tag>
-        <tag>error-handling</tag>
       </tags>
   </entry>
   <entry>
@@ -11528,48 +11528,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
-    <title>非英语 token 成本更高，暴露 AI 隐形定价权</title>
-    <url>/AI/b0da0024.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="token-税会把语言差异写进账单"><a class="markdownIt-Anchor" href="#token-税会把语言差异写进账单"></a> Token 税会把语言差异写进账单</h2>
-<p>AI 服务的标价通常按 token 计算，但不同语言进入模型后的长度并不一致。上个月，Coalition for Language Equity in AI Research 发布研究，给这种差异起了个名字：隐性 token 税。</p>
-<p>我最初以为这只是分词效率问题。看到具体数据后，我才意识到它会直接改变开发者的成本模型。</p>
-<p>研究覆盖了互联网最流行的 20 种语言。不同语言处理同一段提示所需的 token 量相差很大，最昂贵语言使用的 token 数量是最便宜语言的 1.5-5 倍。扩展到 200 种语言后，一个 AI 模型的 token 成本差距甚至增加了 17 倍。</p>
-<blockquote>
-<p>最昂贵语言使用的 token 数量是最便宜语言的 1.5-5 倍。</p>
-</blockquote>
-<p>这项研究触及了我最在意的定价公平。开发者选模型时，常比较单价、上下文长度和速度。很少有人会把提示语言纳入统一基准。</p>
-<p>同一句“帮我订一张明天去上海的票”，换成中文、英语或其他语言，token 数可能完全不同。厂商按输出和输入 token 收费，用户却只看到统一套餐。多语言带来的额外消耗，往往被藏进后台。</p>
-<h2 id="分词器决定了谁承担成本"><a class="markdownIt-Anchor" href="#分词器决定了谁承担成本"></a> 分词器决定了谁承担成本</h2>
-<p>分词机制大致有两个方向。模型可以把文本切成常见词块，也可以切成更细的子词。词表对某种语言覆盖不足时，同一句话会被切成更多片段。</p>
-<p>模型厂商未必缺少英语语料。真正影响结果的是，训练数据和词表里哪些语言被充分覆盖。罕见语言会遭遇更多碎片、更多 token、更长上下文。</p>
-<blockquote>
-<p>模型的 token 成本差距甚至增加了 17 倍。</p>
-</blockquote>
-<p>延迟和上下文容量也跟着变化。token 数量越多，处理时间通常越长，有效上下文越少。计算资源有限的地区承担了这部分额外负担，研究因此把 token 税和 AI 经济的参与范围联系起来。</p>
-<p>我不同意把这种差异完全归因于用户写法。拼写变体、方言和混合表达确实会增加分词难度，但主流语言之间已经出现了明显差距。这说明词表覆盖和训练分布拥有定价权。</p>
-<p>开发者若只拿英文基准压低单次调用成本，算出来的毛利可能经不起多语言用户使用。我的判断很直接：模型选型应该按产品真实语言分布测试，不能沿用英文榜单。</p>
-<h2 id="产品定价需要加入语言系数"><a class="markdownIt-Anchor" href="#产品定价需要加入语言系数"></a> 产品定价需要加入语言系数</h2>
-<p>多语言产品至少需要三项测试：同一语义在不同语言下的 token 数、输出速度、达到相同任务效果所需的调用次数。只测第一项仍不完整，因为用户可能用更多轮次补足模型对某种语言的理解差距。</p>
-<p>成本测算也要拆开看。输入 token、输出 token、缓存命中、重试次数和工具调用都可能影响最终账单。研究里提到的公司位于不同城市，实际连接和计算资源也有差别。这属于模型之外的变量。</p>
-<p>我更关注产品端如何处理。可以按语言维护独立基准，给高价语言保留更高毛利空间。也可以按任务完成量定价，减少语言长度对用户的影响。还可以把常用语言与专业术语加入测试集，在上线前计算每类用户的预期成本。</p>
-<p>这类调整会影响团队的商业模式。过去大家默认用户获得相同能力，平台也按相同资源消耗收费。词表覆盖让部分语言天然消耗更多资源，继续假装成本完全相同，会把技术差异转嫁给用户。</p>
-<blockquote>
-<p>班加罗尔的初创公司可能需要为每次提示和完成支付附加费，奥斯汀的竞争对手则无需支付。</p>
-</blockquote>
-<p>我的实践习惯一向是先测真实输入，再谈统一价格。这篇文章也提醒我，测试集不能只由英文开发者编写。语言分布来自用户日志，定价系数也应该跟着日志更新。</p>
-<h2 id="结尾"><a class="markdownIt-Anchor" href="#结尾"></a> 结尾</h2>
-<p>隐性 token 税最终会进入产品决策，也会暴露模型厂商不愿公开的语言差异。开发者会继续追求更低的调用成本，用户却可能因为母语不同而支付更多。</p>
-<p>我还没有找到完全公平的定价方式。按 token 计价透明，却无法消除语言差异；按任务收费更接近用户结果，又要求团队持续追踪真实效果。</p>
-<p>如果你的产品已经支持多种语言，你会选择统一价格、按语言调整价格，还是彻底改用按任务收费？</p>
-]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>世界、群体、个体——三层嵌套的坐标系</title>
     <url>/%E4%B8%96%E7%95%8C%E8%A7%82/4e7c1b93.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="世界-群体-个体三层嵌套的坐标系"><a class="markdownIt-Anchor" href="#世界-群体-个体三层嵌套的坐标系"></a> 世界、群体、个体——三层嵌套的坐标系</h2>
@@ -11645,6 +11603,48 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
         <tag>世界观</tag>
         <tag>群体</tag>
         <tag>个体</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>非英语 token 成本更高，暴露 AI 隐形定价权</title>
+    <url>/AI/b0da0024.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="token-税会把语言差异写进账单"><a class="markdownIt-Anchor" href="#token-税会把语言差异写进账单"></a> Token 税会把语言差异写进账单</h2>
+<p>AI 服务的标价通常按 token 计算，但不同语言进入模型后的长度并不一致。上个月，Coalition for Language Equity in AI Research 发布研究，给这种差异起了个名字：隐性 token 税。</p>
+<p>我最初以为这只是分词效率问题。看到具体数据后，我才意识到它会直接改变开发者的成本模型。</p>
+<p>研究覆盖了互联网最流行的 20 种语言。不同语言处理同一段提示所需的 token 量相差很大，最昂贵语言使用的 token 数量是最便宜语言的 1.5-5 倍。扩展到 200 种语言后，一个 AI 模型的 token 成本差距甚至增加了 17 倍。</p>
+<blockquote>
+<p>最昂贵语言使用的 token 数量是最便宜语言的 1.5-5 倍。</p>
+</blockquote>
+<p>这项研究触及了我最在意的定价公平。开发者选模型时，常比较单价、上下文长度和速度。很少有人会把提示语言纳入统一基准。</p>
+<p>同一句“帮我订一张明天去上海的票”，换成中文、英语或其他语言，token 数可能完全不同。厂商按输出和输入 token 收费，用户却只看到统一套餐。多语言带来的额外消耗，往往被藏进后台。</p>
+<h2 id="分词器决定了谁承担成本"><a class="markdownIt-Anchor" href="#分词器决定了谁承担成本"></a> 分词器决定了谁承担成本</h2>
+<p>分词机制大致有两个方向。模型可以把文本切成常见词块，也可以切成更细的子词。词表对某种语言覆盖不足时，同一句话会被切成更多片段。</p>
+<p>模型厂商未必缺少英语语料。真正影响结果的是，训练数据和词表里哪些语言被充分覆盖。罕见语言会遭遇更多碎片、更多 token、更长上下文。</p>
+<blockquote>
+<p>模型的 token 成本差距甚至增加了 17 倍。</p>
+</blockquote>
+<p>延迟和上下文容量也跟着变化。token 数量越多，处理时间通常越长，有效上下文越少。计算资源有限的地区承担了这部分额外负担，研究因此把 token 税和 AI 经济的参与范围联系起来。</p>
+<p>我不同意把这种差异完全归因于用户写法。拼写变体、方言和混合表达确实会增加分词难度，但主流语言之间已经出现了明显差距。这说明词表覆盖和训练分布拥有定价权。</p>
+<p>开发者若只拿英文基准压低单次调用成本，算出来的毛利可能经不起多语言用户使用。我的判断很直接：模型选型应该按产品真实语言分布测试，不能沿用英文榜单。</p>
+<h2 id="产品定价需要加入语言系数"><a class="markdownIt-Anchor" href="#产品定价需要加入语言系数"></a> 产品定价需要加入语言系数</h2>
+<p>多语言产品至少需要三项测试：同一语义在不同语言下的 token 数、输出速度、达到相同任务效果所需的调用次数。只测第一项仍不完整，因为用户可能用更多轮次补足模型对某种语言的理解差距。</p>
+<p>成本测算也要拆开看。输入 token、输出 token、缓存命中、重试次数和工具调用都可能影响最终账单。研究里提到的公司位于不同城市，实际连接和计算资源也有差别。这属于模型之外的变量。</p>
+<p>我更关注产品端如何处理。可以按语言维护独立基准，给高价语言保留更高毛利空间。也可以按任务完成量定价，减少语言长度对用户的影响。还可以把常用语言与专业术语加入测试集，在上线前计算每类用户的预期成本。</p>
+<p>这类调整会影响团队的商业模式。过去大家默认用户获得相同能力，平台也按相同资源消耗收费。词表覆盖让部分语言天然消耗更多资源，继续假装成本完全相同，会把技术差异转嫁给用户。</p>
+<blockquote>
+<p>班加罗尔的初创公司可能需要为每次提示和完成支付附加费，奥斯汀的竞争对手则无需支付。</p>
+</blockquote>
+<p>我的实践习惯一向是先测真实输入，再谈统一价格。这篇文章也提醒我，测试集不能只由英文开发者编写。语言分布来自用户日志，定价系数也应该跟着日志更新。</p>
+<h2 id="结尾"><a class="markdownIt-Anchor" href="#结尾"></a> 结尾</h2>
+<p>隐性 token 税最终会进入产品决策，也会暴露模型厂商不愿公开的语言差异。开发者会继续追求更低的调用成本，用户却可能因为母语不同而支付更多。</p>
+<p>我还没有找到完全公平的定价方式。按 token 计价透明，却无法消除语言差异；按任务收费更接近用户结果，又要求团队持续追踪真实效果。</p>
+<p>如果你的产品已经支持多种语言，你会选择统一价格、按语言调整价格，还是彻底改用按任务收费？</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
       </tags>
   </entry>
   <entry>
@@ -40991,49 +40991,6 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
       </tags>
   </entry>
   <entry>
-    <title>黄仁勋风波映射AI芯片权力更迭</title>
-    <url>/%E6%8A%80%E6%9C%AF/d4407431.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="私生活不会自动切断供应链"><a class="markdownIt-Anchor" href="#私生活不会自动切断供应链"></a> 私生活不会自动切断供应链</h2>
-<p>黄仁勋这场风波会伤到英伟达，但眼下很难直接改写芯片竞争。</p>
-<p>我最初关注的是舆论本身。一个人被卷入间谍争议，代价可能落在声誉、合作和公共关系上。可芯片生意的根基更硬：客户买的是集群、互连、软件和持续交付，很少因为创始人的私生活立刻更换供应商。</p>
-<blockquote>
-<p><span class="hl">真正能动摇订单的是供货中断、许可变化或客户转向。</span></p>
-</blockquote>
-<p>这与我在《美国赢得AI竞赛，但黄仁勋差点亲手葬送优势》（2026）里的判断一致。那篇文章更强调个人关系带来的信任危机。现在看，这个风险仍然存在，却不能夸大成芯片订单会突然流失。</p>
-<p>这也不代表事件无关紧要。黄仁勋是美国国家工程院院士，并在 2026 年被任命为美国总统科学技术顾问委员会成员。身份越靠近政策核心，私生活受到的政治审视越强。美国和中国都在竞逐先进AI基础设施，争议也可能被纳入国家安全叙事。</p>
-<blockquote>
-<p>政治审查与出口管制会沿同一条路径传导，最终影响企业能卖什么、卖给谁。</p>
-</blockquote>
-<h2 id="护城河藏在上游与系统里"><a class="markdownIt-Anchor" href="#护城河藏在上游与系统里"></a> 护城河藏在上游与系统里</h2>
-<p>英伟达的优势不只来自一颗芯片。供应链、代工能力、封装、存储、网络设备和软件生态共同决定了客户拿到的是一套可用系统。</p>
-<p>这也是我判断黄仁勋风波暂时无法击穿护城河的原因。竞争者可以寻找替代芯片，还要补上互连、开发工具和部署支持。大型客户更换计算平台，往往意味着重新验证、重新训练和重新管理基础设施。</p>
-<blockquote>
-<p><span class="hl">客户集中度是英伟达最容易被忽略的脆弱点，完整系统能力则是它最难被复制的部分。</span></p>
-</blockquote>
-<p>客户集中带来两面性。少数大客户掌握足够强的议价能力，也能加快自研芯片或引入第二供应商。可这需要时间，也需要软件成熟。外部竞争通常从单一环节切入，再逐步扩大覆盖。</p>
-<p>我对“AI芯片公司只要拿到订单就安全”的看法，一直有保留。订单能证明需求，却不能证明竞争者无法追上来。更关键的观察点是：客户是否降低对单一供应商的依赖，以及竞争者能否提供可部署、可维护的整套系统。</p>
-<blockquote>
-<p>供应链韧性不是仓库里堆了多少芯片，而是关键环节受限时，系统还能否持续交付。</p>
-</blockquote>
-<h2 id="新巨头要跨过三道门槛"><a class="markdownIt-Anchor" href="#新巨头要跨过三道门槛"></a> 新巨头要跨过三道门槛</h2>
-<p>我到现在也没完全看懂，下一个巨头会从芯片设计、云计算，还是系统集成中诞生。</p>
-<p>芯片公司最容易获得声量。云计算公司掌握客户关系和算力入口。系统厂商则更了解行业流程，可能把模型直接装进现有设备。它们的路径不同，商业控制力也不同。</p>
-<blockquote>
-<p>新巨头需要同时解决三道门槛：拿到先进制造能力，通过出口管制，并让客户接受迁移成本。</p>
-</blockquote>
-<p>前两道门槛决定它能否供货，第三道决定供货能否变成收入。政策会奖励真正形成基础设施能力的公司，也会压制其扩张速度。越靠近先进AI基础设施，资本、人才和监管许可就越难同时获得。</p>
-<p>这也解释了为什么我更关注权力的转移方式。谁设计芯片，谁分配算力，谁决定客户能使用哪些能力。单个产品被替代，只算局部调整；控制软件、网络和交付标准的能力转移，才会重排行业位置。</p>
-<p><span class="hl">黄仁勋风波能制造新闻，供应链重组才会制造新的巨头。</span></p>
-<p>下一阶段值得继续观察的不是舆论会压低多少，而是美国许可规则、先进制造供给和客户采购策略如何共同变化。</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>技术</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>美国赢得AI竞赛，但黄仁勋差点亲手葬送优势</title>
     <url>/AI/1cdc5bc8.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="间谍风波改变不了算力胜负手"><a class="markdownIt-Anchor" href="#间谍风波改变不了算力胜负手"></a> 间谍风波改变不了算力胜负手</h2>
@@ -41088,6 +41045,49 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
       </categories>
       <tags>
         <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>黄仁勋风波映射AI芯片权力更迭</title>
+    <url>/%E6%8A%80%E6%9C%AF/d4407431.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="私生活不会自动切断供应链"><a class="markdownIt-Anchor" href="#私生活不会自动切断供应链"></a> 私生活不会自动切断供应链</h2>
+<p>黄仁勋这场风波会伤到英伟达，但眼下很难直接改写芯片竞争。</p>
+<p>我最初关注的是舆论本身。一个人被卷入间谍争议，代价可能落在声誉、合作和公共关系上。可芯片生意的根基更硬：客户买的是集群、互连、软件和持续交付，很少因为创始人的私生活立刻更换供应商。</p>
+<blockquote>
+<p><span class="hl">真正能动摇订单的是供货中断、许可变化或客户转向。</span></p>
+</blockquote>
+<p>这与我在《美国赢得AI竞赛，但黄仁勋差点亲手葬送优势》（2026）里的判断一致。那篇文章更强调个人关系带来的信任危机。现在看，这个风险仍然存在，却不能夸大成芯片订单会突然流失。</p>
+<p>这也不代表事件无关紧要。黄仁勋是美国国家工程院院士，并在 2026 年被任命为美国总统科学技术顾问委员会成员。身份越靠近政策核心，私生活受到的政治审视越强。美国和中国都在竞逐先进AI基础设施，争议也可能被纳入国家安全叙事。</p>
+<blockquote>
+<p>政治审查与出口管制会沿同一条路径传导，最终影响企业能卖什么、卖给谁。</p>
+</blockquote>
+<h2 id="护城河藏在上游与系统里"><a class="markdownIt-Anchor" href="#护城河藏在上游与系统里"></a> 护城河藏在上游与系统里</h2>
+<p>英伟达的优势不只来自一颗芯片。供应链、代工能力、封装、存储、网络设备和软件生态共同决定了客户拿到的是一套可用系统。</p>
+<p>这也是我判断黄仁勋风波暂时无法击穿护城河的原因。竞争者可以寻找替代芯片，还要补上互连、开发工具和部署支持。大型客户更换计算平台，往往意味着重新验证、重新训练和重新管理基础设施。</p>
+<blockquote>
+<p><span class="hl">客户集中度是英伟达最容易被忽略的脆弱点，完整系统能力则是它最难被复制的部分。</span></p>
+</blockquote>
+<p>客户集中带来两面性。少数大客户掌握足够强的议价能力，也能加快自研芯片或引入第二供应商。可这需要时间，也需要软件成熟。外部竞争通常从单一环节切入，再逐步扩大覆盖。</p>
+<p>我对“AI芯片公司只要拿到订单就安全”的看法，一直有保留。订单能证明需求，却不能证明竞争者无法追上来。更关键的观察点是：客户是否降低对单一供应商的依赖，以及竞争者能否提供可部署、可维护的整套系统。</p>
+<blockquote>
+<p>供应链韧性不是仓库里堆了多少芯片，而是关键环节受限时，系统还能否持续交付。</p>
+</blockquote>
+<h2 id="新巨头要跨过三道门槛"><a class="markdownIt-Anchor" href="#新巨头要跨过三道门槛"></a> 新巨头要跨过三道门槛</h2>
+<p>我到现在也没完全看懂，下一个巨头会从芯片设计、云计算，还是系统集成中诞生。</p>
+<p>芯片公司最容易获得声量。云计算公司掌握客户关系和算力入口。系统厂商则更了解行业流程，可能把模型直接装进现有设备。它们的路径不同，商业控制力也不同。</p>
+<blockquote>
+<p>新巨头需要同时解决三道门槛：拿到先进制造能力，通过出口管制，并让客户接受迁移成本。</p>
+</blockquote>
+<p>前两道门槛决定它能否供货，第三道决定供货能否变成收入。政策会奖励真正形成基础设施能力的公司，也会压制其扩张速度。越靠近先进AI基础设施，资本、人才和监管许可就越难同时获得。</p>
+<p>这也解释了为什么我更关注权力的转移方式。谁设计芯片，谁分配算力，谁决定客户能使用哪些能力。单个产品被替代，只算局部调整；控制软件、网络和交付标准的能力转移，才会重排行业位置。</p>
+<p><span class="hl">黄仁勋风波能制造新闻，供应链重组才会制造新的巨头。</span></p>
+<p>下一阶段值得继续观察的不是舆论会压低多少，而是美国许可规则、先进制造供给和客户采购策略如何共同变化。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
       </tags>
   </entry>
   <entry>
@@ -41208,6 +41208,46 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
       </tags>
   </entry>
   <entry>
+    <title>AI并未自主发现未知玛雅遗址</title>
+    <url>/AI/cd6c819c.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="这次发现已经有论文在先"><a class="markdownIt-Anchor" href="#这次发现已经有论文在先"></a> 这次“发现”，已经有论文在先</h2>
+<p>AI 智能体发现未知玛雅遗址，这个标题很抓人。Google 研究员 Pietro Miotti 也在自己的博客里写得很兴奋：智能体在 NASA 的激光雷达数据里圈出许多村落，还看到像房屋和建筑的规则形状。他补充说这是自己用休假时间做的个人项目，没用公司的算力。</p>
+<p>但关键事实紧跟着出现了：这个“尚未绘制”的遗址，已经在去年发过的学术论文里了。Miotti 摆了 48 个智能体去处理约 1,200 平方公里的雷达条带，再让它们逐块检查金字塔、台基和广场的形状。2025 年 10 月，Estrada-Belli 等人在 Journal of Archaeological Science: Reports 上发表了一篇区域尺度的玛雅人口密度估算，覆盖 95,000 平方公里的玛雅中部低地，结论之一是玛雅人口峰值可能高达 1,600 万。</p>
+<p>我一开始的反应不是“AI 真神了”。更直接的问题是：<span class="hl">一个发现是否成立，要看它相对已有知识增加了什么。</span></p>
+<p>Miotti 后来自己承认了这一点。11 月 11 日的更新里，他说智能体在查阅文献时漏掉了那篇论文，所以它们重新发现了一个已经发现的地方。考古学家 Sarah Parcak 的评论更干脆：这就是为什么要同行评议。</p>
+<blockquote>
+<p>论文早就躺在那里。新的只是发现者的无知，以及叙事的发布时间。</p>
+</blockquote>
+<h2 id="智能体的价值在缩小搜索范围"><a class="markdownIt-Anchor" href="#智能体的价值在缩小搜索范围"></a> 智能体的价值在缩小搜索范围</h2>
+<p>我并不想因此否定 AI 辅助考古。遥感影像、形状识别和大规模筛查，本来就适合交给计算系统。人在有限时间里不可能逐张检查所有影像，模型可以先圈出可疑区域，再让考古学家核对。</p>
+<p>真正有价值的流程应该是：模型提出候选地点，研究人员查文献、现场记录和已有数据库，最后由能够承担责任的人确认结论。这次的问题，恰恰发生在最后确认之前。10 月 21 日，墨西哥国家考古与历史研究所回复说该位置没有已登记的考古遗址。Miotti 把这句回复理解成“没有人绘制过这里”。</p>
+<p>这个误读不难理解。研究所回答的是它自己的登记册，而不是整个考古学文献。Miotti 在自己的更新里说，这个地点就出现在那篇 2025 年论文的第 14 页。</p>
+<p>这也让我想到 Hermes Atlas 知识库。我做它的目标之一，就是让信息差更容易被调用：先找到人们已经在寻找、购买或讨论的东西，再判断它是否值得包装成产品。但到 2026 年，我卡住的三个问题仍然没解决：解决什么问题、谁付钱、怎么收钱。</p>
+<p><span class="hl">能找到一个看起来有价值的线索，不等于找到了一个可交付、可收费、可持续的发现。</span></p>
+<p>如果只按“模型发现了多少个形状”汇报，项目很容易显得成功。可一旦追问这些形状有多少进入了论文，有多少能被复核，有多少产生了后续行动，答案马上会变得克制。</p>
+<blockquote>
+<p>搜索范围扩大，不等于知识边界向外移动。候选点增加，也不等于有效发现增加。</p>
+</blockquote>
+<h2 id="商业叙事会替证据补全"><a class="markdownIt-Anchor" href="#商业叙事会替证据补全"></a> 商业叙事会替证据补全</h2>
+<p>这次事件还暴露出另一个问题：科学发现与商业传播使用几乎相同的语言。</p>
+<p>“智能体自主发现遗址”有传播力。它把复杂流程压缩成一句话：AI 睡了一觉，醒来后发现了人类没找到的东西。技术演示喜欢这种结构，读者也容易记住。可“自主”这个词一旦被放进标题，谁负责检查既有文献、谁判断模型是否理解遗址、谁承担误报成本，往往就消失了。</p>
+<p>我写博客已经 8 年多。2018 年开始写，到现在有 225 个 Markdown 文件，其中 60 个是小说。写到 2026 年，我反而更警惕“看起来很厉害”的故事。博客里已有自建的 AI 味检测器，也有 Writing DNA 蒸馏工具。它们能处理措辞，却不能替我核实事实。</p>
+<p>商业上同样如此。我现在推的方向是信息差套利，但信息差并非越快发布越好。若发布者没有独家来源、验证过程和交付能力，所谓“发现”很快会变成人人都能复制的标题。</p>
+<blockquote>
+<p>“AI 发现了”回答了谁在做；“人类因此多知道了什么”才回答价值。</p>
+</blockquote>
+<p>一项智能体研究真正值得讨论的指标，可能不是候选点数量，也不是地图上出现了多少标记，而是其中多少经得起文献与专业复核。这个事件里，论文一直在那里。它没有制造未知遗址，却让我们看清了未知常怎样被包装成新闻。</p>
+<p>我到现在也没想明白，公众为什么更愿意接受“AI 独自醒来并发现秘密”这样的故事。也许因为这种故事省去了检索、争论和责任，也因为我们既期待机器超越人类，又不愿真正审查它做出的判断。</p>
+<p>下一次看到“智能体发现”四个字，我准备先问三个问题：它发现了什么，相对已有研究新增了什么，又由谁完成验证？这三个问题也许不够有传播力，却足以决定一个发现究竟属于科学，还是属于营销。</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AI编程代理泄密敲响警报，独立开发者须给权限上锁</title>
     <url>/AI/3ad49b58.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="暴露面从代码生成转向运行权限"><a class="markdownIt-Anchor" href="#暴露面从代码生成转向运行权限"></a> 暴露面从代码生成转向运行权限</h2>
@@ -41243,46 +41283,6 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
 <p>独立开发者还应给 Agent 设置预算和停止条件。命令执行次数限制、单次任务时长、网络访问白名单、并发任务上限，都能减少一次判断错误造成的连带范围。</p>
 <p>过去我在《模型竞争进入交付能力比拼，AI 产品重塑独立开发门槛》里讨论过，代码生成只解决了产品交付的一段。现在看，权限设计就是新增的一段。它不会出现在演示视频里，却决定了工具能走多远。</p>
 <p>独立开发者最该带走的判断很简单：给代理能力，也给代理边界。先从只读权限开始，再逐步放开写入、命令和网络。AI 编程代理会继续普及。下一个问题不再是它能写多少代码，而是你准备让它碰到多少秘密？</p>
-]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>AI并未自主发现未知玛雅遗址</title>
-    <url>/AI/cd6c819c.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="这次发现已经有论文在先"><a class="markdownIt-Anchor" href="#这次发现已经有论文在先"></a> 这次“发现”，已经有论文在先</h2>
-<p>AI 智能体发现未知玛雅遗址，这个标题很抓人。Google 研究员 Pietro Miotti 也在自己的博客里写得很兴奋：智能体在 NASA 的激光雷达数据里圈出许多村落，还看到像房屋和建筑的规则形状。他补充说这是自己用休假时间做的个人项目，没用公司的算力。</p>
-<p>但关键事实紧跟着出现了：这个“尚未绘制”的遗址，已经在去年发过的学术论文里了。Miotti 摆了 48 个智能体去处理约 1,200 平方公里的雷达条带，再让它们逐块检查金字塔、台基和广场的形状。2025 年 10 月，Estrada-Belli 等人在 Journal of Archaeological Science: Reports 上发表了一篇区域尺度的玛雅人口密度估算，覆盖 95,000 平方公里的玛雅中部低地，结论之一是玛雅人口峰值可能高达 1,600 万。</p>
-<p>我一开始的反应不是“AI 真神了”。更直接的问题是：<span class="hl">一个发现是否成立，要看它相对已有知识增加了什么。</span></p>
-<p>Miotti 后来自己承认了这一点。11 月 11 日的更新里，他说智能体在查阅文献时漏掉了那篇论文，所以它们重新发现了一个已经发现的地方。考古学家 Sarah Parcak 的评论更干脆：这就是为什么要同行评议。</p>
-<blockquote>
-<p>论文早就躺在那里。新的只是发现者的无知，以及叙事的发布时间。</p>
-</blockquote>
-<h2 id="智能体的价值在缩小搜索范围"><a class="markdownIt-Anchor" href="#智能体的价值在缩小搜索范围"></a> 智能体的价值在缩小搜索范围</h2>
-<p>我并不想因此否定 AI 辅助考古。遥感影像、形状识别和大规模筛查，本来就适合交给计算系统。人在有限时间里不可能逐张检查所有影像，模型可以先圈出可疑区域，再让考古学家核对。</p>
-<p>真正有价值的流程应该是：模型提出候选地点，研究人员查文献、现场记录和已有数据库，最后由能够承担责任的人确认结论。这次的问题，恰恰发生在最后确认之前。10 月 21 日，墨西哥国家考古与历史研究所回复说该位置没有已登记的考古遗址。Miotti 把这句回复理解成“没有人绘制过这里”。</p>
-<p>这个误读不难理解。研究所回答的是它自己的登记册，而不是整个考古学文献。Miotti 在自己的更新里说，这个地点就出现在那篇 2025 年论文的第 14 页。</p>
-<p>这也让我想到 Hermes Atlas 知识库。我做它的目标之一，就是让信息差更容易被调用：先找到人们已经在寻找、购买或讨论的东西，再判断它是否值得包装成产品。但到 2026 年，我卡住的三个问题仍然没解决：解决什么问题、谁付钱、怎么收钱。</p>
-<p><span class="hl">能找到一个看起来有价值的线索，不等于找到了一个可交付、可收费、可持续的发现。</span></p>
-<p>如果只按“模型发现了多少个形状”汇报，项目很容易显得成功。可一旦追问这些形状有多少进入了论文，有多少能被复核，有多少产生了后续行动，答案马上会变得克制。</p>
-<blockquote>
-<p>搜索范围扩大，不等于知识边界向外移动。候选点增加，也不等于有效发现增加。</p>
-</blockquote>
-<h2 id="商业叙事会替证据补全"><a class="markdownIt-Anchor" href="#商业叙事会替证据补全"></a> 商业叙事会替证据补全</h2>
-<p>这次事件还暴露出另一个问题：科学发现与商业传播使用几乎相同的语言。</p>
-<p>“智能体自主发现遗址”有传播力。它把复杂流程压缩成一句话：AI 睡了一觉，醒来后发现了人类没找到的东西。技术演示喜欢这种结构，读者也容易记住。可“自主”这个词一旦被放进标题，谁负责检查既有文献、谁判断模型是否理解遗址、谁承担误报成本，往往就消失了。</p>
-<p>我写博客已经 8 年多。2018 年开始写，到现在有 225 个 Markdown 文件，其中 60 个是小说。写到 2026 年，我反而更警惕“看起来很厉害”的故事。博客里已有自建的 AI 味检测器，也有 Writing DNA 蒸馏工具。它们能处理措辞，却不能替我核实事实。</p>
-<p>商业上同样如此。我现在推的方向是信息差套利，但信息差并非越快发布越好。若发布者没有独家来源、验证过程和交付能力，所谓“发现”很快会变成人人都能复制的标题。</p>
-<blockquote>
-<p>“AI 发现了”回答了谁在做；“人类因此多知道了什么”才回答价值。</p>
-</blockquote>
-<p>一项智能体研究真正值得讨论的指标，可能不是候选点数量，也不是地图上出现了多少标记，而是其中多少经得起文献与专业复核。这个事件里，论文一直在那里。它没有制造未知遗址，却让我们看清了未知常怎样被包装成新闻。</p>
-<p>我到现在也没想明白，公众为什么更愿意接受“AI 独自醒来并发现秘密”这样的故事。也许因为这种故事省去了检索、争论和责任，也因为我们既期待机器超越人类，又不愿真正审查它做出的判断。</p>
-<p>下一次看到“智能体发现”四个字，我准备先问三个问题：它发现了什么，相对已有研究新增了什么，又由谁完成验证？这三个问题也许不够有传播力，却足以决定一个发现究竟属于科学，还是属于营销。</p>
 ]]></content>
       <categories>
         <category>AI</category>
@@ -41649,14 +41649,14 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
 <p>AI 编程代理的风险边界，已经从“能否生成代码”挪到了“运行后能碰到什么”。</p>
 <p>我最初把 Grok Build 当成终端里的开发工具。看文档、改文件、运行命令，再把结果交回模型。它和过去几年代码助手最大的差别，是获得了执行权。</p>
 <p>4 天前，我写过《AI编程代理泄密敲响警报，独立开发者须给权限上锁》。那次讨论的是权限失控。现在这次事件又补上了一块拼图：平台把项目分享出去时，秘密也可能跟着走。</p>
-<p>Grok Build 会随机生成项目链接。知道完整 URL 的人才能打开。这本来是一层能力式访问控制。可研究显示，平台的一项设计让大量链接可被枚举，结果是 <span class="hl">35,000 Grok Build apps</span> 对知道链接的人失去屏障。</p>
+<p>Grok Build 会随机生成项目链接。知道完整 URL 的人才能打开。这本来是一层能力式访问控制。可研究显示，平台的一项设计让大量链接可被枚举，结果是 <span class="hl">35,000 个 Grok Build 应用</span> 对知道链接的人失去屏障。</p>
 <blockquote>
 <p>链接有随机性，却没有真正建立身份校验和访问边界。随机字符串只提高了猜中成本，不能代替授权。</p>
 </blockquote>
 <p>问题出在分享功能。用户主动生成链接后，项目内容也进入可访问状态。链接如果能被枚举，秘密就跟着链接流动。</p>
 <h2 id="真正敏感的数据会进入代理上下文"><a class="markdownIt-Anchor" href="#真正敏感的数据会进入代理上下文"></a> 真正敏感的数据会进入代理上下文</h2>
 <p>Claroc 发现的样本包括内部业务计划、广告方案、医疗检查结果、名人邮轮检查清单，以及员工姓名和身份编号。平台自己的项目也在暴露范围内。</p>
-<p>其中发现 <span class="hl">24 of</span> 个 SpaceXSI 内部应用涉及敏感资料，包括销售入职计划、包含 <span class="hl">594 accounts</span> 的销售区域图、内部系统地址和广告提案。</p>
+<p>其中发现 <span class="hl">24 个</span> SpaceXSI 内部应用涉及敏感资料，包括销售入职计划、包含 <span class="hl">594 个账户</span> 的销售区域图、内部系统地址和广告提案。</p>
 <blockquote>
 <p>24 个内部应用被公开样本命中，已经超出普通代码演示项目的风险范围。</p>
 </blockquote>
@@ -41673,7 +41673,7 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
 <blockquote>
 <p>独立开发者最省事的做法，是让代理长期看不到秘密。若上下文没有秘密，分享出去的项目就少一条泄露路径。</p>
 </blockquote>
-<p>Grok Build 开源后积累了 <span class="hl">2 万</span> Star。许多人会尝试接入个人项目。Star 数量能说明关注度，不能说明部署者已经处理好权限。</p>
+<p>Grok Build 开源后积累了 <span class="hl">近 2.8 万</span> Star。许多人会尝试接入个人项目。Star 数量能说明关注度，不能说明部署者已经处理好权限。</p>
 <p>模型可以辅助隔离，却无法替你定义秘密的边界。独立开发者需要明确一项责任：代理允许执行什么，允许读取什么，允许带出什么。AI 编程进入运行阶段后，配置文件里保存的不再只是程序参数。它们共同决定了这套系统能碰到多大范围的数据。</p>
 ]]></content>
       <categories>
@@ -41697,7 +41697,7 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
 </blockquote>
 <p>如果系统只记住“玩家喜欢海边”，生成器可以造出海岸场景。加入“某人曾在海边告别”，关系结构才真正出现。地点、人物、事件和情绪开始互相约束。</p>
 <h2 id="隐私边界决定这种游戏能不能成立"><a class="markdownIt-Anchor" href="#隐私边界决定这种游戏能不能成立"></a> 隐私边界决定这种游戏能不能成立</h2>
-<p>记忆越私人，游戏体验越私人，代价也越直接。官方介绍已经提到添加记忆与相关人物，但现有摘要没有交代数据如何存储、删除、隔离或撤回。</p>
+<p>记忆越私人，游戏体验越私人，代价也越直接。官网介绍里提到可以添加记忆和相关人物，也说世界可以设为私密、或分享给别人。存储位置、删除与撤回机制这些具体设计，得等产品真正上线后才看得到。</p>
 <p>这里不能靠“AI 会帮你整理”这种说法回避问题。</p>
 <p>玩家讲出的故事可能涉及家人、朋友、工作关系和现实冲突。系统一旦能把这些内容转成可互动世界，它也会生成新的推断。推断可能错误，场景可能暴露关系，角色可能说出玩家从未说过的话。</p>
 <p><span class="hl">隐私边界不能藏在模型能力里，必须落在产品操作上。</span></p>
@@ -41707,7 +41707,7 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
 <p>召回命中率约 9%：记忆系统首先要解决“找对”，然后才谈“重建”。</p>
 </blockquote>
 <p>独立开发者在隐私上反而可能有机会。大平台通常追求更长的留存时间、更广的数据使用范围和更复杂的审核流程。小团队可以把记忆限定在本地，把生成与原始记录分开，并提供逐条撤回。</p>
-<p>这比再加一个角色更ChatGPT更有效。后者容易展示，前者决定信任能否持续。</p>
+<p>这比再加一个角色、接入大模型更有效。后者容易展示，前者决定信任能否持续。</p>
 <h2 id="独立开发者应从可验证的记忆闭环切入"><a class="markdownIt-Anchor" href="#独立开发者应从可验证的记忆闭环切入"></a> 独立开发者应从可验证的记忆闭环切入</h2>
 <p>这类游戏最诱人的想象，是每个人得到一款专属作品。Will Wright 对它的描述很直接：“We want to take your autobiography and turn it into a toy world.”</p>
 <p>但自传材料无法替代核心玩法。若玩家录入记忆后只能旁观生成结果，产品很快会退化成叙事生成器。玩家需要做出选择，选择又要影响世界，结果还能被解释为与记忆有关。</p>
