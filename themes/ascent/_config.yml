@@ -81,8 +81,26 @@ lazyload:
 # rss: 'atom.xml'
 
 
+# giscus（GitHub Discussions 评论区）
+# fail-closed：repoId / categoryId 为空时整块不渲染（见 layout/_partial/post/giscus.ejs）。
+# 取值方式：仓库需先开启 Discussions 并安装 giscus App，
+# 然后在 https://giscus.app 选中仓库，页面生成的 data-repo-id 与 data-category-id 即为下面两项。
+# CSP 已在 scripts/security-hardening.js 中放行 https://giscus.app（script-src 与 frame-src）。
+giscus:
+  enable: true
+  repo: nil-w/nil.github.io
+  repoId: ""            # ← 待填：giscus.app 给出的 data-repo-id（形如 R_kgDOxxxxxx）
+  category: "Announcements"
+  categoryId: ""        # ← 待填：giscus.app 给出的 data-category-id（形如 DIC_kwDOxxxxxx）
+  mapping: pathname
+  strict: 0
+  reactionsEnabled: 1
+  inputPosition: top
+  theme: preferred_color_scheme
+  lang: zh-CN
+
 gitalk:
-  enable:  true
+  enable:  false
   githubID:  nil-w  # 配置项基本于 GitTalk保持一致
   repo:  'nil.github.io'
   ClientID:  'd99a4bdc344cff33585d'

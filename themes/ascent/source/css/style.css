@@ -1711,3 +1711,31 @@ body.home .post-count {
   margin-left: auto;
   margin-right: auto;
 }
+
+/* giscus 评论区（layout/_partial/post/giscus.ejs）
+   与 #article-nav 的 2em 上下边距对齐；仅做容器内边距与暗色适配，
+   内部排版由 giscus iframe 自身的 data-theme 控制。 */
+.giscus-wrap {
+  margin: 2em 0;
+  padding: 0;
+}
+
+.giscus {
+  width: 100%;
+}
+
+.giscus iframe {
+  width: 100%;
+  border: 0;
+}
+
+/* 暗色模式下随站点变量给出容器底色，避免 iframe 加载前出现白块 */
+@media (prefers-color-scheme: dark) {
+  .giscus-wrap {
+    color: var(--text-color);
+  }
+}
+
+html[data-theme='dark'] .giscus-wrap {
+  color: var(--text-color);
+}

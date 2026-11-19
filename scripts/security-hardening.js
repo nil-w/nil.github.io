@@ -387,6 +387,8 @@ function buildCsp() {
     'https://cdn.jsdelivr.net',
     'https://unpkg.com',
     'https://cdnjs.cloudflare.com',
+    // giscus 客户端脚本（layout/_partial/post/giscus.ejs 从 https://giscus.app 加载）
+    'https://giscus.app',
   ].join(' ');
 
   const styleSrc = [
@@ -405,7 +407,7 @@ function buildCsp() {
     "img-src 'self' data: https:",
     "font-src 'self' data: https://fonts.gstatic.com",
     "connect-src 'self' https:",
-    "frame-src 'self' https://www.slideshare.net https://player.bilibili.com",
+    "frame-src 'self' https://www.slideshare.net https://player.bilibili.com https://giscus.app",
     "media-src 'self' https:",
     "object-src 'none'",
     "base-uri 'self'",

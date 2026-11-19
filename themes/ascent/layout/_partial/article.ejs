@@ -77,6 +77,16 @@
 </article>
 <% if (!index){ %>
   <%- partial('post/nav') %>
+  <%
+  // giscus 守卫：加密文章不渲染公开评论区。
+  // 渲染期 hexo-blog-encrypt 依赖 post.password（由 scripts/security-hardening.js 注入），
+  // front-matter 的 encrypt: true 作为补充判据，两者任一成立即视为加密文章。
+  const _isEncryptedPost = !!(post.password && String(post.password).trim()) ||
+    post.encrypt === true || post.encrypt === 'true';
+  %>
+  <% if (!_isEncryptedPost){ %>
+    <%- partial('post/giscus') %>
+  <% } %>
   <% if(theme.gitalk.enable){ %>
     <%- partial('post/gitalk', {
         key: post.slug,

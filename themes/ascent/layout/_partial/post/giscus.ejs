@@ -1,0 +1,42 @@
+<%
+/**
+ * giscus.ejs — 评论区（基于 GitHub Discussions）
+ *
+ * fail-closed 约束（2026-11-19）：
+ *   1. giscus.enable 为 false → 不渲染。
+ *   2. repo / repoId / category / categoryId 任一为空 → 不渲染。
+ *      当前 repoId 与 categoryId 尚未从 giscus.app 取得，因此线上保持无评论区，
+ *      绝不允许输出半截配置（会产生指向 giscus.app 的坏请求 / 空白 iframe）。
+ *   3. 任何配置缺失时不加载 https://giscus.app/client.js，避免无谓第三方请求。
+ *
+ * 配置来源：themes/ascent/_config.yml 的 giscus 段。
+ */
+%><%
+  const _g = theme.giscus || {};
+  const _repo = String(_g.repo || '').trim();
+  const _repoId = String(_g.repoId || '').trim();
+  const _category = String(_g.category || '').trim();
+  const _categoryId = String(_g.categoryId || '').trim();
+  const _giscusOn = _g.enable === true && !!_repo && !!_repoId && !!_category && !!_categoryId;
+  const _strict = (_g.strict === undefined || _g.strict === null) ? 0 : _g.strict;
+  const _reactions = (_g.reactionsEnabled === undefined || _g.reactionsEnabled === null) ? 1 : _g.reactionsEnabled;
+%><% if (_giscusOn){ %>
+<div class="giscus-wrap">
+  <div class="giscus"></div>
+  <script src="https://giscus.app/client.js"
+    data-repo="<%= _repo %>"
+    data-repo-id="<%= _repoId %>"
+    data-category="<%= _category %>"
+    data-category-id="<%= _categoryId %>"
+    data-mapping="<%= _g.mapping || 'pathname' %>"
+    data-strict="<%= _strict %>"
+    data-reactions-enabled="<%= _reactions %>"
+    data-emit-metadata="0"
+    data-input-position="<%= _g.inputPosition || 'top' %>"
+    data-theme="<%= _g.theme || 'preferred_color_scheme' %>"
+    data-lang="<%= _g.lang || 'zh-CN' %>"
+    crossorigin="anonymous"
+    async>
+  </script>
+</div>
+<% } %>
