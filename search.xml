@@ -152,6 +152,42 @@
       </tags>
   </entry>
   <entry>
+    <title>给博客增加评论功能</title>
+    <url>/Jekyll/2d764bfc.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="首先感谢imsun大神的插件gitment"><a class="markdownIt-Anchor" href="#首先感谢imsun大神的插件gitment"></a> 首先感谢<a href="https://github.com/imsun">@imsun</a>大神的插件<a href="https://imsun.github.io/gitment/">Gitment</a></h3>
+<span id="more"></span>
+<p>插件本身默认支持英文，所以我下载了源码进行一部分改造。以下是源码：<a href="yqwoe.space/yqwoe.github.io/static/js/gitment.js">giment.js</a> 、 <a href="yqwoe.space/yqwoe.github.io/static/css/gitment.css">giement.css</a></p>
+<p>下边是操作步骤，不是技术同学先参考一下<a href="https://imsun.github.io/gitment/">Gitment Demo Page</a> 再进行操作。</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><a href="https://www.jekyll.com.cn/docs/home/">Jekyll 教程</a></p>
+</li>
+<li class="lvl-2">
+<p><a href="https://github.com/imsun/gitment">Gitment Readme</a></p>
+</li>
+</ul>
+<h3 id="基本使用"><a class="markdownIt-Anchor" href="#基本使用"></a> 基本使用</h3>
+<h4 id="1-注册-oauth-application"><a class="markdownIt-Anchor" href="#1-注册-oauth-application"></a> 1. 注册 OAuth Application</h4>
+<p><a href="https://github.com/settings/applications/new">New OAuth</a> ，填写内容时候确保 callback URL 与你的博客地址域名一致。</p>
+<h4 id="2引入-js-css-到文章页面"><a class="markdownIt-Anchor" href="#2引入-js-css-到文章页面"></a> 2.引入 js、css 到文章页面</h4>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;container&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://yqwoe.space/yqwoe.github.io/static/css/gitment.css&quot;&gt;</span><br><span class="line">&lt;script src=&quot;https://yqwoe.space/yqwoe.github.io/static/js/gitment.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">/**</span><br><span class="line">*第一个坑，默认id是填入完整的url，而issue的label长度限制为50，所以url必然会超长。</span><br><span class="line">*/</span><br><span class="line">var paths = location.pathname.split(&#x27;/&#x27;)</span><br><span class="line">var id = decodeURI(paths[paths.length - 1 ]))</span><br><span class="line">var gitment = new Gitment(&#123;</span><br><span class="line">  id: id, // 必填，不然评论信息不会加载成功！</span><br><span class="line">  owner: &#x27;你的 GitHub ID&#x27;,</span><br><span class="line">  repo: &#x27;存储评论的 repo&#x27;,</span><br><span class="line">  oauth: &#123;</span><br><span class="line">    client_id: &#x27;你注册 OAuth 的 client ID&#x27;,</span><br><span class="line">    client_secret: &#x27;你注册 OAuth 的 client secret&#x27;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line">gitment.render(&#x27;container&#x27;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h4 id="3-初始化评论"><a class="markdownIt-Anchor" href="#3-初始化评论"></a> 3. 初始化评论</h4>
+<p>页面发布后，你需要访问页面并使用你的 GitHub 账号登录（请确保你的账号是第二步所填 repo 的 owner），点击初始化按钮。</p>
+<h4 id="敲黑板下一篇博客会介绍-jekyll-admin-插件的使用方法和一些填坑技巧"><a class="markdownIt-Anchor" href="#敲黑板下一篇博客会介绍-jekyll-admin-插件的使用方法和一些填坑技巧"></a> 敲黑板，下一篇博客会介绍 《<strong>Jekyll-Admin 插件的使用方法</strong>》和一些填坑技巧。</h4>
+<p>我的博客评论功能目前只支持全球最大<s>同性</s>交友网站<a href="github.com/nil-w">Github</a>的账号，以后会慢慢扩展。<br />
+以上是我的分享，谢谢！！</p>
+]]></content>
+      <categories>
+        <category>Jekyll</category>
+      </categories>
+      <tags>
+        <tag>技巧</tag>
+        <tag>gitment</tag>
+        <tag>git</tag>
+        <tag>Jekyll</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>过六一的&quot;儿童&quot;们</title>
     <url>/%E7%94%9F%E6%B4%BB/1bc5f237.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
@@ -186,42 +222,6 @@
         <tag>六一</tag>
         <tag>巨婴</tag>
         <tag>孩子</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>给博客增加评论功能</title>
-    <url>/Jekyll/2d764bfc.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h3 id="首先感谢imsun大神的插件gitment"><a class="markdownIt-Anchor" href="#首先感谢imsun大神的插件gitment"></a> 首先感谢<a href="https://github.com/imsun">@imsun</a>大神的插件<a href="https://imsun.github.io/gitment/">Gitment</a></h3>
-<span id="more"></span>
-<p>插件本身默认支持英文，所以我下载了源码进行一部分改造。以下是源码：<a href="yqwoe.space/yqwoe.github.io/static/js/gitment.js">giment.js</a> 、 <a href="yqwoe.space/yqwoe.github.io/static/css/gitment.css">giement.css</a></p>
-<p>下边是操作步骤，不是技术同学先参考一下<a href="https://imsun.github.io/gitment/">Gitment Demo Page</a> 再进行操作。</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><a href="https://www.jekyll.com.cn/docs/home/">Jekyll 教程</a></p>
-</li>
-<li class="lvl-2">
-<p><a href="https://github.com/imsun/gitment">Gitment Readme</a></p>
-</li>
-</ul>
-<h3 id="基本使用"><a class="markdownIt-Anchor" href="#基本使用"></a> 基本使用</h3>
-<h4 id="1-注册-oauth-application"><a class="markdownIt-Anchor" href="#1-注册-oauth-application"></a> 1. 注册 OAuth Application</h4>
-<p><a href="https://github.com/settings/applications/new">New OAuth</a> ，填写内容时候确保 callback URL 与你的博客地址域名一致。</p>
-<h4 id="2引入-js-css-到文章页面"><a class="markdownIt-Anchor" href="#2引入-js-css-到文章页面"></a> 2.引入 js、css 到文章页面</h4>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">&lt;div id=&quot;container&quot;&gt;&lt;/div&gt;</span><br><span class="line">&lt;link rel=&quot;stylesheet&quot; href=&quot;https://yqwoe.space/yqwoe.github.io/static/css/gitment.css&quot;&gt;</span><br><span class="line">&lt;script src=&quot;https://yqwoe.space/yqwoe.github.io/static/js/gitment.js&quot;&gt;&lt;/script&gt;</span><br><span class="line">&lt;script&gt;</span><br><span class="line">/**</span><br><span class="line">*第一个坑，默认id是填入完整的url，而issue的label长度限制为50，所以url必然会超长。</span><br><span class="line">*/</span><br><span class="line">var paths = location.pathname.split(&#x27;/&#x27;)</span><br><span class="line">var id = decodeURI(paths[paths.length - 1 ]))</span><br><span class="line">var gitment = new Gitment(&#123;</span><br><span class="line">  id: id, // 必填，不然评论信息不会加载成功！</span><br><span class="line">  owner: &#x27;你的 GitHub ID&#x27;,</span><br><span class="line">  repo: &#x27;存储评论的 repo&#x27;,</span><br><span class="line">  oauth: &#123;</span><br><span class="line">    client_id: &#x27;你注册 OAuth 的 client ID&#x27;,</span><br><span class="line">    client_secret: &#x27;你注册 OAuth 的 client secret&#x27;,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;)</span><br><span class="line">gitment.render(&#x27;container&#x27;)</span><br><span class="line">&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<h4 id="3-初始化评论"><a class="markdownIt-Anchor" href="#3-初始化评论"></a> 3. 初始化评论</h4>
-<p>页面发布后，你需要访问页面并使用你的 GitHub 账号登录（请确保你的账号是第二步所填 repo 的 owner），点击初始化按钮。</p>
-<h4 id="敲黑板下一篇博客会介绍-jekyll-admin-插件的使用方法和一些填坑技巧"><a class="markdownIt-Anchor" href="#敲黑板下一篇博客会介绍-jekyll-admin-插件的使用方法和一些填坑技巧"></a> 敲黑板，下一篇博客会介绍 《<strong>Jekyll-Admin 插件的使用方法</strong>》和一些填坑技巧。</h4>
-<p>我的博客评论功能目前只支持全球最大<s>同性</s>交友网站<a href="github.com/nil-w">Github</a>的账号，以后会慢慢扩展。<br />
-以上是我的分享，谢谢！！</p>
-]]></content>
-      <categories>
-        <category>Jekyll</category>
-      </categories>
-      <tags>
-        <tag>技巧</tag>
-        <tag>gitment</tag>
-        <tag>git</tag>
-        <tag>Jekyll</tag>
       </tags>
   </entry>
   <entry>
@@ -335,6 +335,30 @@
       </tags>
   </entry>
   <entry>
+    <title>阿里云mysql外网访问</title>
+    <url>/%E6%9C%8D%E5%8A%A1%E5%99%A8/b4b628e2.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>转载原文评论: <a href="https://segmentfault.com/q/1010000009603559?sort=created">阿里云 ecs 上安装了 mysql 但是外网访问不了</a></p>
+<span id="more"></span>
+<p>1.阿里云 ECS 有安全组防火墙.默认只开了 ICMP,22,3389. 在服务器控制台找到 安全组-配置规则-添加安全组规则</p>
+<p><img src="/images/1950746143-596a46107163e_articlex.png" alt="1950746143-596a46107163e_articlex" /></p>
+<p>2.如果是用 root 登录 MySQL,在登陆后 use mysql, user 表 root 对应的 localhost 改为%</p>
+<p>3.mysql 默认只能自本机访问</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line">#bind-address = 127.0.0.1</span><br><span class="line"></span><br><span class="line">service mysql restart</span><br></pre></td></tr></table></figure>
+<p>4.检查是不是在监听状态</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netstat -ntpl |grep 3306</span><br></pre></td></tr></table></figure>
+<p>5.防火墙是否对 mysql 端口限制,设置防火墙</p>
+]]></content>
+      <categories>
+        <category>服务器</category>
+      </categories>
+      <tags>
+        <tag>aliyun</tag>
+        <tag>阿里云</tag>
+        <tag>ubuntu 14.04</tag>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>生活计划</title>
     <url>/%E7%94%9F%E6%B4%BB/a5f172c4.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>有段没有更新博客了，最近身体状态堪忧，加上忙碌，孩子生病，我也支气管炎，怎么吃药都不见好。<br />
@@ -410,30 +434,6 @@
       </tags>
   </entry>
   <entry>
-    <title>阿里云mysql外网访问</title>
-    <url>/%E6%9C%8D%E5%8A%A1%E5%99%A8/b4b628e2.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>转载原文评论: <a href="https://segmentfault.com/q/1010000009603559?sort=created">阿里云 ecs 上安装了 mysql 但是外网访问不了</a></p>
-<span id="more"></span>
-<p>1.阿里云 ECS 有安全组防火墙.默认只开了 ICMP,22,3389. 在服务器控制台找到 安全组-配置规则-添加安全组规则</p>
-<p><img src="/images/1950746143-596a46107163e_articlex.png" alt="1950746143-596a46107163e_articlex" /></p>
-<p>2.如果是用 root 登录 MySQL,在登陆后 use mysql, user 表 root 对应的 localhost 改为%</p>
-<p>3.mysql 默认只能自本机访问</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">/etc/mysql/mysql.conf.d/mysqld.cnf</span><br><span class="line">#bind-address = 127.0.0.1</span><br><span class="line"></span><br><span class="line">service mysql restart</span><br></pre></td></tr></table></figure>
-<p>4.检查是不是在监听状态</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">netstat -ntpl |grep 3306</span><br></pre></td></tr></table></figure>
-<p>5.防火墙是否对 mysql 端口限制,设置防火墙</p>
-]]></content>
-      <categories>
-        <category>服务器</category>
-      </categories>
-      <tags>
-        <tag>aliyun</tag>
-        <tag>阿里云</tag>
-        <tag>ubuntu 14.04</tag>
-        <tag>mysql</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>笔记0-《程序员的数学》进制与指数法则</title>
     <url>/%E5%AD%A6%E4%B9%A0/752254673.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="学习列表"><a class="markdownIt-Anchor" href="#学习列表"></a> 学习列表:</h2>
@@ -500,6 +500,23 @@
       </tags>
   </entry>
   <entry>
+    <title>英语学习</title>
+    <url>/%E5%AD%A6%E4%B9%A0/3f43dc72.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>App: <code>duolinguo(多邻国)</code></p>
+<span id="more"></span>
+<p>你使用 Duolingo 的时候你不单单是在学外语，你还是个译者。Duolingo 里面还有一个 Strength（力量）的概念，所有学过的内容在一开始是满血状态的，但是随着时间流逝和你在其它相关练习犯错误，你的 strength 就会不断降低，这时候你就需要通过复习来保持满血状态，这就是我上面提到的，通过一个复习系统将学到的知识从短期记忆放到长期记忆里面，Duolingo 提供了一个非常科学有效的复习管理系统。</p>
+<p>语法手册《无敌英语语法终身学习版(最新修订)》</p>
+<p>待补充…</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>英语单词</tag>
+        <tag>入门</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>ruby 爬虫 一</title>
     <url>/%E7%88%AC%E8%99%AB/71e8d967.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>​ 拖延了半个多月，把之前写的东西整理一下发现，好多内容都在脑子里，没有形成转化后的内容，所以，吃过晚饭就决定写完在睡觉。</p>
@@ -548,23 +565,6 @@
         <tag>Python</tag>
         <tag>java</tag>
         <tag>kimurai</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>英语学习</title>
-    <url>/%E5%AD%A6%E4%B9%A0/3f43dc72.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>App: <code>duolinguo(多邻国)</code></p>
-<span id="more"></span>
-<p>你使用 Duolingo 的时候你不单单是在学外语，你还是个译者。Duolingo 里面还有一个 Strength（力量）的概念，所有学过的内容在一开始是满血状态的，但是随着时间流逝和你在其它相关练习犯错误，你的 strength 就会不断降低，这时候你就需要通过复习来保持满血状态，这就是我上面提到的，通过一个复习系统将学到的知识从短期记忆放到长期记忆里面，Duolingo 提供了一个非常科学有效的复习管理系统。</p>
-<p>语法手册《无敌英语语法终身学习版(最新修订)》</p>
-<p>待补充…</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>英语单词</tag>
-        <tag>入门</tag>
       </tags>
   </entry>
   <entry>
@@ -751,12 +751,12 @@
     <title>路</title>
     <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-        <div id="aplayer-UGzVSVUv" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-BsWPVsKQ" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-UGzVSVUv"),
+            element: document.getElementById("aplayer-BsWPVsKQ"),
             narrow: false,
             autoplay: true,
             showlrc: false,
@@ -8097,150 +8097,6 @@ ExcelUtil --> RecordHandler</pre>
       </tags>
   </entry>
   <entry>
-    <title>霍金的时间箭头，和我们要在黑暗里走多久</title>
-    <url>/%E7%94%9F%E6%B4%BB/e8d63c15.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="霍金的时间箭头和我们要在黑暗里走多久"><a class="markdownIt-Anchor" href="#霍金的时间箭头和我们要在黑暗里走多久"></a> 霍金的时间箭头，和我们要在黑暗里走多久</h2>
-<blockquote>
-<p>我们对宇宙最初五分钟的理解也许是对的。</p>
-<p>—— 霍金《时间简史》</p>
-</blockquote>
-<p>有个问题，读《时间简史》的时候一直缠着我：<strong>霍金把宇宙的起点算到了最初五分钟，把终点推到了几百亿亿亿年之后，那么中间这段，人类的处境是什么？</strong></p>
-<p>这本书给的是方程和推论，不给处境。所以我试着自己把几个尺度算出来：一个银河年有多长，一颗太阳还能烧多久，一个黑洞要蒸发到什么时候。这三个数字叠在一起，人类的处境会自动浮现。</p>
-<h2 id="先定位我们在哪儿"><a class="markdownIt-Anchor" href="#先定位我们在哪儿"></a> 先定位：我们在哪儿</h2>
-<p>第一个数字：太阳绕银河系中心转一圈，大约 2.25 亿到 2.5 亿年。天文学界管这个周期叫一个<strong>银河年</strong>。</p>
-<p>太阳的年龄是 46 亿年，所以它已经绕着银心走了 20 到 25 圈。也就是说，2.25 亿年前太阳系绕银心回到今天这个坐标时，地球上没有人类，没有城市，没有火，没有象形文字。那时候统治地球的是蜥蜴。</p>
-<p>第二个数字更贴近日常：地球到太阳的平均距离是 1.496 亿公里，光跑完这段路要 8 分 19 秒。这个数字人人都会背，但真正的含义是：<strong>太阳光是最快的信使，而它要 8 分钟才能到</strong>。</p>
-<p>把两者放一起，处境就显出形状了。银河系直径 10 万光年，太阳以每秒 220 公里绕银心跑。银河系里绝大多数恒星彼此相距几光年到几十光年，而我们能造出来的任何飞船，跨越这个距离都是一个跨越物种纪元的工程。</p>
-<p>这是我们的起跑线。位置不算坏，但筹码很少。</p>
-<h2 id="我们有多少时间"><a class="markdownIt-Anchor" href="#我们有多少时间"></a> 我们有多少时间</h2>
-<p>既然谈「走多久」，先得知道手里的时间够不够。</p>
-<p>《时间简史》里霍金讲过一句话：太阳是一个巨大的核反应炉，每秒把大约 600 万吨氢转成氦，其中 400 万吨的质量转化成能量。</p>
-<p>这个数字需要停一下。每秒 400 万吨物质湮灭成纯能量，一年 3.15 亿秒，一年就是 1.26 × 10^14 千克。46 亿年下来，太阳已经烧掉大约 100 个地球的质量，占它总质量的 <strong>0.03%</strong>。</p>
-<p>这才是重点。太阳不是一颗炸弹，是一根正在慢慢烧的蜡烛，而它已经烧掉了自己质量的万分之三。核聚变的效率高得离谱，四百万吨氢消失换来相当于人类一年全球能耗的几十倍，可太阳的质量基数太大，这点消耗听起来微不足道。</p>
-<p>光在路上还有延迟。核心产生的光子要穿过辐射层才能跑到表面，在那之前会被电子和原子核反复吸收、随机再发射。斯坦福教材说，一个核心生成的光子穿过辐射层可能要 17 万年。太阳光从核心里出来，是一场跨越十几万年的接力赛。</p>
-<p>这引出一个我们不太愿意正视的事实：<strong>我们看到的太阳，是 17 万年前离开它核心的光</strong>。如果太阳今天熄灭，我们还会继续看到它 8 分 19 秒，然后才知道。</p>
-<p>把账算完，太阳还剩大约 50 亿年的主序寿命。</p>
-<h2 id="上限在哪儿"><a class="markdownIt-Anchor" href="#上限在哪儿"></a> 上限在哪儿</h2>
-<p>50 亿年是「我们还有多久」，但「上限」要问的是恒星的物理终点在哪。</p>
-<p>太阳是 G2V 型主序星，也就是黄矮星。这类恒星的主序寿命大约 100 亿年，太阳 46 亿岁，正处在中点。别的恒星差别很大：</p>
-<table>
-<thead>
-<tr>
-<th>类型</th>
-<th>主序寿命</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>红矮星（0.1 M☉）</td>
-<td>6 万亿到 12 万亿年</td>
-</tr>
-<tr>
-<td>黄矮星（太阳）</td>
-<td>约 100 亿年</td>
-</tr>
-<tr>
-<td>O 型大质量星</td>
-<td>几百万年</td>
-</tr>
-</tbody>
-</table>
-<p>这张表有个残酷的读法：<strong>质量越大的恒星死得越快</strong>。O 型星几百万年就烧完燃料，坍缩成中子星或黑洞，然后爆炸成超新星，把重元素撒进星际介质。地球上的铁、金、铀全是这种爆炸的遗产，你手腕上的金镯子是某颗恒星死掉时吐出来的。</p>
-<p>而红矮星能烧 12 万亿年，宇宙现在才 138 亿岁，它连主序都还没走完。</p>
-<p>质量还决定终点。0.8 到 10 倍太阳质量的恒星会膨胀成红巨星，抛掉外层，留下一颗白矮星；10 倍以上则核心坍缩成中子星或黑洞。太阳自己会膨胀到大约 0.75 AU（1.1 亿公里）的半径，吞掉水星和金星。</p>
-<p>地球的轨道半径是 1 AU。红巨星阶段太阳的外层正好涨到 0.75 AU，地球就在这个边界上。海洋蒸干，地表温度几百度。</p>
-<p><strong>50 亿年后。</strong> 50 亿年前地球上刚有真核细胞，50 亿年后人类文明不存在了，除非我们不在这里。</p>
-<p>到这里为止，所有的故事都由引力决定：引力的强弱决定天体的寿命，也决定恒星的死法。而引力还有更极端的形式。</p>
-<h2 id="引力的尽头黑洞"><a class="markdownIt-Anchor" href="#引力的尽头黑洞"></a> 引力的尽头：黑洞</h2>
-<p>霍金 1974 年做的推论，是整个现代物理里最反直觉的一个。</p>
-<p>他考虑的是量子场论里的真空。真空不是「空无一物」，而是充满了虚粒子的涨落。虚粒子对通常瞬间湮灭，但在事件视界附近，强烈的引力潮汐力把它们强行拉开，一个掉进去，一个逃出来。逃出来的成了实粒子，带着正能量；掉进去的带着负能量。净效果是黑洞<strong>通过发光损失质量</strong>。</p>
-<p>这就是霍金辐射。</p>
-<p>温度公式：</p>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mi>H</mi></msub><mo>=</mo><mfrac><mrow><mi mathvariant="normal">ℏ</mi><msup><mi>c</mi><mn>3</mn></msup></mrow><mrow><mn>8</mn><mi>π</mi><mi>G</mi><mi>M</mi><msub><mi>k</mi><mi>B</mi></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">T_H = \frac{\hbar c^3}{8 \pi G M k_B}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.08125em;">H</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.327108em;vertical-align:-0.8360000000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.3139999999999996em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">8</span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="mord mathdefault">G</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">ℏ</span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8360000000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
-<p>三个结果：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>温度与质量成<strong>反比</strong>。黑洞越小越热，越热蒸发越快，越快就越热。这是热力学上的不稳定，但它不会立刻爆炸，因为热得慢。</p>
-</li>
-<li class="lvl-2">
-<p>一个太阳质量的黑洞，霍金温度约 10^{-7} K，远低于宇宙微波背景辐射的 2.7 K。所以在今天的宇宙里，太阳质量的黑洞<strong>不蒸发，反而在吸收背景辐射而增长</strong>。</p>
-</li>
-<li class="lvl-2">
-<p>黑洞的熵正比于视界面积：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>=</mo><mfrac><mrow><mi>k</mi><msup><mi>c</mi><mn>3</mn></msup><mi>A</mi></mrow><mrow><mn>4</mn><mi>G</mi><mi mathvariant="normal">ℏ</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">S = \frac{k c^3 A}{4 G \hbar}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.36292em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01792em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mathdefault mtight">G</span><span class="mord mtight">ℏ</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mord mtight"><span class="mord mathdefault mtight">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913142857142857em;"><span style="top:-2.931em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mord mathdefault mtight">A</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>。贝肯斯坦猜的系数，霍金定的。</p>
-</li>
-</ul>
-<p>蒸发时间：</p>
-<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mo>≈</mo><mfrac><mrow><mn>5120</mn><mi>π</mi><msup><mi>G</mi><mn>2</mn></msup><msup><mi>M</mi><mn>3</mn></msup></mrow><mrow><mi mathvariant="normal">ℏ</mi><msup><mi>c</mi><mn>4</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">t \approx \frac{5120 \pi G^2 M^3}{\hbar c^4}
-</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.177108em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">ℏ</span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">5</span><span class="mord">1</span><span class="mord">2</span><span class="mord">0</span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
-<p>太阳质量的黑洞蒸发完需要大约 10^{67} 年。宇宙年龄是 1.38 × 10^{10} 年。差 57 个数量级。</p>
-<p>也就是说，<strong>今天宇宙里每一个大质量黑洞，都比宇宙本身古老得多，还差着无数个数量级才会消失</strong>。而质子可能早就衰变了，如果它真的衰变（实验上还没观测到），那么在那之前，宇宙的物质基础本身就已经被拆干净。</p>
-<p>《时间简史》里霍金问过一个很冷的问题：宇宙的历史会不会终结于大挤压，所有恒星都烧完，所有黑洞都蒸发，所有物质在超大质量黑洞附近慢慢下沉，几十亿亿亿年之后只剩一个无限小、无限密的点？</p>
-<p>他给了三种可能：永远膨胀下去、膨胀速度渐渐减到零然后停住、或者收缩回去。他倾向第一种，同时说不排除前两种。</p>
-<p>到这里，尺度已经推到头了。但这个 10^{67} 年逼出了一个更根本的问题：<strong>时间为什么有方向？</strong></p>
-<h2 id="时间箭头"><a class="markdownIt-Anchor" href="#时间箭头"></a> 时间箭头</h2>
-<p>霍金在《时间简史》里把「为什么时间有方向」拆成两类问题。</p>
-<p>一类是<strong>热力学时间箭头</strong>：为什么熵总是增加？</p>
-<p>另一类是<strong>心理时间箭头</strong>：为什么我们记得过去，而不是未来？</p>
-<p>他的论证原则上相当素朴。把宇宙的初态和末态做比较，如果熵在末态比初态低，那就违反了热力学第二定律。而「我们记得的是过去而不是未来」这件事本身，等价于「我们处于一个熵低的态」。这听起来是循环论证，但霍金的处理是：既然我们观察到的是低熵态，那就倒推初态必然也是低熵的。<strong>我们之所以能存在，正是因为宇宙以极低熵开始。</strong></p>
-<p>低熵初态从哪来？他没有答案，只说「这正是我们研究的方向」。</p>
-<p>我读到这里的感觉是：霍金把「时间有方向」从一个哲学问题变成了一个技术问题。他没有解释时间箭头，他只是把箭头需要满足的条件写清楚了。</p>
-<p>而低熵初态这件事，今天有一个更具体、更冷的解释：<strong>暴胀</strong>。</p>
-<p>暴胀理论认为，宇宙在诞生后的极短瞬间（大约 10^{-30} 秒）经历了一次指数级膨胀，空间从一个量子涨落的大小膨胀到至少今天的尺度。这个过程在极短时间内把熵稀释掉了。总熵在增加，但观测到的宇宙里熵极低。我们就是那个低熵角落里的幸存者。</p>
-<p>《时间简史》出版于 1988 年。暴胀理论正是那前后提出的，霍金本人是主要推动者之一。</p>
-<p>于是整个链条闭合了。宇宙给了一个方向，我们在这个方向上只有很短的一段。短到什么程度，下面这个数字可以量化。</p>
-<h2 id="把尺度合起来"><a class="markdownIt-Anchor" href="#把尺度合起来"></a> 把尺度合起来</h2>
-<p>银河年 2.25 亿年。太阳剩余寿命 50 亿年，大约 0.22 个银河年。人类文明史 1 万年，是银河年的 4.4 × 10^{-5}。物种存在史 30 万年，是银河年的 0.13%。</p>
-<p><strong>一个银河年，人类文明连它的万分之零点五都占不到。</strong></p>
-<p>这个数字通常被用来感叹人类的渺小，但它还有另一层意思。太阳系不在银河系边缘，它在猎户臂内缘，距银心约 2.7 万光年，那里是<strong>宜居带</strong>。银河系中心是超大质量黑洞人马座 A*，约 400 万个太阳质量，它离我们 2.7 万光年，强大到足以让整个星系绕它转圈，但不足以让我们活不下去。</p>
-<p>我们在一个<strong>稳定</strong>的位置上。太阳系绕银心的轨道是椭圆的，会受旋臂扰动，但没人知道这个扰动会不会引发地球的生态剧变。有说法认为地球的大灭绝周期与银河年相关，但这条链条的证据强度是弱的，我不打算把它当结论用。</p>
-<p>位置好，筹码少。接下来就是那个最实际的问题：凭这点筹码，能走多远。</p>
-<h2 id="星际航行三个硬约束"><a class="markdownIt-Anchor" href="#星际航行三个硬约束"></a> 星际航行：三个硬约束</h2>
-<p>《时间简史》成书于 1988 年。那时候的星际旅行想象基本靠「曲速引擎」和「虫洞」这类概念道具，霍金自己在书里也承认这些东西没有物理依据。</p>
-<p>现在的图景更冷，但也更具体。三个硬约束。</p>
-<p><strong>约束一：光速。</strong> 任何带质量的东西都不可能超过光速。这不是工程问题，是洛伦兹变换写进物质本性的。半人马座 α 星 4.37 光年，在 20% 光速下需要 20 到 30 年。</p>
-<p><strong>约束二：加速。</strong> 加速本身就是成本。而且加速过程里的时间膨胀对你有利、对地球不利，你返航时地球已经过了几百年。</p>
-<p><strong>约束三：能量。</strong> 这条最容易被忽略，也最致命。</p>
-<p>Breakthrough Starshot（2016 年由尤里·米尔纳、霍金和扎克伯格发起）设想用地面激光阵列推动光帆达到光速的 15% 到 20%，20 到 30 年抵达半人马座。方案本身很美：上千个克级「星芯片」，4m × 4m 的光帆，10 分钟内加速完成，平均加速度 100 km/s²（约 10000 g）。</p>
-<p>但 2021 年美国天文学会的研究笔记《The “Breakthrough” Proposal for Laser-accelerated Spacecraft is not Feasible》直接说这个方案<strong>不自洽</strong>。问题不在激光阵列的工程难度，在于能量账根本平不了。让 1 克重的载荷达到 0.2c，动能约 1.8 × 10^13 J，而激光穿过 4m 光帆时几乎全部被反射掉，实际转化效率极低。</p>
-<p>另一份分析给出的数是：100 GW 功率持续 4000 秒，总能量约 10^14 J。这个量级已经是人类全部发电能力的量级，<strong>全部烧掉，用来推一克东西</strong>。</p>
-<p>而 0.2c 本身也够不着。相对论动量 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mo>=</mo><mi>γ</mi><mi>m</mi><mi>v</mi></mrow><annotation encoding="application/x-tex">p = \gamma m v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05556em;">γ</span><span class="mord mathdefault">m</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span> 在高速时非线性增长，光帆反射激光的有效推力效率下降，峰值速度压不到 0.2c。</p>
-<p>所以真正的答案可能是：<strong>光帆本身才是极限，不是激光</strong>。激光帆是「唯一可能」的物理路径，但它在工程上不成立。</p>
-<h2 id="那么走哪条路"><a class="markdownIt-Anchor" href="#那么走哪条路"></a> 那么走哪条路</h2>
-<p>把可能性排一遍。</p>
-<p><strong>核裂变。</strong> 化学火箭的比冲 450 秒，裂变能到 30000 秒量级，差两个数量级。土星五号能把人送上月球，是因为近地轨道只需 400 km。星际不是这个量级的跳跃。</p>
-<p><strong>核聚变。</strong> 氘氚聚变 3.4 × 10^{14} J/kg，Isp 可到 30000 秒以上，但需要 1 亿度以上的等离子体。维持这个状态本身就是难题，而目前最大的困难是维持，不是产能。</p>
-<p><strong>反物质。</strong> 湮灭的比能最高，但反物质的制造和储存是当前工程的绝对瓶颈。物理上极漂亮，前提是你能造出并约束它。</p>
-<p><strong>激光帆。</strong> 物理上最干净，工程上最不成立。</p>
-<p><strong>曲速驱动。</strong> 需要负能量密度，也就是《时间简史》里霍金提到的那种「违反正定条件」的场论构造。所有已知的 GR 定理都不允许。即使有了 warp bubble，负能量密度带来的稳定性问题至今没人解决。</p>
-<p><strong>代达罗斯计划</strong>（英国 SETI，1978 年）：无人探测器，核聚变推进，速度 12% 光速，40 年飞抵巴纳德星。这是<strong>唯一一个完整做过工程设计的星际方案</strong>，而且它不违反任何物理定律。代价是造它需要一整个国家的工业能力，而且没人愿意批这个预算。</p>
-<h2 id="结论不是我们出不去"><a class="markdownIt-Anchor" href="#结论不是我们出不去"></a> 结论不是「我们出不去」</h2>
-<p>数字排完，有两件事是确定的。</p>
-<p><strong>第一，人类的时间尺度相对于宇宙的结构尺度，短到毫无意义。</strong> 100 年对银河年 2.25 亿年。我们是那个「永远看不到一次完整银河公转」的物种。</p>
-<p><strong>第二，但我们的位置是好的。</strong> 宜居带，稳定轨道，还有一颗还能烧 50 亿年的恒星。银河系 1000 亿到 4000 亿颗恒星，绝大多数永远不会有文明，它们只是核反应的机器。而我们恰好在一个能问「这是不是唯一一次」的位置上。</p>
-<p>这两件事同时成立，才构成一个值得写下来的判断：<strong>星际航行大概率不是人类先突破的</strong>。能量约束太硬，代达罗斯那样的方案需要的工业投入超出任何单一国家的承受范围。它更可能是几百年后、或者由某个我们无法想象的组织完成的。在那之前，人类的疆界扩展方向是<strong>内太阳系</strong>，不是往外跑，是往里挖。月球、小行星带、火星、木星系统。</p>
-<p>至于黑洞，那是一个更远的问题。人类大概率会在有生之年把探测器送进太阳系所有值得去的地方，但要把探测器送进事件视界并且拿回任何数据，需要一个我们还没造出来的技术层级。而即使送进去了，数据也传不回来。这是《时间简史》里霍金留给读者的一道题：<strong>你能接收到的信息，只来自你视界之外。</strong></p>
-<p>那道题到今天还没解。</p>
-<hr />
-<h2 id="几个可以自己验的数字"><a class="markdownIt-Anchor" href="#几个可以自己验的数字"></a> 几个可以自己验的数字</h2>
-<p>关于光速和距离的直觉很容易出错，可以自己算一遍：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 光年、AU 与飞行时间的换算</span></span><br><span class="line">C = <span class="number">299_792_458</span>          <span class="comment"># m/s</span></span><br><span class="line">AU = <span class="number">149_597_870_700</span>     <span class="comment"># m，1 天文单位</span></span><br><span class="line">LY = <span class="number">9.4607e15</span>           <span class="comment"># m，1 光年</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">travel_years</span>(<span class="params">dist_ly, speed_c</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;按地球参考系的距离算航行时间（年）&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> dist_ly / speed_c</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> c <span class="keyword">in</span> [<span class="number">0.01</span>, <span class="number">0.1</span>, <span class="number">0.2</span>, <span class="number">0.5</span>, <span class="number">0.9</span>]:</span><br><span class="line">    t = travel_years(<span class="number">4.37</span>, c)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;c:&gt;<span class="number">4.0</span>%&#125;</span> 光速 → 半人马座 α 需 <span class="subst">&#123;t:&gt;<span class="number">8.1</span>f&#125;</span> 年&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 太阳光到地球</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;\n阳光到地球：<span class="subst">&#123;AU / C / <span class="number">60</span>:<span class="number">.2</span>f&#125;</span> 分钟&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 银河年 vs 人类文明史</span></span><br><span class="line">galactic_year = <span class="number">2.25e8</span></span><br><span class="line">civilization = <span class="number">1e4</span></span><br><span class="line">species = <span class="number">3e5</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;文明史占银河年：<span class="subst">&#123;civilization / galactic_year:<span class="number">.2</span>e&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;物种史占银河年：<span class="subst">&#123;species / galactic_year:<span class="number">.2</span>e&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 太阳质量黑洞的霍金温度</span></span><br><span class="line">G = <span class="number">6.674e-11</span></span><br><span class="line">h_bar = <span class="number">1.0545718e-34</span></span><br><span class="line">k_B = <span class="number">1.380649e-23</span></span><br><span class="line">M_sun = <span class="number">1.989e30</span></span><br><span class="line">T_H = h_bar * C**<span class="number">3</span> / (<span class="number">8</span> * <span class="number">3.14159265</span> * G * M_sun * k_B)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;\n太阳质量黑洞霍金温度：<span class="subst">&#123;T_H:<span class="number">.3</span>e&#125;</span> K&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;宇宙微波背景温度：      2.7 K&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;蒸发所需时间量级：      1e67 年&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;宇宙年龄：              1.38e10 年&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1% 光速 → 半人马座 α 需    437.0 年</span><br><span class="line"> 10% 光速 → 半人马座 α 需     43.7 年</span><br><span class="line"> 20% 光速 → 半人马座 α 需     21.8 年</span><br><span class="line"> 50% 光速 → 半人马座 α 需      8.7 年</span><br><span class="line"> 90% 光速 → 半人马座 α 需      4.9 年</span><br><span class="line"></span><br><span class="line">阳光到地球：8.32 分钟</span><br><span class="line">文明史占银河年：4.44e-05</span><br><span class="line">物种史占银河年：1.33e-03</span><br><span class="line"></span><br><span class="line">太阳质量黑洞霍金温度：6.169e-08 K</span><br><span class="line">宇宙微波背景温度：      2.7 K</span><br><span class="line">蒸发所需时间量级：      1e67 年</span><br><span class="line">宇宙年龄：              1.38e10 年</span><br></pre></td></tr></table></figure>
-<p>那个 6.169e-08 K 比 2.7 K 小了 8 个数量级，这就是为什么太阳质量的黑洞在今天的宇宙里根本不会蒸发，反而在吸积背景辐射长大。要让它开始蒸发，得先把它周围的辐射环境清空。</p>
-<p>而那个 4.44e-05，人类文明史占一个银河年的万分之零点四四，是这篇文章里唯一一个我希望你记住的数字。</p>
-]]></content>
-      <categories>
-        <category>生活</category>
-      </categories>
-      <tags>
-        <tag>宇宙</tag>
-        <tag>黑洞</tag>
-        <tag>时间简史</tag>
-        <tag>霍金</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>笔记1-《程序员的数学3：线性代数》向量与空间</title>
     <url>/%E5%AD%A6%E4%B9%A0/8c4d2f17.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="向量与空间"><a class="markdownIt-Anchor" href="#向量与空间"></a> 向量与空间</h2>
@@ -8404,6 +8260,150 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
+    <title>霍金的时间箭头，和我们要在黑暗里走多久</title>
+    <url>/%E7%94%9F%E6%B4%BB/e8d63c15.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="霍金的时间箭头和我们要在黑暗里走多久"><a class="markdownIt-Anchor" href="#霍金的时间箭头和我们要在黑暗里走多久"></a> 霍金的时间箭头，和我们要在黑暗里走多久</h2>
+<blockquote>
+<p>我们对宇宙最初五分钟的理解也许是对的。</p>
+<p>—— 霍金《时间简史》</p>
+</blockquote>
+<p>有个问题，读《时间简史》的时候一直缠着我：<strong>霍金把宇宙的起点算到了最初五分钟，把终点推到了几百亿亿亿年之后，那么中间这段，人类的处境是什么？</strong></p>
+<p>这本书给的是方程和推论，不给处境。所以我试着自己把几个尺度算出来：一个银河年有多长，一颗太阳还能烧多久，一个黑洞要蒸发到什么时候。这三个数字叠在一起，人类的处境会自动浮现。</p>
+<h2 id="先定位我们在哪儿"><a class="markdownIt-Anchor" href="#先定位我们在哪儿"></a> 先定位：我们在哪儿</h2>
+<p>第一个数字：太阳绕银河系中心转一圈，大约 2.25 亿到 2.5 亿年。天文学界管这个周期叫一个<strong>银河年</strong>。</p>
+<p>太阳的年龄是 46 亿年，所以它已经绕着银心走了 20 到 25 圈。也就是说，2.25 亿年前太阳系绕银心回到今天这个坐标时，地球上没有人类，没有城市，没有火，没有象形文字。那时候统治地球的是蜥蜴。</p>
+<p>第二个数字更贴近日常：地球到太阳的平均距离是 1.496 亿公里，光跑完这段路要 8 分 19 秒。这个数字人人都会背，但真正的含义是：<strong>太阳光是最快的信使，而它要 8 分钟才能到</strong>。</p>
+<p>把两者放一起，处境就显出形状了。银河系直径 10 万光年，太阳以每秒 220 公里绕银心跑。银河系里绝大多数恒星彼此相距几光年到几十光年，而我们能造出来的任何飞船，跨越这个距离都是一个跨越物种纪元的工程。</p>
+<p>这是我们的起跑线。位置不算坏，但筹码很少。</p>
+<h2 id="我们有多少时间"><a class="markdownIt-Anchor" href="#我们有多少时间"></a> 我们有多少时间</h2>
+<p>既然谈「走多久」，先得知道手里的时间够不够。</p>
+<p>《时间简史》里霍金讲过一句话：太阳是一个巨大的核反应炉，每秒把大约 600 万吨氢转成氦，其中 400 万吨的质量转化成能量。</p>
+<p>这个数字需要停一下。每秒 400 万吨物质湮灭成纯能量，一年 3.15 亿秒，一年就是 1.26 × 10^14 千克。46 亿年下来，太阳已经烧掉大约 100 个地球的质量，占它总质量的 <strong>0.03%</strong>。</p>
+<p>这才是重点。太阳不是一颗炸弹，是一根正在慢慢烧的蜡烛，而它已经烧掉了自己质量的万分之三。核聚变的效率高得离谱，四百万吨氢消失换来相当于人类一年全球能耗的几十倍，可太阳的质量基数太大，这点消耗听起来微不足道。</p>
+<p>光在路上还有延迟。核心产生的光子要穿过辐射层才能跑到表面，在那之前会被电子和原子核反复吸收、随机再发射。斯坦福教材说，一个核心生成的光子穿过辐射层可能要 17 万年。太阳光从核心里出来，是一场跨越十几万年的接力赛。</p>
+<p>这引出一个我们不太愿意正视的事实：<strong>我们看到的太阳，是 17 万年前离开它核心的光</strong>。如果太阳今天熄灭，我们还会继续看到它 8 分 19 秒，然后才知道。</p>
+<p>把账算完，太阳还剩大约 50 亿年的主序寿命。</p>
+<h2 id="上限在哪儿"><a class="markdownIt-Anchor" href="#上限在哪儿"></a> 上限在哪儿</h2>
+<p>50 亿年是「我们还有多久」，但「上限」要问的是恒星的物理终点在哪。</p>
+<p>太阳是 G2V 型主序星，也就是黄矮星。这类恒星的主序寿命大约 100 亿年，太阳 46 亿岁，正处在中点。别的恒星差别很大：</p>
+<table>
+<thead>
+<tr>
+<th>类型</th>
+<th>主序寿命</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>红矮星（0.1 M☉）</td>
+<td>6 万亿到 12 万亿年</td>
+</tr>
+<tr>
+<td>黄矮星（太阳）</td>
+<td>约 100 亿年</td>
+</tr>
+<tr>
+<td>O 型大质量星</td>
+<td>几百万年</td>
+</tr>
+</tbody>
+</table>
+<p>这张表有个残酷的读法：<strong>质量越大的恒星死得越快</strong>。O 型星几百万年就烧完燃料，坍缩成中子星或黑洞，然后爆炸成超新星，把重元素撒进星际介质。地球上的铁、金、铀全是这种爆炸的遗产，你手腕上的金镯子是某颗恒星死掉时吐出来的。</p>
+<p>而红矮星能烧 12 万亿年，宇宙现在才 138 亿岁，它连主序都还没走完。</p>
+<p>质量还决定终点。0.8 到 10 倍太阳质量的恒星会膨胀成红巨星，抛掉外层，留下一颗白矮星；10 倍以上则核心坍缩成中子星或黑洞。太阳自己会膨胀到大约 0.75 AU（1.1 亿公里）的半径，吞掉水星和金星。</p>
+<p>地球的轨道半径是 1 AU。红巨星阶段太阳的外层正好涨到 0.75 AU，地球就在这个边界上。海洋蒸干，地表温度几百度。</p>
+<p><strong>50 亿年后。</strong> 50 亿年前地球上刚有真核细胞，50 亿年后人类文明不存在了，除非我们不在这里。</p>
+<p>到这里为止，所有的故事都由引力决定：引力的强弱决定天体的寿命，也决定恒星的死法。而引力还有更极端的形式。</p>
+<h2 id="引力的尽头黑洞"><a class="markdownIt-Anchor" href="#引力的尽头黑洞"></a> 引力的尽头：黑洞</h2>
+<p>霍金 1974 年做的推论，是整个现代物理里最反直觉的一个。</p>
+<p>他考虑的是量子场论里的真空。真空不是「空无一物」，而是充满了虚粒子的涨落。虚粒子对通常瞬间湮灭，但在事件视界附近，强烈的引力潮汐力把它们强行拉开，一个掉进去，一个逃出来。逃出来的成了实粒子，带着正能量；掉进去的带着负能量。净效果是黑洞<strong>通过发光损失质量</strong>。</p>
+<p>这就是霍金辐射。</p>
+<p>温度公式：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><msub><mi>T</mi><mi>H</mi></msub><mo>=</mo><mfrac><mrow><mi mathvariant="normal">ℏ</mi><msup><mi>c</mi><mn>3</mn></msup></mrow><mrow><mn>8</mn><mi>π</mi><mi>G</mi><mi>M</mi><msub><mi>k</mi><mi>B</mi></msub></mrow></mfrac></mrow><annotation encoding="application/x-tex">T_H = \frac{\hbar c^3}{8 \pi G M k_B}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.83333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.13889em;">T</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.13889em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.08125em;">H</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.327108em;vertical-align:-0.8360000000000001em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.3139999999999996em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">8</span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="mord mathdefault">G</span><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="mord"><span class="mord mathdefault" style="margin-right:0.03148em;">k</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.32833099999999993em;"><span style="top:-2.5500000000000003em;margin-left:-0.03148em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathdefault mtight" style="margin-right:0.05017em;">B</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">ℏ</span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.8360000000000001em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>三个结果：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>温度与质量成<strong>反比</strong>。黑洞越小越热，越热蒸发越快，越快就越热。这是热力学上的不稳定，但它不会立刻爆炸，因为热得慢。</p>
+</li>
+<li class="lvl-2">
+<p>一个太阳质量的黑洞，霍金温度约 10^{-7} K，远低于宇宙微波背景辐射的 2.7 K。所以在今天的宇宙里，太阳质量的黑洞<strong>不蒸发，反而在吸收背景辐射而增长</strong>。</p>
+</li>
+<li class="lvl-2">
+<p>黑洞的熵正比于视界面积：<span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>S</mi><mo>=</mo><mfrac><mrow><mi>k</mi><msup><mi>c</mi><mn>3</mn></msup><mi>A</mi></mrow><mrow><mn>4</mn><mi>G</mi><mi mathvariant="normal">ℏ</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">S = \frac{k c^3 A}{4 G \hbar}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.68333em;vertical-align:0em;"></span><span class="mord mathdefault" style="margin-right:0.05764em;">S</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:1.36292em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.01792em;"><span style="top:-2.6550000000000002em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">4</span><span class="mord mathdefault mtight">G</span><span class="mord mtight">ℏ</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathdefault mtight" style="margin-right:0.03148em;">k</span><span class="mord mtight"><span class="mord mathdefault mtight">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8913142857142857em;"><span style="top:-2.931em;margin-right:0.07142857142857144em;"><span class="pstrut" style="height:2.5em;"></span><span class="sizing reset-size3 size1 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span><span class="mord mathdefault mtight">A</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>。贝肯斯坦猜的系数，霍金定的。</p>
+</li>
+</ul>
+<p>蒸发时间：</p>
+<p><span class="katex-display"><span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>t</mi><mo>≈</mo><mfrac><mrow><mn>5120</mn><mi>π</mi><msup><mi>G</mi><mn>2</mn></msup><msup><mi>M</mi><mn>3</mn></msup></mrow><mrow><mi mathvariant="normal">ℏ</mi><msup><mi>c</mi><mn>4</mn></msup></mrow></mfrac></mrow><annotation encoding="application/x-tex">t \approx \frac{5120 \pi G^2 M^3}{\hbar c^4}
+</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.61508em;vertical-align:0em;"></span><span class="mord mathdefault">t</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">≈</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:2.177108em;vertical-align:-0.686em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:1.491108em;"><span style="top:-2.314em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">ℏ</span><span class="mord"><span class="mord mathdefault">c</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.740108em;"><span style="top:-2.9890000000000003em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">4</span></span></span></span></span></span></span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.677em;"><span class="pstrut" style="height:3em;"></span><span class="mord"><span class="mord">5</span><span class="mord">1</span><span class="mord">2</span><span class="mord">0</span><span class="mord mathdefault" style="margin-right:0.03588em;">π</span><span class="mord"><span class="mord mathdefault">G</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">2</span></span></span></span></span></span></span></span><span class="mord"><span class="mord mathdefault" style="margin-right:0.10903em;">M</span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.8141079999999999em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">3</span></span></span></span></span></span></span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.686em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span></span></p>
+<p>太阳质量的黑洞蒸发完需要大约 10^{67} 年。宇宙年龄是 1.38 × 10^{10} 年。差 57 个数量级。</p>
+<p>也就是说，<strong>今天宇宙里每一个大质量黑洞，都比宇宙本身古老得多，还差着无数个数量级才会消失</strong>。而质子可能早就衰变了，如果它真的衰变（实验上还没观测到），那么在那之前，宇宙的物质基础本身就已经被拆干净。</p>
+<p>《时间简史》里霍金问过一个很冷的问题：宇宙的历史会不会终结于大挤压，所有恒星都烧完，所有黑洞都蒸发，所有物质在超大质量黑洞附近慢慢下沉，几十亿亿亿年之后只剩一个无限小、无限密的点？</p>
+<p>他给了三种可能：永远膨胀下去、膨胀速度渐渐减到零然后停住、或者收缩回去。他倾向第一种，同时说不排除前两种。</p>
+<p>到这里，尺度已经推到头了。但这个 10^{67} 年逼出了一个更根本的问题：<strong>时间为什么有方向？</strong></p>
+<h2 id="时间箭头"><a class="markdownIt-Anchor" href="#时间箭头"></a> 时间箭头</h2>
+<p>霍金在《时间简史》里把「为什么时间有方向」拆成两类问题。</p>
+<p>一类是<strong>热力学时间箭头</strong>：为什么熵总是增加？</p>
+<p>另一类是<strong>心理时间箭头</strong>：为什么我们记得过去，而不是未来？</p>
+<p>他的论证原则上相当素朴。把宇宙的初态和末态做比较，如果熵在末态比初态低，那就违反了热力学第二定律。而「我们记得的是过去而不是未来」这件事本身，等价于「我们处于一个熵低的态」。这听起来是循环论证，但霍金的处理是：既然我们观察到的是低熵态，那就倒推初态必然也是低熵的。<strong>我们之所以能存在，正是因为宇宙以极低熵开始。</strong></p>
+<p>低熵初态从哪来？他没有答案，只说「这正是我们研究的方向」。</p>
+<p>我读到这里的感觉是：霍金把「时间有方向」从一个哲学问题变成了一个技术问题。他没有解释时间箭头，他只是把箭头需要满足的条件写清楚了。</p>
+<p>而低熵初态这件事，今天有一个更具体、更冷的解释：<strong>暴胀</strong>。</p>
+<p>暴胀理论认为，宇宙在诞生后的极短瞬间（大约 10^{-30} 秒）经历了一次指数级膨胀，空间从一个量子涨落的大小膨胀到至少今天的尺度。这个过程在极短时间内把熵稀释掉了。总熵在增加，但观测到的宇宙里熵极低。我们就是那个低熵角落里的幸存者。</p>
+<p>《时间简史》出版于 1988 年。暴胀理论正是那前后提出的，霍金本人是主要推动者之一。</p>
+<p>于是整个链条闭合了。宇宙给了一个方向，我们在这个方向上只有很短的一段。短到什么程度，下面这个数字可以量化。</p>
+<h2 id="把尺度合起来"><a class="markdownIt-Anchor" href="#把尺度合起来"></a> 把尺度合起来</h2>
+<p>银河年 2.25 亿年。太阳剩余寿命 50 亿年，大约 0.22 个银河年。人类文明史 1 万年，是银河年的 4.4 × 10^{-5}。物种存在史 30 万年，是银河年的 0.13%。</p>
+<p><strong>一个银河年，人类文明连它的万分之零点五都占不到。</strong></p>
+<p>这个数字通常被用来感叹人类的渺小，但它还有另一层意思。太阳系不在银河系边缘，它在猎户臂内缘，距银心约 2.7 万光年，那里是<strong>宜居带</strong>。银河系中心是超大质量黑洞人马座 A*，约 400 万个太阳质量，它离我们 2.7 万光年，强大到足以让整个星系绕它转圈，但不足以让我们活不下去。</p>
+<p>我们在一个<strong>稳定</strong>的位置上。太阳系绕银心的轨道是椭圆的，会受旋臂扰动，但没人知道这个扰动会不会引发地球的生态剧变。有说法认为地球的大灭绝周期与银河年相关，但这条链条的证据强度是弱的，我不打算把它当结论用。</p>
+<p>位置好，筹码少。接下来就是那个最实际的问题：凭这点筹码，能走多远。</p>
+<h2 id="星际航行三个硬约束"><a class="markdownIt-Anchor" href="#星际航行三个硬约束"></a> 星际航行：三个硬约束</h2>
+<p>《时间简史》成书于 1988 年。那时候的星际旅行想象基本靠「曲速引擎」和「虫洞」这类概念道具，霍金自己在书里也承认这些东西没有物理依据。</p>
+<p>现在的图景更冷，但也更具体。三个硬约束。</p>
+<p><strong>约束一：光速。</strong> 任何带质量的东西都不可能超过光速。这不是工程问题，是洛伦兹变换写进物质本性的。半人马座 α 星 4.37 光年，在 20% 光速下需要 20 到 30 年。</p>
+<p><strong>约束二：加速。</strong> 加速本身就是成本。而且加速过程里的时间膨胀对你有利、对地球不利，你返航时地球已经过了几百年。</p>
+<p><strong>约束三：能量。</strong> 这条最容易被忽略，也最致命。</p>
+<p>Breakthrough Starshot（2016 年由尤里·米尔纳、霍金和扎克伯格发起）设想用地面激光阵列推动光帆达到光速的 15% 到 20%，20 到 30 年抵达半人马座。方案本身很美：上千个克级「星芯片」，4m × 4m 的光帆，10 分钟内加速完成，平均加速度 100 km/s²（约 10000 g）。</p>
+<p>但 2021 年美国天文学会的研究笔记《The “Breakthrough” Proposal for Laser-accelerated Spacecraft is not Feasible》直接说这个方案<strong>不自洽</strong>。问题不在激光阵列的工程难度，在于能量账根本平不了。让 1 克重的载荷达到 0.2c，动能约 1.8 × 10^13 J，而激光穿过 4m 光帆时几乎全部被反射掉，实际转化效率极低。</p>
+<p>另一份分析给出的数是：100 GW 功率持续 4000 秒，总能量约 10^14 J。这个量级已经是人类全部发电能力的量级，<strong>全部烧掉，用来推一克东西</strong>。</p>
+<p>而 0.2c 本身也够不着。相对论动量 <span class="katex"><span class="katex-mathml"><math><semantics><mrow><mi>p</mi><mo>=</mo><mi>γ</mi><mi>m</mi><mi>v</mi></mrow><annotation encoding="application/x-tex">p = \gamma m v</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault">p</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span><span class="mrel">=</span><span class="mspace" style="margin-right:0.2777777777777778em;"></span></span><span class="base"><span class="strut" style="height:0.625em;vertical-align:-0.19444em;"></span><span class="mord mathdefault" style="margin-right:0.05556em;">γ</span><span class="mord mathdefault">m</span><span class="mord mathdefault" style="margin-right:0.03588em;">v</span></span></span></span> 在高速时非线性增长，光帆反射激光的有效推力效率下降，峰值速度压不到 0.2c。</p>
+<p>所以真正的答案可能是：<strong>光帆本身才是极限，不是激光</strong>。激光帆是「唯一可能」的物理路径，但它在工程上不成立。</p>
+<h2 id="那么走哪条路"><a class="markdownIt-Anchor" href="#那么走哪条路"></a> 那么走哪条路</h2>
+<p>把可能性排一遍。</p>
+<p><strong>核裂变。</strong> 化学火箭的比冲 450 秒，裂变能到 30000 秒量级，差两个数量级。土星五号能把人送上月球，是因为近地轨道只需 400 km。星际不是这个量级的跳跃。</p>
+<p><strong>核聚变。</strong> 氘氚聚变 3.4 × 10^{14} J/kg，Isp 可到 30000 秒以上，但需要 1 亿度以上的等离子体。维持这个状态本身就是难题，而目前最大的困难是维持，不是产能。</p>
+<p><strong>反物质。</strong> 湮灭的比能最高，但反物质的制造和储存是当前工程的绝对瓶颈。物理上极漂亮，前提是你能造出并约束它。</p>
+<p><strong>激光帆。</strong> 物理上最干净，工程上最不成立。</p>
+<p><strong>曲速驱动。</strong> 需要负能量密度，也就是《时间简史》里霍金提到的那种「违反正定条件」的场论构造。所有已知的 GR 定理都不允许。即使有了 warp bubble，负能量密度带来的稳定性问题至今没人解决。</p>
+<p><strong>代达罗斯计划</strong>（英国 SETI，1978 年）：无人探测器，核聚变推进，速度 12% 光速，40 年飞抵巴纳德星。这是<strong>唯一一个完整做过工程设计的星际方案</strong>，而且它不违反任何物理定律。代价是造它需要一整个国家的工业能力，而且没人愿意批这个预算。</p>
+<h2 id="结论不是我们出不去"><a class="markdownIt-Anchor" href="#结论不是我们出不去"></a> 结论不是「我们出不去」</h2>
+<p>数字排完，有两件事是确定的。</p>
+<p><strong>第一，人类的时间尺度相对于宇宙的结构尺度，短到毫无意义。</strong> 100 年对银河年 2.25 亿年。我们是那个「永远看不到一次完整银河公转」的物种。</p>
+<p><strong>第二，但我们的位置是好的。</strong> 宜居带，稳定轨道，还有一颗还能烧 50 亿年的恒星。银河系 1000 亿到 4000 亿颗恒星，绝大多数永远不会有文明，它们只是核反应的机器。而我们恰好在一个能问「这是不是唯一一次」的位置上。</p>
+<p>这两件事同时成立，才构成一个值得写下来的判断：<strong>星际航行大概率不是人类先突破的</strong>。能量约束太硬，代达罗斯那样的方案需要的工业投入超出任何单一国家的承受范围。它更可能是几百年后、或者由某个我们无法想象的组织完成的。在那之前，人类的疆界扩展方向是<strong>内太阳系</strong>，不是往外跑，是往里挖。月球、小行星带、火星、木星系统。</p>
+<p>至于黑洞，那是一个更远的问题。人类大概率会在有生之年把探测器送进太阳系所有值得去的地方，但要把探测器送进事件视界并且拿回任何数据，需要一个我们还没造出来的技术层级。而即使送进去了，数据也传不回来。这是《时间简史》里霍金留给读者的一道题：<strong>你能接收到的信息，只来自你视界之外。</strong></p>
+<p>那道题到今天还没解。</p>
+<hr />
+<h2 id="几个可以自己验的数字"><a class="markdownIt-Anchor" href="#几个可以自己验的数字"></a> 几个可以自己验的数字</h2>
+<p>关于光速和距离的直觉很容易出错，可以自己算一遍：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="comment"># 光年、AU 与飞行时间的换算</span></span><br><span class="line">C = <span class="number">299_792_458</span>          <span class="comment"># m/s</span></span><br><span class="line">AU = <span class="number">149_597_870_700</span>     <span class="comment"># m，1 天文单位</span></span><br><span class="line">LY = <span class="number">9.4607e15</span>           <span class="comment"># m，1 光年</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">travel_years</span>(<span class="params">dist_ly, speed_c</span>):</span><br><span class="line">    <span class="string">&quot;&quot;&quot;按地球参考系的距离算航行时间（年）&quot;&quot;&quot;</span></span><br><span class="line">    <span class="keyword">return</span> dist_ly / speed_c</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> c <span class="keyword">in</span> [<span class="number">0.01</span>, <span class="number">0.1</span>, <span class="number">0.2</span>, <span class="number">0.5</span>, <span class="number">0.9</span>]:</span><br><span class="line">    t = travel_years(<span class="number">4.37</span>, c)</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">f&quot;<span class="subst">&#123;c:&gt;<span class="number">4.0</span>%&#125;</span> 光速 → 半人马座 α 需 <span class="subst">&#123;t:&gt;<span class="number">8.1</span>f&#125;</span> 年&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 太阳光到地球</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;\n阳光到地球：<span class="subst">&#123;AU / C / <span class="number">60</span>:<span class="number">.2</span>f&#125;</span> 分钟&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 银河年 vs 人类文明史</span></span><br><span class="line">galactic_year = <span class="number">2.25e8</span></span><br><span class="line">civilization = <span class="number">1e4</span></span><br><span class="line">species = <span class="number">3e5</span></span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;文明史占银河年：<span class="subst">&#123;civilization / galactic_year:<span class="number">.2</span>e&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;物种史占银河年：<span class="subst">&#123;species / galactic_year:<span class="number">.2</span>e&#125;</span>&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment"># 太阳质量黑洞的霍金温度</span></span><br><span class="line">G = <span class="number">6.674e-11</span></span><br><span class="line">h_bar = <span class="number">1.0545718e-34</span></span><br><span class="line">k_B = <span class="number">1.380649e-23</span></span><br><span class="line">M_sun = <span class="number">1.989e30</span></span><br><span class="line">T_H = h_bar * C**<span class="number">3</span> / (<span class="number">8</span> * <span class="number">3.14159265</span> * G * M_sun * k_B)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;\n太阳质量黑洞霍金温度：<span class="subst">&#123;T_H:<span class="number">.3</span>e&#125;</span> K&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;宇宙微波背景温度：      2.7 K&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;蒸发所需时间量级：      1e67 年&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;宇宙年龄：              1.38e10 年&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">1% 光速 → 半人马座 α 需    437.0 年</span><br><span class="line"> 10% 光速 → 半人马座 α 需     43.7 年</span><br><span class="line"> 20% 光速 → 半人马座 α 需     21.8 年</span><br><span class="line"> 50% 光速 → 半人马座 α 需      8.7 年</span><br><span class="line"> 90% 光速 → 半人马座 α 需      4.9 年</span><br><span class="line"></span><br><span class="line">阳光到地球：8.32 分钟</span><br><span class="line">文明史占银河年：4.44e-05</span><br><span class="line">物种史占银河年：1.33e-03</span><br><span class="line"></span><br><span class="line">太阳质量黑洞霍金温度：6.169e-08 K</span><br><span class="line">宇宙微波背景温度：      2.7 K</span><br><span class="line">蒸发所需时间量级：      1e67 年</span><br><span class="line">宇宙年龄：              1.38e10 年</span><br></pre></td></tr></table></figure>
+<p>那个 6.169e-08 K 比 2.7 K 小了 8 个数量级，这就是为什么太阳质量的黑洞在今天的宇宙里根本不会蒸发，反而在吸积背景辐射长大。要让它开始蒸发，得先把它周围的辐射环境清空。</p>
+<p>而那个 4.44e-05，人类文明史占一个银河年的万分之零点四四，是这篇文章里唯一一个我希望你记住的数字。</p>
+]]></content>
+      <categories>
+        <category>生活</category>
+      </categories>
+      <tags>
+        <tag>宇宙</tag>
+        <tag>黑洞</tag>
+        <tag>时间简史</tag>
+        <tag>霍金</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AI提效未变利润，瓶颈在组织与分配</title>
     <url>/AI/22dcb90b.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="员工提效没有变成利润分配环节承接了大部分收益"><a class="markdownIt-Anchor" href="#员工提效没有变成利润分配环节承接了大部分收益"></a> 员工提效没有变成利润，分配环节承接了大部分收益</h2>
@@ -8523,77 +8523,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
-    <title>rust-错误处理</title>
-    <url>/%E5%AD%A6%E4%B9%A0/b7ffbc2c.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="错误处理"><a class="markdownIt-Anchor" href="#错误处理"></a> 错误处理</h2>
-<p>Rust 把错误分成两类：<strong>可恢复的</strong>和<strong>不可恢复的</strong>。前者返回给调用方，后者直接终止程序。这个划分不是约定俗成，是类型系统强制的。</p>
-<h2 id="result-和-option"><a class="markdownIt-Anchor" href="#result-和-option"></a> Result 和 Option</h2>
-<p><code>Result&lt;T, E&gt;</code> 表示一个可能成功的值和一个可能的错误，<code>Option&lt;T&gt;</code> 表示一个可能存在的值。</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">ok</span>: <span class="type">Result</span>&lt;<span class="type">i32</span>, <span class="type">String</span>&gt; = <span class="title function_ invoke__">Ok</span>(<span class="number">42</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">err</span>: <span class="type">Result</span>&lt;<span class="type">i32</span>, <span class="type">String</span>&gt; = <span class="title function_ invoke__">Err</span>(<span class="string">&quot;出错了&quot;</span>.<span class="title function_ invoke__">to_string</span>());</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">some</span>: <span class="type">Option</span>&lt;<span class="type">i32</span>&gt; = <span class="title function_ invoke__">Some</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">none</span>: <span class="type">Option</span>&lt;<span class="type">i32</span>&gt; = <span class="literal">None</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125; &#123;:?&#125; &#123;:?&#125; &#123;:?&#125;&quot;</span>, ok, err, some, none);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Ok(42) Err(&quot;出错了&quot;) Some(1) None</span><br></pre></td></tr></table></figure>
-<p>Rust 没有异常，<code>Result</code> 的所有值都必须被处理。<code>match</code> 是最直接的方式：</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">parse_port</span>(s: &amp;<span class="type">str</span>) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;<span class="type">u16</span>, <span class="type">String</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">match</span> s.parse::&lt;<span class="type">u16</span>&gt;() &#123;</span><br><span class="line">        <span class="title function_ invoke__">Ok</span>(p) =&gt; <span class="title function_ invoke__">Ok</span>(p),</span><br><span class="line">        <span class="title function_ invoke__">Err</span>(e) =&gt; <span class="title function_ invoke__">Err</span>(<span class="built_in">format!</span>(<span class="string">&quot;端口解析失败: &#123;&#125;&quot;</span>, e)),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">s</span> <span class="keyword">in</span> [<span class="string">&quot;8080&quot;</span>, <span class="string">&quot;abc&quot;</span>, <span class="string">&quot;99999&quot;</span>] &#123;</span><br><span class="line">        <span class="keyword">match</span> <span class="title function_ invoke__">parse_port</span>(s) &#123;</span><br><span class="line">            <span class="title function_ invoke__">Ok</span>(p) =&gt; <span class="built_in">println!</span>(<span class="string">&quot;端口: &#123;&#125;&quot;</span>, p),</span><br><span class="line">            <span class="title function_ invoke__">Err</span>(e) =&gt; <span class="built_in">println!</span>(<span class="string">&quot;错误: &#123;&#125;&quot;</span>, e),</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">端口: 8080</span><br><span class="line">错误: 端口解析失败: invalid digit found in string</span><br><span class="line">错误: 端口解析失败: number too large to fit in target type</span><br></pre></td></tr></table></figure>
-<p>注意 <code>Ok</code> 和 <code>Err</code> 里的值类型不同，分支不能混用。这就是编译器在帮你检查「错误是否被处理」。</p>
-<h2 id="option-的取法"><a class="markdownIt-Anchor" href="#option-的取法"></a> Option 的取法</h2>
-<p><code>Option</code> 只有两态，处理方式比 <code>Result</code> 简单。常用的是 <code>unwrap_or</code> 给个默认值：</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">v</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, v.<span class="title function_ invoke__">first</span>());</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, v.<span class="title function_ invoke__">get</span>(<span class="number">5</span>));</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, v.<span class="title function_ invoke__">first</span>().<span class="title function_ invoke__">unwrap_or</span>(&amp;<span class="number">0</span>));</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, v.<span class="title function_ invoke__">get</span>(<span class="number">5</span>).<span class="title function_ invoke__">unwrap_or</span>(&amp;<span class="number">0</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Some(1)</span><br><span class="line">None</span><br><span class="line">1</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
-<p><code>unwrap_or</code> 不消耗 <code>Option</code>，因为它拿到的是引用。<code>unwrap_or_else</code> 接受闭包，参数是 <code>Option</code> 本身：</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">v</span>: <span class="type">Vec</span>&lt;<span class="type">i32</span>&gt; = <span class="built_in">vec!</span>[];</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, v.<span class="title function_ invoke__">first</span>().<span class="title function_ invoke__">unwrap_or_else</span>(|| &amp;<span class="number">0</span>));</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, v.<span class="title function_ invoke__">first</span>().<span class="title function_ invoke__">copied</span>().<span class="title function_ invoke__">unwrap_or_default</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">0</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
-<p><code>unwrap_or_default</code> 要求类型实现 <code>Default</code>。这里 <code>v.first()</code> 返回 <code>Option&lt;&amp;i32&gt;</code>，而 <code>&amp;i32</code> 没实现 <code>Default</code>，编译器会直接拒绝：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">error[E0277]: the trait bound `&amp;i32: Default` is not satisfied</span><br><span class="line"> --&gt; t5.rs:4:32</span><br><span class="line">  |</span><br><span class="line">4 |     println!(&quot;&#123;:?&#125;&quot;, v.first().unwrap_or_default());</span><br><span class="line">  |                                ^^^^^^^^^^^^^^^^^ the trait `Default` is not implemented for `&amp;i32`</span><br><span class="line">help: the trait `Default` is implemented for `i32`</span><br><span class="line"> --&gt; /rustc/31fca3adb283cc9dfd56b49cdee9a96eb9c96ffd/library/core/src/default.rs:154:8</span><br></pre></td></tr></table></figure>
-<p>所以先 <code>.copied()</code> 把引用变成值，再交给 <code>unwrap_or_default</code>。这个细节在写的时候很容易忘，编译器能挡住。</p>
-<h2 id="运算符"><a class="markdownIt-Anchor" href="#运算符"></a> ? 运算符</h2>
-<p><code>match</code> 写多了会很啰嗦。<code>?</code> 运算符把「成功就取值，失败就提前返回」压成一行：</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> std::num::ParseIntError;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">parse_two</span>(a: &amp;<span class="type">str</span>, b: &amp;<span class="type">str</span>) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;<span class="type">i32</span>, ParseIntError&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">x</span> = a.parse::&lt;<span class="type">i32</span>&gt;()?;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">y</span> = b.parse::&lt;<span class="type">i32</span>&gt;()?;</span><br><span class="line">    <span class="title function_ invoke__">Ok</span>(x + y)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, <span class="title function_ invoke__">parse_two</span>(<span class="string">&quot;10&quot;</span>, <span class="string">&quot;32&quot;</span>));</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, <span class="title function_ invoke__">parse_two</span>(<span class="string">&quot;10&quot;</span>, <span class="string">&quot;ab&quot;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Ok(42)</span><br><span class="line">Err(ParseIntError &#123; kind: InvalidDigit &#125;)</span><br></pre></td></tr></table></figure>
-<p><code>?</code> 的行为是：值是 <code>Ok(x)</code> 就取出 <code>x</code> 继续，值是 <code>Err(e)</code> 就立刻 <code>return Err(e)</code>。上面第二行里 <code>a.parse::&lt;i32&gt;()?</code> 失败，函数直接返回 <code>Err</code>，<code>b</code> 那行根本没执行。</p>
-<p>关键在类型：<code>?</code> 要求错误类型能转成函数的错误类型。这叫「错误转换」，靠 <code>From</code> trait 实现：</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> std::fmt;</span><br><span class="line"><span class="keyword">use</span> std::num::ParseIntError;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">AppError</span> &#123;</span><br><span class="line">    <span class="title function_ invoke__">Parse</span>(ParseIntError),</span><br><span class="line">    <span class="title function_ invoke__">Missing</span>(&amp;<span class="symbol">&#x27;static</span> <span class="type">str</span>),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">fmt</span>::Display <span class="keyword">for</span> <span class="title class_">AppError</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">fmt</span>(&amp;<span class="keyword">self</span>, f: &amp;<span class="keyword">mut</span> fmt::Formatter) <span class="punctuation">-&gt;</span> fmt::<span class="type">Result</span> &#123;</span><br><span class="line">        <span class="keyword">match</span> <span class="keyword">self</span> &#123;</span><br><span class="line">            AppError::<span class="title function_ invoke__">Parse</span>(e) =&gt; <span class="built_in">write!</span>(f, <span class="string">&quot;解析失败: &#123;&#125;&quot;</span>, e),</span><br><span class="line">            AppError::<span class="title function_ invoke__">Missing</span>(s) =&gt; <span class="built_in">write!</span>(f, <span class="string">&quot;缺少字段: &#123;&#125;&quot;</span>, s),</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">std</span>::error::Error <span class="keyword">for</span> <span class="title class_">AppError</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">From</span>&lt;ParseIntError&gt; <span class="keyword">for</span> <span class="title class_">AppError</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">from</span>(e: ParseIntError) <span class="punctuation">-&gt;</span> <span class="keyword">Self</span> &#123;</span><br><span class="line">        AppError::<span class="title function_ invoke__">Parse</span>(e)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">parse_port</span>(s: &amp;<span class="type">str</span>) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;<span class="type">u16</span>, AppError&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> s.<span class="title function_ invoke__">is_empty</span>() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_ invoke__">Err</span>(AppError::<span class="title function_ invoke__">Missing</span>(<span class="string">&quot;port&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_ invoke__">Ok</span>(s.parse::&lt;<span class="type">u16</span>&gt;()?)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">s</span> <span class="keyword">in</span> [<span class="string">&quot;8080&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;99999&quot;</span>] &#123;</span><br><span class="line">        <span class="keyword">match</span> <span class="title function_ invoke__">parse_port</span>(s) &#123;</span><br><span class="line">            <span class="title function_ invoke__">Ok</span>(p) =&gt; <span class="built_in">println!</span>(<span class="string">&quot;端口: &#123;&#125;&quot;</span>, p),</span><br><span class="line">            <span class="title function_ invoke__">Err</span>(e) =&gt; <span class="built_in">println!</span>(<span class="string">&quot;错误: &#123;&#125;&quot;</span>, e),</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">端口: 8080</span><br><span class="line">错误: 缺少字段: port</span><br><span class="line">错误: 解析失败: number too large to fit in target type</span><br></pre></td></tr></table></figure>
-<p><code>Ok(s.parse::&lt;u16&gt;()?)</code> 里的 <code>?</code> 走 <code>From&lt;ParseIntError&gt; for AppError</code>，把底层错误包进 <code>AppError::Parse</code>。这就是自定义错误类型的标准写法：定义枚举，实现 <code>Display</code> 和 <code>Error</code>，再为每个可能的底层错误实现 <code>From</code>。</p>
-<h2 id="panic-与-unwrap"><a class="markdownIt-Anchor" href="#panic-与-unwrap"></a> panic 与 unwrap</h2>
-<p><code>unwrap</code> 遇到 <code>None</code> 会 panic，程序终止：</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">n</span>: <span class="type">i32</span> = <span class="string">&quot;42&quot;</span>.<span class="title function_ invoke__">parse</span>().<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;解析成功: &#123;&#125;&quot;</span>, n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">opt</span>: <span class="type">Option</span>&lt;<span class="type">i32</span>&gt; = <span class="literal">None</span>;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, opt.<span class="title function_ invoke__">expect</span>(<span class="string">&quot;配置里没有这个键&quot;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出（stdout）：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">解析成功: 42</span><br></pre></td></tr></table></figure>
-<p>stderr：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">thread &#x27;main&#x27; (687536) panicked at t4.rs:6:39:</span><br><span class="line">配置里没有这个键</span><br><span class="line">note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace</span><br></pre></td></tr></table></figure>
-<p>panic 信息走 stderr，不走 stdout，退出码 101。</p>
-<p><code>expect</code> 和 <code>unwrap</code> 一样会 panic，区别是能带一句说明。这句说明在 panic 时才出现，所以它是给<strong>看日志的人</strong>看的，不是给编译器看的。</p>
-<p>用 <code>expect</code> 而不是 <code>unwrap</code> 的实际价值：出问题时日志里能直接看出是哪个环节炸的。</p>
-<p>索引越界也是 panic：</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">v</span>: <span class="type">Vec</span>&lt;<span class="type">i32</span>&gt; = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, v[<span class="number">5</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出（stderr，退出码 101）：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">thread &#x27;main&#x27; (687583) panicked at t3.rs:3:21:</span><br><span class="line">index out of bounds: the len is 3 but the index is 5</span><br><span class="line">note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace</span><br></pre></td></tr></table></figure>
-<p>注意这行是<strong>运行时</strong>错误，编译能过。编译期能抓的类型错误是另一个：</p>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">x</span>: <span class="type">i32</span> = <span class="string">&quot;42&quot;</span>;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>编译输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">error[E0308]: mismatched types</span><br><span class="line"> --&gt; e1.rs:2:18</span><br><span class="line">  |</span><br><span class="line">2 |     let x: i32 = &quot;42&quot;;</span><br><span class="line">  |            ---   ^^^^ expected `i32`, found `&amp;str`</span><br><span class="line">  |            |</span><br><span class="line">  |            expected due to this</span><br><span class="line"></span><br><span class="line">error: aborting due to 1 previous error</span><br><span class="line"></span><br><span class="line">For more information about this error, try `rustc --explain E0308`.</span><br></pre></td></tr></table></figure>
-<p><code>Result</code> 存在就是为了让「可能失败」这件事进到类型里，让编译器逼你处理。<code>unwrap</code> 是主动放弃这个检查，代价是运行时炸。</p>
-<h2 id="什么时候-panic什么时候返回错误"><a class="markdownIt-Anchor" href="#什么时候-panic什么时候返回错误"></a> 什么时候 panic，什么时候返回错误</h2>
-<p>判断标准很简单：<strong>调用方有没有办法恢复</strong>。</p>
-<p>配置读错了、文件不存在、网络超时 —— 调用方可以重试、可以给用户提示、可以换个值，这些都该返回 <code>Err</code>。</p>
-<p>数组越界、内部状态被破坏、不变量被违反 —— 这类 bug 修复不了，重试只会重复崩溃，该 panic。</p>
-<p><code>unwrap</code> 和 <code>expect</code> 在库代码里几乎不该出现，在应用代码的启动阶段（读配置、初始化全局状态）可以接受，因为那时候失败就该直接停。</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>Rust</tag>
-        <tag>error-handling</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>rust-模块与测试</title>
     <url>/%E5%AD%A6%E4%B9%A0/2d9a7d08.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="模块与测试"><a class="markdownIt-Anchor" href="#模块与测试"></a> 模块与测试</h2>
@@ -8691,6 +8620,77 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
         <tag>Rust</tag>
         <tag>module</tag>
         <tag>test</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>rust-错误处理</title>
+    <url>/%E5%AD%A6%E4%B9%A0/b7ffbc2c.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="错误处理"><a class="markdownIt-Anchor" href="#错误处理"></a> 错误处理</h2>
+<p>Rust 把错误分成两类：<strong>可恢复的</strong>和<strong>不可恢复的</strong>。前者返回给调用方，后者直接终止程序。这个划分不是约定俗成，是类型系统强制的。</p>
+<h2 id="result-和-option"><a class="markdownIt-Anchor" href="#result-和-option"></a> Result 和 Option</h2>
+<p><code>Result&lt;T, E&gt;</code> 表示一个可能成功的值和一个可能的错误，<code>Option&lt;T&gt;</code> 表示一个可能存在的值。</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">ok</span>: <span class="type">Result</span>&lt;<span class="type">i32</span>, <span class="type">String</span>&gt; = <span class="title function_ invoke__">Ok</span>(<span class="number">42</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">err</span>: <span class="type">Result</span>&lt;<span class="type">i32</span>, <span class="type">String</span>&gt; = <span class="title function_ invoke__">Err</span>(<span class="string">&quot;出错了&quot;</span>.<span class="title function_ invoke__">to_string</span>());</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">some</span>: <span class="type">Option</span>&lt;<span class="type">i32</span>&gt; = <span class="title function_ invoke__">Some</span>(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">none</span>: <span class="type">Option</span>&lt;<span class="type">i32</span>&gt; = <span class="literal">None</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125; &#123;:?&#125; &#123;:?&#125; &#123;:?&#125;&quot;</span>, ok, err, some, none);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Ok(42) Err(&quot;出错了&quot;) Some(1) None</span><br></pre></td></tr></table></figure>
+<p>Rust 没有异常，<code>Result</code> 的所有值都必须被处理。<code>match</code> 是最直接的方式：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">parse_port</span>(s: &amp;<span class="type">str</span>) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;<span class="type">u16</span>, <span class="type">String</span>&gt; &#123;</span><br><span class="line">    <span class="keyword">match</span> s.parse::&lt;<span class="type">u16</span>&gt;() &#123;</span><br><span class="line">        <span class="title function_ invoke__">Ok</span>(p) =&gt; <span class="title function_ invoke__">Ok</span>(p),</span><br><span class="line">        <span class="title function_ invoke__">Err</span>(e) =&gt; <span class="title function_ invoke__">Err</span>(<span class="built_in">format!</span>(<span class="string">&quot;端口解析失败: &#123;&#125;&quot;</span>, e)),</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">s</span> <span class="keyword">in</span> [<span class="string">&quot;8080&quot;</span>, <span class="string">&quot;abc&quot;</span>, <span class="string">&quot;99999&quot;</span>] &#123;</span><br><span class="line">        <span class="keyword">match</span> <span class="title function_ invoke__">parse_port</span>(s) &#123;</span><br><span class="line">            <span class="title function_ invoke__">Ok</span>(p) =&gt; <span class="built_in">println!</span>(<span class="string">&quot;端口: &#123;&#125;&quot;</span>, p),</span><br><span class="line">            <span class="title function_ invoke__">Err</span>(e) =&gt; <span class="built_in">println!</span>(<span class="string">&quot;错误: &#123;&#125;&quot;</span>, e),</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">端口: 8080</span><br><span class="line">错误: 端口解析失败: invalid digit found in string</span><br><span class="line">错误: 端口解析失败: number too large to fit in target type</span><br></pre></td></tr></table></figure>
+<p>注意 <code>Ok</code> 和 <code>Err</code> 里的值类型不同，分支不能混用。这就是编译器在帮你检查「错误是否被处理」。</p>
+<h2 id="option-的取法"><a class="markdownIt-Anchor" href="#option-的取法"></a> Option 的取法</h2>
+<p><code>Option</code> 只有两态，处理方式比 <code>Result</code> 简单。常用的是 <code>unwrap_or</code> 给个默认值：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">v</span> = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, v.<span class="title function_ invoke__">first</span>());</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, v.<span class="title function_ invoke__">get</span>(<span class="number">5</span>));</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, v.<span class="title function_ invoke__">first</span>().<span class="title function_ invoke__">unwrap_or</span>(&amp;<span class="number">0</span>));</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, v.<span class="title function_ invoke__">get</span>(<span class="number">5</span>).<span class="title function_ invoke__">unwrap_or</span>(&amp;<span class="number">0</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Some(1)</span><br><span class="line">None</span><br><span class="line">1</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<p><code>unwrap_or</code> 不消耗 <code>Option</code>，因为它拿到的是引用。<code>unwrap_or_else</code> 接受闭包，参数是 <code>Option</code> 本身：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">v</span>: <span class="type">Vec</span>&lt;<span class="type">i32</span>&gt; = <span class="built_in">vec!</span>[];</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, v.<span class="title function_ invoke__">first</span>().<span class="title function_ invoke__">unwrap_or_else</span>(|| &amp;<span class="number">0</span>));</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, v.<span class="title function_ invoke__">first</span>().<span class="title function_ invoke__">copied</span>().<span class="title function_ invoke__">unwrap_or_default</span>());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">0</span><br><span class="line">0</span><br></pre></td></tr></table></figure>
+<p><code>unwrap_or_default</code> 要求类型实现 <code>Default</code>。这里 <code>v.first()</code> 返回 <code>Option&lt;&amp;i32&gt;</code>，而 <code>&amp;i32</code> 没实现 <code>Default</code>，编译器会直接拒绝：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">error[E0277]: the trait bound `&amp;i32: Default` is not satisfied</span><br><span class="line"> --&gt; t5.rs:4:32</span><br><span class="line">  |</span><br><span class="line">4 |     println!(&quot;&#123;:?&#125;&quot;, v.first().unwrap_or_default());</span><br><span class="line">  |                                ^^^^^^^^^^^^^^^^^ the trait `Default` is not implemented for `&amp;i32`</span><br><span class="line">help: the trait `Default` is implemented for `i32`</span><br><span class="line"> --&gt; /rustc/31fca3adb283cc9dfd56b49cdee9a96eb9c96ffd/library/core/src/default.rs:154:8</span><br></pre></td></tr></table></figure>
+<p>所以先 <code>.copied()</code> 把引用变成值，再交给 <code>unwrap_or_default</code>。这个细节在写的时候很容易忘，编译器能挡住。</p>
+<h2 id="运算符"><a class="markdownIt-Anchor" href="#运算符"></a> ? 运算符</h2>
+<p><code>match</code> 写多了会很啰嗦。<code>?</code> 运算符把「成功就取值，失败就提前返回」压成一行：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> std::num::ParseIntError;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">parse_two</span>(a: &amp;<span class="type">str</span>, b: &amp;<span class="type">str</span>) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;<span class="type">i32</span>, ParseIntError&gt; &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">x</span> = a.parse::&lt;<span class="type">i32</span>&gt;()?;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">y</span> = b.parse::&lt;<span class="type">i32</span>&gt;()?;</span><br><span class="line">    <span class="title function_ invoke__">Ok</span>(x + y)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, <span class="title function_ invoke__">parse_two</span>(<span class="string">&quot;10&quot;</span>, <span class="string">&quot;32&quot;</span>));</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;:?&#125;&quot;</span>, <span class="title function_ invoke__">parse_two</span>(<span class="string">&quot;10&quot;</span>, <span class="string">&quot;ab&quot;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">Ok(42)</span><br><span class="line">Err(ParseIntError &#123; kind: InvalidDigit &#125;)</span><br></pre></td></tr></table></figure>
+<p><code>?</code> 的行为是：值是 <code>Ok(x)</code> 就取出 <code>x</code> 继续，值是 <code>Err(e)</code> 就立刻 <code>return Err(e)</code>。上面第二行里 <code>a.parse::&lt;i32&gt;()?</code> 失败，函数直接返回 <code>Err</code>，<code>b</code> 那行根本没执行。</p>
+<p>关键在类型：<code>?</code> 要求错误类型能转成函数的错误类型。这叫「错误转换」，靠 <code>From</code> trait 实现：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">use</span> std::fmt;</span><br><span class="line"><span class="keyword">use</span> std::num::ParseIntError;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">enum</span> <span class="title class_">AppError</span> &#123;</span><br><span class="line">    <span class="title function_ invoke__">Parse</span>(ParseIntError),</span><br><span class="line">    <span class="title function_ invoke__">Missing</span>(&amp;<span class="symbol">&#x27;static</span> <span class="type">str</span>),</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">fmt</span>::Display <span class="keyword">for</span> <span class="title class_">AppError</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">fmt</span>(&amp;<span class="keyword">self</span>, f: &amp;<span class="keyword">mut</span> fmt::Formatter) <span class="punctuation">-&gt;</span> fmt::<span class="type">Result</span> &#123;</span><br><span class="line">        <span class="keyword">match</span> <span class="keyword">self</span> &#123;</span><br><span class="line">            AppError::<span class="title function_ invoke__">Parse</span>(e) =&gt; <span class="built_in">write!</span>(f, <span class="string">&quot;解析失败: &#123;&#125;&quot;</span>, e),</span><br><span class="line">            AppError::<span class="title function_ invoke__">Missing</span>(s) =&gt; <span class="built_in">write!</span>(f, <span class="string">&quot;缺少字段: &#123;&#125;&quot;</span>, s),</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">std</span>::error::Error <span class="keyword">for</span> <span class="title class_">AppError</span> &#123;&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">impl</span> <span class="title class_">From</span>&lt;ParseIntError&gt; <span class="keyword">for</span> <span class="title class_">AppError</span> &#123;</span><br><span class="line">    <span class="keyword">fn</span> <span class="title function_">from</span>(e: ParseIntError) <span class="punctuation">-&gt;</span> <span class="keyword">Self</span> &#123;</span><br><span class="line">        AppError::<span class="title function_ invoke__">Parse</span>(e)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">parse_port</span>(s: &amp;<span class="type">str</span>) <span class="punctuation">-&gt;</span> <span class="type">Result</span>&lt;<span class="type">u16</span>, AppError&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span> s.<span class="title function_ invoke__">is_empty</span>() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="title function_ invoke__">Err</span>(AppError::<span class="title function_ invoke__">Missing</span>(<span class="string">&quot;port&quot;</span>));</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="title function_ invoke__">Ok</span>(s.parse::&lt;<span class="type">u16</span>&gt;()?)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">for</span> <span class="variable">s</span> <span class="keyword">in</span> [<span class="string">&quot;8080&quot;</span>, <span class="string">&quot;&quot;</span>, <span class="string">&quot;99999&quot;</span>] &#123;</span><br><span class="line">        <span class="keyword">match</span> <span class="title function_ invoke__">parse_port</span>(s) &#123;</span><br><span class="line">            <span class="title function_ invoke__">Ok</span>(p) =&gt; <span class="built_in">println!</span>(<span class="string">&quot;端口: &#123;&#125;&quot;</span>, p),</span><br><span class="line">            <span class="title function_ invoke__">Err</span>(e) =&gt; <span class="built_in">println!</span>(<span class="string">&quot;错误: &#123;&#125;&quot;</span>, e),</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">端口: 8080</span><br><span class="line">错误: 缺少字段: port</span><br><span class="line">错误: 解析失败: number too large to fit in target type</span><br></pre></td></tr></table></figure>
+<p><code>Ok(s.parse::&lt;u16&gt;()?)</code> 里的 <code>?</code> 走 <code>From&lt;ParseIntError&gt; for AppError</code>，把底层错误包进 <code>AppError::Parse</code>。这就是自定义错误类型的标准写法：定义枚举，实现 <code>Display</code> 和 <code>Error</code>，再为每个可能的底层错误实现 <code>From</code>。</p>
+<h2 id="panic-与-unwrap"><a class="markdownIt-Anchor" href="#panic-与-unwrap"></a> panic 与 unwrap</h2>
+<p><code>unwrap</code> 遇到 <code>None</code> 会 panic，程序终止：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">n</span>: <span class="type">i32</span> = <span class="string">&quot;42&quot;</span>.<span class="title function_ invoke__">parse</span>().<span class="title function_ invoke__">unwrap</span>();</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;解析成功: &#123;&#125;&quot;</span>, n);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">opt</span>: <span class="type">Option</span>&lt;<span class="type">i32</span>&gt; = <span class="literal">None</span>;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, opt.<span class="title function_ invoke__">expect</span>(<span class="string">&quot;配置里没有这个键&quot;</span>));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出（stdout）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">解析成功: 42</span><br></pre></td></tr></table></figure>
+<p>stderr：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">thread &#x27;main&#x27; (687536) panicked at t4.rs:6:39:</span><br><span class="line">配置里没有这个键</span><br><span class="line">note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace</span><br></pre></td></tr></table></figure>
+<p>panic 信息走 stderr，不走 stdout，退出码 101。</p>
+<p><code>expect</code> 和 <code>unwrap</code> 一样会 panic，区别是能带一句说明。这句说明在 panic 时才出现，所以它是给<strong>看日志的人</strong>看的，不是给编译器看的。</p>
+<p>用 <code>expect</code> 而不是 <code>unwrap</code> 的实际价值：出问题时日志里能直接看出是哪个环节炸的。</p>
+<p>索引越界也是 panic：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">v</span>: <span class="type">Vec</span>&lt;<span class="type">i32</span>&gt; = <span class="built_in">vec!</span>[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, v[<span class="number">5</span>]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出（stderr，退出码 101）：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">thread &#x27;main&#x27; (687583) panicked at t3.rs:3:21:</span><br><span class="line">index out of bounds: the len is 3 but the index is 5</span><br><span class="line">note: run with `RUST_BACKTRACE=1` environment variable to display a backtrace</span><br></pre></td></tr></table></figure>
+<p>注意这行是<strong>运行时</strong>错误，编译能过。编译期能抓的类型错误是另一个：</p>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">x</span>: <span class="type">i32</span> = <span class="string">&quot;42&quot;</span>;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;&#123;&#125;&quot;</span>, x);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>编译输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">error[E0308]: mismatched types</span><br><span class="line"> --&gt; e1.rs:2:18</span><br><span class="line">  |</span><br><span class="line">2 |     let x: i32 = &quot;42&quot;;</span><br><span class="line">  |            ---   ^^^^ expected `i32`, found `&amp;str`</span><br><span class="line">  |            |</span><br><span class="line">  |            expected due to this</span><br><span class="line"></span><br><span class="line">error: aborting due to 1 previous error</span><br><span class="line"></span><br><span class="line">For more information about this error, try `rustc --explain E0308`.</span><br></pre></td></tr></table></figure>
+<p><code>Result</code> 存在就是为了让「可能失败」这件事进到类型里，让编译器逼你处理。<code>unwrap</code> 是主动放弃这个检查，代价是运行时炸。</p>
+<h2 id="什么时候-panic什么时候返回错误"><a class="markdownIt-Anchor" href="#什么时候-panic什么时候返回错误"></a> 什么时候 panic，什么时候返回错误</h2>
+<p>判断标准很简单：<strong>调用方有没有办法恢复</strong>。</p>
+<p>配置读错了、文件不存在、网络超时 —— 调用方可以重试、可以给用户提示、可以换个值，这些都该返回 <code>Err</code>。</p>
+<p>数组越界、内部状态被破坏、不变量被违反 —— 这类 bug 修复不了，重试只会重复崩溃，该 panic。</p>
+<p><code>unwrap</code> 和 <code>expect</code> 在库代码里几乎不该出现，在应用代码的启动阶段（读配置、初始化全局状态）可以接受，因为那时候失败就该直接停。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>Rust</tag>
+        <tag>error-handling</tag>
       </tags>
   </entry>
   <entry>
@@ -22978,6 +22978,298 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
+    <title>慢车 21：换一台</title>
+    <url>/%E5%B0%8F%E8%AF%B4/d15e7048.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>五金市场的卷帘门刚拉开一半，里面就响起电钻声。</p>
+<p>他把短接用的导线从焊盘上挑起来，剪下靠近烙铁的一段。线头还带着锡，落到桌面上，滚到记录本旁边。</p>
+<p>陈渡站在门口等了几秒，等声音停了，才侧身进去。柜台后面摆着两排电容，透明塑料壳里挤满褐色、蓝色和黑色。老板娘正拿螺丝刀撬一只纸箱。</p>
+<p>陈渡伸手按住线头，扔进桌上的空焊锡盒。</p>
+<p>楼上有人拖动椅子，椅脚刮过水泥地。陈渡把机器侧盖往桌边推了半寸，腾出一块地方，翻看拆下来的零件。</p>
+<p>「买什么？」她问。</p>
+<p>盒子底部有一层细碎的锡渣。他用螺丝刀拨了拨，线头在里面翻了两下，露出一截发黑的铜丝。</p>
+<p>「录音机的零件。」</p>
+<p>台灯照在那条焊点上。两个孔之间的锡已经冷了，表面有轻微的皱。他用镊子碰了碰，没动。再碰一下，焊点旁边翘起一片薄薄的锡皮。</p>
+<p>那只鼓包电容的引脚已经发黑。他用镊子夹住外壳，针尖一碰，电容表面就留下一个凹坑。</p>
+<p>「哪种机？」</p>
+<p>「没烧。」他说。</p>
+<p>陈渡从帆布包里拿出一张折过四次的纸，摊在柜台上。上面列了十二项名称，后面标着数量。型号一栏空着。</p>
+<p>这句话是说给机器听的。机器没有回答，只在桌上压出一块铁灰色的影子。外壳右侧有一处凹痕，边缘被手磨得发亮。那是每次拆装时螺丝刀蹭出来的。凹痕旁边贴着一小块褪色标签，只剩「11」两个数字，后面的漆掉在桌缝里。</p>
+<p>门缝外有人停住。</p>
+<p>「苏式，编号末三位一一七。」他说，「原来的电路我拆过。现在要换一批。」</p>
+<p>陈渡把标签抠下来，底下粘着一层胶。胶里卡着几粒灰。他用刀尖刮掉，重新贴回去。</p>
+<p>老板娘扫了一眼：「这么老，现在没人修这个。」</p>
+<p>记录本上，第48次那一行下面空着。他没有继续写。笔放在本子边，笔帽朝着墙。</p>
+<p>「小陈？」老板娘在楼道里喊，「你落下东西了。」</p>
+<p>「有。」</p>
+<p>楼下有人拖动铁桶。桶底沿水泥地擦过，声音从门缝底下钻进来。陈渡等声音远了，才把万用表从桌上拿下来。</p>
+<p>「哪里修？」</p>
+<p>表的电池刚换过，屏幕右下角还有一点反光。他拨到直流电压档，先测机器外壳对地，再测输入孔对地。</p>
+<p>陈渡打开门。老板娘站在门外，手里捏着一卷黑色胶布。</p>
+<p>「我自己修。」</p>
+<p>表笔碰到输入孔时，数值停在零。</p>
+<p>她把纸推回来：「买齐了也未必能用。」</p>
+<p>他换了表笔，黑笔接地，笔尖在输入孔边缘刮出很轻的响声。随后数值升到零点几，跳了两下，停在 0.3。</p>
+<p>「你买的这个，不是屏蔽线。」</p>
+<p>「先买齐。」</p>
+<p>「三百毫伏。」</p>
+<p>陈渡又从包里拿出一只旧放大镜，镜框用胶带缠过。他蹲下身，查看柜台下面堆放的元件。纸箱底部受潮，几只电容外壳上有水印。</p>
+<p>机器的电源插头还插在墙上的排插里。排插旁边是一只塑料脸盆，盆里泡着两块电路板，水面上浮着一层细灰。陈渡看了一眼，把排插上的插头拔了。</p>
+<p>陈渡接过来，用指甲刮了刮线皮。表面掉下一层灰，芯线也没有绞合，只是一根黑塑料包着的单股铜丝。</p>
+<p>「这几只不要。」他指着箱子，「日期太早。国产的也行，只要不是翻新。」</p>
+<p>屏幕上的数值退到零。</p>
+<p>「翻新怎么认？」</p>
+<p>他拔下话筒线，线头的金属部分露出来。话筒外壳是黑色塑料，靠近网罩的地方裂了一道缝，里面几根铜丝被胶带缠住。胶带已经发黄，边缘起了毛。</p>
+<p>「多少钱？」</p>
+<p>「看底部。翻新的字印浅。」</p>
+<p>陈渡用指甲抠下一小块胶带。</p>
+<p>老板娘笑了一声：「你比采购还难伺候。」</p>
+<p>里面没有断线。</p>
+<p>「按屏蔽线算的。」</p>
+<p>「买错一次，全坏。」</p>
+<p>他把胶带按回去，拿细砂纸在话筒线上磨了几下。砂纸粗糙，磨过的地方起了一层白毛。线外皮有六处压印，最深的一处落在桌边。</p>
+<p>她从货架上拿下几只盒子，逐个摆到纸上。陈渡拿起万用表，拨到电阻档。表笔碰到引脚，数字跳了两下，停住。</p>
+<p>他顺着线往下摸，摸到插头根部的胶布。</p>
+<p>他将线头放进台灯下，剥开两厘米。里面没有编织层，只有几根平行的铜丝，中间留着缝。</p>
+<p>「一百八十七千欧。」他说，「标一百九十。差一点。」</p>
+<p>胶布下鼓起一小团。</p>
+<p>「这批次。」</p>
+<p>陈渡拆开胶布。</p>
+<p>「这个不能接话筒线。」</p>
+<p>「换。」</p>
+<p>里面的铜丝断了两根。</p>
+<p>老板娘又拿来三只。陈渡逐一测量，留下其中一只。他把电阻放进纸箱，又去拿二极管。</p>
+<p>他把断口对着台灯看。铜丝断口发黑，不是从中间齐断的，是被拧过。旁边压着一小片白色塑料屑，像插头外壳里的绝缘垫。</p>
+<p>「能通就行。」</p>
+<p>纸箱上标着「整流」，每袋二十只。他没有立刻拆袋，先看封口。封口胶带颜色一致，没有二次拆封的痕迹。</p>
+<p>他拿出万用表，把话筒线的两头夹在测试夹上，拨到通断档。</p>
+<p>「拿两袋。」</p>
+<p>屏幕上显示开路。</p>
+<p>老板娘把胶布递给他：「那我不退了。」</p>
+<p>「录音机还缺这个？」</p>
+<p>陈渡把话筒线放到桌面上，拆掉整段胶布。线皮裂口比看上去大，里面还剩三根线能用。红色那根被压断，绿色那根弯折发白，黑色那根完整。</p>
+<p>「电源部分要换。」</p>
+<p>他从零件箱里找出一截屏蔽线，又找出一只旧插头。旧插头的金属杆有一道纵向划痕，拧紧后容易漏接。</p>
+<p>陈渡把胶布接过来，拇指在封口处按了一下。胶布已经开封，粘性还在，边缘沾着细灰。</p>
+<p>「电源坏了，你直接换整块板子更快。」</p>
+<p>他没有马上接线。</p>
+<p>「型号不明。」</p>
+<p>桌上那只小放大镜被他推到一边。镜面映出一截台灯灯罩，灯罩边缘有一圈黑灰。陈渡用棉签蘸了酒精，先擦话筒网罩，再擦裂开的塑料外壳。酒精从缝里流进去一滴，他用布接住。</p>
+<p>「多少钱？」</p>
+<p>「你这张纸上不都写了吗？」</p>
+<p>「话筒坏了，也不会正好没有声音。」他说。</p>
+<p>陈渡把放大镜放下：「只写功能，不写位置。原厂板子拆下来才知道。」</p>
+<p>说完，他抬头看了看窗台。</p>
+<p>「送你了。」</p>
+<p>二极管、电阻、瓷片电容、铝电解电容、变压器、磁头、按键开关，他一样一样往纸箱里放。买到变压器时，老板娘说只有 220 伏和 110 伏两种。</p>
+<p>窗台上放着一只搪瓷杯，杯口缺了一小块。杯里没有水，只有一圈干掉的白印。陈渡把杯盖翻过来，扣在话筒外壳上。</p>
+<p>「这批是 220。」</p>
+<p>话筒接进机器。</p>
+<p>他把胶布放在桌角，又拿起那卷线。</p>
+<p>「我那边能用。」</p>
+<p>他重新通电，按下录音键。耳机里出现底噪，比刚才薄了一层。风扇声还在，水管声还在。自己的呼吸贴着耳膜过去，仍旧没有留下人声。</p>
+<p>「保险丝呢？」</p>
+<p>陈渡把录音键松开，拿起耳机听。</p>
+<p>「先测。」</p>
+<p>「一起拿。」</p>
+<p>喇叭里的底噪像一层细砂。他调到 3kHz 左右，风扇的叶片声被放大，机器内部某个接点的轻响也清楚了。</p>
+<p>他买了两只保险丝，一卷耐热线，一盒焊锡。柜台上的计算器不停跳，最后停在 286 元。</p>
+<p>他把音量压低。</p>
+<p>陈渡接上短接用的测试夹，把线的一端夹住，拨到通断档。屏幕亮了一下，显示开路。他换了一端，还是开路。</p>
+<p>老板娘用手指敲了敲计算器：「两百八十六。」</p>
+<p>再按录音。</p>
+<p>陈渡从钱包里抽出三张一百块。</p>
+<p>耳机里传出磁带倒转的摩擦声。那是磁头离开磁带时，卷轴反向带动的细响。接着是桌面被手肘碰到的轻响。</p>
+<p>「中间断了。」</p>
+<p>「找不开。」</p>
+<p>没有声音。</p>
+<p>「那就找十四。」</p>
+<p>陈渡把耳机摘下一边，只留一只耳朵贴在机器外壳上。外壳有震动。变压器在工作，频率很低，手指贴上去只能感觉到轻微的嗡。</p>
+<p>老板娘探头看了一眼：「一根线也测？」</p>
+<p>「一块。」</p>
+<p>他用螺丝刀敲了敲外壳。</p>
+<p>「今天没有。」</p>
+<p>耳机里的底噪跟着跳了一下。</p>
+<p>「先通电。」</p>
+<p>「那就两块。」</p>
+<p>「磁头没有贴紧。」他说。</p>
+<p>老板娘从抽屉里摸出两个一块硬币。陈渡接过来，放进上衣口袋。</p>
+<p>他打开侧盖，找到压带轮。轮子的胶圈已经发硬，表面有两道细裂。压带轮旁边的弹簧少了一圈弹性，螺杆上抹了厚厚一层黑色润滑脂。</p>
+<p>他把线放到一边，另从零件箱里找出一只测线器。金属触点有些发黑，他用酒精擦过，夹住线头。表针没有动。</p>
+<p>「还缺什么？」她问。</p>
+<p>陈渡用棉签把旧脂擦掉，换了新脂。胶圈被压下去时发出很小的吱声。</p>
+<p>「不缺。」</p>
+<p>他重新装好磁带，倒回起点，按下录音键。</p>
+<p>陈渡拆开胶布，重新压紧。线皮裂到铜丝，铜丝断口发白。他把断处接上，焊锡太少，锡只包住一侧。</p>
+<p>「你每次都说买齐了，回头又来。」</p>
+<p>这次耳机里多出一声很轻的咔哒。</p>
+<p>「这次不。」</p>
+<p>不是话。</p>
+<p>「换一个。」</p>
+<p>他抱起纸箱，箱子底部压住箱子边角。走到卷帘门下时，里面又响起电钻声。他侧着身出去，纸箱擦过门框，掉下一颗螺母。</p>
+<p>是磁头压带前，机械开关的触点合上。</p>
+<p>他蹲下捡起那颗螺母，看了看螺纹。没问题，放进口袋。</p>
+<p>陈渡看着录音键，等磁带转过五秒。他抬手摸了一下喉咙，又把手放下。</p>
+<p>老板娘从柜台下面拿出一卷新线。</p>
+<p>出租屋在五金市场后面一栋楼里，四楼。门口堆着两只坏风扇，楼上住户把煤炉放在过道上，炉口还亮着。陈渡侧身进门，鞋底带进一层灰。</p>
+<p>喉结旁有一小块旧伤，是小时候被自行车把手磕的，碰到时皮肤发硬。</p>
+<p>他没开大灯，只拧亮桌上那盏 40 瓦台灯。</p>
+<p>他打开记录本，在第48次后面另起一行，写下：「话筒线断。换线后复测。无变化。」</p>
+<p>这卷线外皮印着白色规格，边缘没有毛刺。陈渡抽出一截，剥开线头。里面的铜丝颜色均匀，捻距约两毫米。</p>
+<p>磁带机放在桌角，编号末三位一一七。外壳已经拆过，四颗螺丝放在一只烟盒盖里。机器左侧接着一只话筒，话筒线从桌边垂到地上，插头裹着黑胶布。</p>
+<p>笔尖停住。</p>
+<p>陈渡把零件纸箱搬到地上，按清单一项项往桌面摆。</p>
+<p>他把「复测」划掉，改成「第49次」。</p>
+<p>他用测试器夹住两端。表针先归零，再抬到中段，停住。</p>
+<p>他先取下磁头，用螺丝刀碰了两下。磁头表面有一道细痕，录音时经过那一段，声音会发闷。他拿白棉签蘸酒精，擦了三遍。</p>
+<p>这一行只写了日期、故障和换件。最后留下一个空格。</p>
+<p>酒精的气味散开。桌上的电烙铁还热着。他把烙铁架好，拿铜丝清理烙铁头。</p>
+<p>空格里没有字。</p>
+<p>「通的。」</p>
+<p>焊锡在烙铁头上化开，落成一小颗。陈渡吹了吹。</p>
+<p>陈渡把笔放下，去洗刚才用过的棉签。水龙头在走廊尽头，水管先吐出一股带铁锈色的水。他等颜色变清，才把棉签冲干净。池底有一圈白碱，积得很厚。</p>
+<p>「一百二十赫兹……」</p>
+<p>回来时，桌上的记录本多了一处水印。</p>
+<p>「那你早说。」</p>
+<p>他打开机器外壳，逐点检查旧电路。功率管旁边有一片炭黑。电解电容顶部鼓起，最高的一只已经裂出白印。两只电阻发黄，颜色不匀。</p>
+<p>他把本子拿到灯下。</p>
+<p>「二百……三百……」</p>
+<p>水印没有碰到字，只洇开了刚才空着的那一格。他用袖口吸掉边缘的水。</p>
+<p>陈渡把新线绕在旧测试夹上，拧紧。夹口太窄，铜丝被压出一道折痕。他换了鳄鱼夹，重新夹住。</p>
+<p>万用表的红表笔接测试点，黑表笔接地。数值在屏幕上跳。</p>
+<p>楼下铁桶又拖了一次。</p>
+<p>他记下位置，换下第一只鼓包电容。镊子夹住引脚，烙铁从背面加热。旧电容拔出来时，板子上留下两个圆形焊点。</p>
+<p>陈渡看向门口，门缝下没有光。走廊的声控灯坏了，只能从楼梯间的窗户看见一块灰白色。他把门带上，插销没有扣紧，留了一指宽。</p>
+<p>表针仍停在中段。</p>
+<p>新电容比旧的矮。他转了两次方向，确认极性，再把引脚插回去。锡化开，铺满焊盘。他没有立刻剪短，剪到留出三毫米，弯折，压平。</p>
+<p>回到桌前，他把那卷记录纸摊平。纸角已经卷起，用一只旧打火机压住。</p>
+<p>第二只是电源滤波电容。容量一样，耐压不同。原厂用的是 400 伏，他买的是 450 伏。</p>
+<p>打火机外壳缺了一块漆。煤油味从盖缝里出来，混着烙铁留下的松香味。</p>
+<p>「能用就行。」</p>
+<p>「先通电。」</p>
+<p>他重新拿起短接线。</p>
+<p>他没有立刻测整机，而是把新装的电容单独放到测试夹上。直流电源调到 12 伏，表笔接两端。数值从零慢慢升到 11.8，停了。</p>
+<p>这回他没有把它接到焊盘上，而是剪成两段，分别夹在万用表的两根表线上。表笔前端有鳄鱼夹，夹口很窄，他用镊子把线头压扁，再夹紧。</p>
+<p>他把测试线装进纸箱，拿记号笔在旧线外皮上画了一道。线头短，只够试一次。旧线放回箱底，新线留在手边。</p>
+<p>「能用就行。」</p>
+<p>一只鳄鱼夹接输入孔，另一只接地。</p>
+<p>桌角那台苏式磁带机没有电源指示灯。陈渡按下播放键，机械部分开始走带。卷轴转得很慢，磁带经过磁头时发出细响。</p>
+<p>耳机接到机器上。</p>
+<p>台灯下的焊盘有两个亮点。他拿起镊子，夹住短接线的铜丝，送到焊盘上方。烙铁的温度计指着三百二十度，锡丝靠近便开始发亮。</p>
+<p>他把声音录进自己的耳朵。</p>
+<p>「先通电。」</p>
+<p>没有说话声。</p>
+<p>电流表没有明显变化。机器的输入端仍然只有 0.3 伏的底噪。</p>
+<p>他停了一下。</p>
+<p>他取下磁带，换上一盘空白带。按下录音键，话筒线接在输入孔上。他清了清嗓子，又试了一次。</p>
+<p>陈渡用另一根导线碰了一下输入端。</p>
+<p>房间里只有磁头压住磁带的声音。</p>
+<p>耳机里出现一声短促的啪。</p>
+<p>楼下铁桶擦过水泥地。声音到门口时变轻，到了楼梯口又清楚起来。陈渡把烙铁放下，等那声音走远，才把铜丝压进第一个焊点。</p>
+<p>他没有换线，也没有立刻动烙铁。他把录音键松开，倒回去，戴上耳机，按下播放。</p>
+<p>不是声音。</p>
+<p>耳机里先是一段底噪。接着是风扇叶片擦过外壳的声音，远处有水管响。再往后，是他自己按录音键时布料摩擦的动静。</p>
+<p>是线路里某处被碰断了。</p>
+<p>旧电阻被拆在桌角。两根引脚弯向一侧，中段有一道细裂。他用镊子碰了碰，裂口没有继续张开。</p>
+<p>人声轨还是空的。</p>
+<p>他把导线拿开，检查输入孔。孔口内侧有一圈黑色氧化物，夹子接触不良。他用细砂纸磨掉一点，再夹紧。</p>
+<p>陈渡把耳机摘下来，放在桌面。</p>
+<p>耳机里的啪声消失。</p>
+<p>短接线没有立刻接上。</p>
+<p>磁带走到尾端，自动停机。他把带子倒回去，又听了一遍。</p>
+<p>陈渡按住录音键，等磁带转过十秒。表上的数值缓慢上升，停在 0.7。</p>
+<p>第二遍没有发现新东西。</p>
+<p>他松手。</p>
+<p>他拿起那张线路图，对着灯看。纸背印着几行俄文，字号很小。电容符号旁边标着电压，电阻符号旁边只有一个短横。</p>
+<p>他拿出记录本。前面记着四十七次试验，每一行都差不多。</p>
+<p>数值回落。</p>
+<p>「第47次：换输入电容。无变化。」</p>
+<p>「接地还是不对。」他说。</p>
+<p>那截黑线仍压在胶下面。</p>
+<p>他写完，在下一行写「第48次」。</p>
+<p>他将机器侧面的接地螺丝松开。螺丝下面压着一根编织铜线，线头已经散了，铜丝分成几股，夹在金属片下面。</p>
+<p>笔尖停在纸上。</p>
+<p>陈渡用小号尖嘴钳把铜丝拉直，重新压进金属片。螺丝拧到一半时，底壳和线路板之间露出一小段灰白色胶。</p>
+<p>陈渡把线路图折回原样，用旧打火机压住折角。火机盖上的煤油味又散出来。他拿烙铁在焊盘上补了一点锡，锡面铺平，边缘没有连到旁边的铜箔。</p>
+<p>机器里的电阻还在。录音线路中有一只电阻，是原厂留下的。陈渡拆过几次，知道它装在话筒输入的前级，作用是限制信号进入下一级。</p>
+<p>他停手。</p>
+<p>他把线路图从机器底部翻出来。纸已经发脆，折痕处断开一块。图上只标了元件位置，没有完整参数。</p>
+<p>那截胶已经老化，边缘翘起。里面压着一根很细的黑色线。</p>
+<p>桌面上，两只测试夹之间还夹着一段断线。</p>
+<p>维修铺的周隼曾经看过这张图。</p>
+<p>陈渡没有碰它。</p>
+<p>那一次，周隼拆开机器，手没有停。他只说：「东西都有它来的地方。」</p>
+<p>他把螺丝退回半圈，用镊子把翘起的胶边压回去。黑色线仍被夹在原处，只露出不到两毫米的一截。</p>
+<p>陈渡把断线取下来，放进零件箱最底层。线皮上的白印朝上，旁边压着一只废弃的电容。</p>
+<p>陈渡没有问这只电阻是谁装的。</p>
+<p>他继续拧紧螺丝，测试接地。</p>
+<p>现在他把原厂电阻拆下来。焊点烧得发黑，拆的时候有一小股烟。烟贴着台灯往上走，碰到灯罩后散开。</p>
+<p>输入端数值降到 0.1。</p>
+<p>他拿起新线，先测了三次。通。</p>
+<p>他盯着线路板上两个空焊点。</p>
+<p>耳机里底噪变小，远处的水管声几乎没了。磁带转动时，机械结构的声音变得更清楚。</p>
+<p>原厂电阻是设计。</p>
+<p>陈渡按下录音键。</p>
+<p>然后把机器推回灯下。</p>
+<p>陈渡在纸上写下这句话，后面画了一道横线。他又在旁边写：「设计缺陷。」</p>
+<p>房间里只有磁带向前走的细响。</p>
+<p>划掉。</p>
+<p>他等磁带走到尽头，摘下耳机，倒回去，戴上。</p>
+<p>再写：「可绕开。」</p>
+<p>底噪之后，是台灯镇流器的嗡声。</p>
+<p>他从零件箱里找出一段短导线，量好长度。短接，是把原本经过电阻的两个位置直接接在一起，让信号不再经过这个限流元件。导线的阻值接近零。</p>
+<p>随后，他听见自己呼吸时，衣领擦过下巴。</p>
+<p>陈渡把导线两端上锡，压到两个焊点上。</p>
+<p>那一下也被录进去了。</p>
+<p>烙铁离开时，焊点边缘冒出一圈烟。</p>
+<p>陈渡看向话筒。话筒离他的嘴还有两米，刚才他没有靠近。</p>
+<p>他接通电源，把空白带装进去，按下录音键。</p>
+<p>他把磁带倒回起点，走到话筒前。</p>
+<p>尖锐的声音从机器里冲出来。</p>
+<p>「一、二、三、四。」</p>
+<p>啸叫，不是人声。那是高频信号在电路里绕了一圈，又从话筒位置返回输入端，形成反馈。声音越走越高，刺得陈渡眉骨发紧。</p>
+<p>按键。</p>
+<p>他拔掉电源。</p>
+<p>声音没有进磁带。</p>
+<p>啸叫停了。</p>
+<p>他退回桌边，重新检查接地线。数值稳定，输入端没有啸叫。</p>
+<p>桌上的台灯亮着，灯罩里的镇流器发出很轻的嗡声。陈渡等了几秒，确认电路没有烧。</p>
+<p>他拿螺丝刀碰了碰那只被夹住的黑线。线没有动，胶也没有脱落。</p>
+<p>第一次短接，失败。磁带上留下的是巨大的啸叫。</p>
+<p>磁带机的卷轴还在慢慢转。陈渡按住停止键，拆下耳机，把刚才那盘带子放进纸盒。盒子外侧写着日期：2024年11月7日。</p>
+<p>他把磁带倒回去，戴上耳机，只听了两秒，按下停止。磁带上的啸叫被削成一道尖线，刺耳程度没有降低。</p>
+<p>他在标签下面又添了一行：「第49次，接地线重新压接。」</p>
+<p>他拆掉短接线，重新装上原厂电阻。</p>
+<p>纸盒盖没有盖严，留下一道缝。里面的磁带从缝里露出一截，边缘有一道浅浅的白色划痕。</p>
+<p>烙铁刚离开焊点，他又停住。</p>
+<p>「原来是这个。」他说。</p>
+<p>他看了一眼桌上的记录本，又把刚焊好的电阻拆下来。</p>
+<p>第二次短接，他换了一个位置。没有把整段线路都短接，只绕过那只电阻。焊点一边接触良好，另一边留了不到半毫米的缝。</p>
+<p>通电。</p>
+<p>没有啸叫。</p>
+<p>陈渡按住录音键，等磁带转过五秒。他没有说话，只看着转轴。等带子走到尽头，机器自动停下。</p>
+<p>他把磁带倒回去。</p>
+<p>耳机里是底噪。</p>
+<p>有风扇声，有台灯镇流器，有他的手碰到机器外壳的轻响。</p>
+<p>没有人声。</p>
+<p>陈渡摘下耳机，量了量刚才那段线路的电压。数值比第一次稳定。短接没有让输入级彻底失控，可磁带上的声音仍停在原来的位置。</p>
+<p>他把记录本翻开，在「第48次」后面写：「短接。失败。啸叫。」</p>
+<p>墨水在「啸叫」两个字上多停了一瞬。</p>
+<p>他没有翻页。</p>
+<p>那一页原先每行都以日期、次数和故障开头。设备参数占了十七行，剩下的是磁带型号、焊点位置、电压数值。他从二十七岁开始记，一直记到今天。</p>
+<p>陈渡把笔移到下一行。</p>
+<p>写完「第48次」后，他又添了几个字。</p>
+<p>「如果它天生这样，那我这七年是在跟谁较劲。」</p>
+<p>笔画比前面的记录慢。最后一个句号落在纸面右下角，圆得很小。</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>慢车</tag>
+        <tag>小说</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>慢车 20：谁改的</title>
     <url>/%E5%B0%8F%E8%AF%B4/f5c80518.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>烙铁头抵住最后一颗焊点时，陈渡的手机亮了。</p>
@@ -23587,298 +23879,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>磁带停在零位。</p>
 <p>标签贴在底板上。</p>
 <p><code>1979，原厂设计。</code></p>
-]]></content>
-      <categories>
-        <category>小说</category>
-      </categories>
-      <tags>
-        <tag>慢车</tag>
-        <tag>小说</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>慢车 21：换一台</title>
-    <url>/%E5%B0%8F%E8%AF%B4/d15e7048.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>五金市场的卷帘门刚拉开一半，里面就响起电钻声。</p>
-<p>他把短接用的导线从焊盘上挑起来，剪下靠近烙铁的一段。线头还带着锡，落到桌面上，滚到记录本旁边。</p>
-<p>陈渡站在门口等了几秒，等声音停了，才侧身进去。柜台后面摆着两排电容，透明塑料壳里挤满褐色、蓝色和黑色。老板娘正拿螺丝刀撬一只纸箱。</p>
-<p>陈渡伸手按住线头，扔进桌上的空焊锡盒。</p>
-<p>楼上有人拖动椅子，椅脚刮过水泥地。陈渡把机器侧盖往桌边推了半寸，腾出一块地方，翻看拆下来的零件。</p>
-<p>「买什么？」她问。</p>
-<p>盒子底部有一层细碎的锡渣。他用螺丝刀拨了拨，线头在里面翻了两下，露出一截发黑的铜丝。</p>
-<p>「录音机的零件。」</p>
-<p>台灯照在那条焊点上。两个孔之间的锡已经冷了，表面有轻微的皱。他用镊子碰了碰，没动。再碰一下，焊点旁边翘起一片薄薄的锡皮。</p>
-<p>那只鼓包电容的引脚已经发黑。他用镊子夹住外壳，针尖一碰，电容表面就留下一个凹坑。</p>
-<p>「哪种机？」</p>
-<p>「没烧。」他说。</p>
-<p>陈渡从帆布包里拿出一张折过四次的纸，摊在柜台上。上面列了十二项名称，后面标着数量。型号一栏空着。</p>
-<p>这句话是说给机器听的。机器没有回答，只在桌上压出一块铁灰色的影子。外壳右侧有一处凹痕，边缘被手磨得发亮。那是每次拆装时螺丝刀蹭出来的。凹痕旁边贴着一小块褪色标签，只剩「11」两个数字，后面的漆掉在桌缝里。</p>
-<p>门缝外有人停住。</p>
-<p>「苏式，编号末三位一一七。」他说，「原来的电路我拆过。现在要换一批。」</p>
-<p>陈渡把标签抠下来，底下粘着一层胶。胶里卡着几粒灰。他用刀尖刮掉，重新贴回去。</p>
-<p>老板娘扫了一眼：「这么老，现在没人修这个。」</p>
-<p>记录本上，第48次那一行下面空着。他没有继续写。笔放在本子边，笔帽朝着墙。</p>
-<p>「小陈？」老板娘在楼道里喊，「你落下东西了。」</p>
-<p>「有。」</p>
-<p>楼下有人拖动铁桶。桶底沿水泥地擦过，声音从门缝底下钻进来。陈渡等声音远了，才把万用表从桌上拿下来。</p>
-<p>「哪里修？」</p>
-<p>表的电池刚换过，屏幕右下角还有一点反光。他拨到直流电压档，先测机器外壳对地，再测输入孔对地。</p>
-<p>陈渡打开门。老板娘站在门外，手里捏着一卷黑色胶布。</p>
-<p>「我自己修。」</p>
-<p>表笔碰到输入孔时，数值停在零。</p>
-<p>她把纸推回来：「买齐了也未必能用。」</p>
-<p>他换了表笔，黑笔接地，笔尖在输入孔边缘刮出很轻的响声。随后数值升到零点几，跳了两下，停在 0.3。</p>
-<p>「你买的这个，不是屏蔽线。」</p>
-<p>「先买齐。」</p>
-<p>「三百毫伏。」</p>
-<p>陈渡又从包里拿出一只旧放大镜，镜框用胶带缠过。他蹲下身，查看柜台下面堆放的元件。纸箱底部受潮，几只电容外壳上有水印。</p>
-<p>机器的电源插头还插在墙上的排插里。排插旁边是一只塑料脸盆，盆里泡着两块电路板，水面上浮着一层细灰。陈渡看了一眼，把排插上的插头拔了。</p>
-<p>陈渡接过来，用指甲刮了刮线皮。表面掉下一层灰，芯线也没有绞合，只是一根黑塑料包着的单股铜丝。</p>
-<p>「这几只不要。」他指着箱子，「日期太早。国产的也行，只要不是翻新。」</p>
-<p>屏幕上的数值退到零。</p>
-<p>「翻新怎么认？」</p>
-<p>他拔下话筒线，线头的金属部分露出来。话筒外壳是黑色塑料，靠近网罩的地方裂了一道缝，里面几根铜丝被胶带缠住。胶带已经发黄，边缘起了毛。</p>
-<p>「多少钱？」</p>
-<p>「看底部。翻新的字印浅。」</p>
-<p>陈渡用指甲抠下一小块胶带。</p>
-<p>老板娘笑了一声：「你比采购还难伺候。」</p>
-<p>里面没有断线。</p>
-<p>「按屏蔽线算的。」</p>
-<p>「买错一次，全坏。」</p>
-<p>他把胶带按回去，拿细砂纸在话筒线上磨了几下。砂纸粗糙，磨过的地方起了一层白毛。线外皮有六处压印，最深的一处落在桌边。</p>
-<p>她从货架上拿下几只盒子，逐个摆到纸上。陈渡拿起万用表，拨到电阻档。表笔碰到引脚，数字跳了两下，停住。</p>
-<p>他顺着线往下摸，摸到插头根部的胶布。</p>
-<p>他将线头放进台灯下，剥开两厘米。里面没有编织层，只有几根平行的铜丝，中间留着缝。</p>
-<p>「一百八十七千欧。」他说，「标一百九十。差一点。」</p>
-<p>胶布下鼓起一小团。</p>
-<p>「这批次。」</p>
-<p>陈渡拆开胶布。</p>
-<p>「这个不能接话筒线。」</p>
-<p>「换。」</p>
-<p>里面的铜丝断了两根。</p>
-<p>老板娘又拿来三只。陈渡逐一测量，留下其中一只。他把电阻放进纸箱，又去拿二极管。</p>
-<p>他把断口对着台灯看。铜丝断口发黑，不是从中间齐断的，是被拧过。旁边压着一小片白色塑料屑，像插头外壳里的绝缘垫。</p>
-<p>「能通就行。」</p>
-<p>纸箱上标着「整流」，每袋二十只。他没有立刻拆袋，先看封口。封口胶带颜色一致，没有二次拆封的痕迹。</p>
-<p>他拿出万用表，把话筒线的两头夹在测试夹上，拨到通断档。</p>
-<p>「拿两袋。」</p>
-<p>屏幕上显示开路。</p>
-<p>老板娘把胶布递给他：「那我不退了。」</p>
-<p>「录音机还缺这个？」</p>
-<p>陈渡把话筒线放到桌面上，拆掉整段胶布。线皮裂口比看上去大，里面还剩三根线能用。红色那根被压断，绿色那根弯折发白，黑色那根完整。</p>
-<p>「电源部分要换。」</p>
-<p>他从零件箱里找出一截屏蔽线，又找出一只旧插头。旧插头的金属杆有一道纵向划痕，拧紧后容易漏接。</p>
-<p>陈渡把胶布接过来，拇指在封口处按了一下。胶布已经开封，粘性还在，边缘沾着细灰。</p>
-<p>「电源坏了，你直接换整块板子更快。」</p>
-<p>他没有马上接线。</p>
-<p>「型号不明。」</p>
-<p>桌上那只小放大镜被他推到一边。镜面映出一截台灯灯罩，灯罩边缘有一圈黑灰。陈渡用棉签蘸了酒精，先擦话筒网罩，再擦裂开的塑料外壳。酒精从缝里流进去一滴，他用布接住。</p>
-<p>「多少钱？」</p>
-<p>「你这张纸上不都写了吗？」</p>
-<p>「话筒坏了，也不会正好没有声音。」他说。</p>
-<p>陈渡把放大镜放下：「只写功能，不写位置。原厂板子拆下来才知道。」</p>
-<p>说完，他抬头看了看窗台。</p>
-<p>「送你了。」</p>
-<p>二极管、电阻、瓷片电容、铝电解电容、变压器、磁头、按键开关，他一样一样往纸箱里放。买到变压器时，老板娘说只有 220 伏和 110 伏两种。</p>
-<p>窗台上放着一只搪瓷杯，杯口缺了一小块。杯里没有水，只有一圈干掉的白印。陈渡把杯盖翻过来，扣在话筒外壳上。</p>
-<p>「这批是 220。」</p>
-<p>话筒接进机器。</p>
-<p>他把胶布放在桌角，又拿起那卷线。</p>
-<p>「我那边能用。」</p>
-<p>他重新通电，按下录音键。耳机里出现底噪，比刚才薄了一层。风扇声还在，水管声还在。自己的呼吸贴着耳膜过去，仍旧没有留下人声。</p>
-<p>「保险丝呢？」</p>
-<p>陈渡把录音键松开，拿起耳机听。</p>
-<p>「先测。」</p>
-<p>「一起拿。」</p>
-<p>喇叭里的底噪像一层细砂。他调到 3kHz 左右，风扇的叶片声被放大，机器内部某个接点的轻响也清楚了。</p>
-<p>他买了两只保险丝，一卷耐热线，一盒焊锡。柜台上的计算器不停跳，最后停在 286 元。</p>
-<p>他把音量压低。</p>
-<p>陈渡接上短接用的测试夹，把线的一端夹住，拨到通断档。屏幕亮了一下，显示开路。他换了一端，还是开路。</p>
-<p>老板娘用手指敲了敲计算器：「两百八十六。」</p>
-<p>再按录音。</p>
-<p>陈渡从钱包里抽出三张一百块。</p>
-<p>耳机里传出磁带倒转的摩擦声。那是磁头离开磁带时，卷轴反向带动的细响。接着是桌面被手肘碰到的轻响。</p>
-<p>「中间断了。」</p>
-<p>「找不开。」</p>
-<p>没有声音。</p>
-<p>「那就找十四。」</p>
-<p>陈渡把耳机摘下一边，只留一只耳朵贴在机器外壳上。外壳有震动。变压器在工作，频率很低，手指贴上去只能感觉到轻微的嗡。</p>
-<p>老板娘探头看了一眼：「一根线也测？」</p>
-<p>「一块。」</p>
-<p>他用螺丝刀敲了敲外壳。</p>
-<p>「今天没有。」</p>
-<p>耳机里的底噪跟着跳了一下。</p>
-<p>「先通电。」</p>
-<p>「那就两块。」</p>
-<p>「磁头没有贴紧。」他说。</p>
-<p>老板娘从抽屉里摸出两个一块硬币。陈渡接过来，放进上衣口袋。</p>
-<p>他打开侧盖，找到压带轮。轮子的胶圈已经发硬，表面有两道细裂。压带轮旁边的弹簧少了一圈弹性，螺杆上抹了厚厚一层黑色润滑脂。</p>
-<p>他把线放到一边，另从零件箱里找出一只测线器。金属触点有些发黑，他用酒精擦过，夹住线头。表针没有动。</p>
-<p>「还缺什么？」她问。</p>
-<p>陈渡用棉签把旧脂擦掉，换了新脂。胶圈被压下去时发出很小的吱声。</p>
-<p>「不缺。」</p>
-<p>他重新装好磁带，倒回起点，按下录音键。</p>
-<p>陈渡拆开胶布，重新压紧。线皮裂到铜丝，铜丝断口发白。他把断处接上，焊锡太少，锡只包住一侧。</p>
-<p>「你每次都说买齐了，回头又来。」</p>
-<p>这次耳机里多出一声很轻的咔哒。</p>
-<p>「这次不。」</p>
-<p>不是话。</p>
-<p>「换一个。」</p>
-<p>他抱起纸箱，箱子底部压住箱子边角。走到卷帘门下时，里面又响起电钻声。他侧着身出去，纸箱擦过门框，掉下一颗螺母。</p>
-<p>是磁头压带前，机械开关的触点合上。</p>
-<p>他蹲下捡起那颗螺母，看了看螺纹。没问题，放进口袋。</p>
-<p>陈渡看着录音键，等磁带转过五秒。他抬手摸了一下喉咙，又把手放下。</p>
-<p>老板娘从柜台下面拿出一卷新线。</p>
-<p>出租屋在五金市场后面一栋楼里，四楼。门口堆着两只坏风扇，楼上住户把煤炉放在过道上，炉口还亮着。陈渡侧身进门，鞋底带进一层灰。</p>
-<p>喉结旁有一小块旧伤，是小时候被自行车把手磕的，碰到时皮肤发硬。</p>
-<p>他没开大灯，只拧亮桌上那盏 40 瓦台灯。</p>
-<p>他打开记录本，在第48次后面另起一行，写下：「话筒线断。换线后复测。无变化。」</p>
-<p>这卷线外皮印着白色规格，边缘没有毛刺。陈渡抽出一截，剥开线头。里面的铜丝颜色均匀，捻距约两毫米。</p>
-<p>磁带机放在桌角，编号末三位一一七。外壳已经拆过，四颗螺丝放在一只烟盒盖里。机器左侧接着一只话筒，话筒线从桌边垂到地上，插头裹着黑胶布。</p>
-<p>笔尖停住。</p>
-<p>陈渡把零件纸箱搬到地上，按清单一项项往桌面摆。</p>
-<p>他把「复测」划掉，改成「第49次」。</p>
-<p>他用测试器夹住两端。表针先归零，再抬到中段，停住。</p>
-<p>他先取下磁头，用螺丝刀碰了两下。磁头表面有一道细痕，录音时经过那一段，声音会发闷。他拿白棉签蘸酒精，擦了三遍。</p>
-<p>这一行只写了日期、故障和换件。最后留下一个空格。</p>
-<p>酒精的气味散开。桌上的电烙铁还热着。他把烙铁架好，拿铜丝清理烙铁头。</p>
-<p>空格里没有字。</p>
-<p>「通的。」</p>
-<p>焊锡在烙铁头上化开，落成一小颗。陈渡吹了吹。</p>
-<p>陈渡把笔放下，去洗刚才用过的棉签。水龙头在走廊尽头，水管先吐出一股带铁锈色的水。他等颜色变清，才把棉签冲干净。池底有一圈白碱，积得很厚。</p>
-<p>「一百二十赫兹……」</p>
-<p>回来时，桌上的记录本多了一处水印。</p>
-<p>「那你早说。」</p>
-<p>他打开机器外壳，逐点检查旧电路。功率管旁边有一片炭黑。电解电容顶部鼓起，最高的一只已经裂出白印。两只电阻发黄，颜色不匀。</p>
-<p>他把本子拿到灯下。</p>
-<p>「二百……三百……」</p>
-<p>水印没有碰到字，只洇开了刚才空着的那一格。他用袖口吸掉边缘的水。</p>
-<p>陈渡把新线绕在旧测试夹上，拧紧。夹口太窄，铜丝被压出一道折痕。他换了鳄鱼夹，重新夹住。</p>
-<p>万用表的红表笔接测试点，黑表笔接地。数值在屏幕上跳。</p>
-<p>楼下铁桶又拖了一次。</p>
-<p>他记下位置，换下第一只鼓包电容。镊子夹住引脚，烙铁从背面加热。旧电容拔出来时，板子上留下两个圆形焊点。</p>
-<p>陈渡看向门口，门缝下没有光。走廊的声控灯坏了，只能从楼梯间的窗户看见一块灰白色。他把门带上，插销没有扣紧，留了一指宽。</p>
-<p>表针仍停在中段。</p>
-<p>新电容比旧的矮。他转了两次方向，确认极性，再把引脚插回去。锡化开，铺满焊盘。他没有立刻剪短，剪到留出三毫米，弯折，压平。</p>
-<p>回到桌前，他把那卷记录纸摊平。纸角已经卷起，用一只旧打火机压住。</p>
-<p>第二只是电源滤波电容。容量一样，耐压不同。原厂用的是 400 伏，他买的是 450 伏。</p>
-<p>打火机外壳缺了一块漆。煤油味从盖缝里出来，混着烙铁留下的松香味。</p>
-<p>「能用就行。」</p>
-<p>「先通电。」</p>
-<p>他重新拿起短接线。</p>
-<p>他没有立刻测整机，而是把新装的电容单独放到测试夹上。直流电源调到 12 伏，表笔接两端。数值从零慢慢升到 11.8，停了。</p>
-<p>这回他没有把它接到焊盘上，而是剪成两段，分别夹在万用表的两根表线上。表笔前端有鳄鱼夹，夹口很窄，他用镊子把线头压扁，再夹紧。</p>
-<p>他把测试线装进纸箱，拿记号笔在旧线外皮上画了一道。线头短，只够试一次。旧线放回箱底，新线留在手边。</p>
-<p>「能用就行。」</p>
-<p>一只鳄鱼夹接输入孔，另一只接地。</p>
-<p>桌角那台苏式磁带机没有电源指示灯。陈渡按下播放键，机械部分开始走带。卷轴转得很慢，磁带经过磁头时发出细响。</p>
-<p>耳机接到机器上。</p>
-<p>台灯下的焊盘有两个亮点。他拿起镊子，夹住短接线的铜丝，送到焊盘上方。烙铁的温度计指着三百二十度，锡丝靠近便开始发亮。</p>
-<p>他把声音录进自己的耳朵。</p>
-<p>「先通电。」</p>
-<p>没有说话声。</p>
-<p>电流表没有明显变化。机器的输入端仍然只有 0.3 伏的底噪。</p>
-<p>他停了一下。</p>
-<p>他取下磁带，换上一盘空白带。按下录音键，话筒线接在输入孔上。他清了清嗓子，又试了一次。</p>
-<p>陈渡用另一根导线碰了一下输入端。</p>
-<p>房间里只有磁头压住磁带的声音。</p>
-<p>耳机里出现一声短促的啪。</p>
-<p>楼下铁桶擦过水泥地。声音到门口时变轻，到了楼梯口又清楚起来。陈渡把烙铁放下，等那声音走远，才把铜丝压进第一个焊点。</p>
-<p>他没有换线，也没有立刻动烙铁。他把录音键松开，倒回去，戴上耳机，按下播放。</p>
-<p>不是声音。</p>
-<p>耳机里先是一段底噪。接着是风扇叶片擦过外壳的声音，远处有水管响。再往后，是他自己按录音键时布料摩擦的动静。</p>
-<p>是线路里某处被碰断了。</p>
-<p>旧电阻被拆在桌角。两根引脚弯向一侧，中段有一道细裂。他用镊子碰了碰，裂口没有继续张开。</p>
-<p>人声轨还是空的。</p>
-<p>他把导线拿开，检查输入孔。孔口内侧有一圈黑色氧化物，夹子接触不良。他用细砂纸磨掉一点，再夹紧。</p>
-<p>陈渡把耳机摘下来，放在桌面。</p>
-<p>耳机里的啪声消失。</p>
-<p>短接线没有立刻接上。</p>
-<p>磁带走到尾端，自动停机。他把带子倒回去，又听了一遍。</p>
-<p>陈渡按住录音键，等磁带转过十秒。表上的数值缓慢上升，停在 0.7。</p>
-<p>第二遍没有发现新东西。</p>
-<p>他松手。</p>
-<p>他拿起那张线路图，对着灯看。纸背印着几行俄文，字号很小。电容符号旁边标着电压，电阻符号旁边只有一个短横。</p>
-<p>他拿出记录本。前面记着四十七次试验，每一行都差不多。</p>
-<p>数值回落。</p>
-<p>「第47次：换输入电容。无变化。」</p>
-<p>「接地还是不对。」他说。</p>
-<p>那截黑线仍压在胶下面。</p>
-<p>他写完，在下一行写「第48次」。</p>
-<p>他将机器侧面的接地螺丝松开。螺丝下面压着一根编织铜线，线头已经散了，铜丝分成几股，夹在金属片下面。</p>
-<p>笔尖停在纸上。</p>
-<p>陈渡用小号尖嘴钳把铜丝拉直，重新压进金属片。螺丝拧到一半时，底壳和线路板之间露出一小段灰白色胶。</p>
-<p>陈渡把线路图折回原样，用旧打火机压住折角。火机盖上的煤油味又散出来。他拿烙铁在焊盘上补了一点锡，锡面铺平，边缘没有连到旁边的铜箔。</p>
-<p>机器里的电阻还在。录音线路中有一只电阻，是原厂留下的。陈渡拆过几次，知道它装在话筒输入的前级，作用是限制信号进入下一级。</p>
-<p>他停手。</p>
-<p>他把线路图从机器底部翻出来。纸已经发脆，折痕处断开一块。图上只标了元件位置，没有完整参数。</p>
-<p>那截胶已经老化，边缘翘起。里面压着一根很细的黑色线。</p>
-<p>桌面上，两只测试夹之间还夹着一段断线。</p>
-<p>维修铺的周隼曾经看过这张图。</p>
-<p>陈渡没有碰它。</p>
-<p>那一次，周隼拆开机器，手没有停。他只说：「东西都有它来的地方。」</p>
-<p>他把螺丝退回半圈，用镊子把翘起的胶边压回去。黑色线仍被夹在原处，只露出不到两毫米的一截。</p>
-<p>陈渡把断线取下来，放进零件箱最底层。线皮上的白印朝上，旁边压着一只废弃的电容。</p>
-<p>陈渡没有问这只电阻是谁装的。</p>
-<p>他继续拧紧螺丝，测试接地。</p>
-<p>现在他把原厂电阻拆下来。焊点烧得发黑，拆的时候有一小股烟。烟贴着台灯往上走，碰到灯罩后散开。</p>
-<p>输入端数值降到 0.1。</p>
-<p>他拿起新线，先测了三次。通。</p>
-<p>他盯着线路板上两个空焊点。</p>
-<p>耳机里底噪变小，远处的水管声几乎没了。磁带转动时，机械结构的声音变得更清楚。</p>
-<p>原厂电阻是设计。</p>
-<p>陈渡按下录音键。</p>
-<p>然后把机器推回灯下。</p>
-<p>陈渡在纸上写下这句话，后面画了一道横线。他又在旁边写：「设计缺陷。」</p>
-<p>房间里只有磁带向前走的细响。</p>
-<p>划掉。</p>
-<p>他等磁带走到尽头，摘下耳机，倒回去，戴上。</p>
-<p>再写：「可绕开。」</p>
-<p>底噪之后，是台灯镇流器的嗡声。</p>
-<p>他从零件箱里找出一段短导线，量好长度。短接，是把原本经过电阻的两个位置直接接在一起，让信号不再经过这个限流元件。导线的阻值接近零。</p>
-<p>随后，他听见自己呼吸时，衣领擦过下巴。</p>
-<p>陈渡把导线两端上锡，压到两个焊点上。</p>
-<p>那一下也被录进去了。</p>
-<p>烙铁离开时，焊点边缘冒出一圈烟。</p>
-<p>陈渡看向话筒。话筒离他的嘴还有两米，刚才他没有靠近。</p>
-<p>他接通电源，把空白带装进去，按下录音键。</p>
-<p>他把磁带倒回起点，走到话筒前。</p>
-<p>尖锐的声音从机器里冲出来。</p>
-<p>「一、二、三、四。」</p>
-<p>啸叫，不是人声。那是高频信号在电路里绕了一圈，又从话筒位置返回输入端，形成反馈。声音越走越高，刺得陈渡眉骨发紧。</p>
-<p>按键。</p>
-<p>他拔掉电源。</p>
-<p>声音没有进磁带。</p>
-<p>啸叫停了。</p>
-<p>他退回桌边，重新检查接地线。数值稳定，输入端没有啸叫。</p>
-<p>桌上的台灯亮着，灯罩里的镇流器发出很轻的嗡声。陈渡等了几秒，确认电路没有烧。</p>
-<p>他拿螺丝刀碰了碰那只被夹住的黑线。线没有动，胶也没有脱落。</p>
-<p>第一次短接，失败。磁带上留下的是巨大的啸叫。</p>
-<p>磁带机的卷轴还在慢慢转。陈渡按住停止键，拆下耳机，把刚才那盘带子放进纸盒。盒子外侧写着日期：2024年11月7日。</p>
-<p>他把磁带倒回去，戴上耳机，只听了两秒，按下停止。磁带上的啸叫被削成一道尖线，刺耳程度没有降低。</p>
-<p>他在标签下面又添了一行：「第49次，接地线重新压接。」</p>
-<p>他拆掉短接线，重新装上原厂电阻。</p>
-<p>纸盒盖没有盖严，留下一道缝。里面的磁带从缝里露出一截，边缘有一道浅浅的白色划痕。</p>
-<p>烙铁刚离开焊点，他又停住。</p>
-<p>「原来是这个。」他说。</p>
-<p>他看了一眼桌上的记录本，又把刚焊好的电阻拆下来。</p>
-<p>第二次短接，他换了一个位置。没有把整段线路都短接，只绕过那只电阻。焊点一边接触良好，另一边留了不到半毫米的缝。</p>
-<p>通电。</p>
-<p>没有啸叫。</p>
-<p>陈渡按住录音键，等磁带转过五秒。他没有说话，只看着转轴。等带子走到尽头，机器自动停下。</p>
-<p>他把磁带倒回去。</p>
-<p>耳机里是底噪。</p>
-<p>有风扇声，有台灯镇流器，有他的手碰到机器外壳的轻响。</p>
-<p>没有人声。</p>
-<p>陈渡摘下耳机，量了量刚才那段线路的电压。数值比第一次稳定。短接没有让输入级彻底失控，可磁带上的声音仍停在原来的位置。</p>
-<p>他把记录本翻开，在「第48次」后面写：「短接。失败。啸叫。」</p>
-<p>墨水在「啸叫」两个字上多停了一瞬。</p>
-<p>他没有翻页。</p>
-<p>那一页原先每行都以日期、次数和故障开头。设备参数占了十七行，剩下的是磁带型号、焊点位置、电压数值。他从二十七岁开始记，一直记到今天。</p>
-<p>陈渡把笔移到下一行。</p>
-<p>写完「第48次」后，他又添了几个字。</p>
-<p>「如果它天生这样，那我这七年是在跟谁较劲。」</p>
-<p>笔画比前面的记录慢。最后一个句号落在纸面右下角，圆得很小。</p>
 ]]></content>
       <categories>
         <category>小说</category>
@@ -26191,483 +26191,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
-    <title>慢车 26：算命</title>
-    <url>/%E5%B0%8F%E8%AF%B4/f9cf1071.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>酒店门口的彩灯还在闪。</p>
-<p>两块灯布搭在三轮车篷上，一边亮红，一边亮绿。婚宴散席后，客人从玻璃门里出来，手里攥着空杯和打包盒。门童站在台阶上收空瓶，每收一个，就往铁筐里扔一下。</p>
-<p>陈渡站在门厅边，把吉他背带从肩上取下来。</p>
-<p>琴颈上有一道新裂痕。刚才返场时，架子鼓的落地镲架歪了，撞在琴身上。声音不重，漆掉了一小块，摸上去发涩。</p>
-<p>酒店经理从里面追出来。</p>
-<p>「陈老师，今天辛苦了。」</p>
-<p>「琴借你三天。」陈渡把背带缠到手腕上，「第三天还的时候，琴身不能有新的凹痕。」</p>
-<p>「刚才那个不是凹痕。」</p>
-<p>「三毫米以内。」</p>
-<p>经理低头看了一眼，没看清，又把烟叼回嘴里。</p>
-<p>门口台阶下有一道排水沟，沟盖缺了两块。酒水从门里端出来时，杯底会漏下几滴，落到沟盖上，颜色很快看不清。</p>
-<p>「尾款已经转了。二百八十。」</p>
-<p>「三百。」</p>
-<p>「合同上写的是二百八。」</p>
-<p>「合同写的是一台能用三个月的琴。」陈渡把裂痕对着灯看了看，「刚才返场加了三首，琴颈受力变了。」</p>
-<p>经理还想说什么，手机响了。他低头看屏幕，转身往门里走，走了两步又回头。</p>
-<p>「明晚还有一场，临时缺贝斯。」</p>
-<p>「几点。」</p>
-<p>「七点半开席，八点上台。」</p>
-<p>「我去。」</p>
-<p>经理点了下头，走了。</p>
-<p>算命先生从桌下摸出一块抹布，压了压桌面。</p>
-<p>陈渡把琴装进软袋，拉上拉链。袋口的金属扣碰在门框上，声音很脆。</p>
-<p>台阶下面摆着一个算命摊。</p>
-<p>一张折叠桌，两张塑料凳。桌上铺着红布，红布正中压着一块硬纸板。纸板用黑色记号笔写着三行字。</p>
-<p>「学业」。</p>
-<p>「婚姻」。</p>
-<p>「财运」。</p>
-<p>字写得很大，占满纸板。纸板边上裂了一道口，用透明胶粘过，胶带已经发黄。</p>
-<p>摊主六十多岁，穿一件洗褪色的灰夹克。头发梳得整齐，面前摆着铜钱、签筒和一只旧铝杯。他正低头整理签纸，听见脚步声，抬起眼。</p>
-<p>「小伙子，抽个签。」</p>
-<p>陈渡把琴袋往肩上提了提。</p>
-<p>「结婚三十七桌，少两桌。」他说，「红包收了六千八。」</p>
-<p>「我不是来算命的。」</p>
-<p>算命先生的手停在签筒上。</p>
-<p>他看了陈渡两秒，又看了看他肩上的琴袋。</p>
-<p>「坐。」</p>
-<p>陈渡没动。</p>
-<p>「十块钱一签。」算命先生把一枚铜钱放到桌上，「不准不要钱。」</p>
-<p>婚宴的人还在往外走。有人把喜糖盒碰掉，塑料盖在台阶上滚了两圈。门童弯腰去捡，里面有人喊车。</p>
-<p>陈渡在旁边的塑料凳上坐下了。</p>
-<p>琴袋搁在膝前。他把拉链往上拉了半寸，遮住那道新裂的边缘。</p>
-<p>算命先生把铜钱推过来。</p>
-<p>陈渡没接话。</p>
-<p>「三个字。」</p>
-<p>陈渡低头看那枚铜钱。字口磨平了，边缘发黑。</p>
-<p>「什么字。」</p>
-<p>「你心里先想一件事。」</p>
-<p>「想什么。」</p>
-<p>「你写过的字。」</p>
-<p>陈渡抬起眼。</p>
-<p>算命先生没看他。他从红布下面抽出一支黑色签字笔，在一张白纸上画了一条横线。</p>
-<p>「唱不出来。」</p>
-<p>陈渡的右手滑了一下。</p>
-<p>「新郎原先在服装厂，厂子前年关了。新娘开药店，店是租的。」算命先生把签纸按日期排开，「来问的人，十个里有七个不说自己的事。」</p>
-<p>铜钱从桌沿掉下去。他伸手去接，没接住。铜钱碰到折叠桌腿，又落到地上，滚进一辆电动车底下。</p>
-<p>算命先生弯腰去够，没够着。他用鞋尖拨了拨，铜钱仍卡在轮架里面。</p>
-<p>「学过唱歌吗。」他问。</p>
-<p>「不会。」</p>
-<p>「写词吗。」</p>
-<p>陈渡看着那块硬纸板。</p>
-<p>「婚庆乐队都写？」</p>
-<p>「今天。」算命先生说，「我给三个乐队写过。收二百。词不保证有人唱。」</p>
-<p>「你不会唱。」</p>
-<p>「我不会唱。」陈渡说。</p>
-<p>酒店经理隔着玻璃门喊：「师傅，停车场那边留个位置，明天还摆。」</p>
-<p>算命先生直起腰，从签筒里抽出一根竹签。</p>
-<p>「你不是不会唱。」</p>
-<p>他把竹签平放在红布上，签面朝下。</p>
-<p>「唱给了别人听。」</p>
-<p>门里传出一声碰杯。</p>
-<p>玻璃门上的反光晃了一下。陈渡看见自己的琴袋，也看见塑料桌上那块硬纸板。纸板上的「财运」两个字，正好压在铜钱留下的圆印上。</p>
-<p>算命先生把签筒盖上。</p>
-<p>「婚姻怎么样。」旁边有人问。</p>
-<p>「八字。」算命先生转头，「婚事可以定。八月十二，宜动土。」</p>
-<p>那人从手提袋里拿出钱。算命先生接过去，夹在红布下面，另取了一张纸。</p>
-<p>「留了。」算命先生扬了扬手里的铜钱，「正对着女厕。」</p>
-<p>陈渡仍坐在那里。</p>
-<p>「刚才那句。」他说，「你怎么知道。」</p>
-<p>算命先生低头写字，没抬头。</p>
-<p>「你坐下来说的第一句话，是什么。」</p>
-<p>陈渡没答。</p>
-<p>算命先生把写好的纸递给新来的人。那人看完，折好，放进西装内袋。</p>
-<p>「你说的是『我不是来算命的』。」算命先生说。</p>
-<p>陈渡看着他的嘴。</p>
-<p>「你坐下先说不信，后面才容易信。」算命先生把铜钱从桌下捡起来，擦掉泥，放回红布中央，「人拿钱来，不说自己想什么。可你不一样。你先把自己的来路堵住。」</p>
-<p>「所以你说我唱给别人听。」</p>
-<p>「女的问得多。」</p>
-<p>「我说了吗。」</p>
-<p>「说了。」</p>
-<p>算命先生把签筒往旁边挪了挪。</p>
-<p>「我说的是，唱给别人听。你听见的是另一句。」</p>
-<p>陈渡的手还压在琴袋上。塑料布被掌心的汗浸出一小块深色。</p>
-<p>「我确实不会唱。」</p>
-<p>「我没说你不会。」</p>
-<p>「我没学过。」</p>
-<p>「我也没说你学过。」</p>
-<p>算命先生低头去收白纸。桌上摊着的不是签纸，是几张旧广告纸，背面印着楼盘和门诊电话。</p>
-<p>「男的也问。想知道自己是不是被瞒了。」</p>
-<p>「你今晚唱了。」</p>
-<p>「我弹吉他。」</p>
-<p>「谁弹的。」</p>
-<p>「我。」</p>
-<p>「弹的时候，嘴动没动。」</p>
-<p>陈渡没说话。</p>
-<p>算命先生等了一会儿，伸手指了指门厅。</p>
-<p>「刚才第二首，台上那个唱歌的，每唱一句，旁边弹琴的嘴都跟着动。」</p>
-<p>「那是默唱。」</p>
-<p>「默唱也算。」</p>
-<p>陈渡把侧袋里的名片抽出来。酒店名下面印着后台电话，号码后两位被油墨盖住了一半。他用拇指擦了一下，没擦掉。</p>
-<p>「不算。」</p>
-<p>「怎么不算。」</p>
-<p>「没有声音。」</p>
-<p>算命先生抬起手，敲了一下硬纸板。</p>
-<p>「财运」两个字跟着颤了颤。</p>
-<p>「你写的字，唱不出来。」</p>
-<p>这一次，他的语速慢下来。</p>
-<p>「字是你写的。人唱了。歌有了。你站在旁边，嘴动。你不占那一句。」</p>
-<p>陈渡看着桌上的红布。</p>
-<p>红布边角缝着一道黑线，针脚不匀。桌腿一长一短，垫着一张折叠的硬纸板。</p>
-<p>「明晚几点到。」</p>
-<p>算命先生把铜钱弹起来。铜钱立了半秒，倒下去。</p>
-<p>「三个字。」</p>
-<p>「什么。」</p>
-<p>「闭嘴。听完。」</p>
-<p>陈渡靠回塑料凳。</p>
-<p>酒店门口又有人出来。女孩抱着没吃完的蛋糕，母亲给她擦嘴。一个男人站在台阶下打电话，说新车停在西边，导航还剩十二分钟。</p>
-<p>算命先生把签筒往他面前推了推。</p>
-<p>「抽。」</p>
-<p>「不信。」</p>
-<p>「我也没让你信。」</p>
-<p>「七点。」</p>
-<p>「十块一签？」</p>
-<p>「十块。」算命先生说，「十块买我坐在这儿陪你说话。你要是不坐，刚才那句话我收回去。」</p>
-<p>陈渡摸出手机。</p>
-<p>屏幕上有三个未接来电，都是陌生号码。还有一条运营商短信，提醒本月套餐剩余流量一点二 GB。</p>
-<p>他点开支付页面，转了十块。</p>
-<p>算命先生听见提示音，从红布下面拿出收款码。</p>
-<p>「不用给我。」陈渡说，「转你了。」</p>
-<p>「那就再转十块。」</p>
-<p>「为什么。」</p>
-<p>「刚才那句是十块。这十块是你不信。」</p>
-<p>「六点五十。」</p>
-<p>陈渡又转了十块。</p>
-<p>算命先生把两张小票压在铜钱下面。</p>
-<p>「你想问什么。」</p>
-<p>「我想问歌。」</p>
-<p>「谁的歌。」</p>
-<p>「我的。」</p>
-<p>「唱红的那首？」</p>
-<p>陈渡抬起眼。</p>
-<p>算命先生把签筒抱在怀里。</p>
-<p>「你说的是二十二岁那首。」</p>
-<p>算命先生把红布角折起来。</p>
-<p>酒店门口有辆电动三轮倒车警报响了三声。门童跑过去扶车，车上的空酒箱倒下来，玻璃碎在水泥地上。</p>
-<p>陈渡站起一半，又坐了回去。</p>
-<p>「你听过？」</p>
-<p>「没听过。」</p>
-<p>「你怎么知道二十二岁。」</p>
-<p>「你写的字，唱不出来。」算命先生指了指桌上的硬纸板，「能在台上唱出来的歌，不算唱不出来。你写它的时候，它就没打算从你嘴里出来。」</p>
-<p>「我没让它唱。」</p>
-<p>「给别人唱。」</p>
-<p>「别人愿意唱。」</p>
-<p>「你写一句，等一个人唱。」</p>
-<p>「你问的是明晚，还是刚才那首。」</p>
-<p>陈渡没说话。</p>
-<p>算命先生用指甲刮了刮签筒边缘。</p>
-<p>「唱歌的人一开口，你就觉得事情成了。词是你的，声音是别人的。别人拿走以后，你就剩一个空壳。」</p>
-<p>「磁带里也是。」</p>
-<p>算命先生抬起头。</p>
-<p>「什么磁带。」</p>
-<p>「录不进我的声音。」陈渡说，「能录别的。设备改过七年。」</p>
-<p>算命先生把签筒放下。</p>
-<p>「所以你改的不是磁带。」</p>
-<p>「是拾音线路。」</p>
-<p>「明晚。」</p>
-<p>「线路不让你唱。」</p>
-<p>「有个元件。」</p>
-<p>「哪个。」</p>
-<p>「不能每次都换。」</p>
-<p>「每次换好了吗。」</p>
-<p>陈渡看着那张十块钱的小票。</p>
-<p>「没有。」</p>
-<p>算命先生点了点头，像是听见一个早就量过的尺寸。</p>
-<p>「你试了多少次。」</p>
-<p>「几百次。」</p>
-<p>「那就六点五十。」</p>
-<p>「有用吗。」</p>
-<p>「有。」陈渡说，「每次都能录到别人。」</p>
-<p>算命先生没笑。</p>
-<p>「你是修机器的。」</p>
-<p>「嗯。」</p>
-<p>「东西坏了，你会修到什么程度。」</p>
-<p>「能出声。」</p>
-<p>「出声以后呢。」</p>
-<p>陈渡抬手碰了碰琴袋的拉链。</p>
-<p>金属扣在指腹上压出一道白印。</p>
-<p>门童抱着一捆空杯从桌边经过，杯口朝下，雨水似的滴了几滴在红布上。算命先生把抹布推过去，先擦了铜钱，再擦桌面。</p>
-<p>「能出声就行。」</p>
-<p>算命先生靠回椅背。</p>
-<p>「人也一样。」</p>
-<p>陈渡把琴袋重新放到地上。</p>
-<p>「我不是来找这个答案的。」</p>
-<p>「那你来干什么。」</p>
-<p>「你刚才说错了一句。」</p>
-<p>「哪句。」</p>
-<p>「我不知道哪句。」</p>
-<p>算命先生看着他，随后把桌上的铜钱收进签筒。</p>
-<p>「你手洗过没有。」陈渡问。</p>
-<p>「你会知道的。」</p>
-<p>酒店经理又从门里出来。他看见陈渡，先看琴袋，再看算命摊。</p>
-<p>「还没走？」</p>
-<p>「结了。」</p>
-<p>「车在哪儿？」</p>
-<p>「我走路。」</p>
-<p>经理皱了下眉，从口袋里掏出一张名片。</p>
-<p>「明晚七点来后台。贝斯手腰伤，别让他抬音箱。」</p>
-<p>陈渡接过名片，放进琴袋侧袋。</p>
-<p>「知道了。」</p>
-<p>「洗了。」</p>
-<p>经理转身去拦一辆出租车。算命先生朝他背影喊了一声。</p>
-<p>「老板，你今天结婚还是离婚？」</p>
-<p>「结。」</p>
-<p>「几桌？」</p>
-<p>「二十四。」</p>
-<p>「新郎多大？」</p>
-<p>「二十七。」</p>
-<p>「你晚婚。三十以后再办一次。」</p>
-<p>经理摆手让他闭嘴，拉开车门钻进去。</p>
-<p>算命先生望着出租车尾灯。</p>
-<p>「用什么。」</p>
-<p>「算错的。」他说。</p>
-<p>陈渡看他。</p>
-<p>「新郎没晚婚。」</p>
-<p>「我也没说全对。」</p>
-<p>陈渡背上琴袋。</p>
-<p>硬纸板上的「学业、婚姻、财运」仍朝着街边。纸板裂口上的透明胶被风吹起一角。</p>
-<p>「你刚才说二十二岁。」陈渡说。</p>
-<p>「嗯。」</p>
-<p>「你怎么知道。」</p>
-<p>「我不知道。」</p>
-<p>「洗手间那盆。水龙头开左边有热水，右边只有冷水。」算命先生把手翻过来给他看，「指甲缝里还有泡沫。」</p>
-<p>「刚才你说了。」</p>
-<p>「你听见的。」</p>
-<p>算命先生把折叠桌往门廊下推了推，避开门口来往的人。</p>
-<p>「你今天说了三句话。第一句是不信。第二句是不会唱。第三句是磁带录不进去。」他竖起三根手指，「二十二岁不在里面。」</p>
-<p>「你猜的。」</p>
-<p>「猜对了。」</p>
-<p>「我今年三十四。」</p>
-<p>「我知道。」</p>
-<p>「那你猜二十二岁。」</p>
-<p>「二十二岁的人，第一次把字交出去，最怕别人问是谁写的。」</p>
-<p>陈渡看了一眼。</p>
-<p>陈渡的手指收紧了琴袋带子。</p>
-<p>算命先生没看他。他弯腰从桌下拿出一只铁皮盒，打开，里面全是折过的纸条。</p>
-<p>「有个人把戒指落在这里。」</p>
-<p>「跟我没关系。」</p>
-<p>「钻戒。男款。六号。」</p>
-<p>陈渡站着没动。</p>
-<p>算命先生用两根手指捻起那枚戒指，放在硬纸板边缘。</p>
-<p>「内圈有字。」</p>
-<p>「什么字。」</p>
-<p>「看不清。」</p>
-<p>「酒席上的杯子别用冷水冲。热水管在热水器下面第二个阀。」</p>
-<p>「你刚才说六号。」</p>
-<p>「大小是六号。」</p>
-<p>「内圈刻了什么。」</p>
-<p>「你拿去看看。」</p>
-<p>陈渡伸手拿起戒指。</p>
-<p>戒指很轻。托住它时，钻石边缘在灯下闪了一下。内圈刻着两个字，不是名字。</p>
-<p>「慢车」。</p>
-<p>陈渡把戒指放回硬纸板。</p>
-<p>算命先生用红布盖住它。</p>
-<p>「这四个字是谁写的。」</p>
-<p>算命先生把手收回去。</p>
-<p>「不知道。」</p>
-<p>「你看，别人唱你的歌，戒指上刻别人的字。你分不清很正常。」</p>
-<p>陈渡盯着红布下面凸起的轮廓。</p>
-<p>「你不是算命的。」</p>
-<p>「我当然是。」算命先生拍了拍硬纸板，「学业、婚姻、财运。都算不准，但都有人买。」</p>
-<p>「你怎么知道那句话。」</p>
-<p>「我说过，你坐下先说自己不信。」</p>
-<p>「我问的是『你写的字，唱不出来』。」</p>
-<p>算命先生把签筒抱起来。</p>
-<p>「因为你的字都朝外，手却压在下面。」</p>
-<p>「你还管这个。」</p>
-<p>陈渡低头。</p>
-<p>他的左手按在琴袋上。右手放在桌边，五指收得很紧。</p>
-<p>「我写的字？」</p>
-<p>「你身上有墨水味。」</p>
-<p>「吉他音箱上也有。」</p>
-<p>「墨水会进袖口。」</p>
-<p>陈渡的左袖口上沾着一小块蓝黑墨迹。婚礼签到台用的是蓝黑色墨水，签字笔漏过一次，他拿纸巾擦过，没擦净。</p>
-<p>算命先生抬起下巴。</p>
-<p>「还有铅灰。旧谱用的铅笔。」</p>
-<p>陈渡的琴袋侧袋里确实插着一张折过的旧谱纸。纸角磨白，上面有他前几天改的词。</p>
-<p>「杯子裂了，割手。」</p>
-<p>「这也能看出来？」</p>
-<p>「你走路时不让纸掉出来。弹琴时也不让。」算命先生说，「字写完了，还要带着。」</p>
-<p>陈渡把手从琴袋上拿开。</p>
-<p>「算命也看这些？」</p>
-<p>「算人。」</p>
-<p>「我不是来算命的。」</p>
-<p>算命先生笑了。</p>
-<p>「这是你今天第二次说。」</p>
-<p>「你记得倒清楚。」</p>
-<p>「十块钱两句，第二次那句算加的。」</p>
-<p>酒店经理又出来，手里多了一沓单子。他把单子压在硬纸板旁边，纸角顶住「财运」两个字。</p>
-<p>陈渡没掏手机。</p>
-<p>算命先生也没催。</p>
-<p>街边的霓虹灯闪到第三下，红色灯布上的光从陈渡脸上移开。门厅里传来拆桌椅的碰撞声，有人在报数量。</p>
-<p>「二十三，二十四。」</p>
-<p>算命先生朝门里看了一眼。</p>
-<p>「拆完了，摊也该收了。」</p>
-<p>「等等。」</p>
-<p>「你还有问题。」</p>
-<p>陈渡从琴袋侧袋抽出那张旧谱纸。纸已经折成四折，展开时，折痕处会裂开。</p>
-<p>最下面是他昨晚加的一句。</p>
-<p>「明天贝斯音箱要两个。」</p>
-<p>「替我把歌唱完，别问是谁。」</p>
-<p>算命先生伸手指了指。</p>
-<p>「这句是写给谁的。」</p>
-<p>「没写给谁。」</p>
-<p>「你改了十七遍。」</p>
-<p>「八遍。」</p>
-<p>算命先生不争。他用签字笔在自己的白纸上写了一个数字。</p>
-<p>「十七。」</p>
-<p>「你查过。」</p>
-<p>「我听人唱过。」</p>
-<p>「一个低频，一个中高频。」陈渡说，「低频放左边，朝观众，别贴墙。」</p>
-<p>陈渡抬头。</p>
-<p>「谁唱。」</p>
-<p>「今天婚宴上那个主唱。」</p>
-<p>陈渡记得那个人。嗓子偏亮，第一首唱快歌，第二首把高音拖长了。返场时唱过一首慢歌，歌词不是他的。</p>
-<p>「他还唱了什么。」</p>
-<p>算命先生把白纸折起来。</p>
-<p>「一句没写完的。」</p>
-<p>「什么。」</p>
-<p>陈渡的手停在纸面上。</p>
-<p>「用哪两个。」</p>
-<p>算命先生从铁皮盒里取出一张旧磁带标签。没有磁带，只剩半张标签，边缘发黄。</p>
-<p>「七年前，有人在殡仪馆录过一段。」</p>
-<p>陈渡抬起头。</p>
-<p>「你怎么知道殡仪馆。」</p>
-<p>「来算命的人提过。」</p>
-<p>「谁。」</p>
-<p>「不收钱。」</p>
-<p>「你刚才说十块一签，不准不要钱。」</p>
-<p>「这种不算命。」</p>
-<p>「那算什么。」</p>
-<p>「先通电。坏的那个不接。」</p>
-<p>算命先生把旧标签放在桌角。</p>
-<p>标签上有一行铅笔字，数字是「117」。</p>
-<p>陈渡看着最后三位。</p>
-<p>「机器编号。」</p>
-<p>「嗯。」</p>
-<p>「谁给你的。」</p>
-<p>「说了不收钱。」</p>
-<p>「你见过那段录音？」</p>
-<p>「没见过。」</p>
-<p>「那你怎么知道有人录过。」</p>
-<p>经理在单子上画了一道，抬头看他。</p>
-<p>算命先生把铁皮盒合上。</p>
-<p>「你问得太多了。」</p>
-<p>「标签可以造假。」</p>
-<p>「编号也可以。」</p>
-<p>「笔迹呢。」</p>
-<p>「没看。」</p>
-<p>「那你拿它出来做什么。」</p>
-<p>算命先生用铜钱压住标签。</p>
-<p>「让你知道，我知道。」</p>
-<p>陈渡没碰标签。</p>
-<p>「你修过？」</p>
-<p>他低头看自己的旧谱纸。纸背透出几行写反的字，是改词时留下的压痕。最下面那行恰好压着另一组数字。</p>
-<p>「09.17」。</p>
-<p>陈渡的拇指在那两个数字上停住。</p>
-<p>「你到底是谁。」</p>
-<p>「算命的。」</p>
-<p>「周隼让你来的？」</p>
-<p>算命先生收铁皮盒的手停了一下。</p>
-<p>只有一下。</p>
-<p>「不认识。」</p>
-<p>陈渡看着那只手。</p>
-<p>「不用修。线不响，是我不响。」</p>
-<p>周隼说话慢。这个人也不快，却会在不该停的地方停。</p>
-<p>「你见过他。」</p>
-<p>「县城里开修琴铺的，见过。」</p>
-<p>「他让你盯着我？」</p>
-<p>「没人盯着你。」算命先生说，「你自己走到我面前，说了十次不信。」</p>
-<p>陈渡这才发现，手机付款记录里多了三笔十元。</p>
-<p>他只记得两笔。</p>
-<p>「第三次什么时候付的。」</p>
-<p>「你问我『怎么知道』的时候。」</p>
-<p>「我问过两遍。」</p>
-<p>算命先生手里的铜钱停住。</p>
-<p>「第三遍在心里。」</p>
-<p>算命先生抬起那块硬纸板，给他看背面。</p>
-<p>纸板背面贴着几张旧磁带纸盒的封条。封条上印着型号、磁带长度和产地年份，最早一张是 1986 年。</p>
-<p>「你到底卖的是什么。」陈渡问。</p>
-<p>「算命。」</p>
-<p>「我不信。」</p>
-<p>「那就当听故事。」</p>
-<p>算命先生把纸板放回桌上。</p>
-<p>「故事里，有个人写了一首歌。别人唱了。别人拿着那首歌，写自己的东西。他不敢问歌是谁的。歌上的人也不敢问。」</p>
-<p>「然后呢。」</p>
-<p>陈渡把名片收回侧袋，拉链拉到一半又停下。里面那张旧谱纸露出一个角，纸背的「09.17」正对着门里的灯。</p>
-<p>「然后他开始录别人。」</p>
-<p>「为什么。」</p>
-<p>「因为他只敢听别人唱。」</p>
-<p>酒店里最后一张桌子被抬出来。桌脚擦过门槛，声音很尖。</p>
-<p>陈渡站起。</p>
-<p>算命先生把十元小票从桌下扫进铁皮盒。</p>
-<p>「我明天还摆这里。」</p>
-<p>「不用。」</p>
-<p>「你不问第二回？」</p>
-<p>陈渡背上琴袋。</p>
-<p>他重新拉上拉链。</p>
-<p>「你刚才说，来算命的人提过殡仪馆。」</p>
-<p>「说过。」</p>
-<p>「什么样的人。」</p>
-<p>「一个女大夫。」</p>
-<p>「沈未？」</p>
-<p>算命先生把铁皮盒的扣子按紧。</p>
-<p>「你认识，就不用我说了。」</p>
-<p>陈渡盯着他。</p>
-<p>沈未很少去酒店门口。她下班后换掉工装，不会在红布摊前停。算命先生却说她来过，还谈殡仪馆。</p>
-<p>「她问什么。」</p>
-<p>算命先生把铜钱放在桌沿，起身收凳子。折叠桌往上一提，少了一条腿的桌角磕在砖面上，红布下面的硬纸板移了半寸。</p>
-<p>「不问就走了。」</p>
-<p>「付钱了吗。」</p>
-<p>「没有。」</p>
-<p>「你跟过去？」</p>
-<p>「我跟到路口。」</p>
-<p>「她住哪。」</p>
-<p>算命先生没回答。</p>
-<p>陈渡的手压在琴袋带上。</p>
-<p>「你认识她。」</p>
-<p>「县城就这么大。」</p>
-<p>「她没来过这儿。」</p>
-<p>「那就是没来过。」算命先生说。</p>
-<p>他伸手去收铜钱，捏住其中一枚，递给陈渡。</p>
-<p>「拿着。」</p>
-<p>「做什么。」</p>
-<p>「回去听。」</p>
-<p>「这里没有磁带。」</p>
-<p>「硬币也有正反。」</p>
-<p>陈渡没接。</p>
-<p>算命先生把铜钱放在桌边，拿起一只黑色塑料夹，夹住硬纸板上的裂口。</p>
-<p>「明天别带琴。」</p>
-<p>「为什么。」</p>
-<p>「你坐在那儿像个来修东西的。」</p>
-<p>「我本来就是。」</p>
-<p>「那就带螺丝刀。」</p>
-<p>「我不会再来。」</p>
-<p>「你会。」</p>
-<p>算命先生把折叠桌一折，桌腿碰在一起，发出一声脆响。</p>
-<p>陈渡走到台阶下，停住。</p>
-<p>夜里的车从街口拐进来，车灯扫过纸板。那块写着「学业、婚姻、财运」的硬纸板被压在桌布下面，只露出一个角。</p>
-<p>算命先生的声音从桌后传出来。</p>
-<p>「陈渡。」</p>
-<p>他没有回头。</p>
-<p>「今天婚宴上，你一共唱了四个和弦。」</p>
-<p>陈渡停下。</p>
-<p>「不是歌。」算命先生说，「只是试音。」</p>
-<p>」试「字从风里送过来，带着一点街边摊贩特有的拖长尾音。</p>
-]]></content>
-      <categories>
-        <category>小说</category>
-      </categories>
-      <tags>
-        <tag>慢车</tag>
-        <tag>小说</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>慢车 27：周隼的一小时（视角例外 2/3）</title>
     <url>/%E5%B0%8F%E8%AF%B4/9cb49c5d.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>铁盒在柜台下面。</p>
@@ -27192,6 +26715,483 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>陈渡把钻戒攥在掌心。</p>
 <p>铁盒里的十一盘带子一动不动。三张信压在最下面，黄铜钥匙横在信角。</p>
 <p>他伸手进去，把自己的带子拿出来，放了回去。</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>慢车</tag>
+        <tag>小说</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>慢车 26：算命</title>
+    <url>/%E5%B0%8F%E8%AF%B4/f9cf1071.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>酒店门口的彩灯还在闪。</p>
+<p>两块灯布搭在三轮车篷上，一边亮红，一边亮绿。婚宴散席后，客人从玻璃门里出来，手里攥着空杯和打包盒。门童站在台阶上收空瓶，每收一个，就往铁筐里扔一下。</p>
+<p>陈渡站在门厅边，把吉他背带从肩上取下来。</p>
+<p>琴颈上有一道新裂痕。刚才返场时，架子鼓的落地镲架歪了，撞在琴身上。声音不重，漆掉了一小块，摸上去发涩。</p>
+<p>酒店经理从里面追出来。</p>
+<p>「陈老师，今天辛苦了。」</p>
+<p>「琴借你三天。」陈渡把背带缠到手腕上，「第三天还的时候，琴身不能有新的凹痕。」</p>
+<p>「刚才那个不是凹痕。」</p>
+<p>「三毫米以内。」</p>
+<p>经理低头看了一眼，没看清，又把烟叼回嘴里。</p>
+<p>门口台阶下有一道排水沟，沟盖缺了两块。酒水从门里端出来时，杯底会漏下几滴，落到沟盖上，颜色很快看不清。</p>
+<p>「尾款已经转了。二百八十。」</p>
+<p>「三百。」</p>
+<p>「合同上写的是二百八。」</p>
+<p>「合同写的是一台能用三个月的琴。」陈渡把裂痕对着灯看了看，「刚才返场加了三首，琴颈受力变了。」</p>
+<p>经理还想说什么，手机响了。他低头看屏幕，转身往门里走，走了两步又回头。</p>
+<p>「明晚还有一场，临时缺贝斯。」</p>
+<p>「几点。」</p>
+<p>「七点半开席，八点上台。」</p>
+<p>「我去。」</p>
+<p>经理点了下头，走了。</p>
+<p>算命先生从桌下摸出一块抹布，压了压桌面。</p>
+<p>陈渡把琴装进软袋，拉上拉链。袋口的金属扣碰在门框上，声音很脆。</p>
+<p>台阶下面摆着一个算命摊。</p>
+<p>一张折叠桌，两张塑料凳。桌上铺着红布，红布正中压着一块硬纸板。纸板用黑色记号笔写着三行字。</p>
+<p>「学业」。</p>
+<p>「婚姻」。</p>
+<p>「财运」。</p>
+<p>字写得很大，占满纸板。纸板边上裂了一道口，用透明胶粘过，胶带已经发黄。</p>
+<p>摊主六十多岁，穿一件洗褪色的灰夹克。头发梳得整齐，面前摆着铜钱、签筒和一只旧铝杯。他正低头整理签纸，听见脚步声，抬起眼。</p>
+<p>「小伙子，抽个签。」</p>
+<p>陈渡把琴袋往肩上提了提。</p>
+<p>「结婚三十七桌，少两桌。」他说，「红包收了六千八。」</p>
+<p>「我不是来算命的。」</p>
+<p>算命先生的手停在签筒上。</p>
+<p>他看了陈渡两秒，又看了看他肩上的琴袋。</p>
+<p>「坐。」</p>
+<p>陈渡没动。</p>
+<p>「十块钱一签。」算命先生把一枚铜钱放到桌上，「不准不要钱。」</p>
+<p>婚宴的人还在往外走。有人把喜糖盒碰掉，塑料盖在台阶上滚了两圈。门童弯腰去捡，里面有人喊车。</p>
+<p>陈渡在旁边的塑料凳上坐下了。</p>
+<p>琴袋搁在膝前。他把拉链往上拉了半寸，遮住那道新裂的边缘。</p>
+<p>算命先生把铜钱推过来。</p>
+<p>陈渡没接话。</p>
+<p>「三个字。」</p>
+<p>陈渡低头看那枚铜钱。字口磨平了，边缘发黑。</p>
+<p>「什么字。」</p>
+<p>「你心里先想一件事。」</p>
+<p>「想什么。」</p>
+<p>「你写过的字。」</p>
+<p>陈渡抬起眼。</p>
+<p>算命先生没看他。他从红布下面抽出一支黑色签字笔，在一张白纸上画了一条横线。</p>
+<p>「唱不出来。」</p>
+<p>陈渡的右手滑了一下。</p>
+<p>「新郎原先在服装厂，厂子前年关了。新娘开药店，店是租的。」算命先生把签纸按日期排开，「来问的人，十个里有七个不说自己的事。」</p>
+<p>铜钱从桌沿掉下去。他伸手去接，没接住。铜钱碰到折叠桌腿，又落到地上，滚进一辆电动车底下。</p>
+<p>算命先生弯腰去够，没够着。他用鞋尖拨了拨，铜钱仍卡在轮架里面。</p>
+<p>「学过唱歌吗。」他问。</p>
+<p>「不会。」</p>
+<p>「写词吗。」</p>
+<p>陈渡看着那块硬纸板。</p>
+<p>「婚庆乐队都写？」</p>
+<p>「今天。」算命先生说，「我给三个乐队写过。收二百。词不保证有人唱。」</p>
+<p>「你不会唱。」</p>
+<p>「我不会唱。」陈渡说。</p>
+<p>酒店经理隔着玻璃门喊：「师傅，停车场那边留个位置，明天还摆。」</p>
+<p>算命先生直起腰，从签筒里抽出一根竹签。</p>
+<p>「你不是不会唱。」</p>
+<p>他把竹签平放在红布上，签面朝下。</p>
+<p>「唱给了别人听。」</p>
+<p>门里传出一声碰杯。</p>
+<p>玻璃门上的反光晃了一下。陈渡看见自己的琴袋，也看见塑料桌上那块硬纸板。纸板上的「财运」两个字，正好压在铜钱留下的圆印上。</p>
+<p>算命先生把签筒盖上。</p>
+<p>「婚姻怎么样。」旁边有人问。</p>
+<p>「八字。」算命先生转头，「婚事可以定。八月十二，宜动土。」</p>
+<p>那人从手提袋里拿出钱。算命先生接过去，夹在红布下面，另取了一张纸。</p>
+<p>「留了。」算命先生扬了扬手里的铜钱，「正对着女厕。」</p>
+<p>陈渡仍坐在那里。</p>
+<p>「刚才那句。」他说，「你怎么知道。」</p>
+<p>算命先生低头写字，没抬头。</p>
+<p>「你坐下来说的第一句话，是什么。」</p>
+<p>陈渡没答。</p>
+<p>算命先生把写好的纸递给新来的人。那人看完，折好，放进西装内袋。</p>
+<p>「你说的是『我不是来算命的』。」算命先生说。</p>
+<p>陈渡看着他的嘴。</p>
+<p>「你坐下先说不信，后面才容易信。」算命先生把铜钱从桌下捡起来，擦掉泥，放回红布中央，「人拿钱来，不说自己想什么。可你不一样。你先把自己的来路堵住。」</p>
+<p>「所以你说我唱给别人听。」</p>
+<p>「女的问得多。」</p>
+<p>「我说了吗。」</p>
+<p>「说了。」</p>
+<p>算命先生把签筒往旁边挪了挪。</p>
+<p>「我说的是，唱给别人听。你听见的是另一句。」</p>
+<p>陈渡的手还压在琴袋上。塑料布被掌心的汗浸出一小块深色。</p>
+<p>「我确实不会唱。」</p>
+<p>「我没说你不会。」</p>
+<p>「我没学过。」</p>
+<p>「我也没说你学过。」</p>
+<p>算命先生低头去收白纸。桌上摊着的不是签纸，是几张旧广告纸，背面印着楼盘和门诊电话。</p>
+<p>「男的也问。想知道自己是不是被瞒了。」</p>
+<p>「你今晚唱了。」</p>
+<p>「我弹吉他。」</p>
+<p>「谁弹的。」</p>
+<p>「我。」</p>
+<p>「弹的时候，嘴动没动。」</p>
+<p>陈渡没说话。</p>
+<p>算命先生等了一会儿，伸手指了指门厅。</p>
+<p>「刚才第二首，台上那个唱歌的，每唱一句，旁边弹琴的嘴都跟着动。」</p>
+<p>「那是默唱。」</p>
+<p>「默唱也算。」</p>
+<p>陈渡把侧袋里的名片抽出来。酒店名下面印着后台电话，号码后两位被油墨盖住了一半。他用拇指擦了一下，没擦掉。</p>
+<p>「不算。」</p>
+<p>「怎么不算。」</p>
+<p>「没有声音。」</p>
+<p>算命先生抬起手，敲了一下硬纸板。</p>
+<p>「财运」两个字跟着颤了颤。</p>
+<p>「你写的字，唱不出来。」</p>
+<p>这一次，他的语速慢下来。</p>
+<p>「字是你写的。人唱了。歌有了。你站在旁边，嘴动。你不占那一句。」</p>
+<p>陈渡看着桌上的红布。</p>
+<p>红布边角缝着一道黑线，针脚不匀。桌腿一长一短，垫着一张折叠的硬纸板。</p>
+<p>「明晚几点到。」</p>
+<p>算命先生把铜钱弹起来。铜钱立了半秒，倒下去。</p>
+<p>「三个字。」</p>
+<p>「什么。」</p>
+<p>「闭嘴。听完。」</p>
+<p>陈渡靠回塑料凳。</p>
+<p>酒店门口又有人出来。女孩抱着没吃完的蛋糕，母亲给她擦嘴。一个男人站在台阶下打电话，说新车停在西边，导航还剩十二分钟。</p>
+<p>算命先生把签筒往他面前推了推。</p>
+<p>「抽。」</p>
+<p>「不信。」</p>
+<p>「我也没让你信。」</p>
+<p>「七点。」</p>
+<p>「十块一签？」</p>
+<p>「十块。」算命先生说，「十块买我坐在这儿陪你说话。你要是不坐，刚才那句话我收回去。」</p>
+<p>陈渡摸出手机。</p>
+<p>屏幕上有三个未接来电，都是陌生号码。还有一条运营商短信，提醒本月套餐剩余流量一点二 GB。</p>
+<p>他点开支付页面，转了十块。</p>
+<p>算命先生听见提示音，从红布下面拿出收款码。</p>
+<p>「不用给我。」陈渡说，「转你了。」</p>
+<p>「那就再转十块。」</p>
+<p>「为什么。」</p>
+<p>「刚才那句是十块。这十块是你不信。」</p>
+<p>「六点五十。」</p>
+<p>陈渡又转了十块。</p>
+<p>算命先生把两张小票压在铜钱下面。</p>
+<p>「你想问什么。」</p>
+<p>「我想问歌。」</p>
+<p>「谁的歌。」</p>
+<p>「我的。」</p>
+<p>「唱红的那首？」</p>
+<p>陈渡抬起眼。</p>
+<p>算命先生把签筒抱在怀里。</p>
+<p>「你说的是二十二岁那首。」</p>
+<p>算命先生把红布角折起来。</p>
+<p>酒店门口有辆电动三轮倒车警报响了三声。门童跑过去扶车，车上的空酒箱倒下来，玻璃碎在水泥地上。</p>
+<p>陈渡站起一半，又坐了回去。</p>
+<p>「你听过？」</p>
+<p>「没听过。」</p>
+<p>「你怎么知道二十二岁。」</p>
+<p>「你写的字，唱不出来。」算命先生指了指桌上的硬纸板，「能在台上唱出来的歌，不算唱不出来。你写它的时候，它就没打算从你嘴里出来。」</p>
+<p>「我没让它唱。」</p>
+<p>「给别人唱。」</p>
+<p>「别人愿意唱。」</p>
+<p>「你写一句，等一个人唱。」</p>
+<p>「你问的是明晚，还是刚才那首。」</p>
+<p>陈渡没说话。</p>
+<p>算命先生用指甲刮了刮签筒边缘。</p>
+<p>「唱歌的人一开口，你就觉得事情成了。词是你的，声音是别人的。别人拿走以后，你就剩一个空壳。」</p>
+<p>「磁带里也是。」</p>
+<p>算命先生抬起头。</p>
+<p>「什么磁带。」</p>
+<p>「录不进我的声音。」陈渡说，「能录别的。设备改过七年。」</p>
+<p>算命先生把签筒放下。</p>
+<p>「所以你改的不是磁带。」</p>
+<p>「是拾音线路。」</p>
+<p>「明晚。」</p>
+<p>「线路不让你唱。」</p>
+<p>「有个元件。」</p>
+<p>「哪个。」</p>
+<p>「不能每次都换。」</p>
+<p>「每次换好了吗。」</p>
+<p>陈渡看着那张十块钱的小票。</p>
+<p>「没有。」</p>
+<p>算命先生点了点头，像是听见一个早就量过的尺寸。</p>
+<p>「你试了多少次。」</p>
+<p>「几百次。」</p>
+<p>「那就六点五十。」</p>
+<p>「有用吗。」</p>
+<p>「有。」陈渡说，「每次都能录到别人。」</p>
+<p>算命先生没笑。</p>
+<p>「你是修机器的。」</p>
+<p>「嗯。」</p>
+<p>「东西坏了，你会修到什么程度。」</p>
+<p>「能出声。」</p>
+<p>「出声以后呢。」</p>
+<p>陈渡抬手碰了碰琴袋的拉链。</p>
+<p>金属扣在指腹上压出一道白印。</p>
+<p>门童抱着一捆空杯从桌边经过，杯口朝下，雨水似的滴了几滴在红布上。算命先生把抹布推过去，先擦了铜钱，再擦桌面。</p>
+<p>「能出声就行。」</p>
+<p>算命先生靠回椅背。</p>
+<p>「人也一样。」</p>
+<p>陈渡把琴袋重新放到地上。</p>
+<p>「我不是来找这个答案的。」</p>
+<p>「那你来干什么。」</p>
+<p>「你刚才说错了一句。」</p>
+<p>「哪句。」</p>
+<p>「我不知道哪句。」</p>
+<p>算命先生看着他，随后把桌上的铜钱收进签筒。</p>
+<p>「你手洗过没有。」陈渡问。</p>
+<p>「你会知道的。」</p>
+<p>酒店经理又从门里出来。他看见陈渡，先看琴袋，再看算命摊。</p>
+<p>「还没走？」</p>
+<p>「结了。」</p>
+<p>「车在哪儿？」</p>
+<p>「我走路。」</p>
+<p>经理皱了下眉，从口袋里掏出一张名片。</p>
+<p>「明晚七点来后台。贝斯手腰伤，别让他抬音箱。」</p>
+<p>陈渡接过名片，放进琴袋侧袋。</p>
+<p>「知道了。」</p>
+<p>「洗了。」</p>
+<p>经理转身去拦一辆出租车。算命先生朝他背影喊了一声。</p>
+<p>「老板，你今天结婚还是离婚？」</p>
+<p>「结。」</p>
+<p>「几桌？」</p>
+<p>「二十四。」</p>
+<p>「新郎多大？」</p>
+<p>「二十七。」</p>
+<p>「你晚婚。三十以后再办一次。」</p>
+<p>经理摆手让他闭嘴，拉开车门钻进去。</p>
+<p>算命先生望着出租车尾灯。</p>
+<p>「用什么。」</p>
+<p>「算错的。」他说。</p>
+<p>陈渡看他。</p>
+<p>「新郎没晚婚。」</p>
+<p>「我也没说全对。」</p>
+<p>陈渡背上琴袋。</p>
+<p>硬纸板上的「学业、婚姻、财运」仍朝着街边。纸板裂口上的透明胶被风吹起一角。</p>
+<p>「你刚才说二十二岁。」陈渡说。</p>
+<p>「嗯。」</p>
+<p>「你怎么知道。」</p>
+<p>「我不知道。」</p>
+<p>「洗手间那盆。水龙头开左边有热水，右边只有冷水。」算命先生把手翻过来给他看，「指甲缝里还有泡沫。」</p>
+<p>「刚才你说了。」</p>
+<p>「你听见的。」</p>
+<p>算命先生把折叠桌往门廊下推了推，避开门口来往的人。</p>
+<p>「你今天说了三句话。第一句是不信。第二句是不会唱。第三句是磁带录不进去。」他竖起三根手指，「二十二岁不在里面。」</p>
+<p>「你猜的。」</p>
+<p>「猜对了。」</p>
+<p>「我今年三十四。」</p>
+<p>「我知道。」</p>
+<p>「那你猜二十二岁。」</p>
+<p>「二十二岁的人，第一次把字交出去，最怕别人问是谁写的。」</p>
+<p>陈渡看了一眼。</p>
+<p>陈渡的手指收紧了琴袋带子。</p>
+<p>算命先生没看他。他弯腰从桌下拿出一只铁皮盒，打开，里面全是折过的纸条。</p>
+<p>「有个人把戒指落在这里。」</p>
+<p>「跟我没关系。」</p>
+<p>「钻戒。男款。六号。」</p>
+<p>陈渡站着没动。</p>
+<p>算命先生用两根手指捻起那枚戒指，放在硬纸板边缘。</p>
+<p>「内圈有字。」</p>
+<p>「什么字。」</p>
+<p>「看不清。」</p>
+<p>「酒席上的杯子别用冷水冲。热水管在热水器下面第二个阀。」</p>
+<p>「你刚才说六号。」</p>
+<p>「大小是六号。」</p>
+<p>「内圈刻了什么。」</p>
+<p>「你拿去看看。」</p>
+<p>陈渡伸手拿起戒指。</p>
+<p>戒指很轻。托住它时，钻石边缘在灯下闪了一下。内圈刻着两个字，不是名字。</p>
+<p>「慢车」。</p>
+<p>陈渡把戒指放回硬纸板。</p>
+<p>算命先生用红布盖住它。</p>
+<p>「这四个字是谁写的。」</p>
+<p>算命先生把手收回去。</p>
+<p>「不知道。」</p>
+<p>「你看，别人唱你的歌，戒指上刻别人的字。你分不清很正常。」</p>
+<p>陈渡盯着红布下面凸起的轮廓。</p>
+<p>「你不是算命的。」</p>
+<p>「我当然是。」算命先生拍了拍硬纸板，「学业、婚姻、财运。都算不准，但都有人买。」</p>
+<p>「你怎么知道那句话。」</p>
+<p>「我说过，你坐下先说自己不信。」</p>
+<p>「我问的是『你写的字，唱不出来』。」</p>
+<p>算命先生把签筒抱起来。</p>
+<p>「因为你的字都朝外，手却压在下面。」</p>
+<p>「你还管这个。」</p>
+<p>陈渡低头。</p>
+<p>他的左手按在琴袋上。右手放在桌边，五指收得很紧。</p>
+<p>「我写的字？」</p>
+<p>「你身上有墨水味。」</p>
+<p>「吉他音箱上也有。」</p>
+<p>「墨水会进袖口。」</p>
+<p>陈渡的左袖口上沾着一小块蓝黑墨迹。婚礼签到台用的是蓝黑色墨水，签字笔漏过一次，他拿纸巾擦过，没擦净。</p>
+<p>算命先生抬起下巴。</p>
+<p>「还有铅灰。旧谱用的铅笔。」</p>
+<p>陈渡的琴袋侧袋里确实插着一张折过的旧谱纸。纸角磨白，上面有他前几天改的词。</p>
+<p>「杯子裂了，割手。」</p>
+<p>「这也能看出来？」</p>
+<p>「你走路时不让纸掉出来。弹琴时也不让。」算命先生说，「字写完了，还要带着。」</p>
+<p>陈渡把手从琴袋上拿开。</p>
+<p>「算命也看这些？」</p>
+<p>「算人。」</p>
+<p>「我不是来算命的。」</p>
+<p>算命先生笑了。</p>
+<p>「这是你今天第二次说。」</p>
+<p>「你记得倒清楚。」</p>
+<p>「十块钱两句，第二次那句算加的。」</p>
+<p>酒店经理又出来，手里多了一沓单子。他把单子压在硬纸板旁边，纸角顶住「财运」两个字。</p>
+<p>陈渡没掏手机。</p>
+<p>算命先生也没催。</p>
+<p>街边的霓虹灯闪到第三下，红色灯布上的光从陈渡脸上移开。门厅里传来拆桌椅的碰撞声，有人在报数量。</p>
+<p>「二十三，二十四。」</p>
+<p>算命先生朝门里看了一眼。</p>
+<p>「拆完了，摊也该收了。」</p>
+<p>「等等。」</p>
+<p>「你还有问题。」</p>
+<p>陈渡从琴袋侧袋抽出那张旧谱纸。纸已经折成四折，展开时，折痕处会裂开。</p>
+<p>最下面是他昨晚加的一句。</p>
+<p>「明天贝斯音箱要两个。」</p>
+<p>「替我把歌唱完，别问是谁。」</p>
+<p>算命先生伸手指了指。</p>
+<p>「这句是写给谁的。」</p>
+<p>「没写给谁。」</p>
+<p>「你改了十七遍。」</p>
+<p>「八遍。」</p>
+<p>算命先生不争。他用签字笔在自己的白纸上写了一个数字。</p>
+<p>「十七。」</p>
+<p>「你查过。」</p>
+<p>「我听人唱过。」</p>
+<p>「一个低频，一个中高频。」陈渡说，「低频放左边，朝观众，别贴墙。」</p>
+<p>陈渡抬头。</p>
+<p>「谁唱。」</p>
+<p>「今天婚宴上那个主唱。」</p>
+<p>陈渡记得那个人。嗓子偏亮，第一首唱快歌，第二首把高音拖长了。返场时唱过一首慢歌，歌词不是他的。</p>
+<p>「他还唱了什么。」</p>
+<p>算命先生把白纸折起来。</p>
+<p>「一句没写完的。」</p>
+<p>「什么。」</p>
+<p>陈渡的手停在纸面上。</p>
+<p>「用哪两个。」</p>
+<p>算命先生从铁皮盒里取出一张旧磁带标签。没有磁带，只剩半张标签，边缘发黄。</p>
+<p>「七年前，有人在殡仪馆录过一段。」</p>
+<p>陈渡抬起头。</p>
+<p>「你怎么知道殡仪馆。」</p>
+<p>「来算命的人提过。」</p>
+<p>「谁。」</p>
+<p>「不收钱。」</p>
+<p>「你刚才说十块一签，不准不要钱。」</p>
+<p>「这种不算命。」</p>
+<p>「那算什么。」</p>
+<p>「先通电。坏的那个不接。」</p>
+<p>算命先生把旧标签放在桌角。</p>
+<p>标签上有一行铅笔字，数字是「117」。</p>
+<p>陈渡看着最后三位。</p>
+<p>「机器编号。」</p>
+<p>「嗯。」</p>
+<p>「谁给你的。」</p>
+<p>「说了不收钱。」</p>
+<p>「你见过那段录音？」</p>
+<p>「没见过。」</p>
+<p>「那你怎么知道有人录过。」</p>
+<p>经理在单子上画了一道，抬头看他。</p>
+<p>算命先生把铁皮盒合上。</p>
+<p>「你问得太多了。」</p>
+<p>「标签可以造假。」</p>
+<p>「编号也可以。」</p>
+<p>「笔迹呢。」</p>
+<p>「没看。」</p>
+<p>「那你拿它出来做什么。」</p>
+<p>算命先生用铜钱压住标签。</p>
+<p>「让你知道，我知道。」</p>
+<p>陈渡没碰标签。</p>
+<p>「你修过？」</p>
+<p>他低头看自己的旧谱纸。纸背透出几行写反的字，是改词时留下的压痕。最下面那行恰好压着另一组数字。</p>
+<p>「09.17」。</p>
+<p>陈渡的拇指在那两个数字上停住。</p>
+<p>「你到底是谁。」</p>
+<p>「算命的。」</p>
+<p>「周隼让你来的？」</p>
+<p>算命先生收铁皮盒的手停了一下。</p>
+<p>只有一下。</p>
+<p>「不认识。」</p>
+<p>陈渡看着那只手。</p>
+<p>「不用修。线不响，是我不响。」</p>
+<p>周隼说话慢。这个人也不快，却会在不该停的地方停。</p>
+<p>「你见过他。」</p>
+<p>「县城里开修琴铺的，见过。」</p>
+<p>「他让你盯着我？」</p>
+<p>「没人盯着你。」算命先生说，「你自己走到我面前，说了十次不信。」</p>
+<p>陈渡这才发现，手机付款记录里多了三笔十元。</p>
+<p>他只记得两笔。</p>
+<p>「第三次什么时候付的。」</p>
+<p>「你问我『怎么知道』的时候。」</p>
+<p>「我问过两遍。」</p>
+<p>算命先生手里的铜钱停住。</p>
+<p>「第三遍在心里。」</p>
+<p>算命先生抬起那块硬纸板，给他看背面。</p>
+<p>纸板背面贴着几张旧磁带纸盒的封条。封条上印着型号、磁带长度和产地年份，最早一张是 1986 年。</p>
+<p>「你到底卖的是什么。」陈渡问。</p>
+<p>「算命。」</p>
+<p>「我不信。」</p>
+<p>「那就当听故事。」</p>
+<p>算命先生把纸板放回桌上。</p>
+<p>「故事里，有个人写了一首歌。别人唱了。别人拿着那首歌，写自己的东西。他不敢问歌是谁的。歌上的人也不敢问。」</p>
+<p>「然后呢。」</p>
+<p>陈渡把名片收回侧袋，拉链拉到一半又停下。里面那张旧谱纸露出一个角，纸背的「09.17」正对着门里的灯。</p>
+<p>「然后他开始录别人。」</p>
+<p>「为什么。」</p>
+<p>「因为他只敢听别人唱。」</p>
+<p>酒店里最后一张桌子被抬出来。桌脚擦过门槛，声音很尖。</p>
+<p>陈渡站起。</p>
+<p>算命先生把十元小票从桌下扫进铁皮盒。</p>
+<p>「我明天还摆这里。」</p>
+<p>「不用。」</p>
+<p>「你不问第二回？」</p>
+<p>陈渡背上琴袋。</p>
+<p>他重新拉上拉链。</p>
+<p>「你刚才说，来算命的人提过殡仪馆。」</p>
+<p>「说过。」</p>
+<p>「什么样的人。」</p>
+<p>「一个女大夫。」</p>
+<p>「沈未？」</p>
+<p>算命先生把铁皮盒的扣子按紧。</p>
+<p>「你认识，就不用我说了。」</p>
+<p>陈渡盯着他。</p>
+<p>沈未很少去酒店门口。她下班后换掉工装，不会在红布摊前停。算命先生却说她来过，还谈殡仪馆。</p>
+<p>「她问什么。」</p>
+<p>算命先生把铜钱放在桌沿，起身收凳子。折叠桌往上一提，少了一条腿的桌角磕在砖面上，红布下面的硬纸板移了半寸。</p>
+<p>「不问就走了。」</p>
+<p>「付钱了吗。」</p>
+<p>「没有。」</p>
+<p>「你跟过去？」</p>
+<p>「我跟到路口。」</p>
+<p>「她住哪。」</p>
+<p>算命先生没回答。</p>
+<p>陈渡的手压在琴袋带上。</p>
+<p>「你认识她。」</p>
+<p>「县城就这么大。」</p>
+<p>「她没来过这儿。」</p>
+<p>「那就是没来过。」算命先生说。</p>
+<p>他伸手去收铜钱，捏住其中一枚，递给陈渡。</p>
+<p>「拿着。」</p>
+<p>「做什么。」</p>
+<p>「回去听。」</p>
+<p>「这里没有磁带。」</p>
+<p>「硬币也有正反。」</p>
+<p>陈渡没接。</p>
+<p>算命先生把铜钱放在桌边，拿起一只黑色塑料夹，夹住硬纸板上的裂口。</p>
+<p>「明天别带琴。」</p>
+<p>「为什么。」</p>
+<p>「你坐在那儿像个来修东西的。」</p>
+<p>「我本来就是。」</p>
+<p>「那就带螺丝刀。」</p>
+<p>「我不会再来。」</p>
+<p>「你会。」</p>
+<p>算命先生把折叠桌一折，桌腿碰在一起，发出一声脆响。</p>
+<p>陈渡走到台阶下，停住。</p>
+<p>夜里的车从街口拐进来，车灯扫过纸板。那块写着「学业、婚姻、财运」的硬纸板被压在桌布下面，只露出一个角。</p>
+<p>算命先生的声音从桌后传出来。</p>
+<p>「陈渡。」</p>
+<p>他没有回头。</p>
+<p>「今天婚宴上，你一共唱了四个和弦。」</p>
+<p>陈渡停下。</p>
+<p>「不是歌。」算命先生说，「只是试音。」</p>
+<p>」试「字从风里送过来，带着一点街边摊贩特有的拖长尾音。</p>
 ]]></content>
       <categories>
         <category>小说</category>
@@ -34903,6 +34903,170 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
+    <title>第800小时 03：第47次</title>
+    <url>/%E5%B0%8F%E8%AF%B4/c5c612a2.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>三。</p>
+<p>二。</p>
+<p>一。</p>
+<p>发令枪响的时候，监控室的四块屏一起跳成走带模式。</p>
+<p>右下角那块是小鹿，坡道第三根白线上起跑。陶砚的手搭在暂停键上。他在这个位置坐了十九天。</p>
+<p>跑道全景、坡道近景、终点计时器。第四块原本接靶纸线，前天他让人关了。</p>
+<p>「最后一个两百米。」林野在他身后说，「配速四分十二秒一公里，坡度三度。」</p>
+<p>「配速坡度。」陶砚说。</p>
+<p>「嗯。配速坡度是我自己起的名字。配速加坡度，两个数绑在一起，动一个，另一个就得重算。」</p>
+<p>「基地的技术手册里没这个词。」</p>
+<p>「基地的技术手册里没有’垮掉’这一栏。」</p>
+<p>坡道是基地东侧那条排水沟改的，坡面抹了一层碎石，三十米长，坡度固定。林野第一天就量过：起点一米二七，末端一米九一，差六十四公分，分成三十米，就是百分之二点一，加起来三度出头。坡度定死之后，剩下能动的只有速度。</p>
+<p>坡道两侧钉着三根白桩，每十米一根。桩子底下压着一张 A4 纸，纸上是当天的目标距离，写了铅笔字，风一吹就翻。林野每天早上把纸换一张，旧的收进他的挎包。他收了十九张。陶砚在监控室看过他把旧纸叠好塞进去，叠法和他自己叠训练日志一样：横三折，再对角。</p>
+<p>「她跑不到底。」陶砚说。</p>
+<p>「今天不用她跑到底。」</p>
+<p>「前十八天她都在七十七米垮掉。」</p>
+<p>「今天是第十九天。」林野说，「前十八天的表在那儿，你自己看。」</p>
+<p>坡道近景里，小鹿已经上了坡。前十米她的步子还整，二十米开始往两侧摆，鞋底在碎石上打滑，她用脚踝压住。第三十米，右脚落地的时候膝盖软了一下。</p>
+<p>陶砚看着那个膝盖。他在数落地。</p>
+<p>第一下，第二下。坡道近景是斜四十五度拍的，看得见脚踝的角度，看得见小腿的肌肉什么时候绷不住。数到第四十一下的时候，小鹿的上身往前栽了半寸。</p>
+<p>四十二。四十三。</p>
+<p>她没有像昨天那样在七十七米停下来。她往前蹭。</p>
+<p>四十五。四十六。</p>
+<p>坡道近景里她的左手已经甩到身体后面，胳膊摆幅比右边大了三倍。四十六之后，她的步子变得很碎，像被人从后面推着跑。</p>
+<p>四十七。</p>
+<p>她停了。</p>
+<p>不是垮下去的那种停。她把两只手撑在膝盖上，弯着腰，胸口起伏。坡道上的碎石被她蹬得往后滚了几颗。</p>
+<p>终点计时器定格：三分零四。</p>
+<p>「四十七次落地。」林野说，「坡道八十八米。」</p>
+<p>「前十八天都是四十一。」陶砚说。</p>
+<p>「对。」</p>
+<p>「今天多六次。」</p>
+<p>「多十一米。」林野把一张纸放在控制台上，「昨天七十七米，今天八十八米。」</p>
+<p>陶砚没看纸。他在看小鹿。小鹿撑着膝盖站直，把袖子拉下来盖住手肘上的一块红印，然后走回起点。她没有摔，也没有喊。她走回去的时候右腿有一点拖。</p>
+<p>「她会回来吗。」陶砚问。</p>
+<p>「她会。」</p>
+<p>「你怎么知道。」</p>
+<p>「她昨天跑完在坡道坐了四十分钟。今天只坐了二十秒。」</p>
+<p>陶砚把手从暂停键上拿下来。</p>
+<p>控制台边那摞纸是林野每天早上从系统里导出的，十九张，边缘卷了。表头五列：日期、落地次数、垮掉距离、配速、坡度。第一行到第十八行，每一行的最后四列都一模一样——四十一、七十七米、四分十二秒、三度。第十九天那一行是新填的：四十七、八十八米。</p>
+<p>陶砚记得第一天。</p>
+<p>第一天小鹿在第四十一次落地的时候坐在了坡道上，裤子蹭破一块。第二天她把那块布用别针别上去，接着跑。陶砚在监控室看完了全程，没有下去。</p>
+<p>他记得第三天。第十二天。第十八天。他记得每一天她垮下去的那个姿势：右膝先软，左肩跟着塌，嘴张开但没出声。十八天里那个姿势没有变过，一帧不差。监控室的四块屏他能数清每一个像素点，可他数不出这十八天和小鹿自己那十八天有什么不同。</p>
+<p>他给自己记了一个数：19 天，0 次干预。他把这个数写进训练日志，格式是日期、时长、项目、次数。那一栏填的是「监控室」。他不知道该怎么填备注。</p>
+<p>背面还有三列：心率、步频、备注。备注那一栏每天都是三个字：未签。</p>
+<p>基地规定外聘顾问改训练计划要带教教练会签。二十天里，会签单一次也没送到陶砚桌上。他知道单子在林野手里，林野也知道他没签。</p>
+<p>「为什么不送过来。」陶砚问。</p>
+<p>「送过来你就会签。」</p>
+<p>「我没签。」</p>
+<p>「你也没拦。」</p>
+<p>「我看了十九天。」</p>
+<p>林野把纸翻回去，露出最上面那张的折痕。纸对折过三次，折得很齐。</p>
+<p>「你在找她的极限。」陶砚说。</p>
+<p>「我在找她从哪儿开始垮。」</p>
+<p>「有区别吗。」</p>
+<p>「有。」林野说，「极限是她自己知道会在哪儿停。垮是她不知道自己已经垮了。」</p>
+<p>「那你打算让她垮到什么时候。」</p>
+<p>「到她垮的位置能换地方。」</p>
+<p>「换地方就是没练到。」</p>
+<p>「没练到和练错了，是两个数。」林野说，「我今天要第二个。」</p>
+<p>「这叫故意失败训练。」陶砚说。</p>
+<p>「你叫它什么不重要。」林野说，「我一天加一个她做不到的东西，她一天必须失败一次。失败在哪儿，我记下来。等她哪天在别的地方失败，说明那一处补上了。」</p>
+<p>「你就为了这个让她天天垮一次。」</p>
+<p>「我为了让她不知道自己在哪儿停。」</p>
+<p>监控室的门开了。</p>
+<p>小鹿把一张计时卡放在控制台边上。卡片右下角她自己填了字：200米，32秒8。</p>
+<p>她二十一岁，训练第七个月，头发用一根黑发圈扎在后面，鬓角全是汗。</p>
+<p>「四十七。」陶砚说。</p>
+<p>「四十七。」她重复了一遍，「昨天四十一。」</p>
+<p>「差六次。」</p>
+<p>「十一米。」</p>
+<p>陶砚看了她一眼。</p>
+<p>「坡道上数出来的？」</p>
+<p>「林老师喊数，我跟着数了一遍。」她说，「他说数到四十七的时候要停，我就停了。」</p>
+<p>「你为什么不数到五十。」</p>
+<p>小鹿把头发上的水抹了一把。</p>
+<p>「我进基地那天，招生的人说我有天赋。」</p>
+<p>「我说过吗。」</p>
+<p>「您没说。」她说，「您也没说不是。」</p>
+<p>「我这儿只有卡片和计时器。」陶砚说，「天赋不写在卡上。」</p>
+<p>小鹿低头看那张卡。</p>
+<p>「基地的人不骂我，他们说慢慢来。他们说我这种不用教。」她把卡往里推了推，「我不想听慢慢来，也不想听不用教。」</p>
+<p>「那就继续练。」</p>
+<p>「我会的。」</p>
+<p>她转身出门，在门合上之前回了一次头。</p>
+<p>「陶教练。」</p>
+<p>「嗯。」</p>
+<p>「坡道上林老师给我一瓶水，什么也没说，站在两步以外等我先开口。」</p>
+<p>「那是他的习惯。」陶砚说。</p>
+<p>「我知道。」小鹿说，「我练了七个月，一个成绩都没有。我想知道我在练什么。」</p>
+<p>门关上了。</p>
+<p>「她的心率上限你看过。」陶砚说。</p>
+<p>「昨天峰值一百八十三。今天一百八十九。」</p>
+<p>「不到她的极限。」</p>
+<p>「不到。」</p>
+<p>「所以你什么都没说。」</p>
+<p>陶砚没有回答。</p>
+<p>林野提起地上的塑料袋，里面是六瓶水。</p>
+<p>「十九天。」他说，「她垮在同一个地方十八次。」</p>
+<p>「十八次同一个数，说明训练是可控的。」</p>
+<p>「说明她十八次都在同一个地方坏掉。」</p>
+<p>「可控和能改是两件事。」</p>
+<p>「对。」林野说，「你手上现在只有可控。」</p>
+<p>「林野。」</p>
+<p>「嗯。」</p>
+<p>「你要的是她第几次垮。」陶砚说，「我要的是她跑完。」</p>
+<p>「她跑不完的。」林野说，「坡度和配速是配好的。今天配到四十七，明天配到四十八，后天配到她坐在坡道上不动。到那一天你会知道她在哪儿停。」</p>
+<p>「那你到第几天收手。」</p>
+<p>「她不垮的那天。」</p>
+<p>林野下楼去了坡道。陶砚在屏幕里看见他从下面走上来，把水递过去，然后站在离她两步远的地方，不说话。</p>
+<p>那天晚上他没走。</p>
+<p>监控室的空调出风口正对着他的后颈。他没关，两点以后才关。</p>
+<p>素材盘里存着十九天的录像，一天一个文件。陶砚把第一天的文件拖进播放器，拖到坡道那一段。</p>
+<p>画面停住了。</p>
+<p>小鹿坐在坡道上，右手撑着地。屏幕右下角的时间码在跳，画面不动。</p>
+<p>二十七秒。</p>
+<p>他把播放条往回拖，又放了一遍。二十七秒，画面重新开始动。</p>
+<p>陶砚把手放在暂停键上。</p>
+<p>第一天他确实按过。那时候小鹿刚垮掉，他伸手按了暂停，想回看她的落地姿势。手松开之后，他忘了这一下。十九天里他没再看那一段。</p>
+<p>三周前的颁证日，台下有个人举过手，问他这一万小时里有多少小时是失败的。他没有回答。</p>
+<p>现在他手上有二十七秒。他没有把这二十七秒填上。他知道填不上。</p>
+<p>他又往后翻，翻到第二天、第三天、第五天。每一段的坡道结尾都有一小段不动的画面，长度不一样：二十七秒，四十一秒，十九秒。最长的一段是第十一天，六分零四秒。那天小鹿跑到一半蹲下去系鞋带，系了六分零四秒。监控室的录像在这六分零四秒里一直录着。</p>
+<p>他把这些秒数抄在训练日志的背面，按日期排。抄到第十四张，他把笔停下，把这一列划掉，另起一列重新抄。</p>
+<p>他不想看这些秒数。他想看的是别的。</p>
+<p>他把素材盘的文件夹翻到底。有一项他两年前建的：示范课。</p>
+<p>示范课是他自己上的课，每周四节，一节六十分钟，新教练进来先看这个。一个人讲，一个人做，机位两台。录完归档，归档完他不看。</p>
+<p>他打开 2026 年 1 月 5 号那个文件。</p>
+<p>画面里他站在射击位上，先查枪，压枪身，贴靶，装弹，右边上膛，举枪，击发。十九分五十八秒的时候他把枪放下，转身对镜头说话，说枪管温度，说弹着偏左三毫米。</p>
+<p>二十分钟整。</p>
+<p>二十点零一分，他的右臂举起了枪管。</p>
+<p>四十分钟整，同一个画面。</p>
+<p>六十分钟整，文件结束。</p>
+<p>陶砚把三个时间码拉到一格：20:00、40:00、60:00。</p>
+<p>三张一样的脸，一样的枪口，一个角度。右臂抬起，枪口朝前，拇指搭在击发片上，停半秒，放下。</p>
+<p>他打开 1 月 12 号、19 号、26 号三个文件，把每个文件的二十分钟到六十分钟拖到同一条时间线上。</p>
+<p>四条蓝线首尾相接，中段完全重合，压成一条。</p>
+<p>他往下翻。2 月 2 号、9 号、16 号、23 号。同样的重合。他又拖了 3 月的一批。软件在右下角显示总时长：11 段，660 分钟。</p>
+<p>其中 440 分钟是同一个动作。</p>
+<p>墙上挂钟是十一点四十。</p>
+<p>陶砚翻开控制台下面的抽屉。抽屉里是训练日志，1 月那一页写着：示范课 4 次，60 分钟／次。</p>
+<p>他在那一行下面添了一行。</p>
+<p>后 40 分钟，4 次，同一个动作。</p>
+<p>写完他把笔横在纸上。十九天。41 次落地。47 次落地。40 分钟。</p>
+<p>这几个数他没法加，它们之间没有单位。</p>
+<p>他把这几个数并排写在日志的空白处，中间空了两格。</p>
+<p>他打开基地的内网系统，登录自己的账号。系统首页是他的认证档案：10,340 小时，黄金级，最后更新是 2026 年 1 月。档案下面挂着一份《时数明细》，按日期排了上万行，每行五项：日期、起止时间、项目、时长、签字。他往下翻。翻过第七百行的时候，他停下来。</p>
+<p>表头里没有「动作」这一栏。也没有「偏差」。一行都没有。</p>
+<p>他继续往下翻，翻到第 4,300 行，那儿有一条项目写的是「示范」，时长 1 小时。他记得那一节课。他给三个新教练上过一次射击位的基本动作，一个人讲，一个人做，两台机位。</p>
+<p>那一小时，和他今天晚上在时间线上看到的那四十分钟，是同一件事。</p>
+<p>他打开 1 月 5 号的文件，把 20:00 到 60:00 那一段单独切出来，存成一个新文件，命名成 20260105_重复。</p>
+<p>然后他把光标拖回 20:00。</p>
+<p>屏幕上，他的右臂抬起来，枪口朝前。</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>小说</tag>
+        <tag>第800小时</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>第800小时 02：第一个失败样本</title>
     <url>/%E5%B0%8F%E8%AF%B4/8f5b3a9a.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>十发打完，电子计分屏上跳出一行数：平均 9.8。</p>
@@ -35073,170 +35237,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>「陶教练。」林野说，「我还想看一样东西。」</p>
 <p>「说。」</p>
 <p>「我想看您自己的训练录像。不是教学录像，是您自己练的那部分。」</p>
-]]></content>
-      <categories>
-        <category>小说</category>
-      </categories>
-      <tags>
-        <tag>小说</tag>
-        <tag>第800小时</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>第800小时 03：第47次</title>
-    <url>/%E5%B0%8F%E8%AF%B4/c5c612a2.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>三。</p>
-<p>二。</p>
-<p>一。</p>
-<p>发令枪响的时候，监控室的四块屏一起跳成走带模式。</p>
-<p>右下角那块是小鹿，坡道第三根白线上起跑。陶砚的手搭在暂停键上。他在这个位置坐了十九天。</p>
-<p>跑道全景、坡道近景、终点计时器。第四块原本接靶纸线，前天他让人关了。</p>
-<p>「最后一个两百米。」林野在他身后说，「配速四分十二秒一公里，坡度三度。」</p>
-<p>「配速坡度。」陶砚说。</p>
-<p>「嗯。配速坡度是我自己起的名字。配速加坡度，两个数绑在一起，动一个，另一个就得重算。」</p>
-<p>「基地的技术手册里没这个词。」</p>
-<p>「基地的技术手册里没有’垮掉’这一栏。」</p>
-<p>坡道是基地东侧那条排水沟改的，坡面抹了一层碎石，三十米长，坡度固定。林野第一天就量过：起点一米二七，末端一米九一，差六十四公分，分成三十米，就是百分之二点一，加起来三度出头。坡度定死之后，剩下能动的只有速度。</p>
-<p>坡道两侧钉着三根白桩，每十米一根。桩子底下压着一张 A4 纸，纸上是当天的目标距离，写了铅笔字，风一吹就翻。林野每天早上把纸换一张，旧的收进他的挎包。他收了十九张。陶砚在监控室看过他把旧纸叠好塞进去，叠法和他自己叠训练日志一样：横三折，再对角。</p>
-<p>「她跑不到底。」陶砚说。</p>
-<p>「今天不用她跑到底。」</p>
-<p>「前十八天她都在七十七米垮掉。」</p>
-<p>「今天是第十九天。」林野说，「前十八天的表在那儿，你自己看。」</p>
-<p>坡道近景里，小鹿已经上了坡。前十米她的步子还整，二十米开始往两侧摆，鞋底在碎石上打滑，她用脚踝压住。第三十米，右脚落地的时候膝盖软了一下。</p>
-<p>陶砚看着那个膝盖。他在数落地。</p>
-<p>第一下，第二下。坡道近景是斜四十五度拍的，看得见脚踝的角度，看得见小腿的肌肉什么时候绷不住。数到第四十一下的时候，小鹿的上身往前栽了半寸。</p>
-<p>四十二。四十三。</p>
-<p>她没有像昨天那样在七十七米停下来。她往前蹭。</p>
-<p>四十五。四十六。</p>
-<p>坡道近景里她的左手已经甩到身体后面，胳膊摆幅比右边大了三倍。四十六之后，她的步子变得很碎，像被人从后面推着跑。</p>
-<p>四十七。</p>
-<p>她停了。</p>
-<p>不是垮下去的那种停。她把两只手撑在膝盖上，弯着腰，胸口起伏。坡道上的碎石被她蹬得往后滚了几颗。</p>
-<p>终点计时器定格：三分零四。</p>
-<p>「四十七次落地。」林野说，「坡道八十八米。」</p>
-<p>「前十八天都是四十一。」陶砚说。</p>
-<p>「对。」</p>
-<p>「今天多六次。」</p>
-<p>「多十一米。」林野把一张纸放在控制台上，「昨天七十七米，今天八十八米。」</p>
-<p>陶砚没看纸。他在看小鹿。小鹿撑着膝盖站直，把袖子拉下来盖住手肘上的一块红印，然后走回起点。她没有摔，也没有喊。她走回去的时候右腿有一点拖。</p>
-<p>「她会回来吗。」陶砚问。</p>
-<p>「她会。」</p>
-<p>「你怎么知道。」</p>
-<p>「她昨天跑完在坡道坐了四十分钟。今天只坐了二十秒。」</p>
-<p>陶砚把手从暂停键上拿下来。</p>
-<p>控制台边那摞纸是林野每天早上从系统里导出的，十九张，边缘卷了。表头五列：日期、落地次数、垮掉距离、配速、坡度。第一行到第十八行，每一行的最后四列都一模一样——四十一、七十七米、四分十二秒、三度。第十九天那一行是新填的：四十七、八十八米。</p>
-<p>陶砚记得第一天。</p>
-<p>第一天小鹿在第四十一次落地的时候坐在了坡道上，裤子蹭破一块。第二天她把那块布用别针别上去，接着跑。陶砚在监控室看完了全程，没有下去。</p>
-<p>他记得第三天。第十二天。第十八天。他记得每一天她垮下去的那个姿势：右膝先软，左肩跟着塌，嘴张开但没出声。十八天里那个姿势没有变过，一帧不差。监控室的四块屏他能数清每一个像素点，可他数不出这十八天和小鹿自己那十八天有什么不同。</p>
-<p>他给自己记了一个数：19 天，0 次干预。他把这个数写进训练日志，格式是日期、时长、项目、次数。那一栏填的是「监控室」。他不知道该怎么填备注。</p>
-<p>背面还有三列：心率、步频、备注。备注那一栏每天都是三个字：未签。</p>
-<p>基地规定外聘顾问改训练计划要带教教练会签。二十天里，会签单一次也没送到陶砚桌上。他知道单子在林野手里，林野也知道他没签。</p>
-<p>「为什么不送过来。」陶砚问。</p>
-<p>「送过来你就会签。」</p>
-<p>「我没签。」</p>
-<p>「你也没拦。」</p>
-<p>「我看了十九天。」</p>
-<p>林野把纸翻回去，露出最上面那张的折痕。纸对折过三次，折得很齐。</p>
-<p>「你在找她的极限。」陶砚说。</p>
-<p>「我在找她从哪儿开始垮。」</p>
-<p>「有区别吗。」</p>
-<p>「有。」林野说，「极限是她自己知道会在哪儿停。垮是她不知道自己已经垮了。」</p>
-<p>「那你打算让她垮到什么时候。」</p>
-<p>「到她垮的位置能换地方。」</p>
-<p>「换地方就是没练到。」</p>
-<p>「没练到和练错了，是两个数。」林野说，「我今天要第二个。」</p>
-<p>「这叫故意失败训练。」陶砚说。</p>
-<p>「你叫它什么不重要。」林野说，「我一天加一个她做不到的东西，她一天必须失败一次。失败在哪儿，我记下来。等她哪天在别的地方失败，说明那一处补上了。」</p>
-<p>「你就为了这个让她天天垮一次。」</p>
-<p>「我为了让她不知道自己在哪儿停。」</p>
-<p>监控室的门开了。</p>
-<p>小鹿把一张计时卡放在控制台边上。卡片右下角她自己填了字：200米，32秒8。</p>
-<p>她二十一岁，训练第七个月，头发用一根黑发圈扎在后面，鬓角全是汗。</p>
-<p>「四十七。」陶砚说。</p>
-<p>「四十七。」她重复了一遍，「昨天四十一。」</p>
-<p>「差六次。」</p>
-<p>「十一米。」</p>
-<p>陶砚看了她一眼。</p>
-<p>「坡道上数出来的？」</p>
-<p>「林老师喊数，我跟着数了一遍。」她说，「他说数到四十七的时候要停，我就停了。」</p>
-<p>「你为什么不数到五十。」</p>
-<p>小鹿把头发上的水抹了一把。</p>
-<p>「我进基地那天，招生的人说我有天赋。」</p>
-<p>「我说过吗。」</p>
-<p>「您没说。」她说，「您也没说不是。」</p>
-<p>「我这儿只有卡片和计时器。」陶砚说，「天赋不写在卡上。」</p>
-<p>小鹿低头看那张卡。</p>
-<p>「基地的人不骂我，他们说慢慢来。他们说我这种不用教。」她把卡往里推了推，「我不想听慢慢来，也不想听不用教。」</p>
-<p>「那就继续练。」</p>
-<p>「我会的。」</p>
-<p>她转身出门，在门合上之前回了一次头。</p>
-<p>「陶教练。」</p>
-<p>「嗯。」</p>
-<p>「坡道上林老师给我一瓶水，什么也没说，站在两步以外等我先开口。」</p>
-<p>「那是他的习惯。」陶砚说。</p>
-<p>「我知道。」小鹿说，「我练了七个月，一个成绩都没有。我想知道我在练什么。」</p>
-<p>门关上了。</p>
-<p>「她的心率上限你看过。」陶砚说。</p>
-<p>「昨天峰值一百八十三。今天一百八十九。」</p>
-<p>「不到她的极限。」</p>
-<p>「不到。」</p>
-<p>「所以你什么都没说。」</p>
-<p>陶砚没有回答。</p>
-<p>林野提起地上的塑料袋，里面是六瓶水。</p>
-<p>「十九天。」他说，「她垮在同一个地方十八次。」</p>
-<p>「十八次同一个数，说明训练是可控的。」</p>
-<p>「说明她十八次都在同一个地方坏掉。」</p>
-<p>「可控和能改是两件事。」</p>
-<p>「对。」林野说，「你手上现在只有可控。」</p>
-<p>「林野。」</p>
-<p>「嗯。」</p>
-<p>「你要的是她第几次垮。」陶砚说，「我要的是她跑完。」</p>
-<p>「她跑不完的。」林野说，「坡度和配速是配好的。今天配到四十七，明天配到四十八，后天配到她坐在坡道上不动。到那一天你会知道她在哪儿停。」</p>
-<p>「那你到第几天收手。」</p>
-<p>「她不垮的那天。」</p>
-<p>林野下楼去了坡道。陶砚在屏幕里看见他从下面走上来，把水递过去，然后站在离她两步远的地方，不说话。</p>
-<p>那天晚上他没走。</p>
-<p>监控室的空调出风口正对着他的后颈。他没关，两点以后才关。</p>
-<p>素材盘里存着十九天的录像，一天一个文件。陶砚把第一天的文件拖进播放器，拖到坡道那一段。</p>
-<p>画面停住了。</p>
-<p>小鹿坐在坡道上，右手撑着地。屏幕右下角的时间码在跳，画面不动。</p>
-<p>二十七秒。</p>
-<p>他把播放条往回拖，又放了一遍。二十七秒，画面重新开始动。</p>
-<p>陶砚把手放在暂停键上。</p>
-<p>第一天他确实按过。那时候小鹿刚垮掉，他伸手按了暂停，想回看她的落地姿势。手松开之后，他忘了这一下。十九天里他没再看那一段。</p>
-<p>三周前的颁证日，台下有个人举过手，问他这一万小时里有多少小时是失败的。他没有回答。</p>
-<p>现在他手上有二十七秒。他没有把这二十七秒填上。他知道填不上。</p>
-<p>他又往后翻，翻到第二天、第三天、第五天。每一段的坡道结尾都有一小段不动的画面，长度不一样：二十七秒，四十一秒，十九秒。最长的一段是第十一天，六分零四秒。那天小鹿跑到一半蹲下去系鞋带，系了六分零四秒。监控室的录像在这六分零四秒里一直录着。</p>
-<p>他把这些秒数抄在训练日志的背面，按日期排。抄到第十四张，他把笔停下，把这一列划掉，另起一列重新抄。</p>
-<p>他不想看这些秒数。他想看的是别的。</p>
-<p>他把素材盘的文件夹翻到底。有一项他两年前建的：示范课。</p>
-<p>示范课是他自己上的课，每周四节，一节六十分钟，新教练进来先看这个。一个人讲，一个人做，机位两台。录完归档，归档完他不看。</p>
-<p>他打开 2026 年 1 月 5 号那个文件。</p>
-<p>画面里他站在射击位上，先查枪，压枪身，贴靶，装弹，右边上膛，举枪，击发。十九分五十八秒的时候他把枪放下，转身对镜头说话，说枪管温度，说弹着偏左三毫米。</p>
-<p>二十分钟整。</p>
-<p>二十点零一分，他的右臂举起了枪管。</p>
-<p>四十分钟整，同一个画面。</p>
-<p>六十分钟整，文件结束。</p>
-<p>陶砚把三个时间码拉到一格：20:00、40:00、60:00。</p>
-<p>三张一样的脸，一样的枪口，一个角度。右臂抬起，枪口朝前，拇指搭在击发片上，停半秒，放下。</p>
-<p>他打开 1 月 12 号、19 号、26 号三个文件，把每个文件的二十分钟到六十分钟拖到同一条时间线上。</p>
-<p>四条蓝线首尾相接，中段完全重合，压成一条。</p>
-<p>他往下翻。2 月 2 号、9 号、16 号、23 号。同样的重合。他又拖了 3 月的一批。软件在右下角显示总时长：11 段，660 分钟。</p>
-<p>其中 440 分钟是同一个动作。</p>
-<p>墙上挂钟是十一点四十。</p>
-<p>陶砚翻开控制台下面的抽屉。抽屉里是训练日志，1 月那一页写着：示范课 4 次，60 分钟／次。</p>
-<p>他在那一行下面添了一行。</p>
-<p>后 40 分钟，4 次，同一个动作。</p>
-<p>写完他把笔横在纸上。十九天。41 次落地。47 次落地。40 分钟。</p>
-<p>这几个数他没法加，它们之间没有单位。</p>
-<p>他把这几个数并排写在日志的空白处，中间空了两格。</p>
-<p>他打开基地的内网系统，登录自己的账号。系统首页是他的认证档案：10,340 小时，黄金级，最后更新是 2026 年 1 月。档案下面挂着一份《时数明细》，按日期排了上万行，每行五项：日期、起止时间、项目、时长、签字。他往下翻。翻过第七百行的时候，他停下来。</p>
-<p>表头里没有「动作」这一栏。也没有「偏差」。一行都没有。</p>
-<p>他继续往下翻，翻到第 4,300 行，那儿有一条项目写的是「示范」，时长 1 小时。他记得那一节课。他给三个新教练上过一次射击位的基本动作，一个人讲，一个人做，两台机位。</p>
-<p>那一小时，和他今天晚上在时间线上看到的那四十分钟，是同一件事。</p>
-<p>他打开 1 月 5 号的文件，把 20:00 到 60:00 那一段单独切出来，存成一个新文件，命名成 20260105_重复。</p>
-<p>然后他把光标拖回 20:00。</p>
-<p>屏幕上，他的右臂抬起来，枪口朝前。</p>
 ]]></content>
       <categories>
         <category>小说</category>
@@ -39973,6 +39973,61 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
       </tags>
   </entry>
   <entry>
+    <title>大模型入门 08｜多模态</title>
+    <url>/AI/llm101-08.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
+<p><strong>大模型入门系列</strong> · 共 14 集 · 本集为第 8 集<br />
+上一集：<a href="/AI/llm101-07.html">七、量化与端侧推理</a> ｜ 下一集：<a href="/AI/llm101-09.html">九、检索</a> ｜ <a href="/AI/7b3f9a21.html">系列总览</a></p>
+</blockquote>
+<p><img src="/images/llm-101/llm-multimodal.png" alt="llm-multimodal" /></p>
+<iframe src="/slide/llm-multimodal.html" style="width:100%;height:520px;border:0;border-radius:8px" loading="lazy" allowfullscreen></iframe>
+<p>先说一个容易被忽略的事实：模型的整个世界，从头到尾只有一串数字。它没有「看见」这个动作，它只认数字。所以「让模型看图」这件事，本质是把图翻译成一串数字，塞进同一个队列，和文字排在一起。</p>
+<p>两条路最后都汇进同一个数字序列：文字走分词器变成 token，图片走视觉编码器变成 patch 向量，之后没有区别——对后面的八十层来说，一个图片 patch 和一个词就是同一类东西，只不过一个词代表一片语义，一个 patch 代表一片颜色。</p>
+<blockquote>
+<p><strong>原来如此</strong>：所谓多模态，不是给模型装眼睛，是给图片造一套翻译。翻译做得好不好，决定了它「看」得准不准——后面所有缺陷都源于这一步。</p>
+</blockquote>
+<h3 id="一张图变成-token-的全过程"><a class="markdownIt-Anchor" href="#一张图变成-token-的全过程"></a> 一张图变成 token 的全过程</h3>
+<p>三步，没有魔法。第一步切成小块（patch），通常十四或十六像素见方。第二步用视觉编码器把每块变成一串数字，也就是一个向量。第三步拼进上下文，图片和文字最后躺在同一个列表里。</p>
+<p>一张 1024 见方的图，按 16 像素切，就是 64 乘 64 共 4096 个 patch。这个数字直接决定了成本，也直接决定了后面要讲的取舍：块切得越细，看得越清，token 也越多。</p>
+<h3 id="一张图算多少钱"><a class="markdownIt-Anchor" href="#一张图算多少钱"></a> 一张图算多少钱</h3>
+<p>换算式很简单：token 数约等于宽除以块边，乘上高除以块边。缩略图级别可能只有几十个 token；普通配图几百；截图和文档几百到一千多；高清大图上千。</p>
+<p>换算成生活单位更好理解：一页 A4 文字大约几百 token；一张 1024 截图约等于五页文字；一张 2048 原图约等于二十页文字。所以传二十张高清图，等于把四十页文档塞进上下文——贵，而且会挤掉别的信息。</p>
+<p>省钱的土办法：传图前先缩到必要尺寸、裁掉无关区域。但有个反向的例外——文档截图反而要给足分辨率，图里的字一旦糊了，模型就永远读不对，这时候省下的 token 会以「答错重试」的形式加倍还回去。</p>
+<h3 id="声音比图片更贵25-毫秒一帧"><a class="markdownIt-Anchor" href="#声音比图片更贵25-毫秒一帧"></a> 声音比图片更「贵」：25 毫秒一帧</h3>
+<p>声音本来就是连续的波，所以按时间切成小段：每二十五毫秒切一帧，每一帧转成一张频谱图，再变成一个向量。一秒钟四十帧，一分钟两千四百帧。</p>
+<p>对比一下：一分钟文字大约两百字，折算几百 token；一分钟语音十六 kHz，两千四百帧，折算下来是数量级的差距。语音贵在帧率——说一句话的时间，模型要处理几百个「图」。这就是语音对话按分钟收费、而不是按字数收费的根本原因。</p>
+<h3 id="视频是图片的平方"><a class="markdownIt-Anchor" href="#视频是图片的平方"></a> 视频是图片的平方</h3>
+<p>它不是「很多张图加起来」，而是直接指数爆炸。两秒视频按三十帧每秒是六十帧，每帧上千 token，合计几万 token，相当于二十页文档，只换来两秒画面。</p>
+<p>所以视频理解必须做减法，四个手段：降帧率，三十帧抽到一到两帧；降分辨率，短边压到三百三十六；时间合并，相邻帧融合成一帧；只看关键段，先定位再细看。</p>
+<p>视频理解的本质不是「模型够不够大」，而是「抽帧策略对不对」——这一条比换模型重要得多。</p>
+<h3 id="输出侧同一句话可以被生成成图-成声-成视频"><a class="markdownIt-Anchor" href="#输出侧同一句话可以被生成成图-成声-成视频"></a> 输出侧：同一句话可以被生成成图、成声、成视频</h3>
+<p>语义空间里，文字、图片、音频都编码成同一套向量表示。编码器把图变成向量，把频谱编码成向量；反过来，解码器能从噪声逐步去噪成图，或者把文字转成声波。生成图片不是「画」出来的，是从噪声里「擦」出来的——这条链路在第十四节会完整拆开。</p>
+<h3 id="四个高频翻车现场"><a class="markdownIt-Anchor" href="#四个高频翻车现场"></a> 四个高频翻车现场</h3>
+<p>根子全在「翻译」那一步。小字看不清：图里八磅的合同条款、表格里的小数点，被压缩后直接糊成一团，模型只能猜。数量数不准：让它数图上有几个苹果、几根柱子，这是它最不擅长的题，精度常低于随手一数。空间关系弱：「左边那个」「上面的按钮」这类指代，它经常对错。压缩失真：聊天软件转发过的图、截图再截图，细节已经丢了，模型看到的是二次污染版本。</p>
+<p>工程解法三条：关键区域单独裁一张高清图再问；要精确数字就让它输出坐标或用 OCR 工具；别用它做计数和精确测量。它不是眼睛，是「隔着毛玻璃看」——把任务设计成它擅长的形状，比换更大的模型有效。</p>
+<h3 id="什么时候用通用多模态什么时候用专用模型"><a class="markdownIt-Anchor" href="#什么时候用通用多模态什么时候用专用模型"></a> 什么时候用通用多模态，什么时候用专用模型</h3>
+<p>通用模型胜在「能解释」，专用模型胜在「够精确」。</p>
+<p>识别图里的文字：通用能读，但排版和小字易错；OCR 逐字精确。语音转文字：通用省事，长音频要分段；ASR 专用更稳更便宜。水果、缺陷、计数：通用容易数错；目标检测和分割模型更可靠。理解场景和意图：通用是强项，能解释；专用做不了。跨模态推理：通用强项，图和文字一起推因果。</p>
+<p>实践里最常见的组合是分层：专用模型负责「取」——OCR 取字、ASR 取话、检测框取位置；通用模型负责「串」——把取出来的东西串起来，回答人真正想问的问题。别指望一个模型包打天下，精确的活交给小专模型，理解的活交给大通用模型。</p>
+<blockquote>
+<p><strong>原来如此</strong>：模型从来不「看」，它只读数字。图片、声音、视频全都被翻译成同一种数字，翻译的精度，就是它「看」的上限。</p>
+</blockquote>
+<hr />
+<blockquote>
+<p>上一集：<a href="/AI/llm101-07.html">七、量化与端侧推理</a> ｜ 下一集：<a href="/AI/llm101-09.html">九、检索</a> ｜ <a href="/AI/7b3f9a21.html">系列总览</a></p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>大模型</tag>
+        <tag>科普</tag>
+        <tag>系列</tag>
+        <tag>大模型入门</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>大模型入门 07｜量化与端侧推理</title>
     <url>/AI/llm101-07.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
@@ -40018,61 +40073,6 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
 <hr />
 <blockquote>
 <p>上一集：<a href="/AI/llm101-06.html">六、Token 与账单</a> ｜ 下一集：<a href="/AI/llm101-08.html">八、多模态</a> ｜ <a href="/AI/7b3f9a21.html">系列总览</a></p>
-</blockquote>
-]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-      <tags>
-        <tag>大模型</tag>
-        <tag>科普</tag>
-        <tag>系列</tag>
-        <tag>大模型入门</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>大模型入门 08｜多模态</title>
-    <url>/AI/llm101-08.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><blockquote>
-<p><strong>大模型入门系列</strong> · 共 14 集 · 本集为第 8 集<br />
-上一集：<a href="/AI/llm101-07.html">七、量化与端侧推理</a> ｜ 下一集：<a href="/AI/llm101-09.html">九、检索</a> ｜ <a href="/AI/7b3f9a21.html">系列总览</a></p>
-</blockquote>
-<p><img src="/images/llm-101/llm-multimodal.png" alt="llm-multimodal" /></p>
-<iframe src="/slide/llm-multimodal.html" style="width:100%;height:520px;border:0;border-radius:8px" loading="lazy" allowfullscreen></iframe>
-<p>先说一个容易被忽略的事实：模型的整个世界，从头到尾只有一串数字。它没有「看见」这个动作，它只认数字。所以「让模型看图」这件事，本质是把图翻译成一串数字，塞进同一个队列，和文字排在一起。</p>
-<p>两条路最后都汇进同一个数字序列：文字走分词器变成 token，图片走视觉编码器变成 patch 向量，之后没有区别——对后面的八十层来说，一个图片 patch 和一个词就是同一类东西，只不过一个词代表一片语义，一个 patch 代表一片颜色。</p>
-<blockquote>
-<p><strong>原来如此</strong>：所谓多模态，不是给模型装眼睛，是给图片造一套翻译。翻译做得好不好，决定了它「看」得准不准——后面所有缺陷都源于这一步。</p>
-</blockquote>
-<h3 id="一张图变成-token-的全过程"><a class="markdownIt-Anchor" href="#一张图变成-token-的全过程"></a> 一张图变成 token 的全过程</h3>
-<p>三步，没有魔法。第一步切成小块（patch），通常十四或十六像素见方。第二步用视觉编码器把每块变成一串数字，也就是一个向量。第三步拼进上下文，图片和文字最后躺在同一个列表里。</p>
-<p>一张 1024 见方的图，按 16 像素切，就是 64 乘 64 共 4096 个 patch。这个数字直接决定了成本，也直接决定了后面要讲的取舍：块切得越细，看得越清，token 也越多。</p>
-<h3 id="一张图算多少钱"><a class="markdownIt-Anchor" href="#一张图算多少钱"></a> 一张图算多少钱</h3>
-<p>换算式很简单：token 数约等于宽除以块边，乘上高除以块边。缩略图级别可能只有几十个 token；普通配图几百；截图和文档几百到一千多；高清大图上千。</p>
-<p>换算成生活单位更好理解：一页 A4 文字大约几百 token；一张 1024 截图约等于五页文字；一张 2048 原图约等于二十页文字。所以传二十张高清图，等于把四十页文档塞进上下文——贵，而且会挤掉别的信息。</p>
-<p>省钱的土办法：传图前先缩到必要尺寸、裁掉无关区域。但有个反向的例外——文档截图反而要给足分辨率，图里的字一旦糊了，模型就永远读不对，这时候省下的 token 会以「答错重试」的形式加倍还回去。</p>
-<h3 id="声音比图片更贵25-毫秒一帧"><a class="markdownIt-Anchor" href="#声音比图片更贵25-毫秒一帧"></a> 声音比图片更「贵」：25 毫秒一帧</h3>
-<p>声音本来就是连续的波，所以按时间切成小段：每二十五毫秒切一帧，每一帧转成一张频谱图，再变成一个向量。一秒钟四十帧，一分钟两千四百帧。</p>
-<p>对比一下：一分钟文字大约两百字，折算几百 token；一分钟语音十六 kHz，两千四百帧，折算下来是数量级的差距。语音贵在帧率——说一句话的时间，模型要处理几百个「图」。这就是语音对话按分钟收费、而不是按字数收费的根本原因。</p>
-<h3 id="视频是图片的平方"><a class="markdownIt-Anchor" href="#视频是图片的平方"></a> 视频是图片的平方</h3>
-<p>它不是「很多张图加起来」，而是直接指数爆炸。两秒视频按三十帧每秒是六十帧，每帧上千 token，合计几万 token，相当于二十页文档，只换来两秒画面。</p>
-<p>所以视频理解必须做减法，四个手段：降帧率，三十帧抽到一到两帧；降分辨率，短边压到三百三十六；时间合并，相邻帧融合成一帧；只看关键段，先定位再细看。</p>
-<p>视频理解的本质不是「模型够不够大」，而是「抽帧策略对不对」——这一条比换模型重要得多。</p>
-<h3 id="输出侧同一句话可以被生成成图-成声-成视频"><a class="markdownIt-Anchor" href="#输出侧同一句话可以被生成成图-成声-成视频"></a> 输出侧：同一句话可以被生成成图、成声、成视频</h3>
-<p>语义空间里，文字、图片、音频都编码成同一套向量表示。编码器把图变成向量，把频谱编码成向量；反过来，解码器能从噪声逐步去噪成图，或者把文字转成声波。生成图片不是「画」出来的，是从噪声里「擦」出来的——这条链路在第十四节会完整拆开。</p>
-<h3 id="四个高频翻车现场"><a class="markdownIt-Anchor" href="#四个高频翻车现场"></a> 四个高频翻车现场</h3>
-<p>根子全在「翻译」那一步。小字看不清：图里八磅的合同条款、表格里的小数点，被压缩后直接糊成一团，模型只能猜。数量数不准：让它数图上有几个苹果、几根柱子，这是它最不擅长的题，精度常低于随手一数。空间关系弱：「左边那个」「上面的按钮」这类指代，它经常对错。压缩失真：聊天软件转发过的图、截图再截图，细节已经丢了，模型看到的是二次污染版本。</p>
-<p>工程解法三条：关键区域单独裁一张高清图再问；要精确数字就让它输出坐标或用 OCR 工具；别用它做计数和精确测量。它不是眼睛，是「隔着毛玻璃看」——把任务设计成它擅长的形状，比换更大的模型有效。</p>
-<h3 id="什么时候用通用多模态什么时候用专用模型"><a class="markdownIt-Anchor" href="#什么时候用通用多模态什么时候用专用模型"></a> 什么时候用通用多模态，什么时候用专用模型</h3>
-<p>通用模型胜在「能解释」，专用模型胜在「够精确」。</p>
-<p>识别图里的文字：通用能读，但排版和小字易错；OCR 逐字精确。语音转文字：通用省事，长音频要分段；ASR 专用更稳更便宜。水果、缺陷、计数：通用容易数错；目标检测和分割模型更可靠。理解场景和意图：通用是强项，能解释；专用做不了。跨模态推理：通用强项，图和文字一起推因果。</p>
-<p>实践里最常见的组合是分层：专用模型负责「取」——OCR 取字、ASR 取话、检测框取位置；通用模型负责「串」——把取出来的东西串起来，回答人真正想问的问题。别指望一个模型包打天下，精确的活交给小专模型，理解的活交给大通用模型。</p>
-<blockquote>
-<p><strong>原来如此</strong>：模型从来不「看」，它只读数字。图片、声音、视频全都被翻译成同一种数字，翻译的精度，就是它「看」的上限。</p>
-</blockquote>
-<hr />
-<blockquote>
-<p>上一集：<a href="/AI/llm101-07.html">七、量化与端侧推理</a> ｜ 下一集：<a href="/AI/llm101-09.html">九、检索</a> ｜ <a href="/AI/7b3f9a21.html">系列总览</a></p>
 </blockquote>
 ]]></content>
       <categories>
@@ -41717,6 +41717,142 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
 <p>这与我在《微软CEO押注AGI，开发者机会与价值捕获重估》里的判断一致。基础能力普及后，机会会向具体场景迁移。记忆游戏同样需要找到一个清晰问题：它究竟替玩家保存什么，帮助玩家理解什么，又允许模型推断到什么程度。</p>
 <p>MyMems 还没有回答这些问题，却把问题推到了游戏设计的正面。若它最终允许玩家控制事实、纠正关系，并看到自己的行动怎样改变世界，重建记忆就会成为玩法。若这些控制始终隐藏在黑箱里，它仍只是一场更昂贵的自动生成。</p>
 <p>我更想看到一款游戏敢于让玩家问：我以为的这段记忆，究竟改变了哪个规则？</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>办公 Agent 的终局不是模型，而是意图工程</title>
+    <url>/AI/419959d4.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="任务拆解决定-agent-能否开工"><a class="markdownIt-Anchor" href="#任务拆解决定-agent-能否开工"></a> 任务拆解决定 Agent 能否开工</h2>
+<p>我最初把办公 Agent 的可靠性看成模型能力问题。模型能理解需求、调用工具、生成结果，就足够完成工作。后来我反复做 Hermes Agent，真正拖慢进度的却是另一件事：系统经常知道用户想做什么，却无法把目标拆成可执行、可验证的步骤。</p>
+<p>“整理一份项目周报”看起来只有一句话。落到系统里，至少要分成查找项目资料、筛选本周进展、核对风险、生成草稿、发送前确认。每一步还要规定输入、输出和失败条件。少一个边界，Agent 就可能把旧数据拼进新周报，或者直接发出一份未经确认的内容。</p>
+<p>这和我在低代码平台、流程引擎和权限管理里遇到的问题很像。页面和模型提供的是能力，流程定义才决定系统会不会走错路。办公 Agent 也一样。模型再强，也不能替代任务状态、完成条件和异常分支。</p>
+<p><span class="hl">可靠办公 Agent 的第一步，是把模糊目标改写成有状态、有完成条件的任务链。</span></p>
+<p>任务拆解还有一个常被忽略的部分：哪些步骤可以自动执行，哪些步骤必须让人确认。发送邮件、删除文件、修改权限，不该沿用普通查询的执行策略。办公场景的可靠性，来自对动作边界的明确约束。</p>
+<blockquote>
+<p>周报任务可以自动生成草稿，发送动作必须等待确认。把两者混在一个提示词里，系统就很难稳定运行。</p>
+</blockquote>
+<p>我到现在也没有一套通用拆解法。任务类型不同，状态定义会变。通用框架最多给出方向，真正可用的规则仍要进入具体业务。</p>
+<h2 id="上下文决定-agent-能否做对"><a class="markdownIt-Anchor" href="#上下文决定-agent-能否做对"></a> 上下文决定 Agent 能否做对</h2>
+<p>我做过 mem-md，也维护过 MemPalace。一个很具体的教训是：记忆系统即使存了内容，也可能找不到当前任务真正需要的那部分。</p>
+<p>mem-md 的召回命中率约为 9%。这个数字并不好看，也暴露了文件系统式记忆方案的实际短板。上下文一多，Agent 很容易抓住名字相近的文件，却漏掉真正相关的约束。</p>
+<blockquote>
+<p>搜到资料不代表理解任务。找错一份旧方案，比暂时找不到资料更危险。</p>
+</blockquote>
+<p>上下文工程至少要解决三个问题。当前任务需要什么，历史记录里哪些内容仍然有效，什么信息缺失时必须发问。《大模型入门 04｜上下文工程与 Agent 可靠性》已经讨论过模型层面的上下文组织。对办公 Agent 来说，这还不够。</p>
+<p>任务上下文要跟着执行状态变化。每完成一步，Agent 都应知道已有结果、未完成事项和失败原因。否则，它会在第二轮重新搜索，或者重复执行已经完成的动作。相关状态必须进入每一步，而不能只留在最初那段需求里。</p>
+<p>我还注意到，办公 Agent 的竞争正在从“能对话”转向“能执行”。公开资料里对 Agent 的讨论也更强调工具使用和工作流。这个变化符合我的实践：用户不会长期欣赏一个解释得很漂亮的回答。他们更关心文件有没有更新、权限有没有收紧、消息有没有准确发出。</p>
+<p><span class="hl">上下文的质量不看装了多少信息，而看当前动作能否只依赖正确的信息。</span></p>
+<p>因此，记忆、检索和上下文组装不能分开建设。记忆负责保存，检索负责筛选，上下文负责把此刻真正需要的内容送到模型面前。任何一环偏差，结果都会漂移。</p>
+<h2 id="权限闭环决定-agent-能否交付"><a class="markdownIt-Anchor" href="#权限闭环决定-agent-能否交付"></a> 权限闭环决定 Agent 能否交付</h2>
+<p>办公 Agent 的终局不会由一次任务的成功率决定。长期使用后，用户更在意三件事：它做错过什么，它能看见什么，它未经确认能做什么。</p>
+<p>这要求权限控制进入执行闭环。读取信息、修改内容、对外发送，应采用不同授权等级。临时查询可以自动执行，敏感读取需要留痕，影响外部系统的动作需要二次确认。每次授权还要有时间范围和资源范围，不能把一次批准变成永久通行证。</p>
+<p>我以前做权限管理时，很容易把它理解为后台配置页面的功能。Agent 出现后，这个看法需要更新。权限不再只是界面上某个人能否勾选某项功能，而是模型每生成一个动作时，系统能否根据当前任务、当前资源和当前授权作出判断。</p>
+<blockquote>
+<p>一次授权只能覆盖一次明确动作。把“允许发送”扩展成“允许以后发送”，是办公 Agent 最危险的权限漂移。</p>
+</blockquote>
+<p>闭环还需要回执。Agent 执行工具后，要记录请求、授权、结果和异常。用户应该能知道改了什么，也能撤销尚未完成的动作。飞书卡片、审批流和日志系统，都可以承担这种回执与控制职责。</p>
+<p>我还关注模型路由，但它只解决执行引擎的选择。上周在《多模型路由只是入口，办公 Agent 胜负取决于意图理解》里，我写下“多模型接入能解决‘用哪个模型’，解决不了‘用户到底想做什么’”。这次我的判断更具体：意图还要被翻译成任务状态、上下文边界和权限动作，三者缺一不可。</p>
+<p><span class="hl">意图工程负责让系统理解目标，权限闭环负责让系统承担后果。</span></p>
+<p>这两个层次共同决定办公 Agent 能否交付。模型能力决定它偶尔能走多远，系统设计决定它每天能否稳定工作。接下来的问题也许更尖锐：当 Agent 可以读资料、调工具、发消息时，我们究竟应该把哪些决定继续留给人类，哪些决定可以安全交出去？</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>AI公司上市窗口取决于资本供给而非竞争排序</title>
+    <url>/%E9%87%91%E8%9E%8D/5e1157cb.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="模型排名解释不了上市窗口"><a class="markdownIt-Anchor" href="#模型排名解释不了上市窗口"></a> 模型排名解释不了上市窗口</h2>
+<p>AI 公司的上市窗口，取决于资本供给。模型竞争只能决定谁能留在桌上，资本供给决定谁能把桌子搬到交易所。</p>
+<p>Sam Altman 对 Anthropic 上市的判断，很容易被读成一句产品评论。模型更强、收入更稳、行业地位更清楚，上市自然会更近。可这类判断忽略了一个变量：愿意为远期收入付多少钱的人还在不在场。</p>
+<p>我认同他的关注方向。资本确实比模型榜单更能解释上市时间。但我更在意另一个问题。市场究竟在奖励可见的增长，还是在奖励能被理解的增长？</p>
+<blockquote>
+<p>上市讨论的起点不是技术领先，而是资本愿意接受多长的等待期。</p>
+</blockquote>
+<h2 id="资本供给决定交易能按什么价格谈"><a class="markdownIt-Anchor" href="#资本供给决定交易能按什么价格谈"></a> 资本供给决定交易能按什么价格谈</h2>
+<p>模型竞争提供叙事，资本供给决定叙事的折现速度。</p>
+<p>假设两家公司能力接近。一家已有稳定的商业化信号，另一家仍要证明产品能持续被使用。它们的技术差距可能没有想象中大，融资条件却会明显不同。后者需要更确定的收入、更清楚的客户关系，也需要更短的兑现周期。</p>
+<p>这类差异很少出现在模型评测榜上。榜单擅长回答谁在当前任务中表现更好，难以回答谁能把能力重复卖给客户。</p>
+<p>资本供给收缩时，标准会变短。新资金减少，老股东更谨慎，投资人开始追问回款路径。远期想象仍有价值，但解释成本会迅速上升。原本可以靠产品领先撑住的公司，也可能被要求提前兑现。</p>
+<p>这也是模型竞争和上市之间常被压缩的因果关系。领先会带来关注，关注会带来融资，融资又会延长公司承受失败的余地。资本在这里不是排名之后的装饰，它会反过来改变研发节奏、客户选择和上市准备。</p>
+<blockquote>
+<p><span class="hl">资本供给决定公司是否有资格继续等待。</span></p>
+</blockquote>
+<p>Anthropic 若准备上市，真正要面对的不会只是能力排名。市场还要判断模型优势能否转成收入，收入能否覆盖持续投入，以及这类投入需要多少耐心。</p>
+<h2 id="我更关心资本如何选择远期"><a class="markdownIt-Anchor" href="#我更关心资本如何选择远期"></a> 我更关心资本如何选择远期</h2>
+<p>市场喜欢增长，也喜欢确定性。两者发生冲突时，确定性通常更受重视。</p>
+<p>这会带来一个反直觉结果。模型能力更强的公司未必更接近上市。若它需要投入更长时间才能证明商业价值，资本可能要求更明确的阶段性成果。能力稍弱、商业路径更清楚的公司，反而可能先完成交易。</p>
+<p>我写《波士顿证明，创始人无需硅谷地址也能做成大事》（2026）时，关注的是创业网络地点与资源获取。这个问题放到 AI 上市上依然成立。决定交易能否发生的，不只是公司当前站在哪里，还包括它能接触到哪类资本。</p>
+<p>传统金融中心集中了更密集的资本关系。那里更容易找到愿意理解长期技术投入的人，也更容易把技术进展包装成可讨论的交易。可这不代表大城市天然更有效率。资本网络越密，对回报周期的要求也可能越清楚。</p>
+<p>资本不会永久保持耐心。供给增加时，它会追逐远期项目。供给减少时，它会向现金流靠拢。模型竞争提供公司之间的相对位置，资本周期决定这个位置值多少钱。</p>
+<blockquote>
+<p><span class="hl">能力决定选择权，资本周期决定兑现时间。</span></p>
+</blockquote>
+<h2 id="估值不是技术成绩单"><a class="markdownIt-Anchor" href="#估值不是技术成绩单"></a> 估值不是技术成绩单</h2>
+<p>Sam Altman 的判断若用于讨论 Anthropic 的上市窗口，最值得追踪的是资本结构怎样变化。</p>
+<p>谁在提供资金，资金的期限多长，能承受多长的验证周期，这些问题会直接落到估值上。模型榜单提供技术信号，商业收入提供经营信号，资本结构提供时间信号。上市讨论需要三者同时成立。</p>
+<p>我到今天仍未完全想明白，公开市场最终会给模型能力多高的溢价。技术领先很容易被看见，成本下降却常被忽略。持续训练、基础设施投入和产品迭代会长期消耗现金。收入曲线看起来向上，不代表公司已经获得稳定的自我供给能力。</p>
+<p>资本供给旺盛时，市场愿意暂时忽略这些问题。供给收紧后，这些细节会重新回到桌面。</p>
+<p>我也在推自己的 Hermes Atlas，仍卡在三个问题：解决什么问题、谁付钱、怎么收钱。技术能不能做出来，与产品能否被持续购买，是两道不同的题。AI 公司上市面对的也是同一道题，只是金额更大。</p>
+<blockquote>
+<p><span class="hl">模型竞争回答谁能进入候选名单，资本供给回答候选名单能否变成定价。</span></p>
+</blockquote>
+<p>上市窗口来自资本愿意等待多久。模型竞争会影响这段等待有多长，却无法单独决定窗口何时打开。</p>
+<p>下一个值得观察的信号，或许不是哪家公司的模型又超过了谁，而是资金是否愿意继续购买远期。</p>
+]]></content>
+      <categories>
+        <category>金融</category>
+      </categories>
+      <tags>
+        <tag>金融</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>官方包被劫持说明AI开源信任链已从代码转向发布链</title>
+    <url>/AI/6b8dcd72.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="恶意代码装上就能跑防线必须前移"><a class="markdownIt-Anchor" href="#恶意代码装上就能跑防线必须前移"></a> 恶意代码装上就能跑，防线必须前移</h2>
+<p>这次被劫持的 <code>agent-framework</code>，攻击面比“代码里藏了后门”更靠前。恶意程序不需要被导入。只要 Python 解释器启动，代码就能运行。</p>
+<p>微软托管在 PyPI 上的这个包，每月下载量近 20 万次。受影响版本是 v1.26.1 和 1.26.2。它会寻找 Azure、Git、Docker、Hugging Face 等服务上的环境变量、凭据文件和其它敏感信息。</p>
+<blockquote>
+<p>20 万次月下载，意味着一次供应链事故可以同时进入大量开发机、CI 任务和自动化环境。</p>
+</blockquote>
+<p>我最初关注的重点是“微软官方包也会被劫持”。看到安装即触发后，我把问题改成了：开发者凭什么相信一次安装，没有执行来自官方仓库的陌生代码？</p>
+<p>答案很直接。仓库名称、下载量和官方身份，都无法证明这次下载的内容可信。</p>
+<p><span class="hl">代码审查解决不了发布链上的信任断裂，因为攻击者替换的可能是代码进入机器的入口。</span></p>
+<p>这件事也让我想起 2026 年 11 月 13 日写的《所有客户凭据与代币被盗，暴露的是加密钱包的系统性信任危机》。那篇文章讨论了凭据与令牌集中失守后的系统风险。本次事件更靠前一步：恶意代码先进入开发环境，再寻找凭据。</p>
+<p>区别在于，加密钱包事故暴露的是既有账户体系的问题。包劫持利用的是发布流程的缺口。它甚至不需要修改应用的业务逻辑。</p>
+<h2 id="签名只能证明身份构建记录才能解释来源"><a class="markdownIt-Anchor" href="#签名只能证明身份构建记录才能解释来源"></a> 签名只能证明身份，构建记录才能解释来源</h2>
+<p>依赖签名值得做，但它不能独自回答发布链上的全部问题。</p>
+<p>签名可以回答“这个构件由谁签发”“内容是否被篡改”。它无法自动证明源码仓库没有被污染，构建环境没有被替换，发布账号没有被盗，流水线也没有把错误产物推上去了。</p>
+<p>我更关心的是一条构件能否回答完整的问题：对应哪次提交，由什么构建器生成，在什么环境编译，产出了哪些文件，测试是否通过，最后由谁批准发布。</p>
+<p>这要求构建溯源覆盖整条链路。标签、构建记录和部署证明需要相互绑定，验证工具也需要把失败变成阻断结果。</p>
+<blockquote>
+<p>一份孤立的“签名有效”证明，只覆盖文件完整性，不覆盖文件来源。</p>
+</blockquote>
+<p>依赖锁定、哈希校验、私有包索引和隔离构建也各有作用。依赖锁定能减少版本漂移，哈希校验能发现文件变化，私有索引能减少外部投毒，隔离构建则限制恶意安装脚本接触凭据。</p>
+<p>但这些措施叠加起来，也未必能覆盖一个被污染后的官方流水线。真正的零信任发布机制，要求验证身份与权限逐项检查。构建器身份、源码状态、制品摘要和发布权限都要分别验证，不能因为某一步通过了，就默认后续步骤都可信。</p>
+<p><span class="hl">零信任发布的重点，是让每个发布身份只拥有完成当前任务所需的最小权限。</span></p>
+<p>如果一个 CI 账号既能读取全部源码密钥，又能上传最终制品，还能操作 PyPI 账号，单点失守就会串起整条链。短期令牌、分离权限、审批发布和可撤销凭证，才可能把损失限制在一次构建或一个版本内。</p>
+<h2 id="官方身份正在变成攻击入口"><a class="markdownIt-Anchor" href="#官方身份正在变成攻击入口"></a> 官方身份正在变成攻击入口</h2>
+<p>微软发言人在调查期间把部分软件包项目设为私有。这个动作能缩小暴露面，却无法恢复已经发生的下载信任。攻击者利用了“官方包”这层信誉，开发者才会降低检查意愿。</p>
+<p>这与 2020 年我写《29岁，再见！》时的关注点很接近。那时我计算过一张只有一格数据的表：保险占年收入 10%，为 1.5 万，反推出年收入是 15w。表格留白逼人承认，很多成本不能靠一句“以后会好”遮过去。</p>
+<p>发布安全同样需要一张空表。没人能保证供应链永不被突破。组织必须提前写明：发现可疑版本后停多久，谁能撤回发布，CI 凭据怎样轮换，开发机怎样隔离，开发者如何确认本地安装的构件。</p>
+<blockquote>
+<p>依赖每月下载 20 万次，事故响应不能等讨论结束才启动。</p>
+</blockquote>
+<p>对使用 PyPI 包的企业和开发者，我建议先做三件事：锁定版本并保存构件哈希，清理 CI 中的长期令牌，把安装步骤放进权限受限的临时环境。对发布方而言，签名、溯源和最小权限要一起部署。只贴签名，没有降低攻击者利用官方身份的空间。</p>
+<p>这类事故常被归为“供应链攻击”，讨论也容易停在换掉恶意版本。可真正需要修复的是发布链。攻击者下次仍会从相似位置进入。</p>
+<p>我到现在也没搞明白，PyPI 这类公共基础设施能否承载越来越多关键 AI 依赖，又不让发布权限成为系统里最大的单点。</p>
+<p>也许下一个版本发布时，我们首先核验的对象，已经不只是代码。</p>
 ]]></content>
       <categories>
         <category>AI</category>
