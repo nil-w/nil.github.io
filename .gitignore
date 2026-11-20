@@ -25,6 +25,16 @@
 .history
 node_modules
 dist
+# 第三方库的 dist 产物必须随源码入库（2026-11-20 修复）
+# 上一条 `dist` 规则会连 source/js/**/dist 一起忽略，于是 reveal.js/dist
+# 只存在于本地磁盘：清工作区或换机器重建 hexo 后，public/js/reveal.js/dist
+# 整个消失，4 个 slide 页面引用的 reveal.js / reveal.css / reset.css 全部 404。
+# hexo generate 的 skip_render 只保证「不渲染」，不保证「目录存在」——
+# 源文件没了，产物就没了，deploy 再把缺文件的 master 推上去。
+!source/js/reveal.js/dist/
+!source/js/reveal.js/dist/**
+!source/js/revealjs-animated/dist/
+!source/js/revealjs-animated/dist/**
 # Log files
 npm-debug.log*
 yarn-debug.log*
