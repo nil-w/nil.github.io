@@ -751,12 +751,12 @@
     <title>路</title>
     <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-        <div id="aplayer-gqlMtSYd" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-ErmlliIM" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-gqlMtSYd"),
+            element: document.getElementById("aplayer-ErmlliIM"),
             narrow: false,
             autoplay: true,
             showlrc: false,
@@ -11071,242 +11071,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
-    <title>笔记1-《统计思维：程序员数学之概率统计》程序员的统计思维</title>
-    <url>/%E5%AD%A6%E4%B9%A0/8b4e29d7.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="程序员的统计思维"><a class="markdownIt-Anchor" href="#程序员的统计思维"></a> 程序员的统计思维</h2>
-<span id="more"></span>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>本书的定位</p>
-<ul class="lvl-2">
-<li class="lvl-4">「本书讨论如何将数据转换为知识。数据是廉价的（至少相对而言如此），但知识却异常宝贵。」</li>
-<li class="lvl-4">三门相互关联的学科
-<ul class="lvl-4">
-<li class="lvl-6"><strong>概率论</strong>：研究随机事件，量化「可能」与「不可能」</li>
-<li class="lvl-6"><strong>统计学</strong>：根据数据样本推测总情况，大部分统计分析都基于概率</li>
-<li class="lvl-6"><strong>计算</strong>：量化分析的最佳工具，计算实验有助于理解概率论和统计学中的概念</li>
-</ul>
-</li>
-<li class="lvl-4">主要目的：<strong>让懂编程的人通过编程来理解概率论和统计学</strong>
-<ul class="lvl-4">
-<li class="lvl-6">很多概念从数学角度很难理解，但用计算方法就比较容易</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="lvl-2">
-<p>1.1 第一个孩子出生晚吗</p>
-<ul class="lvl-2">
-<li class="lvl-4">
-<p>问题的来源</p>
-<ul class="lvl-4">
-<li class="lvl-6">「第一胎多在预产期后出生吗？」</li>
-<li class="lvl-6">Google 搜索会看到大量讨论：有人说确实如此，有人说没根据，还有人持完全相反的观点</li>
-<li class="lvl-6">常见论据举例
-<ul class="lvl-6">
-<li class="lvl-8">「我有两个朋友最近都刚生了第一个孩子，两个宝宝的出生时间都比预产期晚了差不多两周。」</li>
-<li class="lvl-8">「我的第一个孩子晚了两周才出生，我想我的第二个孩子会提前两周。」</li>
-<li class="lvl-8">「我觉得这没道理，因为我姐姐是我妈妈的第一个孩子，她就提前出生了。」</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="lvl-4">
-<p>经验之谈（anecdotal evidence）的四个缺陷</p>
-<ul class="lvl-4">
-<li class="lvl-6"><strong>观察的数量太少</strong>
-<ul class="lvl-6">
-<li class="lvl-8">第一胎婴儿的妊娠期比较长，但这种差异可能在自然波动范围内</li>
-<li class="lvl-8">需要比较大量孕妇的妊娠期数据才能判断差异是否真的存在</li>
-</ul>
-</li>
-<li class="lvl-6"><strong>选择偏差</strong>
-<ul class="lvl-6">
-<li class="lvl-8">第一胎婴儿出生比较晚的父母会更有兴趣加入这样的讨论</li>
-<li class="lvl-8">对数据进行选择的过程导致结果不准确</li>
-</ul>
-</li>
-<li class="lvl-6"><strong>确认偏差</strong>
-<ul class="lvl-6">
-<li class="lvl-8">相信这种说法的人会提供支持示例，怀疑这种说法的人则会引用反例</li>
-</ul>
-</li>
-<li class="lvl-6"><strong>不准确</strong>
-<ul class="lvl-6">
-<li class="lvl-8">传闻通常都是个人经历，在记忆、表述和复述等方面都不准确</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="lvl-4">
-<p>更好的做法：1.2 统计方法</p>
-<ul class="lvl-4">
-<li class="lvl-6"><strong>收集数据</strong>：使用大型全国性调查的数据</li>
-<li class="lvl-6"><strong>描述性统计</strong>：计算能总结数据的统计量，评测各种数据可视化的方法</li>
-<li class="lvl-6"><strong>探索性数据分析</strong>：寻找模式、差异和能解答问题的特征，检查不一致性并确认局限性</li>
-<li class="lvl-6"><strong>假设检验</strong>：评判观察到的影响是否真实，即是否由随机因素造成</li>
-<li class="lvl-6"><strong>估计</strong>：用样本数据推断全部人口的特征</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="lvl-2">
-<p>1.3 全国家庭成长调查（NSFG）</p>
-<ul class="lvl-2">
-<li class="lvl-4">
-<p>调查概况</p>
-<ul class="lvl-4">
-<li class="lvl-6">美国疾病控制与预防中心（CDC）从 1973 年开始推行 NSFG</li>
-<li class="lvl-6">目的是收集（美国）「家庭的生活、婚姻状况、生育、避孕和男女健康信息」</li>
-<li class="lvl-6">调查对象是 15 到 44 岁的美国人</li>
-<li class="lvl-6">本书使用 Cycle 6 数据，收集于 2002 年 1 月到 2003 年 3 月</li>
-</ul>
-</li>
-<li class="lvl-4">
-<p>横断面研究 vs 纵贯研究</p>
-<ul class="lvl-4">
-<li class="lvl-6"><strong>横断面研究</strong>（cross-sectional study）：数据是一群人在某个时间点的情况</li>
-<li class="lvl-6"><strong>纵贯研究</strong>（longitudinal study）：在一段时间内反复观察同一群人</li>
-<li class="lvl-6">NSFG 已经进行了 7 次，每次称为一个周期（cycle），但它<strong>不是</strong>纵贯研究</li>
-</ul>
-</li>
-<li class="lvl-4">
-<p>代表性与过采样</p>
-<ul class="lvl-4">
-<li class="lvl-6">通常横断面研究意味着<strong>代表性</strong> —— 目标人群中的每个人都有同等的几率参与调查</li>
-<li class="lvl-6">实际上很难实现这种理想状况，但执行调查的人会尽可能做到</li>
-<li class="lvl-6"><strong>NSFG 不具有代表性，而是有意进行了过采样</strong>（oversample）
-<ul class="lvl-6">
-<li class="lvl-8">西班牙裔、非裔美国人和青少年的比例都高于他们在美国人口中的比例</li>
-<li class="lvl-8">过采样是为了确保其中被调查者数量够大，从而得到有效的统计推断</li>
-</ul>
-</li>
-<li class="lvl-6">代价：过采样增大了根据调查结果推断全体人口结论的难度</li>
-</ul>
-</li>
-<li class="lvl-4">
-<p>1.4 表和记录</p>
-<ul class="lvl-4">
-<li class="lvl-6">
-<p>数据库术语</p>
-<ul class="lvl-6">
-<li class="lvl-8">被调查者文件中的每一行表示一个被调查者，这行信息称为一条<strong>记录</strong>（record）</li>
-<li class="lvl-8">组成记录的变量称为<strong>字段</strong>（field）</li>
-<li class="lvl-8">若干记录的集合组成一个<strong>表</strong>（table）</li>
-<li class="lvl-8"><code>Record</code> 有两个子类：<code>Respondent</code>（被调查者）和 <code>Pregnancy</code>（怀孕记录）</li>
-<li class="lvl-8"><code>Table</code> 有两个子类：<code>Respondents</code> 和 <code>Pregnancies</code></li>
-<li class="lvl-8"><code>Table.records</code> 是一个 Record 对象的列表</li>
-<li class="lvl-8"><code>GetFields</code> 返回字段元组列表，每个元组含四项：field、start、end、转换函数</li>
-</ul>
-</li>
-<li class="lvl-6">
-<p>Pregnancies.GetFields 的字段含义</p>
-<table>
-<thead>
-<tr>
-<th>字段</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>caseid</code></td>
-<td>被调查者的整数 ID</td>
-</tr>
-<tr>
-<td><code>prglength</code></td>
-<td>怀孕周期，单位是周</td>
-</tr>
-<tr>
-<td><code>outcome</code></td>
-<td>怀孕结果的整数代码，代码 1 表示活婴</td>
-</tr>
-<tr>
-<td><code>birthord</code></td>
-<td>正常出生的婴儿的顺序，第一胎编号是 1</td>
-</tr>
-<tr>
-<td><code>finalwgt</code></td>
-<td>统计权重，该被调查者代表的人群在美国总人口中的比例</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="lvl-6">
-<p>字段元组的四个元素</p>
-<ul class="lvl-6">
-<li class="lvl-8"><strong>field</strong>：保存该字段属性的名称，用 NSFG 编码手册中的名称，全小写</li>
-<li class="lvl-8"><strong>start</strong>：该字段的起始列编号</li>
-<li class="lvl-8"><strong>end</strong>：结束列编号 —— <strong>跟 Python 中不一样，这里的结束列也是该字段的一部分</strong></li>
-<li class="lvl-8"><strong>转换函数</strong>：把字符串转换成其他类型；转换失败则属性值为字符串 <code>'NA'</code></li>
-</ul>
-</li>
-<li class="lvl-6">
-<p>重编码（recode）</p>
-<ul class="lvl-6">
-<li class="lvl-8">变量大部分都经过了重编码 —— 原始采集数据经过计算之后得到的值</li>
-<li class="lvl-8">例：第一胎活婴的 <code>prglength</code>，原始数据有 <code>wksgest</code>（妊娠周数）时就等于该变量的值，否则用 <code>mosgest * 4.33</code>（妊娠月数 × 每月平均周数）估计</li>
-<li class="lvl-8">重编码通常遵循<strong>数据一致性和准确性</strong>原则</li>
-<li class="lvl-8">除非有特别原因一定要用原始数据，否则应该直接使用重编码后的数据</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="这本书和程序员的数学的区别"><a class="markdownIt-Anchor" href="#这本书和程序员的数学的区别"></a> 这本书和《程序员的数学》的区别</h2>
-<p>同样是「程序员学数学」，两本书的切入点完全不同：</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>《程序员的数学》（结城浩）</th>
-<th>《统计思维》（Downey）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>切入</td>
-<td>具体的数学问题（进位、归纳法、七桥）</td>
-<td>真实数据集（NSFG 调查数据）</td>
-</tr>
-<tr>
-<td>工具</td>
-<td>Ruby 验证算法</td>
-<td>Python 分析数据</td>
-</tr>
-<tr>
-<td>目标</td>
-<td>理解数学概念本身</td>
-<td>把数据变成知识</td>
-</tr>
-<tr>
-<td>语气</td>
-<td>「知其所以然」</td>
-<td>「让懂编程的人通过编程来理解」</td>
-</tr>
-</tbody>
-</table>
-<p>前者是<strong>数学家的写法</strong> —— 先讲定义再推性质；后者是<strong>工程师的写法</strong> —— 先有数据和现象再回头解释。</p>
-<h2 id="一个数字陷阱"><a class="markdownIt-Anchor" href="#一个数字陷阱"></a> 一个数字陷阱</h2>
-<p>作者自己就演示了汇总统计量有多危险。三个装饰南瓜各 1 磅、两个制饼南瓜各 3 磅、一个巨型南瓜 591 磅：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line">pumpkins = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">591</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">mean</span>(<span class="params">xs</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sum</span>(xs) / <span class="built_in">len</span>(xs)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">var</span>(<span class="params">xs, mu=<span class="literal">None</span></span>):</span><br><span class="line">    mu = mean(xs) <span class="keyword">if</span> mu <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">else</span> mu</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sum</span>((x - mu) ** <span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> xs) / <span class="built_in">len</span>(xs)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stdev</span>(<span class="params">xs, mu=<span class="literal">None</span></span>):</span><br><span class="line">    <span class="keyword">return</span> math.sqrt(var(xs, mu))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">median</span>(<span class="params">xs</span>):</span><br><span class="line">    s = <span class="built_in">sorted</span>(xs)</span><br><span class="line">    n = <span class="built_in">len</span>(s)</span><br><span class="line">    mid = n // <span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> s[mid] <span class="keyword">if</span> n % <span class="number">2</span> <span class="keyword">else</span> (s[mid - <span class="number">1</span>] + s[mid]) / <span class="number">2</span></span><br><span class="line"></span><br><span class="line">mu = mean(pumpkins)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;样本: <span class="subst">&#123;pumpkins&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;均值 = <span class="subst">&#123;mu&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;方差 = <span class="subst">&#123;var(pumpkins)&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;标准差 = <span class="subst">&#123;stdev(pumpkins)&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;中位数 = <span class="subst">&#123;median(pumpkins)&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">样本: [1, 1, 3, 3, 591]</span><br><span class="line">均值 = 119.8</span><br><span class="line">方差 = 55508.159999999996</span><br><span class="line">标准差 = 235.60169778675194</span><br><span class="line">中位数 = 3</span><br></pre></td></tr></table></figure>
-<p>均值 119.8 磅，但<strong>这里没有「典型」的南瓜</strong> —— 一个 591 磅的巨型南瓜把均值整个拽走了。众数是 3 磅（4 个南瓜），中位数 3 磅。</p>
-<p>作者的话：「如果我告诉你『我种的南瓜的平均重量是 100 磅』，那就有问题了，至少这也是一种误导。」</p>
-<p>这就是下一章要展开的主线：均值、方差、中位数各自的适用边界，以及为什么要看分布而不是看汇总统计量。</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>概率</tag>
-        <tag>统计</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>笔记2-《统计思维：程序员数学之概率统计》描述性统计量</title>
     <url>/%E5%AD%A6%E4%B9%A0/c3f17a60.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="描述性统计量"><a class="markdownIt-Anchor" href="#描述性统计量"></a> 描述性统计量</h2>
@@ -11691,6 +11455,242 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </categories>
       <tags>
         <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>笔记1-《统计思维：程序员数学之概率统计》程序员的统计思维</title>
+    <url>/%E5%AD%A6%E4%B9%A0/8b4e29d7.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="程序员的统计思维"><a class="markdownIt-Anchor" href="#程序员的统计思维"></a> 程序员的统计思维</h2>
+<span id="more"></span>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>本书的定位</p>
+<ul class="lvl-2">
+<li class="lvl-4">「本书讨论如何将数据转换为知识。数据是廉价的（至少相对而言如此），但知识却异常宝贵。」</li>
+<li class="lvl-4">三门相互关联的学科
+<ul class="lvl-4">
+<li class="lvl-6"><strong>概率论</strong>：研究随机事件，量化「可能」与「不可能」</li>
+<li class="lvl-6"><strong>统计学</strong>：根据数据样本推测总情况，大部分统计分析都基于概率</li>
+<li class="lvl-6"><strong>计算</strong>：量化分析的最佳工具，计算实验有助于理解概率论和统计学中的概念</li>
+</ul>
+</li>
+<li class="lvl-4">主要目的：<strong>让懂编程的人通过编程来理解概率论和统计学</strong>
+<ul class="lvl-4">
+<li class="lvl-6">很多概念从数学角度很难理解，但用计算方法就比较容易</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>1.1 第一个孩子出生晚吗</p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>问题的来源</p>
+<ul class="lvl-4">
+<li class="lvl-6">「第一胎多在预产期后出生吗？」</li>
+<li class="lvl-6">Google 搜索会看到大量讨论：有人说确实如此，有人说没根据，还有人持完全相反的观点</li>
+<li class="lvl-6">常见论据举例
+<ul class="lvl-6">
+<li class="lvl-8">「我有两个朋友最近都刚生了第一个孩子，两个宝宝的出生时间都比预产期晚了差不多两周。」</li>
+<li class="lvl-8">「我的第一个孩子晚了两周才出生，我想我的第二个孩子会提前两周。」</li>
+<li class="lvl-8">「我觉得这没道理，因为我姐姐是我妈妈的第一个孩子，她就提前出生了。」</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="lvl-4">
+<p>经验之谈（anecdotal evidence）的四个缺陷</p>
+<ul class="lvl-4">
+<li class="lvl-6"><strong>观察的数量太少</strong>
+<ul class="lvl-6">
+<li class="lvl-8">第一胎婴儿的妊娠期比较长，但这种差异可能在自然波动范围内</li>
+<li class="lvl-8">需要比较大量孕妇的妊娠期数据才能判断差异是否真的存在</li>
+</ul>
+</li>
+<li class="lvl-6"><strong>选择偏差</strong>
+<ul class="lvl-6">
+<li class="lvl-8">第一胎婴儿出生比较晚的父母会更有兴趣加入这样的讨论</li>
+<li class="lvl-8">对数据进行选择的过程导致结果不准确</li>
+</ul>
+</li>
+<li class="lvl-6"><strong>确认偏差</strong>
+<ul class="lvl-6">
+<li class="lvl-8">相信这种说法的人会提供支持示例，怀疑这种说法的人则会引用反例</li>
+</ul>
+</li>
+<li class="lvl-6"><strong>不准确</strong>
+<ul class="lvl-6">
+<li class="lvl-8">传闻通常都是个人经历，在记忆、表述和复述等方面都不准确</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="lvl-4">
+<p>更好的做法：1.2 统计方法</p>
+<ul class="lvl-4">
+<li class="lvl-6"><strong>收集数据</strong>：使用大型全国性调查的数据</li>
+<li class="lvl-6"><strong>描述性统计</strong>：计算能总结数据的统计量，评测各种数据可视化的方法</li>
+<li class="lvl-6"><strong>探索性数据分析</strong>：寻找模式、差异和能解答问题的特征，检查不一致性并确认局限性</li>
+<li class="lvl-6"><strong>假设检验</strong>：评判观察到的影响是否真实，即是否由随机因素造成</li>
+<li class="lvl-6"><strong>估计</strong>：用样本数据推断全部人口的特征</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>1.3 全国家庭成长调查（NSFG）</p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>调查概况</p>
+<ul class="lvl-4">
+<li class="lvl-6">美国疾病控制与预防中心（CDC）从 1973 年开始推行 NSFG</li>
+<li class="lvl-6">目的是收集（美国）「家庭的生活、婚姻状况、生育、避孕和男女健康信息」</li>
+<li class="lvl-6">调查对象是 15 到 44 岁的美国人</li>
+<li class="lvl-6">本书使用 Cycle 6 数据，收集于 2002 年 1 月到 2003 年 3 月</li>
+</ul>
+</li>
+<li class="lvl-4">
+<p>横断面研究 vs 纵贯研究</p>
+<ul class="lvl-4">
+<li class="lvl-6"><strong>横断面研究</strong>（cross-sectional study）：数据是一群人在某个时间点的情况</li>
+<li class="lvl-6"><strong>纵贯研究</strong>（longitudinal study）：在一段时间内反复观察同一群人</li>
+<li class="lvl-6">NSFG 已经进行了 7 次，每次称为一个周期（cycle），但它<strong>不是</strong>纵贯研究</li>
+</ul>
+</li>
+<li class="lvl-4">
+<p>代表性与过采样</p>
+<ul class="lvl-4">
+<li class="lvl-6">通常横断面研究意味着<strong>代表性</strong> —— 目标人群中的每个人都有同等的几率参与调查</li>
+<li class="lvl-6">实际上很难实现这种理想状况，但执行调查的人会尽可能做到</li>
+<li class="lvl-6"><strong>NSFG 不具有代表性，而是有意进行了过采样</strong>（oversample）
+<ul class="lvl-6">
+<li class="lvl-8">西班牙裔、非裔美国人和青少年的比例都高于他们在美国人口中的比例</li>
+<li class="lvl-8">过采样是为了确保其中被调查者数量够大，从而得到有效的统计推断</li>
+</ul>
+</li>
+<li class="lvl-6">代价：过采样增大了根据调查结果推断全体人口结论的难度</li>
+</ul>
+</li>
+<li class="lvl-4">
+<p>1.4 表和记录</p>
+<ul class="lvl-4">
+<li class="lvl-6">
+<p>数据库术语</p>
+<ul class="lvl-6">
+<li class="lvl-8">被调查者文件中的每一行表示一个被调查者，这行信息称为一条<strong>记录</strong>（record）</li>
+<li class="lvl-8">组成记录的变量称为<strong>字段</strong>（field）</li>
+<li class="lvl-8">若干记录的集合组成一个<strong>表</strong>（table）</li>
+<li class="lvl-8"><code>Record</code> 有两个子类：<code>Respondent</code>（被调查者）和 <code>Pregnancy</code>（怀孕记录）</li>
+<li class="lvl-8"><code>Table</code> 有两个子类：<code>Respondents</code> 和 <code>Pregnancies</code></li>
+<li class="lvl-8"><code>Table.records</code> 是一个 Record 对象的列表</li>
+<li class="lvl-8"><code>GetFields</code> 返回字段元组列表，每个元组含四项：field、start、end、转换函数</li>
+</ul>
+</li>
+<li class="lvl-6">
+<p>Pregnancies.GetFields 的字段含义</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>caseid</code></td>
+<td>被调查者的整数 ID</td>
+</tr>
+<tr>
+<td><code>prglength</code></td>
+<td>怀孕周期，单位是周</td>
+</tr>
+<tr>
+<td><code>outcome</code></td>
+<td>怀孕结果的整数代码，代码 1 表示活婴</td>
+</tr>
+<tr>
+<td><code>birthord</code></td>
+<td>正常出生的婴儿的顺序，第一胎编号是 1</td>
+</tr>
+<tr>
+<td><code>finalwgt</code></td>
+<td>统计权重，该被调查者代表的人群在美国总人口中的比例</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="lvl-6">
+<p>字段元组的四个元素</p>
+<ul class="lvl-6">
+<li class="lvl-8"><strong>field</strong>：保存该字段属性的名称，用 NSFG 编码手册中的名称，全小写</li>
+<li class="lvl-8"><strong>start</strong>：该字段的起始列编号</li>
+<li class="lvl-8"><strong>end</strong>：结束列编号 —— <strong>跟 Python 中不一样，这里的结束列也是该字段的一部分</strong></li>
+<li class="lvl-8"><strong>转换函数</strong>：把字符串转换成其他类型；转换失败则属性值为字符串 <code>'NA'</code></li>
+</ul>
+</li>
+<li class="lvl-6">
+<p>重编码（recode）</p>
+<ul class="lvl-6">
+<li class="lvl-8">变量大部分都经过了重编码 —— 原始采集数据经过计算之后得到的值</li>
+<li class="lvl-8">例：第一胎活婴的 <code>prglength</code>，原始数据有 <code>wksgest</code>（妊娠周数）时就等于该变量的值，否则用 <code>mosgest * 4.33</code>（妊娠月数 × 每月平均周数）估计</li>
+<li class="lvl-8">重编码通常遵循<strong>数据一致性和准确性</strong>原则</li>
+<li class="lvl-8">除非有特别原因一定要用原始数据，否则应该直接使用重编码后的数据</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="这本书和程序员的数学的区别"><a class="markdownIt-Anchor" href="#这本书和程序员的数学的区别"></a> 这本书和《程序员的数学》的区别</h2>
+<p>同样是「程序员学数学」，两本书的切入点完全不同：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>《程序员的数学》（结城浩）</th>
+<th>《统计思维》（Downey）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>切入</td>
+<td>具体的数学问题（进位、归纳法、七桥）</td>
+<td>真实数据集（NSFG 调查数据）</td>
+</tr>
+<tr>
+<td>工具</td>
+<td>Ruby 验证算法</td>
+<td>Python 分析数据</td>
+</tr>
+<tr>
+<td>目标</td>
+<td>理解数学概念本身</td>
+<td>把数据变成知识</td>
+</tr>
+<tr>
+<td>语气</td>
+<td>「知其所以然」</td>
+<td>「让懂编程的人通过编程来理解」</td>
+</tr>
+</tbody>
+</table>
+<p>前者是<strong>数学家的写法</strong> —— 先讲定义再推性质；后者是<strong>工程师的写法</strong> —— 先有数据和现象再回头解释。</p>
+<h2 id="一个数字陷阱"><a class="markdownIt-Anchor" href="#一个数字陷阱"></a> 一个数字陷阱</h2>
+<p>作者自己就演示了汇总统计量有多危险。三个装饰南瓜各 1 磅、两个制饼南瓜各 3 磅、一个巨型南瓜 591 磅：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line">pumpkins = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">591</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">mean</span>(<span class="params">xs</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sum</span>(xs) / <span class="built_in">len</span>(xs)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">var</span>(<span class="params">xs, mu=<span class="literal">None</span></span>):</span><br><span class="line">    mu = mean(xs) <span class="keyword">if</span> mu <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">else</span> mu</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sum</span>((x - mu) ** <span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> xs) / <span class="built_in">len</span>(xs)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stdev</span>(<span class="params">xs, mu=<span class="literal">None</span></span>):</span><br><span class="line">    <span class="keyword">return</span> math.sqrt(var(xs, mu))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">median</span>(<span class="params">xs</span>):</span><br><span class="line">    s = <span class="built_in">sorted</span>(xs)</span><br><span class="line">    n = <span class="built_in">len</span>(s)</span><br><span class="line">    mid = n // <span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> s[mid] <span class="keyword">if</span> n % <span class="number">2</span> <span class="keyword">else</span> (s[mid - <span class="number">1</span>] + s[mid]) / <span class="number">2</span></span><br><span class="line"></span><br><span class="line">mu = mean(pumpkins)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;样本: <span class="subst">&#123;pumpkins&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;均值 = <span class="subst">&#123;mu&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;方差 = <span class="subst">&#123;var(pumpkins)&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;标准差 = <span class="subst">&#123;stdev(pumpkins)&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;中位数 = <span class="subst">&#123;median(pumpkins)&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">样本: [1, 1, 3, 3, 591]</span><br><span class="line">均值 = 119.8</span><br><span class="line">方差 = 55508.159999999996</span><br><span class="line">标准差 = 235.60169778675194</span><br><span class="line">中位数 = 3</span><br></pre></td></tr></table></figure>
+<p>均值 119.8 磅，但<strong>这里没有「典型」的南瓜</strong> —— 一个 591 磅的巨型南瓜把均值整个拽走了。众数是 3 磅（4 个南瓜），中位数 3 磅。</p>
+<p>作者的话：「如果我告诉你『我种的南瓜的平均重量是 100 磅』，那就有问题了，至少这也是一种误导。」</p>
+<p>这就是下一章要展开的主线：均值、方差、中位数各自的适用边界，以及为什么要看分布而不是看汇总统计量。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>概率</tag>
+        <tag>统计</tag>
       </tags>
   </entry>
   <entry>
@@ -34270,6 +34270,173 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
+    <title>第800小时 01：颁证日</title>
+    <url>/%E5%B0%8F%E8%AF%B4/89b77ed7.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>陶砚用左手把今天的第一块金牌挂上墙。</p>
+<p>金牌很薄，边缘硌手。他把两块牌之间的缝对齐——三厘米，宽度一致，十年前他自己定的标准。去年一个新来的教练挂歪了半厘米，他当着三十个人把牌摘下来重挂。今天没有人挂歪。</p>
+<p>牌留在墙上。带走的是证书。这条规矩是基地建馆那年定的，牌留墙，名字留墙，年份留墙。学员毕业那天拿到的那张纸只有三行：编号、时数、教练签名。有人十年后回来，在墙上一块一块找自己的那一块，从左往右数。</p>
+<p>大厅在基地东侧，层高七米。三百多张折叠椅分六区排开，椅背包着蓝绒布，从 A 区排到 F 区，最后一排空了一半。台侧一张长桌铺着白布，桌上三本台账摞着，最上面那本翻在今年的页，页眉印着「年度时数认证」。空调出风口正对白布中间，把纸吹起一角，苏芮用一支笔压住。</p>
+<p>墙上挂的是时数墙。基地建馆时留的那面墙，两米四高，按年份从左往右排，最右边最新。牌是铜的，表面镀金，边上压印一行编号，背面刻着累计训练小时数，正面刻姓名。青铜和白银的牌小一号，挂在墙的下半截；黄金以上是这块整的，三百多张牌里最亮的那几张，都在这面墙上。</p>
+<p>认证是按时数分级的。青铜 3,000，白银 6,000，黄金 10,000。学员的每一次训练时长由计时器自动记入系统，够线了，运营部核数、刻牌、装袋，年底一次性挂到这面墙上。</p>
+<p>刚才挂上去的第一块是郑维的，10,112 小时。他接牌的时候翻到背面找编号，找到自己教练的那行小字，用指腹蹭了一下，没蹭掉。现在他站在台下第一排边上，证书折成两折塞在裤兜里，手在裤兜外面按着。</p>
+<p>苏芮在台账上写了一行，笔尖没有停顿。</p>
+<p>「主持人有一段词。」她抬起头，「一分半，在颁第二块之前。」</p>
+<p>「念。」</p>
+<p>「写的是『一万小时，改变命运』。」</p>
+<p>「念数字。」</p>
+<p>苏芮看了他两秒。</p>
+<p>「这句话今年还能用，我们就可以把它印在下一批学员的协议扉页上。如果不能用，协议得重写，已经付费还没开课的那批人也要重新寄一份。」</p>
+<p>「协议上写他们买了多少小时，钱进了哪个账户。」</p>
+<p>「但他们买的时候，墙上挂的就是这一句。」</p>
+<p>陶砚没有立刻回答。他把台面上那块白布的角又压了压。</p>
+<p>「念数字。」</p>
+<p>苏芮低下头，在台账边角写了一个词。他隔着两米看不清写的什么，但他认得那种笔尖划过纸面、一路不顿的写法。</p>
+<p>主持人接过话，把那段词删了。剩下的是基地名字、认证年份和三句欢迎。</p>
+<p>「第二位，周昕，10,240 小时。」</p>
+<p>陶砚从盘子里取出金牌，双手递过去。</p>
+<p>周昕二十九岁，练攀岩，指腹上的茧比陶砚还厚。接牌的时候手指在抖。</p>
+<p>「谢谢陶教练。」</p>
+<p>「12 月 3 号那条线路，你练了四十一分钟。」</p>
+<p>「岩点上有水。」</p>
+<p>「水不算理由。你那天其他五条线路，最长的用了八分钟。」</p>
+<p>「我记不清了。」</p>
+<p>「我看了录像。」</p>
+<p>周昕低头看牌。牌沿的漆磕掉一小块，露出底下的铜。她把牌放回盘子里，接过证书，双手捧着。</p>
+<p>陶砚把第二块牌挂上墙。缝还是三厘米。</p>
+<p>台下一片快门声。一个挂着工牌的年轻人举着相机挤到台侧。</p>
+<p>「陶教练，合个影。颁完证到墙前站一张，特写。」</p>
+<p>「金牌挂在墙上。」</p>
+<p>「宣传要特写。人手里拿着牌，比空着手站好看。」</p>
+<p>「牌已经给学员了。」</p>
+<p>年轻人愣了一下，退到一边。陶砚空着手站到时数墙左侧，两脚并拢，肩线平。摄影的人在墙对面蹲下，拍了四张。</p>
+<p>陶砚重新走回台边。第三块牌在他右手边，牌面朝下。他胸前别着工牌，T-07。</p>
+<p>台侧那本台账翻到了名单页。陶砚伸手过去，把纸按平。</p>
+<p>「今年过线的三个。」</p>
+<p>「对。」苏芮说，「如果按去年的口径，应该是四个。多出来的那一位，系统里是 9,989，差 11 小时。」</p>
+<p>「差 11 小时，不算过线。」</p>
+<p>「如果我们现在给他补一场认证，墙上的数字就更好看。如果我们现在不补，他明年还得再来一次。」</p>
+<p>「不补。」</p>
+<p>「如果不补，他 11 月会回来问第二年的价格。他续费的时候，我们就可以把明年的金牌门槛先告诉他。」</p>
+<p>「门槛是 10,000。」</p>
+<p>「我知道门槛是 10,000。」苏芮把台账往自己这边收了一点，「卢总上个月问过我，为什么墙上一年的金牌比一年少。他说今年他把认证大会的直播推给了平台，流量比去年高三倍，如果金牌比一年少，转化页会被投诉。」</p>
+<p>「那就在转化页上写清楚今年过了三个。」</p>
+<p>「写清楚，转化页的数据就会掉。」</p>
+<p>「掉就掉。」</p>
+<p>苏芮没有再争。她在名单页的三个名字底下画了三条横线，笔尖在第三条上多停了一秒。</p>
+<p>「陶教练，」她说，「如果明年过线的是两个人，我们还办这个会吗。」</p>
+<p>「办。」</p>
+<p>「两个人也挂墙。」</p>
+<p>「墙是给人看的，不是给数字看的。」</p>
+<p>苏芮把这一句记下来了。她写字的时候不看他，只看纸。</p>
+<p>就在他把第三块牌拿起来的时候，他看见第一排靠过道的位置上坐着一个人。</p>
+<p>那人大约二十七八岁，穿一件洗得发白的深蓝外套，膝上摊着一张纸，没有应援的灯牌，也没有鼓掌。他从进场起就没看过台上。观众看的是某一块金牌，他看的是整面墙，从左往右，数到某一块停一下，再往右。</p>
+<p>陶砚见过这种数法。他刚进省体校那几年也这么数过，只不过数的是靶纸上的环数。</p>
+<p>「第三位，赵砚青，12,400 小时。」</p>
+<p>掌声起来了。</p>
+<p>赵砚青从最后一排的过道走过来。三十六岁，教练服左胸的口袋插着两支笔，笔帽咬得发白。他走路的时候肩膀不动，像怕多走半步。</p>
+<p>主持人说：「赵砚青，12,400 小时。基地最高时数纪录保持者。」</p>
+<p>陶砚把金牌递过去。赵砚青双手接。</p>
+<p>「师父。」</p>
+<p>「三号馆的灯坏了两盏。」</p>
+<p>「9 号靶位那盏照度不够，上周我提过。」</p>
+<p>「下午换。」</p>
+<p>「换完还是不够。9 号靶位到 25 米线中间被器材柜挡了一块。」</p>
+<p>「我知道。」</p>
+<p>赵砚青把牌翻到背面，看了很久。</p>
+<p>「我系统里是 12,400。」</p>
+<p>「牌上也是 12,400。」</p>
+<p>「牌上没刻我教练的编号。」</p>
+<p>「墙记的是时数。」</p>
+<p>「我十六岁进来，墙上我那一块旁边什么都没有。没有名字后面的编号，也没有年份以外的东西。」</p>
+<p>「墙记的是时数，不是师承。」</p>
+<p>赵砚青把牌翻回正面，没再说话。他把证书接过去，折成两折，放进外套内袋，拉链拉到底。</p>
+<p>陶砚没走开。颁证的队伍往下接上去了，他站在原地。</p>
+<p>「今年练了多少小时。」</p>
+<p>「261。」</p>
+<p>「上个月呢。」</p>
+<p>「94。」</p>
+<p>陶砚点了一下头。不到三小时一天，十二年，一枪不多，一枪不少。他知道赵砚青不会来跟他要第二个数字，也知道这个人能把任何话听成一句「再来八千小时」。</p>
+<p>「12,400 小时。」陶砚说。</p>
+<p>赵砚青抬起头。</p>
+<p>「你今年最差的一枪。」</p>
+<p>赵砚青的嘴动了一下。工作人员在台侧报下一位学员的名字，他没动。</p>
+<p>「去年 9 月 3 号那一组，第八发，7.8 环。」</p>
+<p>「那天之后我加练了两小时。」</p>
+<p>「加练了两小时。」陶砚重复了一遍，「今天也加？」</p>
+<p>「今天加了四个小时。」</p>
+<p>主持人从侧面挤过来，把话筒递向陶砚。</p>
+<p>「陶教练，给最高纪录保持者两句评语，镜头要切到您。」</p>
+<p>陶砚接过话筒。</p>
+<p>「12,400 小时，全基地第一。」</p>
+<p>主持人等了三秒，镜头还对着他。</p>
+<p>「今年到三月，261 小时，2,180 发。去年同期 220 小时，1,906 发。」陶砚说。</p>
+<p>他把话筒交回去。主持人笑了一下，把这半句扩成了三句，说的是坚持，说的是十年磨一剑，说的是岚城基地让普通人也有机会。台下的掌声比刚才响。</p>
+<p>赵砚青站在台侧，一直没有坐下。他的拇指在金牌边缘来回蹭，蹭了十几下，把那层薄漆蹭出一道浅白的痕。</p>
+<p>陶砚把第三块牌挂上墙。缝还是三厘米。</p>
+<p>他退开一步，从左往右看了一遍。今年的位置上是三块。旁边有一块金牌的漆磨掉了，露出铜底。三年前一个练短跑的学员留下的。那人练到第三年走了，证书没领，牌一直挂在这儿。</p>
+<p>一个背着运动包的年轻教练在墙边停下，掏出手机，对着墙拍了一张。</p>
+<p>「拍墙做什么。」</p>
+<p>「我们教练让拍的，说发朋友圈。」</p>
+<p>「拍墙里的人。」</p>
+<p>「那拍哪张。」</p>
+<p>陶砚指了一下赵砚青的那一块。</p>
+<p>「拍这块。墙正中那块。媒体每年都要它。」</p>
+<p>那年轻教练看了他一眼，把手机举起来，对准赵砚青的方向。赵砚青站在台侧没有动，眼睛落在地砖的缝上。</p>
+<p>「墙是给人看的，不是给数字看的。」陶砚说，「牌是铜的。」</p>
+<p>「我知道是铜的。」那年轻教练说，「但墙上写着一万两千四百小时。」</p>
+<p>陶砚没再说话。他把台面白布重新铺平，让第三块牌留下的压痕散开。</p>
+<p>颁证结束。人群往前排涌，椅子腿在地上刮出声音，最后一排有人剥橘子，橘皮味飘到台侧。苏芮合上台账，把三本摞齐，用手掌压了压本子的边。</p>
+<p>台下第一排靠过道的位置空着两个。</p>
+<p>那个年轻男人还坐着，没动。他把膝上那张纸折成两折，塞进外套口袋，站起来。</p>
+<p>然后他抬了手。</p>
+<p>「请问您的一万小时里，有多少小时是失败的？」</p>
+<p>主持人愣了半秒。他把这句话听成了下一个环节的提问。</p>
+<p>问题不大，也不小。</p>
+<p>陶砚听懂了。</p>
+<p>后排有人笑了一声，很短，接着被人按住。主持人举着话筒愣在原地，嘴张着，等一个可以接上去的话。</p>
+<p>「这位朋友，」主持人说，「可能是想说……关于一万小时的训练心得，我们稍后可以在——」</p>
+<p>「他问的是失败。」陶砚说。</p>
+<p>主持人的话断在半截。</p>
+<p>台侧有人往这边走。陶砚把手里剩下的东西交给助理，转身下台。走过第一排的时候，他走的是那条空出来的过道，没有停，也没有看那个人。</p>
+<p>大厅里一共来了三百多人。那个问题只被问了一次。</p>
+<p>台阶下面有风。他站住，把助理手里那叠多余的宣传单接过来，夹在腋下，又放回给助理。</p>
+<p>「陶教练。」一个去年拿过白银的学员追出来，「那个人是谁？」</p>
+<p>「不知道。」</p>
+<p>「我看他坐了一个小时。」</p>
+<p>「我知道。」</p>
+<p>「那他——」</p>
+<p>「他没问你问题。」陶砚说，「他问的是我。」</p>
+<p>那学员还想再说什么，摄影组的人在台阶那头喊集合。陶砚走过去，走之前回头看了一眼大厅。</p>
+<p>第一排空着的两个位置上，一个位置还放着一瓶没拆封的水，是主办方发给贵宾的，瓶身凝着一层水珠。另一个位置有一张被折成两折的纸，掉在椅垫下面，露出一个角。</p>
+<p>他没有下去捡。</p>
+<p>「陶教练，主持人问要不要补一句。」苏芮跟到台边，把台账夹在腋下，「如果补，我们就把『改变命运』那一段加进主持词。如果不补，明天会有人把这个问题发到基地的公开账号下面。」</p>
+<p>「不回。」</p>
+<p>「那如果公开账号下面有三千条评论，我们也可以一条都不回。」</p>
+<p>「一条都不回。」</p>
+<p>苏芮把台账重新摊开，翻到最后一页。</p>
+<p>「那我记一下。」</p>
+<p>「记什么。」</p>
+<p>「提问的人是谁。」她把笔尖点在纸上，「如果后面有人问起，我可以答『这个问题被问过，提问者的名字在这里』。名字要不要写全。」</p>
+<p>陶砚没答。</p>
+<p>他走出大厅，站在台阶上，从口袋里掏出那本黑色硬壳本子，翻开。里面每一页只有两栏：日期，和当天要复查的项目。</p>
+<p>他往后翻。2025 年的那一页，他自己做的记录里没有「失败」这两个字。</p>
+<p>他翻过 2024 年，2023 年，2022 年。</p>
+<p>没有。</p>
+<p>二十年，他记下的是日期、时数、动作、偏差、备注。哪一天练了多少小时，偏差多少，备注一栏永远是「无」。</p>
+<p>那个问题在他这里没有对应的一栏。</p>
+<p>风从台阶下面吹上来，他把本子合上。封面磨得发白，右下角卷起来，是常年在口袋里放出来的形状。</p>
+<p>他重新翻开，在今天这一页的日期下面，写了两个字。</p>
+<p>林野。</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>小说</tag>
+        <tag>第800小时</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>慢车 40：慢车</title>
     <url>/%E5%B0%8F%E8%AF%B4/1d505e47.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>两台117号磁带机并排放在工作台上。</p>
@@ -34733,173 +34900,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       <tags>
         <tag>慢车</tag>
         <tag>小说</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>第800小时 01：颁证日</title>
-    <url>/%E5%B0%8F%E8%AF%B4/89b77ed7.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>陶砚用左手把今天的第一块金牌挂上墙。</p>
-<p>金牌很薄，边缘硌手。他把两块牌之间的缝对齐——三厘米，宽度一致，十年前他自己定的标准。去年一个新来的教练挂歪了半厘米，他当着三十个人把牌摘下来重挂。今天没有人挂歪。</p>
-<p>牌留在墙上。带走的是证书。这条规矩是基地建馆那年定的，牌留墙，名字留墙，年份留墙。学员毕业那天拿到的那张纸只有三行：编号、时数、教练签名。有人十年后回来，在墙上一块一块找自己的那一块，从左往右数。</p>
-<p>大厅在基地东侧，层高七米。三百多张折叠椅分六区排开，椅背包着蓝绒布，从 A 区排到 F 区，最后一排空了一半。台侧一张长桌铺着白布，桌上三本台账摞着，最上面那本翻在今年的页，页眉印着「年度时数认证」。空调出风口正对白布中间，把纸吹起一角，苏芮用一支笔压住。</p>
-<p>墙上挂的是时数墙。基地建馆时留的那面墙，两米四高，按年份从左往右排，最右边最新。牌是铜的，表面镀金，边上压印一行编号，背面刻着累计训练小时数，正面刻姓名。青铜和白银的牌小一号，挂在墙的下半截；黄金以上是这块整的，三百多张牌里最亮的那几张，都在这面墙上。</p>
-<p>认证是按时数分级的。青铜 3,000，白银 6,000，黄金 10,000。学员的每一次训练时长由计时器自动记入系统，够线了，运营部核数、刻牌、装袋，年底一次性挂到这面墙上。</p>
-<p>刚才挂上去的第一块是郑维的，10,112 小时。他接牌的时候翻到背面找编号，找到自己教练的那行小字，用指腹蹭了一下，没蹭掉。现在他站在台下第一排边上，证书折成两折塞在裤兜里，手在裤兜外面按着。</p>
-<p>苏芮在台账上写了一行，笔尖没有停顿。</p>
-<p>「主持人有一段词。」她抬起头，「一分半，在颁第二块之前。」</p>
-<p>「念。」</p>
-<p>「写的是『一万小时，改变命运』。」</p>
-<p>「念数字。」</p>
-<p>苏芮看了他两秒。</p>
-<p>「这句话今年还能用，我们就可以把它印在下一批学员的协议扉页上。如果不能用，协议得重写，已经付费还没开课的那批人也要重新寄一份。」</p>
-<p>「协议上写他们买了多少小时，钱进了哪个账户。」</p>
-<p>「但他们买的时候，墙上挂的就是这一句。」</p>
-<p>陶砚没有立刻回答。他把台面上那块白布的角又压了压。</p>
-<p>「念数字。」</p>
-<p>苏芮低下头，在台账边角写了一个词。他隔着两米看不清写的什么，但他认得那种笔尖划过纸面、一路不顿的写法。</p>
-<p>主持人接过话，把那段词删了。剩下的是基地名字、认证年份和三句欢迎。</p>
-<p>「第二位，周昕，10,240 小时。」</p>
-<p>陶砚从盘子里取出金牌，双手递过去。</p>
-<p>周昕二十九岁，练攀岩，指腹上的茧比陶砚还厚。接牌的时候手指在抖。</p>
-<p>「谢谢陶教练。」</p>
-<p>「12 月 3 号那条线路，你练了四十一分钟。」</p>
-<p>「岩点上有水。」</p>
-<p>「水不算理由。你那天其他五条线路，最长的用了八分钟。」</p>
-<p>「我记不清了。」</p>
-<p>「我看了录像。」</p>
-<p>周昕低头看牌。牌沿的漆磕掉一小块，露出底下的铜。她把牌放回盘子里，接过证书，双手捧着。</p>
-<p>陶砚把第二块牌挂上墙。缝还是三厘米。</p>
-<p>台下一片快门声。一个挂着工牌的年轻人举着相机挤到台侧。</p>
-<p>「陶教练，合个影。颁完证到墙前站一张，特写。」</p>
-<p>「金牌挂在墙上。」</p>
-<p>「宣传要特写。人手里拿着牌，比空着手站好看。」</p>
-<p>「牌已经给学员了。」</p>
-<p>年轻人愣了一下，退到一边。陶砚空着手站到时数墙左侧，两脚并拢，肩线平。摄影的人在墙对面蹲下，拍了四张。</p>
-<p>陶砚重新走回台边。第三块牌在他右手边，牌面朝下。他胸前别着工牌，T-07。</p>
-<p>台侧那本台账翻到了名单页。陶砚伸手过去，把纸按平。</p>
-<p>「今年过线的三个。」</p>
-<p>「对。」苏芮说，「如果按去年的口径，应该是四个。多出来的那一位，系统里是 9,989，差 11 小时。」</p>
-<p>「差 11 小时，不算过线。」</p>
-<p>「如果我们现在给他补一场认证，墙上的数字就更好看。如果我们现在不补，他明年还得再来一次。」</p>
-<p>「不补。」</p>
-<p>「如果不补，他 11 月会回来问第二年的价格。他续费的时候，我们就可以把明年的金牌门槛先告诉他。」</p>
-<p>「门槛是 10,000。」</p>
-<p>「我知道门槛是 10,000。」苏芮把台账往自己这边收了一点，「卢总上个月问过我，为什么墙上一年的金牌比一年少。他说今年他把认证大会的直播推给了平台，流量比去年高三倍，如果金牌比一年少，转化页会被投诉。」</p>
-<p>「那就在转化页上写清楚今年过了三个。」</p>
-<p>「写清楚，转化页的数据就会掉。」</p>
-<p>「掉就掉。」</p>
-<p>苏芮没有再争。她在名单页的三个名字底下画了三条横线，笔尖在第三条上多停了一秒。</p>
-<p>「陶教练，」她说，「如果明年过线的是两个人，我们还办这个会吗。」</p>
-<p>「办。」</p>
-<p>「两个人也挂墙。」</p>
-<p>「墙是给人看的，不是给数字看的。」</p>
-<p>苏芮把这一句记下来了。她写字的时候不看他，只看纸。</p>
-<p>就在他把第三块牌拿起来的时候，他看见第一排靠过道的位置上坐着一个人。</p>
-<p>那人大约二十七八岁，穿一件洗得发白的深蓝外套，膝上摊着一张纸，没有应援的灯牌，也没有鼓掌。他从进场起就没看过台上。观众看的是某一块金牌，他看的是整面墙，从左往右，数到某一块停一下，再往右。</p>
-<p>陶砚见过这种数法。他刚进省体校那几年也这么数过，只不过数的是靶纸上的环数。</p>
-<p>「第三位，赵砚青，12,400 小时。」</p>
-<p>掌声起来了。</p>
-<p>赵砚青从最后一排的过道走过来。三十六岁，教练服左胸的口袋插着两支笔，笔帽咬得发白。他走路的时候肩膀不动，像怕多走半步。</p>
-<p>主持人说：「赵砚青，12,400 小时。基地最高时数纪录保持者。」</p>
-<p>陶砚把金牌递过去。赵砚青双手接。</p>
-<p>「师父。」</p>
-<p>「三号馆的灯坏了两盏。」</p>
-<p>「9 号靶位那盏照度不够，上周我提过。」</p>
-<p>「下午换。」</p>
-<p>「换完还是不够。9 号靶位到 25 米线中间被器材柜挡了一块。」</p>
-<p>「我知道。」</p>
-<p>赵砚青把牌翻到背面，看了很久。</p>
-<p>「我系统里是 12,400。」</p>
-<p>「牌上也是 12,400。」</p>
-<p>「牌上没刻我教练的编号。」</p>
-<p>「墙记的是时数。」</p>
-<p>「我十六岁进来，墙上我那一块旁边什么都没有。没有名字后面的编号，也没有年份以外的东西。」</p>
-<p>「墙记的是时数，不是师承。」</p>
-<p>赵砚青把牌翻回正面，没再说话。他把证书接过去，折成两折，放进外套内袋，拉链拉到底。</p>
-<p>陶砚没走开。颁证的队伍往下接上去了，他站在原地。</p>
-<p>「今年练了多少小时。」</p>
-<p>「261。」</p>
-<p>「上个月呢。」</p>
-<p>「94。」</p>
-<p>陶砚点了一下头。不到三小时一天，十二年，一枪不多，一枪不少。他知道赵砚青不会来跟他要第二个数字，也知道这个人能把任何话听成一句「再来八千小时」。</p>
-<p>「12,400 小时。」陶砚说。</p>
-<p>赵砚青抬起头。</p>
-<p>「你今年最差的一枪。」</p>
-<p>赵砚青的嘴动了一下。工作人员在台侧报下一位学员的名字，他没动。</p>
-<p>「去年 9 月 3 号那一组，第八发，7.8 环。」</p>
-<p>「那天之后我加练了两小时。」</p>
-<p>「加练了两小时。」陶砚重复了一遍，「今天也加？」</p>
-<p>「今天加了四个小时。」</p>
-<p>主持人从侧面挤过来，把话筒递向陶砚。</p>
-<p>「陶教练，给最高纪录保持者两句评语，镜头要切到您。」</p>
-<p>陶砚接过话筒。</p>
-<p>「12,400 小时，全基地第一。」</p>
-<p>主持人等了三秒，镜头还对着他。</p>
-<p>「今年到三月，261 小时，2,180 发。去年同期 220 小时，1,906 发。」陶砚说。</p>
-<p>他把话筒交回去。主持人笑了一下，把这半句扩成了三句，说的是坚持，说的是十年磨一剑，说的是岚城基地让普通人也有机会。台下的掌声比刚才响。</p>
-<p>赵砚青站在台侧，一直没有坐下。他的拇指在金牌边缘来回蹭，蹭了十几下，把那层薄漆蹭出一道浅白的痕。</p>
-<p>陶砚把第三块牌挂上墙。缝还是三厘米。</p>
-<p>他退开一步，从左往右看了一遍。今年的位置上是三块。旁边有一块金牌的漆磨掉了，露出铜底。三年前一个练短跑的学员留下的。那人练到第三年走了，证书没领，牌一直挂在这儿。</p>
-<p>一个背着运动包的年轻教练在墙边停下，掏出手机，对着墙拍了一张。</p>
-<p>「拍墙做什么。」</p>
-<p>「我们教练让拍的，说发朋友圈。」</p>
-<p>「拍墙里的人。」</p>
-<p>「那拍哪张。」</p>
-<p>陶砚指了一下赵砚青的那一块。</p>
-<p>「拍这块。墙正中那块。媒体每年都要它。」</p>
-<p>那年轻教练看了他一眼，把手机举起来，对准赵砚青的方向。赵砚青站在台侧没有动，眼睛落在地砖的缝上。</p>
-<p>「墙是给人看的，不是给数字看的。」陶砚说，「牌是铜的。」</p>
-<p>「我知道是铜的。」那年轻教练说，「但墙上写着一万两千四百小时。」</p>
-<p>陶砚没再说话。他把台面白布重新铺平，让第三块牌留下的压痕散开。</p>
-<p>颁证结束。人群往前排涌，椅子腿在地上刮出声音，最后一排有人剥橘子，橘皮味飘到台侧。苏芮合上台账，把三本摞齐，用手掌压了压本子的边。</p>
-<p>台下第一排靠过道的位置空着两个。</p>
-<p>那个年轻男人还坐着，没动。他把膝上那张纸折成两折，塞进外套口袋，站起来。</p>
-<p>然后他抬了手。</p>
-<p>「请问您的一万小时里，有多少小时是失败的？」</p>
-<p>主持人愣了半秒。他把这句话听成了下一个环节的提问。</p>
-<p>问题不大，也不小。</p>
-<p>陶砚听懂了。</p>
-<p>后排有人笑了一声，很短，接着被人按住。主持人举着话筒愣在原地，嘴张着，等一个可以接上去的话。</p>
-<p>「这位朋友，」主持人说，「可能是想说……关于一万小时的训练心得，我们稍后可以在——」</p>
-<p>「他问的是失败。」陶砚说。</p>
-<p>主持人的话断在半截。</p>
-<p>台侧有人往这边走。陶砚把手里剩下的东西交给助理，转身下台。走过第一排的时候，他走的是那条空出来的过道，没有停，也没有看那个人。</p>
-<p>大厅里一共来了三百多人。那个问题只被问了一次。</p>
-<p>台阶下面有风。他站住，把助理手里那叠多余的宣传单接过来，夹在腋下，又放回给助理。</p>
-<p>「陶教练。」一个去年拿过白银的学员追出来，「那个人是谁？」</p>
-<p>「不知道。」</p>
-<p>「我看他坐了一个小时。」</p>
-<p>「我知道。」</p>
-<p>「那他——」</p>
-<p>「他没问你问题。」陶砚说，「他问的是我。」</p>
-<p>那学员还想再说什么，摄影组的人在台阶那头喊集合。陶砚走过去，走之前回头看了一眼大厅。</p>
-<p>第一排空着的两个位置上，一个位置还放着一瓶没拆封的水，是主办方发给贵宾的，瓶身凝着一层水珠。另一个位置有一张被折成两折的纸，掉在椅垫下面，露出一个角。</p>
-<p>他没有下去捡。</p>
-<p>「陶教练，主持人问要不要补一句。」苏芮跟到台边，把台账夹在腋下，「如果补，我们就把『改变命运』那一段加进主持词。如果不补，明天会有人把这个问题发到基地的公开账号下面。」</p>
-<p>「不回。」</p>
-<p>「那如果公开账号下面有三千条评论，我们也可以一条都不回。」</p>
-<p>「一条都不回。」</p>
-<p>苏芮把台账重新摊开，翻到最后一页。</p>
-<p>「那我记一下。」</p>
-<p>「记什么。」</p>
-<p>「提问的人是谁。」她把笔尖点在纸上，「如果后面有人问起，我可以答『这个问题被问过，提问者的名字在这里』。名字要不要写全。」</p>
-<p>陶砚没答。</p>
-<p>他走出大厅，站在台阶上，从口袋里掏出那本黑色硬壳本子，翻开。里面每一页只有两栏：日期，和当天要复查的项目。</p>
-<p>他往后翻。2025 年的那一页，他自己做的记录里没有「失败」这两个字。</p>
-<p>他翻过 2024 年，2023 年，2022 年。</p>
-<p>没有。</p>
-<p>二十年，他记下的是日期、时数、动作、偏差、备注。哪一天练了多少小时，偏差多少，备注一栏永远是「无」。</p>
-<p>那个问题在他这里没有对应的一栏。</p>
-<p>风从台阶下面吹上来，他把本子合上。封面磨得发白，右下角卷起来，是常年在口袋里放出来的形状。</p>
-<p>他重新翻开，在今天这一页的日期下面，写了两个字。</p>
-<p>林野。</p>
-]]></content>
-      <categories>
-        <category>小说</category>
-      </categories>
-      <tags>
-        <tag>小说</tag>
-        <tag>第800小时</tag>
       </tags>
   </entry>
   <entry>
@@ -37556,6 +37556,149 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
+    <title>第800小时 16：十环</title>
+    <url>/%E5%B0%8F%E8%AF%B4/e14e6f79.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>鼠标在桌面上滑了一下。</p>
+<p>不是没按住。手指头自己往前挪了半格，鼠标撞在计环台边沿，弹回来。屏幕上是今天的成绩单，最后一行亮着：10.0。</p>
+<p>陶砚摊开右手看掌心。手背是干的，指节没有抖。虎口那层厚茧还在那儿，硬得像一块用旧了的砂纸。</p>
+<p>四十分钟前他打出了十环。那是他职业生涯里最好的一枪。</p>
+<p>那堂课是三个月前定下来的。认证委员会来函，要求基地首席教练做一次公开示范课，学员全员在场。附页上写着：观摩项目，射击，60 分钟；课后讲评，15 分钟；评审三人，基地内两名，省体育局一名。</p>
+<p>函是苏芮转给他的。她把函放在键盘旁边，问了一句：「打什么。」</p>
+<p>「十发。」</p>
+<p>「十发打多少。」</p>
+<p>「平均九点五以上。」</p>
+<p>「打十环？」</p>
+<p>「打十环是事故，不是成绩。」</p>
+<p>她走了以后，他调出准备记录。三十七发准备弹，最高九点八，平均九点三八。他把三十七发里最接近十环的那一发的落点抄在纸上，画了三个圈。圈画得很规整，间距两毫米，是他在体校学的画靶法。教练组的人说这七百发准备弹是浪费，他没解释。</p>
+<p>三月十四号，射击馆三号靶位。</p>
+<p>侧风，风速仪读 0.8 米每秒。助理换了新靶纸。五十三个学员站成两排，后面十四个人是别的项目过来的，跑的和跳的，站姿不像射击的样子。评审坐第一排桌子后面，两名基地的人，一名省体育局的。记录屏挂在墙上，右上角有一行小字，是基地的荣誉榜：时数第一，赵砚青，12,400。</p>
+<p>陶砚在队列里找了一遍。没有林野。今天没有外人名单。</p>
+<p>赵砚青在第二排中间，站着。十二年，他一直站着听。</p>
+<p>陶砚上靶位之前做了三件事：查枪，查风，查计时器。每次都重查一遍。查完他在心里过一遍呼吸：四拍，吸、屏、松、扣。</p>
+<p>前九发：9.3、9.6、9.1、9.5、9.0、9.4、9.7、9.2、9.6。</p>
+<p>九发打完，他在心里加了一遍，85.4，平均九点四九。记录屏上那个数字稳稳地挂在旁边，不上不下。还差一线。</p>
+<p>第十发。他把枪举起来。</p>
+<p>呼吸四拍。第一拍吸满，第二拍屏住，第三拍身体最松，第四拍把气憋死。他这辈子所有的枪都是第四拍响的。第三拍是空拍——那一拍身体松，枪口最容易抖，抖半毫米就少两环。他不赌空拍。他赌的是憋死那一口气。</p>
+<p>响的时候他听见了自己的心跳，比枪响晚。</p>
+<p>弹着点在靶心右下三毫米。</p>
+<p>计环屏上跳出来一个数：10.0。</p>
+<p>前排有人站起来。第二排有人喊了一声，被评审抬手压住。陶砚看着屏上那个数字，等它变。它没有变。</p>
+<p>「靶纸取下来。」他说。</p>
+<p>助理跑过去取靶，贴图，扫描。计环系统重新算了一次。</p>
+<p>「还是十环。」助理说。</p>
+<p>「十点零。」陶砚说。</p>
+<p>「这……这是您最好的一枪？」助理问。</p>
+<p>「是我记录里最好的一枪。」</p>
+<p>评审里那名省体育局的翻了翻手里的表。「陶教练，这一枪，您练了多少小时。」</p>
+<p>「9,120。」</p>
+<p>「重复过多少次。」</p>
+<p>「1,247。」</p>
+<p>那名评审抬起眼。「1,247 次里面，失败过多少次。」</p>
+<p>「0。」</p>
+<p>房间里有声音动了一下，是椅腿。</p>
+<p>「不可能。」前排一个学员说，「打十环还能一次不失败。」</p>
+<p>「失败的次数不计。」陶砚说，「计时的意思是有效的时长。」</p>
+<p>「那您怎么知道一个动作做对了。」</p>
+<p>「按偏差。同一个动作在规定偏差内，记一次。」</p>
+<p>评审在纸上写了两行。「从九点五到十点零，您是按什么练出来的。」</p>
+<p>陶砚张开嘴。</p>
+<p>1,247 次重复。这一枪是第几次，落在右下三毫米。为什么是右下三毫米，为什么不是左上，为什么不是中心。这些东西他都有记录，日期、时数、动作、偏差、备注，一栏都不缺。他能说出这一枪属于哪一小时的第几分钟。</p>
+<p>他不知道这一枪是怎么打出来的。</p>
+<p>「我不知道。」</p>
+<p>他说出来了。</p>
+<p>台下五十三个人没有一个动。他站在靶位上，手还举着枪，枪口往下垂了一寸。有人把这句话记在了本子上，笔尖划纸的声音在馆里响了两下。</p>
+<p>这是他二十年来第一次说这三个字。</p>
+<p>「您今天这堂课，」那名基地的评审抬起头，「按标准记多少。」</p>
+<p>「一小时。」陶砚说。</p>
+<p>「记什么类别。」</p>
+<p>「教练示范。」</p>
+<p>评审在本子上写了一笔，没再问。</p>
+<p>后面还有四十分钟的观摩。学员轮流上靶位，教练组站在旁边看，一句一句纠。馆里的声音一层一层上去，又一层一层落下来。</p>
+<p>第二十二个上靶位的是赵砚青。他打的是十发，九点二到九点八，没有一枪上九点九。每一枪打完，计环屏上跳一次数。陶砚站在侧面看着那个屏幕。</p>
+<p>「第二发，后坐没吃住。」他在赵砚青下靶位的时候说。</p>
+<p>「嗯。」</p>
+<p>「再来一遍。」</p>
+<p>「再来一遍是第四百三十一次了。」赵砚青说，「从 2018 年 6 月 3 号那天开始的，今天这一组是第一百三十七组。」</p>
+<p>陶砚没说话。赵砚青把枪挂回架子，从口袋里掏出一张折了四折的纸，展开，铺在长桌一角。纸上是一张手画的表格，纵轴是日期，横轴是每组的均值。密密麻麻的黑点，从 2018 年一直连到今天。中间有几段是斜的，往下走的。</p>
+<p>「这是您教我之前我自己的表。」赵砚青说，「这是您教我之后的。」</p>
+<p>陶砚看了三秒。</p>
+<p>「今天为什么给我看这个。」</p>
+<p>「今天有人问我，练这么久图什么。」赵砚青把纸折回去，塞进口袋，「我说我算不出来。」</p>
+<p>他上靶位排到后面去了。陶砚站在原地，手里捏着刚才那支笔。</p>
+<p>观摩快结束的时候，屏幕上换了一行字：本期观摩登记人数，53；有效观摩课时，1；类别，教练示范。陶砚站在侧面看着那行字，没有多想。课时的登记和时数是两件事，一堂课是一堂课。</p>
+<p>讲评在馆中央的长桌边。评审把话递给他：「陶教练，最后十五分钟，您讲两句。」</p>
+<p>陶砚站起来。</p>
+<p>他面前是四排人。他张了嘴。十一秒。他数到十一的时候自己听见了自己喉咙里的气声。</p>
+<p>「今天到这儿。」他说。</p>
+<p>评审没有追问。散场的时候椅子响了一片。人走光了，馆里剩下计环台、灯、和地上几个被踩扁的纸杯。</p>
+<p>陶砚在计环台前坐下，鼠标放在垫子上。他握上去，鼠标往右滑了半格，撞在台面上。</p>
+<p>他把手松开。放平。等了一会儿。再握上去。</p>
+<p>鼠标又滑了。</p>
+<p>第三次他用两只手把它按住，才点开计环系统，找到今天这堂课的记录。十发。均值九点四八。最高十点零。记录人：陶砚。确认。</p>
+<p>「记录人」那一栏是他自己填的，十五年都是他自己填。</p>
+<p>他站起来，把枪挂回架子上，退出靶位门。走廊上苏芮还没走，抱着文件夹等他。</p>
+<p>「今天的课，我按一小时示范记进您的档案了。」</p>
+<p>「学员那边呢。」</p>
+<p>「如果这堂课要进时数包，按标准走就行。」</p>
+<p>「标准是什么。」</p>
+<p>「我回头发您。」</p>
+<p>陶砚点头。他要的是能发到每个人手上的那份东西，不是苏芮的嘴。</p>
+<p>「还有一件。」苏芮翻开文件夹，「评审问今天这堂课归哪一类。我说教练示范。您当时在靶位上，没听见。」</p>
+<p>「示范就示范。」</p>
+<p>「示范这一类怎么进学员的时数包，也在标准里。」她说，「一并发您。」</p>
+<p>「发。」</p>
+<p>「您得看完。」</p>
+<p>「我看完。」</p>
+<p>苏芮把文件夹合上，夹在腋下。</p>
+<p>「标准不是给您的。」她说，「是给结算的。」</p>
+<p>她走了以后他回到三号靶位。灯还亮着一半。他把门反锁，重新上靶位，从架子上取下枪。</p>
+<p>他站在那儿，举枪。</p>
+<p>四拍。第一拍吸，第二拍屏住，第三拍——</p>
+<p>他扣了。</p>
+<p>枪响的时候他没听见，只看见靶纸上的洞偏离中心大约一个环。他用望远镜看：8.6。</p>
+<p>他退回位，又扣了一次：7.9。</p>
+<p>第三次，8.2。第四次，7.4。</p>
+<p>枪口在第三拍离开那条线的时候往左走。他看着它走，看着弹着点落在靶心左边一掌宽的地方。第五次 8.8。第六次 6.9。</p>
+<p>他把这六发记在一张纸上：8.6、7.9、8.2、7.4、8.8、6.9。平均七点一。</p>
+<p>第二天上午他在三号靶位又打了六发。8.1、7.6、8.4、7.2、8.0、7.9。十二发合起来平均七点四。他把这十二个数抄进日志的同一栏，一张纸裁成两半，压在鼠标垫底下。</p>
+<p>回到办公室是晚上九点半。他从包里取出那本黑色硬壳本，翻到今天那一页。本子上五栏：日期、时数、动作、偏差、备注。</p>
+<p>师父那本是六栏。第六栏写的是「失败」。他抄格式的时候抄成了五栏。2002 年他把日志摔在体校训练馆的地板上的时候，那本不是师父的，这本是。他自己这本，从 2011 年在岚城办第一个训练营开始，一页一页记到今天。</p>
+<p>他往回翻了几十页，翻到 2018 年五月那一栏。那天他打出了 2.1 环的偏差，是他带队员以来最差的一次。那一栏的偏差写的是 2.1，备注写的是「器材调整，重新校准」。他盯着「重新校准」四个字看了很久。</p>
+<p>那一栏没有失败。他记得那天是真的失败了，靶纸拿下来的时候他手心是湿的。他把它写成了器材问题。</p>
+<p>他没有再往后翻。他把本子转了个方向，在右边空白处画了一条竖线，划出一栏，在栏头写了两个字。</p>
+<p>失败。</p>
+<p>写完他看着那两个字。它们写得比前面五栏都大，也比前面五栏都正——他的字一直是横平竖直的。</p>
+<p>然后他往下写这一行。日期。8,412。空拍击发。偏一个环。</p>
+<p>写到备注那一栏，他的手抖了。</p>
+<p>不是手抖一下。是手腕连着前臂一起抖，笔尖在纸上划出去半厘米，把「失败」两个字拖歪了。</p>
+<p>他停下来，把笔放下，两只手压住桌沿。桌面是凉的。他数了十下，手不抖了。</p>
+<p>他重新拿起笔，把那两个字描了一遍。字歪了。歪得很难看。他没有重写一页，也没有换一行。</p>
+<p>写完之后他把本子合上，放在桌上。手机在桌角震了一下，是他母亲的电话，他没接。他把手机翻过去，屏幕朝下。</p>
+<p>器材库里那个问题又回来了，跟着那两个字一起，压在桌面上：一个教了十五年的人，有哪个学员跟他说过他不想练了。</p>
+<p>十五年。他从 2011 年到现在，评估表发出去过四百多张，回收三百九十张，每一张上都有时长、动作、偏差、备注。没有一栏叫「想不想练」。没有一张表上出现过「不想」。他把三本评估表摞在桌上，翻了一遍，纸边割手。</p>
+<p>十一点二十，办公室门被敲了两下。</p>
+<p>陶砚抬头。</p>
+<p>赵砚青站在门口，训练包还挂在肩上，手里那块计时器亮着，屏幕上是 00:00。</p>
+<p>「师父，我今天不练了。」</p>
+<p>陶砚从椅子上站起来。</p>
+<p>「为什么。」</p>
+<p>赵砚青没有回答。他把手里那块计时器翻过来，屏幕朝上，放到门口的柜子上。四个零定在那里。</p>
+<p>「我练了十二年，一万两千四百个小时。」</p>
+<p>「今天台上那十一秒，我数了。」</p>
+<p>「我今天练的那一小时，和昨天那一模一样。」</p>
+<p>陶砚看着他。他想说的是另一句话——他想说“你数得对”，也想说“你算错了”。两句话他都没有说。</p>
+<p>赵砚青往门外走。走到门框里回头。</p>
+<p>「师父，我今天不练了。」</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>小说</tag>
+        <tag>第800小时</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>第800小时 17：流水线</title>
     <url>/%E5%B0%8F%E8%AF%B4/de5f178d.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>折算表是 A4 纸，一页，十一行。</p>
@@ -37733,149 +37876,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>「陶教练。」</p>
 <p>「嗯。」</p>
 <p>「材料我已经递了。」她说，「不是递给你，是递上去。」</p>
-]]></content>
-      <categories>
-        <category>小说</category>
-      </categories>
-      <tags>
-        <tag>小说</tag>
-        <tag>第800小时</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>第800小时 16：十环</title>
-    <url>/%E5%B0%8F%E8%AF%B4/e14e6f79.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>鼠标在桌面上滑了一下。</p>
-<p>不是没按住。手指头自己往前挪了半格，鼠标撞在计环台边沿，弹回来。屏幕上是今天的成绩单，最后一行亮着：10.0。</p>
-<p>陶砚摊开右手看掌心。手背是干的，指节没有抖。虎口那层厚茧还在那儿，硬得像一块用旧了的砂纸。</p>
-<p>四十分钟前他打出了十环。那是他职业生涯里最好的一枪。</p>
-<p>那堂课是三个月前定下来的。认证委员会来函，要求基地首席教练做一次公开示范课，学员全员在场。附页上写着：观摩项目，射击，60 分钟；课后讲评，15 分钟；评审三人，基地内两名，省体育局一名。</p>
-<p>函是苏芮转给他的。她把函放在键盘旁边，问了一句：「打什么。」</p>
-<p>「十发。」</p>
-<p>「十发打多少。」</p>
-<p>「平均九点五以上。」</p>
-<p>「打十环？」</p>
-<p>「打十环是事故，不是成绩。」</p>
-<p>她走了以后，他调出准备记录。三十七发准备弹，最高九点八，平均九点三八。他把三十七发里最接近十环的那一发的落点抄在纸上，画了三个圈。圈画得很规整，间距两毫米，是他在体校学的画靶法。教练组的人说这七百发准备弹是浪费，他没解释。</p>
-<p>三月十四号，射击馆三号靶位。</p>
-<p>侧风，风速仪读 0.8 米每秒。助理换了新靶纸。五十三个学员站成两排，后面十四个人是别的项目过来的，跑的和跳的，站姿不像射击的样子。评审坐第一排桌子后面，两名基地的人，一名省体育局的。记录屏挂在墙上，右上角有一行小字，是基地的荣誉榜：时数第一，赵砚青，12,400。</p>
-<p>陶砚在队列里找了一遍。没有林野。今天没有外人名单。</p>
-<p>赵砚青在第二排中间，站着。十二年，他一直站着听。</p>
-<p>陶砚上靶位之前做了三件事：查枪，查风，查计时器。每次都重查一遍。查完他在心里过一遍呼吸：四拍，吸、屏、松、扣。</p>
-<p>前九发：9.3、9.6、9.1、9.5、9.0、9.4、9.7、9.2、9.6。</p>
-<p>九发打完，他在心里加了一遍，85.4，平均九点四九。记录屏上那个数字稳稳地挂在旁边，不上不下。还差一线。</p>
-<p>第十发。他把枪举起来。</p>
-<p>呼吸四拍。第一拍吸满，第二拍屏住，第三拍身体最松，第四拍把气憋死。他这辈子所有的枪都是第四拍响的。第三拍是空拍——那一拍身体松，枪口最容易抖，抖半毫米就少两环。他不赌空拍。他赌的是憋死那一口气。</p>
-<p>响的时候他听见了自己的心跳，比枪响晚。</p>
-<p>弹着点在靶心右下三毫米。</p>
-<p>计环屏上跳出来一个数：10.0。</p>
-<p>前排有人站起来。第二排有人喊了一声，被评审抬手压住。陶砚看着屏上那个数字，等它变。它没有变。</p>
-<p>「靶纸取下来。」他说。</p>
-<p>助理跑过去取靶，贴图，扫描。计环系统重新算了一次。</p>
-<p>「还是十环。」助理说。</p>
-<p>「十点零。」陶砚说。</p>
-<p>「这……这是您最好的一枪？」助理问。</p>
-<p>「是我记录里最好的一枪。」</p>
-<p>评审里那名省体育局的翻了翻手里的表。「陶教练，这一枪，您练了多少小时。」</p>
-<p>「9,120。」</p>
-<p>「重复过多少次。」</p>
-<p>「1,247。」</p>
-<p>那名评审抬起眼。「1,247 次里面，失败过多少次。」</p>
-<p>「0。」</p>
-<p>房间里有声音动了一下，是椅腿。</p>
-<p>「不可能。」前排一个学员说，「打十环还能一次不失败。」</p>
-<p>「失败的次数不计。」陶砚说，「计时的意思是有效的时长。」</p>
-<p>「那您怎么知道一个动作做对了。」</p>
-<p>「按偏差。同一个动作在规定偏差内，记一次。」</p>
-<p>评审在纸上写了两行。「从九点五到十点零，您是按什么练出来的。」</p>
-<p>陶砚张开嘴。</p>
-<p>1,247 次重复。这一枪是第几次，落在右下三毫米。为什么是右下三毫米，为什么不是左上，为什么不是中心。这些东西他都有记录，日期、时数、动作、偏差、备注，一栏都不缺。他能说出这一枪属于哪一小时的第几分钟。</p>
-<p>他不知道这一枪是怎么打出来的。</p>
-<p>「我不知道。」</p>
-<p>他说出来了。</p>
-<p>台下五十三个人没有一个动。他站在靶位上，手还举着枪，枪口往下垂了一寸。有人把这句话记在了本子上，笔尖划纸的声音在馆里响了两下。</p>
-<p>这是他二十年来第一次说这三个字。</p>
-<p>「您今天这堂课，」那名基地的评审抬起头，「按标准记多少。」</p>
-<p>「一小时。」陶砚说。</p>
-<p>「记什么类别。」</p>
-<p>「教练示范。」</p>
-<p>评审在本子上写了一笔，没再问。</p>
-<p>后面还有四十分钟的观摩。学员轮流上靶位，教练组站在旁边看，一句一句纠。馆里的声音一层一层上去，又一层一层落下来。</p>
-<p>第二十二个上靶位的是赵砚青。他打的是十发，九点二到九点八，没有一枪上九点九。每一枪打完，计环屏上跳一次数。陶砚站在侧面看着那个屏幕。</p>
-<p>「第二发，后坐没吃住。」他在赵砚青下靶位的时候说。</p>
-<p>「嗯。」</p>
-<p>「再来一遍。」</p>
-<p>「再来一遍是第四百三十一次了。」赵砚青说，「从 2018 年 6 月 3 号那天开始的，今天这一组是第一百三十七组。」</p>
-<p>陶砚没说话。赵砚青把枪挂回架子，从口袋里掏出一张折了四折的纸，展开，铺在长桌一角。纸上是一张手画的表格，纵轴是日期，横轴是每组的均值。密密麻麻的黑点，从 2018 年一直连到今天。中间有几段是斜的，往下走的。</p>
-<p>「这是您教我之前我自己的表。」赵砚青说，「这是您教我之后的。」</p>
-<p>陶砚看了三秒。</p>
-<p>「今天为什么给我看这个。」</p>
-<p>「今天有人问我，练这么久图什么。」赵砚青把纸折回去，塞进口袋，「我说我算不出来。」</p>
-<p>他上靶位排到后面去了。陶砚站在原地，手里捏着刚才那支笔。</p>
-<p>观摩快结束的时候，屏幕上换了一行字：本期观摩登记人数，53；有效观摩课时，1；类别，教练示范。陶砚站在侧面看着那行字，没有多想。课时的登记和时数是两件事，一堂课是一堂课。</p>
-<p>讲评在馆中央的长桌边。评审把话递给他：「陶教练，最后十五分钟，您讲两句。」</p>
-<p>陶砚站起来。</p>
-<p>他面前是四排人。他张了嘴。十一秒。他数到十一的时候自己听见了自己喉咙里的气声。</p>
-<p>「今天到这儿。」他说。</p>
-<p>评审没有追问。散场的时候椅子响了一片。人走光了，馆里剩下计环台、灯、和地上几个被踩扁的纸杯。</p>
-<p>陶砚在计环台前坐下，鼠标放在垫子上。他握上去，鼠标往右滑了半格，撞在台面上。</p>
-<p>他把手松开。放平。等了一会儿。再握上去。</p>
-<p>鼠标又滑了。</p>
-<p>第三次他用两只手把它按住，才点开计环系统，找到今天这堂课的记录。十发。均值九点四八。最高十点零。记录人：陶砚。确认。</p>
-<p>「记录人」那一栏是他自己填的，十五年都是他自己填。</p>
-<p>他站起来，把枪挂回架子上，退出靶位门。走廊上苏芮还没走，抱着文件夹等他。</p>
-<p>「今天的课，我按一小时示范记进您的档案了。」</p>
-<p>「学员那边呢。」</p>
-<p>「如果这堂课要进时数包，按标准走就行。」</p>
-<p>「标准是什么。」</p>
-<p>「我回头发您。」</p>
-<p>陶砚点头。他要的是能发到每个人手上的那份东西，不是苏芮的嘴。</p>
-<p>「还有一件。」苏芮翻开文件夹，「评审问今天这堂课归哪一类。我说教练示范。您当时在靶位上，没听见。」</p>
-<p>「示范就示范。」</p>
-<p>「示范这一类怎么进学员的时数包，也在标准里。」她说，「一并发您。」</p>
-<p>「发。」</p>
-<p>「您得看完。」</p>
-<p>「我看完。」</p>
-<p>苏芮把文件夹合上，夹在腋下。</p>
-<p>「标准不是给您的。」她说，「是给结算的。」</p>
-<p>她走了以后他回到三号靶位。灯还亮着一半。他把门反锁，重新上靶位，从架子上取下枪。</p>
-<p>他站在那儿，举枪。</p>
-<p>四拍。第一拍吸，第二拍屏住，第三拍——</p>
-<p>他扣了。</p>
-<p>枪响的时候他没听见，只看见靶纸上的洞偏离中心大约一个环。他用望远镜看：8.6。</p>
-<p>他退回位，又扣了一次：7.9。</p>
-<p>第三次，8.2。第四次，7.4。</p>
-<p>枪口在第三拍离开那条线的时候往左走。他看着它走，看着弹着点落在靶心左边一掌宽的地方。第五次 8.8。第六次 6.9。</p>
-<p>他把这六发记在一张纸上：8.6、7.9、8.2、7.4、8.8、6.9。平均七点一。</p>
-<p>第二天上午他在三号靶位又打了六发。8.1、7.6、8.4、7.2、8.0、7.9。十二发合起来平均七点四。他把这十二个数抄进日志的同一栏，一张纸裁成两半，压在鼠标垫底下。</p>
-<p>回到办公室是晚上九点半。他从包里取出那本黑色硬壳本，翻到今天那一页。本子上五栏：日期、时数、动作、偏差、备注。</p>
-<p>师父那本是六栏。第六栏写的是「失败」。他抄格式的时候抄成了五栏。2002 年他把日志摔在体校训练馆的地板上的时候，那本不是师父的，这本是。他自己这本，从 2011 年在岚城办第一个训练营开始，一页一页记到今天。</p>
-<p>他往回翻了几十页，翻到 2018 年五月那一栏。那天他打出了 2.1 环的偏差，是他带队员以来最差的一次。那一栏的偏差写的是 2.1，备注写的是「器材调整，重新校准」。他盯着「重新校准」四个字看了很久。</p>
-<p>那一栏没有失败。他记得那天是真的失败了，靶纸拿下来的时候他手心是湿的。他把它写成了器材问题。</p>
-<p>他没有再往后翻。他把本子转了个方向，在右边空白处画了一条竖线，划出一栏，在栏头写了两个字。</p>
-<p>失败。</p>
-<p>写完他看着那两个字。它们写得比前面五栏都大，也比前面五栏都正——他的字一直是横平竖直的。</p>
-<p>然后他往下写这一行。日期。8,412。空拍击发。偏一个环。</p>
-<p>写到备注那一栏，他的手抖了。</p>
-<p>不是手抖一下。是手腕连着前臂一起抖，笔尖在纸上划出去半厘米，把「失败」两个字拖歪了。</p>
-<p>他停下来，把笔放下，两只手压住桌沿。桌面是凉的。他数了十下，手不抖了。</p>
-<p>他重新拿起笔，把那两个字描了一遍。字歪了。歪得很难看。他没有重写一页，也没有换一行。</p>
-<p>写完之后他把本子合上，放在桌上。手机在桌角震了一下，是他母亲的电话，他没接。他把手机翻过去，屏幕朝下。</p>
-<p>器材库里那个问题又回来了，跟着那两个字一起，压在桌面上：一个教了十五年的人，有哪个学员跟他说过他不想练了。</p>
-<p>十五年。他从 2011 年到现在，评估表发出去过四百多张，回收三百九十张，每一张上都有时长、动作、偏差、备注。没有一栏叫「想不想练」。没有一张表上出现过「不想」。他把三本评估表摞在桌上，翻了一遍，纸边割手。</p>
-<p>十一点二十，办公室门被敲了两下。</p>
-<p>陶砚抬头。</p>
-<p>赵砚青站在门口，训练包还挂在肩上，手里那块计时器亮着，屏幕上是 00:00。</p>
-<p>「师父，我今天不练了。」</p>
-<p>陶砚从椅子上站起来。</p>
-<p>「为什么。」</p>
-<p>赵砚青没有回答。他把手里那块计时器翻过来，屏幕朝上，放到门口的柜子上。四个零定在那里。</p>
-<p>「我练了十二年，一万两千四百个小时。」</p>
-<p>「今天台上那十一秒，我数了。」</p>
-<p>「我今天练的那一小时，和昨天那一模一样。」</p>
-<p>陶砚看着他。他想说的是另一句话——他想说“你数得对”，也想说“你算错了”。两句话他都没有说。</p>
-<p>赵砚青往门外走。走到门框里回头。</p>
-<p>「师父，我今天不练了。」</p>
 ]]></content>
       <categories>
         <category>小说</category>
@@ -41131,6 +41131,41 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
       </tags>
   </entry>
   <entry>
+    <title>FAA全国停飞揭示航空系统韧性缺口</title>
+    <url>/%E6%8A%80%E6%9C%AF/f56de167.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="停飞暴露的是系统冗余问题"><a class="markdownIt-Anchor" href="#停飞暴露的是系统冗余问题"></a> 停飞暴露的是系统冗余问题</h2>
+<p>11 月 13 日下午四点前后，美国联邦航空管理局对所有离港航班下了一道全国性地面停止指令。通告里的措辞是「因特殊情况并出于安全原因」，生效时段从当天美东时间 15:54 一直到 23:30。到当天晚 8 点，FlightAware 记录到的延误是 9,814 个，取消 5,117 个。</p>
+<p>这个数字本身并不是最让人惊讶的部分。按 Cirium 的统计，当天美国原计划起飞的航班有 26,284 班，其中超过 15% 被取消或没能起飞；被备降的至少有 827 班，其中 670 班飞回了起飞机场。同一份数据还估算，约有 150 万人被滞留在机场。</p>
+<p>我最初把它读成一次普通的设备故障。看到 CNN 和 CBS 的报道之后，我改了判断：CBS 引述多方信源说，是连接全美空管系统的私有通信网络做了一次更新，系统重启后崩溃，通信中断，运营方是 L3Harris；CNN 拿到的一条航空公司消息说，故障出在网络路由器上，级联到了全国。国土安全部长穆林在白宫门外表示，这就是一次电信中断，没有迹象显示是蓄意攻击；执法部门的初步报告也说这不是网络攻击。</p>
+<p><span class="hl">一个声称有冗余的系统，在单点失效时全网一起停摆，说明冗余只存在于图纸上。</span></p>
+<p>在那之前不久，芝加哥的奥黑尔与中途两座机场刚因设备故障被单独停过。全国范围的停止，是这次故障级联的结果。</p>
+<blockquote>
+<p>没有哪一台设备单独坏掉，是私有通信网络同时对所有人失联。</p>
+</blockquote>
+<h2 id="影响来自无法压缩的等待链条"><a class="markdownIt-Anchor" href="#影响来自无法压缩的等待链条"></a> 影响来自无法压缩的等待链条</h2>
+<p>停飞的代价落在等待链上。飞机调回、机组执勤超时、旅客改签、行李重新装载、时刻表整片重排。做过航空公司高管的 R.W. Mann 给出的判断很直接：地面停止持续得越久，恢复时间越长，设备与机组都处在错位状态，到某个节点这一天就等于报废了，航空公司该做的是重置资源、准备周末。</p>
+<p>这让我想起自己以前写权限管理和流程引擎的那批文章。那时候我容易把系统看成节点和状态。航空系统不能只按流程图计算。每个状态转换都需要真实资源，资源还有位置、时间和冲突关系。</p>
+<p>拿一架已经抵达原机场的飞机来说。旅客改签到另一座城市之后，重新起飞的时点可能同时受机组休息、航路容量和地面保障限制。系统给出一个「可执行」的结果，不代表现场有条件把它执行下去。</p>
+<p>而「可执行」这三个字，正好是我绕回来看的地方。11 月 10 日，也就是停飞前三天，航空管理局宣布把新的空域规划系统 SMART 向全国推广，承包商 AirSpace Intel 当天也发了声明。一套新的规划系统正在全国铺开时，底下的通信网络断了。</p>
+<blockquote>
+<p>新系统的上线节奏与老系统的稳定性之间没有共同的失效边界，公众拿到的却只有一条消息：全部航班停止。</p>
+</blockquote>
+<h2 id="预警应先回答恢复边界"><a class="markdownIt-Anchor" href="#预警应先回答恢复边界"></a> 预警应先回答恢复边界</h2>
+<p>航空预警最有价值的部分，不是更早说出「可能停飞」，而是说明哪些服务会继续、哪些会暂停，以及恢复需要满足什么条件。</p>
+<p>这和我做 Hermes Agent 时面对的问题相似。外部服务失效之后，系统需要明确降级方式。记忆召回命中率约 9%，这个已知痛点限制了 mem-md 的实用性。若没有清晰标记哪部分结果可信，调用者会把所有输出当成同等可靠。</p>
+<p>空管系统也需要同一种边界标记。故障节点未确认时，限流应该只覆盖已知受影响范围；确认之后，再逐步恢复容量。每个阶段都要有可核对的指标：通信状态、导航可用性、空域分配结果，以及机场实际放行能力。</p>
+<p>公众拿到的通常只有「全面停飞」这一层信息。它足以解释不便，却不足以让每个环节提前准备。航空公司需要知道降级规则，空管需要划出限制区，旅客需要知道什么时候可以重订。</p>
+<p>全国性地面停止上一次发生在 2023 年 1 月，当时是飞行人员告警系统夜间宕机，只持续了几个小时。再往前一次是 9 月 11 日。前国家运输安全委员会主席罗伯特·萨姆沃尔特把这次称为「绝对前所未有」，他当过 24 年民航飞行员，9·11 那天空中的位置和这次一样。</p>
+<p><span class="hl">有效预警应提供可执行的分区、降级路径和恢复条件，不能只给一个笼统的停飞标签。</span> 这套原则适用于任何跨地区基础设施。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>AI 修 Bug 的边界不在效率而在责任归属</title>
     <url>/AI/57832a73.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="修完-bug代码归谁负责"><a class="markdownIt-Anchor" href="#修完-bug代码归谁负责"></a> 修完 Bug，代码归谁负责</h2>
@@ -41170,41 +41205,6 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
       </categories>
       <tags>
         <tag>AI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>FAA全国停飞揭示航空系统韧性缺口</title>
-    <url>/%E6%8A%80%E6%9C%AF/f56de167.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="停飞暴露的是系统冗余问题"><a class="markdownIt-Anchor" href="#停飞暴露的是系统冗余问题"></a> 停飞暴露的是系统冗余问题</h2>
-<p>11 月 13 日下午四点前后，美国联邦航空管理局对所有离港航班下了一道全国性地面停止指令。通告里的措辞是「因特殊情况并出于安全原因」，生效时段从当天美东时间 15:54 一直到 23:30。到当天晚 8 点，FlightAware 记录到的延误是 9,814 个，取消 5,117 个。</p>
-<p>这个数字本身并不是最让人惊讶的部分。按 Cirium 的统计，当天美国原计划起飞的航班有 26,284 班，其中超过 15% 被取消或没能起飞；被备降的至少有 827 班，其中 670 班飞回了起飞机场。同一份数据还估算，约有 150 万人被滞留在机场。</p>
-<p>我最初把它读成一次普通的设备故障。看到 CNN 和 CBS 的报道之后，我改了判断：CBS 引述多方信源说，是连接全美空管系统的私有通信网络做了一次更新，系统重启后崩溃，通信中断，运营方是 L3Harris；CNN 拿到的一条航空公司消息说，故障出在网络路由器上，级联到了全国。国土安全部长穆林在白宫门外表示，这就是一次电信中断，没有迹象显示是蓄意攻击；执法部门的初步报告也说这不是网络攻击。</p>
-<p><span class="hl">一个声称有冗余的系统，在单点失效时全网一起停摆，说明冗余只存在于图纸上。</span></p>
-<p>在那之前不久，芝加哥的奥黑尔与中途两座机场刚因设备故障被单独停过。全国范围的停止，是这次故障级联的结果。</p>
-<blockquote>
-<p>没有哪一台设备单独坏掉，是私有通信网络同时对所有人失联。</p>
-</blockquote>
-<h2 id="影响来自无法压缩的等待链条"><a class="markdownIt-Anchor" href="#影响来自无法压缩的等待链条"></a> 影响来自无法压缩的等待链条</h2>
-<p>停飞的代价落在等待链上。飞机调回、机组执勤超时、旅客改签、行李重新装载、时刻表整片重排。做过航空公司高管的 R.W. Mann 给出的判断很直接：地面停止持续得越久，恢复时间越长，设备与机组都处在错位状态，到某个节点这一天就等于报废了，航空公司该做的是重置资源、准备周末。</p>
-<p>这让我想起自己以前写权限管理和流程引擎的那批文章。那时候我容易把系统看成节点和状态。航空系统不能只按流程图计算。每个状态转换都需要真实资源，资源还有位置、时间和冲突关系。</p>
-<p>拿一架已经抵达原机场的飞机来说。旅客改签到另一座城市之后，重新起飞的时点可能同时受机组休息、航路容量和地面保障限制。系统给出一个「可执行」的结果，不代表现场有条件把它执行下去。</p>
-<p>而「可执行」这三个字，正好是我绕回来看的地方。11 月 10 日，也就是停飞前三天，航空管理局宣布把新的空域规划系统 SMART 向全国推广，承包商 AirSpace Intel 当天也发了声明。一套新的规划系统正在全国铺开时，底下的通信网络断了。</p>
-<blockquote>
-<p>新系统的上线节奏与老系统的稳定性之间没有共同的失效边界，公众拿到的却只有一条消息：全部航班停止。</p>
-</blockquote>
-<h2 id="预警应先回答恢复边界"><a class="markdownIt-Anchor" href="#预警应先回答恢复边界"></a> 预警应先回答恢复边界</h2>
-<p>航空预警最有价值的部分，不是更早说出「可能停飞」，而是说明哪些服务会继续、哪些会暂停，以及恢复需要满足什么条件。</p>
-<p>这和我做 Hermes Agent 时面对的问题相似。外部服务失效之后，系统需要明确降级方式。记忆召回命中率约 9%，这个已知痛点限制了 mem-md 的实用性。若没有清晰标记哪部分结果可信，调用者会把所有输出当成同等可靠。</p>
-<p>空管系统也需要同一种边界标记。故障节点未确认时，限流应该只覆盖已知受影响范围；确认之后，再逐步恢复容量。每个阶段都要有可核对的指标：通信状态、导航可用性、空域分配结果，以及机场实际放行能力。</p>
-<p>公众拿到的通常只有「全面停飞」这一层信息。它足以解释不便，却不足以让每个环节提前准备。航空公司需要知道降级规则，空管需要划出限制区，旅客需要知道什么时候可以重订。</p>
-<p>全国性地面停止上一次发生在 2023 年 1 月，当时是飞行人员告警系统夜间宕机，只持续了几个小时。再往前一次是 9 月 11 日。前国家运输安全委员会主席罗伯特·萨姆沃尔特把这次称为「绝对前所未有」，他当过 24 年民航飞行员，9·11 那天空中的位置和这次一样。</p>
-<p><span class="hl">有效预警应提供可执行的分区、降级路径和恢复条件，不能只给一个笼统的停飞标签。</span> 这套原则适用于任何跨地区基础设施。</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>技术</tag>
       </tags>
   </entry>
   <entry>
@@ -42085,6 +42085,144 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
       </categories>
       <tags>
         <tag>互联网</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>GL.iNet安全通告暴露物联网信任边界失守</title>
+    <url>/%E6%8A%80%E6%9C%AF/e2ef6369.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="漏洞链从固件开始"><a class="markdownIt-Anchor" href="#漏洞链从固件开始"></a> 漏洞链从固件开始</h2>
+<p>路由器漏洞常被归入“设备质量”，这次 GL.iNet 的安全通告把问题推到了信任边界上。攻击者拿到的往往不只是一个后台页面，还可能有管理员凭证、网络配置和设备控制权。</p>
+<p>我最初以为这只是针对某款型号的修补。公告页面与讨论数据放在一起看后，我改变了看法。一个安全事件会影响多少家庭，取决于更新机制和厂商响应。用户是否收到通知，旧固件是否继续联网，都会改变风险半径。</p>
+<blockquote>
+<p>安全通告发布于 2026 年 11 月 20 日。讨论页面当前显示 68 Points、31 Comments。</p>
+</blockquote>
+<p>公开摘要没有列出受影响型号、漏洞编号和利用细节。这里不宜补写未经证实的结论。可以确定的是，厂商已经发布安全通告。设备是否安全，仍取决于用户能否识别风险并完成更新。</p>
+<p><span class="hl">路由器承担家庭网络入口，漏洞影响就可能越过单台设备。</span></p>
+<p>独立开发者常用的开发板、路由器和调试设备，很多运行第三方固件。固件来源、构建脚本和升级链路，应该进入项目依赖清单。</p>
+<blockquote>
+<p>一台设备被攻破，暴露的可能是连接其上的终端、账号和内网服务。</p>
+</blockquote>
+<h2 id="责任不能只落在固件维护者身上"><a class="markdownIt-Anchor" href="#责任不能只落在固件维护者身上"></a> 责任不能只落在固件维护者身上</h2>
+<p>供应链安全经常停在“谁编写了这段代码”。这次事件还要求回答三个问题：固件由谁构建，密钥由谁管理，升级包由谁验证。</p>
+<p>如果发布者签名了固件，签名只能证明包来自持有密钥的一方。签名流程本身若被污染，验证通过也无法代表固件可信。构建环境、发布权限和应急更新能力缺一不可。</p>
+<p><span class="hl">签名解决来源验证，供应链责任还需要覆盖构建与发布全过程。</span></p>
+<p>我更在意小团队承担这类工作的现实成本。完整审计、密钥轮换、漏洞响应和持续构建，都需要人力。对独立开发者而言，“以后更新一下”缺少可执行性。</p>
+<p>独立开发者安全清单应该增加 5 个动作：</p>
+<ol>
+<li class="lvl-3">
+<p>记录设备型号、固件来源和升级方式。</p>
+</li>
+<li class="lvl-3">
+<p>保存当前配置，并确认恢复过程可用。</p>
+</li>
+<li class="lvl-3">
+<p>关闭不需要的远程管理入口。</p>
+</li>
+<li class="lvl-3">
+<p>在隔离网络完成固件升级和验证。</p>
+</li>
+<li class="lvl-3">
+<p>为停止维护的设备准备替换方案。</p>
+</li>
+</ol>
+<blockquote>
+<p>安全清单若只有“升级固件”，就没有覆盖失联、失签和替换成本。</p>
+</blockquote>
+<p>清单还要记录设备停产后的处置方式。硬件还能开机，不代表厂商仍有能力提供签名服务。依赖商业设备的独立项目，也应准备替代方案。</p>
+<h2 id="我对先上线再补安全的看法变了"><a class="markdownIt-Anchor" href="#我对先上线再补安全的看法变了"></a> 我对“先上线再补安全”的看法变了</h2>
+<p>我维护 Hermes、MemPalace 和自建 GitLab 环境时，也经常遇到安全投入与上线节奏冲突。开发功能可以先跑起来，正式使用前再补权限、日志和备份。这套做法适合内部工具。设备一旦进入家庭网络或公开网络，边界就扩大了。</p>
+<p><span class="hl">内部工具的临时状态有明确使用者，公开设备面对的是所有连接者。</span></p>
+<p>漏洞公告的价值不只在于修补某个版本。它还能帮助用户判断厂商是否持续维护产品，以及团队是否愿意公开暴露问题。透明度会影响长期信任。</p>
+<p>我也保留一个疑问。公开通告若只描述问题，不给受影响范围，用户很难完成资产核对。公告至少需要明确型号、版本、升级路径和缓解措施。讨论热度可以反映关注度，却不能替代技术说明。</p>
+<blockquote>
+<p>RSS 原始摘要给出了文章地址与讨论编号 50604988。具体漏洞范围仍需以厂商正文为准。</p>
+</blockquote>
+<p>我会把这次事件写进自己的设备清单。以后拿到一台新设备，我先记录固件版本、后台入口和升级来源。涉及家庭网络的设备，安全检查会放在正式启用之前。</p>
+<p>开放的问题留在这里：独立开发者该在多大程度上承担基础设施责任，厂商又该如何证明自己的供应链足够可信？</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>智能体身份标准将重塑AI交易入口</title>
+    <url>/AI/7b1f5ca5.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="订餐入口的核心是责任闭环"><a class="markdownIt-Anchor" href="#订餐入口的核心是责任闭环"></a> 订餐入口的核心是责任闭环</h2>
+<p>订餐看起来只是搜索餐厅、选菜品、提交订单。它已经要求智能体处理偏好、读取位置、确认价格，还要处理改期、退款与异常订单。</p>
+<p>我最初以为，这只是给大模型接几个工具。工具调用负责执行，支付环节负责付款，用户确认负责兜底。看完身份互认、授权与责任边界的讨论，我意识到问题更深：智能体若无法证明“我是谁”，就无法判断“我能替谁做决定”。</p>
+<blockquote>
+<p>没有身份层，授权只能靠临时参数；没有责任层，失败就没有明确承接方。</p>
+</blockquote>
+<p>这会直接影响 AI 交易入口的形态。商家不会只问智能体会不会点餐，还要问它凭什么代表用户下单。谁承担误操作、谁处理退款、谁保存证据，都得提前写清。</p>
+<h2 id="身份互认决定授权能否成立"><a class="markdownIt-Anchor" href="#身份互认决定授权能否成立"></a> 身份互认决定授权能否成立</h2>
+<p>用户说“帮我订今晚七点、两个人、不要香菜”，并不足以构成完整授权。智能体还要知道用户本人是谁、支付账户属于谁、常用地址是否获得授权，以及哪些偏好只适用于这次选择。</p>
+<p>身份互认解决的是连续性。授权解决的是范围。两者需要分开，却必须绑定。</p>
+<p><span class="hl">没有身份互认，智能体获得的是一次操作权；有了身份互认，它才可能承接稳定的服务关系。</span></p>
+<p>这也是身份标准争夺会影响交易入口的原因。平台希望用户登录后形成可追踪的委托关系，商家希望保留用户偏好与售后记录，智能体服务商则需要一种跨平台工作的身份凭证。任何一方只接受自己的封闭身份体系，闭环都会停在最后一步。</p>
+<p>我到现在也没搞清楚，未来的主导者会是平台、模型服务商，还是独立身份层。技术能力只是其中一部分。谁能保存授权记录，谁更容易取得用户信任，也同样重要。</p>
+<blockquote>
+<p>一份可验证的身份记录，若无法说明授权范围和撤销方式，依然不能用于交易。</p>
+</blockquote>
+<h2 id="责任边界需要写进协议"><a class="markdownIt-Anchor" href="#责任边界需要写进协议"></a> 责任边界需要写进协议</h2>
+<p>身份解决了“是谁”，责任解决“出错以后找谁”。这一步经常被产品设计忽略。</p>
+<p>智能体替用户下单，可能因为理解错了餐厅营业时间，也可能误用了旧地址。商家也可能错误展示菜品信息或结算价格。若双方都把责任推回模型，用户体验就会变差。</p>
+<p>我关注的不是责任最终落在哪个机构。责任主体名称可以变化，责任边界必须能被执行。授权记录要说明用户允许了什么，操作记录要说明智能体实际做了什么，结算记录要说明交易按什么条件完成。</p>
+<p><span class="hl">责任边界的核心不是找一个替罪者，而是让每一步都有可核验的证据。</span></p>
+<p>这也解释了为什么标准会争夺入口位置。身份协议、授权协议和交易凭证若能相互引用，智能体就能从单次问答进入持续服务。用户更换模型或应用时，授权关系也可能继续存在。</p>
+<blockquote>
+<p>真正可迁移的交易入口，需要同时携带身份、权限范围和责任凭证。</p>
+</blockquote>
+<p>从订餐看 AI 交易，入口的竞争很快会越过聊天界面。谁能让委托、付款与售后连成完整链路，谁才真正占住位置。开放的问题也随之出现：用户应该看到多少机器执行细节，智能体又该保留多少拒绝权，才能避免便利换来失控？</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>多智能体攻破P与NP仍缺可靠验证</title>
+    <url>/AI/2e55b7bc.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="多智能体并行不等于问题已被解决"><a class="markdownIt-Anchor" href="#多智能体并行不等于问题已被解决"></a> 多智能体并行不等于问题已被解决</h2>
+<p>多智能体能并行探索更多方案，但复杂度难题要求每一步都能被可靠验证。我的判断很直接：没有验证器，增加智能体数量只是增加候选答案。</p>
+<p>这条讨论来自 <a href="http://pequalnp.com">pequalnp.com</a>，对应 Hacker News 条目编号为 50604314。页面获得 101 Points，相关评论有 93 条。热度说明不少人对“群体智能能否突破 P 与 NP”感兴趣，但讨论数量无法替代证明强度。</p>
+<p>P 与 NP 的核心障碍并非算力不足。问题在于，NP 问题的解可以被多项式时间验证，是否也能被多项式时间找到，至今没有普遍答案。若多智能体通过分工、互评和反复尝试找到高效解，论文仍需回答：答案是否对所有实例成立？验证时间是否仍有界？失败来自搜索策略，还是问题本身没有高效解？</p>
+<blockquote>
+<p>101 Points 和 93 条评论记录了关注度，却没有记录一个可复现的证明。</p>
+</blockquote>
+<h2 id="任务拆解解决的是搜索组织"><a class="markdownIt-Anchor" href="#任务拆解解决的是搜索组织"></a> 任务拆解解决的是搜索组织</h2>
+<p>把难题拆给多个智能体，确实可能改善搜索过程。一个智能体负责建模，一个负责构造解，一个寻找反例，另一个检查边界条件。每个角色都有明确输出，比让单个模型长时间自由探索更容易控制。</p>
+<p>2026 年的 Agent 讨论也集中在执行能力。工具链已经能覆盖编程、办公和部分知识工作。这支持了“多智能体可以并行推进任务”的判断，却不能直接支持“并行推进可以解决 P 与 NP”。工作流变快，与数学证明变短，是两件事。</p>
+<p>我也在做一人公司。AI 能搜集信息、拆解任务、写文档，还能同时推进几条工作线。但卡点始终具体：解决什么问题，谁付钱，怎么收钱。多个 Agent 可以并行产出候选方向，无法自动替代这三个判断。<span class="hl">我的 mem-md 召回命中率约 9%，也说明并行并不等于信息利用充分。</span></p>
+<blockquote>
+<p>mem-md 的召回命中率约 9%。并行调用再多次，也可能反复漏掉关键约束。</p>
+</blockquote>
+<p>真正困难的部分，是把候选解转成可检查的中间表示。SAT 求解器需要约束传播，回溯算法需要搜索树，线性规划需要可验证的最优性条件。多智能体若只交换自然语言结论，验证成本会随交流轮数上升。每个 Agent 都可能误读前提，也可能把另一个 Agent 的猜测当成事实。</p>
+<p>因此，系统设计应先解决任务拆解后的状态表示、错误隔离和验证接口，再决定部署多少个 Agent。角色数量不是可靠性的来源。</p>
+<h2 id="可靠验证必须独立于生成过程"><a class="markdownIt-Anchor" href="#可靠验证必须独立于生成过程"></a> 可靠验证必须独立于生成过程</h2>
+<p>我最初会把多数票当作群体智能的保险。三个 Agent 同意，答案错误的可能性似乎更低。实际数学证明中，多数票没有证明力。三个模型可能共享同一套训练偏差，也会沿着相同的错误路径继续搜索。</p>
+<p>可靠的验证器需要满足几个条件。它不能依赖生成答案的同一个 Agent；失败必须能定位到某条约束或某个推理步骤；反例输入应被保留；所有提交都可以重复运行。<span class="hl">生成与验证分离，比单纯扩到 10 个或 100 个 Agent 更重要。</span></p>
+<p>这里可以借鉴工程测试的思路。单元测试无法证明程序绝对正确，却能排除一批具体错误。形式化验证也不能覆盖所有系统，但能对给定模型提供严格保证。P 与 NP 研究需要的正是这种方向的验证基础：每个关键声明都能由较小的检查器确认，或者由明确的反例推翻。</p>
+<blockquote>
+<p>一个可复现的反例，比 100 份措辞一致的 Agent 草稿更有价值。</p>
+</blockquote>
+<p>多智能体系统还应保存失败轨迹。一次搜索失败，说明某个候选解不成立，不必连带否定整个任务。问题描述含糊、约束遗漏和证明失效，需要分别记录。否则系统只会累积越来越长的讨论，却不知道下一次该改哪里。</p>
+<h2 id="把群体智能看成实验系统"><a class="markdownIt-Anchor" href="#把群体智能看成实验系统"></a> 把群体智能看成实验系统</h2>
+<p>群体智能适合扩大探索范围，也适合并行检查弱化后的候选答案。它不能绕过复杂度下界，也不能替代完整证明。把它直接称作“攻克 P 与 NP”，会把工程进展和数学结论混在一起。</p>
+<p>更准确的定位，是把多智能体组织成实验系统。任务拆解必须留下可检查的约束，Agent 交换结构化状态，验证器独立运行，失败结果进入下一轮搜索。系统报告探索范围、失败类型和验证结果，不输出无法复核的“已经解决”。</p>
+<p>这套结构对创业和日常工作同样有用。多个 Agent 可以压缩准备时间，但最终交付仍需要验收标准。代码要测试，数据要核对，费用要确认。缺少验收环节时，产出越多，错误只会藏得更深。</p>
+<p>到 2026 年 11 月 23 日，我仍然无法判断群体智能会不会找到新的通用算法。多智能体缺少可靠验证时，它更适合提出更多假设。</p>
+<p>真正值得追踪的指标或许包括：多少候选解通过了独立检查，失败能否快速定位到具体约束，以及整套流程能否重复运行。多智能体能否突破复杂度难题，最终取决于这些数字，而不是参与协作的 Agent 数量。</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
       </tags>
   </entry>
 </search>
