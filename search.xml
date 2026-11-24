@@ -751,12 +751,12 @@
     <title>路</title>
     <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-        <div id="aplayer-ErmlliIM" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-zSPELlmD" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-ErmlliIM"),
+            element: document.getElementById("aplayer-zSPELlmD"),
             narrow: false,
             autoplay: true,
             showlrc: false,
@@ -11071,6 +11071,242 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
+    <title>笔记1-《统计思维：程序员数学之概率统计》程序员的统计思维</title>
+    <url>/%E5%AD%A6%E4%B9%A0/8b4e29d7.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="程序员的统计思维"><a class="markdownIt-Anchor" href="#程序员的统计思维"></a> 程序员的统计思维</h2>
+<span id="more"></span>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>本书的定位</p>
+<ul class="lvl-2">
+<li class="lvl-4">「本书讨论如何将数据转换为知识。数据是廉价的（至少相对而言如此），但知识却异常宝贵。」</li>
+<li class="lvl-4">三门相互关联的学科
+<ul class="lvl-4">
+<li class="lvl-6"><strong>概率论</strong>：研究随机事件，量化「可能」与「不可能」</li>
+<li class="lvl-6"><strong>统计学</strong>：根据数据样本推测总情况，大部分统计分析都基于概率</li>
+<li class="lvl-6"><strong>计算</strong>：量化分析的最佳工具，计算实验有助于理解概率论和统计学中的概念</li>
+</ul>
+</li>
+<li class="lvl-4">主要目的：<strong>让懂编程的人通过编程来理解概率论和统计学</strong>
+<ul class="lvl-4">
+<li class="lvl-6">很多概念从数学角度很难理解，但用计算方法就比较容易</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>1.1 第一个孩子出生晚吗</p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>问题的来源</p>
+<ul class="lvl-4">
+<li class="lvl-6">「第一胎多在预产期后出生吗？」</li>
+<li class="lvl-6">Google 搜索会看到大量讨论：有人说确实如此，有人说没根据，还有人持完全相反的观点</li>
+<li class="lvl-6">常见论据举例
+<ul class="lvl-6">
+<li class="lvl-8">「我有两个朋友最近都刚生了第一个孩子，两个宝宝的出生时间都比预产期晚了差不多两周。」</li>
+<li class="lvl-8">「我的第一个孩子晚了两周才出生，我想我的第二个孩子会提前两周。」</li>
+<li class="lvl-8">「我觉得这没道理，因为我姐姐是我妈妈的第一个孩子，她就提前出生了。」</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="lvl-4">
+<p>经验之谈（anecdotal evidence）的四个缺陷</p>
+<ul class="lvl-4">
+<li class="lvl-6"><strong>观察的数量太少</strong>
+<ul class="lvl-6">
+<li class="lvl-8">第一胎婴儿的妊娠期比较长，但这种差异可能在自然波动范围内</li>
+<li class="lvl-8">需要比较大量孕妇的妊娠期数据才能判断差异是否真的存在</li>
+</ul>
+</li>
+<li class="lvl-6"><strong>选择偏差</strong>
+<ul class="lvl-6">
+<li class="lvl-8">第一胎婴儿出生比较晚的父母会更有兴趣加入这样的讨论</li>
+<li class="lvl-8">对数据进行选择的过程导致结果不准确</li>
+</ul>
+</li>
+<li class="lvl-6"><strong>确认偏差</strong>
+<ul class="lvl-6">
+<li class="lvl-8">相信这种说法的人会提供支持示例，怀疑这种说法的人则会引用反例</li>
+</ul>
+</li>
+<li class="lvl-6"><strong>不准确</strong>
+<ul class="lvl-6">
+<li class="lvl-8">传闻通常都是个人经历，在记忆、表述和复述等方面都不准确</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="lvl-4">
+<p>更好的做法：1.2 统计方法</p>
+<ul class="lvl-4">
+<li class="lvl-6"><strong>收集数据</strong>：使用大型全国性调查的数据</li>
+<li class="lvl-6"><strong>描述性统计</strong>：计算能总结数据的统计量，评测各种数据可视化的方法</li>
+<li class="lvl-6"><strong>探索性数据分析</strong>：寻找模式、差异和能解答问题的特征，检查不一致性并确认局限性</li>
+<li class="lvl-6"><strong>假设检验</strong>：评判观察到的影响是否真实，即是否由随机因素造成</li>
+<li class="lvl-6"><strong>估计</strong>：用样本数据推断全部人口的特征</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="lvl-2">
+<p>1.3 全国家庭成长调查（NSFG）</p>
+<ul class="lvl-2">
+<li class="lvl-4">
+<p>调查概况</p>
+<ul class="lvl-4">
+<li class="lvl-6">美国疾病控制与预防中心（CDC）从 1973 年开始推行 NSFG</li>
+<li class="lvl-6">目的是收集（美国）「家庭的生活、婚姻状况、生育、避孕和男女健康信息」</li>
+<li class="lvl-6">调查对象是 15 到 44 岁的美国人</li>
+<li class="lvl-6">本书使用 Cycle 6 数据，收集于 2002 年 1 月到 2003 年 3 月</li>
+</ul>
+</li>
+<li class="lvl-4">
+<p>横断面研究 vs 纵贯研究</p>
+<ul class="lvl-4">
+<li class="lvl-6"><strong>横断面研究</strong>（cross-sectional study）：数据是一群人在某个时间点的情况</li>
+<li class="lvl-6"><strong>纵贯研究</strong>（longitudinal study）：在一段时间内反复观察同一群人</li>
+<li class="lvl-6">NSFG 已经进行了 7 次，每次称为一个周期（cycle），但它<strong>不是</strong>纵贯研究</li>
+</ul>
+</li>
+<li class="lvl-4">
+<p>代表性与过采样</p>
+<ul class="lvl-4">
+<li class="lvl-6">通常横断面研究意味着<strong>代表性</strong> —— 目标人群中的每个人都有同等的几率参与调查</li>
+<li class="lvl-6">实际上很难实现这种理想状况，但执行调查的人会尽可能做到</li>
+<li class="lvl-6"><strong>NSFG 不具有代表性，而是有意进行了过采样</strong>（oversample）
+<ul class="lvl-6">
+<li class="lvl-8">西班牙裔、非裔美国人和青少年的比例都高于他们在美国人口中的比例</li>
+<li class="lvl-8">过采样是为了确保其中被调查者数量够大，从而得到有效的统计推断</li>
+</ul>
+</li>
+<li class="lvl-6">代价：过采样增大了根据调查结果推断全体人口结论的难度</li>
+</ul>
+</li>
+<li class="lvl-4">
+<p>1.4 表和记录</p>
+<ul class="lvl-4">
+<li class="lvl-6">
+<p>数据库术语</p>
+<ul class="lvl-6">
+<li class="lvl-8">被调查者文件中的每一行表示一个被调查者，这行信息称为一条<strong>记录</strong>（record）</li>
+<li class="lvl-8">组成记录的变量称为<strong>字段</strong>（field）</li>
+<li class="lvl-8">若干记录的集合组成一个<strong>表</strong>（table）</li>
+<li class="lvl-8"><code>Record</code> 有两个子类：<code>Respondent</code>（被调查者）和 <code>Pregnancy</code>（怀孕记录）</li>
+<li class="lvl-8"><code>Table</code> 有两个子类：<code>Respondents</code> 和 <code>Pregnancies</code></li>
+<li class="lvl-8"><code>Table.records</code> 是一个 Record 对象的列表</li>
+<li class="lvl-8"><code>GetFields</code> 返回字段元组列表，每个元组含四项：field、start、end、转换函数</li>
+</ul>
+</li>
+<li class="lvl-6">
+<p>Pregnancies.GetFields 的字段含义</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>caseid</code></td>
+<td>被调查者的整数 ID</td>
+</tr>
+<tr>
+<td><code>prglength</code></td>
+<td>怀孕周期，单位是周</td>
+</tr>
+<tr>
+<td><code>outcome</code></td>
+<td>怀孕结果的整数代码，代码 1 表示活婴</td>
+</tr>
+<tr>
+<td><code>birthord</code></td>
+<td>正常出生的婴儿的顺序，第一胎编号是 1</td>
+</tr>
+<tr>
+<td><code>finalwgt</code></td>
+<td>统计权重，该被调查者代表的人群在美国总人口中的比例</td>
+</tr>
+</tbody>
+</table>
+</li>
+<li class="lvl-6">
+<p>字段元组的四个元素</p>
+<ul class="lvl-6">
+<li class="lvl-8"><strong>field</strong>：保存该字段属性的名称，用 NSFG 编码手册中的名称，全小写</li>
+<li class="lvl-8"><strong>start</strong>：该字段的起始列编号</li>
+<li class="lvl-8"><strong>end</strong>：结束列编号 —— <strong>跟 Python 中不一样，这里的结束列也是该字段的一部分</strong></li>
+<li class="lvl-8"><strong>转换函数</strong>：把字符串转换成其他类型；转换失败则属性值为字符串 <code>'NA'</code></li>
+</ul>
+</li>
+<li class="lvl-6">
+<p>重编码（recode）</p>
+<ul class="lvl-6">
+<li class="lvl-8">变量大部分都经过了重编码 —— 原始采集数据经过计算之后得到的值</li>
+<li class="lvl-8">例：第一胎活婴的 <code>prglength</code>，原始数据有 <code>wksgest</code>（妊娠周数）时就等于该变量的值，否则用 <code>mosgest * 4.33</code>（妊娠月数 × 每月平均周数）估计</li>
+<li class="lvl-8">重编码通常遵循<strong>数据一致性和准确性</strong>原则</li>
+<li class="lvl-8">除非有特别原因一定要用原始数据，否则应该直接使用重编码后的数据</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="这本书和程序员的数学的区别"><a class="markdownIt-Anchor" href="#这本书和程序员的数学的区别"></a> 这本书和《程序员的数学》的区别</h2>
+<p>同样是「程序员学数学」，两本书的切入点完全不同：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>《程序员的数学》（结城浩）</th>
+<th>《统计思维》（Downey）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>切入</td>
+<td>具体的数学问题（进位、归纳法、七桥）</td>
+<td>真实数据集（NSFG 调查数据）</td>
+</tr>
+<tr>
+<td>工具</td>
+<td>Ruby 验证算法</td>
+<td>Python 分析数据</td>
+</tr>
+<tr>
+<td>目标</td>
+<td>理解数学概念本身</td>
+<td>把数据变成知识</td>
+</tr>
+<tr>
+<td>语气</td>
+<td>「知其所以然」</td>
+<td>「让懂编程的人通过编程来理解」</td>
+</tr>
+</tbody>
+</table>
+<p>前者是<strong>数学家的写法</strong> —— 先讲定义再推性质；后者是<strong>工程师的写法</strong> —— 先有数据和现象再回头解释。</p>
+<h2 id="一个数字陷阱"><a class="markdownIt-Anchor" href="#一个数字陷阱"></a> 一个数字陷阱</h2>
+<p>作者自己就演示了汇总统计量有多危险。三个装饰南瓜各 1 磅、两个制饼南瓜各 3 磅、一个巨型南瓜 591 磅：</p>
+<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line">pumpkins = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">591</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">mean</span>(<span class="params">xs</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sum</span>(xs) / <span class="built_in">len</span>(xs)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">var</span>(<span class="params">xs, mu=<span class="literal">None</span></span>):</span><br><span class="line">    mu = mean(xs) <span class="keyword">if</span> mu <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">else</span> mu</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sum</span>((x - mu) ** <span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> xs) / <span class="built_in">len</span>(xs)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stdev</span>(<span class="params">xs, mu=<span class="literal">None</span></span>):</span><br><span class="line">    <span class="keyword">return</span> math.sqrt(var(xs, mu))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">median</span>(<span class="params">xs</span>):</span><br><span class="line">    s = <span class="built_in">sorted</span>(xs)</span><br><span class="line">    n = <span class="built_in">len</span>(s)</span><br><span class="line">    mid = n // <span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> s[mid] <span class="keyword">if</span> n % <span class="number">2</span> <span class="keyword">else</span> (s[mid - <span class="number">1</span>] + s[mid]) / <span class="number">2</span></span><br><span class="line"></span><br><span class="line">mu = mean(pumpkins)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;样本: <span class="subst">&#123;pumpkins&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;均值 = <span class="subst">&#123;mu&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;方差 = <span class="subst">&#123;var(pumpkins)&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;标准差 = <span class="subst">&#123;stdev(pumpkins)&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;中位数 = <span class="subst">&#123;median(pumpkins)&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
+<p>输出：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">样本: [1, 1, 3, 3, 591]</span><br><span class="line">均值 = 119.8</span><br><span class="line">方差 = 55508.159999999996</span><br><span class="line">标准差 = 235.60169778675194</span><br><span class="line">中位数 = 3</span><br></pre></td></tr></table></figure>
+<p>均值 119.8 磅，但<strong>这里没有「典型」的南瓜</strong> —— 一个 591 磅的巨型南瓜把均值整个拽走了。众数是 3 磅（4 个南瓜），中位数 3 磅。</p>
+<p>作者的话：「如果我告诉你『我种的南瓜的平均重量是 100 磅』，那就有问题了，至少这也是一种误导。」</p>
+<p>这就是下一章要展开的主线：均值、方差、中位数各自的适用边界，以及为什么要看分布而不是看汇总统计量。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>概率</tag>
+        <tag>统计</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>笔记2-《统计思维：程序员数学之概率统计》描述性统计量</title>
     <url>/%E5%AD%A6%E4%B9%A0/c3f17a60.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="描述性统计量"><a class="markdownIt-Anchor" href="#描述性统计量"></a> 描述性统计量</h2>
@@ -11455,242 +11691,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </categories>
       <tags>
         <tag>AI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>笔记1-《统计思维：程序员数学之概率统计》程序员的统计思维</title>
-    <url>/%E5%AD%A6%E4%B9%A0/8b4e29d7.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="程序员的统计思维"><a class="markdownIt-Anchor" href="#程序员的统计思维"></a> 程序员的统计思维</h2>
-<span id="more"></span>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>本书的定位</p>
-<ul class="lvl-2">
-<li class="lvl-4">「本书讨论如何将数据转换为知识。数据是廉价的（至少相对而言如此），但知识却异常宝贵。」</li>
-<li class="lvl-4">三门相互关联的学科
-<ul class="lvl-4">
-<li class="lvl-6"><strong>概率论</strong>：研究随机事件，量化「可能」与「不可能」</li>
-<li class="lvl-6"><strong>统计学</strong>：根据数据样本推测总情况，大部分统计分析都基于概率</li>
-<li class="lvl-6"><strong>计算</strong>：量化分析的最佳工具，计算实验有助于理解概率论和统计学中的概念</li>
-</ul>
-</li>
-<li class="lvl-4">主要目的：<strong>让懂编程的人通过编程来理解概率论和统计学</strong>
-<ul class="lvl-4">
-<li class="lvl-6">很多概念从数学角度很难理解，但用计算方法就比较容易</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="lvl-2">
-<p>1.1 第一个孩子出生晚吗</p>
-<ul class="lvl-2">
-<li class="lvl-4">
-<p>问题的来源</p>
-<ul class="lvl-4">
-<li class="lvl-6">「第一胎多在预产期后出生吗？」</li>
-<li class="lvl-6">Google 搜索会看到大量讨论：有人说确实如此，有人说没根据，还有人持完全相反的观点</li>
-<li class="lvl-6">常见论据举例
-<ul class="lvl-6">
-<li class="lvl-8">「我有两个朋友最近都刚生了第一个孩子，两个宝宝的出生时间都比预产期晚了差不多两周。」</li>
-<li class="lvl-8">「我的第一个孩子晚了两周才出生，我想我的第二个孩子会提前两周。」</li>
-<li class="lvl-8">「我觉得这没道理，因为我姐姐是我妈妈的第一个孩子，她就提前出生了。」</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="lvl-4">
-<p>经验之谈（anecdotal evidence）的四个缺陷</p>
-<ul class="lvl-4">
-<li class="lvl-6"><strong>观察的数量太少</strong>
-<ul class="lvl-6">
-<li class="lvl-8">第一胎婴儿的妊娠期比较长，但这种差异可能在自然波动范围内</li>
-<li class="lvl-8">需要比较大量孕妇的妊娠期数据才能判断差异是否真的存在</li>
-</ul>
-</li>
-<li class="lvl-6"><strong>选择偏差</strong>
-<ul class="lvl-6">
-<li class="lvl-8">第一胎婴儿出生比较晚的父母会更有兴趣加入这样的讨论</li>
-<li class="lvl-8">对数据进行选择的过程导致结果不准确</li>
-</ul>
-</li>
-<li class="lvl-6"><strong>确认偏差</strong>
-<ul class="lvl-6">
-<li class="lvl-8">相信这种说法的人会提供支持示例，怀疑这种说法的人则会引用反例</li>
-</ul>
-</li>
-<li class="lvl-6"><strong>不准确</strong>
-<ul class="lvl-6">
-<li class="lvl-8">传闻通常都是个人经历，在记忆、表述和复述等方面都不准确</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="lvl-4">
-<p>更好的做法：1.2 统计方法</p>
-<ul class="lvl-4">
-<li class="lvl-6"><strong>收集数据</strong>：使用大型全国性调查的数据</li>
-<li class="lvl-6"><strong>描述性统计</strong>：计算能总结数据的统计量，评测各种数据可视化的方法</li>
-<li class="lvl-6"><strong>探索性数据分析</strong>：寻找模式、差异和能解答问题的特征，检查不一致性并确认局限性</li>
-<li class="lvl-6"><strong>假设检验</strong>：评判观察到的影响是否真实，即是否由随机因素造成</li>
-<li class="lvl-6"><strong>估计</strong>：用样本数据推断全部人口的特征</li>
-</ul>
-</li>
-</ul>
-</li>
-<li class="lvl-2">
-<p>1.3 全国家庭成长调查（NSFG）</p>
-<ul class="lvl-2">
-<li class="lvl-4">
-<p>调查概况</p>
-<ul class="lvl-4">
-<li class="lvl-6">美国疾病控制与预防中心（CDC）从 1973 年开始推行 NSFG</li>
-<li class="lvl-6">目的是收集（美国）「家庭的生活、婚姻状况、生育、避孕和男女健康信息」</li>
-<li class="lvl-6">调查对象是 15 到 44 岁的美国人</li>
-<li class="lvl-6">本书使用 Cycle 6 数据，收集于 2002 年 1 月到 2003 年 3 月</li>
-</ul>
-</li>
-<li class="lvl-4">
-<p>横断面研究 vs 纵贯研究</p>
-<ul class="lvl-4">
-<li class="lvl-6"><strong>横断面研究</strong>（cross-sectional study）：数据是一群人在某个时间点的情况</li>
-<li class="lvl-6"><strong>纵贯研究</strong>（longitudinal study）：在一段时间内反复观察同一群人</li>
-<li class="lvl-6">NSFG 已经进行了 7 次，每次称为一个周期（cycle），但它<strong>不是</strong>纵贯研究</li>
-</ul>
-</li>
-<li class="lvl-4">
-<p>代表性与过采样</p>
-<ul class="lvl-4">
-<li class="lvl-6">通常横断面研究意味着<strong>代表性</strong> —— 目标人群中的每个人都有同等的几率参与调查</li>
-<li class="lvl-6">实际上很难实现这种理想状况，但执行调查的人会尽可能做到</li>
-<li class="lvl-6"><strong>NSFG 不具有代表性，而是有意进行了过采样</strong>（oversample）
-<ul class="lvl-6">
-<li class="lvl-8">西班牙裔、非裔美国人和青少年的比例都高于他们在美国人口中的比例</li>
-<li class="lvl-8">过采样是为了确保其中被调查者数量够大，从而得到有效的统计推断</li>
-</ul>
-</li>
-<li class="lvl-6">代价：过采样增大了根据调查结果推断全体人口结论的难度</li>
-</ul>
-</li>
-<li class="lvl-4">
-<p>1.4 表和记录</p>
-<ul class="lvl-4">
-<li class="lvl-6">
-<p>数据库术语</p>
-<ul class="lvl-6">
-<li class="lvl-8">被调查者文件中的每一行表示一个被调查者，这行信息称为一条<strong>记录</strong>（record）</li>
-<li class="lvl-8">组成记录的变量称为<strong>字段</strong>（field）</li>
-<li class="lvl-8">若干记录的集合组成一个<strong>表</strong>（table）</li>
-<li class="lvl-8"><code>Record</code> 有两个子类：<code>Respondent</code>（被调查者）和 <code>Pregnancy</code>（怀孕记录）</li>
-<li class="lvl-8"><code>Table</code> 有两个子类：<code>Respondents</code> 和 <code>Pregnancies</code></li>
-<li class="lvl-8"><code>Table.records</code> 是一个 Record 对象的列表</li>
-<li class="lvl-8"><code>GetFields</code> 返回字段元组列表，每个元组含四项：field、start、end、转换函数</li>
-</ul>
-</li>
-<li class="lvl-6">
-<p>Pregnancies.GetFields 的字段含义</p>
-<table>
-<thead>
-<tr>
-<th>字段</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>caseid</code></td>
-<td>被调查者的整数 ID</td>
-</tr>
-<tr>
-<td><code>prglength</code></td>
-<td>怀孕周期，单位是周</td>
-</tr>
-<tr>
-<td><code>outcome</code></td>
-<td>怀孕结果的整数代码，代码 1 表示活婴</td>
-</tr>
-<tr>
-<td><code>birthord</code></td>
-<td>正常出生的婴儿的顺序，第一胎编号是 1</td>
-</tr>
-<tr>
-<td><code>finalwgt</code></td>
-<td>统计权重，该被调查者代表的人群在美国总人口中的比例</td>
-</tr>
-</tbody>
-</table>
-</li>
-<li class="lvl-6">
-<p>字段元组的四个元素</p>
-<ul class="lvl-6">
-<li class="lvl-8"><strong>field</strong>：保存该字段属性的名称，用 NSFG 编码手册中的名称，全小写</li>
-<li class="lvl-8"><strong>start</strong>：该字段的起始列编号</li>
-<li class="lvl-8"><strong>end</strong>：结束列编号 —— <strong>跟 Python 中不一样，这里的结束列也是该字段的一部分</strong></li>
-<li class="lvl-8"><strong>转换函数</strong>：把字符串转换成其他类型；转换失败则属性值为字符串 <code>'NA'</code></li>
-</ul>
-</li>
-<li class="lvl-6">
-<p>重编码（recode）</p>
-<ul class="lvl-6">
-<li class="lvl-8">变量大部分都经过了重编码 —— 原始采集数据经过计算之后得到的值</li>
-<li class="lvl-8">例：第一胎活婴的 <code>prglength</code>，原始数据有 <code>wksgest</code>（妊娠周数）时就等于该变量的值，否则用 <code>mosgest * 4.33</code>（妊娠月数 × 每月平均周数）估计</li>
-<li class="lvl-8">重编码通常遵循<strong>数据一致性和准确性</strong>原则</li>
-<li class="lvl-8">除非有特别原因一定要用原始数据，否则应该直接使用重编码后的数据</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<h2 id="这本书和程序员的数学的区别"><a class="markdownIt-Anchor" href="#这本书和程序员的数学的区别"></a> 这本书和《程序员的数学》的区别</h2>
-<p>同样是「程序员学数学」，两本书的切入点完全不同：</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>《程序员的数学》（结城浩）</th>
-<th>《统计思维》（Downey）</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>切入</td>
-<td>具体的数学问题（进位、归纳法、七桥）</td>
-<td>真实数据集（NSFG 调查数据）</td>
-</tr>
-<tr>
-<td>工具</td>
-<td>Ruby 验证算法</td>
-<td>Python 分析数据</td>
-</tr>
-<tr>
-<td>目标</td>
-<td>理解数学概念本身</td>
-<td>把数据变成知识</td>
-</tr>
-<tr>
-<td>语气</td>
-<td>「知其所以然」</td>
-<td>「让懂编程的人通过编程来理解」</td>
-</tr>
-</tbody>
-</table>
-<p>前者是<strong>数学家的写法</strong> —— 先讲定义再推性质；后者是<strong>工程师的写法</strong> —— 先有数据和现象再回头解释。</p>
-<h2 id="一个数字陷阱"><a class="markdownIt-Anchor" href="#一个数字陷阱"></a> 一个数字陷阱</h2>
-<p>作者自己就演示了汇总统计量有多危险。三个装饰南瓜各 1 磅、两个制饼南瓜各 3 磅、一个巨型南瓜 591 磅：</p>
-<figure class="highlight python"><table><tr><td class="code"><pre><span class="line"><span class="keyword">import</span> math</span><br><span class="line"></span><br><span class="line">pumpkins = [<span class="number">1</span>, <span class="number">1</span>, <span class="number">3</span>, <span class="number">3</span>, <span class="number">591</span>]</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">mean</span>(<span class="params">xs</span>):</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sum</span>(xs) / <span class="built_in">len</span>(xs)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">var</span>(<span class="params">xs, mu=<span class="literal">None</span></span>):</span><br><span class="line">    mu = mean(xs) <span class="keyword">if</span> mu <span class="keyword">is</span> <span class="literal">None</span> <span class="keyword">else</span> mu</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">sum</span>((x - mu) ** <span class="number">2</span> <span class="keyword">for</span> x <span class="keyword">in</span> xs) / <span class="built_in">len</span>(xs)</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">stdev</span>(<span class="params">xs, mu=<span class="literal">None</span></span>):</span><br><span class="line">    <span class="keyword">return</span> math.sqrt(var(xs, mu))</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">median</span>(<span class="params">xs</span>):</span><br><span class="line">    s = <span class="built_in">sorted</span>(xs)</span><br><span class="line">    n = <span class="built_in">len</span>(s)</span><br><span class="line">    mid = n // <span class="number">2</span></span><br><span class="line">    <span class="keyword">return</span> s[mid] <span class="keyword">if</span> n % <span class="number">2</span> <span class="keyword">else</span> (s[mid - <span class="number">1</span>] + s[mid]) / <span class="number">2</span></span><br><span class="line"></span><br><span class="line">mu = mean(pumpkins)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;样本: <span class="subst">&#123;pumpkins&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;均值 = <span class="subst">&#123;mu&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;方差 = <span class="subst">&#123;var(pumpkins)&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;标准差 = <span class="subst">&#123;stdev(pumpkins)&#125;</span>&quot;</span>)</span><br><span class="line"><span class="built_in">print</span>(<span class="string">f&quot;中位数 = <span class="subst">&#123;median(pumpkins)&#125;</span>&quot;</span>)</span><br></pre></td></tr></table></figure>
-<p>输出：</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">样本: [1, 1, 3, 3, 591]</span><br><span class="line">均值 = 119.8</span><br><span class="line">方差 = 55508.159999999996</span><br><span class="line">标准差 = 235.60169778675194</span><br><span class="line">中位数 = 3</span><br></pre></td></tr></table></figure>
-<p>均值 119.8 磅，但<strong>这里没有「典型」的南瓜</strong> —— 一个 591 磅的巨型南瓜把均值整个拽走了。众数是 3 磅（4 个南瓜），中位数 3 磅。</p>
-<p>作者的话：「如果我告诉你『我种的南瓜的平均重量是 100 磅』，那就有问题了，至少这也是一种误导。」</p>
-<p>这就是下一章要展开的主线：均值、方差、中位数各自的适用边界，以及为什么要看分布而不是看汇总统计量。</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>概率</tag>
-        <tag>统计</tag>
       </tags>
   </entry>
   <entry>
@@ -34270,173 +34270,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
-    <title>第800小时 01：颁证日</title>
-    <url>/%E5%B0%8F%E8%AF%B4/89b77ed7.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>陶砚用左手把今天的第一块金牌挂上墙。</p>
-<p>金牌很薄，边缘硌手。他把两块牌之间的缝对齐——三厘米，宽度一致，十年前他自己定的标准。去年一个新来的教练挂歪了半厘米，他当着三十个人把牌摘下来重挂。今天没有人挂歪。</p>
-<p>牌留在墙上。带走的是证书。这条规矩是基地建馆那年定的，牌留墙，名字留墙，年份留墙。学员毕业那天拿到的那张纸只有三行：编号、时数、教练签名。有人十年后回来，在墙上一块一块找自己的那一块，从左往右数。</p>
-<p>大厅在基地东侧，层高七米。三百多张折叠椅分六区排开，椅背包着蓝绒布，从 A 区排到 F 区，最后一排空了一半。台侧一张长桌铺着白布，桌上三本台账摞着，最上面那本翻在今年的页，页眉印着「年度时数认证」。空调出风口正对白布中间，把纸吹起一角，苏芮用一支笔压住。</p>
-<p>墙上挂的是时数墙。基地建馆时留的那面墙，两米四高，按年份从左往右排，最右边最新。牌是铜的，表面镀金，边上压印一行编号，背面刻着累计训练小时数，正面刻姓名。青铜和白银的牌小一号，挂在墙的下半截；黄金以上是这块整的，三百多张牌里最亮的那几张，都在这面墙上。</p>
-<p>认证是按时数分级的。青铜 3,000，白银 6,000，黄金 10,000。学员的每一次训练时长由计时器自动记入系统，够线了，运营部核数、刻牌、装袋，年底一次性挂到这面墙上。</p>
-<p>刚才挂上去的第一块是郑维的，10,112 小时。他接牌的时候翻到背面找编号，找到自己教练的那行小字，用指腹蹭了一下，没蹭掉。现在他站在台下第一排边上，证书折成两折塞在裤兜里，手在裤兜外面按着。</p>
-<p>苏芮在台账上写了一行，笔尖没有停顿。</p>
-<p>「主持人有一段词。」她抬起头，「一分半，在颁第二块之前。」</p>
-<p>「念。」</p>
-<p>「写的是『一万小时，改变命运』。」</p>
-<p>「念数字。」</p>
-<p>苏芮看了他两秒。</p>
-<p>「这句话今年还能用，我们就可以把它印在下一批学员的协议扉页上。如果不能用，协议得重写，已经付费还没开课的那批人也要重新寄一份。」</p>
-<p>「协议上写他们买了多少小时，钱进了哪个账户。」</p>
-<p>「但他们买的时候，墙上挂的就是这一句。」</p>
-<p>陶砚没有立刻回答。他把台面上那块白布的角又压了压。</p>
-<p>「念数字。」</p>
-<p>苏芮低下头，在台账边角写了一个词。他隔着两米看不清写的什么，但他认得那种笔尖划过纸面、一路不顿的写法。</p>
-<p>主持人接过话，把那段词删了。剩下的是基地名字、认证年份和三句欢迎。</p>
-<p>「第二位，周昕，10,240 小时。」</p>
-<p>陶砚从盘子里取出金牌，双手递过去。</p>
-<p>周昕二十九岁，练攀岩，指腹上的茧比陶砚还厚。接牌的时候手指在抖。</p>
-<p>「谢谢陶教练。」</p>
-<p>「12 月 3 号那条线路，你练了四十一分钟。」</p>
-<p>「岩点上有水。」</p>
-<p>「水不算理由。你那天其他五条线路，最长的用了八分钟。」</p>
-<p>「我记不清了。」</p>
-<p>「我看了录像。」</p>
-<p>周昕低头看牌。牌沿的漆磕掉一小块，露出底下的铜。她把牌放回盘子里，接过证书，双手捧着。</p>
-<p>陶砚把第二块牌挂上墙。缝还是三厘米。</p>
-<p>台下一片快门声。一个挂着工牌的年轻人举着相机挤到台侧。</p>
-<p>「陶教练，合个影。颁完证到墙前站一张，特写。」</p>
-<p>「金牌挂在墙上。」</p>
-<p>「宣传要特写。人手里拿着牌，比空着手站好看。」</p>
-<p>「牌已经给学员了。」</p>
-<p>年轻人愣了一下，退到一边。陶砚空着手站到时数墙左侧，两脚并拢，肩线平。摄影的人在墙对面蹲下，拍了四张。</p>
-<p>陶砚重新走回台边。第三块牌在他右手边，牌面朝下。他胸前别着工牌，T-07。</p>
-<p>台侧那本台账翻到了名单页。陶砚伸手过去，把纸按平。</p>
-<p>「今年过线的三个。」</p>
-<p>「对。」苏芮说，「如果按去年的口径，应该是四个。多出来的那一位，系统里是 9,989，差 11 小时。」</p>
-<p>「差 11 小时，不算过线。」</p>
-<p>「如果我们现在给他补一场认证，墙上的数字就更好看。如果我们现在不补，他明年还得再来一次。」</p>
-<p>「不补。」</p>
-<p>「如果不补，他 11 月会回来问第二年的价格。他续费的时候，我们就可以把明年的金牌门槛先告诉他。」</p>
-<p>「门槛是 10,000。」</p>
-<p>「我知道门槛是 10,000。」苏芮把台账往自己这边收了一点，「卢总上个月问过我，为什么墙上一年的金牌比一年少。他说今年他把认证大会的直播推给了平台，流量比去年高三倍，如果金牌比一年少，转化页会被投诉。」</p>
-<p>「那就在转化页上写清楚今年过了三个。」</p>
-<p>「写清楚，转化页的数据就会掉。」</p>
-<p>「掉就掉。」</p>
-<p>苏芮没有再争。她在名单页的三个名字底下画了三条横线，笔尖在第三条上多停了一秒。</p>
-<p>「陶教练，」她说，「如果明年过线的是两个人，我们还办这个会吗。」</p>
-<p>「办。」</p>
-<p>「两个人也挂墙。」</p>
-<p>「墙是给人看的，不是给数字看的。」</p>
-<p>苏芮把这一句记下来了。她写字的时候不看他，只看纸。</p>
-<p>就在他把第三块牌拿起来的时候，他看见第一排靠过道的位置上坐着一个人。</p>
-<p>那人大约二十七八岁，穿一件洗得发白的深蓝外套，膝上摊着一张纸，没有应援的灯牌，也没有鼓掌。他从进场起就没看过台上。观众看的是某一块金牌，他看的是整面墙，从左往右，数到某一块停一下，再往右。</p>
-<p>陶砚见过这种数法。他刚进省体校那几年也这么数过，只不过数的是靶纸上的环数。</p>
-<p>「第三位，赵砚青，12,400 小时。」</p>
-<p>掌声起来了。</p>
-<p>赵砚青从最后一排的过道走过来。三十六岁，教练服左胸的口袋插着两支笔，笔帽咬得发白。他走路的时候肩膀不动，像怕多走半步。</p>
-<p>主持人说：「赵砚青，12,400 小时。基地最高时数纪录保持者。」</p>
-<p>陶砚把金牌递过去。赵砚青双手接。</p>
-<p>「师父。」</p>
-<p>「三号馆的灯坏了两盏。」</p>
-<p>「9 号靶位那盏照度不够，上周我提过。」</p>
-<p>「下午换。」</p>
-<p>「换完还是不够。9 号靶位到 25 米线中间被器材柜挡了一块。」</p>
-<p>「我知道。」</p>
-<p>赵砚青把牌翻到背面，看了很久。</p>
-<p>「我系统里是 12,400。」</p>
-<p>「牌上也是 12,400。」</p>
-<p>「牌上没刻我教练的编号。」</p>
-<p>「墙记的是时数。」</p>
-<p>「我十六岁进来，墙上我那一块旁边什么都没有。没有名字后面的编号，也没有年份以外的东西。」</p>
-<p>「墙记的是时数，不是师承。」</p>
-<p>赵砚青把牌翻回正面，没再说话。他把证书接过去，折成两折，放进外套内袋，拉链拉到底。</p>
-<p>陶砚没走开。颁证的队伍往下接上去了，他站在原地。</p>
-<p>「今年练了多少小时。」</p>
-<p>「261。」</p>
-<p>「上个月呢。」</p>
-<p>「94。」</p>
-<p>陶砚点了一下头。不到三小时一天，十二年，一枪不多，一枪不少。他知道赵砚青不会来跟他要第二个数字，也知道这个人能把任何话听成一句「再来八千小时」。</p>
-<p>「12,400 小时。」陶砚说。</p>
-<p>赵砚青抬起头。</p>
-<p>「你今年最差的一枪。」</p>
-<p>赵砚青的嘴动了一下。工作人员在台侧报下一位学员的名字，他没动。</p>
-<p>「去年 9 月 3 号那一组，第八发，7.8 环。」</p>
-<p>「那天之后我加练了两小时。」</p>
-<p>「加练了两小时。」陶砚重复了一遍，「今天也加？」</p>
-<p>「今天加了四个小时。」</p>
-<p>主持人从侧面挤过来，把话筒递向陶砚。</p>
-<p>「陶教练，给最高纪录保持者两句评语，镜头要切到您。」</p>
-<p>陶砚接过话筒。</p>
-<p>「12,400 小时，全基地第一。」</p>
-<p>主持人等了三秒，镜头还对着他。</p>
-<p>「今年到三月，261 小时，2,180 发。去年同期 220 小时，1,906 发。」陶砚说。</p>
-<p>他把话筒交回去。主持人笑了一下，把这半句扩成了三句，说的是坚持，说的是十年磨一剑，说的是岚城基地让普通人也有机会。台下的掌声比刚才响。</p>
-<p>赵砚青站在台侧，一直没有坐下。他的拇指在金牌边缘来回蹭，蹭了十几下，把那层薄漆蹭出一道浅白的痕。</p>
-<p>陶砚把第三块牌挂上墙。缝还是三厘米。</p>
-<p>他退开一步，从左往右看了一遍。今年的位置上是三块。旁边有一块金牌的漆磨掉了，露出铜底。三年前一个练短跑的学员留下的。那人练到第三年走了，证书没领，牌一直挂在这儿。</p>
-<p>一个背着运动包的年轻教练在墙边停下，掏出手机，对着墙拍了一张。</p>
-<p>「拍墙做什么。」</p>
-<p>「我们教练让拍的，说发朋友圈。」</p>
-<p>「拍墙里的人。」</p>
-<p>「那拍哪张。」</p>
-<p>陶砚指了一下赵砚青的那一块。</p>
-<p>「拍这块。墙正中那块。媒体每年都要它。」</p>
-<p>那年轻教练看了他一眼，把手机举起来，对准赵砚青的方向。赵砚青站在台侧没有动，眼睛落在地砖的缝上。</p>
-<p>「墙是给人看的，不是给数字看的。」陶砚说，「牌是铜的。」</p>
-<p>「我知道是铜的。」那年轻教练说，「但墙上写着一万两千四百小时。」</p>
-<p>陶砚没再说话。他把台面白布重新铺平，让第三块牌留下的压痕散开。</p>
-<p>颁证结束。人群往前排涌，椅子腿在地上刮出声音，最后一排有人剥橘子，橘皮味飘到台侧。苏芮合上台账，把三本摞齐，用手掌压了压本子的边。</p>
-<p>台下第一排靠过道的位置空着两个。</p>
-<p>那个年轻男人还坐着，没动。他把膝上那张纸折成两折，塞进外套口袋，站起来。</p>
-<p>然后他抬了手。</p>
-<p>「请问您的一万小时里，有多少小时是失败的？」</p>
-<p>主持人愣了半秒。他把这句话听成了下一个环节的提问。</p>
-<p>问题不大，也不小。</p>
-<p>陶砚听懂了。</p>
-<p>后排有人笑了一声，很短，接着被人按住。主持人举着话筒愣在原地，嘴张着，等一个可以接上去的话。</p>
-<p>「这位朋友，」主持人说，「可能是想说……关于一万小时的训练心得，我们稍后可以在——」</p>
-<p>「他问的是失败。」陶砚说。</p>
-<p>主持人的话断在半截。</p>
-<p>台侧有人往这边走。陶砚把手里剩下的东西交给助理，转身下台。走过第一排的时候，他走的是那条空出来的过道，没有停，也没有看那个人。</p>
-<p>大厅里一共来了三百多人。那个问题只被问了一次。</p>
-<p>台阶下面有风。他站住，把助理手里那叠多余的宣传单接过来，夹在腋下，又放回给助理。</p>
-<p>「陶教练。」一个去年拿过白银的学员追出来，「那个人是谁？」</p>
-<p>「不知道。」</p>
-<p>「我看他坐了一个小时。」</p>
-<p>「我知道。」</p>
-<p>「那他——」</p>
-<p>「他没问你问题。」陶砚说，「他问的是我。」</p>
-<p>那学员还想再说什么，摄影组的人在台阶那头喊集合。陶砚走过去，走之前回头看了一眼大厅。</p>
-<p>第一排空着的两个位置上，一个位置还放着一瓶没拆封的水，是主办方发给贵宾的，瓶身凝着一层水珠。另一个位置有一张被折成两折的纸，掉在椅垫下面，露出一个角。</p>
-<p>他没有下去捡。</p>
-<p>「陶教练，主持人问要不要补一句。」苏芮跟到台边，把台账夹在腋下，「如果补，我们就把『改变命运』那一段加进主持词。如果不补，明天会有人把这个问题发到基地的公开账号下面。」</p>
-<p>「不回。」</p>
-<p>「那如果公开账号下面有三千条评论，我们也可以一条都不回。」</p>
-<p>「一条都不回。」</p>
-<p>苏芮把台账重新摊开，翻到最后一页。</p>
-<p>「那我记一下。」</p>
-<p>「记什么。」</p>
-<p>「提问的人是谁。」她把笔尖点在纸上，「如果后面有人问起，我可以答『这个问题被问过，提问者的名字在这里』。名字要不要写全。」</p>
-<p>陶砚没答。</p>
-<p>他走出大厅，站在台阶上，从口袋里掏出那本黑色硬壳本子，翻开。里面每一页只有两栏：日期，和当天要复查的项目。</p>
-<p>他往后翻。2025 年的那一页，他自己做的记录里没有「失败」这两个字。</p>
-<p>他翻过 2024 年，2023 年，2022 年。</p>
-<p>没有。</p>
-<p>二十年，他记下的是日期、时数、动作、偏差、备注。哪一天练了多少小时，偏差多少，备注一栏永远是「无」。</p>
-<p>那个问题在他这里没有对应的一栏。</p>
-<p>风从台阶下面吹上来，他把本子合上。封面磨得发白，右下角卷起来，是常年在口袋里放出来的形状。</p>
-<p>他重新翻开，在今天这一页的日期下面，写了两个字。</p>
-<p>林野。</p>
-]]></content>
-      <categories>
-        <category>小说</category>
-      </categories>
-      <tags>
-        <tag>小说</tag>
-        <tag>第800小时</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>慢车 40：慢车</title>
     <url>/%E5%B0%8F%E8%AF%B4/1d505e47.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>两台117号磁带机并排放在工作台上。</p>
@@ -34900,6 +34733,173 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       <tags>
         <tag>慢车</tag>
         <tag>小说</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>第800小时 01：颁证日</title>
+    <url>/%E5%B0%8F%E8%AF%B4/89b77ed7.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>陶砚用左手把今天的第一块金牌挂上墙。</p>
+<p>金牌很薄，边缘硌手。他把两块牌之间的缝对齐——三厘米，宽度一致，十年前他自己定的标准。去年一个新来的教练挂歪了半厘米，他当着三十个人把牌摘下来重挂。今天没有人挂歪。</p>
+<p>牌留在墙上。带走的是证书。这条规矩是基地建馆那年定的，牌留墙，名字留墙，年份留墙。学员毕业那天拿到的那张纸只有三行：编号、时数、教练签名。有人十年后回来，在墙上一块一块找自己的那一块，从左往右数。</p>
+<p>大厅在基地东侧，层高七米。三百多张折叠椅分六区排开，椅背包着蓝绒布，从 A 区排到 F 区，最后一排空了一半。台侧一张长桌铺着白布，桌上三本台账摞着，最上面那本翻在今年的页，页眉印着「年度时数认证」。空调出风口正对白布中间，把纸吹起一角，苏芮用一支笔压住。</p>
+<p>墙上挂的是时数墙。基地建馆时留的那面墙，两米四高，按年份从左往右排，最右边最新。牌是铜的，表面镀金，边上压印一行编号，背面刻着累计训练小时数，正面刻姓名。青铜和白银的牌小一号，挂在墙的下半截；黄金以上是这块整的，三百多张牌里最亮的那几张，都在这面墙上。</p>
+<p>认证是按时数分级的。青铜 3,000，白银 6,000，黄金 10,000。学员的每一次训练时长由计时器自动记入系统，够线了，运营部核数、刻牌、装袋，年底一次性挂到这面墙上。</p>
+<p>刚才挂上去的第一块是郑维的，10,112 小时。他接牌的时候翻到背面找编号，找到自己教练的那行小字，用指腹蹭了一下，没蹭掉。现在他站在台下第一排边上，证书折成两折塞在裤兜里，手在裤兜外面按着。</p>
+<p>苏芮在台账上写了一行，笔尖没有停顿。</p>
+<p>「主持人有一段词。」她抬起头，「一分半，在颁第二块之前。」</p>
+<p>「念。」</p>
+<p>「写的是『一万小时，改变命运』。」</p>
+<p>「念数字。」</p>
+<p>苏芮看了他两秒。</p>
+<p>「这句话今年还能用，我们就可以把它印在下一批学员的协议扉页上。如果不能用，协议得重写，已经付费还没开课的那批人也要重新寄一份。」</p>
+<p>「协议上写他们买了多少小时，钱进了哪个账户。」</p>
+<p>「但他们买的时候，墙上挂的就是这一句。」</p>
+<p>陶砚没有立刻回答。他把台面上那块白布的角又压了压。</p>
+<p>「念数字。」</p>
+<p>苏芮低下头，在台账边角写了一个词。他隔着两米看不清写的什么，但他认得那种笔尖划过纸面、一路不顿的写法。</p>
+<p>主持人接过话，把那段词删了。剩下的是基地名字、认证年份和三句欢迎。</p>
+<p>「第二位，周昕，10,240 小时。」</p>
+<p>陶砚从盘子里取出金牌，双手递过去。</p>
+<p>周昕二十九岁，练攀岩，指腹上的茧比陶砚还厚。接牌的时候手指在抖。</p>
+<p>「谢谢陶教练。」</p>
+<p>「12 月 3 号那条线路，你练了四十一分钟。」</p>
+<p>「岩点上有水。」</p>
+<p>「水不算理由。你那天其他五条线路，最长的用了八分钟。」</p>
+<p>「我记不清了。」</p>
+<p>「我看了录像。」</p>
+<p>周昕低头看牌。牌沿的漆磕掉一小块，露出底下的铜。她把牌放回盘子里，接过证书，双手捧着。</p>
+<p>陶砚把第二块牌挂上墙。缝还是三厘米。</p>
+<p>台下一片快门声。一个挂着工牌的年轻人举着相机挤到台侧。</p>
+<p>「陶教练，合个影。颁完证到墙前站一张，特写。」</p>
+<p>「金牌挂在墙上。」</p>
+<p>「宣传要特写。人手里拿着牌，比空着手站好看。」</p>
+<p>「牌已经给学员了。」</p>
+<p>年轻人愣了一下，退到一边。陶砚空着手站到时数墙左侧，两脚并拢，肩线平。摄影的人在墙对面蹲下，拍了四张。</p>
+<p>陶砚重新走回台边。第三块牌在他右手边，牌面朝下。他胸前别着工牌，T-07。</p>
+<p>台侧那本台账翻到了名单页。陶砚伸手过去，把纸按平。</p>
+<p>「今年过线的三个。」</p>
+<p>「对。」苏芮说，「如果按去年的口径，应该是四个。多出来的那一位，系统里是 9,989，差 11 小时。」</p>
+<p>「差 11 小时，不算过线。」</p>
+<p>「如果我们现在给他补一场认证，墙上的数字就更好看。如果我们现在不补，他明年还得再来一次。」</p>
+<p>「不补。」</p>
+<p>「如果不补，他 11 月会回来问第二年的价格。他续费的时候，我们就可以把明年的金牌门槛先告诉他。」</p>
+<p>「门槛是 10,000。」</p>
+<p>「我知道门槛是 10,000。」苏芮把台账往自己这边收了一点，「卢总上个月问过我，为什么墙上一年的金牌比一年少。他说今年他把认证大会的直播推给了平台，流量比去年高三倍，如果金牌比一年少，转化页会被投诉。」</p>
+<p>「那就在转化页上写清楚今年过了三个。」</p>
+<p>「写清楚，转化页的数据就会掉。」</p>
+<p>「掉就掉。」</p>
+<p>苏芮没有再争。她在名单页的三个名字底下画了三条横线，笔尖在第三条上多停了一秒。</p>
+<p>「陶教练，」她说，「如果明年过线的是两个人，我们还办这个会吗。」</p>
+<p>「办。」</p>
+<p>「两个人也挂墙。」</p>
+<p>「墙是给人看的，不是给数字看的。」</p>
+<p>苏芮把这一句记下来了。她写字的时候不看他，只看纸。</p>
+<p>就在他把第三块牌拿起来的时候，他看见第一排靠过道的位置上坐着一个人。</p>
+<p>那人大约二十七八岁，穿一件洗得发白的深蓝外套，膝上摊着一张纸，没有应援的灯牌，也没有鼓掌。他从进场起就没看过台上。观众看的是某一块金牌，他看的是整面墙，从左往右，数到某一块停一下，再往右。</p>
+<p>陶砚见过这种数法。他刚进省体校那几年也这么数过，只不过数的是靶纸上的环数。</p>
+<p>「第三位，赵砚青，12,400 小时。」</p>
+<p>掌声起来了。</p>
+<p>赵砚青从最后一排的过道走过来。三十六岁，教练服左胸的口袋插着两支笔，笔帽咬得发白。他走路的时候肩膀不动，像怕多走半步。</p>
+<p>主持人说：「赵砚青，12,400 小时。基地最高时数纪录保持者。」</p>
+<p>陶砚把金牌递过去。赵砚青双手接。</p>
+<p>「师父。」</p>
+<p>「三号馆的灯坏了两盏。」</p>
+<p>「9 号靶位那盏照度不够，上周我提过。」</p>
+<p>「下午换。」</p>
+<p>「换完还是不够。9 号靶位到 25 米线中间被器材柜挡了一块。」</p>
+<p>「我知道。」</p>
+<p>赵砚青把牌翻到背面，看了很久。</p>
+<p>「我系统里是 12,400。」</p>
+<p>「牌上也是 12,400。」</p>
+<p>「牌上没刻我教练的编号。」</p>
+<p>「墙记的是时数。」</p>
+<p>「我十六岁进来，墙上我那一块旁边什么都没有。没有名字后面的编号，也没有年份以外的东西。」</p>
+<p>「墙记的是时数，不是师承。」</p>
+<p>赵砚青把牌翻回正面，没再说话。他把证书接过去，折成两折，放进外套内袋，拉链拉到底。</p>
+<p>陶砚没走开。颁证的队伍往下接上去了，他站在原地。</p>
+<p>「今年练了多少小时。」</p>
+<p>「261。」</p>
+<p>「上个月呢。」</p>
+<p>「94。」</p>
+<p>陶砚点了一下头。不到三小时一天，十二年，一枪不多，一枪不少。他知道赵砚青不会来跟他要第二个数字，也知道这个人能把任何话听成一句「再来八千小时」。</p>
+<p>「12,400 小时。」陶砚说。</p>
+<p>赵砚青抬起头。</p>
+<p>「你今年最差的一枪。」</p>
+<p>赵砚青的嘴动了一下。工作人员在台侧报下一位学员的名字，他没动。</p>
+<p>「去年 9 月 3 号那一组，第八发，7.8 环。」</p>
+<p>「那天之后我加练了两小时。」</p>
+<p>「加练了两小时。」陶砚重复了一遍，「今天也加？」</p>
+<p>「今天加了四个小时。」</p>
+<p>主持人从侧面挤过来，把话筒递向陶砚。</p>
+<p>「陶教练，给最高纪录保持者两句评语，镜头要切到您。」</p>
+<p>陶砚接过话筒。</p>
+<p>「12,400 小时，全基地第一。」</p>
+<p>主持人等了三秒，镜头还对着他。</p>
+<p>「今年到三月，261 小时，2,180 发。去年同期 220 小时，1,906 发。」陶砚说。</p>
+<p>他把话筒交回去。主持人笑了一下，把这半句扩成了三句，说的是坚持，说的是十年磨一剑，说的是岚城基地让普通人也有机会。台下的掌声比刚才响。</p>
+<p>赵砚青站在台侧，一直没有坐下。他的拇指在金牌边缘来回蹭，蹭了十几下，把那层薄漆蹭出一道浅白的痕。</p>
+<p>陶砚把第三块牌挂上墙。缝还是三厘米。</p>
+<p>他退开一步，从左往右看了一遍。今年的位置上是三块。旁边有一块金牌的漆磨掉了，露出铜底。三年前一个练短跑的学员留下的。那人练到第三年走了，证书没领，牌一直挂在这儿。</p>
+<p>一个背着运动包的年轻教练在墙边停下，掏出手机，对着墙拍了一张。</p>
+<p>「拍墙做什么。」</p>
+<p>「我们教练让拍的，说发朋友圈。」</p>
+<p>「拍墙里的人。」</p>
+<p>「那拍哪张。」</p>
+<p>陶砚指了一下赵砚青的那一块。</p>
+<p>「拍这块。墙正中那块。媒体每年都要它。」</p>
+<p>那年轻教练看了他一眼，把手机举起来，对准赵砚青的方向。赵砚青站在台侧没有动，眼睛落在地砖的缝上。</p>
+<p>「墙是给人看的，不是给数字看的。」陶砚说，「牌是铜的。」</p>
+<p>「我知道是铜的。」那年轻教练说，「但墙上写着一万两千四百小时。」</p>
+<p>陶砚没再说话。他把台面白布重新铺平，让第三块牌留下的压痕散开。</p>
+<p>颁证结束。人群往前排涌，椅子腿在地上刮出声音，最后一排有人剥橘子，橘皮味飘到台侧。苏芮合上台账，把三本摞齐，用手掌压了压本子的边。</p>
+<p>台下第一排靠过道的位置空着两个。</p>
+<p>那个年轻男人还坐着，没动。他把膝上那张纸折成两折，塞进外套口袋，站起来。</p>
+<p>然后他抬了手。</p>
+<p>「请问您的一万小时里，有多少小时是失败的？」</p>
+<p>主持人愣了半秒。他把这句话听成了下一个环节的提问。</p>
+<p>问题不大，也不小。</p>
+<p>陶砚听懂了。</p>
+<p>后排有人笑了一声，很短，接着被人按住。主持人举着话筒愣在原地，嘴张着，等一个可以接上去的话。</p>
+<p>「这位朋友，」主持人说，「可能是想说……关于一万小时的训练心得，我们稍后可以在——」</p>
+<p>「他问的是失败。」陶砚说。</p>
+<p>主持人的话断在半截。</p>
+<p>台侧有人往这边走。陶砚把手里剩下的东西交给助理，转身下台。走过第一排的时候，他走的是那条空出来的过道，没有停，也没有看那个人。</p>
+<p>大厅里一共来了三百多人。那个问题只被问了一次。</p>
+<p>台阶下面有风。他站住，把助理手里那叠多余的宣传单接过来，夹在腋下，又放回给助理。</p>
+<p>「陶教练。」一个去年拿过白银的学员追出来，「那个人是谁？」</p>
+<p>「不知道。」</p>
+<p>「我看他坐了一个小时。」</p>
+<p>「我知道。」</p>
+<p>「那他——」</p>
+<p>「他没问你问题。」陶砚说，「他问的是我。」</p>
+<p>那学员还想再说什么，摄影组的人在台阶那头喊集合。陶砚走过去，走之前回头看了一眼大厅。</p>
+<p>第一排空着的两个位置上，一个位置还放着一瓶没拆封的水，是主办方发给贵宾的，瓶身凝着一层水珠。另一个位置有一张被折成两折的纸，掉在椅垫下面，露出一个角。</p>
+<p>他没有下去捡。</p>
+<p>「陶教练，主持人问要不要补一句。」苏芮跟到台边，把台账夹在腋下，「如果补，我们就把『改变命运』那一段加进主持词。如果不补，明天会有人把这个问题发到基地的公开账号下面。」</p>
+<p>「不回。」</p>
+<p>「那如果公开账号下面有三千条评论，我们也可以一条都不回。」</p>
+<p>「一条都不回。」</p>
+<p>苏芮把台账重新摊开，翻到最后一页。</p>
+<p>「那我记一下。」</p>
+<p>「记什么。」</p>
+<p>「提问的人是谁。」她把笔尖点在纸上，「如果后面有人问起，我可以答『这个问题被问过，提问者的名字在这里』。名字要不要写全。」</p>
+<p>陶砚没答。</p>
+<p>他走出大厅，站在台阶上，从口袋里掏出那本黑色硬壳本子，翻开。里面每一页只有两栏：日期，和当天要复查的项目。</p>
+<p>他往后翻。2025 年的那一页，他自己做的记录里没有「失败」这两个字。</p>
+<p>他翻过 2024 年，2023 年，2022 年。</p>
+<p>没有。</p>
+<p>二十年，他记下的是日期、时数、动作、偏差、备注。哪一天练了多少小时，偏差多少，备注一栏永远是「无」。</p>
+<p>那个问题在他这里没有对应的一栏。</p>
+<p>风从台阶下面吹上来，他把本子合上。封面磨得发白，右下角卷起来，是常年在口袋里放出来的形状。</p>
+<p>他重新翻开，在今天这一页的日期下面，写了两个字。</p>
+<p>林野。</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>小说</tag>
+        <tag>第800小时</tag>
       </tags>
   </entry>
   <entry>
@@ -38495,132 +38495,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
-    <title>重学算法 00：开篇——为什么重学，以及怎么学</title>
-    <url>/%E5%AD%A6%E4%B9%A0/81f2d735.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="为什么是重学"><a class="markdownIt-Anchor" href="#为什么是重学"></a> 为什么是「重学」</h2>
-<p>先交代动机，因为动机决定路线。</p>
-<p>我见过太多人（包括我自己）掉进同一个坑：<strong>把「认得」当成「会了」</strong>。</p>
-<p>看到「二分查找」点头，看到「红黑树」点头，看到「动态规划」也点头。真到要写，二分查找的边界能错三个地方；红黑树只记得「它是平衡的」；动态规划永远想不出状态怎么定义。</p>
-<p>问题出在：<strong>第一次学的时候，是在「知道有这个东西」的层面过的关，而不是在「能用它解决问题」的层面。</strong></p>
-<p>所以这次重学，我给自己立了三条规矩，也当作这个系列的写作原则：</p>
-<ol>
-<li class="lvl-3">
-<p><strong>每个结构都自己实现一遍</strong>，不用现成库。不自己写一次，你永远不知道它的代价在哪。</p>
-</li>
-<li class="lvl-3">
-<p><strong>每个结论都要有可运行的证据</strong>。这一系列的代码都在仓库的 <code>ds-course/</code> 目录下，<code>npx tsx</code> 就能跑。我说「O(n²) 翻倍会慢 4 倍」，就得有实测数字摆在那。</p>
-</li>
-<li class="lvl-3">
-<p><strong>分清「观察到的」「推断的」「不知道的」</strong>。静态分析没看到执行，就不能说它运行时会怎样。这一条是我做逆向分析的老本行，放在学算法上一样成立——大部分「我以为我懂了」，都是把推断当成了事实。</p>
-</li>
-</ol>
-<h2 id="为什么用-typescript"><a class="markdownIt-Anchor" href="#为什么用-typescript"></a> 为什么用 TypeScript</h2>
-<p>不是因为它最适合讲算法——那个位置属于 C。选 TypeScript 有三个很实际的理由：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p><strong>泛型是真的泛型</strong>。写一个 <code>Stack&lt;T&gt;</code>，类型系统会帮你把「这个栈里放的是什么」钉死，不用像 C 那样每换一个类型重写一遍，也不用像 Python 那样全靠自觉。</p>
-</li>
-<li class="lvl-2">
-<p><strong>严格模式能当静态检查用</strong>。开了 <code>strict</code> 和 <code>noUncheckedIndexedAccess</code>，<code>arr[i]</code> 的类型是 <code>T | undefined</code> 而不是 <code>T</code>——这一个设置就能拦掉一大堆「我以为不会越界」的 bug。</p>
-</li>
-<li class="lvl-2">
-<p><strong>它离工程近</strong>。学的目的是用。在 TypeScript 里踩到的坑（类型收窄、联合类型、结构兼容），和工作里写代码踩的是同一批。</p>
-</li>
-</ul>
-<p>代价也说清楚：TypeScript/JavaScript 的数组是动态的，<code>number</code> 是双精度浮点。讲到位运算、讲整数溢出时，我会明确标出这些和 C/Java 的差异，不含糊过去。</p>
-<h2 id="路线图"><a class="markdownIt-Anchor" href="#路线图"></a> 路线图</h2>
-<p>按「先有衡量标准，再谈结构」的顺序走。顺序不是随便排的——没有复杂度分析当尺子，学结构就变成背性质。</p>
-<table>
-<thead>
-<tr>
-<th>阶段</th>
-<th>内容</th>
-<th>核心问题</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>0</td>
-<td>复杂度分析</td>
-<td>怎么衡量一个做法的好坏？</td>
-</tr>
-<tr>
-<td>1</td>
-<td>数组、动态数组、链表</td>
-<td>连续内存和离散节点，各自付出了什么代价？</td>
-</tr>
-<tr>
-<td>2</td>
-<td>栈与队列</td>
-<td>两种最受限的线性结构，限才对</td>
-</tr>
-<tr>
-<td>3</td>
-<td>哈希表</td>
-<td>怎么用 O(1) 换一份不确定性？</td>
-</tr>
-<tr>
-<td>4</td>
-<td>树与二叉树</td>
-<td>怎么把 O(n) 的查找砍成 O(log n)？</td>
-</tr>
-<tr>
-<td>5</td>
-<td>二叉搜索树与平衡树</td>
-<td>树退化成链表怎么办？</td>
-</tr>
-<tr>
-<td>6</td>
-<td>堆与优先队列</td>
-<td>怎么只取最值，而不付全排序的代价？</td>
-</tr>
-<tr>
-<td>7</td>
-<td>并查集与字典树</td>
-<td>两个「为一类问题而生」的结构</td>
-</tr>
-<tr>
-<td>8</td>
-<td>图</td>
-<td>关系型数据的通用表示</td>
-</tr>
-<tr>
-<td>9</td>
-<td>排序</td>
-<td>从 O(n²) 到 O(n log n) 再到 O(n)</td>
-</tr>
-<tr>
-<td>10</td>
-<td>算法范式</td>
-<td>分治、贪心、动态规划、回溯</td>
-</tr>
-</tbody>
-</table>
-<p>每一篇的固定结构：<strong>动机 → 自己实现 → 复杂度分析（带实测）→ 易错点 → 练习</strong>。</p>
-<p>练习我不给标准答案，给「怎么验证自己对了」的方法。这个比答案重要。</p>
-<h2 id="代码在哪"><a class="markdownIt-Anchor" href="#代码在哪"></a> 代码在哪</h2>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nil.github.io/</span><br><span class="line">└── ds-course/</span><br><span class="line">    ├── package.json</span><br><span class="line">    ├── tsconfig.json      # strict + noUncheckedIndexedAccess</span><br><span class="line">    └── src/</span><br><span class="line">        └── 01-complexity.ts</span><br></pre></td></tr></table></figure>
-<p>跑起来：</p>
-<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ds-course</span><br><span class="line">npx tsx src/01-complexity.ts</span><br></pre></td></tr></table></figure>
-<p>没有全局依赖污染，<code>npx</code> 现装现跑。</p>
-<h2 id="怎么学才不白学"><a class="markdownIt-Anchor" href="#怎么学才不白学"></a> 怎么学才不白学</h2>
-<p>三条，都是踩过坑换来的：</p>
-<p><strong>一，先自己写一遍，再看答案。</strong> 顺序反了，你会产生「我看懂了」的错觉。看懂和能写出来之间隔着一次真实的思考过程。</p>
-<p><strong>二，复杂度要能口算。</strong> 不是背表，是看到一段代码能数出来。这个技能比记住任何单个结构都值钱，因为它能让你在写代码的时候就避开 O(n²)。</p>
-<p><strong>三，接受「暂时不懂」。</strong> 动态规划、平衡树这些，第一次学不懂是正常的。我的做法是标记下来，继续往前走，很多时候后面的内容会把前面的照亮。卡死在一处不动，是最低效的路径。</p>
-<p>下一篇从<strong>复杂度分析</strong>开始——一切的衡量标准。</p>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>typescript</tag>
-        <tag>重学算法</tag>
-        <tag>数据结构</tag>
-        <tag>算法</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>重学算法 01：复杂度分析，一切的衡量标准</title>
     <url>/%E5%AD%A6%E4%B9%A0/e9398996.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="为什么先学复杂度而不是先学结构"><a class="markdownIt-Anchor" href="#为什么先学复杂度而不是先学结构"></a> 为什么先学复杂度，而不是先学结构</h2>
@@ -39169,6 +39043,132 @@ n = 10000：A 做 1000 万次，B 做 1 亿次。<strong>A 快 10 倍。</strong
       </categories>
       <tags>
         <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>重学算法 00：开篇——为什么重学，以及怎么学</title>
+    <url>/%E5%AD%A6%E4%B9%A0/81f2d735.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="为什么是重学"><a class="markdownIt-Anchor" href="#为什么是重学"></a> 为什么是「重学」</h2>
+<p>先交代动机，因为动机决定路线。</p>
+<p>我见过太多人（包括我自己）掉进同一个坑：<strong>把「认得」当成「会了」</strong>。</p>
+<p>看到「二分查找」点头，看到「红黑树」点头，看到「动态规划」也点头。真到要写，二分查找的边界能错三个地方；红黑树只记得「它是平衡的」；动态规划永远想不出状态怎么定义。</p>
+<p>问题出在：<strong>第一次学的时候，是在「知道有这个东西」的层面过的关，而不是在「能用它解决问题」的层面。</strong></p>
+<p>所以这次重学，我给自己立了三条规矩，也当作这个系列的写作原则：</p>
+<ol>
+<li class="lvl-3">
+<p><strong>每个结构都自己实现一遍</strong>，不用现成库。不自己写一次，你永远不知道它的代价在哪。</p>
+</li>
+<li class="lvl-3">
+<p><strong>每个结论都要有可运行的证据</strong>。这一系列的代码都在仓库的 <code>ds-course/</code> 目录下，<code>npx tsx</code> 就能跑。我说「O(n²) 翻倍会慢 4 倍」，就得有实测数字摆在那。</p>
+</li>
+<li class="lvl-3">
+<p><strong>分清「观察到的」「推断的」「不知道的」</strong>。静态分析没看到执行，就不能说它运行时会怎样。这一条是我做逆向分析的老本行，放在学算法上一样成立——大部分「我以为我懂了」，都是把推断当成了事实。</p>
+</li>
+</ol>
+<h2 id="为什么用-typescript"><a class="markdownIt-Anchor" href="#为什么用-typescript"></a> 为什么用 TypeScript</h2>
+<p>不是因为它最适合讲算法——那个位置属于 C。选 TypeScript 有三个很实际的理由：</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p><strong>泛型是真的泛型</strong>。写一个 <code>Stack&lt;T&gt;</code>，类型系统会帮你把「这个栈里放的是什么」钉死，不用像 C 那样每换一个类型重写一遍，也不用像 Python 那样全靠自觉。</p>
+</li>
+<li class="lvl-2">
+<p><strong>严格模式能当静态检查用</strong>。开了 <code>strict</code> 和 <code>noUncheckedIndexedAccess</code>，<code>arr[i]</code> 的类型是 <code>T | undefined</code> 而不是 <code>T</code>——这一个设置就能拦掉一大堆「我以为不会越界」的 bug。</p>
+</li>
+<li class="lvl-2">
+<p><strong>它离工程近</strong>。学的目的是用。在 TypeScript 里踩到的坑（类型收窄、联合类型、结构兼容），和工作里写代码踩的是同一批。</p>
+</li>
+</ul>
+<p>代价也说清楚：TypeScript/JavaScript 的数组是动态的，<code>number</code> 是双精度浮点。讲到位运算、讲整数溢出时，我会明确标出这些和 C/Java 的差异，不含糊过去。</p>
+<h2 id="路线图"><a class="markdownIt-Anchor" href="#路线图"></a> 路线图</h2>
+<p>按「先有衡量标准，再谈结构」的顺序走。顺序不是随便排的——没有复杂度分析当尺子，学结构就变成背性质。</p>
+<table>
+<thead>
+<tr>
+<th>阶段</th>
+<th>内容</th>
+<th>核心问题</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>0</td>
+<td>复杂度分析</td>
+<td>怎么衡量一个做法的好坏？</td>
+</tr>
+<tr>
+<td>1</td>
+<td>数组、动态数组、链表</td>
+<td>连续内存和离散节点，各自付出了什么代价？</td>
+</tr>
+<tr>
+<td>2</td>
+<td>栈与队列</td>
+<td>两种最受限的线性结构，限才对</td>
+</tr>
+<tr>
+<td>3</td>
+<td>哈希表</td>
+<td>怎么用 O(1) 换一份不确定性？</td>
+</tr>
+<tr>
+<td>4</td>
+<td>树与二叉树</td>
+<td>怎么把 O(n) 的查找砍成 O(log n)？</td>
+</tr>
+<tr>
+<td>5</td>
+<td>二叉搜索树与平衡树</td>
+<td>树退化成链表怎么办？</td>
+</tr>
+<tr>
+<td>6</td>
+<td>堆与优先队列</td>
+<td>怎么只取最值，而不付全排序的代价？</td>
+</tr>
+<tr>
+<td>7</td>
+<td>并查集与字典树</td>
+<td>两个「为一类问题而生」的结构</td>
+</tr>
+<tr>
+<td>8</td>
+<td>图</td>
+<td>关系型数据的通用表示</td>
+</tr>
+<tr>
+<td>9</td>
+<td>排序</td>
+<td>从 O(n²) 到 O(n log n) 再到 O(n)</td>
+</tr>
+<tr>
+<td>10</td>
+<td>算法范式</td>
+<td>分治、贪心、动态规划、回溯</td>
+</tr>
+</tbody>
+</table>
+<p>每一篇的固定结构：<strong>动机 → 自己实现 → 复杂度分析（带实测）→ 易错点 → 练习</strong>。</p>
+<p>练习我不给标准答案，给「怎么验证自己对了」的方法。这个比答案重要。</p>
+<h2 id="代码在哪"><a class="markdownIt-Anchor" href="#代码在哪"></a> 代码在哪</h2>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">nil.github.io/</span><br><span class="line">└── ds-course/</span><br><span class="line">    ├── package.json</span><br><span class="line">    ├── tsconfig.json      # strict + noUncheckedIndexedAccess</span><br><span class="line">    └── src/</span><br><span class="line">        └── 01-complexity.ts</span><br></pre></td></tr></table></figure>
+<p>跑起来：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line"><span class="built_in">cd</span> ds-course</span><br><span class="line">npx tsx src/01-complexity.ts</span><br></pre></td></tr></table></figure>
+<p>没有全局依赖污染，<code>npx</code> 现装现跑。</p>
+<h2 id="怎么学才不白学"><a class="markdownIt-Anchor" href="#怎么学才不白学"></a> 怎么学才不白学</h2>
+<p>三条，都是踩过坑换来的：</p>
+<p><strong>一，先自己写一遍，再看答案。</strong> 顺序反了，你会产生「我看懂了」的错觉。看懂和能写出来之间隔着一次真实的思考过程。</p>
+<p><strong>二，复杂度要能口算。</strong> 不是背表，是看到一段代码能数出来。这个技能比记住任何单个结构都值钱，因为它能让你在写代码的时候就避开 O(n²)。</p>
+<p><strong>三，接受「暂时不懂」。</strong> 动态规划、平衡树这些，第一次学不懂是正常的。我的做法是标记下来，继续往前走，很多时候后面的内容会把前面的照亮。卡死在一处不动，是最低效的路径。</p>
+<p>下一篇从<strong>复杂度分析</strong>开始——一切的衡量标准。</p>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>typescript</tag>
+        <tag>重学算法</tag>
+        <tag>数据结构</tag>
+        <tag>算法</tag>
       </tags>
   </entry>
   <entry>
@@ -40991,6 +40991,49 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
       </tags>
   </entry>
   <entry>
+    <title>黄仁勋风波映射AI芯片权力更迭</title>
+    <url>/%E6%8A%80%E6%9C%AF/d4407431.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="私生活不会自动切断供应链"><a class="markdownIt-Anchor" href="#私生活不会自动切断供应链"></a> 私生活不会自动切断供应链</h2>
+<p>黄仁勋这场风波会伤到英伟达，但眼下很难直接改写芯片竞争。</p>
+<p>我最初关注的是舆论本身。一个人被卷入间谍争议，代价可能落在声誉、合作和公共关系上。可芯片生意的根基更硬：客户买的是集群、互连、软件和持续交付，很少因为创始人的私生活立刻更换供应商。</p>
+<blockquote>
+<p><span class="hl">真正能动摇订单的是供货中断、许可变化或客户转向。</span></p>
+</blockquote>
+<p>这与我在《美国赢得AI竞赛，但黄仁勋差点亲手葬送优势》（2026）里的判断一致。那篇文章更强调个人关系带来的信任危机。现在看，这个风险仍然存在，却不能夸大成芯片订单会突然流失。</p>
+<p>这也不代表事件无关紧要。黄仁勋是美国国家工程院院士，并在 2026 年被任命为美国总统科学技术顾问委员会成员。身份越靠近政策核心，私生活受到的政治审视越强。美国和中国都在竞逐先进AI基础设施，争议也可能被纳入国家安全叙事。</p>
+<blockquote>
+<p>政治审查与出口管制会沿同一条路径传导，最终影响企业能卖什么、卖给谁。</p>
+</blockquote>
+<h2 id="护城河藏在上游与系统里"><a class="markdownIt-Anchor" href="#护城河藏在上游与系统里"></a> 护城河藏在上游与系统里</h2>
+<p>英伟达的优势不只来自一颗芯片。供应链、代工能力、封装、存储、网络设备和软件生态共同决定了客户拿到的是一套可用系统。</p>
+<p>这也是我判断黄仁勋风波暂时无法击穿护城河的原因。竞争者可以寻找替代芯片，还要补上互连、开发工具和部署支持。大型客户更换计算平台，往往意味着重新验证、重新训练和重新管理基础设施。</p>
+<blockquote>
+<p><span class="hl">客户集中度是英伟达最容易被忽略的脆弱点，完整系统能力则是它最难被复制的部分。</span></p>
+</blockquote>
+<p>客户集中带来两面性。少数大客户掌握足够强的议价能力，也能加快自研芯片或引入第二供应商。可这需要时间，也需要软件成熟。外部竞争通常从单一环节切入，再逐步扩大覆盖。</p>
+<p>我对“AI芯片公司只要拿到订单就安全”的看法，一直有保留。订单能证明需求，却不能证明竞争者无法追上来。更关键的观察点是：客户是否降低对单一供应商的依赖，以及竞争者能否提供可部署、可维护的整套系统。</p>
+<blockquote>
+<p>供应链韧性不是仓库里堆了多少芯片，而是关键环节受限时，系统还能否持续交付。</p>
+</blockquote>
+<h2 id="新巨头要跨过三道门槛"><a class="markdownIt-Anchor" href="#新巨头要跨过三道门槛"></a> 新巨头要跨过三道门槛</h2>
+<p>我到现在也没完全看懂，下一个巨头会从芯片设计、云计算，还是系统集成中诞生。</p>
+<p>芯片公司最容易获得声量。云计算公司掌握客户关系和算力入口。系统厂商则更了解行业流程，可能把模型直接装进现有设备。它们的路径不同，商业控制力也不同。</p>
+<blockquote>
+<p>新巨头需要同时解决三道门槛：拿到先进制造能力，通过出口管制，并让客户接受迁移成本。</p>
+</blockquote>
+<p>前两道门槛决定它能否供货，第三道决定供货能否变成收入。政策会奖励真正形成基础设施能力的公司，也会压制其扩张速度。越靠近先进AI基础设施，资本、人才和监管许可就越难同时获得。</p>
+<p>这也解释了为什么我更关注权力的转移方式。谁设计芯片，谁分配算力，谁决定客户能使用哪些能力。单个产品被替代，只算局部调整；控制软件、网络和交付标准的能力转移，才会重排行业位置。</p>
+<p><span class="hl">黄仁勋风波能制造新闻，供应链重组才会制造新的巨头。</span></p>
+<p>下一阶段值得继续观察的不是舆论会压低多少，而是美国许可规则、先进制造供给和客户采购策略如何共同变化。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>美国赢得AI竞赛，但黄仁勋差点亲手葬送优势</title>
     <url>/AI/1cdc5bc8.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="间谍风波改变不了算力胜负手"><a class="markdownIt-Anchor" href="#间谍风波改变不了算力胜负手"></a> 间谍风波改变不了算力胜负手</h2>
@@ -41048,49 +41091,6 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
       </tags>
   </entry>
   <entry>
-    <title>黄仁勋风波映射AI芯片权力更迭</title>
-    <url>/%E6%8A%80%E6%9C%AF/d4407431.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="私生活不会自动切断供应链"><a class="markdownIt-Anchor" href="#私生活不会自动切断供应链"></a> 私生活不会自动切断供应链</h2>
-<p>黄仁勋这场风波会伤到英伟达，但眼下很难直接改写芯片竞争。</p>
-<p>我最初关注的是舆论本身。一个人被卷入间谍争议，代价可能落在声誉、合作和公共关系上。可芯片生意的根基更硬：客户买的是集群、互连、软件和持续交付，很少因为创始人的私生活立刻更换供应商。</p>
-<blockquote>
-<p><span class="hl">真正能动摇订单的是供货中断、许可变化或客户转向。</span></p>
-</blockquote>
-<p>这与我在《美国赢得AI竞赛，但黄仁勋差点亲手葬送优势》（2026）里的判断一致。那篇文章更强调个人关系带来的信任危机。现在看，这个风险仍然存在，却不能夸大成芯片订单会突然流失。</p>
-<p>这也不代表事件无关紧要。黄仁勋是美国国家工程院院士，并在 2026 年被任命为美国总统科学技术顾问委员会成员。身份越靠近政策核心，私生活受到的政治审视越强。美国和中国都在竞逐先进AI基础设施，争议也可能被纳入国家安全叙事。</p>
-<blockquote>
-<p>政治审查与出口管制会沿同一条路径传导，最终影响企业能卖什么、卖给谁。</p>
-</blockquote>
-<h2 id="护城河藏在上游与系统里"><a class="markdownIt-Anchor" href="#护城河藏在上游与系统里"></a> 护城河藏在上游与系统里</h2>
-<p>英伟达的优势不只来自一颗芯片。供应链、代工能力、封装、存储、网络设备和软件生态共同决定了客户拿到的是一套可用系统。</p>
-<p>这也是我判断黄仁勋风波暂时无法击穿护城河的原因。竞争者可以寻找替代芯片，还要补上互连、开发工具和部署支持。大型客户更换计算平台，往往意味着重新验证、重新训练和重新管理基础设施。</p>
-<blockquote>
-<p><span class="hl">客户集中度是英伟达最容易被忽略的脆弱点，完整系统能力则是它最难被复制的部分。</span></p>
-</blockquote>
-<p>客户集中带来两面性。少数大客户掌握足够强的议价能力，也能加快自研芯片或引入第二供应商。可这需要时间，也需要软件成熟。外部竞争通常从单一环节切入，再逐步扩大覆盖。</p>
-<p>我对“AI芯片公司只要拿到订单就安全”的看法，一直有保留。订单能证明需求，却不能证明竞争者无法追上来。更关键的观察点是：客户是否降低对单一供应商的依赖，以及竞争者能否提供可部署、可维护的整套系统。</p>
-<blockquote>
-<p>供应链韧性不是仓库里堆了多少芯片，而是关键环节受限时，系统还能否持续交付。</p>
-</blockquote>
-<h2 id="新巨头要跨过三道门槛"><a class="markdownIt-Anchor" href="#新巨头要跨过三道门槛"></a> 新巨头要跨过三道门槛</h2>
-<p>我到现在也没完全看懂，下一个巨头会从芯片设计、云计算，还是系统集成中诞生。</p>
-<p>芯片公司最容易获得声量。云计算公司掌握客户关系和算力入口。系统厂商则更了解行业流程，可能把模型直接装进现有设备。它们的路径不同，商业控制力也不同。</p>
-<blockquote>
-<p>新巨头需要同时解决三道门槛：拿到先进制造能力，通过出口管制，并让客户接受迁移成本。</p>
-</blockquote>
-<p>前两道门槛决定它能否供货，第三道决定供货能否变成收入。政策会奖励真正形成基础设施能力的公司，也会压制其扩张速度。越靠近先进AI基础设施，资本、人才和监管许可就越难同时获得。</p>
-<p>这也解释了为什么我更关注权力的转移方式。谁设计芯片，谁分配算力，谁决定客户能使用哪些能力。单个产品被替代，只算局部调整；控制软件、网络和交付标准的能力转移，才会重排行业位置。</p>
-<p><span class="hl">黄仁勋风波能制造新闻，供应链重组才会制造新的巨头。</span></p>
-<p>下一阶段值得继续观察的不是舆论会压低多少，而是美国许可规则、先进制造供给和客户采购策略如何共同变化。</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>技术</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>所有客户凭据与代币被盗，暴露的是加密钱包的系统性信任危机</title>
     <url>/%E9%87%91%E8%9E%8D/24f59ff1.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="凭据失守让个人资产暴露在信任链条上"><a class="markdownIt-Anchor" href="#凭据失守让个人资产暴露在信任链条上"></a> 凭据失守让个人资产暴露在信任链条上</h2>
@@ -41128,41 +41128,6 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
       </categories>
       <tags>
         <tag>金融</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>FAA全国停飞揭示航空系统韧性缺口</title>
-    <url>/%E6%8A%80%E6%9C%AF/f56de167.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="停飞暴露的是系统冗余问题"><a class="markdownIt-Anchor" href="#停飞暴露的是系统冗余问题"></a> 停飞暴露的是系统冗余问题</h2>
-<p>11 月 13 日下午四点前后，美国联邦航空管理局对所有离港航班下了一道全国性地面停止指令。通告里的措辞是「因特殊情况并出于安全原因」，生效时段从当天美东时间 15:54 一直到 23:30。到当天晚 8 点，FlightAware 记录到的延误是 9,814 个，取消 5,117 个。</p>
-<p>这个数字本身并不是最让人惊讶的部分。按 Cirium 的统计，当天美国原计划起飞的航班有 26,284 班，其中超过 15% 被取消或没能起飞；被备降的至少有 827 班，其中 670 班飞回了起飞机场。同一份数据还估算，约有 150 万人被滞留在机场。</p>
-<p>我最初把它读成一次普通的设备故障。看到 CNN 和 CBS 的报道之后，我改了判断：CBS 引述多方信源说，是连接全美空管系统的私有通信网络做了一次更新，系统重启后崩溃，通信中断，运营方是 L3Harris；CNN 拿到的一条航空公司消息说，故障出在网络路由器上，级联到了全国。国土安全部长穆林在白宫门外表示，这就是一次电信中断，没有迹象显示是蓄意攻击；执法部门的初步报告也说这不是网络攻击。</p>
-<p><span class="hl">一个声称有冗余的系统，在单点失效时全网一起停摆，说明冗余只存在于图纸上。</span></p>
-<p>在那之前不久，芝加哥的奥黑尔与中途两座机场刚因设备故障被单独停过。全国范围的停止，是这次故障级联的结果。</p>
-<blockquote>
-<p>没有哪一台设备单独坏掉，是私有通信网络同时对所有人失联。</p>
-</blockquote>
-<h2 id="影响来自无法压缩的等待链条"><a class="markdownIt-Anchor" href="#影响来自无法压缩的等待链条"></a> 影响来自无法压缩的等待链条</h2>
-<p>停飞的代价落在等待链上。飞机调回、机组执勤超时、旅客改签、行李重新装载、时刻表整片重排。做过航空公司高管的 R.W. Mann 给出的判断很直接：地面停止持续得越久，恢复时间越长，设备与机组都处在错位状态，到某个节点这一天就等于报废了，航空公司该做的是重置资源、准备周末。</p>
-<p>这让我想起自己以前写权限管理和流程引擎的那批文章。那时候我容易把系统看成节点和状态。航空系统不能只按流程图计算。每个状态转换都需要真实资源，资源还有位置、时间和冲突关系。</p>
-<p>拿一架已经抵达原机场的飞机来说。旅客改签到另一座城市之后，重新起飞的时点可能同时受机组休息、航路容量和地面保障限制。系统给出一个「可执行」的结果，不代表现场有条件把它执行下去。</p>
-<p>而「可执行」这三个字，正好是我绕回来看的地方。11 月 10 日，也就是停飞前三天，航空管理局宣布把新的空域规划系统 SMART 向全国推广，承包商 AirSpace Intel 当天也发了声明。一套新的规划系统正在全国铺开时，底下的通信网络断了。</p>
-<blockquote>
-<p>新系统的上线节奏与老系统的稳定性之间没有共同的失效边界，公众拿到的却只有一条消息：全部航班停止。</p>
-</blockquote>
-<h2 id="预警应先回答恢复边界"><a class="markdownIt-Anchor" href="#预警应先回答恢复边界"></a> 预警应先回答恢复边界</h2>
-<p>航空预警最有价值的部分，不是更早说出「可能停飞」，而是说明哪些服务会继续、哪些会暂停，以及恢复需要满足什么条件。</p>
-<p>这和我做 Hermes Agent 时面对的问题相似。外部服务失效之后，系统需要明确降级方式。记忆召回命中率约 9%，这个已知痛点限制了 mem-md 的实用性。若没有清晰标记哪部分结果可信，调用者会把所有输出当成同等可靠。</p>
-<p>空管系统也需要同一种边界标记。故障节点未确认时，限流应该只覆盖已知受影响范围；确认之后，再逐步恢复容量。每个阶段都要有可核对的指标：通信状态、导航可用性、空域分配结果，以及机场实际放行能力。</p>
-<p>公众拿到的通常只有「全面停飞」这一层信息。它足以解释不便，却不足以让每个环节提前准备。航空公司需要知道降级规则，空管需要划出限制区，旅客需要知道什么时候可以重订。</p>
-<p>全国性地面停止上一次发生在 2023 年 1 月，当时是飞行人员告警系统夜间宕机，只持续了几个小时。再往前一次是 9 月 11 日。前国家运输安全委员会主席罗伯特·萨姆沃尔特把这次称为「绝对前所未有」，他当过 24 年民航飞行员，9·11 那天空中的位置和这次一样。</p>
-<p><span class="hl">有效预警应提供可执行的分区、降级路径和恢复条件，不能只给一个笼统的停飞标签。</span> 这套原则适用于任何跨地区基础设施。</p>
-]]></content>
-      <categories>
-        <category>技术</category>
-      </categories>
-      <tags>
-        <tag>技术</tag>
       </tags>
   </entry>
   <entry>
@@ -41205,6 +41170,41 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
       </categories>
       <tags>
         <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>FAA全国停飞揭示航空系统韧性缺口</title>
+    <url>/%E6%8A%80%E6%9C%AF/f56de167.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="停飞暴露的是系统冗余问题"><a class="markdownIt-Anchor" href="#停飞暴露的是系统冗余问题"></a> 停飞暴露的是系统冗余问题</h2>
+<p>11 月 13 日下午四点前后，美国联邦航空管理局对所有离港航班下了一道全国性地面停止指令。通告里的措辞是「因特殊情况并出于安全原因」，生效时段从当天美东时间 15:54 一直到 23:30。到当天晚 8 点，FlightAware 记录到的延误是 9,814 个，取消 5,117 个。</p>
+<p>这个数字本身并不是最让人惊讶的部分。按 Cirium 的统计，当天美国原计划起飞的航班有 26,284 班，其中超过 15% 被取消或没能起飞；被备降的至少有 827 班，其中 670 班飞回了起飞机场。同一份数据还估算，约有 150 万人被滞留在机场。</p>
+<p>我最初把它读成一次普通的设备故障。看到 CNN 和 CBS 的报道之后，我改了判断：CBS 引述多方信源说，是连接全美空管系统的私有通信网络做了一次更新，系统重启后崩溃，通信中断，运营方是 L3Harris；CNN 拿到的一条航空公司消息说，故障出在网络路由器上，级联到了全国。国土安全部长穆林在白宫门外表示，这就是一次电信中断，没有迹象显示是蓄意攻击；执法部门的初步报告也说这不是网络攻击。</p>
+<p><span class="hl">一个声称有冗余的系统，在单点失效时全网一起停摆，说明冗余只存在于图纸上。</span></p>
+<p>在那之前不久，芝加哥的奥黑尔与中途两座机场刚因设备故障被单独停过。全国范围的停止，是这次故障级联的结果。</p>
+<blockquote>
+<p>没有哪一台设备单独坏掉，是私有通信网络同时对所有人失联。</p>
+</blockquote>
+<h2 id="影响来自无法压缩的等待链条"><a class="markdownIt-Anchor" href="#影响来自无法压缩的等待链条"></a> 影响来自无法压缩的等待链条</h2>
+<p>停飞的代价落在等待链上。飞机调回、机组执勤超时、旅客改签、行李重新装载、时刻表整片重排。做过航空公司高管的 R.W. Mann 给出的判断很直接：地面停止持续得越久，恢复时间越长，设备与机组都处在错位状态，到某个节点这一天就等于报废了，航空公司该做的是重置资源、准备周末。</p>
+<p>这让我想起自己以前写权限管理和流程引擎的那批文章。那时候我容易把系统看成节点和状态。航空系统不能只按流程图计算。每个状态转换都需要真实资源，资源还有位置、时间和冲突关系。</p>
+<p>拿一架已经抵达原机场的飞机来说。旅客改签到另一座城市之后，重新起飞的时点可能同时受机组休息、航路容量和地面保障限制。系统给出一个「可执行」的结果，不代表现场有条件把它执行下去。</p>
+<p>而「可执行」这三个字，正好是我绕回来看的地方。11 月 10 日，也就是停飞前三天，航空管理局宣布把新的空域规划系统 SMART 向全国推广，承包商 AirSpace Intel 当天也发了声明。一套新的规划系统正在全国铺开时，底下的通信网络断了。</p>
+<blockquote>
+<p>新系统的上线节奏与老系统的稳定性之间没有共同的失效边界，公众拿到的却只有一条消息：全部航班停止。</p>
+</blockquote>
+<h2 id="预警应先回答恢复边界"><a class="markdownIt-Anchor" href="#预警应先回答恢复边界"></a> 预警应先回答恢复边界</h2>
+<p>航空预警最有价值的部分，不是更早说出「可能停飞」，而是说明哪些服务会继续、哪些会暂停，以及恢复需要满足什么条件。</p>
+<p>这和我做 Hermes Agent 时面对的问题相似。外部服务失效之后，系统需要明确降级方式。记忆召回命中率约 9%，这个已知痛点限制了 mem-md 的实用性。若没有清晰标记哪部分结果可信，调用者会把所有输出当成同等可靠。</p>
+<p>空管系统也需要同一种边界标记。故障节点未确认时，限流应该只覆盖已知受影响范围；确认之后，再逐步恢复容量。每个阶段都要有可核对的指标：通信状态、导航可用性、空域分配结果，以及机场实际放行能力。</p>
+<p>公众拿到的通常只有「全面停飞」这一层信息。它足以解释不便，却不足以让每个环节提前准备。航空公司需要知道降级规则，空管需要划出限制区，旅客需要知道什么时候可以重订。</p>
+<p>全国性地面停止上一次发生在 2023 年 1 月，当时是飞行人员告警系统夜间宕机，只持续了几个小时。再往前一次是 9 月 11 日。前国家运输安全委员会主席罗伯特·萨姆沃尔特把这次称为「绝对前所未有」，他当过 24 年民航飞行员，9·11 那天空中的位置和这次一样。</p>
+<p><span class="hl">有效预警应提供可执行的分区、降级路径和恢复条件，不能只给一个笼统的停飞标签。</span> 这套原则适用于任何跨地区基础设施。</p>
+]]></content>
+      <categories>
+        <category>技术</category>
+      </categories>
+      <tags>
+        <tag>技术</tag>
       </tags>
   </entry>
   <entry>
@@ -42217,6 +42217,126 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
 <p>这套结构对创业和日常工作同样有用。多个 Agent 可以压缩准备时间，但最终交付仍需要验收标准。代码要测试，数据要核对，费用要确认。缺少验收环节时，产出越多，错误只会藏得更深。</p>
 <p>到 2026 年 11 月 23 日，我仍然无法判断群体智能会不会找到新的通用算法。多智能体缺少可靠验证时，它更适合提出更多假设。</p>
 <p>真正值得追踪的指标或许包括：多少候选解通过了独立检查，失败能否快速定位到具体约束，以及整套流程能否重复运行。多智能体能否突破复杂度难题，最终取决于这些数字，而不是参与协作的 Agent 数量。</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>黄仁勋回归英伟达董事会释放AI算力扩张信号</title>
+    <url>/%E5%8D%8A%E5%AF%BC%E4%BD%93/118b09e1.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="董事会席位释放的信号很明确"><a class="markdownIt-Anchor" href="#董事会席位释放的信号很明确"></a> 董事会席位释放的信号很明确</h2>
+<p>黄仁勋回归英伟达董事会，首先说明公司仍希望把算力投资周期放在战略中心位置。英伟达面对的核心问题，已经从“AI芯片能否卖出去”转向“还能把多少资本投入算力基础设施”。</p>
+<p>这件事的时间点值得关注。今天是2026年11月24日，董事会的人事变化会被市场放到AI基础设施预期里解读。资本会寻找最直接的公司信号，创始人重新进入董事会，很容易被理解成管理层对长期投入的再次确认。</p>
+<p>我不把这次回归解读成公司经营出了新问题。没有足够事实支持这种判断。</p>
+<p>我更关心它和另外两件事放在一起后的含义：云厂商持续采购加速芯片，数据中心继续建设电力和冷却系统，英伟达需要不断扩大供给能力。即便外部需求依然旺盛，产能建设也不能只靠订单热度推动。它需要土地、电力、设备、供应链，还有组织决策速度。</p>
+<blockquote>
+<p>判断一家公司是否准备加码长期投入，先看它愿意让谁回到决策中心。</p>
+</blockquote>
+<p>董事会回归释放的，正是这种信号。</p>
+<h2 id="算力投资已经进入资本密集阶段"><a class="markdownIt-Anchor" href="#算力投资已经进入资本密集阶段"></a> 算力投资已经进入资本密集阶段</h2>
+<p>过去几年，AI算力交易最容易被简化为芯片销量。芯片出货增加，供应商扩大生产，服务器厂商采购更多设备。这个阶段，商业逻辑清楚，兑现路径也短。</p>
+<p>现在看，新增算力需要更长的建设周期。芯片只是其中一部分。网络互联、机房供电、液冷设备和软件适配都会影响最终交付。资本投入越重，董事会的决策权重越高。</p>
+<p>黄仁勋回归董事会，会让市场重新审视英伟达下一阶段的核心矛盾：公司究竟是在满足已有需求，还是在为更大的需求提前配置资源。</p>
+<p>我的判断偏向前者。<span class="hl">英伟达需要用更长期的组织安排，应对已经明显加重的资本投入。</span>这并不自动等于利润继续增长。订单、投资和回报之间存在时间差。董事会看到的，也不会只有下一季销售数字。</p>
+<p>这也解释了我为何更重视“回归”本身，而不是媒体围绕芯片性能、竞争者动向展开的讨论。创始人的历史经验能帮助公司处理大规模投资中的取舍：哪些能力必须内部建设，哪些采购可以外包，供应风险要留多少余量。</p>
+<blockquote>
+<p>一家公司准备把周期拉长，就不能只用短周期指标解释它的决策。</p>
+</blockquote>
+<h2 id="市场最容易忽略投入留下的成本"><a class="markdownIt-Anchor" href="#市场最容易忽略投入留下的成本"></a> 市场最容易忽略投入留下的成本</h2>
+<p>如果算力需求继续扩张，英伟达会获得更大的交易空间。问题也会随之变化。高增长业务需要大量前置投入，折旧、库存和供应链承诺都会进入资产负债表。</p>
+<p>我对这类公司一直有个提醒：需求旺盛时，最容易把扩产理解成纯机会。供给不足会限制收入，提前建设又可能带来闲置风险。两种情况都可能发生，判断不能只靠“AI需求很大”这句话。</p>
+<p>这也能和我此前《AI公司上市窗口取决于资本供给而非竞争排序》的判断连起来。那篇文章讨论的是资本供给决定AI公司能否把远期预期搬到公开市场。今天的董事会动向把问题推进了一步：已经具备市场地位的巨头，也要继续回答资本如何进入实体基础设施。</p>
+<p>资本可以买到GPU，买不到现成的电力接入。资本可以推动厂房建设，买不到足够的熟练工程师。资本也能买到设备，买不到稳定运行的软件生态。</p>
+<p><span class="hl">算力扩张的瓶颈，最终会从芯片供给转向组织协调和基础设施交付。</span>董事会成员的价值，就在于让公司处理这些慢变量，而非追逐每一轮市场情绪。</p>
+<h2 id="下一步要看投资有没有变成交付能力"><a class="markdownIt-Anchor" href="#下一步要看投资有没有变成交付能力"></a> 下一步要看投资有没有变成交付能力</h2>
+<p>我不会因为一次人事变化就断言英伟达即将进入新的高速扩张阶段。事实依据里没有足够数据支撑定量判断，外部报道也不能代替公司披露。</p>
+<p>接下来应观察三类动作：董事会对资本配置的态度是否更明确，基础设施投入能否转化为稳定交付，公司能否在需求变化时保留调整空间。若这些动作同步出现，这次回归才构成完整信号。</p>
+<p>反例也很清楚。若市场只把它写成一则管理层新闻，却没有后续投资安排和供给能力改善，信号就会停在情绪层面。</p>
+<p>我还无法确定的是，英伟达会把扩张重点放在芯片、整机系统，还是更上层的软件与网络服务。这个选择会决定资本开支的压力落在哪里，也会改变利润率的质量。</p>
+<p>这届AI算力周期的终点，或许仍要由一座座数据中心和持续运行的集群来标记。</p>
+]]></content>
+      <categories>
+        <category>半导体</category>
+      </categories>
+      <tags>
+        <tag>半导体</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>主权AI不是护城河，控制平面才是独立开发者机会</title>
+    <url>/AI/edcfa295.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="订单变化暴露的是资源分配权"><a class="markdownIt-Anchor" href="#订单变化暴露的是资源分配权"></a> 订单变化暴露的是资源分配权</h2>
+<p>谷歌调整博通TPU订单，最值得看的不是数字，而是采购权掌握在谁手里。订单减少，说明谷歌可以重新分配算力，也可以用自研芯片、外部采购和不同代际产品做组合。对独立开发者而言，这比“AI芯片需求是否降温”更有价值。</p>
+<p><span class="hl">我在《谷歌削减博通TPU订单20%意味着AI芯片需求降了吗》（2026）里，把订单缩减理解成资源重分配。</span>那篇文章关注的是芯片需求的后续变化。这次我会把视线移到更上游：模型和算力逐渐开放之后，企业究竟需要控制什么？</p>
+<p>答案很明确：<span class="hl">企业真正要控制的，是模型如何进入业务、权限如何分配、成本如何结算。</span>模型本身可以替换，数据接入、任务路由和审计记录却会留在企业内部。订单变化也会推动这种迁移。算力供应更灵活，企业就更有动力把模型层从固定绑定改成可替换组件。</p>
+<blockquote>
+<p>同一块TPU出货量减少，可能对应另一种芯片采购增加，也可能对应训练与推理资源重新分配。</p>
+</blockquote>
+<p>这里有一个容易被忽略的事实：原文只说谷歌调整TPU订单，没有给出需求总量，也没有证明AI算力整体下降。只看订单，容易把一次采购调整误判成行业拐点。</p>
+<h2 id="开放权重削弱了模型层的控制力"><a class="markdownIt-Anchor" href="#开放权重削弱了模型层的控制力"></a> 开放权重削弱了模型层的控制力</h2>
+<p>开放权重让企业可以自行部署、修改和迁移模型。配合云端API，企业甚至可以同时使用多个模型，根据任务、价格、延迟和可靠性做切换。模型层的优势因此很难单独维持。</p>
+<p>这会直接改变开发工具的定价逻辑。单纯提供“另一个聊天界面”，很容易被模型升级抹平。更有价值的位置在模型与业务之间：统一接口、权限控制、上下文管理、结果评估，以及成本追踪。</p>
+<p>我正在做的Hermes Atlas知识库，卡点仍然是三个问题：解决什么问题，谁付钱，怎么收钱。模型换成开放权重，并不自动回答这三个问题。它只让实施成本下降，也让产品差异更容易被复制。</p>
+<blockquote>
+<p>开放权重解决的是“能不能用”。企业控制平面解决的是“能不能管”。</p>
+</blockquote>
+<p>这里需要区分部署自由与业务控制。开放权重可以放进企业机房，却不会自动拥有身份体系、审批流程、数据边界和审计能力。这些能力必须由控制平面承接。</p>
+<p>我对独立开发者的判断也因此更保守：做一个模型聚合入口，机会未必够大；做一个能进入现有流程的控制层，机会更扎实。关键选择在于处置权限的归属。</p>
+<h2 id="价值捕获正在向控制平面移动"><a class="markdownIt-Anchor" href="#价值捕获正在向控制平面移动"></a> 价值捕获正在向控制平面移动</h2>
+<p>上一代AI产品的价值常集中在模型调用量和单次任务价格。开放权重压低了这个位置的议价空间。企业仍然会购买模型，却可能根据任务随时切换供应商。模型调用量不再是稳固的护城河。</p>
+<p>价值会向几个控制点集中。第一是路由，根据合规、成本和效果选择模型。第二是治理，记录每次调用用了什么模型、数据去了哪里、结果由谁批准。第三是结算，把模型费用、工具调用和人工复核统一归入业务成本。</p>
+<p>我写过《微软CEO押注AGI，开发者机会与价值捕获重估》（2026），当时讨论的是AGI预期如何改写开发者的商业位置。那篇文章把开发者机会放在能力变化上。这次需要补充一层：能力越接近，企业越需要一层稳定的操作界面。</p>
+<p>对一人公司而言，这条路比训练基础模型更现实。资源有限，无法承担模型训练和芯片投入。开放权重降低了接入门槛，恰好把开发者推向模型之上的工程位置。2026年，我开始尝试Hermes Atlas，方向是信息差套利。它离控制平面还有距离，但比追逐模型参数更接近可持续的产品路径。</p>
+<blockquote>
+<p>基础模型提供能力，控制平面提供秩序，企业为秩序持续付费。</p>
+</blockquote>
+<p>问题也随之出现：如果云厂商把路由、权限和审计都做进平台，第三方控制平面还有位置吗？我到现在也没想清楚。可能独立产品必须避开大平台的默认功能，转向跨模型、跨云和特定行业流程。也可能控制平面最终仍由少数基础设施企业收走。</p>
+<p>开放权重正在压低模型差异，控制平面能否成为独立生意，要看企业是否愿意为跨模型治理持续付费。</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Nothing Ear Note暴露AI耳机生态的真实胜负手</title>
+    <url>/AI/95b1fd41.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="转录只是入口耳机正在变成个人上下文采集器"><a class="markdownIt-Anchor" href="#转录只是入口耳机正在变成个人上下文采集器"></a> 转录只是入口，耳机正在变成个人上下文采集器</h2>
+<p>Nothing 的 Ear Note 把录音、转录、摘要和配套应用装进了一套耳机与麦克风充电盒。Carl Pei 已向 Bloomberg 展示设备，定价仍未确定，计划于 12 月 8th 发布。</p>
+<p>我最初把它看成一个录音功能的硬件化版本。耳机负责收音，手机负责处理，应用负责整理。功能拆开看都不陌生，组合起来却会改变 AI 设备的入口竞争。</p>
+<blockquote>
+<p>录音、转录、摘要、配套应用，构成 Ear Note 已公开的核心链路。</p>
+</blockquote>
+<p>关键变化发生在耳机承担了持续上下文采集。过去的 AI 应用等你打开，再等你提问。耳机戴在耳边，可能随时听到会议、想法和对话。用户不必整理提示词，AI 获得的是连续输入。</p>
+<p>这也解释了为什么 Apple Watch、Amazon 的 Bee 都在靠近同一类场景。耳机位置私密，交互成本又低。它不需要抢走手机屏幕，只要在合适时刻给出摘要。</p>
+<p><span class="hl">AI 耳机的胜负手在于谁能把连续音频变成可用的个人上下文。</span></p>
+<p>转录质量决定功能上限，摘要只是终点。用户真正需要的结果可能是“这次讨论留下了哪些决定”，或者“我上周说过什么”。原始录音只是中间材料。</p>
+<p>Nothing 同时推出麦克风充电盒，说明耳机本体之外的设备也会参与入口竞争。麦克风、传感器和电量管理，都会影响全天使用的可行性。硬件参数只是起点，续航和佩戴舒适度才决定采集能否持续。</p>
+<h2 id="订阅价值取决于整理能力"><a class="markdownIt-Anchor" href="#订阅价值取决于整理能力"></a> 订阅价值取决于整理能力</h2>
+<p>Ear Note 的应用需要管理录音、转录和 AI 生成的摘要。这几项能力可以免费赠送，也可以包装成持续付费服务。单次转录很容易被系统功能覆盖，长期整理则需要保存、检索、关联和持续计算。</p>
+<p>用户不会为“生成了多少字摘要”付费。他们会为少听几段录音、少翻几份笔记付费。真正稀缺的环节，是把分散内容放进可检索的个人时间线。</p>
+<blockquote>
+<p>一次转录解决眼前问题，持续整理才可能形成订阅关系。</p>
+</blockquote>
+<p>我更关心服务能否跨设备工作。录音从耳机进入手机，再进入云端模型，最后生成摘要。每多一个环节，隐私承诺和成本都会增加。免费用户得到什么、付费用户多得到什么，也会直接决定订阅是否成立。</p>
+<p>Nothing 没有公布价格，价格通常也是价值判断的一部分。如果价格过高，用户会把“偶尔转录”当成尝鲜功能。如果价格较低，订阅压力会落到云端计算和存储上。</p>
+<p><span class="hl">订阅价值最终由付费后的检索效率决定，摘要生成次数只是包装指标。</span></p>
+<p>这里还有一个容易忽略的问题：用户能否删除录音，能否选择哪些内容进入模型，能否导出转录结果。AI 耳机越接近全天候入口，退出成本越高。订阅与隐私控制必须一起设计，单独强调便利性无法建立长期信任。</p>
+<h2 id="真正稀缺的是用户持续打开的理由"><a class="markdownIt-Anchor" href="#真正稀缺的是用户持续打开的理由"></a> 真正稀缺的是用户持续打开的理由</h2>
+<p>硬件公司习惯用新品节奏争夺注意力。Nothing 传闻中的 AI 智能手表和智能眼镜计划已经延期，公司则准备在下一年采取更激进的智能手机发布节奏。这个安排透露了一个现实：AI 设备先要服从产品组合和供应链，而不是概念发布时间表。</p>
+<p>Ear Note 计划在 12 月 8th 上市。它能否成为耳机生态的新入口，暂时不能只靠发布会演示判断。至少要观察 3 个问题：日常佩戴是否稳定，录音与摘要是否可靠，用户是否愿意为持续整理付费。</p>
+<blockquote>
+<p>耳机可以更频繁地采集上下文，却不能替用户创造持续打开的理由。</p>
+</blockquote>
+<p>AI 硬件最常见的困境，是安装之后使用频率快速下降。耳机没有屏幕，提示太多会变成打扰，提示太少又无法体现 AI 的价值。好的设计需要判断什么值得提醒，什么应该安静留在后台。</p>
+<p>我仍未确定 Ear Note 会不会成为主流入口。它至少把竞争从音质、延迟和降噪，推到了个人上下文管理。下一轮耳机竞争可能围绕 3 项能力展开：持续采集、可靠检索、隐私可控。</p>
+<p>到那时，耳机厂商卖出的不只是一副设备。它们也在争取用户每天听见什么、记住什么，以及最终记住哪些事情的权利。</p>
 ]]></content>
       <categories>
         <category>AI</category>
