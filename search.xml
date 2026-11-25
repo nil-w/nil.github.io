@@ -751,12 +751,12 @@
     <title>路</title>
     <url>/%E7%94%9F%E6%B4%BB/3042827788.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script>
-        <div id="aplayer-eKWIgsfk" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
+        <div id="aplayer-BQuOYdFn" class="aplayer aplayer-tag-marker" style="margin-bottom: 20px;">
             <pre class="aplayer-lrc-content"></pre>
         </div>
         <script>
           var ap = new APlayer({
-            element: document.getElementById("aplayer-eKWIgsfk"),
+            element: document.getElementById("aplayer-BQuOYdFn"),
             narrow: false,
             autoplay: true,
             showlrc: false,
@@ -6045,6 +6045,35 @@ ExcelUtil --> RecordHandler</pre>
       </tags>
   </entry>
   <entry>
+    <title>rust-结构定义和实例化</title>
+    <url>/%E5%AD%A6%E4%B9%A0/e0d5ed17.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="结构定义"><a class="markdownIt-Anchor" href="#结构定义"></a> 结构定义</h2>
+<blockquote>
+<p>定义结构体，需要使用 <code>struct</code> 关键字并为整个结构体提供一个名字。结构体的名字需要描述它所组合的数据的意义。接着，在大括号中，定义每一部分数据的名字和类型，我们称为 <strong>字段</strong>（<em>field</em>）。</p>
+</blockquote>
+<p>以下演示了结构定义、打印对象、debug打印对象；</p>
+<ul class="lvl-0">
+<li class="lvl-2">
+<p>可以定义有字段和无字段结构，包括类似<code>Tuple</code>（元组）的方式定义；</p>
+</li>
+<li class="lvl-2">
+<p><code>println!</code>和<code>dbg!</code>打印对象需要在结构上添加外部属性 <code>#[derive(Debug)]</code>；</p>
+</li>
+<li class="lvl-2">
+<p><code>dbg!</code>宏打印需要注意值引用；</p>
+</li>
+</ul>
+<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    active: <span class="type">bool</span>,</span><br><span class="line">    username: <span class="type">String</span>,</span><br><span class="line">    email: <span class="type">String</span>,</span><br><span class="line">    sign_in_count: <span class="type">u64</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Color</span>(<span class="type">i32</span>,<span class="type">i32</span>,<span class="type">i32</span>);</span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Point</span>(<span class="type">i32</span>,<span class="type">i32</span>, <span class="type">i32</span>);</span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">AlwaysEqual</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Square</span>(<span class="type">u32</span>,<span class="type">u32</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Hello, world!&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">user</span> =  <span class="title function_ invoke__">build_user</span>(<span class="string">&quot;dong33@163.com&quot;</span>,<span class="string">&quot;dong33&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;user is &#123;:?&#125;&quot;</span>,user);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">user1</span> = User&#123;</span><br><span class="line">        active: <span class="literal">true</span>,</span><br><span class="line">        username: user.username,</span><br><span class="line">        email: user.email,</span><br><span class="line">        sign_in_count: <span class="number">1</span>,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;user1 is &#123;:?&#125;&quot;</span>,user1);</span><br><span class="line">    dbg!(user1);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">black</span> = <span class="title function_ invoke__">Color</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;black is &#123;:?&#125;&quot;</span>,black);</span><br><span class="line">    dbg!(black);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">origin</span> = <span class="title function_ invoke__">Point</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;origin is &#123;:?&#125;&quot;</span>,origin);</span><br><span class="line">    dbg!(origin);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">subject</span> = AlwaysEqual;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;subject is &#123;:?&#125;&quot;</span>,subject);</span><br><span class="line">    dbg!(subject);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">width</span> = <span class="number">30</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">height</span> = <span class="number">50</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot; area is &#123;&#125;&quot;</span>,<span class="title function_ invoke__">area</span>(width, height));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">rect</span> = <span class="title function_ invoke__">Square</span>(<span class="number">30</span>,<span class="number">50</span>);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;rect is &#123;:?&#125;&quot;</span>,rect);</span><br><span class="line">    dbg!(&amp;rect);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;square area is &#123;&#125;&quot;</span>,<span class="title function_ invoke__">area_square</span>(&amp;rect));</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">build_user</span>(email: &amp;<span class="type">str</span>,username: &amp;<span class="type">str</span>) <span class="punctuation">-&gt;</span> User &#123;</span><br><span class="line">    User &#123;</span><br><span class="line">        active: <span class="literal">true</span>,</span><br><span class="line">        username: <span class="type">String</span>::<span class="title function_ invoke__">from</span>(username),</span><br><span class="line">        email: <span class="type">String</span>::<span class="title function_ invoke__">from</span>(email),</span><br><span class="line">        sign_in_count: <span class="number">1</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">area</span>(width: <span class="type">u32</span>,height: <span class="type">u32</span>) <span class="punctuation">-&gt;</span> <span class="type">u32</span>&#123;</span><br><span class="line">    width * height</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">area_square</span>(square: &amp;Square) <span class="punctuation">-&gt;</span> <span class="type">u32</span>&#123;</span><br><span class="line">    square.<span class="number">0</span> * square.<span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>学习</category>
+      </categories>
+      <tags>
+        <tag>rust</tag>
+        <tag>struct</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>rust-if-let简洁控制流</title>
     <url>/%E5%AD%A6%E4%B9%A0/eec35d0e.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="if-let-控制流"><a class="markdownIt-Anchor" href="#if-let-控制流"></a> if let 控制流</h2>
@@ -6075,35 +6104,6 @@ ExcelUtil --> RecordHandler</pre>
         <tag>rust</tag>
         <tag>if</tag>
         <tag>let</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>rust-结构定义和实例化</title>
-    <url>/%E5%AD%A6%E4%B9%A0/e0d5ed17.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="结构定义"><a class="markdownIt-Anchor" href="#结构定义"></a> 结构定义</h2>
-<blockquote>
-<p>定义结构体，需要使用 <code>struct</code> 关键字并为整个结构体提供一个名字。结构体的名字需要描述它所组合的数据的意义。接着，在大括号中，定义每一部分数据的名字和类型，我们称为 <strong>字段</strong>（<em>field</em>）。</p>
-</blockquote>
-<p>以下演示了结构定义、打印对象、debug打印对象；</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>可以定义有字段和无字段结构，包括类似<code>Tuple</code>（元组）的方式定义；</p>
-</li>
-<li class="lvl-2">
-<p><code>println!</code>和<code>dbg!</code>打印对象需要在结构上添加外部属性 <code>#[derive(Debug)]</code>；</p>
-</li>
-<li class="lvl-2">
-<p><code>dbg!</code>宏打印需要注意值引用；</p>
-</li>
-</ul>
-<figure class="highlight rust"><table><tr><td class="code"><pre><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">User</span> &#123;</span><br><span class="line">    active: <span class="type">bool</span>,</span><br><span class="line">    username: <span class="type">String</span>,</span><br><span class="line">    email: <span class="type">String</span>,</span><br><span class="line">    sign_in_count: <span class="type">u64</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Color</span>(<span class="type">i32</span>,<span class="type">i32</span>,<span class="type">i32</span>);</span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Point</span>(<span class="type">i32</span>,<span class="type">i32</span>, <span class="type">i32</span>);</span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">AlwaysEqual</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#[derive(Debug)]</span></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">Square</span>(<span class="type">u32</span>,<span class="type">u32</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">main</span>() &#123;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;Hello, world!&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">user</span> =  <span class="title function_ invoke__">build_user</span>(<span class="string">&quot;dong33@163.com&quot;</span>,<span class="string">&quot;dong33&quot;</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;user is &#123;:?&#125;&quot;</span>,user);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="keyword">mut </span><span class="variable">user1</span> = User&#123;</span><br><span class="line">        active: <span class="literal">true</span>,</span><br><span class="line">        username: user.username,</span><br><span class="line">        email: user.email,</span><br><span class="line">        sign_in_count: <span class="number">1</span>,</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;user1 is &#123;:?&#125;&quot;</span>,user1);</span><br><span class="line">    dbg!(user1);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">black</span> = <span class="title function_ invoke__">Color</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;black is &#123;:?&#125;&quot;</span>,black);</span><br><span class="line">    dbg!(black);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">origin</span> = <span class="title function_ invoke__">Point</span>(<span class="number">0</span>,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;origin is &#123;:?&#125;&quot;</span>,origin);</span><br><span class="line">    dbg!(origin);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">subject</span> = AlwaysEqual;</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;subject is &#123;:?&#125;&quot;</span>,subject);</span><br><span class="line">    dbg!(subject);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">width</span> = <span class="number">30</span>;</span><br><span class="line">    <span class="keyword">let</span> <span class="variable">height</span> = <span class="number">50</span>;</span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot; area is &#123;&#125;&quot;</span>,<span class="title function_ invoke__">area</span>(width, height));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> <span class="variable">rect</span> = <span class="title function_ invoke__">Square</span>(<span class="number">30</span>,<span class="number">50</span>);</span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;rect is &#123;:?&#125;&quot;</span>,rect);</span><br><span class="line">    dbg!(&amp;rect);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="built_in">println!</span>(<span class="string">&quot;square area is &#123;&#125;&quot;</span>,<span class="title function_ invoke__">area_square</span>(&amp;rect));</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">build_user</span>(email: &amp;<span class="type">str</span>,username: &amp;<span class="type">str</span>) <span class="punctuation">-&gt;</span> User &#123;</span><br><span class="line">    User &#123;</span><br><span class="line">        active: <span class="literal">true</span>,</span><br><span class="line">        username: <span class="type">String</span>::<span class="title function_ invoke__">from</span>(username),</span><br><span class="line">        email: <span class="type">String</span>::<span class="title function_ invoke__">from</span>(email),</span><br><span class="line">        sign_in_count: <span class="number">1</span>,</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">area</span>(width: <span class="type">u32</span>,height: <span class="type">u32</span>) <span class="punctuation">-&gt;</span> <span class="type">u32</span>&#123;</span><br><span class="line">    width * height</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">fn</span> <span class="title function_">area_square</span>(square: &amp;Square) <span class="punctuation">-&gt;</span> <span class="type">u32</span>&#123;</span><br><span class="line">    square.<span class="number">0</span> * square.<span class="number">1</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-]]></content>
-      <categories>
-        <category>学习</category>
-      </categories>
-      <tags>
-        <tag>rust</tag>
-        <tag>struct</tag>
       </tags>
   </entry>
   <entry>
@@ -19496,384 +19496,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
-    <title>慢车 15：一页账本</title>
-    <url>/%E5%B0%8F%E8%AF%B4/8327eefe.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>卷帘门卡在离地四十厘米的位置，锈住的滑轮发出一声短响。</p>
-<p>陈渡蹲下，把旧钥匙插进锁孔。锁芯里传出一声闷响。他推开门，侧身进去。</p>
-<p>铺子七年没开电。货架上落着灰，修理台蒙在塑料布下。墙边只剩空灯座。陈渡从工具包里取出一只 9 瓦灯泡装上，拉亮开关。</p>
-<p>镇流器嗡嗡响。日光灯只亮一半，白光偏蓝。</p>
-<p>他挪开闸刀前的木板，打开旧稳压器。外壳里的电池已经鼓包，裂口渗出白色液体。</p>
-<p>「不能用。」</p>
-<p>他合上稳压器，走到修理台前。台上的工具保存得完好。塑料布下压着父亲的账本，报纸日期是 2003 年 9 月 6 日。</p>
-<p>账本封在塑料袋里，两层黑胶带已经发脆。陈渡用刀片划开封口，先翻到最后一页。</p>
-<p>2003 年 4 月 19 日，电动机。修了轴承和碳刷。用了三小时。</p>
-<p>他回到 1990 年。</p>
-<p>每页只记日期、故障、更换的零件、工时和材料费。没有姓名，也没有感想。</p>
-<p>1993 年 8 月 12 日，电饭锅。电线短路。用了 40 分钟。</p>
-<p>1995 年 6 月 2 日，录音机。磁头磨损。换了一只。</p>
-<p>1998 年 3 月 28 日，鼓风机。轴承缺油。用了 15 分钟。</p>
-<p>纸页在指间干涩作响。他翻得越来越慢。</p>
-<p>第 214 页。</p>
-<p>前面七行是电饭锅、洗衣机和一只扩音器。最后一行写在页底：</p>
-<p>「1998.4.11　录音机　换了 1 只电容　对方说录不进自己的声音　没听懂　换回原样。」</p>
-<p>陈渡从头看起。</p>
-<p>他把音量再拧小一格，磁带里的底噪压到耳朵能承受的位置。磁头在转动时发出细碎的摩擦声，像指甲划过干燥的纸边。</p>
-<p>1998 年 4 月 11 日。录音机。电容。录不进自己的声音。</p>
-<p>他又看了一遍，手指停在「自己」两个字上。</p>
-<p>二十四岁那年，他以为拾音线路不对，或者磁头有故障，才开始改装机器。账本却证明，1998 年已有人说过同一件事。</p>
-<p>父亲没有听懂。</p>
-<p>换回原样。</p>
-<p>陈渡打开修理台后的浅铁盒。里面是电容、晶体管、电阻和几截铜线。一只纸包写着「4700μF 25V」，另一只没有标签。</p>
-<p>他把无标签电容倒在掌心。外壳有擦痕，两条引脚被剪得一样长。</p>
-<p>工具包里的万用表没电。陈渡没有去找电池。</p>
-<p>他重新翻到第 214 页，用指甲在「录不进」下面划了一下。纸太干，没有留下痕迹。</p>
-<p>门缝下透进一条窄光，照住货架底部一只铁盒。盒上写着「117」。</p>
-<p>父亲那台苏式磁带机，型号下面也有这三个铅笔字。</p>
-<p>陈渡没有去拿。他看着账本。</p>
-<p>十九岁那年，父亲把机器交给他。磁带仓盖有一道划痕，旋钮是黑的，录音键比播放键低半毫米。机内有一处颜色不同的焊点。</p>
-<p>「谁改的？」</p>
-<p>「修东西的人。」</p>
-<p>「改了什么？」</p>
-<p>「记不清了。」</p>
-<p>父亲递给他一把小螺丝刀。</p>
-<p>「自己看。」</p>
-<p>陈渡倒回三秒，重新播放。</p>
-<p>十九岁的陈渡没看出异常。次年，他在婚庆乐队借到同型号机器，自己唱不进去。第三年又买了一台，还是不行。他换过磁带、磁头和线路，甚至拆过录音键的触点。二十四岁，他才开始改装 117。</p>
-<p>现在看来，机器交给他时便已经如此。</p>
-<p>1998 年 4 月 11 日之后两天，账本没有记录。4 月 13 日修电吹风，4 月 15 日修电风扇，再没提过录音机。</p>
-<p>账本里夹着一张对折表格。陈渡抽出书脊上的补胶。胶带边缘有旧式裁纸刀压出的横纹。</p>
-<p>他记得周隼的铺子也用这种刀。</p>
-<p>「隼音器修」在步行街东头，卖零件，也卖磁带。1998 年，那条街还没拆。</p>
-<p>父亲提过周隼。</p>
-<p>「东西都是从他那儿来的。」</p>
-<p>「哪个东西？」</p>
-<p>「修不了的那些。」</p>
-<p>陈渡用手电照向货架。最上层放着十几卷磁带。货架中层有一只铁皮工具盒，扣环断了一个。</p>
-<p>盒里有焊锡、棉纱、细砂纸和三把螺丝刀。底部粘着一截透明胶带，胶带上压着铅字：</p>
-<p>「ST-117」</p>
-<p>这是机器外壳上的编号。</p>
-<p>他把工具盒放到修理台上。旁边放着那只无标签电容。</p>
-<p>1998 年 4 月 11 日。有人拿着一台 117 来修，说录不进自己的声音。父亲换了电容，没听懂，又换回原样。</p>
-<p>门外有人敲卷帘门。</p>
-<p>两下。停一下。又两下。</p>
-<p>「送电的。」门外的人说，「你们这店还开不？电线要检。」</p>
-<p>这一次，他听见了更远处的门响。老式插销碰到铁皮，先是金属的颤声，后面跟着一声木板回弹。十九岁的自己大概在房间里走动，鞋底擦过水泥地面。</p>
-<p>陈渡看了一眼闸刀。</p>
-<p>「不开。」</p>
-<p>「那你锁门干什么？」</p>
-<p>「有人。」</p>
-<p>「你不是人？」</p>
-<p>卷帘门被踢了一脚，滑轮发出刺耳的响声。</p>
-<p>「你修不修东西？」</p>
-<p>「不修。」</p>
-<p>「神经病。」</p>
-<p>脚步声往东去了。</p>
-<p>陈渡拿起无标签电容。指甲在旧裂线上刮了一下。</p>
-<p>如果装在拾音线路里，它可能把同一路信号反送回话筒，也可能只影响低频。</p>
-<p>他不懂。账本没写容量、电压和位置。</p>
-<p>「没用。」</p>
-<p>他把电容放回铁盒，又拿起来。</p>
-<p>「这不是它的位置。」</p>
-<p>「你说没听懂。」他对着账本说，「你听见他说录不进自己的声音，你没听懂。」</p>
-<p>灯管闪了一下。</p>
-<p>陈渡拆下老化的启辉器，换上备用的。灯灭了一秒，「啪」的一声全亮起来。</p>
-<p>他把播放键按到底。</p>
-<p>白光铺满铺子。</p>
-<p>他找到那台编号 117 的磁带机，放到修理台上。黑色金属壳，磁带仓盖有一道旧划痕。</p>
-<p>背面四颗螺丝，三颗十字，一颗一字。</p>
-<p>陈渡拿刀片刮了一下一字螺丝，划出一道亮痕。</p>
-<p>「这种螺丝不用换，改一下刀口就行。」</p>
-<p>螺丝松开。后盖取下，线路板露出来。板上有原厂的棕色电容，也有后来换过的蓝色电容，焊点周围结了锡霜。</p>
-<p>万用表没电。陈渡从工具包底层找出几节五号电池，一节 1.2 伏，一节 1.1 伏，都不能给表供电。</p>
-<p>他拔掉门边的坏壁灯，把万用表插上去。屏幕亮起，显示 0.00。</p>
-<p>陈渡调档，测电容。读数缓慢上升。只能粗略看容量变化，看不出它曾在哪个位置。</p>
-<p>「先通电。」</p>
-<p>机器左侧的两节一号电池已经漏液，触片被腐蚀发黑。陈渡用砂纸擦亮，找不到替代件。</p>
-<p>他没有出门，只把后盖装回去，将账本塞进帆布包。</p>
-<p>走到门前，他停住。</p>
-<p>账本第 214 页后面的纸被潮气泡软，贴着上一页。他用指甲分开。</p>
-<p>下一页是 1998 年 4 月 12 日。</p>
-<p>「录音机　又来了　还是不行　这次我说了实话　他说没懂」</p>
-<p>陈渡的手指停在「实话」后面。</p>
-<p>门外又响起脚步。这次没有敲门，只在门前停了停，往东去了。</p>
-<p>他从工具盒底部取出那截印着「ST-117」的透明胶带。铅字边缘沾着黑色焊锡，字母中间还留着一点旧胶。</p>
-<p>「这段留着。」</p>
-<p>周隼的铺子就在这条街东头。</p>
-<p>「东西都有它来的地方。」</p>
-<p>当时陈渡问过：「这台机器也是？」</p>
-<p>周隼手里的螺丝刀没停。</p>
-<p>「不是我做的。」</p>
-<p>陈渡打开铁盒。盒盖内侧粘着一小块黑色橡胶，边缘有刀割的直口，上面留着焊锡和一道浅蓝油漆。</p>
-<p>干漆粉了，底下是灰白色金属。</p>
-<p>磁带机后盖没有蓝漆，线路板角上却有一枚小铆钉，铆钉旁留着半圈蓝色印子。</p>
-<p>一根黄绿相间的线从磁头区域出来，绕过两枚电阻，接进录音放大器。线身有一处压扁，外皮裂开，露出一点铜丝。</p>
-<p>陈渡拨了拨。线还能活动。</p>
-<p>不是断线。</p>
-<p>他看向货架上的机器。它比他记忆里的那台旧一些，左旋钮裂了一道，磁带仓盖上的划痕也斜向右上。</p>
-<p>父亲留下的那台还在帆布包里。他没拿出来。</p>
-<p>两只黑色机器，后盖都是三颗十字螺丝、一颗一字螺丝。</p>
-<p>他打开货架上那台的磁带仓。仓底积着灰，录音键旁卡着一小片发白的磁带带基。走带轮上缠着一根断掉的透明细线。</p>
-<p>仓底还有硬币一半大的黄褐色干痕，靠近磁头的位置散着几粒带银色亮点的焊锡碎屑。</p>
-<p>录音键旁的塑料被烙铁烫过，凝着一块发黑的胶滴。</p>
-<p>「不是这里。」</p>
-<p>仓盖合上时，机器里传出一声轻响，像什么小东西在壳里滚了一下。</p>
-<p>他停了两秒，又松开。</p>
-<p>陈渡侧过机器，摇了摇。</p>
-<p>他把机器翻回正面，手指沿接缝摸过。右下方有一处不平，金属边缘被顶出一道细线。</p>
-<p>刀片刮开漆面，露出一颗更小的十字螺丝。</p>
-<p>转了半圈，螺丝松开，机壳右边翘起一条缝。后盖抬起来，先露出一层边缘剪得不齐的薄铁片。</p>
-<p>铁片下面压着一张发黄的纸。</p>
-<p>陈渡用镊子夹出来。纸上没有字，只有铅笔留下的浅压痕：</p>
-<p>「A—B　不接地　试录　留三秒」</p>
-<p>旁边画着两条线，中间一个圈，圈旁写着「4」。</p>
-<p>纸背粘着一小条黑胶带，里面夹着一根短铜丝。一头弯钩，一头平直。</p>
-<p>陈渡沿拾音线找到一枚小型接线柱。旁边漆被刮掉，露出铜色。</p>
-<p>他松开接线柱上的螺丝。黄绿线滑出一点，后面压着一根较新的黑线。细线没有接进线路板，而是绕在一枚空心轴上。</p>
-<p>空心轴旁有个小孔，里面塞着铜丝。</p>
-<p>陈渡把纸上的图对过去。两条线，一个圈，数字 4。</p>
-<p>铜丝钩伸进孔里，勾住里面的金属片。录音键旁传出一声细响，像极轻的电流接通声。</p>
-<p>他立刻松开。声音停了。</p>
-<p>「A—B。」</p>
-<p>陈渡看着那张纸。</p>
-<p>「不接地……试录……留三秒。」</p>
-<p>字迹向右斜，写得很快，不像父亲的账本。</p>
-<p>门响之后，底噪里多出一个极轻的音节。不是歌，也不成词。短得像有人碰到麦克风架。</p>
-<p>折痕内侧还有一个铅笔印：</p>
-<p>「3」</p>
-<p>他把纸摊开，用手指压住四角。纸面除压痕外，还有三个浅色标记。</p>
-<p>陈渡换了方向。</p>
-<p>不是圆点，是标点。</p>
-<p>他拿铅笔在废纸背面拓出位置。第一个在左下，第二个在中间，第三个在右上。三个点之间没有连线。</p>
-<p>他试画三遍，第三遍才对上。左边那个小一些，中间大一些，右边最长。</p>
-<p>门外有人停下。</p>
-<p>「老陈在里头吗？」</p>
-<p>「送货的。你锁着门，里面还有电？」</p>
-<p>卷帘门下的光被一双鞋挡住一半。鞋面沾着白灰，鞋带松着。</p>
-<p>「你到底走不走？我还得接下一个。」</p>
-<p>陈渡拿起旧插排。开关磨掉半边，按下去卡在中间。他用力按了两次。</p>
-<p>日光灯灭了。</p>
-<p>「走就走。门别锁死。昨天有人钻进去拿电线，差点把整条街的闸拉了。」</p>
-<p>脚步声往西去了。</p>
-<p>陈渡在黑暗里站了片刻，伸手压住被风掀动的纸角。指腹按在第二个标记上。</p>
-<p>他将拓好位置的废纸夹进账本，拿起万用表和磁带机，侧身钻出卷帘门。工具包撞在门框上，金属碰铁，响了一声。</p>
-<p>修理钟表的铺子离家两条街。</p>
-<p>陈渡把磁带停住，倒回五秒，反复听了三遍。第三遍，他拧动音量旋钮，指腹在刻度边缘停住。</p>
-<p>他沿旧步行街往东走。第 18 根路灯不亮，路灯下堆着两只坏音箱。一只缺低音喇叭，另一只的变压器盖子裂着。</p>
-<p>铭牌上写着 220 伏。</p>
-<p>和父亲铺子里那只不一样。</p>
-<p>他继续往前，在电话亭旁的公告栏前停了一下。撕剩的纸边卷起来，露出电话号码。</p>
-<p>两分钟后，他到了钟表铺。</p>
-<p>玻璃柜台后摆着十几只座钟，秒针各自走动，隔着玻璃只剩细碎的金属响。门口挂着「更换电池」的纸牌。</p>
-<p>柜台后的老人正在给闹钟换电池。</p>
-<p>「要几号？」</p>
-<p>「一号。」</p>
-<p>「两节？」</p>
-<p>「两节。」</p>
-<p>老人拿出两节电池，放在没有屏幕的电子秤上，拨动砝码。</p>
-<p>「二点六。」</p>
-<p>「能用就行。」</p>
-<p>「三块。」</p>
-<p>陈渡摸遍口袋，只摸出一枚边缘磨薄的硬币。</p>
-<p>老人看了看他的手。</p>
-<p>「先拿走吧。」</p>
-<p>「不行。」陈渡说，「我得找钱。」</p>
-<p>他把机器翻过来，查看磁头固定螺钉。</p>
-<p>「以后给。」</p>
-<p>陈渡没动。</p>
-<p>「东西有它来的地方。」老人说，「钱也是。」</p>
-<p>柜台上摆着一只拆开的电子表。老人用棉签清理表盘。</p>
-<p>「多少钱？」</p>
-<p>「你要修？」</p>
-<p>「看看。」</p>
-<p>陈渡用镊子取下表盖里的绒布。弹簧下压着一层银灰色粉末。</p>
-<p>「换表扣的时候进水。」</p>
-<p>老人放下棉签。</p>
-<p>「你也修表？」</p>
-<p>「修东西。」</p>
-<p>他拿出一只电子打火机。外壳缺一块，按键没有火，底部一个螺丝滑丝。</p>
-<p>「接触不好。换一个要十块。」</p>
-<p>陈渡把打火机还给他，拿起两节电池。</p>
-<p>「只有一块。」</p>
-<p>老人接过硬币，从柜台下翻出横格本。</p>
-<p>「陈渡，电池两块，三元。欠二元。」</p>
-<p>他把本子转过来。</p>
-<p>左边一颗十字螺丝松了半圈，底座与机壳之间夹着一小片灰色绝缘垫。陈渡用镊子把垫片挑出来，垫片边缘已经磨出一道弯痕。</p>
-<p>陈渡看着自己的名字。</p>
-<p>「你认识我？」</p>
-<p>「听周隼说过。」</p>
-<p>陈渡的手停在工具包带子上。</p>
-<p>「他说我什么？」</p>
-<p>「会修东西。」</p>
-<p>「还有呢？」</p>
-<p>老人合上本子。</p>
-<p>「没了。」</p>
-<p>他低头继续擦表。</p>
-<p>陈渡拿起电池，出了门。</p>
-<p>那枚硬币留在柜台上。</p>
-<p>他没直接回父亲铺子，先到了周隼的店。</p>
-<p>「隼音器修」的招牌还在，红底褪成粉，缺笔的「隼」字用白漆补过一半。卷帘门升到肩膀高，里面传出拆琴弦的声响。</p>
-<p>陈渡弯腰进去。</p>
-<p>周隼坐在修理台后，正用钳子卸吉他的弦钮。收音机开着，天气预报被他拧小了。</p>
-<p>「你听这个。」</p>
-<p>周隼没抬头。</p>
-<p>「变压器还在响。」</p>
-<p>他把螺钉退回一点，用镊子压住垫片，再将螺钉拧紧。磁头位置没有变化，底噪也没有变化。</p>
-<p>陈渡把帆布包放到门边。</p>
-<p>「你听见了。」</p>
-<p>「电容。」</p>
-<p>周隼卸下最后一颗螺丝，把弦钮放在绒布上。</p>
-<p>「什么电容？」</p>
-<p>「有人找我修一台苏式机。编号 117。」</p>
-<p>周隼拿起小锉，锉弦钮侧面的毛刺。</p>
-<p>「东边那台？」</p>
-<p>「父亲留下的。」</p>
-<p>周隼放下锉刀。</p>
-<p>「还在？」</p>
-<p>「找出来了。」</p>
-<p>「带过来没有？」</p>
-<p>「没有。」</p>
-<p>陈渡看着他。</p>
-<p>「1998 年，你给过一个人一台 117。」</p>
-<p>周隼用镊子夹住吉他面板上松动的护片。里面露出一层薄木。</p>
-<p>「谁？」</p>
-<p>他从工具包里取出一卷细胶带，贴在机器底部，撕下一段标注：</p>
-<p>「你。」</p>
-<p>陈渡没接话。</p>
-<p>周隼压回护片，拿钳子夹紧。钳口合上时，弦轴在台面上弹了一下。</p>
-<p>「那年你多大？」</p>
-<p>「十九。」</p>
-<p>「十九。」周隼重复，「十九岁的人，手稳不稳？」</p>
-<p>「稳。」</p>
-<p>「会看线路？」</p>
-<p>「不会。」</p>
-<p>「那就等会。」</p>
-<p>陈渡把工具包放到修理台边。</p>
-<p>「我找到一只电容。」</p>
-<p>周隼看了一眼。</p>
-<p>「不是这个位置。」</p>
-<p>「你知道？」</p>
-<p>「不是我做的。」</p>
-<p>陈渡取出铁盒，把无标签电容放在他面前。</p>
-<p>周隼没有碰。他把收音机音量拧大，又拧小。</p>
-<p>「电容有位置。」</p>
-<p>「1998.4.13　原样　电池 3.00V」</p>
-<p>「它不是装在拾音线上。」</p>
-<p>「拆错了。」</p>
-<p>「也不是我拆的。」</p>
-<p>周隼拿起一只旧喇叭，用螺丝刀敲了敲纸盆。闷响里带着一丝杂音。</p>
-<p>「有些线不是线路。」</p>
-<p>「是什么？」</p>
-<p>周隼把螺丝刀递给他。</p>
-<p>「你听这个。」</p>
-<p>陈渡接住。</p>
-<p>周隼指向纸盆边缘。那里没有裂，只有一圈发白的胶。</p>
-<p>陈渡擦掉胶，下面埋着一根细铜线。</p>
-<p>周隼把喇叭翻过来。背面的标签写着：</p>
-<p>「接地—A」</p>
-<p>「旧法。」周隼说，「不让它回自己的路。」</p>
-<p>「后来改了？」</p>
-<p>「后来能用了。」</p>
-<p>「谁改的？」</p>
-<p>周隼把喇叭放回货架。</p>
-<p>「不是我做的。」</p>
-<p>写完，笔尖停在日期上。</p>
-<p>他把钳子挂回墙上。铁钩晃了两下。</p>
-<p>陈渡握着螺丝刀。</p>
-<p>「你给过我一台机器。」</p>
-<p>周隼走到门边，从纸箱里拿出一卷磁带。裂开的外盒上贴着发黄标签：</p>
-<p>「117」</p>
-<p>下面还有日期。</p>
-<p>1998.4.12。</p>
-<p>手写的一行：</p>
-<p>「试录三秒。」</p>
-<p>周隼把磁带拿回去，放在工作台上。</p>
-<p>「你爸拿来的。」</p>
-<p>「他在哪？」</p>
-<p>周隼低头收拾纸箱。</p>
-<p>「这里。」</p>
-<p>「我爸后来把机器拿走，为什么？」</p>
-<p>「1998 年 4 月 12 日，」周隼说，「他第二次来。」</p>
-<p>「还是不行？」</p>
-<p>「还是不行。」</p>
-<p>「这次你说了什么？」</p>
-<p>纸面下方那行字仍压在页缝里。</p>
-<p>周隼看着手里的纸。</p>
-<p>「实话。」</p>
-<p>陈渡没有再问。</p>
-<p>他弯腰钻出卷帘门。帆布包里的账本碰到铁盒，发出一声闷响。</p>
-<p>街上已经暗下来。路灯下，那只坏音箱的变压器铭牌反着白光。</p>
-<p>从周隼的铺子到父亲原来的铺子，一百一十七步。</p>
-<p>陈渡走完第一百一十六步，停下。</p>
-<p>身后响起卷帘门落下的声音。铁轮卡住，滑轮响了一下。</p>
-<p>第 117 步，他到了父亲铺子门前。</p>
-<p>门上的转让电话只剩后半截。陈渡重新抬起卷帘门，侧身钻进去，把门放下。</p>
-<p>他没有马上拿电池，先把账本摊开。</p>
-<p>第 214 页夹着那张试录纸。</p>
-<p>第 215 页是 1998 年 4 月 12 日。</p>
-<p>他用尺压住纸边，把前一页展开。</p>
-<p>一边是「对方说录不进自己的声音」。</p>
-<p>一边是「这次我说了实话　他说没懂」。</p>
-<p>陈渡拉亮灯。白光落在账本上。他把无标签电容放到两页中间，电容的银色引脚压住「实话」两个字。</p>
-<p>门外传来钟表铺关门的声音。</p>
-<p>「别让他自己听。」</p>
-<p>他取出两节新电池，在灯下各转了一圈。外皮有一道压痕，正负极触点干净。</p>
-<p>117 的电池盒里，两节旧电池漏了液。陈渡用镊子一只只取出，放到旧报纸上。黑色液迹沿纸纤维洇开。</p>
-<p>新电池一正一反装进去。</p>
-<p>万用表屏幕先显示 0.00，随后跳到 3.00。机器上的红灯亮了。</p>
-<p>陈渡没有按录音键。他先把音量拧到最小，拔下输出线。</p>
-<p>「A—B。」</p>
-<p>他对着那张纸念。</p>
-<p>红表笔接空心轴，黑表笔接地。屏幕仍是 0.00。</p>
-<p>他按住录音键。</p>
-<p>数字没有变化。</p>
-<p>松开键，拨动空心轴。金属片碰到底壳。</p>
-<p>「啪。」</p>
-<p>屏幕跳出 0.02。</p>
-<p>陈渡按住录音键，不再拨轴。机器内部传出一声连续的底噪。</p>
-<p>他把录音键按住三秒，松开。底噪停了。</p>
-<p>按下倒带键。齿轮转了半圈，卡了一下。他等磁带收回左侧，再按播放。</p>
-<p>磁带里传出底噪、他的呼吸、椅脚轻响和远处的电流声。</p>
-<p>没有歌。</p>
-<p>他拧大音量。</p>
-<p>陈渡把账本合上，放回帆布包。磁带停在最前端，三秒的起点只剩一小截透明带基。</p>
-<p>底噪里有一声敲击。金属敲在木头上。</p>
-<p>一下。</p>
-<p>两下。</p>
-<p>间隔七秒。</p>
-<p>他认得那声音。十九岁的自己住在打印店二楼，床脚有颗松动的螺丝。他每晚翻身，床架都会响一下。</p>
-<p>陈渡按停磁带。</p>
-<p>录音时长，三秒。</p>
-<p>三秒里有床脚声、底噪和他当时留在房间里的呼吸。</p>
-<p>没有声音。</p>
-<p>他重新按下录音键。这一回，他张嘴对着机器。</p>
-<p>没有唱。</p>
-<p>只吸了一口气。</p>
-<p>磁带转过三秒。播放时，那口气没有出现。机器里有他的呼吸，也有别的声音。</p>
-<p>陈渡看着转动的磁带盘。</p>
-<p>「它不响，是我不响。」</p>
-<p>没有人回答。</p>
-<p>他把 117 抱到门口，推出卷帘门。机身卡在门槛上，前端悬在外面，117 三个数字朝着街面。</p>
-<p>陈渡蹲回去，从帆布包里拿出账本，翻到 1998 年 4 月 12 日。</p>
-<p>后面还有一行。字压在纸缝里，他用铅笔尖挑开。</p>
-<p>「1998.4.12　录音机　又来了　还是不行　这次我说了实话　他说没懂　后来他说　先留着」</p>
-<p>最后三个字下面画着一道短线，指向下一页。</p>
-<p>陈渡翻过去。</p>
-<p>纸面中间只有一个日期。</p>
-<p>1998.4.13。</p>
-<p>日期下面是一台机器的简图。黑色方框，左右各一只圆盘，中间一条横线。横线下方画着一个圈，圈里写着「4」。</p>
-<p>旁边有一行字。</p>
-<p>「别让他自己听。」</p>
-<p>陈渡的手压在那行字上。</p>
-]]></content>
-      <categories>
-        <category>小说</category>
-      </categories>
-      <tags>
-        <tag>慢车</tag>
-        <tag>小说</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>慢车 14：三百块</title>
     <url>/%E5%B0%8F%E8%AF%B4/294ec049.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>卷帘门旁的电子屏亮着。</p>
@@ -20606,6 +20228,384 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>陈渡盯着屏幕上那行修改说明。</p>
 <p>「哪一年？」</p>
 <p>「二〇〇九年啊。」郑霖说，「你跟我说的。」</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>慢车</tag>
+        <tag>小说</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>慢车 15：一页账本</title>
+    <url>/%E5%B0%8F%E8%AF%B4/8327eefe.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>卷帘门卡在离地四十厘米的位置，锈住的滑轮发出一声短响。</p>
+<p>陈渡蹲下，把旧钥匙插进锁孔。锁芯里传出一声闷响。他推开门，侧身进去。</p>
+<p>铺子七年没开电。货架上落着灰，修理台蒙在塑料布下。墙边只剩空灯座。陈渡从工具包里取出一只 9 瓦灯泡装上，拉亮开关。</p>
+<p>镇流器嗡嗡响。日光灯只亮一半，白光偏蓝。</p>
+<p>他挪开闸刀前的木板，打开旧稳压器。外壳里的电池已经鼓包，裂口渗出白色液体。</p>
+<p>「不能用。」</p>
+<p>他合上稳压器，走到修理台前。台上的工具保存得完好。塑料布下压着父亲的账本，报纸日期是 2003 年 9 月 6 日。</p>
+<p>账本封在塑料袋里，两层黑胶带已经发脆。陈渡用刀片划开封口，先翻到最后一页。</p>
+<p>2003 年 4 月 19 日，电动机。修了轴承和碳刷。用了三小时。</p>
+<p>他回到 1990 年。</p>
+<p>每页只记日期、故障、更换的零件、工时和材料费。没有姓名，也没有感想。</p>
+<p>1993 年 8 月 12 日，电饭锅。电线短路。用了 40 分钟。</p>
+<p>1995 年 6 月 2 日，录音机。磁头磨损。换了一只。</p>
+<p>1998 年 3 月 28 日，鼓风机。轴承缺油。用了 15 分钟。</p>
+<p>纸页在指间干涩作响。他翻得越来越慢。</p>
+<p>第 214 页。</p>
+<p>前面七行是电饭锅、洗衣机和一只扩音器。最后一行写在页底：</p>
+<p>「1998.4.11　录音机　换了 1 只电容　对方说录不进自己的声音　没听懂　换回原样。」</p>
+<p>陈渡从头看起。</p>
+<p>他把音量再拧小一格，磁带里的底噪压到耳朵能承受的位置。磁头在转动时发出细碎的摩擦声，像指甲划过干燥的纸边。</p>
+<p>1998 年 4 月 11 日。录音机。电容。录不进自己的声音。</p>
+<p>他又看了一遍，手指停在「自己」两个字上。</p>
+<p>二十四岁那年，他以为拾音线路不对，或者磁头有故障，才开始改装机器。账本却证明，1998 年已有人说过同一件事。</p>
+<p>父亲没有听懂。</p>
+<p>换回原样。</p>
+<p>陈渡打开修理台后的浅铁盒。里面是电容、晶体管、电阻和几截铜线。一只纸包写着「4700μF 25V」，另一只没有标签。</p>
+<p>他把无标签电容倒在掌心。外壳有擦痕，两条引脚被剪得一样长。</p>
+<p>工具包里的万用表没电。陈渡没有去找电池。</p>
+<p>他重新翻到第 214 页，用指甲在「录不进」下面划了一下。纸太干，没有留下痕迹。</p>
+<p>门缝下透进一条窄光，照住货架底部一只铁盒。盒上写着「117」。</p>
+<p>父亲那台苏式磁带机，型号下面也有这三个铅笔字。</p>
+<p>陈渡没有去拿。他看着账本。</p>
+<p>十九岁那年，父亲把机器交给他。磁带仓盖有一道划痕，旋钮是黑的，录音键比播放键低半毫米。机内有一处颜色不同的焊点。</p>
+<p>「谁改的？」</p>
+<p>「修东西的人。」</p>
+<p>「改了什么？」</p>
+<p>「记不清了。」</p>
+<p>父亲递给他一把小螺丝刀。</p>
+<p>「自己看。」</p>
+<p>陈渡倒回三秒，重新播放。</p>
+<p>十九岁的陈渡没看出异常。次年，他在婚庆乐队借到同型号机器，自己唱不进去。第三年又买了一台，还是不行。他换过磁带、磁头和线路，甚至拆过录音键的触点。二十四岁，他才开始改装 117。</p>
+<p>现在看来，机器交给他时便已经如此。</p>
+<p>1998 年 4 月 11 日之后两天，账本没有记录。4 月 13 日修电吹风，4 月 15 日修电风扇，再没提过录音机。</p>
+<p>账本里夹着一张对折表格。陈渡抽出书脊上的补胶。胶带边缘有旧式裁纸刀压出的横纹。</p>
+<p>他记得周隼的铺子也用这种刀。</p>
+<p>「隼音器修」在步行街东头，卖零件，也卖磁带。1998 年，那条街还没拆。</p>
+<p>父亲提过周隼。</p>
+<p>「东西都是从他那儿来的。」</p>
+<p>「哪个东西？」</p>
+<p>「修不了的那些。」</p>
+<p>陈渡用手电照向货架。最上层放着十几卷磁带。货架中层有一只铁皮工具盒，扣环断了一个。</p>
+<p>盒里有焊锡、棉纱、细砂纸和三把螺丝刀。底部粘着一截透明胶带，胶带上压着铅字：</p>
+<p>「ST-117」</p>
+<p>这是机器外壳上的编号。</p>
+<p>他把工具盒放到修理台上。旁边放着那只无标签电容。</p>
+<p>1998 年 4 月 11 日。有人拿着一台 117 来修，说录不进自己的声音。父亲换了电容，没听懂，又换回原样。</p>
+<p>门外有人敲卷帘门。</p>
+<p>两下。停一下。又两下。</p>
+<p>「送电的。」门外的人说，「你们这店还开不？电线要检。」</p>
+<p>这一次，他听见了更远处的门响。老式插销碰到铁皮，先是金属的颤声，后面跟着一声木板回弹。十九岁的自己大概在房间里走动，鞋底擦过水泥地面。</p>
+<p>陈渡看了一眼闸刀。</p>
+<p>「不开。」</p>
+<p>「那你锁门干什么？」</p>
+<p>「有人。」</p>
+<p>「你不是人？」</p>
+<p>卷帘门被踢了一脚，滑轮发出刺耳的响声。</p>
+<p>「你修不修东西？」</p>
+<p>「不修。」</p>
+<p>「神经病。」</p>
+<p>脚步声往东去了。</p>
+<p>陈渡拿起无标签电容。指甲在旧裂线上刮了一下。</p>
+<p>如果装在拾音线路里，它可能把同一路信号反送回话筒，也可能只影响低频。</p>
+<p>他不懂。账本没写容量、电压和位置。</p>
+<p>「没用。」</p>
+<p>他把电容放回铁盒，又拿起来。</p>
+<p>「这不是它的位置。」</p>
+<p>「你说没听懂。」他对着账本说，「你听见他说录不进自己的声音，你没听懂。」</p>
+<p>灯管闪了一下。</p>
+<p>陈渡拆下老化的启辉器，换上备用的。灯灭了一秒，「啪」的一声全亮起来。</p>
+<p>他把播放键按到底。</p>
+<p>白光铺满铺子。</p>
+<p>他找到那台编号 117 的磁带机，放到修理台上。黑色金属壳，磁带仓盖有一道旧划痕。</p>
+<p>背面四颗螺丝，三颗十字，一颗一字。</p>
+<p>陈渡拿刀片刮了一下一字螺丝，划出一道亮痕。</p>
+<p>「这种螺丝不用换，改一下刀口就行。」</p>
+<p>螺丝松开。后盖取下，线路板露出来。板上有原厂的棕色电容，也有后来换过的蓝色电容，焊点周围结了锡霜。</p>
+<p>万用表没电。陈渡从工具包底层找出几节五号电池，一节 1.2 伏，一节 1.1 伏，都不能给表供电。</p>
+<p>他拔掉门边的坏壁灯，把万用表插上去。屏幕亮起，显示 0.00。</p>
+<p>陈渡调档，测电容。读数缓慢上升。只能粗略看容量变化，看不出它曾在哪个位置。</p>
+<p>「先通电。」</p>
+<p>机器左侧的两节一号电池已经漏液，触片被腐蚀发黑。陈渡用砂纸擦亮，找不到替代件。</p>
+<p>他没有出门，只把后盖装回去，将账本塞进帆布包。</p>
+<p>走到门前，他停住。</p>
+<p>账本第 214 页后面的纸被潮气泡软，贴着上一页。他用指甲分开。</p>
+<p>下一页是 1998 年 4 月 12 日。</p>
+<p>「录音机　又来了　还是不行　这次我说了实话　他说没懂」</p>
+<p>陈渡的手指停在「实话」后面。</p>
+<p>门外又响起脚步。这次没有敲门，只在门前停了停，往东去了。</p>
+<p>他从工具盒底部取出那截印着「ST-117」的透明胶带。铅字边缘沾着黑色焊锡，字母中间还留着一点旧胶。</p>
+<p>「这段留着。」</p>
+<p>周隼的铺子就在这条街东头。</p>
+<p>「东西都有它来的地方。」</p>
+<p>当时陈渡问过：「这台机器也是？」</p>
+<p>周隼手里的螺丝刀没停。</p>
+<p>「不是我做的。」</p>
+<p>陈渡打开铁盒。盒盖内侧粘着一小块黑色橡胶，边缘有刀割的直口，上面留着焊锡和一道浅蓝油漆。</p>
+<p>干漆粉了，底下是灰白色金属。</p>
+<p>磁带机后盖没有蓝漆，线路板角上却有一枚小铆钉，铆钉旁留着半圈蓝色印子。</p>
+<p>一根黄绿相间的线从磁头区域出来，绕过两枚电阻，接进录音放大器。线身有一处压扁，外皮裂开，露出一点铜丝。</p>
+<p>陈渡拨了拨。线还能活动。</p>
+<p>不是断线。</p>
+<p>他看向货架上的机器。它比他记忆里的那台旧一些，左旋钮裂了一道，磁带仓盖上的划痕也斜向右上。</p>
+<p>父亲留下的那台还在帆布包里。他没拿出来。</p>
+<p>两只黑色机器，后盖都是三颗十字螺丝、一颗一字螺丝。</p>
+<p>他打开货架上那台的磁带仓。仓底积着灰，录音键旁卡着一小片发白的磁带带基。走带轮上缠着一根断掉的透明细线。</p>
+<p>仓底还有硬币一半大的黄褐色干痕，靠近磁头的位置散着几粒带银色亮点的焊锡碎屑。</p>
+<p>录音键旁的塑料被烙铁烫过，凝着一块发黑的胶滴。</p>
+<p>「不是这里。」</p>
+<p>仓盖合上时，机器里传出一声轻响，像什么小东西在壳里滚了一下。</p>
+<p>他停了两秒，又松开。</p>
+<p>陈渡侧过机器，摇了摇。</p>
+<p>他把机器翻回正面，手指沿接缝摸过。右下方有一处不平，金属边缘被顶出一道细线。</p>
+<p>刀片刮开漆面，露出一颗更小的十字螺丝。</p>
+<p>转了半圈，螺丝松开，机壳右边翘起一条缝。后盖抬起来，先露出一层边缘剪得不齐的薄铁片。</p>
+<p>铁片下面压着一张发黄的纸。</p>
+<p>陈渡用镊子夹出来。纸上没有字，只有铅笔留下的浅压痕：</p>
+<p>「A—B　不接地　试录　留三秒」</p>
+<p>旁边画着两条线，中间一个圈，圈旁写着「4」。</p>
+<p>纸背粘着一小条黑胶带，里面夹着一根短铜丝。一头弯钩，一头平直。</p>
+<p>陈渡沿拾音线找到一枚小型接线柱。旁边漆被刮掉，露出铜色。</p>
+<p>他松开接线柱上的螺丝。黄绿线滑出一点，后面压着一根较新的黑线。细线没有接进线路板，而是绕在一枚空心轴上。</p>
+<p>空心轴旁有个小孔，里面塞着铜丝。</p>
+<p>陈渡把纸上的图对过去。两条线，一个圈，数字 4。</p>
+<p>铜丝钩伸进孔里，勾住里面的金属片。录音键旁传出一声细响，像极轻的电流接通声。</p>
+<p>他立刻松开。声音停了。</p>
+<p>「A—B。」</p>
+<p>陈渡看着那张纸。</p>
+<p>「不接地……试录……留三秒。」</p>
+<p>字迹向右斜，写得很快，不像父亲的账本。</p>
+<p>门响之后，底噪里多出一个极轻的音节。不是歌，也不成词。短得像有人碰到麦克风架。</p>
+<p>折痕内侧还有一个铅笔印：</p>
+<p>「3」</p>
+<p>他把纸摊开，用手指压住四角。纸面除压痕外，还有三个浅色标记。</p>
+<p>陈渡换了方向。</p>
+<p>不是圆点，是标点。</p>
+<p>他拿铅笔在废纸背面拓出位置。第一个在左下，第二个在中间，第三个在右上。三个点之间没有连线。</p>
+<p>他试画三遍，第三遍才对上。左边那个小一些，中间大一些，右边最长。</p>
+<p>门外有人停下。</p>
+<p>「老陈在里头吗？」</p>
+<p>「送货的。你锁着门，里面还有电？」</p>
+<p>卷帘门下的光被一双鞋挡住一半。鞋面沾着白灰，鞋带松着。</p>
+<p>「你到底走不走？我还得接下一个。」</p>
+<p>陈渡拿起旧插排。开关磨掉半边，按下去卡在中间。他用力按了两次。</p>
+<p>日光灯灭了。</p>
+<p>「走就走。门别锁死。昨天有人钻进去拿电线，差点把整条街的闸拉了。」</p>
+<p>脚步声往西去了。</p>
+<p>陈渡在黑暗里站了片刻，伸手压住被风掀动的纸角。指腹按在第二个标记上。</p>
+<p>他将拓好位置的废纸夹进账本，拿起万用表和磁带机，侧身钻出卷帘门。工具包撞在门框上，金属碰铁，响了一声。</p>
+<p>修理钟表的铺子离家两条街。</p>
+<p>陈渡把磁带停住，倒回五秒，反复听了三遍。第三遍，他拧动音量旋钮，指腹在刻度边缘停住。</p>
+<p>他沿旧步行街往东走。第 18 根路灯不亮，路灯下堆着两只坏音箱。一只缺低音喇叭，另一只的变压器盖子裂着。</p>
+<p>铭牌上写着 220 伏。</p>
+<p>和父亲铺子里那只不一样。</p>
+<p>他继续往前，在电话亭旁的公告栏前停了一下。撕剩的纸边卷起来，露出电话号码。</p>
+<p>两分钟后，他到了钟表铺。</p>
+<p>玻璃柜台后摆着十几只座钟，秒针各自走动，隔着玻璃只剩细碎的金属响。门口挂着「更换电池」的纸牌。</p>
+<p>柜台后的老人正在给闹钟换电池。</p>
+<p>「要几号？」</p>
+<p>「一号。」</p>
+<p>「两节？」</p>
+<p>「两节。」</p>
+<p>老人拿出两节电池，放在没有屏幕的电子秤上，拨动砝码。</p>
+<p>「二点六。」</p>
+<p>「能用就行。」</p>
+<p>「三块。」</p>
+<p>陈渡摸遍口袋，只摸出一枚边缘磨薄的硬币。</p>
+<p>老人看了看他的手。</p>
+<p>「先拿走吧。」</p>
+<p>「不行。」陈渡说，「我得找钱。」</p>
+<p>他把机器翻过来，查看磁头固定螺钉。</p>
+<p>「以后给。」</p>
+<p>陈渡没动。</p>
+<p>「东西有它来的地方。」老人说，「钱也是。」</p>
+<p>柜台上摆着一只拆开的电子表。老人用棉签清理表盘。</p>
+<p>「多少钱？」</p>
+<p>「你要修？」</p>
+<p>「看看。」</p>
+<p>陈渡用镊子取下表盖里的绒布。弹簧下压着一层银灰色粉末。</p>
+<p>「换表扣的时候进水。」</p>
+<p>老人放下棉签。</p>
+<p>「你也修表？」</p>
+<p>「修东西。」</p>
+<p>他拿出一只电子打火机。外壳缺一块，按键没有火，底部一个螺丝滑丝。</p>
+<p>「接触不好。换一个要十块。」</p>
+<p>陈渡把打火机还给他，拿起两节电池。</p>
+<p>「只有一块。」</p>
+<p>老人接过硬币，从柜台下翻出横格本。</p>
+<p>「陈渡，电池两块，三元。欠二元。」</p>
+<p>他把本子转过来。</p>
+<p>左边一颗十字螺丝松了半圈，底座与机壳之间夹着一小片灰色绝缘垫。陈渡用镊子把垫片挑出来，垫片边缘已经磨出一道弯痕。</p>
+<p>陈渡看着自己的名字。</p>
+<p>「你认识我？」</p>
+<p>「听周隼说过。」</p>
+<p>陈渡的手停在工具包带子上。</p>
+<p>「他说我什么？」</p>
+<p>「会修东西。」</p>
+<p>「还有呢？」</p>
+<p>老人合上本子。</p>
+<p>「没了。」</p>
+<p>他低头继续擦表。</p>
+<p>陈渡拿起电池，出了门。</p>
+<p>那枚硬币留在柜台上。</p>
+<p>他没直接回父亲铺子，先到了周隼的店。</p>
+<p>「隼音器修」的招牌还在，红底褪成粉，缺笔的「隼」字用白漆补过一半。卷帘门升到肩膀高，里面传出拆琴弦的声响。</p>
+<p>陈渡弯腰进去。</p>
+<p>周隼坐在修理台后，正用钳子卸吉他的弦钮。收音机开着，天气预报被他拧小了。</p>
+<p>「你听这个。」</p>
+<p>周隼没抬头。</p>
+<p>「变压器还在响。」</p>
+<p>他把螺钉退回一点，用镊子压住垫片，再将螺钉拧紧。磁头位置没有变化，底噪也没有变化。</p>
+<p>陈渡把帆布包放到门边。</p>
+<p>「你听见了。」</p>
+<p>「电容。」</p>
+<p>周隼卸下最后一颗螺丝，把弦钮放在绒布上。</p>
+<p>「什么电容？」</p>
+<p>「有人找我修一台苏式机。编号 117。」</p>
+<p>周隼拿起小锉，锉弦钮侧面的毛刺。</p>
+<p>「东边那台？」</p>
+<p>「父亲留下的。」</p>
+<p>周隼放下锉刀。</p>
+<p>「还在？」</p>
+<p>「找出来了。」</p>
+<p>「带过来没有？」</p>
+<p>「没有。」</p>
+<p>陈渡看着他。</p>
+<p>「1998 年，你给过一个人一台 117。」</p>
+<p>周隼用镊子夹住吉他面板上松动的护片。里面露出一层薄木。</p>
+<p>「谁？」</p>
+<p>他从工具包里取出一卷细胶带，贴在机器底部，撕下一段标注：</p>
+<p>「你。」</p>
+<p>陈渡没接话。</p>
+<p>周隼压回护片，拿钳子夹紧。钳口合上时，弦轴在台面上弹了一下。</p>
+<p>「那年你多大？」</p>
+<p>「十九。」</p>
+<p>「十九。」周隼重复，「十九岁的人，手稳不稳？」</p>
+<p>「稳。」</p>
+<p>「会看线路？」</p>
+<p>「不会。」</p>
+<p>「那就等会。」</p>
+<p>陈渡把工具包放到修理台边。</p>
+<p>「我找到一只电容。」</p>
+<p>周隼看了一眼。</p>
+<p>「不是这个位置。」</p>
+<p>「你知道？」</p>
+<p>「不是我做的。」</p>
+<p>陈渡取出铁盒，把无标签电容放在他面前。</p>
+<p>周隼没有碰。他把收音机音量拧大，又拧小。</p>
+<p>「电容有位置。」</p>
+<p>「1998.4.13　原样　电池 3.00V」</p>
+<p>「它不是装在拾音线上。」</p>
+<p>「拆错了。」</p>
+<p>「也不是我拆的。」</p>
+<p>周隼拿起一只旧喇叭，用螺丝刀敲了敲纸盆。闷响里带着一丝杂音。</p>
+<p>「有些线不是线路。」</p>
+<p>「是什么？」</p>
+<p>周隼把螺丝刀递给他。</p>
+<p>「你听这个。」</p>
+<p>陈渡接住。</p>
+<p>周隼指向纸盆边缘。那里没有裂，只有一圈发白的胶。</p>
+<p>陈渡擦掉胶，下面埋着一根细铜线。</p>
+<p>周隼把喇叭翻过来。背面的标签写着：</p>
+<p>「接地—A」</p>
+<p>「旧法。」周隼说，「不让它回自己的路。」</p>
+<p>「后来改了？」</p>
+<p>「后来能用了。」</p>
+<p>「谁改的？」</p>
+<p>周隼把喇叭放回货架。</p>
+<p>「不是我做的。」</p>
+<p>写完，笔尖停在日期上。</p>
+<p>他把钳子挂回墙上。铁钩晃了两下。</p>
+<p>陈渡握着螺丝刀。</p>
+<p>「你给过我一台机器。」</p>
+<p>周隼走到门边，从纸箱里拿出一卷磁带。裂开的外盒上贴着发黄标签：</p>
+<p>「117」</p>
+<p>下面还有日期。</p>
+<p>1998.4.12。</p>
+<p>手写的一行：</p>
+<p>「试录三秒。」</p>
+<p>周隼把磁带拿回去，放在工作台上。</p>
+<p>「你爸拿来的。」</p>
+<p>「他在哪？」</p>
+<p>周隼低头收拾纸箱。</p>
+<p>「这里。」</p>
+<p>「我爸后来把机器拿走，为什么？」</p>
+<p>「1998 年 4 月 12 日，」周隼说，「他第二次来。」</p>
+<p>「还是不行？」</p>
+<p>「还是不行。」</p>
+<p>「这次你说了什么？」</p>
+<p>纸面下方那行字仍压在页缝里。</p>
+<p>周隼看着手里的纸。</p>
+<p>「实话。」</p>
+<p>陈渡没有再问。</p>
+<p>他弯腰钻出卷帘门。帆布包里的账本碰到铁盒，发出一声闷响。</p>
+<p>街上已经暗下来。路灯下，那只坏音箱的变压器铭牌反着白光。</p>
+<p>从周隼的铺子到父亲原来的铺子，一百一十七步。</p>
+<p>陈渡走完第一百一十六步，停下。</p>
+<p>身后响起卷帘门落下的声音。铁轮卡住，滑轮响了一下。</p>
+<p>第 117 步，他到了父亲铺子门前。</p>
+<p>门上的转让电话只剩后半截。陈渡重新抬起卷帘门，侧身钻进去，把门放下。</p>
+<p>他没有马上拿电池，先把账本摊开。</p>
+<p>第 214 页夹着那张试录纸。</p>
+<p>第 215 页是 1998 年 4 月 12 日。</p>
+<p>他用尺压住纸边，把前一页展开。</p>
+<p>一边是「对方说录不进自己的声音」。</p>
+<p>一边是「这次我说了实话　他说没懂」。</p>
+<p>陈渡拉亮灯。白光落在账本上。他把无标签电容放到两页中间，电容的银色引脚压住「实话」两个字。</p>
+<p>门外传来钟表铺关门的声音。</p>
+<p>「别让他自己听。」</p>
+<p>他取出两节新电池，在灯下各转了一圈。外皮有一道压痕，正负极触点干净。</p>
+<p>117 的电池盒里，两节旧电池漏了液。陈渡用镊子一只只取出，放到旧报纸上。黑色液迹沿纸纤维洇开。</p>
+<p>新电池一正一反装进去。</p>
+<p>万用表屏幕先显示 0.00，随后跳到 3.00。机器上的红灯亮了。</p>
+<p>陈渡没有按录音键。他先把音量拧到最小，拔下输出线。</p>
+<p>「A—B。」</p>
+<p>他对着那张纸念。</p>
+<p>红表笔接空心轴，黑表笔接地。屏幕仍是 0.00。</p>
+<p>他按住录音键。</p>
+<p>数字没有变化。</p>
+<p>松开键，拨动空心轴。金属片碰到底壳。</p>
+<p>「啪。」</p>
+<p>屏幕跳出 0.02。</p>
+<p>陈渡按住录音键，不再拨轴。机器内部传出一声连续的底噪。</p>
+<p>他把录音键按住三秒，松开。底噪停了。</p>
+<p>按下倒带键。齿轮转了半圈，卡了一下。他等磁带收回左侧，再按播放。</p>
+<p>磁带里传出底噪、他的呼吸、椅脚轻响和远处的电流声。</p>
+<p>没有歌。</p>
+<p>他拧大音量。</p>
+<p>陈渡把账本合上，放回帆布包。磁带停在最前端，三秒的起点只剩一小截透明带基。</p>
+<p>底噪里有一声敲击。金属敲在木头上。</p>
+<p>一下。</p>
+<p>两下。</p>
+<p>间隔七秒。</p>
+<p>他认得那声音。十九岁的自己住在打印店二楼，床脚有颗松动的螺丝。他每晚翻身，床架都会响一下。</p>
+<p>陈渡按停磁带。</p>
+<p>录音时长，三秒。</p>
+<p>三秒里有床脚声、底噪和他当时留在房间里的呼吸。</p>
+<p>没有声音。</p>
+<p>他重新按下录音键。这一回，他张嘴对着机器。</p>
+<p>没有唱。</p>
+<p>只吸了一口气。</p>
+<p>磁带转过三秒。播放时，那口气没有出现。机器里有他的呼吸，也有别的声音。</p>
+<p>陈渡看着转动的磁带盘。</p>
+<p>「它不响，是我不响。」</p>
+<p>没有人回答。</p>
+<p>他把 117 抱到门口，推出卷帘门。机身卡在门槛上，前端悬在外面，117 三个数字朝着街面。</p>
+<p>陈渡蹲回去，从帆布包里拿出账本，翻到 1998 年 4 月 12 日。</p>
+<p>后面还有一行。字压在纸缝里，他用铅笔尖挑开。</p>
+<p>「1998.4.12　录音机　又来了　还是不行　这次我说了实话　他说没懂　后来他说　先留着」</p>
+<p>最后三个字下面画着一道短线，指向下一页。</p>
+<p>陈渡翻过去。</p>
+<p>纸面中间只有一个日期。</p>
+<p>1998.4.13。</p>
+<p>日期下面是一台机器的简图。黑色方框，左右各一只圆盘，中间一条横线。横线下方画着一个圈，圈里写着「4」。</p>
+<p>旁边有一行字。</p>
+<p>「别让他自己听。」</p>
+<p>陈渡的手压在那行字上。</p>
 ]]></content>
       <categories>
         <category>小说</category>
@@ -21817,6 +21817,467 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
+    <title>慢车 18：十一秒</title>
+    <url>/%E5%B0%8F%E8%AF%B4/66cb7b9f.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>陈渡把音量旋钮拧到第三格。</p>
+<p>他把左边那根音频线拔下来，插头还带着一点温。插孔里有一层黑灰，是磁带机常年通电留下的。桌上那杯水已经放凉，杯壁贴着一圈白印。他把杯子往外挪，给空出来的桌面铺上一张维修用的硬纸板。</p>
+<p>磁带机里先出来一段底噪。</p>
+<p>嘶……嘶……</p>
+<p>硬纸板是装电容的包装盒，印着「2200 微法／耐压 25V」。中间一道折痕把字断成两截。</p>
+<p>他看着转盘上的数字。计数器跳到七。</p>
+<p>他把速度降下来，按住暂停键，把录音笔推到一边。那十一秒已经被他拷进小录音笔，来回听了四十七遍。</p>
+<p>磁带机后面还接着一条线。线的外皮已经发硬，靠近接口的地方裂开一条缝，铜丝没有露出来。陈渡用指甲拨了拨，按回原位，再用黑胶布缠了两圈。</p>
+<p>前七遍，他只听见底噪。</p>
+<p>第八遍，他听见了远处的风。</p>
+<p>陈渡把磁带机推到桌角，腾出一块地方放工具。螺丝刀、尖嘴钳、镊子，三样东西按大小排开。刀柄上有一道旧裂口，握胶松了一圈，他用胶布缠了两道。</p>
+<p>胶布边沿起毛。他从抽屉里剪下一小截，贴在上面。</p>
+<p>第九遍，风下面有金属门碰撞的声音。</p>
+<p>第十遍，底噪右边多了一道很轻的哼声。</p>
+<p>电脑音箱里的女声又循环了一遍。</p>
+<p>第十一遍，他把录音笔的波形放大。</p>
+<p>那道声音从第八秒开始，到了第十一秒断开。</p>
+<p>升上去。</p>
+<p>十二赫兹。</p>
+<p>不，不止。</p>
+<p>落下来。</p>
+<p>陈渡把采样率降到四万八千赫兹，又升回去。</p>
+<p>楼上又响了一下。不是水管，是椅子腿拖过地面。他抬头看了一眼天花板，没动。</p>
+<p>那道哼声有两种波形。</p>
+<p>陈渡把声音关掉，只留波形。屏幕上的横线很细，像桌缝里的一根灰。他把时间轴拉回第七秒，在起点处标了一个红点。第十秒再标一个。两点之间的距离，鼠标读数是两点九九秒。</p>
+<p>一道平，像一根拉直的线。</p>
+<p>陈渡拉开磁带机底部的抽屉。抽屉里没有备用磁带，只有一本巴掌大的硬皮记录本，封面被螺丝刀划出几道白印。他把本子倒过来抖了两下，一枚生锈的垫片落进工具盒。</p>
+<p>另一道在下面，细，跟着第一道走。</p>
+<p>他打开采样信息。</p>
+<p>他把机器上的磁带倒回去，重新播放。</p>
+<p>第十一秒。</p>
+<p>四万八千赫兹。</p>
+<p>他把音量推上去。</p>
+<p>第一道声音从右边进来。</p>
+<p>单声道。</p>
+<p>手机屏幕还亮着。沈未没有再发消息。</p>
+<p>第二个声音在下面，低了六分贝左右。</p>
+<p>不是空白。</p>
+<p>十六位。</p>
+<p>他把耳机摘下来，换成录音笔的小喇叭。</p>
+<p>还是那两下。</p>
+<p>不是磁带机的原生规格。录音笔把磁带线路的信号转成了数字，又被采样、量化。那两点起伏经过一次转换，可能被削平，也可能被挤到了原来的频率下面。</p>
+<p>一声女声。</p>
+<p>再一声男声。</p>
+<p>他把处理软件关掉。</p>
+<p>男声更轻。</p>
+<p>陈渡把磁带机停了。</p>
+<p>他重新打开波形，把低切关掉。那两秒被女声压着，峰值贴在底线上，贴着铁皮背面那道旧划痕的走向。他把音量降下来，给磁带倒到第七秒，自己数着拍子。</p>
+<p>原始文件重新打开。</p>
+<p>屋里只剩转盘停住后的余响。</p>
+<p>他看了一眼桌面。那本记事本摊在左边，纸页上有折痕。右边是录音笔、耳机、螺丝刀和一只拆开的磁带机后盖。</p>
+<p>波形还在。</p>
+<p>他把磁带倒到零。</p>
+<p>重新播放。</p>
+<p>他翻到第四十七行。</p>
+<p>他把频率轴从二十赫兹拉到二十千赫兹。那两点几乎贴着横线，像沉在河底的沙。只要把增益往上推，它们就会出来。可增益每加三格，女声的底噪也跟着抬起来。</p>
+<p>这一次，他没有从头听。</p>
+<p>他等到第七秒，把录音笔的录音键按下去，又用另一根线接进磁带机的耳机孔。</p>
+<p>陈渡在界面上加了三个标记。</p>
+<p>四十三赫兹。</p>
+<p>一，二，三。</p>
+<p>七十八赫兹。</p>
+<p>「08.0」。</p>
+<p>他把波形放大到最大。</p>
+<p>那道女声在中间。</p>
+<p>「10.0」。</p>
+<p>那道男声在下面。</p>
+<p>他听第二遍。</p>
+<p>「11.0」。</p>
+<p>还是。</p>
+<p>第三遍。</p>
+<p>他把这三个数字写在硬纸板背面，又在「10.0」旁边画了一条短线。</p>
+<p>第八秒，女声进来。</p>
+<p>他把耳机戴上，把音量旋到第四格。</p>
+<p>底噪里，两个声音叠在一起。</p>
+<p>画完，他捏住铅笔，笔尖在纸面上停了两秒。</p>
+<p>叠音，是两段声音共用一条磁带，录在同一时间。磁带只能沿着一条轨迹走，后来的声音会盖住前面的声音。但盖住不等于抹掉。</p>
+<p>如果把频率分开，弱的还在。</p>
+<p>楼上的水管响了一声。</p>
+<p>陈渡把录音笔放在桌角，拆开后盖。</p>
+<p>里面的接口板很窄，左边是话筒输入，右边是磁带线路。他拿出一根细铜线，刮掉绝缘层，接上其中一个针脚。</p>
+<p>陈渡抬头看天花板。</p>
+<p>那一页记着更换元件的参数：日期，接线位置，阻值，还有一句没写完的话。「她哼的那句」下面压着半截被磁带标签盖住的纸边。陈渡用镊子挑开标签，露出下面一行小字：「07:12，跟不上。」</p>
+<p>「原声。」</p>
+<p>他对着空房间说了一声。</p>
+<p>他没跟着哼。</p>
+<p>水声持续了四秒，停了。随后，隔壁房间有人推椅子。椅脚擦过地面，声音穿过墙，又薄了一层。</p>
+<p>录音笔的红色指示灯亮着。</p>
+<p>他没有再说话，只把磁带机重新启动。</p>
+<p>他把铅笔放下，给「08—10_沈未.wav」单独建了一个文件夹。</p>
+<p>磁带转起来。</p>
+<p>女声先出现。</p>
+<p>文件夹命名后，屏幕上出现三个名称。</p>
+<p>男声贴着它的下沿。</p>
+<p>陈渡把磁带机的录音旋钮压下。</p>
+<p>「08—10_沈未」。</p>
+<p>第一次录音。</p>
+<p>第十秒，男声跟进来。</p>
+<p>他按停止，把录音笔接到电脑上。文件只有八秒。</p>
+<p>「10—11」。</p>
+<p>「再录。」</p>
+<p>第二次，他把磁带倒回七秒。</p>
+<p>「10—11_男声_提取」。</p>
+<p>这次录了九秒。</p>
+<p>打开文件，只剩底噪。</p>
+<p>他看着这三个名字，把第三个文件夹里的文件拖进第二个。提示框弹出，问是否保留原文件。</p>
+<p>陈渡盯着屏幕，把指针拖到波形最下面。</p>
+<p>两点之间，有一道几乎贴着横线的起伏。</p>
+<p>他点了「否」。</p>
+<p>第十二秒，磁带到头，转盘空转，发出连续的底噪。</p>
+<p>他把标签撕开。标签背面粘着一小段透明胶，胶上粘着半截黑色磁带。磁带边缘有剪口，编号只剩「B-1」。他把那截带子对着灯照，里面没有白色带基，只剩一层棕色氧化物。</p>
+<p>他把音量推到最大。</p>
+<p>耳机里传来一声很短的男声。</p>
+<p>删除完成后，第二个文件夹空了。</p>
+<p>很轻。</p>
+<p>像有人在门后清嗓子。</p>
+<p>陈渡又按了一次撤销。</p>
+<p>他把这一段截出来，另存为「7—9」。</p>
+<p>然后继续。</p>
+<p>文件回到原处。</p>
+<p>第十秒，男声出现。</p>
+<p>第十一秒，声音断掉。</p>
+<p>陈渡按下停止，重新倒带。倒到一半，他又停住，把耳机摘下一边，贴近磁带机外壳。外壳里有一层薄薄的灰，靠近变压器的地方带着焊锡受热后的味道。</p>
+<p>他重新把提取文件放进去，给文件夹命名为「2009.4.17」。</p>
+<p>第二段文件保存为「10—11」。</p>
+<p>两个文件。</p>
+<p>再点开属性。</p>
+<p>一个九秒。</p>
+<p>一个一秒。</p>
+<p>创建时间被系统写成今天。</p>
+<p>陈渡把「7—9」打开，把低频提升三格。</p>
+<p>耳机里的女声变粗，男声被推到前面。</p>
+<p>他看了一会儿，在旁边新建一个文本文件，把内容改回二〇〇九年四月十七日。</p>
+<p>那是沈未。</p>
+<p>他拿起棉签，擦过磁头。</p>
+<p>她在哼一句没有词的歌。</p>
+<p>保存。</p>
+<p>调子很短，升上去，又落下来。</p>
+<p>他拿出那盘贴着「2009.4.17」的空白磁带，放在旁边。两盘带子的直径差一毫米，轮毂缺口却相同。他把螺丝刀插进磁带机侧面的检修孔，拨开一只卡扣。里面掉出一片薄薄的塑料片，上面刻着「B-17」，旁边还留着一道胶痕。</p>
+<p>男声在第三拍跟了进去。</p>
+<p>桌角的粉笔滚了一下，碰到「男：2秒。被盖住。」那行字，停在数字「二」旁边。</p>
+<p>低一点。</p>
+<p>慢半拍。</p>
+<p>陈渡伸手把粉笔捡起来。</p>
+<p>然后停住。</p>
+<p>陈渡摘下耳机。</p>
+<p>粉笔头已经磨得很圆。他拿小刀削掉两毫米，放在磁带机旁。</p>
+<p>棉签头上有一小片褐色氧化物。</p>
+<p>他记得那是 2009 年。</p>
+<p>殡仪馆的储物间只有六平方米，靠墙三排铁架，中间摆一张木桌。机器架在桌上，电源线从墙上的插线板拉下来。沈未在隔壁。</p>
+<p>桌上的电话又响了一声。</p>
+<p>那天她值夜班。</p>
+<p>陈渡把磁带机带来，试一段新的拾音线。线接好后，机器能录下门外的脚步，却录不下他站在话筒前的哼声。</p>
+<p>不是沈未。</p>
+<p>他当时以为线路坏了。</p>
+<p>后来他把线拆下来，换了一个电容，又测了一遍。</p>
+<p>是自动售货机掉货的提示音。每周二晚上，楼下那台机器都会误触一次。陈渡没去管。</p>
+<p>沈未在隔壁哼歌。</p>
+<p>那是他第一次听见她哼。</p>
+<p>他没有立刻擦第二下。他把磁头盖重新扣好，倒回七秒，按下播放。第十秒，男声还在。他把棉签放在桌边，签头朝外。</p>
+<p>他把磁带机的带速从正常拨到慢放。</p>
+<p>他站在桌边，没有出声。</p>
+<p>她的声音穿过储物间的薄墙，落进磁带机。</p>
+<p>计数器一格一格往后退。</p>
+<p>然后他跟着哼了一句。</p>
+<p>只哼了半拍。</p>
+<p>他用镊子夹出塑料片，和那截磁带并排放在桌面上。塑料片背面粘着一点褐色纤维，长度不到一厘米。</p>
+<p>第十一秒的尾音被拉长。</p>
+<p>后面的声音留在磁带里，他自己当时没有听出来。</p>
+<p>陈渡把两个文件拖进同一轨。</p>
+<p>耳机里先是一阵很细的摩擦声。拖到第四秒时，尾音裂成两层：一层往上走，另一层留在下面。</p>
+<p>左边是「7—9」，右边是「10—11」。</p>
+<p>这次，沈未发来一张图片。</p>
+<p>波形叠在一起。</p>
+<p>陈渡按下停止，把播放键改成逐帧。</p>
+<p>女声从第八秒进入，男声从第十秒进入。</p>
+<p>他用音量旋钮一格一格地降。</p>
+<p>画面停在第十一秒。</p>
+<p>女声先下去。</p>
+<p>男声还在。</p>
+<p>他往前退一帧。</p>
+<p>他再降。</p>
+<p>男声也沉到边缘。</p>
+<p>男声的波形只露出半个峰。</p>
+<p>图片拍得很近，只有一只手和一块黑色封皮。封皮上的字被手掌遮住，只露出一个「B」和半个「1」。下方压着一张白纸，纸上有一栏表头，姓名、日期、材料编号，后面的格线被折痕截断。</p>
+<p>他把旋钮拧到底。</p>
+<p>只剩电流声。</p>
+<p>再退一帧。</p>
+<p>再拧回一格。</p>
+<p>男声重新出现。</p>
+<p>只剩底噪。</p>
+<p>陈渡把文件拉回起点，按空格键。</p>
+<p>磁带机里传出当年的底噪。</p>
+<p>他把这半帧复制出来，放大。</p>
+<p>陈渡打开手机里沈未发来的照片，把亮度调高。照片上的黑色记事本旁边有一支圆珠笔，笔帽有咬痕。桌面右下角的钢制包角上，留着一小片褐色纸屑。</p>
+<p>门外的脚步，远处水管里的水声，沈未在隔壁哼歌。</p>
+<p>他的声音在那下面。</p>
+<p>陈渡点开放大。</p>
+<p>两个频率标出来。</p>
+<p>不是空白。</p>
+<p>被盖住了。</p>
+<p>二百八十七赫兹。</p>
+<p>他把耳机摘下来，盯着屏幕上的波形。</p>
+<p>波形最下面那一条，几乎与横线重合。</p>
+<p>三百一十三赫兹。</p>
+<p>如果只听混音，听不见。</p>
+<p>如果只看磁带轨，也会以为那里没有东西。</p>
+<p>差二十六赫兹。</p>
+<p>但它在。</p>
+<p>纸张边缘有一块深色水渍。沈未的手指甲很短，无名指侧面沾着一点蓝墨水。</p>
+<p>他打开频谱。</p>
+<p>陈渡把机器的带速恢复。磁带退到第七秒，他重新播放。第十秒，男声进来。第十一秒，断开。</p>
+<p>峰值挤在女声的下方，集中在二百八十到三百二十赫兹之间。男声不在原来的位置。</p>
+<p>是被女声压下去的。</p>
+<p>他摘下一边耳机，把耳朵贴近机器外壳。</p>
+<p>陈渡把时间轴放大。</p>
+<p>第十秒，男声只有两个起伏。</p>
+<p>外壳里有磁头、放大器和供电变压器。声音经过线圈，再进入磁带。那两秒不可能由线路凭空长出来，除非当时就有一道电流被写进去。</p>
+<p>第十一秒，只剩一声很短的尾音。</p>
+<p>他用粉笔在桌角写：</p>
+<p>如果是底噪，频谱会散。</p>
+<p>他回：「拍全。」</p>
+<p>他把照片缩小，又放大。纸屑的位置和长度，与桌上的塑料片背面那点纤维相近。</p>
+<p>「男：2秒。被盖住。」</p>
+<p>写完，他把粉笔横放在数字旁边。</p>
+<p>如果是机械震动，峰值会跟着转盘周期重复。</p>
+<p>窗外的货车经过，车轮压过接缝，声音从窗框传进来。</p>
+<p>陈渡没有关窗。</p>
+<p>三百一十三赫兹没有重复。</p>
+<p>他把录音笔音量旋钮拧到第一格，重新听了一遍。</p>
+<p>这次，他把女声关掉。</p>
+<p>它只出现在第十秒。</p>
+<p>房间里只剩底噪。</p>
+<p>第八秒开始，男声单独浮出来。</p>
+<p>过了十几秒，图片撤回。</p>
+<p>陈渡打开磁带机的检修孔。里面没有别的拾音设备，只有原装磁头、改过的线路板和一个贴着黄色胶布的旧元件。胶布边缘写着「2K2」。</p>
+<p>很近。</p>
+<p>像他就站在磁带机旁边。</p>
+<p>他把灯凑近。</p>
+<p>第十一秒，那声音落下去。</p>
+<p>陈渡按下停止键。</p>
+<p>元件的一脚已经弯了。</p>
+<p>他又听第二遍。</p>
+<p>男声还是在那里。</p>
+<p>陈渡用镊子把它扶正，没有碰线路上的其他部分。</p>
+<p>第一遍，他以为听错了。</p>
+<p>沈未发来一句：「不能拍。」</p>
+<p>第二遍，他把波形和频谱同时打开。</p>
+<p>这时，手机屏幕又亮起来。</p>
+<p>频谱上有一段清楚的窄带，中心在三百一十赫兹。声音很弱，峰值比底噪高出十一个分贝。</p>
+<p>陈渡打开录音软件，把「08—10_沈未.wav」拖进时间轴。第十秒，沈未的哼声落下；他在第十秒前加了半拍空白，又把频率拉低。男声的位置只剩一段窄窄的起伏，和那截磁带的长度对不上。</p>
+<p>不是没有。</p>
+<p>沈未发了一张照片。</p>
+<p>是低。</p>
+<p>陈渡坐了一会儿，把电脑屏幕往自己这边拉。</p>
+<p>照片里是一本黑色记事本。封皮右下角磨起一块，露出里面的纸页。她只拍到桌面，照片边缘有半只白手套。</p>
+<p>桌角那本记事本被带得翻开一页。</p>
+<p>他看见自己的字。</p>
+<p>没有正文。</p>
+<p>陈渡把手机扣在桌上，拿起螺丝刀，把磁带机后盖上那颗一字螺丝重新拧了一遍。刀口已经磨亮，螺丝头多出一道竖向划痕。他用指甲刮了刮划痕，刮不掉。</p>
+<p>「录不进自己的声音，先看磁头。」</p>
+<p>下面是一行日期。</p>
+<p>陈渡放大图片。</p>
+<p>2009 年 4 月 17 日。</p>
+<p>那行字很淡，墨水已经洇开。</p>
+<p>白手套旁边放着一支圆珠笔，笔帽咬痕深浅不一。桌面右下角露出殡仪馆工作台的钢制包角。</p>
+<p>他翻回前面。</p>
+<p>那一页是殡仪馆的工作安排。沈未写得很整齐。日期、姓名、房间、处理时间，一行一行排下去。</p>
+<p>他截了图，退出相册。</p>
+<p>旁边没有人说话。</p>
+<p>陈渡盯着那页看了很久。</p>
+<p>他打开抽屉，找到一张旧收据。收据背面印着一家设备行的电话，号码中间缺了两位。他把它压在手机下面，没有拨。</p>
+<p>「照片里是当天那本？」</p>
+<p>他记得那天沈未就在隔壁。</p>
+<p>他记得她哼过一句。</p>
+<p>发送。</p>
+<p>他没有听她哼完。</p>
+<p>他也没有告诉她，机器录下了。</p>
+<p>他换了一盘磁带。按下播放，倒数到七秒。男声从耳机里出来时，磁带机右侧的灯闪了一下。</p>
+<p>沈未回：</p>
+<p>他把记事本合上。</p>
+<p>桌上的小录音笔跳到「00:00」。</p>
+<p>「本子还在，但不在我这里。」</p>
+<p>陈渡没有立刻再放。</p>
+<p>磁带机继续走带。转盘每转一圈，窗上的指示点便跳一下。</p>
+<p>他拿起那台苏式磁带机，把后盖重新扣好。四颗螺丝，三颗十字，一颗一字。那颗一字螺丝的刀口已经被他磨过，边缘发亮。</p>
+<p>陈渡看着这句话，手指停在屏幕上方。</p>
+<p>他用手动螺丝刀拧紧。</p>
+<p>一圈。</p>
+<p>「在哪？」</p>
+<p>两圈。</p>
+<p>第三圈时，螺丝滑了一下。</p>
+<p>这一次，回复隔了四十多秒。</p>
+<p>他停住，把刀口重新压进槽里。</p>
+<p>然后继续。</p>
+<p>「家属接待处把它当旧登记本用了。夹在待补材料里，编号 B-17。」</p>
+<p>沈未发来第三条消息：</p>
+<p>机器放回桌中央。</p>
+<p>他打开电源。</p>
+<p>陈渡记下编号。</p>
+<p>指示灯亮着。</p>
+<p>转盘没有转动。</p>
+<p>沈未又发来一句：</p>
+<p>陈渡把磁带装上，按下播放。</p>
+<p>底噪起来。</p>
+<p>「要开箱单才能查。」</p>
+<p>陈渡把录音笔贴近磁带机后盖，沿着外壳摸到一块凸起的塑料。抠开后盖，里面夹着一张折叠的纸。纸上是他的字，只有一行：</p>
+<p>他等数字跳到七。</p>
+<p>耳机里的女声出现。</p>
+<p>「登记表上是沈九斤。」</p>
+<p>他打字。</p>
+<p>他把音量推到第三格。</p>
+<p>男声在下面。</p>
+<p>「先查位置。」</p>
+<p>两次。</p>
+<p>都是两次。</p>
+<p>「不急。」</p>
+<p>陈渡把耳机摘下，放到桌上。</p>
+<p>他打开抽屉，找出一盘空白磁带。标签上写着「2009.4.17」。</p>
+<p>陈渡把手机放下，看向那盘贴有「2009.4.17」的空白磁带。</p>
+<p>标签已经发黄，边缘卷起来。</p>
+<p>陈渡看着那四个字，拇指停在屏幕上方。</p>
+<p>这是当年那盘磁带的编号。</p>
+<p>标签边缘卷起，露出下面一层旧标签。旧标签上有一道压痕，像有人写过一串号码，后来用透明胶盖住。</p>
+<p>他把空白盘放在机器旁边，没有装。</p>
+<p>手机在桌上亮了一下。</p>
+<p>他用指甲抠开透明胶的一角。</p>
+<p>陈渡看了一眼。</p>
+<p>沈未发来消息。</p>
+<p>底下露出「B-17」。</p>
+<p>「机器还在响？」</p>
+<p>他打字。</p>
+<p>三个字符。</p>
+<p>他没有问沈未。</p>
+<p>「她哼的那句：升上去。落下来。第二遍没跟。」</p>
+<p>「在。」</p>
+<p>停了几秒，又删掉。</p>
+<p>后面还有两个被磨掉的数字。</p>
+<p>重新打。</p>
+<p>「找到两秒。」</p>
+<p>陈渡把标签完全揭开。胶纸粘住纸面，撕开时带下一层纤维。</p>
+<p>发送。</p>
+<p>沈未没有马上回。</p>
+<p>底下是周隼的字。</p>
+<p>陈渡把磁带停在七秒的位置，又播放了一遍。</p>
+<p>第三个词打完时，手机震了一下。</p>
+<p>他先点开周隼的号码，听筒里传来两声空响，随后被挂断。再打，仍是忙音。</p>
+<p>「已回」。</p>
+<p>「什么两秒？」</p>
+<p>他打字。</p>
+<p>后面画了一道横线。</p>
+<p>「2009 年那两秒。」</p>
+<p>消息发出去后，他把手机扣在桌上。</p>
+<p>陈渡把磁带机后盖上的四颗螺丝重新检查了一遍。三颗十字螺丝没有滑痕。那颗一字螺丝的刀口被他磨过，边缘发亮，螺丝头多出一道竖向划痕。</p>
+<p>屏幕朝下。</p>
+<p>房间里只剩磁带机的底噪。</p>
+<p>不是今天留下的。</p>
+<p>过了十几秒，手机又震。</p>
+<p>桌上的磁带倒回七秒。</p>
+<p>陈渡翻过来。</p>
+<p>他把螺丝刀贴在划痕上，比了比角度。</p>
+<p>沈未说：「我那天哼的是哪一句？」</p>
+<p>他把纸条压到硬纸板下，又拿起那截「B-1」磁带，放到转盘上。带子转了半圈，计数器没有动。磁头落下，里面只有一声很轻的咔响。</p>
+<p>他没有回。</p>
+<p>门外过了一辆电动车。灯光从门缝扫进来，桌面上多了一条白线，很快退掉。</p>
+<p>他把录音倒到七秒，戴上耳机，等到女声出现。</p>
+<p>一句。</p>
+<p>陈渡打开手机通讯录，找到周隼的号码。</p>
+<p>升上去。</p>
+<p>落下来。</p>
+<p>号码下面，最后一次通话时间是四个月前。</p>
+<p>他播放到第十秒，把音量拧到第二格。男声在耳机里贴着女声的下方浮出来，短，闷，像隔着一层铁皮。</p>
+<p>他打字。</p>
+<p>「这句。」</p>
+<p>他按了拨号。</p>
+<p>停了停。</p>
+<p>「你哼了另一句。」</p>
+<p>听音响了两声，被按掉。</p>
+<p>发送。</p>
+<p>这次沈未回得很快。</p>
+<p>陈渡没有再拨。他点开短信，输入：</p>
+<p>「我不记得。」</p>
+<p>陈渡把手机放下。</p>
+<p>陈渡拿起铅笔，在硬纸板背面写下：</p>
+<p>「B-17 是哪本？」</p>
+<p>他盯着那行字。</p>
+<p>她不记得。</p>
+<p>发送。</p>
+<p>她记得那天有人在隔壁试机器。</p>
+<p>记得门外有人走过。</p>
+<p>陈渡拿起铅笔，在硬纸板背面添了一行：「B-1，与B-17不是同一盘。」</p>
+<p>屏幕上出现转圈标志。</p>
+<p>记得储物间的灯泡接触不良。</p>
+<p>不记得自己哼过一句。</p>
+<p>五秒后，沈未发来一条新消息。</p>
+<p>陈渡又听了一遍。</p>
+<p>「沈九斤——B-17。」</p>
+<p>男声在第十秒进来。</p>
+<p>「开箱单上写的不是编号。是人名。」</p>
+<p>低六分贝。</p>
+<p>他的手指停在播放键上，没有按下去。</p>
+<p>陈渡把手机横放在硬纸板旁。</p>
+<p>他想起自己当时站在话筒后面。</p>
+<p>没有唱。</p>
+<p>「谁？」</p>
+<p>只是跟着沈未的调子出了半声。</p>
+<p>那半声被录进去了。</p>
+<p>沈未没有立刻回答。</p>
+<p>写完，他又在下面添了一行：</p>
+<p>不是后来改机器以后。</p>
+<p>不是空白。</p>
+<p>阁楼上的钟响了一下。二十一点十五分。</p>
+<p>不是没有。</p>
+<p>陈渡把耳机重新戴上，把「10—11」文件拖到播放器。</p>
+<p>白手套的照片还停在手机里。陈渡把它关掉，重新打开，把亮度调到最低。</p>
+<p>这一次，他把频段的低切打开。</p>
+<p>两百六十赫兹。</p>
+<p>硬纸板背面，那三个标记还在。</p>
+<p>他将纸条翻到背面，纸角露出一个被裁掉一半的日期。剩下的数字是「04.17」。</p>
+<p>再听。</p>
+<p>男声清楚了一些。</p>
+<p>「1998.4.11。」</p>
+<p>「08.0」。</p>
+<p>他又关掉低切，把增益降低两格。</p>
+<p>男声还在。</p>
+<p>「10.0」。</p>
+<p>最后，他把原文件和处理后的文件同时播放。</p>
+<p>一边是底噪下的两点起伏。</p>
+<p>「11.0」。</p>
+<p>一边是被提起来以后露出的两个音节。</p>
+<p>陈渡没有唱。</p>
+<p>他拿起铅笔，在「11.0」后面添了半行字：</p>
+<p>他只在耳机里听。</p>
+<p>他看了看，把铅笔横放在两行字之间。</p>
+<p>第二遍。</p>
+<p>「B-17——」</p>
+<p>第三遍。</p>
+<p>两秒。</p>
+<p>后面的名字还空着。</p>
+<p>他将处理后的文件命名：</p>
+<p>「10—11_男声_提取.wav」</p>
+<p>又给另一段命名：</p>
+<p>「08—10_沈未.wav」</p>
+<p>文件名上的字打完，他把鼠标停在保存键上。</p>
+<p>窗外又一辆货车经过。</p>
+<p>车轮压过接缝。</p>
+<p>一下。</p>
+<p>两下。</p>
+<p>第三下时，电脑右下角的时钟跳到二十一点十四分。</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>慢车</tag>
+        <tag>小说</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>慢车 19：她也有那台机器</title>
     <url>/%E5%B0%8F%E8%AF%B4/fb52e6fb.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>「你这台机器的输入级是被人改过的。」</p>
@@ -22507,467 +22968,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>「我录的是原声。」</p>
 <p>她的指腹压住盒盖边缘。</p>
 <p>「有人在你这台机器上装了一个不原声的东西。」</p>
-]]></content>
-      <categories>
-        <category>小说</category>
-      </categories>
-      <tags>
-        <tag>慢车</tag>
-        <tag>小说</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>慢车 18：十一秒</title>
-    <url>/%E5%B0%8F%E8%AF%B4/66cb7b9f.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>陈渡把音量旋钮拧到第三格。</p>
-<p>他把左边那根音频线拔下来，插头还带着一点温。插孔里有一层黑灰，是磁带机常年通电留下的。桌上那杯水已经放凉，杯壁贴着一圈白印。他把杯子往外挪，给空出来的桌面铺上一张维修用的硬纸板。</p>
-<p>磁带机里先出来一段底噪。</p>
-<p>嘶……嘶……</p>
-<p>硬纸板是装电容的包装盒，印着「2200 微法／耐压 25V」。中间一道折痕把字断成两截。</p>
-<p>他看着转盘上的数字。计数器跳到七。</p>
-<p>他把速度降下来，按住暂停键，把录音笔推到一边。那十一秒已经被他拷进小录音笔，来回听了四十七遍。</p>
-<p>磁带机后面还接着一条线。线的外皮已经发硬，靠近接口的地方裂开一条缝，铜丝没有露出来。陈渡用指甲拨了拨，按回原位，再用黑胶布缠了两圈。</p>
-<p>前七遍，他只听见底噪。</p>
-<p>第八遍，他听见了远处的风。</p>
-<p>陈渡把磁带机推到桌角，腾出一块地方放工具。螺丝刀、尖嘴钳、镊子，三样东西按大小排开。刀柄上有一道旧裂口，握胶松了一圈，他用胶布缠了两道。</p>
-<p>胶布边沿起毛。他从抽屉里剪下一小截，贴在上面。</p>
-<p>第九遍，风下面有金属门碰撞的声音。</p>
-<p>第十遍，底噪右边多了一道很轻的哼声。</p>
-<p>电脑音箱里的女声又循环了一遍。</p>
-<p>第十一遍，他把录音笔的波形放大。</p>
-<p>那道声音从第八秒开始，到了第十一秒断开。</p>
-<p>升上去。</p>
-<p>十二赫兹。</p>
-<p>不，不止。</p>
-<p>落下来。</p>
-<p>陈渡把采样率降到四万八千赫兹，又升回去。</p>
-<p>楼上又响了一下。不是水管，是椅子腿拖过地面。他抬头看了一眼天花板，没动。</p>
-<p>那道哼声有两种波形。</p>
-<p>陈渡把声音关掉，只留波形。屏幕上的横线很细，像桌缝里的一根灰。他把时间轴拉回第七秒，在起点处标了一个红点。第十秒再标一个。两点之间的距离，鼠标读数是两点九九秒。</p>
-<p>一道平，像一根拉直的线。</p>
-<p>陈渡拉开磁带机底部的抽屉。抽屉里没有备用磁带，只有一本巴掌大的硬皮记录本，封面被螺丝刀划出几道白印。他把本子倒过来抖了两下，一枚生锈的垫片落进工具盒。</p>
-<p>另一道在下面，细，跟着第一道走。</p>
-<p>他打开采样信息。</p>
-<p>他把机器上的磁带倒回去，重新播放。</p>
-<p>第十一秒。</p>
-<p>四万八千赫兹。</p>
-<p>他把音量推上去。</p>
-<p>第一道声音从右边进来。</p>
-<p>单声道。</p>
-<p>手机屏幕还亮着。沈未没有再发消息。</p>
-<p>第二个声音在下面，低了六分贝左右。</p>
-<p>不是空白。</p>
-<p>十六位。</p>
-<p>他把耳机摘下来，换成录音笔的小喇叭。</p>
-<p>还是那两下。</p>
-<p>不是磁带机的原生规格。录音笔把磁带线路的信号转成了数字，又被采样、量化。那两点起伏经过一次转换，可能被削平，也可能被挤到了原来的频率下面。</p>
-<p>一声女声。</p>
-<p>再一声男声。</p>
-<p>他把处理软件关掉。</p>
-<p>男声更轻。</p>
-<p>陈渡把磁带机停了。</p>
-<p>他重新打开波形，把低切关掉。那两秒被女声压着，峰值贴在底线上，贴着铁皮背面那道旧划痕的走向。他把音量降下来，给磁带倒到第七秒，自己数着拍子。</p>
-<p>原始文件重新打开。</p>
-<p>屋里只剩转盘停住后的余响。</p>
-<p>他看了一眼桌面。那本记事本摊在左边，纸页上有折痕。右边是录音笔、耳机、螺丝刀和一只拆开的磁带机后盖。</p>
-<p>波形还在。</p>
-<p>他把磁带倒到零。</p>
-<p>重新播放。</p>
-<p>他翻到第四十七行。</p>
-<p>他把频率轴从二十赫兹拉到二十千赫兹。那两点几乎贴着横线，像沉在河底的沙。只要把增益往上推，它们就会出来。可增益每加三格，女声的底噪也跟着抬起来。</p>
-<p>这一次，他没有从头听。</p>
-<p>他等到第七秒，把录音笔的录音键按下去，又用另一根线接进磁带机的耳机孔。</p>
-<p>陈渡在界面上加了三个标记。</p>
-<p>四十三赫兹。</p>
-<p>一，二，三。</p>
-<p>七十八赫兹。</p>
-<p>「08.0」。</p>
-<p>他把波形放大到最大。</p>
-<p>那道女声在中间。</p>
-<p>「10.0」。</p>
-<p>那道男声在下面。</p>
-<p>他听第二遍。</p>
-<p>「11.0」。</p>
-<p>还是。</p>
-<p>第三遍。</p>
-<p>他把这三个数字写在硬纸板背面，又在「10.0」旁边画了一条短线。</p>
-<p>第八秒，女声进来。</p>
-<p>他把耳机戴上，把音量旋到第四格。</p>
-<p>底噪里，两个声音叠在一起。</p>
-<p>画完，他捏住铅笔，笔尖在纸面上停了两秒。</p>
-<p>叠音，是两段声音共用一条磁带，录在同一时间。磁带只能沿着一条轨迹走，后来的声音会盖住前面的声音。但盖住不等于抹掉。</p>
-<p>如果把频率分开，弱的还在。</p>
-<p>楼上的水管响了一声。</p>
-<p>陈渡把录音笔放在桌角，拆开后盖。</p>
-<p>里面的接口板很窄，左边是话筒输入，右边是磁带线路。他拿出一根细铜线，刮掉绝缘层，接上其中一个针脚。</p>
-<p>陈渡抬头看天花板。</p>
-<p>那一页记着更换元件的参数：日期，接线位置，阻值，还有一句没写完的话。「她哼的那句」下面压着半截被磁带标签盖住的纸边。陈渡用镊子挑开标签，露出下面一行小字：「07:12，跟不上。」</p>
-<p>「原声。」</p>
-<p>他对着空房间说了一声。</p>
-<p>他没跟着哼。</p>
-<p>水声持续了四秒，停了。随后，隔壁房间有人推椅子。椅脚擦过地面，声音穿过墙，又薄了一层。</p>
-<p>录音笔的红色指示灯亮着。</p>
-<p>他没有再说话，只把磁带机重新启动。</p>
-<p>他把铅笔放下，给「08—10_沈未.wav」单独建了一个文件夹。</p>
-<p>磁带转起来。</p>
-<p>女声先出现。</p>
-<p>文件夹命名后，屏幕上出现三个名称。</p>
-<p>男声贴着它的下沿。</p>
-<p>陈渡把磁带机的录音旋钮压下。</p>
-<p>「08—10_沈未」。</p>
-<p>第一次录音。</p>
-<p>第十秒，男声跟进来。</p>
-<p>他按停止，把录音笔接到电脑上。文件只有八秒。</p>
-<p>「10—11」。</p>
-<p>「再录。」</p>
-<p>第二次，他把磁带倒回七秒。</p>
-<p>「10—11_男声_提取」。</p>
-<p>这次录了九秒。</p>
-<p>打开文件，只剩底噪。</p>
-<p>他看着这三个名字，把第三个文件夹里的文件拖进第二个。提示框弹出，问是否保留原文件。</p>
-<p>陈渡盯着屏幕，把指针拖到波形最下面。</p>
-<p>两点之间，有一道几乎贴着横线的起伏。</p>
-<p>他点了「否」。</p>
-<p>第十二秒，磁带到头，转盘空转，发出连续的底噪。</p>
-<p>他把标签撕开。标签背面粘着一小段透明胶，胶上粘着半截黑色磁带。磁带边缘有剪口，编号只剩「B-1」。他把那截带子对着灯照，里面没有白色带基，只剩一层棕色氧化物。</p>
-<p>他把音量推到最大。</p>
-<p>耳机里传来一声很短的男声。</p>
-<p>删除完成后，第二个文件夹空了。</p>
-<p>很轻。</p>
-<p>像有人在门后清嗓子。</p>
-<p>陈渡又按了一次撤销。</p>
-<p>他把这一段截出来，另存为「7—9」。</p>
-<p>然后继续。</p>
-<p>文件回到原处。</p>
-<p>第十秒，男声出现。</p>
-<p>第十一秒，声音断掉。</p>
-<p>陈渡按下停止，重新倒带。倒到一半，他又停住，把耳机摘下一边，贴近磁带机外壳。外壳里有一层薄薄的灰，靠近变压器的地方带着焊锡受热后的味道。</p>
-<p>他重新把提取文件放进去，给文件夹命名为「2009.4.17」。</p>
-<p>第二段文件保存为「10—11」。</p>
-<p>两个文件。</p>
-<p>再点开属性。</p>
-<p>一个九秒。</p>
-<p>一个一秒。</p>
-<p>创建时间被系统写成今天。</p>
-<p>陈渡把「7—9」打开，把低频提升三格。</p>
-<p>耳机里的女声变粗，男声被推到前面。</p>
-<p>他看了一会儿，在旁边新建一个文本文件，把内容改回二〇〇九年四月十七日。</p>
-<p>那是沈未。</p>
-<p>他拿起棉签，擦过磁头。</p>
-<p>她在哼一句没有词的歌。</p>
-<p>保存。</p>
-<p>调子很短，升上去，又落下来。</p>
-<p>他拿出那盘贴着「2009.4.17」的空白磁带，放在旁边。两盘带子的直径差一毫米，轮毂缺口却相同。他把螺丝刀插进磁带机侧面的检修孔，拨开一只卡扣。里面掉出一片薄薄的塑料片，上面刻着「B-17」，旁边还留着一道胶痕。</p>
-<p>男声在第三拍跟了进去。</p>
-<p>桌角的粉笔滚了一下，碰到「男：2秒。被盖住。」那行字，停在数字「二」旁边。</p>
-<p>低一点。</p>
-<p>慢半拍。</p>
-<p>陈渡伸手把粉笔捡起来。</p>
-<p>然后停住。</p>
-<p>陈渡摘下耳机。</p>
-<p>粉笔头已经磨得很圆。他拿小刀削掉两毫米，放在磁带机旁。</p>
-<p>棉签头上有一小片褐色氧化物。</p>
-<p>他记得那是 2009 年。</p>
-<p>殡仪馆的储物间只有六平方米，靠墙三排铁架，中间摆一张木桌。机器架在桌上，电源线从墙上的插线板拉下来。沈未在隔壁。</p>
-<p>桌上的电话又响了一声。</p>
-<p>那天她值夜班。</p>
-<p>陈渡把磁带机带来，试一段新的拾音线。线接好后，机器能录下门外的脚步，却录不下他站在话筒前的哼声。</p>
-<p>不是沈未。</p>
-<p>他当时以为线路坏了。</p>
-<p>后来他把线拆下来，换了一个电容，又测了一遍。</p>
-<p>是自动售货机掉货的提示音。每周二晚上，楼下那台机器都会误触一次。陈渡没去管。</p>
-<p>沈未在隔壁哼歌。</p>
-<p>那是他第一次听见她哼。</p>
-<p>他没有立刻擦第二下。他把磁头盖重新扣好，倒回七秒，按下播放。第十秒，男声还在。他把棉签放在桌边，签头朝外。</p>
-<p>他把磁带机的带速从正常拨到慢放。</p>
-<p>他站在桌边，没有出声。</p>
-<p>她的声音穿过储物间的薄墙，落进磁带机。</p>
-<p>计数器一格一格往后退。</p>
-<p>然后他跟着哼了一句。</p>
-<p>只哼了半拍。</p>
-<p>他用镊子夹出塑料片，和那截磁带并排放在桌面上。塑料片背面粘着一点褐色纤维，长度不到一厘米。</p>
-<p>第十一秒的尾音被拉长。</p>
-<p>后面的声音留在磁带里，他自己当时没有听出来。</p>
-<p>陈渡把两个文件拖进同一轨。</p>
-<p>耳机里先是一阵很细的摩擦声。拖到第四秒时，尾音裂成两层：一层往上走，另一层留在下面。</p>
-<p>左边是「7—9」，右边是「10—11」。</p>
-<p>这次，沈未发来一张图片。</p>
-<p>波形叠在一起。</p>
-<p>陈渡按下停止，把播放键改成逐帧。</p>
-<p>女声从第八秒进入，男声从第十秒进入。</p>
-<p>他用音量旋钮一格一格地降。</p>
-<p>画面停在第十一秒。</p>
-<p>女声先下去。</p>
-<p>男声还在。</p>
-<p>他往前退一帧。</p>
-<p>他再降。</p>
-<p>男声也沉到边缘。</p>
-<p>男声的波形只露出半个峰。</p>
-<p>图片拍得很近，只有一只手和一块黑色封皮。封皮上的字被手掌遮住，只露出一个「B」和半个「1」。下方压着一张白纸，纸上有一栏表头，姓名、日期、材料编号，后面的格线被折痕截断。</p>
-<p>他把旋钮拧到底。</p>
-<p>只剩电流声。</p>
-<p>再退一帧。</p>
-<p>再拧回一格。</p>
-<p>男声重新出现。</p>
-<p>只剩底噪。</p>
-<p>陈渡把文件拉回起点，按空格键。</p>
-<p>磁带机里传出当年的底噪。</p>
-<p>他把这半帧复制出来，放大。</p>
-<p>陈渡打开手机里沈未发来的照片，把亮度调高。照片上的黑色记事本旁边有一支圆珠笔，笔帽有咬痕。桌面右下角的钢制包角上，留着一小片褐色纸屑。</p>
-<p>门外的脚步，远处水管里的水声，沈未在隔壁哼歌。</p>
-<p>他的声音在那下面。</p>
-<p>陈渡点开放大。</p>
-<p>两个频率标出来。</p>
-<p>不是空白。</p>
-<p>被盖住了。</p>
-<p>二百八十七赫兹。</p>
-<p>他把耳机摘下来，盯着屏幕上的波形。</p>
-<p>波形最下面那一条，几乎与横线重合。</p>
-<p>三百一十三赫兹。</p>
-<p>如果只听混音，听不见。</p>
-<p>如果只看磁带轨，也会以为那里没有东西。</p>
-<p>差二十六赫兹。</p>
-<p>但它在。</p>
-<p>纸张边缘有一块深色水渍。沈未的手指甲很短，无名指侧面沾着一点蓝墨水。</p>
-<p>他打开频谱。</p>
-<p>陈渡把机器的带速恢复。磁带退到第七秒，他重新播放。第十秒，男声进来。第十一秒，断开。</p>
-<p>峰值挤在女声的下方，集中在二百八十到三百二十赫兹之间。男声不在原来的位置。</p>
-<p>是被女声压下去的。</p>
-<p>他摘下一边耳机，把耳朵贴近机器外壳。</p>
-<p>陈渡把时间轴放大。</p>
-<p>第十秒，男声只有两个起伏。</p>
-<p>外壳里有磁头、放大器和供电变压器。声音经过线圈，再进入磁带。那两秒不可能由线路凭空长出来，除非当时就有一道电流被写进去。</p>
-<p>第十一秒，只剩一声很短的尾音。</p>
-<p>他用粉笔在桌角写：</p>
-<p>如果是底噪，频谱会散。</p>
-<p>他回：「拍全。」</p>
-<p>他把照片缩小，又放大。纸屑的位置和长度，与桌上的塑料片背面那点纤维相近。</p>
-<p>「男：2秒。被盖住。」</p>
-<p>写完，他把粉笔横放在数字旁边。</p>
-<p>如果是机械震动，峰值会跟着转盘周期重复。</p>
-<p>窗外的货车经过，车轮压过接缝，声音从窗框传进来。</p>
-<p>陈渡没有关窗。</p>
-<p>三百一十三赫兹没有重复。</p>
-<p>他把录音笔音量旋钮拧到第一格，重新听了一遍。</p>
-<p>这次，他把女声关掉。</p>
-<p>它只出现在第十秒。</p>
-<p>房间里只剩底噪。</p>
-<p>第八秒开始，男声单独浮出来。</p>
-<p>过了十几秒，图片撤回。</p>
-<p>陈渡打开磁带机的检修孔。里面没有别的拾音设备，只有原装磁头、改过的线路板和一个贴着黄色胶布的旧元件。胶布边缘写着「2K2」。</p>
-<p>很近。</p>
-<p>像他就站在磁带机旁边。</p>
-<p>他把灯凑近。</p>
-<p>第十一秒，那声音落下去。</p>
-<p>陈渡按下停止键。</p>
-<p>元件的一脚已经弯了。</p>
-<p>他又听第二遍。</p>
-<p>男声还是在那里。</p>
-<p>陈渡用镊子把它扶正，没有碰线路上的其他部分。</p>
-<p>第一遍，他以为听错了。</p>
-<p>沈未发来一句：「不能拍。」</p>
-<p>第二遍，他把波形和频谱同时打开。</p>
-<p>这时，手机屏幕又亮起来。</p>
-<p>频谱上有一段清楚的窄带，中心在三百一十赫兹。声音很弱，峰值比底噪高出十一个分贝。</p>
-<p>陈渡打开录音软件，把「08—10_沈未.wav」拖进时间轴。第十秒，沈未的哼声落下；他在第十秒前加了半拍空白，又把频率拉低。男声的位置只剩一段窄窄的起伏，和那截磁带的长度对不上。</p>
-<p>不是没有。</p>
-<p>沈未发了一张照片。</p>
-<p>是低。</p>
-<p>陈渡坐了一会儿，把电脑屏幕往自己这边拉。</p>
-<p>照片里是一本黑色记事本。封皮右下角磨起一块，露出里面的纸页。她只拍到桌面，照片边缘有半只白手套。</p>
-<p>桌角那本记事本被带得翻开一页。</p>
-<p>他看见自己的字。</p>
-<p>没有正文。</p>
-<p>陈渡把手机扣在桌上，拿起螺丝刀，把磁带机后盖上那颗一字螺丝重新拧了一遍。刀口已经磨亮，螺丝头多出一道竖向划痕。他用指甲刮了刮划痕，刮不掉。</p>
-<p>「录不进自己的声音，先看磁头。」</p>
-<p>下面是一行日期。</p>
-<p>陈渡放大图片。</p>
-<p>2009 年 4 月 17 日。</p>
-<p>那行字很淡，墨水已经洇开。</p>
-<p>白手套旁边放着一支圆珠笔，笔帽咬痕深浅不一。桌面右下角露出殡仪馆工作台的钢制包角。</p>
-<p>他翻回前面。</p>
-<p>那一页是殡仪馆的工作安排。沈未写得很整齐。日期、姓名、房间、处理时间，一行一行排下去。</p>
-<p>他截了图，退出相册。</p>
-<p>旁边没有人说话。</p>
-<p>陈渡盯着那页看了很久。</p>
-<p>他打开抽屉，找到一张旧收据。收据背面印着一家设备行的电话，号码中间缺了两位。他把它压在手机下面，没有拨。</p>
-<p>「照片里是当天那本？」</p>
-<p>他记得那天沈未就在隔壁。</p>
-<p>他记得她哼过一句。</p>
-<p>发送。</p>
-<p>他没有听她哼完。</p>
-<p>他也没有告诉她，机器录下了。</p>
-<p>他换了一盘磁带。按下播放，倒数到七秒。男声从耳机里出来时，磁带机右侧的灯闪了一下。</p>
-<p>沈未回：</p>
-<p>他把记事本合上。</p>
-<p>桌上的小录音笔跳到「00:00」。</p>
-<p>「本子还在，但不在我这里。」</p>
-<p>陈渡没有立刻再放。</p>
-<p>磁带机继续走带。转盘每转一圈，窗上的指示点便跳一下。</p>
-<p>他拿起那台苏式磁带机，把后盖重新扣好。四颗螺丝，三颗十字，一颗一字。那颗一字螺丝的刀口已经被他磨过，边缘发亮。</p>
-<p>陈渡看着这句话，手指停在屏幕上方。</p>
-<p>他用手动螺丝刀拧紧。</p>
-<p>一圈。</p>
-<p>「在哪？」</p>
-<p>两圈。</p>
-<p>第三圈时，螺丝滑了一下。</p>
-<p>这一次，回复隔了四十多秒。</p>
-<p>他停住，把刀口重新压进槽里。</p>
-<p>然后继续。</p>
-<p>「家属接待处把它当旧登记本用了。夹在待补材料里，编号 B-17。」</p>
-<p>沈未发来第三条消息：</p>
-<p>机器放回桌中央。</p>
-<p>他打开电源。</p>
-<p>陈渡记下编号。</p>
-<p>指示灯亮着。</p>
-<p>转盘没有转动。</p>
-<p>沈未又发来一句：</p>
-<p>陈渡把磁带装上，按下播放。</p>
-<p>底噪起来。</p>
-<p>「要开箱单才能查。」</p>
-<p>陈渡把录音笔贴近磁带机后盖，沿着外壳摸到一块凸起的塑料。抠开后盖，里面夹着一张折叠的纸。纸上是他的字，只有一行：</p>
-<p>他等数字跳到七。</p>
-<p>耳机里的女声出现。</p>
-<p>「登记表上是沈九斤。」</p>
-<p>他打字。</p>
-<p>他把音量推到第三格。</p>
-<p>男声在下面。</p>
-<p>「先查位置。」</p>
-<p>两次。</p>
-<p>都是两次。</p>
-<p>「不急。」</p>
-<p>陈渡把耳机摘下，放到桌上。</p>
-<p>他打开抽屉，找出一盘空白磁带。标签上写着「2009.4.17」。</p>
-<p>陈渡把手机放下，看向那盘贴有「2009.4.17」的空白磁带。</p>
-<p>标签已经发黄，边缘卷起来。</p>
-<p>陈渡看着那四个字，拇指停在屏幕上方。</p>
-<p>这是当年那盘磁带的编号。</p>
-<p>标签边缘卷起，露出下面一层旧标签。旧标签上有一道压痕，像有人写过一串号码，后来用透明胶盖住。</p>
-<p>他把空白盘放在机器旁边，没有装。</p>
-<p>手机在桌上亮了一下。</p>
-<p>他用指甲抠开透明胶的一角。</p>
-<p>陈渡看了一眼。</p>
-<p>沈未发来消息。</p>
-<p>底下露出「B-17」。</p>
-<p>「机器还在响？」</p>
-<p>他打字。</p>
-<p>三个字符。</p>
-<p>他没有问沈未。</p>
-<p>「她哼的那句：升上去。落下来。第二遍没跟。」</p>
-<p>「在。」</p>
-<p>停了几秒，又删掉。</p>
-<p>后面还有两个被磨掉的数字。</p>
-<p>重新打。</p>
-<p>「找到两秒。」</p>
-<p>陈渡把标签完全揭开。胶纸粘住纸面，撕开时带下一层纤维。</p>
-<p>发送。</p>
-<p>沈未没有马上回。</p>
-<p>底下是周隼的字。</p>
-<p>陈渡把磁带停在七秒的位置，又播放了一遍。</p>
-<p>第三个词打完时，手机震了一下。</p>
-<p>他先点开周隼的号码，听筒里传来两声空响，随后被挂断。再打，仍是忙音。</p>
-<p>「已回」。</p>
-<p>「什么两秒？」</p>
-<p>他打字。</p>
-<p>后面画了一道横线。</p>
-<p>「2009 年那两秒。」</p>
-<p>消息发出去后，他把手机扣在桌上。</p>
-<p>陈渡把磁带机后盖上的四颗螺丝重新检查了一遍。三颗十字螺丝没有滑痕。那颗一字螺丝的刀口被他磨过，边缘发亮，螺丝头多出一道竖向划痕。</p>
-<p>屏幕朝下。</p>
-<p>房间里只剩磁带机的底噪。</p>
-<p>不是今天留下的。</p>
-<p>过了十几秒，手机又震。</p>
-<p>桌上的磁带倒回七秒。</p>
-<p>陈渡翻过来。</p>
-<p>他把螺丝刀贴在划痕上，比了比角度。</p>
-<p>沈未说：「我那天哼的是哪一句？」</p>
-<p>他把纸条压到硬纸板下，又拿起那截「B-1」磁带，放到转盘上。带子转了半圈，计数器没有动。磁头落下，里面只有一声很轻的咔响。</p>
-<p>他没有回。</p>
-<p>门外过了一辆电动车。灯光从门缝扫进来，桌面上多了一条白线，很快退掉。</p>
-<p>他把录音倒到七秒，戴上耳机，等到女声出现。</p>
-<p>一句。</p>
-<p>陈渡打开手机通讯录，找到周隼的号码。</p>
-<p>升上去。</p>
-<p>落下来。</p>
-<p>号码下面，最后一次通话时间是四个月前。</p>
-<p>他播放到第十秒，把音量拧到第二格。男声在耳机里贴着女声的下方浮出来，短，闷，像隔着一层铁皮。</p>
-<p>他打字。</p>
-<p>「这句。」</p>
-<p>他按了拨号。</p>
-<p>停了停。</p>
-<p>「你哼了另一句。」</p>
-<p>听音响了两声，被按掉。</p>
-<p>发送。</p>
-<p>这次沈未回得很快。</p>
-<p>陈渡没有再拨。他点开短信，输入：</p>
-<p>「我不记得。」</p>
-<p>陈渡把手机放下。</p>
-<p>陈渡拿起铅笔，在硬纸板背面写下：</p>
-<p>「B-17 是哪本？」</p>
-<p>他盯着那行字。</p>
-<p>她不记得。</p>
-<p>发送。</p>
-<p>她记得那天有人在隔壁试机器。</p>
-<p>记得门外有人走过。</p>
-<p>陈渡拿起铅笔，在硬纸板背面添了一行：「B-1，与B-17不是同一盘。」</p>
-<p>屏幕上出现转圈标志。</p>
-<p>记得储物间的灯泡接触不良。</p>
-<p>不记得自己哼过一句。</p>
-<p>五秒后，沈未发来一条新消息。</p>
-<p>陈渡又听了一遍。</p>
-<p>「沈九斤——B-17。」</p>
-<p>男声在第十秒进来。</p>
-<p>「开箱单上写的不是编号。是人名。」</p>
-<p>低六分贝。</p>
-<p>他的手指停在播放键上，没有按下去。</p>
-<p>陈渡把手机横放在硬纸板旁。</p>
-<p>他想起自己当时站在话筒后面。</p>
-<p>没有唱。</p>
-<p>「谁？」</p>
-<p>只是跟着沈未的调子出了半声。</p>
-<p>那半声被录进去了。</p>
-<p>沈未没有立刻回答。</p>
-<p>写完，他又在下面添了一行：</p>
-<p>不是后来改机器以后。</p>
-<p>不是空白。</p>
-<p>阁楼上的钟响了一下。二十一点十五分。</p>
-<p>不是没有。</p>
-<p>陈渡把耳机重新戴上，把「10—11」文件拖到播放器。</p>
-<p>白手套的照片还停在手机里。陈渡把它关掉，重新打开，把亮度调到最低。</p>
-<p>这一次，他把频段的低切打开。</p>
-<p>两百六十赫兹。</p>
-<p>硬纸板背面，那三个标记还在。</p>
-<p>他将纸条翻到背面，纸角露出一个被裁掉一半的日期。剩下的数字是「04.17」。</p>
-<p>再听。</p>
-<p>男声清楚了一些。</p>
-<p>「1998.4.11。」</p>
-<p>「08.0」。</p>
-<p>他又关掉低切，把增益降低两格。</p>
-<p>男声还在。</p>
-<p>「10.0」。</p>
-<p>最后，他把原文件和处理后的文件同时播放。</p>
-<p>一边是底噪下的两点起伏。</p>
-<p>「11.0」。</p>
-<p>一边是被提起来以后露出的两个音节。</p>
-<p>陈渡没有唱。</p>
-<p>他拿起铅笔，在「11.0」后面添了半行字：</p>
-<p>他只在耳机里听。</p>
-<p>他看了看，把铅笔横放在两行字之间。</p>
-<p>第二遍。</p>
-<p>「B-17——」</p>
-<p>第三遍。</p>
-<p>两秒。</p>
-<p>后面的名字还空着。</p>
-<p>他将处理后的文件命名：</p>
-<p>「10—11_男声_提取.wav」</p>
-<p>又给另一段命名：</p>
-<p>「08—10_沈未.wav」</p>
-<p>文件名上的字打完，他把鼠标停在保存键上。</p>
-<p>窗外又一辆货车经过。</p>
-<p>车轮压过接缝。</p>
-<p>一下。</p>
-<p>两下。</p>
-<p>第三下时，电脑右下角的时钟跳到二十一点十四分。</p>
 ]]></content>
       <categories>
         <category>小说</category>
@@ -37699,6 +37699,169 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
       </tags>
   </entry>
   <entry>
+    <title>第800小时 18：举报</title>
+    <url>/%E5%B0%8F%E8%AF%B4/70291543.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>第三项指控里没有写他的名字。</p>
+<p>陶砚把通知翻到第三页。三项指控，前两项各占半页，第三项只有一行：</p>
+<p>「2011 年 3 月至 2026 年 1 月，以本人名义申报之学员竞赛成绩 41 项，未申报方法来源。」</p>
+<p>结论栏底下压着一行小字：本项成立与否，取决于被停职人能否自行举证。</p>
+<p>办公室在三楼，窗朝北，早上的光进不来。桌上只有一只马克杯，杯底一圈茶渍，杯把上两道裂。</p>
+<p>苏芮站在门口，手里一个牛皮纸袋，封口的红线绕了两圈。</p>
+<p>「进来。」</p>
+<p>「通知今天早上八点十分到我桌上。送达时间是九点。我提前了四十分钟。」</p>
+<p>「谁签的。」</p>
+<p>「流程从委员会下来。签字的人不在这栋楼里。」</p>
+<p>「卢兆丰知道。」</p>
+<p>「知道。他昨天问过我三次，我给的是同一份答案。」她把纸袋放在桌角，没有推过来，「前两项我先说结论。」</p>
+<p>「说。」</p>
+<p>「第一项成立。2002 年 12 月 19 日那本日志缺一页。您 2003 年交过承诺书，承诺保存全部原始记录。」</p>
+<p>「那一页不是我撕的。」</p>
+<p>「材料上也没写是您撕的。」苏芮的指尖落在第一页的一行字上，「写的是：日志在您离职后由第三方保管，保管期间原页损毁。这个第三方叫邱岸。」</p>
+<p>陶砚的右手在桌面上蹭了一下。虎口的厚茧刮过木纹，声音很轻。</p>
+<p>「邱岸撕的。」</p>
+<p>「提交人自己写的。」</p>
+<p>「今年三月他跟我说的不是这个。」</p>
+<p>「他说什么。」</p>
+<p>「他说撕的时候他在旁边，撕的人让他出去。」</p>
+<p>苏芮把那一页纸压平。「那他撒了二十四年的谎。」她停了一下，「这一句不在指控里。是我说多了。」</p>
+<p>「第二项。」</p>
+<p>「第二项也成立。」苏芮说，「时数折算表。教练示范按 50% 计入学员时数包，1,860 小时。跨项目的等待、器械调试、教练休息室的时长，也进折算表。表上您的签字在最后一栏。」</p>
+<p>「表是我签的。」</p>
+<p>「是。」</p>
+<p>「示范按 50% 计入，这条是谁定的。」</p>
+<p>苏芮的手停在纸袋上。</p>
+<p>「……是公司的结算口径。三年前财务部出的，董事会过的。」她说，「陶教练，这一条不是我签的字，也不是您一个人定的。」</p>
+<p>「我现在知道了。」</p>
+<p>「不。」苏芮说，「您现在知道的是『示范算半价』。您不知道的是跨项目等待也算、器械调试也算、您自己在休息室坐着的四十分钟也算。这一栏下面一共有十一行。」</p>
+<p>陶砚没说话。</p>
+<p>「我把它摊开，是想告诉您：您签的不是一张表，是一整面墙。」她把纸袋往前推了半寸，「这一条我答不了。您得自己答。」</p>
+<p>「第三项。」</p>
+<p>苏芮抬起眼睛。「第三项是假的。」</p>
+<p>「假的？」</p>
+<p>「指控写的是『未申报方法来源』，底下压着半句没写出来的话：那 41 项成果归您一个人。申报表那一栏的原话是『本人方法论成果』，不含独占原创的意思。您没有造假。」</p>
+<p>「那它为什么成立。」</p>
+<p>「因为他们问的不是您有没有造假。」</p>
+<p>陶砚没接。</p>
+<p>「他们问的是：41 项成绩里，有多少项在离开您的方法之后仍然成立。」</p>
+<p>窗外有车进地库，坡道上滚过一道闷响。</p>
+<p>「我教了十五年。」</p>
+<p>「是。」</p>
+<p>「41 项。国际级两个，公开赛前十一个，剩下是省级和市级。」</p>
+<p>「是。」</p>
+<p>「每一项的训练计划、周期、负荷、比赛安排都是我写的。」</p>
+<p>「是。」</p>
+<p>「那就写上去。」</p>
+<p>「写上去之后呢。」苏芮的指尖点在桌沿，「委员会要的是比例。国际级两项里，有几项在您不在场的时候还是国际级？公开赛前十一个里，有几个换一个人带，还是前十一个？」</p>
+<p>「2019 年那个跳远的省冠军，最后八周他人在省队，不在基地。他自己加训的。」苏芮说，「您知道那八周吗？」</p>
+<p>「知道他加训。」</p>
+<p>「记录上有没有？」</p>
+<p>「没有。」</p>
+<p>「那委员会会问：那八周算谁的。」</p>
+<p>陶砚拉开随身的包，拉链拉到一半又停住。里面那本旧日志露出一个角，硬壳，边角磨圆了。</p>
+<p>「苏芮。」</p>
+<p>「在。」</p>
+<p>「2011 年之前我不在这个基地。」他说得很慢，「我在南边三个训练营当教练，方法是从我师父那儿带的。带过来的时候它就是完整的。它现在长什么样，我不知道。我没有办法证明后面这 41 项里，有多少是我改出来的，有多少是它自己长出来的。」</p>
+<p>「那您打算怎么答。」</p>
+<p>「我不用答。我用做。」</p>
+<p>「他们的委员会不做这个。」苏芮说，「他们做减法。凡是说不清归属的，先算成您的。」</p>
+<p>「第三项我不签。」</p>
+<p>「您可以不签。」她把纸袋往前推了半寸，「不签不影响停职。停职是通知，不是签字。」</p>
+<p>「我签。」</p>
+<p>陶砚拿起笔。签收栏下面有一行日期，他写上今天的日期，然后签了名。他的字和十年前一样，横平竖直，最后一笔往下拖半寸。</p>
+<p>签完他没有把纸袋推回去，先把签收页放到一边，抽出下面的附页。</p>
+<p>附页一：时数折算表复印件，整整一页的格子。他在自己的签名那一栏停了两秒。</p>
+<p>附页二：2002 年 12 月 19 日的训练日志残页，复印件。表格还在，日期、时数、动作、偏差都在。备注那一栏不是空着——是被裁掉的，白边留着剪刀的锯齿。</p>
+<p>备注栏原本有字。他认得那个笔迹。他师父写「记」字的时候，最后一笔总要拖出去一点，像甩掉手上的水。</p>
+<p>附页三是一张两寸照片。</p>
+<p>照片里是一枚发黄的纸片，边缘毛糙，折过两道。上面一行手写的数字：3,100。照片下面印着一行小字：</p>
+<p>「来源：陶砚 2002 年度训练日志，2002 年 12 月 19 日夹页内。」</p>
+<p>陶砚把照片拿近了一点。他伸手去摸外套内袋，把那本旧日志抽出来，翻到 2002 年 12 月 19 日。表头是他自己的字：日期、时数、动作、偏差、备注。时数栏写着 812。备注栏空着，纸纤维翻着白。夹页的位置也是空的，只剩一道旧折痕。</p>
+<p>上个月它还在。</p>
+<p>「陶教练。」门口有人在敲框，「行政的小陈，来收东西。」</p>
+<p>小陈抱着一摞纸箱进来，把桌上的学员档案往箱子里塞。</p>
+<p>「工牌、门禁卡、教练编号牌，在第三个箱子。」</p>
+<p>「1998 年的录像带。」</p>
+<p>「也在箱子里。」小陈把最后一本档案压进箱子，「录像带按基地资产登记，得入库房。您的东西三个月内去拿，过了三个月按无主物品处理。」</p>
+<p>陶砚点头。他没有看箱子，看的是墙。墙上原来挂着三块金牌的位置空了，钉子孔还在，一个一个排成一行。</p>
+<p>「对了。」小陈抱起箱子，「前台说上午有个人问过 T-07 的办公室在几楼。问完就走了，没上楼。」</p>
+<p>「什么样的人。」</p>
+<p>「二十七八岁。深蓝色外套，没带包。」</p>
+<p>「知道了。」</p>
+<p>小陈抱着箱子走了。走廊里剩下纸箱蹭墙的声音。</p>
+<p>陶砚拉开抽屉，把抽屉最里面那本封皮发硬的册子拿出来。十五年的教案，他自己写的，每一页都记着日期、时数、动作、偏差。</p>
+<p>他翻到 2019 年。省跳远，省冠军，姓周，二十四岁，训练周期是三月到十月。</p>
+<p>最后一栏有一行他自己写的备注：八月十七日至九月四日，队员在省队集训，未在基地。</p>
+<p>他盯着这行字看了很久。</p>
+<p>这一行是他自己记的。他记的时候没有想过要证明什么，他只是照实写。八周。二十七天到十一月，训练计划照旧，负荷照旧。</p>
+<p>计划是它自己长出来的，还是他写出来的。</p>
+<p>他翻回前面。2016 年那个全国青少年锦标赛的第三名，备注栏只有四个字：老队员带。</p>
+<p>再往前。2013 年，2014 年。备注栏不是空的，就是更短：他自己加的、他自己改的、他老家的教练来看过。</p>
+<p>他翻到 2011 年 3 月。那一页最上面写着：接手，第一批 12 人。</p>
+<p>接手。第一个字。</p>
+<p>陶砚把册子合上，压在折算表上面。桌上那部座机响了。显示 08 区，董事长办公室。</p>
+<p>「陶砚。」卢兆丰的声音从免提里出来，很慢，句尾带着「我们」，「材料我看过了。三项。」</p>
+<p>「您看了。」</p>
+<p>「今天要说的是，你签了字。」</p>
+<p>「我签了。」</p>
+<p>「那就好。」他说，「你停职，基地照常转。认证大会下个月要开，十一个金牌要颁。地基不能因为你一个人的事塌一块。」</p>
+<p>「十一块金牌里有几块是我签的。」</p>
+<p>「都是你签的。」卢兆丰说，「所以你更不能让它塌。」</p>
+<p>陶砚看着手边那张折算表。十一行。</p>
+<p>「卢总。」</p>
+<p>「你说。」</p>
+<p>「退款率 14%。」</p>
+<p>那头静了两秒。</p>
+<p>「那是结算口径还没改。」卢兆丰说，「你停你的职，账我来盘。我们先把产能做上去，别的都能补。」</p>
+<p>「补什么。」</p>
+<p>「补……」卢兆丰停了一下，「陶砚，你现在最不该做的事，就是把自己的方法论拆开给人看。你拆得越细，别人越能拿它去算别的东西。这套东西不是一天建起来的，也不是你一个人的。」</p>
+<p>「那是师父的。」</p>
+<p>「是你师父的，也是基地的，也是每个学员花的钱凑起来的。」卢兆丰说，「这三样绑在一根绳上，你扯哪一头？」</p>
+<p>陶砚没有回答。他把折算表折成三折，塞进外套内袋，和复印件放在一起。</p>
+<p>「材料上第三项，你要是有办法证明，就拿出来。」卢兆丰说，「拿不出来，就认。」</p>
+<p>「我有办法。」</p>
+<p>「那就快一点。」</p>
+<p>座机断了。</p>
+<p>陶砚把签收页、附页三的照片、2002 年的日志三样东西并排摊在桌上，然后抱起外套，下楼。</p>
+<p>地下车库里只停着他一辆车。他坐进驾驶座，没有发动引擎，把那张两寸照片摊在方向盘上。</p>
+<p>照片里的 3,100 印得很浅。他用指甲盖在照片背面刮了一下，想确认这不是打印时压出来的噪点。</p>
+<p>他掏出手机，拨了邱岸的号码。响了两声，那边接起来。</p>
+<p>「陶教练。」</p>
+<p>「你把一张纸留了二十四年。」</p>
+<p>「是。」</p>
+<p>「为什么。」</p>
+<p>「因为那是那本日志里唯一一个我不认识的数。」邱岸说，「其余的我都交了。时数、动作、偏差、签字，我一样没藏。」</p>
+<p>「备注栏为什么是空的。」</p>
+<p>那头静了几秒。</p>
+<p>「因为那是陈守拙的字。」邱岸说，「上交给委员会的只能是数据。方法不能交。」</p>
+<p>陶砚握着电话的手没动。他把这句话在心里过了一遍，找到他要找的东西：邱岸不是在销毁证据。他是在把师父藏起来，藏了二十四年，直到今天早上，才第一次露出一角。</p>
+<p>「3,100 是谁。」</p>
+<p>「1999 年的台账我查过。」邱岸的声音还是那么客气，「那一年射击队走了一个学生。账上给他记的总时数是三千一百。他走的时候没有跟任何人告别。」</p>
+<p>「名字。」</p>
+<p>「您比我清楚。」</p>
+<p>陶砚没有再问。</p>
+<p>「三月我接回那本日志，夹页里还有东西。」他说，「是你拿走的。」</p>
+<p>「我交上去了。」</p>
+<p>「交到哪儿。」</p>
+<p>「附页三。」邱岸说，「您已经看了。」</p>
+<p>电话挂了。</p>
+<p>车库里只剩排风扇的响声。陶砚把那本 2002 年的日志摊在方向盘上，翻到那一页。</p>
+<p>左边是他的 812。右边是邱岸交上去的 3,100。同一张纸的两面，中间隔了二十四年。</p>
+<p>他给苏芮回了一条短信，只有一句：第三项我能证明，办法是把十五年的东西全交出去。</p>
+<p>发完他停了几秒，又加了一句：包括我自己做错的。</p>
+<p>发完他把手机扣在腿上，重新看那张照片。照片拍摄的角度是从上往下，纸片躺在别人的桌面上，旁边有一角深色的桌垫。邱岸没有把它摆正。</p>
+<p>他把照片翻过来。背面有一行手写铅笔字，很淡：3,100。</p>
+<p>不是印的。是邱岸自己抄上去的。</p>
+<p>陶砚打开手机备忘录，在新建的一行里打下三个数字：3,100。</p>
+]]></content>
+      <categories>
+        <category>小说</category>
+      </categories>
+      <tags>
+        <tag>小说</tag>
+        <tag>第800小时</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>第800小时 17：流水线</title>
     <url>/%E5%B0%8F%E8%AF%B4/de5f178d.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>折算表是 A4 纸，一页，十一行。</p>
@@ -37876,169 +38039,6 @@ s-65,47,-65,47z M834 80H400000v40H845z'/></svg></span></span></span><span class=
 <p>「陶教练。」</p>
 <p>「嗯。」</p>
 <p>「材料我已经递了。」她说，「不是递给你，是递上去。」</p>
-]]></content>
-      <categories>
-        <category>小说</category>
-      </categories>
-      <tags>
-        <tag>小说</tag>
-        <tag>第800小时</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>第800小时 18：举报</title>
-    <url>/%E5%B0%8F%E8%AF%B4/70291543.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><p>第三项指控里没有写他的名字。</p>
-<p>陶砚把通知翻到第三页。三项指控，前两项各占半页，第三项只有一行：</p>
-<p>「2011 年 3 月至 2026 年 1 月，以本人名义申报之学员竞赛成绩 41 项，未申报方法来源。」</p>
-<p>结论栏底下压着一行小字：本项成立与否，取决于被停职人能否自行举证。</p>
-<p>办公室在三楼，窗朝北，早上的光进不来。桌上只有一只马克杯，杯底一圈茶渍，杯把上两道裂。</p>
-<p>苏芮站在门口，手里一个牛皮纸袋，封口的红线绕了两圈。</p>
-<p>「进来。」</p>
-<p>「通知今天早上八点十分到我桌上。送达时间是九点。我提前了四十分钟。」</p>
-<p>「谁签的。」</p>
-<p>「流程从委员会下来。签字的人不在这栋楼里。」</p>
-<p>「卢兆丰知道。」</p>
-<p>「知道。他昨天问过我三次，我给的是同一份答案。」她把纸袋放在桌角，没有推过来，「前两项我先说结论。」</p>
-<p>「说。」</p>
-<p>「第一项成立。2002 年 12 月 19 日那本日志缺一页。您 2003 年交过承诺书，承诺保存全部原始记录。」</p>
-<p>「那一页不是我撕的。」</p>
-<p>「材料上也没写是您撕的。」苏芮的指尖落在第一页的一行字上，「写的是：日志在您离职后由第三方保管，保管期间原页损毁。这个第三方叫邱岸。」</p>
-<p>陶砚的右手在桌面上蹭了一下。虎口的厚茧刮过木纹，声音很轻。</p>
-<p>「邱岸撕的。」</p>
-<p>「提交人自己写的。」</p>
-<p>「今年三月他跟我说的不是这个。」</p>
-<p>「他说什么。」</p>
-<p>「他说撕的时候他在旁边，撕的人让他出去。」</p>
-<p>苏芮把那一页纸压平。「那他撒了二十四年的谎。」她停了一下，「这一句不在指控里。是我说多了。」</p>
-<p>「第二项。」</p>
-<p>「第二项也成立。」苏芮说，「时数折算表。教练示范按 50% 计入学员时数包，1,860 小时。跨项目的等待、器械调试、教练休息室的时长，也进折算表。表上您的签字在最后一栏。」</p>
-<p>「表是我签的。」</p>
-<p>「是。」</p>
-<p>「示范按 50% 计入，这条是谁定的。」</p>
-<p>苏芮的手停在纸袋上。</p>
-<p>「……是公司的结算口径。三年前财务部出的，董事会过的。」她说，「陶教练，这一条不是我签的字，也不是您一个人定的。」</p>
-<p>「我现在知道了。」</p>
-<p>「不。」苏芮说，「您现在知道的是『示范算半价』。您不知道的是跨项目等待也算、器械调试也算、您自己在休息室坐着的四十分钟也算。这一栏下面一共有十一行。」</p>
-<p>陶砚没说话。</p>
-<p>「我把它摊开，是想告诉您：您签的不是一张表，是一整面墙。」她把纸袋往前推了半寸，「这一条我答不了。您得自己答。」</p>
-<p>「第三项。」</p>
-<p>苏芮抬起眼睛。「第三项是假的。」</p>
-<p>「假的？」</p>
-<p>「指控写的是『未申报方法来源』，底下压着半句没写出来的话：那 41 项成果归您一个人。申报表那一栏的原话是『本人方法论成果』，不含独占原创的意思。您没有造假。」</p>
-<p>「那它为什么成立。」</p>
-<p>「因为他们问的不是您有没有造假。」</p>
-<p>陶砚没接。</p>
-<p>「他们问的是：41 项成绩里，有多少项在离开您的方法之后仍然成立。」</p>
-<p>窗外有车进地库，坡道上滚过一道闷响。</p>
-<p>「我教了十五年。」</p>
-<p>「是。」</p>
-<p>「41 项。国际级两个，公开赛前十一个，剩下是省级和市级。」</p>
-<p>「是。」</p>
-<p>「每一项的训练计划、周期、负荷、比赛安排都是我写的。」</p>
-<p>「是。」</p>
-<p>「那就写上去。」</p>
-<p>「写上去之后呢。」苏芮的指尖点在桌沿，「委员会要的是比例。国际级两项里，有几项在您不在场的时候还是国际级？公开赛前十一个里，有几个换一个人带，还是前十一个？」</p>
-<p>「2019 年那个跳远的省冠军，最后八周他人在省队，不在基地。他自己加训的。」苏芮说，「您知道那八周吗？」</p>
-<p>「知道他加训。」</p>
-<p>「记录上有没有？」</p>
-<p>「没有。」</p>
-<p>「那委员会会问：那八周算谁的。」</p>
-<p>陶砚拉开随身的包，拉链拉到一半又停住。里面那本旧日志露出一个角，硬壳，边角磨圆了。</p>
-<p>「苏芮。」</p>
-<p>「在。」</p>
-<p>「2011 年之前我不在这个基地。」他说得很慢，「我在南边三个训练营当教练，方法是从我师父那儿带的。带过来的时候它就是完整的。它现在长什么样，我不知道。我没有办法证明后面这 41 项里，有多少是我改出来的，有多少是它自己长出来的。」</p>
-<p>「那您打算怎么答。」</p>
-<p>「我不用答。我用做。」</p>
-<p>「他们的委员会不做这个。」苏芮说，「他们做减法。凡是说不清归属的，先算成您的。」</p>
-<p>「第三项我不签。」</p>
-<p>「您可以不签。」她把纸袋往前推了半寸，「不签不影响停职。停职是通知，不是签字。」</p>
-<p>「我签。」</p>
-<p>陶砚拿起笔。签收栏下面有一行日期，他写上今天的日期，然后签了名。他的字和十年前一样，横平竖直，最后一笔往下拖半寸。</p>
-<p>签完他没有把纸袋推回去，先把签收页放到一边，抽出下面的附页。</p>
-<p>附页一：时数折算表复印件，整整一页的格子。他在自己的签名那一栏停了两秒。</p>
-<p>附页二：2002 年 12 月 19 日的训练日志残页，复印件。表格还在，日期、时数、动作、偏差都在。备注那一栏不是空着——是被裁掉的，白边留着剪刀的锯齿。</p>
-<p>备注栏原本有字。他认得那个笔迹。他师父写「记」字的时候，最后一笔总要拖出去一点，像甩掉手上的水。</p>
-<p>附页三是一张两寸照片。</p>
-<p>照片里是一枚发黄的纸片，边缘毛糙，折过两道。上面一行手写的数字：3,100。照片下面印着一行小字：</p>
-<p>「来源：陶砚 2002 年度训练日志，2002 年 12 月 19 日夹页内。」</p>
-<p>陶砚把照片拿近了一点。他伸手去摸外套内袋，把那本旧日志抽出来，翻到 2002 年 12 月 19 日。表头是他自己的字：日期、时数、动作、偏差、备注。时数栏写着 812。备注栏空着，纸纤维翻着白。夹页的位置也是空的，只剩一道旧折痕。</p>
-<p>上个月它还在。</p>
-<p>「陶教练。」门口有人在敲框，「行政的小陈，来收东西。」</p>
-<p>小陈抱着一摞纸箱进来，把桌上的学员档案往箱子里塞。</p>
-<p>「工牌、门禁卡、教练编号牌，在第三个箱子。」</p>
-<p>「1998 年的录像带。」</p>
-<p>「也在箱子里。」小陈把最后一本档案压进箱子，「录像带按基地资产登记，得入库房。您的东西三个月内去拿，过了三个月按无主物品处理。」</p>
-<p>陶砚点头。他没有看箱子，看的是墙。墙上原来挂着三块金牌的位置空了，钉子孔还在，一个一个排成一行。</p>
-<p>「对了。」小陈抱起箱子，「前台说上午有个人问过 T-07 的办公室在几楼。问完就走了，没上楼。」</p>
-<p>「什么样的人。」</p>
-<p>「二十七八岁。深蓝色外套，没带包。」</p>
-<p>「知道了。」</p>
-<p>小陈抱着箱子走了。走廊里剩下纸箱蹭墙的声音。</p>
-<p>陶砚拉开抽屉，把抽屉最里面那本封皮发硬的册子拿出来。十五年的教案，他自己写的，每一页都记着日期、时数、动作、偏差。</p>
-<p>他翻到 2019 年。省跳远，省冠军，姓周，二十四岁，训练周期是三月到十月。</p>
-<p>最后一栏有一行他自己写的备注：八月十七日至九月四日，队员在省队集训，未在基地。</p>
-<p>他盯着这行字看了很久。</p>
-<p>这一行是他自己记的。他记的时候没有想过要证明什么，他只是照实写。八周。二十七天到十一月，训练计划照旧，负荷照旧。</p>
-<p>计划是它自己长出来的，还是他写出来的。</p>
-<p>他翻回前面。2016 年那个全国青少年锦标赛的第三名，备注栏只有四个字：老队员带。</p>
-<p>再往前。2013 年，2014 年。备注栏不是空的，就是更短：他自己加的、他自己改的、他老家的教练来看过。</p>
-<p>他翻到 2011 年 3 月。那一页最上面写着：接手，第一批 12 人。</p>
-<p>接手。第一个字。</p>
-<p>陶砚把册子合上，压在折算表上面。桌上那部座机响了。显示 08 区，董事长办公室。</p>
-<p>「陶砚。」卢兆丰的声音从免提里出来，很慢，句尾带着「我们」，「材料我看过了。三项。」</p>
-<p>「您看了。」</p>
-<p>「今天要说的是，你签了字。」</p>
-<p>「我签了。」</p>
-<p>「那就好。」他说，「你停职，基地照常转。认证大会下个月要开，十一个金牌要颁。地基不能因为你一个人的事塌一块。」</p>
-<p>「十一块金牌里有几块是我签的。」</p>
-<p>「都是你签的。」卢兆丰说，「所以你更不能让它塌。」</p>
-<p>陶砚看着手边那张折算表。十一行。</p>
-<p>「卢总。」</p>
-<p>「你说。」</p>
-<p>「退款率 14%。」</p>
-<p>那头静了两秒。</p>
-<p>「那是结算口径还没改。」卢兆丰说，「你停你的职，账我来盘。我们先把产能做上去，别的都能补。」</p>
-<p>「补什么。」</p>
-<p>「补……」卢兆丰停了一下，「陶砚，你现在最不该做的事，就是把自己的方法论拆开给人看。你拆得越细，别人越能拿它去算别的东西。这套东西不是一天建起来的，也不是你一个人的。」</p>
-<p>「那是师父的。」</p>
-<p>「是你师父的，也是基地的，也是每个学员花的钱凑起来的。」卢兆丰说，「这三样绑在一根绳上，你扯哪一头？」</p>
-<p>陶砚没有回答。他把折算表折成三折，塞进外套内袋，和复印件放在一起。</p>
-<p>「材料上第三项，你要是有办法证明，就拿出来。」卢兆丰说，「拿不出来，就认。」</p>
-<p>「我有办法。」</p>
-<p>「那就快一点。」</p>
-<p>座机断了。</p>
-<p>陶砚把签收页、附页三的照片、2002 年的日志三样东西并排摊在桌上，然后抱起外套，下楼。</p>
-<p>地下车库里只停着他一辆车。他坐进驾驶座，没有发动引擎，把那张两寸照片摊在方向盘上。</p>
-<p>照片里的 3,100 印得很浅。他用指甲盖在照片背面刮了一下，想确认这不是打印时压出来的噪点。</p>
-<p>他掏出手机，拨了邱岸的号码。响了两声，那边接起来。</p>
-<p>「陶教练。」</p>
-<p>「你把一张纸留了二十四年。」</p>
-<p>「是。」</p>
-<p>「为什么。」</p>
-<p>「因为那是那本日志里唯一一个我不认识的数。」邱岸说，「其余的我都交了。时数、动作、偏差、签字，我一样没藏。」</p>
-<p>「备注栏为什么是空的。」</p>
-<p>那头静了几秒。</p>
-<p>「因为那是陈守拙的字。」邱岸说，「上交给委员会的只能是数据。方法不能交。」</p>
-<p>陶砚握着电话的手没动。他把这句话在心里过了一遍，找到他要找的东西：邱岸不是在销毁证据。他是在把师父藏起来，藏了二十四年，直到今天早上，才第一次露出一角。</p>
-<p>「3,100 是谁。」</p>
-<p>「1999 年的台账我查过。」邱岸的声音还是那么客气，「那一年射击队走了一个学生。账上给他记的总时数是三千一百。他走的时候没有跟任何人告别。」</p>
-<p>「名字。」</p>
-<p>「您比我清楚。」</p>
-<p>陶砚没有再问。</p>
-<p>「三月我接回那本日志，夹页里还有东西。」他说，「是你拿走的。」</p>
-<p>「我交上去了。」</p>
-<p>「交到哪儿。」</p>
-<p>「附页三。」邱岸说，「您已经看了。」</p>
-<p>电话挂了。</p>
-<p>车库里只剩排风扇的响声。陶砚把那本 2002 年的日志摊在方向盘上，翻到那一页。</p>
-<p>左边是他的 812。右边是邱岸交上去的 3,100。同一张纸的两面，中间隔了二十四年。</p>
-<p>他给苏芮回了一条短信，只有一句：第三项我能证明，办法是把十五年的东西全交出去。</p>
-<p>发完他停了几秒，又加了一句：包括我自己做错的。</p>
-<p>发完他把手机扣在腿上，重新看那张照片。照片拍摄的角度是从上往下，纸片躺在别人的桌面上，旁边有一角深色的桌垫。邱岸没有把它摆正。</p>
-<p>他把照片翻过来。背面有一行手写铅笔字，很淡：3,100。</p>
-<p>不是印的。是邱岸自己抄上去的。</p>
-<p>陶砚打开手机备忘录，在新建的一行里打下三个数字：3,100。</p>
 ]]></content>
       <categories>
         <category>小说</category>
@@ -40952,6 +40952,45 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
       </tags>
   </entry>
   <entry>
+    <title>低成本模型冲击正在重写AI应用成本结构</title>
+    <url>/AI/96f42dea.html</url>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="模型榜单该退到第二步"><a class="markdownIt-Anchor" href="#模型榜单该退到第二步"></a> 模型榜单该退到第二步</h2>
+<p>模型选型曾经是 AI 应用的第一道题。哪个模型更聪明，哪个基准分更高，谁更适合写代码，这些指标直接影响效果。</p>
+<p>我最初也按这个思路做判断。2026 年 11 月 10 日发布的 Claude Fable 5.2 和 Claude Mythos 5.2，把速度提升摆到了台前。资料里写得很直接：输出速度最高提升30%。</p>
+<p>后来我改看单位任务成本。这个指标更接近应用真正付出的代价。模型少贵一点、快一点，都要落到一个具体任务上才有意义。</p>
+<blockquote>
+<p>速度提升30%，仍然只是模型指标。只有换算成每次任务的金额和时间，才进入业务判断。</p>
+</blockquote>
+<p>模型榜单没有失效。它适合做能力筛选，却不该直接决定架构和采购。</p>
+<h2 id="单位任务成本才是应用账单"><a class="markdownIt-Anchor" href="#单位任务成本才是应用账单"></a> 单位任务成本才是应用账单</h2>
+<p>一次 AI 任务很少只调用一次模型。失败重试、上下文补全、结构校验、人工返工，都会增加真实成本。输入长度、输出长度、缓存策略和模型单价，也都影响最终金额。</p>
+<p>按公开信息，Claude Fable 5 的价格曾写为 $10。这个数字不能脱离计费口径单独传播，但足以提醒团队：单价只是成本的起点。</p>
+<blockquote>
+<p><span class="hl">模型价格决定预算上限，单位任务成本决定产品能否持续。</span></p>
+</blockquote>
+<p>我更愿意用一张简单表核算。模型 A 的调用单价更低，但需要 3 次重试；模型 B 单价更高，却一次生成可用的结构化结果。比较时还要加入返工工时和响应时延。</p>
+<p>这也接上了我在《大模型入门：从猜下一个字，到接进业务流程》里的思路。大模型应用的价值不由回答有多惊艳决定。它能否稳定进入表格、代码、工单和审批流程，决定了成本能否被业务接受。</p>
+<p>我到现在也没找到一个适用于所有任务的固定公式。文本分类、代码生成、复杂决策的任务边界并不一样。公式会变，核算单位应该稳定。</p>
+<h2 id="接进业务流程也要接受成本审判"><a class="markdownIt-Anchor" href="#接进业务流程也要接受成本审判"></a> “接进业务流程”也要接受成本审判</h2>
+<p>把模型接进流程，不等于完成了 AI 化。业务不会奖励一次漂亮的演示，也不会替系统承担反复失败。</p>
+<p>我推 Hermes Atlas 知识库时，最难回答的仍是三个问题：解决什么问题、谁付钱、怎么收钱。现在多了一个第四个问题：每次完成任务的成本是多少。</p>
+<p>这个问题会迫使产品拆得更细。一个功能究竟服务一次检索、一次整理，还是一次可交付结果？输入什么数据，产出什么结果，失败后由谁接管？答案模糊，功能边界就会变模糊。</p>
+<p>低代码平台、流程引擎和成本核算的经验都指向同一件事：系统是否可用，要看稳定交付和可重复运行。AI 应用也该接受同样的检查。</p>
+<blockquote>
+<p><span class="hl">低成本模型会降低试错门槛，也会放大流程设计不清的成本。</span></p>
+</blockquote>
+<p>模型便宜时，团队更容易频繁调用。便宜本身可能制造浪费。每次调用都应绑定一个业务结果，而不是绑定一段演示。</p>
+<p>低成本模型正在重写 AI 应用的成本结构。选型仍要做，单位任务成本也要算。下一轮模型变化，我仍会关注榜单，但我更想记录一张表：每个任务调用几次，花多少钱，失败几次，最后交付了什么。</p>
+<p>这套账还没有算完。接下来该把 Hermes Atlas 的任务边界写清楚，再给每个结果标上价格。</p>
+]]></content>
+      <categories>
+        <category>AI</category>
+      </categories>
+      <tags>
+        <tag>AI</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>美国赢得AI竞赛，但黄仁勋差点亲手葬送优势</title>
     <url>/AI/1cdc5bc8.html</url>
     <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="间谍风波改变不了算力胜负手"><a class="markdownIt-Anchor" href="#间谍风波改变不了算力胜负手"></a> 间谍风波改变不了算力胜负手</h2>
@@ -41000,45 +41039,6 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
 </blockquote>
 <p>黄仁勋的私生活风波，可能让他付出政治与声誉代价。可真正决定AI竞赛的，仍是算力供给、开源扩散和开发者迁移成本。</p>
 <p>留给黄仁勋的问题是，他能否让个人信任与公司战略重新分开。留给美国的问题是，能否把已经形成的生态优势变成持续创新，而非一次出口管制带来的暂时领先。</p>
-]]></content>
-      <categories>
-        <category>AI</category>
-      </categories>
-      <tags>
-        <tag>AI</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>低成本模型冲击正在重写AI应用成本结构</title>
-    <url>/AI/96f42dea.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="模型榜单该退到第二步"><a class="markdownIt-Anchor" href="#模型榜单该退到第二步"></a> 模型榜单该退到第二步</h2>
-<p>模型选型曾经是 AI 应用的第一道题。哪个模型更聪明，哪个基准分更高，谁更适合写代码，这些指标直接影响效果。</p>
-<p>我最初也按这个思路做判断。2026 年 11 月 10 日发布的 Claude Fable 5.2 和 Claude Mythos 5.2，把速度提升摆到了台前。资料里写得很直接：输出速度最高提升30%。</p>
-<p>后来我改看单位任务成本。这个指标更接近应用真正付出的代价。模型少贵一点、快一点，都要落到一个具体任务上才有意义。</p>
-<blockquote>
-<p>速度提升30%，仍然只是模型指标。只有换算成每次任务的金额和时间，才进入业务判断。</p>
-</blockquote>
-<p>模型榜单没有失效。它适合做能力筛选，却不该直接决定架构和采购。</p>
-<h2 id="单位任务成本才是应用账单"><a class="markdownIt-Anchor" href="#单位任务成本才是应用账单"></a> 单位任务成本才是应用账单</h2>
-<p>一次 AI 任务很少只调用一次模型。失败重试、上下文补全、结构校验、人工返工，都会增加真实成本。输入长度、输出长度、缓存策略和模型单价，也都影响最终金额。</p>
-<p>按公开信息，Claude Fable 5 的价格曾写为 $10。这个数字不能脱离计费口径单独传播，但足以提醒团队：单价只是成本的起点。</p>
-<blockquote>
-<p><span class="hl">模型价格决定预算上限，单位任务成本决定产品能否持续。</span></p>
-</blockquote>
-<p>我更愿意用一张简单表核算。模型 A 的调用单价更低，但需要 3 次重试；模型 B 单价更高，却一次生成可用的结构化结果。比较时还要加入返工工时和响应时延。</p>
-<p>这也接上了我在《大模型入门：从猜下一个字，到接进业务流程》里的思路。大模型应用的价值不由回答有多惊艳决定。它能否稳定进入表格、代码、工单和审批流程，决定了成本能否被业务接受。</p>
-<p>我到现在也没找到一个适用于所有任务的固定公式。文本分类、代码生成、复杂决策的任务边界并不一样。公式会变，核算单位应该稳定。</p>
-<h2 id="接进业务流程也要接受成本审判"><a class="markdownIt-Anchor" href="#接进业务流程也要接受成本审判"></a> “接进业务流程”也要接受成本审判</h2>
-<p>把模型接进流程，不等于完成了 AI 化。业务不会奖励一次漂亮的演示，也不会替系统承担反复失败。</p>
-<p>我推 Hermes Atlas 知识库时，最难回答的仍是三个问题：解决什么问题、谁付钱、怎么收钱。现在多了一个第四个问题：每次完成任务的成本是多少。</p>
-<p>这个问题会迫使产品拆得更细。一个功能究竟服务一次检索、一次整理，还是一次可交付结果？输入什么数据，产出什么结果，失败后由谁接管？答案模糊，功能边界就会变模糊。</p>
-<p>低代码平台、流程引擎和成本核算的经验都指向同一件事：系统是否可用，要看稳定交付和可重复运行。AI 应用也该接受同样的检查。</p>
-<blockquote>
-<p><span class="hl">低成本模型会降低试错门槛，也会放大流程设计不清的成本。</span></p>
-</blockquote>
-<p>模型便宜时，团队更容易频繁调用。便宜本身可能制造浪费。每次调用都应绑定一个业务结果，而不是绑定一段演示。</p>
-<p>低成本模型正在重写 AI 应用的成本结构。选型仍要做，单位任务成本也要算。下一轮模型变化，我仍会关注榜单，但我更想记录一张表：每个任务调用几次，花多少钱，失败几次，最后交付了什么。</p>
-<p>这套账还没有算完。接下来该把 Hermes Atlas 的任务边界写清楚，再给每个结果标上价格。</p>
 ]]></content>
       <categories>
         <category>AI</category>
@@ -42353,49 +42353,39 @@ antd 5 逼我把 <code>slice(-1)</code> 那种靠「数组最后一个元素」�
   <entry>
     <title>智能体正在取代数据分析工作流</title>
     <url>/AI/d1b856bd.html</url>
-    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="低代码只是把入口变宽了"><a class="markdownIt-Anchor" href="#低代码只是把入口变宽了"></a> 低代码只是把入口变宽了</h2>
-<p>我最初把低代码看成开发效率工具。拖拽表单、配置流程、接上接口，业务人员就能少等工程师几天。<span class="hl">这种判断并不错，但它解释不了最近的变化：智能体开始接手分析任务，连接数据、提出假设、生成图表，甚至继续追问。</span></p>
-<p>变化发生在工作流的边界。过去，人负责提出问题、拼装工具、解释结果；机器负责执行固定步骤。现在，机器可以生成下一步动作。</p>
-<p>这也解释了独立开发者的新机会。机会不在于再做一个更漂亮的拖拽器，而在于提供一条可靠路径：从模糊问题走到可验证结论。</p>
+    <content><![CDATA[<link rel="stylesheet" class="aplayer-secondary-style-marker" href="/assets/css/APlayer.min.css"><script src="/assets/js/APlayer.min.js" class="aplayer-secondary-script-marker"></script><script class="meting-secondary-script-marker" src="/assets/js/Meting.min.js"></script><h2 id="智能体接手执行判断仍然属于人"><a class="markdownIt-Anchor" href="#智能体接手执行判断仍然属于人"></a> 智能体接手执行，判断仍然属于人</h2>
+<p>智能体正在改写数据分析的工作边界。它适合接管取数、执行查询和调用工具，人的价值则回到提问、判断，以及确认哪些信息真正重要。</p>
+<p>2026 年 11 月 24 日，InfoQ 精选视频发布了 Snowflake 王玮的《数据分析的下一站：智能体分析》。传统数据分析系统主要面向人类用户设计，人要提供上下文、逐个提出问题。Agent 的工作方式不同，它可以循环执行查询、调用工具，再根据结果采取行动。</p>
+<p>我最初关注的只是执行效率。数据存在数据库里，查询语句已经写好，Agent 能自动运行，好像分析工作天然会向自动化发展。</p>
+<p>我的 mem-md 给了我一个更具体的反例。它是自建的文件系统式记忆系统，不用向量库，已知痛点是<span class="hl">召回命中率约 9%</span>。Agent 再会循环查询，如果它拿到的上下文不完整，结果也不会自动变对。</p>
+<p>这和 Snowflake 提出的第一个障碍很接近：业务意义未共享或缺乏治理。缺少共享语义，Agent 只是更快地沿着错误方向取数。</p>
 <blockquote>
-<p>低代码降低了操作门槛，自主分析抬高的是责任门槛。</p>
+<p>召回命中率约 9%，说明问题不只在执行能力，也在记忆是否找得到。</p>
 </blockquote>
-<p>工具变简单了，结果却未必更容易被信任。</p>
-<h2 id="自主分析的核心是验证"><a class="markdownIt-Anchor" href="#自主分析的核心是验证"></a> 自主分析的核心是验证</h2>
-<p>我写过《编程早已面目全非，AI 正重写开发者的价值边界》。文章里的判断在今天仍然成立：代码供给增加后，逐行审查会成为瓶颈，人的价值会转向问题选择、约束设定和结果验收。</p>
-<p>数据分析也是如此。</p>
-<p>一个智能体给出“转化率下降”的结论很容易。难的是证明它选对了时间范围，对齐了口径，也没有把季节变化误当成业务问题。</p>
-<p><span class="hl">我自己的 mem-md 召回命中率约为 9%。</span>这个数字一直提醒我：能生成答案和能可靠命中正确材料，是两件事。自主分析产品也一样。界面再自然，如果依据无法追溯，结论再多也只是包装精美的猜测。</p>
-<p>分析产品因此需要把验证写进流程：</p>
-<ul class="lvl-0">
-<li class="lvl-2">
-<p>明确数据来源和更新时间；</p>
-</li>
-<li class="lvl-2">
-<p>展示关键计算过程；</p>
-</li>
-<li class="lvl-2">
-<p>对异常结果给出反例；</p>
-</li>
-<li class="lvl-2">
-<p>允许用户纠正口径后重新运行。</p>
-</li>
-</ul>
+<h2 id="两个障碍背后还有执行代价"><a class="markdownIt-Anchor" href="#两个障碍背后还有执行代价"></a> 两个障碍背后，还有执行代价</h2>
+<p>Snowflake 将数据分析的主要障碍归为两个：业务意义未共享或缺乏治理，以及系统设计无法应对代理生成的查询爆发。后一个问题尤其值得注意，因为 Agent 的运行方式会持续增加查询和工具调用。</p>
+<p>以前，人写一条查询，看结果，再决定下一步。Agent 可以把链条接起来。这个变化提高吞吐，也把数据平台推到另一侧：它需要承接更多并发请求，同时保持一致性和准确性。</p>
+<p>Snowflake 的解法是提供共享业务上下文和高效性能。它还引入原生图分析功能，让用户直接在现有数据上创建属性图并执行图查询与算法。过去需要专门团队和数据库处理的问题，现在可以通过单一查询解决。</p>
+<p>我认同这个方向，但共享上下文不能只停留在平台描述里。它至少要回答字段代表什么、哪些口径可以复用、一次结论依赖哪些依据。否则，Agent 循环得越快，错误传播得也越快。</p>
+<p>讲稿中的业务案例很具体：EMEA 地区的供应链延迟造成广泛的库存短缺，建议将第一季度的营销支出重新分配到 APAC 地区，以推动过剩库存的销售。</p>
+<p>这里容易被忽略的代价是责任。平台能给出可执行建议，却不能替业务方接受重新分配预算的后果。Agent 可以根据结果行动，人仍要判断是否值得行动。</p>
 <blockquote>
-<p>一个无法回答“为什么”的分析结果，很难进入业务决策。</p>
+<p>业务案例再清楚，决策责任也不会移交给查询系统。</p>
 </blockquote>
-<p>验证能力会比自然语言交互更难复制，也更有价值。</p>
-<h2 id="独立开发者应该卖结果"><a class="markdownIt-Anchor" href="#独立开发者应该卖结果"></a> 独立开发者应该卖结果</h2>
-<p>我做一人公司的方向是信息差套利。当前卡点很明确：解决什么问题、谁付钱、怎么收钱。这三个问题同样适用于智能体分析产品。</p>
-<p>我最开始想的是卖给企业里的数据团队。原因很直接，数据质量复杂，权限要求高，容错空间小。后来我发现，这也把市场压得很窄。</p>
-<p>小团队同样有分析需求，只是没有能力维护复杂平台。销售、运营、财务人员每天面对表格，却很难把问题写成明确需求。低代码解决“怎么做”，自主分析可以继续解决“该看哪里”。</p>
-<p>产品形态可以很轻。接入指定数据，限定业务范围，产出带依据的分析记录。客户为减少的排查时间付费，也为过程可追溯付费。</p>
+<p>Snowflake 还提供实时分析能力，支持连续数据输入、实时 CDC 流转换，并在一个平台上运行。它配有自适应计算和 Optima 优化引擎，减少复杂技术栈带来的管理与治理负担。讲稿同时提出，智能体分析达到企业级应用要求，需要四项关键平台能力，但这一页没有展开具体名称。</p>
+<p>这四项能力是什么，我目前也没有答案。可能涉及上下文、治理、性能与行动接口，也可能有别的划分。缺了这份清单，企业级能力容易被一句“接入 Agent”掩盖。</p>
+<h2 id="独立开发者卖的是可追溯的分析结果"><a class="markdownIt-Anchor" href="#独立开发者卖的是可追溯的分析结果"></a> 独立开发者卖的是可追溯的分析结果</h2>
+<p>独立开发者最容易想到的入口，是对话窗口。让用户提问，让 Agent 查询，再返回一段文字。这看起来直接，却很难单独形成可靠价值。</p>
+<p>我的判断更直接：<span class="hl">独立开发者能卖的是让依据可追溯的分析结果，对话窗口只是入口。</span>用户真正需要知道结论来自哪里、采用了什么口径、哪些数据发生变化，以及能否复核执行过程。</p>
+<p>这也解释了为什么 mem-md 的 9% 会成为商业问题的入口。如果召回失败，结果即使流畅，也无法追溯。命中了正确片段，也只是起点。还要保留来源、上下文和使用边界，才能把一次回答变成可以复查的分析。</p>
+<p>Snowflake 王玮的个人介绍语是「不要因为走得太远而忘记为什么出发」。Agent 可以把数据分析工作流推进很远，却不能代替人确认方向。业务案例中，供应链延迟和库存短缺给出行动线索，最终仍要判断是否值得调整第一季度的营销支出。</p>
+<p>我在《主权AI不是护城河，控制平面才是独立开发者机会》（2026）中写过，控制平面决定资源怎么被分配。做分析产品也一样。你能调用多少工具，只是能力；你能否管理业务语义、证据链和行动权限，才决定结果能不能被信任。</p>
+<p>这类产品也不会只卖一个查询结果。更好的交付单位可能是一份分析记录：问题、依据、查询、限制和待确认项都被保留下来。用户可以沿着它复核，而不是重新问一遍。</p>
 <blockquote>
-<p>真正可卖的结果，是让人少做一次重复排查，而不是多获得一个聊天窗口。</p>
+<p>对话可以重新生成，依据不能凭空重建。</p>
 </blockquote>
-<p>这条路线也有风险。模型可能误解业务，错误结论会直接伤害信任。独立开发者无法和大型平台比模型规模，只能把可靠性、领域约束和交付边界做得更清楚。</p>
-<p>《编程早已面目全非，AI 正重写开发者的价值边界》讨论的是开发价值的变化。数据分析也在重写：取数、制图和写公式逐渐交给智能体，判断数据是否可信、结论是否值得行动，仍由人负责。</p>
-<p>智能体正在接走数据分析工作流里的执行环节。独立开发者真正能占的位置，是把执行变成可验收的结果。下一个值得追问的问题是：企业愿意为一次可靠的分析付费，还是更愿意为持续可用的判断系统付费？</p>
+<p>Agent 正在取代数据分析工作流中的取数与执行。人保留提问和判断。独立开发者要做的，是把这段交接做得可追溯、可治理。</p>
+<p>下一个问题仍未定论：当分析结果可以逐项复核，独立开发者究竟应该按一次结论收费，还是成为组织持续使用的一套判断基础设施？</p>
 ]]></content>
       <categories>
         <category>AI</category>
